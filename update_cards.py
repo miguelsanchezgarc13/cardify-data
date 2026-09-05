@@ -1,33 +1,32 @@
 import requests
 import json
-import time
 
 # --- CONFIGURACIÓN ---
-# Aquí iremos añadiendo los juegos que queramos soportar
 GAMES_TO_UPDATE = ["onepiece"] 
 
 def get_one_piece_data():
-    """Busca datos de One Piece TCG de fuentes comunitarias/APIs"""
     print("Iniciando extracción de One Piece...")
     cards_db = {}
     
-    # En el futuro, aquí iteramos por expansiones (OP01, OP02...)
-    # Por ahora, usamos una fuente de datos de alta fidelidad o simulamos el scraping masivo
-    # Ejemplo de estructura que generaremos para CUALQUIER carta detectada:
+    # Expansiones actuales
     expansions = ["OP01", "OP02", "ST01", "EB01", "OP10", "OP11"]
     
     for exp in expansions:
-        print(f"Procesando expansión {exp}...")
-        # Nota: Aquí conectaríamos con un scraper real. 
-        # Para esta prueba, generamos una base inteligente que tu app usará.
-        for i in range(1, 30): # Generamos las primeras 30 cartas de cada set
+        # Generamos un rango de cartas (en el scraper real esto se lee de la web)
+        for i in range(1, 20): 
             code = f"{exp}-{str(i).zfill(3)}"
+            
+            # URL más aproximada a la realidad de One Piece
+            # Nota: La oficial suele ser .png y estar en su CDN
+            img_url = f"https://en.onepiece-cardgame.com/images/cardlist/card/{code}.png"
+            
             cards_db[code] = {
                 "code": code,
-                "name": f"Card {code}", # El nombre real vendrá del scraping
-                "imageUrl": f"https://images.ygoprodeck.com/images/cards/{code}.jpg",
-                "price": 1.0 + (i * 0.5), # Precio simulado que fluctuará
-                "rarity": "SR" if i > 20 else "R"
+                "game": "One Piece", # NUEVO CAMPO
+                "name": f"Character {code}", 
+                "imageUrl": img_url,
+                "price": 5.0, # Precio base para la prueba
+                "rarity": "R"
             }
     return cards_db
 
@@ -38,15 +37,11 @@ def main():
         op_cards = get_one_piece_data()
         final_database.update(op_cards)
         
-    # if "pokemon" in GAMES_TO_UPDATE:
-    #    pk_cards = get_pokemon_data()
-    #    final_database.update(pk_cards)
-
-    # Guardamos todo en el JSON que lee la APP
+    # Guardamos todo en el JSON
     with open("cards.json", "w", encoding="utf-8") as f:
         json.dump(final_database, f, indent=2, ensure_ascii=False)
     
-    print(f"¡Éxito! Base de datos actualizada con {len(final_database)} cartas.")
+    print(f"¡Éxito! Base de datos actualizada con {len(final_database)} cartas y campo 'game'.")
 
 if __name__ == "__main__":
     main()
