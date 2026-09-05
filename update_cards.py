@@ -1,52 +1,54 @@
 import requests
 import json
-import time
 
 def get_one_piece_data():
     print("Iniciando extracción de datos reales de One Piece...")
     cards_db = {}
     
-    # Usamos la base de datos de 'optcg.gg' que es muy fiable para nombres
-    # Intentamos descargar su diccionario completo
+    # URL de una base de datos de One Piece TCG muy fiable y abierta
+    url = "https://raw.githubusercontent.com/limitless-tcg/optcg-data/main/cards.json"
+    
     try:
-        # Nota: Esta es una URL de una base de datos comunitaria muy usada en scrapers
-        url = "https://raw.githubusercontent.com/limitless-tcg/optcg-data/main/cards.json"
         response = requests.get(url)
-        
-        if response.statusCode == 200:
+        # CORRECCIÓN TÉCNICA: Usamos status_code (estándar de Python)
+        if response.status_code == 200:
             raw_data = response.json()
+            print(f"¡Conexión exitosa! Procesando {len(raw_data)} cartas...")
+            
             for card in raw_data:
-                code = card.get('id') # Ejemplo: OP01-001
+                code = card.get('id')
                 if not code: continue
                 
-                # Construimos nuestra estructura Cardify
+                # Mapeamos los datos reales a nuestro formato de Cardify
                 cards_db[code] = {
                     "code": code,
                     "game": "One Piece",
-                    "name": card.get('name', f"Unknown {code}"),
+                    "name": card.get('name', 'Unknown Name'),
                     "imageUrl": f"https://en.onepiece-cardgame.com/images/cardlist/card/{code}.png",
-                    "price": 0.5, # El precio real requiere un scraper más lento, lo dejamos base
+                    "price": 2.50, # Precio base (el scraper de precios reales es el siguiente nivel)
                     "rarity": card.get('rarity', 'R')
                 }
-            print(f"¡Éxito! Se han importado {len(cards_db)} cartas reales.")
             return cards_db
+        else:
+            print(f"Error: La fuente de datos respondió con código {response.status_code}")
     except Exception as e:
-        print(f"Error al conectar con la base de datos real: {e}")
-        # Si falla la base de datos externa, volvemos al modo simulado
-        return {}
+        print(f"Error al conectar con la base de datos: {e}")
+    
+    return {}
 
 def main():
+    # Obtenemos los datos de la "biblioteca" de One Piece
     final_database = get_one_piece_data()
     
-    # Si por algún motivo falló la descarga, no machacamos el archivo con un vacío
     if not final_database:
-        print("Error: No se han podido obtener datos. Abortando actualización.")
+        print("CUIDADO: No se han obtenido datos. Abortando para no borrar el JSON actual.")
         return
 
+    # Guardamos el resultado en cards.json
     with open("cards.json", "w", encoding="utf-8") as f:
         json.dump(final_database, f, indent=2, ensure_ascii=False)
     
-    print("¡Proceso completado!")
+    print(f"¡BRUTAL! cards.json actualizado con {len(final_database)} cartas con nombres REALES.")
 
 if __name__ == "__main__":
     main()
