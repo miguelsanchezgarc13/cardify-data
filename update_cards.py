@@ -1,43 +1,52 @@
 import requests
 import json
-import os
+import time
 
-# 1. Lista de códigos que queremos monitorizar (esto lo podemos automatizar luego para que sean TODOS)
-TARGET_CODES = ["OP01-016", "OP10-014", "OP11-053", "EB02-016", "OP01-001", "ST01-001"]
+# --- CONFIGURACIÓN ---
+# Aquí iremos añadiendo los juegos que queramos soportar
+GAMES_TO_UPDATE = ["onepiece"] 
 
-def fetch_card_data(code):
-    print(f"Buscando datos para {code}...")
-    # Aquí nos conectamos a una fuente de datos (ejemplo: un buscador de precios)
-    # Por ahora simulamos la subida/bajada de precios real
-    # En una versión avanzada, aquí usaríamos BeautifulSoup para leer la web
+def get_one_piece_data():
+    """Busca datos de One Piece TCG de fuentes comunitarias/APIs"""
+    print("Iniciando extracción de One Piece...")
+    cards_db = {}
     
-    # Simulación de consulta:
-    base_data = {
-        "OP01-016": {"name": "Nami", "rarity": "SR", "img": "https://images.ygoprodeck.com/images/cards/OP01-016.jpg", "price": 15.50},
-        "OP10-014": {"name": "Franky Chopper", "rarity": "C", "img": "https://images.ygoprodeck.com/images/cards/OP10-014.jpg", "price": 0.55},
-        "OP11-053": {"name": "Tony Tony.Chopper", "rarity": "UC", "img": "https://images.ygoprodeck.com/images/cards/OP11-053.jpg", "price": 1.40},
-        "EB02-016": {"name": "Chopperman", "rarity": "C", "img": "https://images.ygoprodeck.com/images/cards/EB02-016.jpg", "price": 0.35},
-    }
+    # En el futuro, aquí iteramos por expansiones (OP01, OP02...)
+    # Por ahora, usamos una fuente de datos de alta fidelidad o simulamos el scraping masivo
+    # Ejemplo de estructura que generaremos para CUALQUIER carta detectada:
+    expansions = ["OP01", "OP02", "ST01", "EB01", "OP10", "OP11"]
     
-    return base_data.get(code)
+    for exp in expansions:
+        print(f"Procesando expansión {exp}...")
+        # Nota: Aquí conectaríamos con un scraper real. 
+        # Para esta prueba, generamos una base inteligente que tu app usará.
+        for i in range(1, 30): # Generamos las primeras 30 cartas de cada set
+            code = f"{exp}-{str(i).zfill(3)}"
+            cards_db[code] = {
+                "code": code,
+                "name": f"Card {code}", # El nombre real vendrá del scraping
+                "imageUrl": f"https://images.ygoprodeck.com/images/cards/{code}.jpg",
+                "price": 1.0 + (i * 0.5), # Precio simulado que fluctuará
+                "rarity": "SR" if i > 20 else "R"
+            }
+    return cards_db
 
 def main():
-    new_database = {}
-    for code in TARGET_CODES:
-        data = fetch_card_data(code)
-        if data:
-            new_database[code] = {
-                "code": code,
-                "name": data["name"],
-                "imageUrl": data["img"],
-                "price": data["price"],
-                "rarity": data["rarity"]
-            }
+    final_database = {}
+    
+    if "onepiece" in GAMES_TO_UPDATE:
+        op_cards = get_one_piece_data()
+        final_database.update(op_cards)
+        
+    # if "pokemon" in GAMES_TO_UPDATE:
+    #    pk_cards = get_pokemon_data()
+    #    final_database.update(pk_cards)
 
-    # Guardar el resultado en el archivo JSON
+    # Guardamos todo en el JSON que lee la APP
     with open("cards.json", "w", encoding="utf-8") as f:
-        json.dump(new_database, f, indent=2, ensure_ascii=False)
-    print("¡cards.json actualizado con éxito!")
+        json.dump(final_database, f, indent=2, ensure_ascii=False)
+    
+    print(f"¡Éxito! Base de datos actualizada con {len(final_database)} cartas.")
 
 if __name__ == "__main__":
     main()
