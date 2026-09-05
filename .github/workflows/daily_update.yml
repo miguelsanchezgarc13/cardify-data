@@ -17,7 +17,7 @@ jobs:
           python-version: '3.9'
 
       - name: Instalar dependencias
-        run: pip install requests
+        run: pip install requests beautifulsoup4
 
       - name: Ejecutar script de actualización
         run: python update_cards.py
