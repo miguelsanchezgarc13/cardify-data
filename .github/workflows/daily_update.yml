@@ -1,0 +1,31 @@
+name: Actualización Diaria de Precios
+on:
+  schedule:
+    - cron: '0 0 * * *' # Se ejecuta todas las noches a las 00:00
+  workflow_dispatch: # Permite ejecutarlo a mano cuando quieras
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Instalar dependencias
+        run: pip install requests
+
+      - name: Ejecutar script de actualización
+        run: python update_cards.py
+
+      - name: Guardar cambios en GitHub
+        run: |
+          git config --global user.name 'Cardify Bot'
+          git config --global user.email 'bot@cardify.app'
+          git add cards.json
+          git commit -m "Auto-update precios y nombres" || exit 0
+          git push
