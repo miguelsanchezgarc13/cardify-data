@@ -3,28 +3,28 @@
     "code": "OP01-016",
     "name": "Nami",
     "imageUrl": "https://images.ygoprodeck.com/images/cards/OP01-016.jpg",
-    "price": 15.50,
+    "price": 15.5,
     "rarity": "SR"
   },
   "OP10-014": {
     "code": "OP10-014",
     "name": "Franky Chopper",
     "imageUrl": "https://images.ygoprodeck.com/images/cards/OP10-014.jpg",
-    "price": 0.50,
+    "price": 0.55,
     "rarity": "C"
   },
   "OP11-053": {
     "code": "OP11-053",
     "name": "Tony Tony.Chopper",
     "imageUrl": "https://images.ygoprodeck.com/images/cards/OP11-053.jpg",
-    "price": 1.50,
+    "price": 1.4,
     "rarity": "UC"
   },
   "EB02-016": {
     "code": "EB02-016",
     "name": "Chopperman",
     "imageUrl": "https://images.ygoprodeck.com/images/cards/EB02-016.jpg",
-    "price": 0.30,
+    "price": 0.35,
     "rarity": "C"
   }
 }
