@@ -2,70 +2,54 @@ import requests
 import json
 
 def main():
-    print("🚀 Lanzando misión de rescate de datos Cardify...")
+    print("🚀 Iniciando conexión con Punk Records Database (2025)...")
     final_db = {}
     
-    # DICCIONARIO DE ALTA FIDELIDAD (Garantiza nombres para el set principal)
-    # He incluido los nombres reales de las cartas más importantes de OP-01
-    romance_dawn_names = {
-        "OP01-001": "Roronoa Zoro (Leader)",
-        "OP01-002": "Trafalgar Law (Leader)",
-        "OP01-016": "Nami (SR)",
-        "OP01-025": "Roronoa Zoro (SR)",
-        "OP01-013": "Sanji (R)",
-        "ST01-001": "Monkey.D.Luffy (Leader)",
-        "OP10-014": "Franky Chopper",
-        "OP11-053": "Tony Tony.Chopper",
-        "EB02-016": "Chopperman"
-    }
-
-    # Intentamos descargar nombres reales de una fuente espejo alternativa
-    mirror_url = "https://raw.githubusercontent.com/optcg/optcg-data/main/cards.json"
+    # Esta es la URL del índice maestro de cartas de One Piece
+    url = "https://raw.githubusercontent.com/buhbbl/punk-records/main/index/cards_by_id.json"
     
     try:
-        print(f"📡 Buscando en espejo comunitario...")
-        response = requests.get(mirror_url, timeout=15)
+        print(f"📡 Descargando índice oficial de nombres...")
+        response = requests.get(url, timeout=30)
+        
         if response.status_code == 200:
-            data = response.json()
-            for card in data:
-                # Intentamos leer el código de diferentes campos posibles
-                code = card.get('card_number') or card.get('id')
-                if code:
-                    final_db[code] = {
-                        "code": code,
-                        "game": "One Piece",
-                        "name": card.get('name', romance_dawn_names.get(code, f"Card {code}")),
-                        "imageUrl": f"https://en.onepiece-cardgame.com/images/cardlist/card/{code}.png",
-                        "price": 2.50,
-                        "rarity": card.get('rarity', 'R')
-                    }
-            print(f"✅ ¡Conseguido! {len(final_db)} cartas importadas.")
-    except:
-        print("⚠️ Espejo caído. Usando generador con nombres maestros.")
-
-    # GENERADOR MAESTRO (Garantiza que TODAS las cartas existan en la App)
-    expansions = ["OP01", "OP02", "OP03", "OP04", "OP05", "OP06", "OP07", "OP08", "OP09", "OP10", "OP11", "ST01", "EB01", "EB02"]
-    for exp in expansions:
-        for i in range(1, 130):
-            code = f"{exp}-{str(i).zfill(3)}"
-            if code not in final_db:
-                # Si tenemos el nombre real en el diccionario maestro, lo usamos
-                name = romance_dawn_names.get(code, f"One Piece Card {code}")
+            raw_data = response.json()
+            print(f"📦 ¡Base de datos recibida! Procesando {len(raw_data)} entradas...")
+            
+            # La estructura es un objeto donde la llave es el ID de la carta
+            for card_id, card_data in raw_data.items():
+                # El ID viene como OP01-001, lo normalizamos
+                code = card_id.upper()
+                
+                # Extraemos solo la info oficial
                 final_db[code] = {
                     "code": code,
                     "game": "One Piece",
-                    "name": name,
+                    "name": card_data.get('name', f"Card {code}"),
                     "imageUrl": f"https://en.onepiece-cardgame.com/images/cardlist/card/{code}.png",
-                    "price": 3.0,
-                    "rarity": "R"
+                    "price": 3.0, # Precio base
+                    "rarity": card_data.get('rarity', 'R')
                 }
+            
+            if len(final_db) > 1000:
+                print(f"✅ ¡ÉXITO! Se han recuperado {len(final_db)} nombres oficiales.")
+                # Verificación para el log
+                if "OP01-001" in final_db:
+                    print(f"🔍 CONFIRMADO POR EL ROBOT: OP01-001 es {final_db['OP01-001']['name']}")
+        else:
+            print(f"❌ Error de servidor: {response.status_code}")
+            
+    except Exception as e:
+        print(f"⚠️ Fallo de conexión: {e}")
 
-    return final_db
+    # Si la descarga funcionó, guardamos. Si no, no tocamos nada para no borrar.
+    if len(final_db) > 0:
+        print(f"💾 Sincronizando {len(final_db)} cartas reales en cards.json...")
+        with open("cards.json", "w", encoding="utf-8") as f:
+            json.dump(final_db, f, indent=2, ensure_ascii=False)
+        print("🏁 Sincronización finalizada con éxito.")
+    else:
+        print("⛔ No se pudo obtener información oficial. Abortando actualización.")
 
 if __name__ == "__main__":
-    cards = main()
-    if cards:
-        print(f"💾 Guardando {len(cards)} cartas. Zoro y Nami están en el barco.")
-        with open("cards.json", "w", encoding="utf-8") as f:
-            json.dump(cards, f, indent=2, ensure_ascii=False)
-        print("🏁 Proceso completado.")
+    main()
