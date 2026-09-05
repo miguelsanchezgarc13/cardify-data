@@ -1,47 +1,52 @@
 import requests
 import json
-
-# --- CONFIGURACIÓN ---
-GAMES_TO_UPDATE = ["onepiece"] 
+import time
 
 def get_one_piece_data():
-    print("Iniciando extracción de One Piece...")
+    print("Iniciando extracción de datos reales de One Piece...")
     cards_db = {}
     
-    # Expansiones actuales
-    expansions = ["OP01", "OP02", "ST01", "EB01", "OP10", "OP11"]
-    
-    for exp in expansions:
-        # Generamos un rango de cartas (en el scraper real esto se lee de la web)
-        for i in range(1, 20): 
-            code = f"{exp}-{str(i).zfill(3)}"
-            
-            # URL más aproximada a la realidad de One Piece
-            # Nota: La oficial suele ser .png y estar en su CDN
-            img_url = f"https://en.onepiece-cardgame.com/images/cardlist/card/{code}.png"
-            
-            cards_db[code] = {
-                "code": code,
-                "game": "One Piece", # NUEVO CAMPO
-                "name": f"Character {code}", 
-                "imageUrl": img_url,
-                "price": 5.0, # Precio base para la prueba
-                "rarity": "R"
-            }
-    return cards_db
+    # Usamos la base de datos de 'optcg.gg' que es muy fiable para nombres
+    # Intentamos descargar su diccionario completo
+    try:
+        # Nota: Esta es una URL de una base de datos comunitaria muy usada en scrapers
+        url = "https://raw.githubusercontent.com/limitless-tcg/optcg-data/main/cards.json"
+        response = requests.get(url)
+        
+        if response.statusCode == 200:
+            raw_data = response.json()
+            for card in raw_data:
+                code = card.get('id') # Ejemplo: OP01-001
+                if not code: continue
+                
+                # Construimos nuestra estructura Cardify
+                cards_db[code] = {
+                    "code": code,
+                    "game": "One Piece",
+                    "name": card.get('name', f"Unknown {code}"),
+                    "imageUrl": f"https://en.onepiece-cardgame.com/images/cardlist/card/{code}.png",
+                    "price": 0.5, # El precio real requiere un scraper más lento, lo dejamos base
+                    "rarity": card.get('rarity', 'R')
+                }
+            print(f"¡Éxito! Se han importado {len(cards_db)} cartas reales.")
+            return cards_db
+    except Exception as e:
+        print(f"Error al conectar con la base de datos real: {e}")
+        # Si falla la base de datos externa, volvemos al modo simulado
+        return {}
 
 def main():
-    final_database = {}
+    final_database = get_one_piece_data()
     
-    if "onepiece" in GAMES_TO_UPDATE:
-        op_cards = get_one_piece_data()
-        final_database.update(op_cards)
-        
-    # Guardamos todo en el JSON
+    # Si por algún motivo falló la descarga, no machacamos el archivo con un vacío
+    if not final_database:
+        print("Error: No se han podido obtener datos. Abortando actualización.")
+        return
+
     with open("cards.json", "w", encoding="utf-8") as f:
         json.dump(final_database, f, indent=2, ensure_ascii=False)
     
-    print(f"¡Éxito! Base de datos actualizada con {len(final_database)} cartas y campo 'game'.")
+    print("¡Proceso completado!")
 
 if __name__ == "__main__":
     main()
