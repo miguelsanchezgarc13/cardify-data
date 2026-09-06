@@ -27,7 +27,7 @@ def get_all_cards_from_api():
         try:
             response = requests.get(url, headers=headers, timeout=30)
             if response.status_code != 200:
-                print(f"⚠️ La API respondió con código {response.status_code} en la página {page}. Fin de la descarga.")
+                print(f"⚠️ La API respondió con código {response.status_code} en la página {page}.")
                 break
                 
             data = response.json()
@@ -86,23 +86,26 @@ def main():
         rarity = item.get("rarity", "Common")
         image_url = item.get("image_url") or item.get("imageUrl") or f"https://en.onepiece-cardgame.com/images/cardlist/card/{card_code}.png"
         
-        # Extraer precio de la API de forma segura
+        # Búsqueda robusta de precios en cualquier variante de clave que use la API
         price = 0.0
-        for p_key in ["price", "marketPrice", "market_price"]:
-            if p_key in item and item[p_key] is not None:
+        for p_key in ["market_price", "marketPrice", "price", "tcgplayer_price", "cardmarket_price"]:
+            val = item.get(p_key)
+            if val is not None:
                 try:
-                    price = float(item[p_key])
-                    break
+                    price = float(val)
+                    if price > 0:
+                        break
                 except (ValueError, TypeError):
                     continue
+        
         if price <= 0:
             price = DEFAULT_PRICE_USD
 
-        # Detectar si es variante por los paréntesis (ej. "(Parallel)", "(SP)")
+        # Detectar si es variante (si el nombre contiene paréntesis o especificaciones de tipo alt/parallel/sp)
         is_variant = "(" in name and ")" in name
 
         if not is_variant:
-            # --- ES LA CARTA BASE ---
+            # --- CARTA BASE ---
             if card_code not in grouped_cards:
                 grouped_cards[card_code] = {
                     "code": card_code,
@@ -115,16 +118,15 @@ def main():
                     "variants": []
                 }
             else:
-                # Si ya existía la base pero se registró sin precio o queremos asegurar datos
+                # Si ya existía, nos aseguramos de actualizar con los datos limpios de la base
                 grouped_cards[card_code]["name"] = name
-                grouped_cards[card_code]["price"] = price
-                grouped_cards[card_code]["imageUrl"] = image_url
+                if price > DEFAULT_PRICE_USD:
+                    grouped_cards[card_code]["price"] = price
                 grouped_cards[card_code]["rarity"] = rarity
         else:
-            # --- ES UNA VARIANTE ANIDADA ---
+            # --- VARIANTE ANIDADA (Parallel, SP, etc.) ---
             base_code = card_code
             
-            # Asegurar que la estructura base exista aunque la API devuelva la variante primero
             if base_code not in grouped_cards:
                 clean_base_name = name.split("(")[0].strip()
                 grouped_cards[base_code] = {
@@ -147,7 +149,7 @@ def main():
             suffix = f"_P{var_index}"
             var_unique_id = f"{base_code}{suffix}"
 
-            # Evitar duplicar la misma variante si la API la repite
+            # Evitar duplicados exactos y añadir la variante con su precio real
             existing_variant_names = [v["name"] for v in grouped_cards[base_code]["variants"]]
             if name not in existing_variant_names:
                 grouped_cards[base_code]["variants"].append({
