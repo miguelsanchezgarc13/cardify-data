@@ -6,141 +6,125 @@ import requests
 
 MIN_CARDS_THRESHOLD = 500
 OUTPUT_FILE = "cards.json"
-DEFAULT_PRICE_USD = 0.05  # Precio por defecto en dólares para cartas comunes sin valor listado
+DEFAULT_PRICE_USD = 0.05  # Precio por defecto en USD para cartas comunes sin valor listado
 
-def get_base_cards():
-    print("Descargando catálogo maestro de One Piece TCG (punk-records)...")
-    url = "https://raw.githubusercontent.com/buhbbl/punk-records/main/english/index/cards_by_id.json"
-    response = requests.get(url, timeout=20)
+def get_all_cards_from_api():
+    print("Descargando catálogo completo y precios de optcgapi.com...")
+    # Endpoint público que devuelve todas las cartas de una sola vez
+    url = "https://optcg-api.ryanmichaelhirst.us/cards"
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+    
+    response = requests.get(url, headers=headers, timeout=30)
     response.raise_for_status()
     return response.json()
 
-def fetch_api_prices():
-    """
-    Se conecta a la API comunitaria para obtener los precios de mercado en USD.
-    NOTA: Deberás ajustar la URL exacta ('https://optcgapi.com/api/cards') y los nombres 
-    de los campos ('market_price', 'card_id') según la documentación oficial de la API que utilices.
-    """
-    print("Obteniendo precios de mercado globales (USD)...")
-    prices_dict = {}
-    
-    # URL de ejemplo basada en tu investigación. Ajustar si el endpoint es distinto (ej. /v1/cards)
-    api_url = "https://optcgapi.com/api/cards" 
-    
-    try:
-        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
-        # Si la API requiere paginación, puedes añadir un bucle while aquí como hacíamos con Shopify
-        response = requests.get(api_url, headers=headers, timeout=20)
-        
-        if response.status_code == 200:
-            data = response.json()
-            # Asumimos que la API devuelve un array de cartas o un objeto con una clave 'data'
-            cards_array = data.get("data", data) if isinstance(data, dict) else data
-            
-            for card in cards_array:
-                # Ajustar las claves según el JSON exacto que devuelva la API
-                card_id = card.get("id", "").upper()
-                
-                # Buscar el precio. Algunas APIs lo anidan dentro de "prices" o "tcgplayer"
-                market_price = card.get("marketPrice") or card.get("market_price") or 0.0
-                
-                if card_id and float(market_price) > 0:
-                    prices_dict[card_id] = float(market_price)
-                    
-        print(f"-> Precios únicos extraídos de la API: {len(prices_dict)}")
-    except Exception as e:
-        print(f"⚠️ Error al consultar la API de precios: {e}. Se usarán precios por defecto.")
-        
-    return prices_dict
-
-def extract_image_url(item, fallback_code):
-    for field in ["img_full_url", "image", "img_url", "imageUrl"]:
-        url = item.get(field)
-        if url and isinstance(url, str) and url.strip():
-            return url.strip()
-    return f"https://en.onepiece-cardgame.com/images/cardlist/card/{fallback_code}.png"
-
 def main():
     try:
-        base_cards = get_base_cards()
+        raw_data = get_all_cards_from_api()
     except Exception as e:
-        print(f"Error crítico al descargar el catálogo maestro: {e}")
+        print(f"Error crítico al descargar datos de la API: {e}")
         sys.exit(1)
 
-    # Obtenemos los precios en USD desde la API
-    market_prices = fetch_api_prices()
+    # La API puede devolver una lista directa o un objeto con las cartas dentro de una clave
+    cards_list = raw_data.get("data", raw_data) if isinstance(raw_data, dict) else raw_data
+
+    if not cards_list:
+        print("ALERTA DE SEGURIDAD: La API no devolvió ninguna carta.")
+        sys.exit(1)
+
+    # Diccionario temporal para agrupar cartas base y sus variantes por código (ej. "EB01-001")
+    grouped_cards = {}
     
-    raw_base_cards = {}
-    raw_variants = []
+    # Contador para autogenerar sufijos únicos en las variantes si comparten código base
+    variant_counters = {}
 
-    # Clasificamos entre cartas base y variantes según la presencia de sufijos
-    for card_id, item in base_cards.items():
-        name = item.get("name") or item.get("title")
-        if not card_id or not name or "Placeholder" in name:
+    for item in cards_list:
+        # Extraer campos principales de la API
+        card_code = (item.get("id") or item.get("card_id") or "").strip().upper()
+        raw_name = item.get("name") or item.get("title") or ""
+        name = html.unescape(raw_name).strip()
+        
+        if not card_code or not name or "Placeholder" in name:
             continue
 
-        card_id_clean = card_id.strip().upper()
-        if "_" in card_id_clean:
-            raw_variants.append((card_id_clean, item))
-        else:
-            raw_base_cards[card_id_clean] = item
+        rarity = item.get("rarity", "Common")
+        image_url = item.get("image_url") or item.get("imageUrl") or item.get("img_full_url") or f"https://en.onepiece-cardgame.com/images/cardlist/card/{card_code}.png"
+        
+        # Obtener precio en USD (buscando en varias claves comunes de la API)
+        price = 0.0
+        for p_key in ["price", "marketPrice", "market_price"]:
+            if p_key in item and item[p_key] is not None:
+                try:
+                    price = float(item[p_key])
+                    break
+                except (ValueError, TypeError):
+                    continue
+        if price <= 0:
+            price = DEFAULT_PRICE_USD
 
-    updated_cards = {}
+        # Detectar si es una variante analizando si el nombre contiene paréntesis (ej. "Kouzuki Oden (Alternate Art)")
+        is_variant = "(" in name and ")" in name
 
-    # 1. Procesar cartas base
-    for card_code, item in raw_base_cards.items():
-        name = html.unescape(item.get("name") or item.get("title") or "")
-        rarity = item.get("rarity", "C")
-        image_url = extract_image_url(item, card_code)
-        price = market_prices.get(card_code, DEFAULT_PRICE_USD)
-
-        updated_cards[card_code] = {
-            "code": card_code,
-            "game": "One Piece",
-            "name": name,
-            "imageUrl": image_url,
-            "price": price,
-            "currency": "USD",  # Indicador de divisa añadido
-            "rarity": rarity,
-            "variants": []
-        }
-
-    # 2. Procesar variantes y anidarlas en su carta base
-    for var_id, item in raw_variants:
-        base_match = re.match(r'^([A-Z]{2,3}\d{2}-\d{3})', var_id)
-        if not base_match:
-            continue
-        base_code = base_match.group(1)
-
-        if base_code in updated_cards:
-            suffix = var_id.replace(base_code, "")
-            var_name = html.unescape(item.get("name") or item.get("title") or updated_cards[base_code]["name"])
-            var_rarity = item.get("rarity", updated_cards[base_code]["rarity"])
-            
-            var_image_url = extract_image_url(item, base_code)
-            var_price = market_prices.get(var_id, DEFAULT_PRICE_USD)
-
-            updated_cards[base_code]["variants"].append({
-                "id": var_id,
-                "suffix": suffix,
-                "name": var_name,
-                "imageUrl": var_image_url,
-                "price": var_price,
+        if not is_variant:
+            # Es la CARTA BASE
+            grouped_cards[card_code] = {
+                "code": card_code,
+                "game": "One Piece",
+                "name": name,
+                "imageUrl": image_url,
+                "price": price,
                 "currency": "USD",
-                "rarity": var_rarity
+                "rarity": rarity,
+                "variants": []
+            }
+        else:
+            # Es una VARIANTE (ej. Alternate Art, SPR, etc.)
+            # Buscamos si ya existe su carta base en el diccionario
+            base_code = card_code
+            if base_code not in grouped_cards:
+                # Si la carta base no se procesó antes, creamos una entrada preliminar para evitar perderla
+                grouped_cards[base_code] = {
+                    "code": base_code,
+                    "game": "One Piece",
+                    "name": name.split("(")[0].strip(), # Limpiamos el nombre base
+                    "imageUrl": f"https://en.onepiece-cardgame.com/images/cardlist/card/{base_code}.png",
+                    "price": DEFAULT_PRICE_USD,
+                    "currency": "USD",
+                    "rarity": rarity,
+                    "variants": []
+                }
+
+            # Gestionar sufijo único para la variante (ej. _P1, _P2...) basándose en cuántas lleva
+            if base_code not in variant_counters:
+                variant_counters[base_code] = 1
+            else:
+                variant_counters[base_code] += 1
+            
+            var_index = variant_counters[base_code]
+            suffix = f"_P{var_index}"
+            var_unique_id = f"{base_code}{suffix}"
+
+            grouped_cards[base_code]["variants"].append({
+                "id": var_unique_id,
+                "suffix": suffix,
+                "name": name,  # Aquí se guardará el nombre completo molón, ej: "Kouzuki Oden (Alternate Art)"
+                "imageUrl": image_url,
+                "price": price,
+                "currency": "USD",
+                "rarity": rarity
             })
 
-    total_cards = len(updated_cards)
-    print(f"Total de cartas base procesadas: {total_cards}")
+    total_base_cards = len(grouped_cards)
+    print(f"Total de cartas base procesadas: {total_base_cards}")
 
-    if total_cards < MIN_CARDS_THRESHOLD:
-        print(f"ALERTA DE SEGURIDAD: Solo se procesaron {total_cards} cartas base. Abortando.")
+    if total_base_cards < MIN_CARDS_THRESHOLD:
+        print(f"ALERTA DE SEGURIDAD: Solo se procesaron {total_base_cards} cartas base. Abortando.")
         sys.exit(1)
 
     try:
         with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-            json.dump(updated_cards, f, indent=2, ensure_ascii=False)
-        print(f"Éxito: {total_cards} cartas con estructura anidada guardadas en {OUTPUT_FILE}.")
+            json.dump(grouped_cards, f, indent=2, ensure_ascii=False)
+        print(f"Éxito: {total_base_cards} cartas con estructura anidada y nombres descriptivos guardadas en {OUTPUT_FILE}.")
     except Exception as write_err:
         print(f"Error al escribir el archivo: {write_err}")
         sys.exit(1)
