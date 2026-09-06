@@ -59,7 +59,6 @@ def main():
 
     print(f"Total de registros descargados de la API: {len(cards_list)}")
 
-    # Diccionario temporal para agrupar todas las entradas crudas por código de carta
     raw_grouped_by_code = {}
 
     for item in cards_list:
@@ -85,6 +84,17 @@ def main():
         rarity = item.get("rarity", "Common")
         image_url = item.get("image_url") or item.get("imageUrl") or f"https://en.onepiece-cardgame.com/images/cardlist/card/{card_code}.png"
         
+        # Lectura de metadatos de variante de la API
+        parallel_val = item.get("parallel", False)
+        if isinstance(parallel_val, str):
+            is_parallel = parallel_val.lower() == "true"
+        else:
+            is_parallel = bool(parallel_val)
+            
+        variant_type = item.get("variant_type") or item.get("variantType") or ""
+        if isinstance(variant_type, str):
+            variant_type = variant_type.strip().lower()
+
         # Extracción robusta de precios
         price = 0.0
         for p_key in ["market_price", "marketPrice", "price", "tcgplayer_price", "cardmarket_price"]:
@@ -107,15 +117,16 @@ def main():
             "name": name,
             "imageUrl": image_url,
             "price": price,
-            "rarity": rarity
+            "rarity": rarity,
+            "is_parallel": is_parallel,
+            "variant_type": variant_type
         })
 
-    # Construir el JSON final estructurado con base y variantes reales
     grouped_cards = {}
 
     for card_code, entries in raw_grouped_by_code.items():
-        # Ordenamos las entradas para que la que tenga el nombre más corto (ej. "Trafalgar Law") sea la base
-        entries.sort(key=lambda x: len(x["name"]))
+        # Ordenamos para asegurar que la carta base (no paralelo) quede primera
+        entries.sort(key=lambda x: (x["is_parallel"], len(x["name"])))
 
         base_entry = entries[0]
         base_name = base_entry["name"].split("(")[0].strip()
@@ -131,15 +142,26 @@ def main():
             "variants": []
         }
 
-        # Las entradas adicionales se consideran variantes de esa misma carta
         variant_counter = 1
-        seen_variant_names = set()
+        seen_variant_identifiers = set()
 
         for entry in entries[1:]:
-            var_name = entry["name"]
-            if var_name in seen_variant_names:
+            clean_var_name = entry["name"].split("(")[0].strip()
+            
+            # Asignar etiqueta descriptiva basada en los datos de la API
+            if entry["variant_type"] == "manga":
+                formatted_var_name = f"{clean_var_name} (Manga)"
+            elif entry["variant_type"] == "alt_art" or entry["is_parallel"]:
+                formatted_var_name = f"{clean_var_name} (Parallel)"
+            elif entry["variant_type"]:
+                formatted_var_name = f"{clean_var_name} ({entry['variant_type'].capitalize()})"
+            else:
+                formatted_var_name = f"{clean_var_name} (Parallel)"
+
+            identifier = (formatted_var_name, entry["price"])
+            if identifier in seen_variant_identifiers:
                 continue
-            seen_variant_names.add(var_name)
+            seen_variant_identifiers.add(identifier)
 
             suffix = f"_P{variant_counter}"
             var_unique_id = f"{card_code}{suffix}"
@@ -147,7 +169,7 @@ def main():
             grouped_cards[card_code]["variants"].append({
                 "id": var_unique_id,
                 "suffix": suffix,
-                "name": var_name,
+                "name": formatted_var_name,
                 "imageUrl": entry["imageUrl"],
                 "price": entry["price"],
                 "currency": "USD",
