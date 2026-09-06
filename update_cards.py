@@ -1,66 +1,92 @@
-import requests
 import json
-import random
+import requests
+import sys
+import os
+
+# Configuración de Seguridad
+MIN_CARDS_THRESHOLD = 500
+OUTPUT_FILE = "cards.json"
+
+class TCGUpdater:
+    def __init__(self, game_name):
+        self.game_name = game_name
+        self.headers = {
+            # Cabecera fundamental para evitar bloqueos básicos 403
+            "User-Agent": "CardifyApp-GitHubActions/1.0 (Contact: admin@cardify.app)",
+            "Accept": "application/json"
+        }
+
+    def fetch_data(self):
+        raise NotImplementedError("Debe implementarse en la clase hija")
+
+class OnePieceUpdater(TCGUpdater):
+    def __init__(self):
+        super().__init__("One Piece")
+        # URL DE DATOS: Aquí debes poner la API de precios (ej. TCGPlayer API) 
+        # o la URL Raw de GitHub de algún repositorio comunitario actualizado.
+        self.data_url = os.getenv("OP_API_URL", "https://api.ejemplo-comunidad-tcg.com/v1/onepiece/cards")
+
+    def fetch_data(self):
+        print(f"Descargando datos de {self.game_name}...")
+        try:
+            response = requests.get(self.data_url, headers=self.headers, timeout=15)
+            response.raise_for_status()
+            raw_data = response.json()
+        except requests.exceptions.RequestException as e:
+            print(f"Error crítico de red al obtener {self.game_name}: {e}")
+            sys.exit(1) # Salida 1 aborta el GitHub Action (falla el paso)
+
+        cards_dict = {}
+
+        for item in raw_data:
+            card_id = item.get("id")
+            name = item.get("name")
+            
+            # RESTRICCIÓN: Si no hay nombre oficial o es un placeholder, lo saltamos.
+            if not name or "Character" in name or "Placeholder" in name or not card_id:
+                continue
+
+            # REQUISITO: URL de imagen oficial construida dinámicamente
+            image_url = f"https://en.onepiece-cardgame.com/images/cardlist/card/{card_id}.png"
+            
+            cards_dict[card_id] = {
+                "code": card_id,
+                "game": self.game_name,
+                "name": name,
+                "imageUrl": image_url,
+                "price": float(item.get("market_price", 0.00)),
+                "rarity": item.get("rarity", "C")
+            }
+            
+        return cards_dict
 
 def main():
-    print("🚀 Iniciando el Renacimiento de Cardify: Datos Reales...")
-    final_db = {}
+    updaters = [
+        OnePieceUpdater(),
+        # En el futuro simplemente añades: PokemonUpdater(), NarutoUpdater()
+    ]
     
-    # ESTA URL ES LA QUE FUNCIONA: Repositorio maestro de One Piece TCG Data
-    url = "https://raw.githubusercontent.com/optcg/optcg-data/master/cards.json"
-    
+    final_database = {}
+
+    for updater in updaters:
+        game_data = updater.fetch_data()
+        final_database.update(game_data)
+
+    # REQUISITO DE SEGURIDAD: Comprobación de volumen antes de guardar
+    total_cards = len(final_database)
+    if total_cards < MIN_CARDS_THRESHOLD:
+        print(f"ALERTA DE SEGURIDAD: Solo se procesaron {total_cards} cartas. "
+              f"El umbral es {MIN_CARDS_THRESHOLD}. Abortando para proteger el JSON actual.")
+        sys.exit(1)
+
+    # Guardado seguro
     try:
-        print(f"📡 Conectando con la base de datos maestra...")
-        response = requests.get(url, timeout=20)
-        
-        if response.status_code == 200:
-            data = response.json()
-            print(f"📦 ¡CONSEGUIDO! Hemos recibido {len(data)} cartas oficiales.")
-            
-            for card in data:
-                # El campo en esta fuente es 'card_number'
-                code = card.get('card_number')
-                if not code: continue
-                
-                # Extraemos la información REAL
-                final_db[code.upper()] = {
-                    "code": code.upper(),
-                    "game": "One Piece",
-                    "name": card.get('name', f"Card {code}"),
-                    "imageUrl": f"https://en.onepiece-cardgame.com/images/cardlist/card/{code.upper()}.png",
-                    # Si no hay precio, ponemos uno pequeño para que la App sume algo
-                    "price": float(card.get('price_avg', round(random.uniform(0.5, 15.0), 2))),
-                    "rarity": card.get('rarity', 'R')
-                }
-            
-            print(f"✅ ÉXITO: {len(final_db)} cartas reales cargadas.")
-        else:
-            print(f"❌ Error 404/401. El servidor dijo: {response.status_code}")
-
+        with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+            json.dump(final_database, f, indent=2, ensure_ascii=False)
+        print(f"Éxito: {total_cards} cartas guardadas correctamente en {OUTPUT_FILE}.")
     except Exception as e:
-        print(f"⚠️ Error técnico: {e}")
-
-    # Si la conexión falló, usamos el generador masivo que te gustó (Seguro de vida)
-    if len(final_db) < 100:
-        print("🛠️ Usando el generador masivo para no dejar la App vacía...")
-        expansions = ["OP01", "OP02", "OP03", "OP04", "OP05", "OP06", "OP07", "OP08", "OP09", "OP10", "OP11", "ST01", "EB01"]
-        for exp in expansions:
-            for i in range(1, 126):
-                code = f"{exp}-{str(i).zfill(3)}"
-                if code not in final_db:
-                    final_db[code] = {
-                        "code": code, "game": "One Piece", "name": f"Card {code}", 
-                        "imageUrl": f"https://en.onepiece-cardgame.com/images/cardlist/card/{code}.png",
-                        "price": round(random.uniform(0.5, 10.0), 2),
-                        "rarity": "R"
-                    }
-
-    # GUARDAR EL TESORO
-    print(f"💾 Guardando {len(final_db)} cartas en cards.json...")
-    with open("cards.json", "w", encoding="utf-8") as f:
-        json.dump(final_db, f, indent=2, ensure_ascii=False)
-    
-    print("🎉 ¡TODO LISTO! El JSON masivo está actualizado y con nombres si estaban disponibles.")
+        print(f"Error al escribir el archivo: {e}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
