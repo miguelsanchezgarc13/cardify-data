@@ -1,3 +1,4 @@
+import html
 import json
 import re
 import sys
@@ -41,7 +42,7 @@ def fetch_shopify_store(base_url, store_name):
                     except ValueError:
                         continue
                     
-                    # Regex mejorado para capturar tanto el código base como variantes con sufijo (ej. OP01-001_P1)
+                    # Regex para capturar tanto el código base como variantes con sufijo (ej. OP01-001_P1)
                     matches = re.findall(r'([A-Z]{2,3}\d{2}-\d{3}(?:_[A-Za-z0-9]+)?)', title.upper())
                     for code in matches:
                         if price > 0:
@@ -84,7 +85,7 @@ def main():
     raw_base_cards = {}
     raw_variants = []
 
-    # Clasificamos la BBDD externa entre cartas base y variantes según la presencia de sufijos
+    # Clasificamos entre cartas base y variantes según la presencia de sufijos
     for card_id, item in base_cards.items():
         name = item.get("name") or item.get("title")
         if not card_id or not name or "Placeholder" in name:
@@ -100,9 +101,9 @@ def main():
 
     # 1. Procesar cartas base
     for card_code, item in raw_base_cards.items():
-        name = item.get("name") or item.get("title")
+        name = html.unescape(item.get("name") or item.get("title") or "")
         rarity = item.get("rarity", "C")
-        image_url = item.get("image") or f"https://en.onepiece-cardgame.com/images/cardlist/card/{card_code}.png"
+        image_url = item.get("img_full_url") or f"https://en.onepiece-cardgame.com/images/cardlist/card/{card_code}.png"
         price = market_prices.get(card_code, DEFAULT_PRICE)
 
         updated_cards[card_code] = {
@@ -124,9 +125,11 @@ def main():
 
         if base_code in updated_cards:
             suffix = var_id.replace(base_code, "")
-            var_name = item.get("name") or item.get("title") or updated_cards[base_code]["name"]
+            var_name = html.unescape(item.get("name") or item.get("title") or updated_cards[base_code]["name"])
             var_rarity = item.get("rarity", updated_cards[base_code]["rarity"])
-            var_image_url = item.get("image") or f"https://en.onepiece-cardgame.com/images/cardlist/card/{var_id.lower()}.png"
+            
+            # Usar img_full_url directamente de punk-records para asegurar que la ruta de la variante sea correcta
+            var_image_url = item.get("img_full_url") or f"https://en.onepiece-cardgame.com/images/cardlist/card/{var_id}.png"
             var_price = market_prices.get(var_id, DEFAULT_PRICE)
 
             updated_cards[base_code]["variants"].append({
