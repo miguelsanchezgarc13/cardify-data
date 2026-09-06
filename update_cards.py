@@ -6,7 +6,7 @@ import requests
 
 MIN_CARDS_THRESHOLD = 500
 OUTPUT_FILE = "cards.json"
-DEFAULT_PRICE_USD = 0.05  # Precio por defecto en USD para cartas comunes sin valor listado
+DEFAULT_PRICE_USD = 0.05
 
 def get_all_cards_from_api():
     print("Descargando catálogo completo y precios de optcgapi.com...")
@@ -26,24 +26,15 @@ def get_all_cards_from_api():
         try:
             response = requests.get(url, headers=headers, timeout=30)
             if response.status_code != 200:
-                print(f"⚠️ La API respondió con código {response.status_code} en la página {page}.")
                 break
                 
             data = response.json()
-            
-            # La API suele estructurar la respuesta paginada dentro de una clave o como lista directa
-            cards_chunk = []
-            if isinstance(data, dict):
-                cards_chunk = data.get("data", data.get("results", []))
-            elif isinstance(data, list):
-                cards_chunk = data
+            cards_chunk = data.get("data", data.get("results", [])) if isinstance(data, dict) else data
                 
             if not cards_chunk:
                 break
                 
             all_cards.extend(cards_chunk)
-            
-            # Si el bloque devuelto es pequeño, asumimos que hemos llegado al final
             if len(cards_chunk) < 10:  
                 break
                 
@@ -58,7 +49,7 @@ def main():
     cards_list = get_all_cards_from_api()
 
     if not cards_list or not isinstance(cards_list, list):
-        print(f"ALERTA DE SEGURIDAD: No se pudo obtener la lista de cartas de la API.")
+        print("ALERTA DE SEGURIDAD: No se pudo obtener la lista de cartas de la API.")
         sys.exit(1)
 
     print(f"Total de registros descargados de la API: {len(cards_list)}")
@@ -67,7 +58,19 @@ def main():
     variant_counters = {}
 
     for item in cards_list:
-        card_code = (item.get("id") or item.get("card_id") or "").strip().upper()
+        # BUSCAMOS EL CÓDIGO OFICIAL REAL (ej. OP01-001, EB01-001) en lugar del ID interno aleatorio
+        card_code = (
+            item.get("card_number") or 
+            item.get("number") or 
+            item.get("code") or 
+            ""
+        ).strip().upper()
+
+        # Si el formato del código no parece un código de TCG válido (ej. formato antiguo con guion), lo filtramos
+        if not re.match(r'^[A-Z]{2,4}\d{2}-\d{3}', card_code):
+            # Intentamos buscar si viene en otro campo o descartamos si no es un código válido
+            continue
+
         raw_name = item.get("name") or item.get("title") or ""
         name = html.unescape(raw_name).strip()
         
@@ -75,7 +78,9 @@ def main():
             continue
 
         rarity = item.get("rarity", "Common")
-        image_url = item.get("image_url") or item.get("imageUrl") or item.get("img_full_url") or f"https://en.onepiece-cardgame.com/images/cardlist/card/{card_code}.png"
+        
+        # URL de imagen oficial limpia basada en el código real de la carta
+        image_url = item.get("image_url") or item.get("imageUrl") or f"https://en.onepiece-cardgame.com/images/cardlist/card/{card_code}.png"
         
         # Obtener precio en USD
         price = 0.0
@@ -89,7 +94,7 @@ def main():
         if price <= 0:
             price = DEFAULT_PRICE_USD
 
-        # Detectar variantes mediante los paréntesis en el nombre (ej. "Kouzuki Oden (Alternate Art)")
+        # Detectar variantes mediante los paréntesis en el nombre
         is_variant = "(" in name and ")" in name
 
         if not is_variant:
@@ -131,7 +136,7 @@ def main():
             grouped_cards[base_code]["variants"].append({
                 "id": var_unique_id,
                 "suffix": suffix,
-                "name": name,  # Nombre descriptivo completo, ej: "Kouzuki Oden (Alternate Art)"
+                "name": name,
                 "imageUrl": image_url,
                 "price": price,
                 "currency": "USD",
@@ -139,7 +144,7 @@ def main():
             })
 
     total_base_cards = len(grouped_cards)
-    print(f"Total de cartas base agrupadas: {total_base_cards}")
+    print(f"Total de cartas base agrupadas correctamente: {total_base_cards}")
 
     if total_base_cards < MIN_CARDS_THRESHOLD:
         print(f"ALERTA DE SEGURIDAD: Solo se procesaron {total_base_cards} cartas base. Abortando.")
