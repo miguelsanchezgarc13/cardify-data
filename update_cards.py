@@ -1,7 +1,6 @@
-import os
-import sys
 import json
 import re
+import sys
 import requests
 
 MIN_CARDS_THRESHOLD = 500
@@ -42,9 +41,9 @@ def fetch_shopify_store(base_url, store_name):
                     except ValueError:
                         continue
                     
-                    matches = re.findall(r'([A-Z]{2,3}\d{2}-\d{3})', title.upper())
+                    # Regex mejorado para capturar tanto el código base como variantes con sufijo (ej. OP01-001_P1)
+                    matches = re.findall(r'([A-Z]{2,3}\d{2}-\d{3}(?:_[A-Za-z0-9]+)?)', title.upper())
                     for code in matches:
-                        # Guardamos el precio solo si es mayor que 0
                         if price > 0:
                             prices_dict[code] = price
             
@@ -71,29 +70,39 @@ def main():
         "El Duelista"
     )
     
-    # Pasada 2: Pokemillon (para rellenar los huecos que no tenga la primera)
+    # Pasada 2: Pokemillon
     prices_pokemillon = fetch_shopify_store(
         "https://www.pokemillon.com/collections/cartas-sueltas-one-piece-1/products.json", 
         "Pokemillon"
     )
 
-    # Fusionamos ambas fuentes (priorizando El Duelista, y si falta, tiramos de Pokemillon)
+    # Fusionamos ambas fuentes de precios
     market_prices = prices_pokemillon.copy()
     market_prices.update(prices_duelista)
     print(f"Total combinado de precios únicos de mercado: {len(market_prices)}")
     
-    updated_cards = {}
+    raw_base_cards = {}
+    raw_variants = []
 
+    # Clasificamos la BBDD externa entre cartas base y variantes según la presencia de sufijos
     for card_id, item in base_cards.items():
         name = item.get("name") or item.get("title")
         if not card_id or not name or "Placeholder" in name:
             continue
 
-        card_code = card_id.strip().upper()
-        image_url = f"https://en.onepiece-cardgame.com/images/cardlist/card/{card_code}.png"
+        card_id_clean = card_id.strip().upper()
+        if "_" in card_id_clean:
+            raw_variants.append((card_id_clean, item))
+        else:
+            raw_base_cards[card_id_clean] = item
+
+    updated_cards = {}
+
+    # 1. Procesar cartas base
+    for card_code, item in raw_base_cards.items():
+        name = item.get("name") or item.get("title")
         rarity = item.get("rarity", "C")
-        
-        # Asignamos el precio real de las tiendas, o el valor por defecto de 0.02€
+        image_url = item.get("image") or f"https://en.onepiece-cardgame.com/images/cardlist/card/{card_code}.png"
         price = market_prices.get(card_code, DEFAULT_PRICE)
 
         updated_cards[card_code] = {
@@ -102,20 +111,44 @@ def main():
             "name": name,
             "imageUrl": image_url,
             "price": price,
-            "rarity": rarity
+            "rarity": rarity,
+            "variants": []
         }
 
+    # 2. Procesar variantes y anidarlas en su carta base correspondiente
+    for var_id, item in raw_variants:
+        base_match = re.match(r'^([A-Z]{2,3}\d{2}-\d{3})', var_id)
+        if not base_match:
+            continue
+        base_code = base_match.group(1)
+
+        if base_code in updated_cards:
+            suffix = var_id.replace(base_code, "")
+            var_name = item.get("name") or item.get("title") or updated_cards[base_code]["name"]
+            var_rarity = item.get("rarity", updated_cards[base_code]["rarity"])
+            var_image_url = item.get("image") or f"https://en.onepiece-cardgame.com/images/cardlist/card/{var_id.lower()}.png"
+            var_price = market_prices.get(var_id, DEFAULT_PRICE)
+
+            updated_cards[base_code]["variants"].append({
+                "id": var_id,
+                "suffix": suffix,
+                "name": var_name,
+                "imageUrl": var_image_url,
+                "price": var_price,
+                "rarity": var_rarity
+            })
+
     total_cards = len(updated_cards)
-    print(f"Total de cartas válidas procesadas: {total_cards}")
+    print(f"Total de cartas base procesadas: {total_cards}")
 
     if total_cards < MIN_CARDS_THRESHOLD:
-        print(f"ALERTA DE SEGURIDAD: Solo se procesaron {total_cards} cartas. Abortando.")
+        print(f"ALERTA DE SEGURIDAD: Solo se procesaron {total_cards} cartas base. Abortando.")
         sys.exit(1)
 
     try:
         with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
             json.dump(updated_cards, f, indent=2, ensure_ascii=False)
-        print(f"Éxito: {total_cards} cartas guardadas correctamente en {OUTPUT_FILE}.")
+        print(f"Éxito: {total_cards} cartas base con sus variantes anidadas guardadas correctamente en {OUTPUT_FILE}.")
     except Exception as write_err:
         print(f"Error al escribir el archivo: {write_err}")
         sys.exit(1)
