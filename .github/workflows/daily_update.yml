@@ -1,9 +1,9 @@
-name: Actualizador Diario de Cartas Cardify
+name: Actualizador Diario de Precios TCGplayer
 
 on:
   schedule:
-    - cron: '0 3 * * *' # Se ejecuta todos los días a las 03:00 AM UTC
-  workflow_dispatch: # Te permite ejecutarlo manualmente con un botón
+    - cron: '0 4 * * *' # 04:00 AM UTC diariamente
+  workflow_dispatch:
 
 jobs:
   update-cards:
@@ -23,13 +23,13 @@ jobs:
       - name: Ejecutar Script de Actualización
         run: python update_cards.py
         env:
-          # Aquí inyectas variables ocultas si usas APIs privadas
-          OP_API_URL: ${{ secrets.OP_API_URL }} 
+          TCGPLAYER_CLIENT_ID: ${{ secrets.TCGPLAYER_CLIENT_ID }}
+          TCGPLAYER_CLIENT_SECRET: ${{ secrets.TCGPLAYER_CLIENT_SECRET }}
 
-      - name: Hacer Commit y Push si hay cambios
+      - name: Hacer Commit y Push del JSON
         run: |
           git config --global user.name "Cardify-Bot"
           git config --global user.email "bot@cardify.app"
           git add cards.json
-          git commit -m "🤖 Actualización diaria de precios y cartas" || echo "No hay cambios para subir"
+          git commit -m "🤖 Actualización automática de mercado: TCGplayer" || echo "No hay cambios para subir"
           git push
