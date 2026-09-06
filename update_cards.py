@@ -10,57 +10,46 @@ DEFAULT_PRICE_USD = 0.05
 
 def get_all_cards_from_api():
     print("Descargando catálogo completo y precios de optcgapi.com...")
-    base_url = "https://optcg-api.ryanmichaelhirst.us/api/v1/cards"
+    
+    # Probamos primero el endpoint de volcado completo de una sola vez
+    endpoints_to_try = [
+        "https://optcg-api.ryanmichaelhirst.us/api/v1/cards/all",
+        "https://optcg-api.ryanmichaelhirst.us/api/v1/cards"
+    ]
     
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
         "Accept": "application/json, text/plain, */*"
     }
     
-    all_cards = []
-    page = 1
-    # Forzamos un límite alto por página si la API lo permite, o iteramos masivamente
-    per_page = 100 
-    
-    while True:
-        url = f"{base_url}?page={page}&limit={per_page}"
-        print(f"-> Descargando bloque de páginas (Página {page})...")
+    for url in endpoints_to_try:
+        print(f"-> Intentando descarga desde: {url}")
         try:
-            response = requests.get(url, headers=headers, timeout=30)
-            if response.status_code != 200:
-                print(f"⚠️ Fin de la paginación o código de estado {response.status_code}")
-                break
+            response = requests.get(url, headers=headers, timeout=45)
+            if response.status_code == 200:
+                data = response.json()
                 
-            data = response.json()
-            
-            # Extraer los datos según la estructura de la API
-            cards_chunk = []
-            if isinstance(data, dict):
-                cards_chunk = data.get("data", data.get("results", data.get("cards", [])))
-            elif isinstance(data, list):
-                cards_chunk = data
-                
-            if not cards_chunk:
-                break
-                
-            all_cards.extend(cards_chunk)
-            
-            # Si el bloque recibido es menor que el límite, hemos llegado al final
-            if len(cards_chunk) < per_page:
-                break
-                
-            page += 1
+                # Extraer la lista según venga estructurada
+                if isinstance(data, list):
+                    return data
+                elif isinstance(data, dict):
+                    for key in ["data", "results", "cards", "items"]:
+                        if key in data and isinstance(data[key], list):
+                            return data[key]
+                    # Si es un diccionario plano pero con muchos elementos
+                    if len(data) > 100:
+                        return list(data.values())
         except Exception as e:
-            print(f"⚠️ Error al conectar con la API en la página {page}: {e}")
-            break
+            print(f"⚠️ Falló este endpoint: {e}")
+            continue
             
-    return all_cards
+    return []
 
 def main():
     cards_list = get_all_cards_from_api()
 
     if not cards_list or not isinstance(cards_list, list):
-        print("ALERTA DE SEGURIDAD: No se pudo obtener la lista de cartas de la API.")
+        print("ALERTA DE SEGURIDAD: No se pudo obtener la lista masiva de cartas de la API.")
         sys.exit(1)
 
     print(f"Total de registros brutos descargados: {len(cards_list)}")
@@ -69,12 +58,20 @@ def main():
     variant_counters = {}
 
     for item in cards_list:
+        if not isinstance(item, dict):
+            continue
+            
         card_code = (
             item.get("card_number") or 
             item.get("number") or 
             item.get("code") or 
+            item.get("id") or 
             ""
         ).strip().upper()
+
+        # Si el ID interno se coló y no tiene formato de código TCG, intentamos buscar mejor
+        if card_code.startswith("CARD_"):
+            card_code = (item.get("card_number") or item.get("number") or item.get("code") or "").strip().upper()
 
         if not re.match(r'^[A-Z]{2,4}\d{2}-\d{3}', card_code):
             continue
@@ -99,11 +96,9 @@ def main():
         if price <= 0:
             price = DEFAULT_PRICE_USD
 
-        # Detectar si esta entrada concreta es una variante (contiene paréntesis en el nombre)
         is_variant = "(" in name and ")" in name
 
         if not is_variant:
-            # Es la CARTA BASE oficial
             if card_code not in grouped_cards:
                 grouped_cards[card_code] = {
                     "code": card_code,
@@ -116,44 +111,40 @@ def main():
                     "variants": []
                 }
             else:
-                # Si ya existía la base, actualizamos sus datos principales por si acaso
                 grouped_cards[card_code]["name"] = name
                 grouped_cards[card_code]["price"] = price
                 grouped_cards[card_code]["imageUrl"] = image_url
                 grouped_cards[card_code]["rarity"] = rarity
         else:
-            # Es una VARIANTE (ej. Alternate Art, SPR...)
-            if card_code not in grouped_cards:
-                # Creamos una base temporal por si la API listó antes la variante que la carta normal
+            base_code = card_code
+            if base_code not in grouped_cards:
                 base_clean_name = name.split("(")[0].strip()
-                grouped_cards[card_code] = {
-                    "code": card_code,
+                grouped_cards[base_code] = {
+                    "code": base_code,
                     "game": "One Piece",
                     "name": base_clean_name,
-                    "imageUrl": f"https://en.onepiece-cardgame.com/images/cardlist/card/{card_code}.png",
+                    "imageUrl": f"https://en.onepiece-cardgame.com/images/cardlist/card/{base_code}.png",
                     "price": DEFAULT_PRICE_USD,
                     "currency": "USD",
                     "rarity": rarity,
                     "variants": []
                 }
 
-            # Asignar sufijo único incremental para las variantes de este código
-            if card_code not in variant_counters:
-                variant_counters[card_code] = 1
+            if base_code not in variant_counters:
+                variant_counters[base_code] = 1
             else:
-                variant_counters[card_code] += 1
+                variant_counters[base_code] += 1
             
-            var_index = variant_counters[card_code]
+            var_index = variant_counters[base_code]
             suffix = f"_P{var_index}"
-            var_unique_id = f"{card_code}{suffix}"
+            var_unique_id = f"{base_code}{suffix}"
 
-            # Evitar duplicar exactamente la misma variante si la API repite registros
-            existing_variants = [v["name"] for v in grouped_cards[card_code]["variants"]]
+            existing_variants = [v["name"] for v in grouped_cards[base_code]["variants"]]
             if name not in existing_variants:
-                grouped_cards[card_code]["variants"].append({
+                grouped_cards[base_code]["variants"].append({
                     "id": var_unique_id,
                     "suffix": suffix,
-                    "name": name,  # Nombre descriptivo completo (ej: "Kouzuki Oden (Alternate Art)")
+                    "name": name,
                     "imageUrl": image_url,
                     "price": price,
                     "currency": "USD",
