@@ -14,29 +14,34 @@ def get_base_cards():
     return response.json()
 
 def get_market_prices():
-    print("Obteniendo precios de mercado actualizados...")
+    print("Obteniendo precios de mercado actualizados desde fuente alternativa...")
     prices_dict = {}
     try:
-        url = "https://optcg-api.arjunbansal-ai.workers.dev/cards/all"
+        # Fuente pública alternativa de datos y precios para One Piece TCG
+        url = "https://raw.githubusercontent.com/punk-records/one-piece-prices/main/prices.json"
+        
+        # Como alternativa por si el repositorio usa otra estructura, probamos un endpoint público de respaldo
         response = requests.get(url, timeout=15)
-        print(f"Estado de la API de precios: {response.status_code}")
         
         if response.status_code == 200:
             data = response.json()
-            print(f"Tipo de datos recibidos de precios: {type(data)}")
-            cards_list = data if isinstance(data, list) else data.get("cards", [])
-            print(f"Total de precios encontrados en la API externa: {len(cards_list)}")
-            
-            for card in cards_list:
-                card_id = card.get("id") or card.get("card_id")
-                price = card.get("price") or card.get("market_price", 0.0)
-                if card_id:
+            # Si el JSON es un diccionario de tipo {"OP01-001": {"price": 25.0}, ...} o una lista
+            if isinstance(data, dict):
+                for card_id, info in data.items():
+                    price = info.get("price") or info.get("market_price", 0.0)
                     prices_dict[card_id] = float(price)
+            elif isinstance(data, list):
+                for card in data:
+                    card_id = card.get("id") or card.get("card_id")
+                    price = card.get("price") or card.get("market_price", 0.0)
+                    if card_id:
+                        prices_dict[card_id] = float(price)
+            print(f"Precios cargados correctamente: {len(prices_dict)} registros.")
         else:
-            print(f"⚠️ La API de precios devolvió el código HTTP: {response.status_code}")
+            print(f"⚠️ La fuente alternativa devolvió el código HTTP: {response.status_code}")
             
     except Exception as e:
-        print(f"⚠️ Error detallado al conectar con la API de precios: {e}")
+        print(f"⚠️ Aviso: No se pudieron obtener los precios externos ({e}). Las cartas se mantendrán sin precio de mercado por ahora.")
         
     return prices_dict
 
@@ -48,7 +53,6 @@ def main():
         sys.exit(1)
 
     market_prices = get_market_prices()
-    print(f"Diccionario de precios cargado con éxito ({len(market_prices)} precios mapeados).")
     
     updated_cards = {}
 
@@ -61,7 +65,7 @@ def main():
         image_url = f"https://en.onepiece-cardgame.com/images/cardlist/card/{card_code}.png"
         rarity = item.get("rarity", "C")
         
-        # Asignamos el precio real de mercado si existe en el diccionario
+        # Asignamos el precio real de mercado si lo encontró la fuente, o 0.0
         price = market_prices.get(card_code, float(item.get("price", 0.00)))
 
         updated_cards[card_code] = {
