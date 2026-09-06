@@ -15,6 +15,16 @@ def get_base_cards():
     response.raise_for_status()
     return response.json()
 
+def extract_image_url(item, fallback_code):
+    """Busca la URL de la imagen en los campos que suele usar punk-records, 
+    evitando inventar rutas con sufijos que Bandai no reconoce."""
+    for field in ["img_full_url", "image", "img_url", "imageUrl"]:
+        url = item.get(field)
+        if url and isinstance(url, str) and url.strip():
+            return url.strip()
+    # Si por algún motivo no viniera en el JSON, usamos el código limpio base
+    return f"https://en.onepiece-cardgame.com/images/cardlist/card/{fallback_code}.png"
+
 def fetch_shopify_store(base_url, store_name):
     print(f"Obteniendo precios de mercado desde: {store_name}...")
     prices_dict = {}
@@ -42,7 +52,6 @@ def fetch_shopify_store(base_url, store_name):
                     except ValueError:
                         continue
                     
-                    # Regex para capturar tanto el código base como variantes con sufijo (ej. OP01-001_P1)
                     matches = re.findall(r'([A-Z]{2,3}\d{2}-\d{3}(?:_[A-Za-z0-9]+)?)', title.upper())
                     for code in matches:
                         if price > 0:
@@ -103,7 +112,7 @@ def main():
     for card_code, item in raw_base_cards.items():
         name = html.unescape(item.get("name") or item.get("title") or "")
         rarity = item.get("rarity", "C")
-        image_url = item.get("img_full_url") or f"https://en.onepiece-cardgame.com/images/cardlist/card/{card_code}.png"
+        image_url = extract_image_url(item, card_code)
         price = market_prices.get(card_code, DEFAULT_PRICE)
 
         updated_cards[card_code] = {
@@ -128,8 +137,8 @@ def main():
             var_name = html.unescape(item.get("name") or item.get("title") or updated_cards[base_code]["name"])
             var_rarity = item.get("rarity", updated_cards[base_code]["rarity"])
             
-            # Usar img_full_url directamente de punk-records para asegurar que la ruta de la variante sea correcta
-            var_image_url = item.get("img_full_url") or f"https://en.onepiece-cardgame.com/images/cardlist/card/{var_id}.png"
+            # Extraer la imagen real que proporciona punk-records para esta variante específica
+            var_image_url = extract_image_url(item, base_code)
             var_price = market_prices.get(var_id, DEFAULT_PRICE)
 
             updated_cards[base_code]["variants"].append({
