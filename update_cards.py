@@ -59,14 +59,13 @@ def main():
 
     print(f"Total de registros descargados de la API: {len(cards_list)}")
 
-    grouped_cards = {}
-    variant_counters = {}
+    # Diccionario temporal para agrupar todas las entradas crudas por código de carta
+    raw_grouped_by_code = {}
 
     for item in cards_list:
         if not isinstance(item, dict):
             continue
 
-        # Código oficial base (ej. OP01-047)
         card_code = (
             item.get("card_number") or 
             item.get("number") or 
@@ -86,7 +85,7 @@ def main():
         rarity = item.get("rarity", "Common")
         image_url = item.get("image_url") or item.get("imageUrl") or f"https://en.onepiece-cardgame.com/images/cardlist/card/{card_code}.png"
         
-        # Búsqueda robusta de precios en cualquier variante de clave que use la API
+        # Extracción robusta de precios
         price = 0.0
         for p_key in ["market_price", "marketPrice", "price", "tcgplayer_price", "cardmarket_price"]:
             val = item.get(p_key)
@@ -101,69 +100,63 @@ def main():
         if price <= 0:
             price = DEFAULT_PRICE_USD
 
-        # Detectar si es variante (si el nombre contiene paréntesis o especificaciones de tipo alt/parallel/sp)
-        is_variant = "(" in name and ")" in name
+        if card_code not in raw_grouped_by_code:
+            raw_grouped_by_code[card_code] = []
 
-        if not is_variant:
-            # --- CARTA BASE ---
-            if card_code not in grouped_cards:
-                grouped_cards[card_code] = {
-                    "code": card_code,
-                    "game": "One Piece",
-                    "name": name,
-                    "imageUrl": image_url,
-                    "price": price,
-                    "currency": "USD",
-                    "rarity": rarity,
-                    "variants": []
-                }
-            else:
-                # Si ya existía, nos aseguramos de actualizar con los datos limpios de la base
-                grouped_cards[card_code]["name"] = name
-                if price > DEFAULT_PRICE_USD:
-                    grouped_cards[card_code]["price"] = price
-                grouped_cards[card_code]["rarity"] = rarity
-        else:
-            # --- VARIANTE ANIDADA (Parallel, SP, etc.) ---
-            base_code = card_code
-            
-            if base_code not in grouped_cards:
-                clean_base_name = name.split("(")[0].strip()
-                grouped_cards[base_code] = {
-                    "code": base_code,
-                    "game": "One Piece",
-                    "name": clean_base_name,
-                    "imageUrl": f"https://en.onepiece-cardgame.com/images/cardlist/card/{base_code}.png",
-                    "price": DEFAULT_PRICE_USD,
-                    "currency": "USD",
-                    "rarity": rarity,
-                    "variants": []
-                }
+        raw_grouped_by_code[card_code].append({
+            "name": name,
+            "imageUrl": image_url,
+            "price": price,
+            "rarity": rarity
+        })
 
-            if base_code not in variant_counters:
-                variant_counters[base_code] = 1
-            else:
-                variant_counters[base_code] += 1
-            
-            var_index = variant_counters[base_code]
-            suffix = f"_P{var_index}"
-            var_unique_id = f"{base_code}{suffix}"
+    # Construir el JSON final estructurado con base y variantes reales
+    grouped_cards = {}
 
-            # Evitar duplicados exactos y añadir la variante con su precio real
-            existing_variant_names = [v["name"] for v in grouped_cards[base_code]["variants"]]
-            if name not in existing_variant_names:
-                grouped_cards[base_code]["variants"].append({
-                    "id": var_unique_id,
-                    "suffix": suffix,
-                    "name": name,
-                    "imageUrl": image_url,
-                    "price": price,
-                    "currency": "USD",
-                    "rarity": rarity
-                })
+    for card_code, entries in raw_grouped_by_code.items():
+        # Ordenamos las entradas para que la que tenga el nombre más corto (ej. "Trafalgar Law") sea la base
+        entries.sort(key=lambda x: len(x["name"]))
+
+        base_entry = entries[0]
+        base_name = base_entry["name"].split("(")[0].strip()
+
+        grouped_cards[card_code] = {
+            "code": card_code,
+            "game": "One Piece",
+            "name": base_name,
+            "imageUrl": base_entry["imageUrl"],
+            "price": base_entry["price"],
+            "currency": "USD",
+            "rarity": base_entry["rarity"],
+            "variants": []
+        }
+
+        # Las entradas adicionales se consideran variantes de esa misma carta
+        variant_counter = 1
+        seen_variant_names = set()
+
+        for entry in entries[1:]:
+            var_name = entry["name"]
+            if var_name in seen_variant_names:
+                continue
+            seen_variant_names.add(var_name)
+
+            suffix = f"_P{variant_counter}"
+            var_unique_id = f"{card_code}{suffix}"
+
+            grouped_cards[card_code]["variants"].append({
+                "id": var_unique_id,
+                "suffix": suffix,
+                "name": var_name,
+                "imageUrl": entry["imageUrl"],
+                "price": entry["price"],
+                "currency": "USD",
+                "rarity": entry["rarity"]
+            })
+            variant_counter += 1
 
     total_base_cards = len(grouped_cards)
-    print(f"Total de cartas base agrupadas correctamente: {total_base_cards}")
+    print(f"Total de cartas base estructuradas correctamente: {total_base_cards}")
 
     if total_base_cards < MIN_CARDS_THRESHOLD:
         print(f"ALERTA DE SEGURIDAD: Solo se procesaron {total_base_cards} cartas base. Abortando.")
