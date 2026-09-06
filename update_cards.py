@@ -19,7 +19,7 @@ def get_all_cards_from_api():
     
     all_cards = []
     page = 1
-    max_pages = 100  # Margen de seguridad amplio para cubrir las más de 4000 cartas del TCG
+    max_pages = 100  
     
     while page <= max_pages:
         url = f"{base_url}?page={page}"
@@ -31,8 +31,6 @@ def get_all_cards_from_api():
                 break
                 
             data = response.json()
-            
-            # Extraer los datos independientemente de si vienen en un diccionario con claves o como lista directa
             cards_chunk = []
             if isinstance(data, dict):
                 cards_chunk = data.get("data", data.get("results", data.get("cards", [])))
@@ -45,7 +43,6 @@ def get_all_cards_from_api():
                 
             all_cards.extend(cards_chunk)
             print(f"   (+{len(cards_chunk)} cartas añadidas. Total acumulado: {len(all_cards)})")
-            
             page += 1
         except Exception as e:
             print(f"⚠️ Error al conectar con la API en la página {page}: {e}")
@@ -69,7 +66,7 @@ def main():
         if not isinstance(item, dict):
             continue
 
-        # BUSCAMOS EL CÓDIGO OFICIAL REAL (ej. OP01-001, EB01-001)
+        # Código oficial base (ej. OP01-047)
         card_code = (
             item.get("card_number") or 
             item.get("number") or 
@@ -77,7 +74,6 @@ def main():
             ""
         ).strip().upper()
 
-        # Si el formato del código no parece un código de TCG válido, lo filtramos
         if not re.match(r'^[A-Z]{2,4}\d{2}-\d{3}', card_code):
             continue
 
@@ -88,11 +84,9 @@ def main():
             continue
 
         rarity = item.get("rarity", "Common")
-        
-        # URL de imagen oficial limpia basada en el código real de la carta
         image_url = item.get("image_url") or item.get("imageUrl") or f"https://en.onepiece-cardgame.com/images/cardlist/card/{card_code}.png"
         
-        # Obtener precio en USD
+        # Extraer precio de la API de forma segura
         price = 0.0
         for p_key in ["price", "marketPrice", "market_price"]:
             if p_key in item and item[p_key] is not None:
@@ -104,29 +98,39 @@ def main():
         if price <= 0:
             price = DEFAULT_PRICE_USD
 
-        # Detectar variantes mediante los paréntesis en el nombre
+        # Detectar si es variante por los paréntesis (ej. "(Parallel)", "(SP)")
         is_variant = "(" in name and ")" in name
 
         if not is_variant:
-            # CARTA BASE
-            grouped_cards[card_code] = {
-                "code": card_code,
-                "game": "One Piece",
-                "name": name,
-                "imageUrl": image_url,
-                "price": price,
-                "currency": "USD",
-                "rarity": rarity,
-                "variants": []
-            }
+            # --- ES LA CARTA BASE ---
+            if card_code not in grouped_cards:
+                grouped_cards[card_code] = {
+                    "code": card_code,
+                    "game": "One Piece",
+                    "name": name,
+                    "imageUrl": image_url,
+                    "price": price,
+                    "currency": "USD",
+                    "rarity": rarity,
+                    "variants": []
+                }
+            else:
+                # Si ya existía la base pero se registró sin precio o queremos asegurar datos
+                grouped_cards[card_code]["name"] = name
+                grouped_cards[card_code]["price"] = price
+                grouped_cards[card_code]["imageUrl"] = image_url
+                grouped_cards[card_code]["rarity"] = rarity
         else:
-            # VARIANTE ANIDADA
+            # --- ES UNA VARIANTE ANIDADA ---
             base_code = card_code
+            
+            # Asegurar que la estructura base exista aunque la API devuelva la variante primero
             if base_code not in grouped_cards:
+                clean_base_name = name.split("(")[0].strip()
                 grouped_cards[base_code] = {
                     "code": base_code,
                     "game": "One Piece",
-                    "name": name.split("(")[0].strip(),
+                    "name": clean_base_name,
                     "imageUrl": f"https://en.onepiece-cardgame.com/images/cardlist/card/{base_code}.png",
                     "price": DEFAULT_PRICE_USD,
                     "currency": "USD",
@@ -143,9 +147,9 @@ def main():
             suffix = f"_P{var_index}"
             var_unique_id = f"{base_code}{suffix}"
 
-            # Evitar duplicar variantes idénticas
-            existing_variants = [v["name"] for v in grouped_cards[base_code]["variants"]]
-            if name not in existing_variants:
+            # Evitar duplicar la misma variante si la API la repite
+            existing_variant_names = [v["name"] for v in grouped_cards[base_code]["variants"]]
+            if name not in existing_variant_names:
                 grouped_cards[base_code]["variants"].append({
                     "id": var_unique_id,
                     "suffix": suffix,
