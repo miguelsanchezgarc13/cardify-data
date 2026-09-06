@@ -25,7 +25,6 @@ def main():
         if not card_id or not name or "Placeholder" in name:
             continue
 
-Names = card_id.strip()
         card_code = card_id.strip()
         image_url = f"https://en.onepiece-cardgame.com/images/cardlist/card/{card_code}.png"
         rarity = item.get("rarity", "C")
