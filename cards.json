@@ -276,15 +276,6 @@
         "price": 0.05,
         "currency": "USD",
         "rarity": "R"
-      },
-      {
-        "id": "EB01-027_P2",
-        "suffix": "_P2",
-        "name": "Mr.1(Daz.Bonez)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-027.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
       }
     ]
   },
@@ -630,15 +621,6 @@
       {
         "id": "EB01-061_P1",
         "suffix": "_P1",
-        "name": "Mr.2.Bon.Kurei(Bentham)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-061.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SEC"
-      },
-      {
-        "id": "EB01-061_P2",
-        "suffix": "_P2",
         "name": "Mr.2.Bon.Kurei(Bentham)",
         "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-061.png",
         "price": 0.05,
@@ -2529,15 +2511,6 @@
       {
         "id": "OP02-063_P1",
         "suffix": "_P1",
-        "name": "Mr.1(Daz.Bonez)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-063.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      },
-      {
-        "id": "OP02-063_P2",
-        "suffix": "_P2",
         "name": "Mr.1(Daz.Bonez)",
         "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-063.png",
         "price": 0.05,
@@ -5163,15 +5136,6 @@
         "price": 0.05,
         "currency": "USD",
         "rarity": "R"
-      },
-      {
-        "id": "OP04-072_P2",
-        "suffix": "_P2",
-        "name": "Mr.5(Gem)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-072.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
       }
     ]
   },
@@ -6207,33 +6171,6 @@
       {
         "id": "OP05-073_P1",
         "suffix": "_P1",
-        "name": "Miss Doublefinger(Zala)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-073.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      },
-      {
-        "id": "OP05-073_P2",
-        "suffix": "_P2",
-        "name": "Miss Doublefinger(Zala)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-073.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      },
-      {
-        "id": "OP05-073_P3",
-        "suffix": "_P3",
-        "name": "Miss Doublefinger(Zala)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-073.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      },
-      {
-        "id": "OP05-073_P4",
-        "suffix": "_P4",
         "name": "Miss Doublefinger(Zala)",
         "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-073.png",
         "price": 0.05,
