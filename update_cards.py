@@ -10,12 +10,22 @@ DEFAULT_PRICE_USD = 0.05  # Precio por defecto en USD para cartas comunes sin va
 
 def get_all_cards_from_api():
     print("Descargando catálogo completo y precios de optcgapi.com...")
-    # Endpoint público que devuelve todas las cartas de una sola vez
     url = "https://optcg-api.ryanmichaelhirst.us/cards"
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+    
+    # Cabeceras mejoradas para evitar bloqueos de seguridad o firewalls (Cloudflare/Heroku)
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "en-US,en;q=0.9"
+    }
     
     response = requests.get(url, headers=headers, timeout=30)
     response.raise_for_status()
+    
+    # Comprobamos que el contenido no esté vacío antes de parsear
+    if not response.text.strip():
+        raise ValueError("La API ha devuelto una respuesta completamente vacía.")
+        
     return response.json()
 
 def main():
@@ -28,8 +38,8 @@ def main():
     # La API puede devolver una lista directa o un objeto con las cartas dentro de una clave
     cards_list = raw_data.get("data", raw_data) if isinstance(raw_data, dict) else raw_data
 
-    if not cards_list:
-        print("ALERTA DE SEGURIDAD: La API no devolvió ninguna carta.")
+    if not cards_list or not isinstance(cards_list, list):
+        print(f"ALERTA DE SEGURIDAD: La API no devolvió una lista válida de cartas. Datos recibidos: {str(raw_data)[:200]}...")
         sys.exit(1)
 
     # Diccionario temporal para agrupar cartas base y sus variantes por código (ej. "EB01-001")
@@ -79,10 +89,8 @@ def main():
             }
         else:
             # Es una VARIANTE (ej. Alternate Art, SPR, etc.)
-            # Buscamos si ya existe su carta base en el diccionario
             base_code = card_code
             if base_code not in grouped_cards:
-                # Si la carta base no se procesó antes, creamos una entrada preliminar para evitar perderla
                 grouped_cards[base_code] = {
                     "code": base_code,
                     "game": "One Piece",
@@ -94,7 +102,7 @@ def main():
                     "variants": []
                 }
 
-            # Gestionar sufijo único para la variante (ej. _P1, _P2...) basándose en cuántas lleva
+            # Gestionar sufijo único para la variante (ej. _P1, _P2...)
             if base_code not in variant_counters:
                 variant_counters[base_code] = 1
             else:
@@ -107,7 +115,7 @@ def main():
             grouped_cards[base_code]["variants"].append({
                 "id": var_unique_id,
                 "suffix": suffix,
-                "name": name,  # Aquí se guardará el nombre completo molón, ej: "Kouzuki Oden (Alternate Art)"
+                "name": name,  # Nombre descriptivo molón: "Kouzuki Oden (Alternate Art)"
                 "imageUrl": image_url,
                 "price": price,
                 "currency": "USD",
