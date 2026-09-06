@@ -7,7 +7,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "EB01-001_P1",
+        "suffix": "_P1",
+        "name": "Kouzuki Oden",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-001.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "EB01-002": {
     "code": "EB01-002",
@@ -27,7 +37,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "EB01-003_P1",
+        "suffix": "_P1",
+        "name": "Kid & Killer",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-003.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "EB01-004": {
     "code": "EB01-004",
@@ -57,7 +77,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "EB01-006_P1",
+        "suffix": "_P1",
+        "name": "Tony Tony.Chopper",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-006.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "EB01-007": {
     "code": "EB01-007",
@@ -117,7 +147,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "EB01-012_P1",
+        "suffix": "_P1",
+        "name": "Cavendish",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-012.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "EB01-013": {
     "code": "EB01-013",
@@ -127,7 +167,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "EB01-013_P1",
+        "suffix": "_P1",
+        "name": "Kouzuki Hiyori",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-013.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "EB01-014": {
     "code": "EB01-014",
@@ -147,7 +197,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "EB01-015_P1",
+        "suffix": "_P1",
+        "name": "Scratchmen Apoo",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-015.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "EB01-016": {
     "code": "EB01-016",
@@ -207,7 +267,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "EB01-021_P1",
+        "suffix": "_P1",
+        "name": "Hannyabal",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-021.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "EB01-022": {
     "code": "EB01-022",
@@ -217,7 +287,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "EB01-022_P1",
+        "suffix": "_P1",
+        "name": "Inazuma",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-022.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "EB01-023": {
     "code": "EB01-023",
@@ -317,7 +397,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "EB01-031_P1",
+        "suffix": "_P1",
+        "name": "Kalifa",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-031.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "EB01-032": {
     "code": "EB01-032",
@@ -347,7 +437,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "EB01-034_P1",
+        "suffix": "_P1",
+        "name": "Ms. Wednesday",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-034.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "EB01-035": {
     "code": "EB01-035",
@@ -407,7 +507,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "EB01-040_P1",
+        "suffix": "_P1",
+        "name": "Kyros",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-040.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "EB01-041": {
     "code": "EB01-041",
@@ -437,7 +547,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "EB01-043_P1",
+        "suffix": "_P1",
+        "name": "Spandine",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-043.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "EB01-044": {
     "code": "EB01-044",
@@ -467,7 +587,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "EB01-046_P1",
+        "suffix": "_P1",
+        "name": "Brook",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-046.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "EB01-047": {
     "code": "EB01-047",
@@ -487,7 +617,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "EB01-048_P1",
+        "suffix": "_P1",
+        "name": "Laboon",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-048.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "EB01-049": {
     "code": "EB01-049",
@@ -497,7 +637,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "EB01-049_P1",
+        "suffix": "_P1",
+        "name": "T-Bone",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-049.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "EB01-050": {
     "code": "EB01-050",
@@ -527,7 +677,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "EB01-052_P1",
+        "suffix": "_P1",
+        "name": "Viola",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-052.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "EB01-053": {
     "code": "EB01-053",
@@ -567,7 +727,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "EB01-056_P1",
+        "suffix": "_P1",
+        "name": "Charlotte Flampe",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-056.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "EB01-057": {
     "code": "EB01-057",
@@ -577,7 +747,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "EB01-057_P1",
+        "suffix": "_P1",
+        "name": "Shirahoshi",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-057.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "EB01-058": {
     "code": "EB01-058",
@@ -637,7 +817,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-001_P1",
+        "suffix": "_P1",
+        "name": "Roronoa Zoro",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-001.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP01-002": {
     "code": "OP01-002",
@@ -647,7 +837,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-002_P1",
+        "suffix": "_P1",
+        "name": "Trafalgar Law",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-002.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP01-003": {
     "code": "OP01-003",
@@ -657,7 +857,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-003_P1",
+        "suffix": "_P1",
+        "name": "Monkey.D.Luffy",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-003.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP01-004": {
     "code": "OP01-004",
@@ -667,7 +877,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-004_P1",
+        "suffix": "_P1",
+        "name": "Usopp",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-004.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP01-005": {
     "code": "OP01-005",
@@ -677,7 +897,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-005_P1",
+        "suffix": "_P1",
+        "name": "Uta",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-005.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP01-006": {
     "code": "OP01-006",
@@ -687,7 +917,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-006_P1",
+        "suffix": "_P1",
+        "name": "Otama",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-006.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP01-007": {
     "code": "OP01-007",
@@ -707,7 +947,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-008_P1",
+        "suffix": "_P1",
+        "name": "Cavendish",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-008.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP01-009": {
     "code": "OP01-009",
@@ -757,7 +1007,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-013_P1",
+        "suffix": "_P1",
+        "name": "Sanji",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-013.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP01-014": {
     "code": "OP01-014",
@@ -767,7 +1027,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-014_P1",
+        "suffix": "_P1",
+        "name": "Jinbe",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-014.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP01-015": {
     "code": "OP01-015",
@@ -777,7 +1047,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-015_P1",
+        "suffix": "_P1",
+        "name": "Tony Tony.Chopper",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-015.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP01-016": {
     "code": "OP01-016",
@@ -787,7 +1067,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-016_P1",
+        "suffix": "_P1",
+        "name": "Nami",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-016.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP01-017": {
     "code": "OP01-017",
@@ -797,7 +1087,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-017_P1",
+        "suffix": "_P1",
+        "name": "Nico Robin",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-017.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP01-018": {
     "code": "OP01-018",
@@ -837,7 +1137,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-021_P1",
+        "suffix": "_P1",
+        "name": "Franky",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-021.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP01-022": {
     "code": "OP01-022",
@@ -847,7 +1157,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-022_P1",
+        "suffix": "_P1",
+        "name": "Brook",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-022.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP01-023": {
     "code": "OP01-023",
@@ -867,7 +1187,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-024_P1",
+        "suffix": "_P1",
+        "name": "Monkey.D.Luffy",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-024.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP01-025": {
     "code": "OP01-025",
@@ -877,7 +1207,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-025_P1",
+        "suffix": "_P1",
+        "name": "Roronoa Zoro",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-025.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP01-026": {
     "code": "OP01-026",
@@ -917,7 +1257,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-029_P1",
+        "suffix": "_P1",
+        "name": "Radical Beam!!",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-029.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP01-030": {
     "code": "OP01-030",
@@ -937,7 +1287,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-031_P1",
+        "suffix": "_P1",
+        "name": "Kouzuki Oden",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-031.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP01-032": {
     "code": "OP01-032",
@@ -957,7 +1317,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-033_P1",
+        "suffix": "_P1",
+        "name": "Izo",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-033.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP01-034": {
     "code": "OP01-034",
@@ -967,7 +1337,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-034_P1",
+        "suffix": "_P1",
+        "name": "Inuarashi",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-034.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP01-035": {
     "code": "OP01-035",
@@ -977,7 +1357,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-035_P1",
+        "suffix": "_P1",
+        "name": "Okiku",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-035.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SP CARD"
+      }
+    ]
   },
   "OP01-036": {
     "code": "OP01-036",
@@ -1027,7 +1417,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-040_P1",
+        "suffix": "_P1",
+        "name": "Kin'emon",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-040.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP01-041": {
     "code": "OP01-041",
@@ -1037,7 +1437,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-041_P1",
+        "suffix": "_P1",
+        "name": "Kouzuki Momonosuke",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-041.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP01-042": {
     "code": "OP01-042",
@@ -1097,7 +1507,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-047_P1",
+        "suffix": "_P1",
+        "name": "Trafalgar Law",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-047.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP01-048": {
     "code": "OP01-048",
@@ -1107,7 +1527,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-048_P1",
+        "suffix": "_P1",
+        "name": "Nekomamushi",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-048.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP01-049": {
     "code": "OP01-049",
@@ -1137,7 +1567,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-051_P1",
+        "suffix": "_P1",
+        "name": "Eustass\"Captain\"Kid",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-051.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP01-052": {
     "code": "OP01-052",
@@ -1147,7 +1587,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-052_P1",
+        "suffix": "_P1",
+        "name": "Raizo",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-052.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP01-053": {
     "code": "OP01-053",
@@ -1227,7 +1677,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-060_P1",
+        "suffix": "_P1",
+        "name": "Donquixote Doflamingo",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-060.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP01-061": {
     "code": "OP01-061",
@@ -1237,7 +1697,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-061_P1",
+        "suffix": "_P1",
+        "name": "Kaido",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-061.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP01-062": {
     "code": "OP01-062",
@@ -1247,7 +1717,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-062_P1",
+        "suffix": "_P1",
+        "name": "Crocodile",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-062.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP01-063": {
     "code": "OP01-063",
@@ -1267,7 +1747,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-064_P1",
+        "suffix": "_P1",
+        "name": "Alvida",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-064.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP01-065": {
     "code": "OP01-065",
@@ -1297,7 +1787,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-067_P1",
+        "suffix": "_P1",
+        "name": "Crocodile",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-067.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP01-068": {
     "code": "OP01-068",
@@ -1327,7 +1827,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-070_P1",
+        "suffix": "_P1",
+        "name": "Dracule Mihawk",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-070.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP01-071": {
     "code": "OP01-071",
@@ -1357,7 +1867,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-073_P1",
+        "suffix": "_P1",
+        "name": "Donquixote Doflamingo",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-073.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP01-074": {
     "code": "OP01-074",
@@ -1397,7 +1917,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-077_P1",
+        "suffix": "_P1",
+        "name": "Perona",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-077.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP01-078": {
     "code": "OP01-078",
@@ -1407,7 +1937,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-078_P1",
+        "suffix": "_P1",
+        "name": "Boa Hancock",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-078.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP01-079": {
     "code": "OP01-079",
@@ -1427,17 +1967,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP01-080_P1",
-        "suffix": "_P1",
-        "name": "Miss Doublefinger(Zala)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-080.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP01-081": {
     "code": "OP01-081",
@@ -1467,17 +1997,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP01-083_P1",
-        "suffix": "_P1",
-        "name": "Mr.1(Daz.Bonez)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-083.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP01-084": {
     "code": "OP01-084",
@@ -1487,17 +2007,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP01-084_P1",
-        "suffix": "_P1",
-        "name": "Mr.2.Bon.Kurei(Bentham)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-084.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP01-085": {
     "code": "OP01-085",
@@ -1507,17 +2017,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP01-085_P1",
-        "suffix": "_P1",
-        "name": "Mr.3(Galdino)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-085.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP01-086": {
     "code": "OP01-086",
@@ -1527,7 +2027,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-086_P1",
+        "suffix": "_P1",
+        "name": "Overheat",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-086.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP01-087": {
     "code": "OP01-087",
@@ -1577,7 +2087,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-091_P1",
+        "suffix": "_P1",
+        "name": "King",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-091.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP01-092": {
     "code": "OP01-092",
@@ -1597,7 +2117,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-093_P1",
+        "suffix": "_P1",
+        "name": "Ulti",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-093.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP01-094": {
     "code": "OP01-094",
@@ -1607,7 +2137,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-094_P1",
+        "suffix": "_P1",
+        "name": "Kaido",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-094.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP01-095": {
     "code": "OP01-095",
@@ -1627,7 +2167,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-096_P1",
+        "suffix": "_P1",
+        "name": "King",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-096.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP01-097": {
     "code": "OP01-097",
@@ -1637,7 +2187,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-097_P1",
+        "suffix": "_P1",
+        "name": "Queen",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-097.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP01-098": {
     "code": "OP01-098",
@@ -1677,7 +2237,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-101_P1",
+        "suffix": "_P1",
+        "name": "Sasaki",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-101.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP01-102": {
     "code": "OP01-102",
@@ -1687,7 +2257,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-102_P1",
+        "suffix": "_P1",
+        "name": "Jack",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-102.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP01-103": {
     "code": "OP01-103",
@@ -1757,7 +2337,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-109_P1",
+        "suffix": "_P1",
+        "name": "Who's.Who",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-109.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP01-110": {
     "code": "OP01-110",
@@ -1867,7 +2457,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-120_P1",
+        "suffix": "_P1",
+        "name": "Shanks",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-120.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SEC"
+      }
+    ]
   },
   "OP01-121": {
     "code": "OP01-121",
@@ -1877,7 +2477,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-121_P1",
+        "suffix": "_P1",
+        "name": "Yamato",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-121.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SEC"
+      }
+    ]
   },
   "OP02-001": {
     "code": "OP02-001",
@@ -1887,7 +2497,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-001_P1",
+        "suffix": "_P1",
+        "name": "Edward.Newgate",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-001.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP02-002": {
     "code": "OP02-002",
@@ -1897,7 +2517,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-002_P1",
+        "suffix": "_P1",
+        "name": "Monkey.D.Garp",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-002.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP02-003": {
     "code": "OP02-003",
@@ -1917,7 +2547,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-004_P1",
+        "suffix": "_P1",
+        "name": "Edward.Newgate",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-004.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP02-005": {
     "code": "OP02-005",
@@ -1957,7 +2597,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-008_P1",
+        "suffix": "_P1",
+        "name": "Jozu",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-008.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP02-009": {
     "code": "OP02-009",
@@ -1967,7 +2617,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-009_P1",
+        "suffix": "_P1",
+        "name": "Squard",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-009.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP02-010": {
     "code": "OP02-010",
@@ -2006,8 +2666,18 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-013.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SR",
-    "variants": []
+    "rarity": "SP CARD",
+    "variants": [
+      {
+        "id": "OP02-013_P1",
+        "suffix": "_P1",
+        "name": "Portgas.D.Ace",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-013.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP02-014": {
     "code": "OP02-014",
@@ -2027,7 +2697,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-015_P1",
+        "suffix": "_P1",
+        "name": "Makino",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-015.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP02-016": {
     "code": "OP02-016",
@@ -2047,7 +2727,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-017_P1",
+        "suffix": "_P1",
+        "name": "Masked Deuce",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-017.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP02-018": {
     "code": "OP02-018",
@@ -2057,7 +2747,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-018_P1",
+        "suffix": "_P1",
+        "name": "Marco",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-018.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP02-019": {
     "code": "OP02-019",
@@ -2067,7 +2767,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-019_P1",
+        "suffix": "_P1",
+        "name": "Rakuyo",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-019.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP02-020": {
     "code": "OP02-020",
@@ -2097,7 +2807,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-022_P1",
+        "suffix": "_P1",
+        "name": "Whitebeard Pirates",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-022.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP02-023": {
     "code": "OP02-023",
@@ -2107,7 +2827,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-023_P1",
+        "suffix": "_P1",
+        "name": "You May Be a Fool...but I Still Love You",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-023.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP02-024": {
     "code": "OP02-024",
@@ -2127,7 +2857,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-025_P1",
+        "suffix": "_P1",
+        "name": "Kin'emon",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-025.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP02-026": {
     "code": "OP02-026",
@@ -2137,7 +2877,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-026_P1",
+        "suffix": "_P1",
+        "name": "Sanji",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-026.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP02-027": {
     "code": "OP02-027",
@@ -2157,7 +2907,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-028_P1",
+        "suffix": "_P1",
+        "name": "Usopp",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-028.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP02-029": {
     "code": "OP02-029",
@@ -2177,7 +2937,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-030_P1",
+        "suffix": "_P1",
+        "name": "Kouzuki Oden",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-030.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP02-031": {
     "code": "OP02-031",
@@ -2187,7 +2957,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-031_P1",
+        "suffix": "_P1",
+        "name": "Kouzuki Toki",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-031.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP02-032": {
     "code": "OP02-032",
@@ -2207,7 +2987,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-033_P1",
+        "suffix": "_P1",
+        "name": "Jinbe",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-033.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP02-034": {
     "code": "OP02-034",
@@ -2217,7 +3007,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-034_P1",
+        "suffix": "_P1",
+        "name": "Tony Tony.Chopper",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-034.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP02-035": {
     "code": "OP02-035",
@@ -2227,7 +3027,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-035_P1",
+        "suffix": "_P1",
+        "name": "Trafalgar Law",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-035.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP02-036": {
     "code": "OP02-036",
@@ -2237,7 +3047,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-036_P1",
+        "suffix": "_P1",
+        "name": "Nami",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-036.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP02-037": {
     "code": "OP02-037",
@@ -2247,7 +3067,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-037_P1",
+        "suffix": "_P1",
+        "name": "Nico Robin",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-037.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP02-038": {
     "code": "OP02-038",
@@ -2267,7 +3097,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-039_P1",
+        "suffix": "_P1",
+        "name": "Franky",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-039.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP02-040": {
     "code": "OP02-040",
@@ -2277,7 +3117,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-040_P1",
+        "suffix": "_P1",
+        "name": "Brook",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-040.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP02-041": {
     "code": "OP02-041",
@@ -2287,7 +3137,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-041_P1",
+        "suffix": "_P1",
+        "name": "Monkey.D.Luffy",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-041.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP02-042": {
     "code": "OP02-042",
@@ -2307,7 +3167,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-043_P1",
+        "suffix": "_P1",
+        "name": "Roronoa Zoro",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-043.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP02-044": {
     "code": "OP02-044",
@@ -2327,7 +3197,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-045_P1",
+        "suffix": "_P1",
+        "name": "Three Sword Style Oni Giri",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-045.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP02-046": {
     "code": "OP02-046",
@@ -2367,7 +3247,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-049_P1",
+        "suffix": "_P1",
+        "name": "Emporio.Ivankov",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-049.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP02-050": {
     "code": "OP02-050",
@@ -2387,7 +3277,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-051_P1",
+        "suffix": "_P1",
+        "name": "Emporio.Ivankov",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-051.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP02-052": {
     "code": "OP02-052",
@@ -2417,7 +3317,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-054_P1",
+        "suffix": "_P1",
+        "name": "Gecko Moria",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-054.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP02-055": {
     "code": "OP02-055",
@@ -2447,7 +3357,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-057_P1",
+        "suffix": "_P1",
+        "name": "Bartholomew Kuma",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-057.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP02-058": {
     "code": "OP02-058",
@@ -2457,7 +3377,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-058_P1",
+        "suffix": "_P1",
+        "name": "Buggy",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-058.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP02-059": {
     "code": "OP02-059",
@@ -2467,7 +3397,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-059_P1",
+        "suffix": "_P1",
+        "name": "Boa Hancock",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-059.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP02-060": {
     "code": "OP02-060",
@@ -2497,7 +3437,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-062_P1",
+        "suffix": "_P1",
+        "name": "Monkey.D.Luffy",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-062.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP02-063": {
     "code": "OP02-063",
@@ -2527,17 +3477,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP02-064_P1",
-        "suffix": "_P1",
-        "name": "Mr.2.Bon.Kurei(Bentham)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-064.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP02-065": {
     "code": "OP02-065",
@@ -2547,17 +3487,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP02-065_P1",
-        "suffix": "_P1",
-        "name": "Mr.3(Galdino)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-065.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP02-066": {
     "code": "OP02-066",
@@ -2617,7 +3547,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-071_P1",
+        "suffix": "_P1",
+        "name": "Magellan",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-071.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP02-072": {
     "code": "OP02-072",
@@ -2627,7 +3567,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-072_P1",
+        "suffix": "_P1",
+        "name": "Zephyr",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-072.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP02-073": {
     "code": "OP02-073",
@@ -2637,7 +3587,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-073_P1",
+        "suffix": "_P1",
+        "name": "Little Sadi",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-073.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP02-074": {
     "code": "OP02-074",
@@ -2756,8 +3716,18 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-085.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SR",
-    "variants": []
+    "rarity": "SP CARD",
+    "variants": [
+      {
+        "id": "OP02-085_P1",
+        "suffix": "_P1",
+        "name": "Magellan",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-085.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP02-086": {
     "code": "OP02-086",
@@ -2767,7 +3737,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-086_P1",
+        "suffix": "_P1",
+        "name": "Minokoala",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-086.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP02-087": {
     "code": "OP02-087",
@@ -2797,7 +3777,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-089_P1",
+        "suffix": "_P1",
+        "name": "Judgment of Hell",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-089.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP02-090": {
     "code": "OP02-090",
@@ -2837,7 +3827,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-093_P1",
+        "suffix": "_P1",
+        "name": "Smoker",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-093.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP02-094": {
     "code": "OP02-094",
@@ -2867,7 +3867,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-096_P1",
+        "suffix": "_P1",
+        "name": "Kuzan",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-096.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP02-097": {
     "code": "OP02-097",
@@ -2887,7 +3897,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-098_P1",
+        "suffix": "_P1",
+        "name": "Koby",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-098.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP02-099": {
     "code": "OP02-099",
@@ -2897,7 +3917,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-099_P1",
+        "suffix": "_P1",
+        "name": "Sakazuki",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-099.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP02-100": {
     "code": "OP02-100",
@@ -2957,7 +3987,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-105_P1",
+        "suffix": "_P1",
+        "name": "Tashigi",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-105.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP02-106": {
     "code": "OP02-106",
@@ -2967,7 +4007,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-106_P1",
+        "suffix": "_P1",
+        "name": "Tsuru",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-106.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP02-107": {
     "code": "OP02-107",
@@ -2987,7 +4037,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-108_P1",
+        "suffix": "_P1",
+        "name": "Donquixote Rosinante",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-108.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP02-109": {
     "code": "OP02-109",
@@ -2997,7 +4057,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-109_P1",
+        "suffix": "_P1",
+        "name": "Jaguar.D.Saul",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-109.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP02-110": {
     "code": "OP02-110",
@@ -3037,7 +4107,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-113_P1",
+        "suffix": "_P1",
+        "name": "Helmeppo",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-113.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP02-114": {
     "code": "OP02-114",
@@ -3047,7 +4127,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-114_P1",
+        "suffix": "_P1",
+        "name": "Borsalino",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-114.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP02-115": {
     "code": "OP02-115",
@@ -3057,7 +4147,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-115_P1",
+        "suffix": "_P1",
+        "name": "Monkey.D.Garp",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-115.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP02-116": {
     "code": "OP02-116",
@@ -3067,7 +4167,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-116_P1",
+        "suffix": "_P1",
+        "name": "Yamakaji",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-116.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP02-117": {
     "code": "OP02-117",
@@ -3077,7 +4187,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-117_P1",
+        "suffix": "_P1",
+        "name": "Ice Age",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-117.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP02-118": {
     "code": "OP02-118",
@@ -3106,8 +4226,18 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-120.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SP CARD",
-    "variants": []
+    "rarity": "SEC",
+    "variants": [
+      {
+        "id": "OP02-120_P1",
+        "suffix": "_P1",
+        "name": "Uta",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-120.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SEC"
+      }
+    ]
   },
   "OP02-121": {
     "code": "OP02-121",
@@ -3117,7 +4247,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-121_P1",
+        "suffix": "_P1",
+        "name": "Kuzan",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-121.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SEC"
+      }
+    ]
   },
   "OP03-001": {
     "code": "OP03-001",
@@ -3127,7 +4267,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-001_P1",
+        "suffix": "_P1",
+        "name": "Portgas.D.Ace",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-001.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP03-002": {
     "code": "OP03-002",
@@ -3147,7 +4297,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-003_P1",
+        "suffix": "_P1",
+        "name": "Izo",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-003.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP03-004": {
     "code": "OP03-004",
@@ -3177,7 +4337,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-006_P1",
+        "suffix": "_P1",
+        "name": "Speed Jil",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-006.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP03-007": {
     "code": "OP03-007",
@@ -3187,7 +4357,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-007_P1",
+        "suffix": "_P1",
+        "name": "Namule",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-007.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP03-008": {
     "code": "OP03-008",
@@ -3196,8 +4376,18 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-008.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SP CARD",
-    "variants": []
+    "rarity": "UC",
+    "variants": [
+      {
+        "id": "OP03-008_P1",
+        "suffix": "_P1",
+        "name": "Buggy",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-008.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SP CARD"
+      }
+    ]
   },
   "OP03-009": {
     "code": "OP03-009",
@@ -3207,7 +4397,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-009_P1",
+        "suffix": "_P1",
+        "name": "Haruta",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-009.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP03-010": {
     "code": "OP03-010",
@@ -3217,7 +4417,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-010_P1",
+        "suffix": "_P1",
+        "name": "Fossa",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-010.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP03-011": {
     "code": "OP03-011",
@@ -3247,7 +4457,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-013_P1",
+        "suffix": "_P1",
+        "name": "Marco",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-013.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP03-014": {
     "code": "OP03-014",
@@ -3297,7 +4517,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-018_P1",
+        "suffix": "_P1",
+        "name": "Fire Fist",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-018.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP03-019": {
     "code": "OP03-019",
@@ -3327,7 +4557,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-021_P1",
+        "suffix": "_P1",
+        "name": "Kuro",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-021.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP03-022": {
     "code": "OP03-022",
@@ -3337,7 +4577,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-022_P1",
+        "suffix": "_P1",
+        "name": "Arlong",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-022.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP03-023": {
     "code": "OP03-023",
@@ -3357,7 +4607,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-024_P1",
+        "suffix": "_P1",
+        "name": "Gin",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-024.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP03-025": {
     "code": "OP03-025",
@@ -3367,7 +4627,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-025_P1",
+        "suffix": "_P1",
+        "name": "Krieg",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-025.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP03-026": {
     "code": "OP03-026",
@@ -3447,7 +4717,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-033_P1",
+        "suffix": "_P1",
+        "name": "Hatchan",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-033.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP03-034": {
     "code": "OP03-034",
@@ -3517,7 +4797,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-040_P1",
+        "suffix": "_P1",
+        "name": "Nami",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-040.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP03-041": {
     "code": "OP03-041",
@@ -3527,7 +4817,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-041_P1",
+        "suffix": "_P1",
+        "name": "Usopp",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-041.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP03-042": {
     "code": "OP03-042",
@@ -3557,7 +4857,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-044_P1",
+        "suffix": "_P1",
+        "name": "Kaya",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-044.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP03-045": {
     "code": "OP03-045",
@@ -3587,7 +4897,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-047_P1",
+        "suffix": "_P1",
+        "name": "Zeff",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-047.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP03-048": {
     "code": "OP03-048",
@@ -3667,7 +4987,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-055_P1",
+        "suffix": "_P1",
+        "name": "Gum-Gum Giant Gavel",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-055.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP03-056": {
     "code": "OP03-056",
@@ -3677,7 +5007,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-056_P1",
+        "suffix": "_P1",
+        "name": "Sanji's Pilaf",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-056.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP03-057": {
     "code": "OP03-057",
@@ -3687,7 +5027,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-057_P1",
+        "suffix": "_P1",
+        "name": "Three Thousand Worlds",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-057.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP03-058": {
     "code": "OP03-058",
@@ -3697,7 +5047,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-058_P1",
+        "suffix": "_P1",
+        "name": "Iceburg",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-058.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP03-059": {
     "code": "OP03-059",
@@ -3717,7 +5077,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-060_P1",
+        "suffix": "_P1",
+        "name": "Kalifa",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-060.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP03-061": {
     "code": "OP03-061",
@@ -3777,7 +5147,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-066_P1",
+        "suffix": "_P1",
+        "name": "Paulie",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-066.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP03-067": {
     "code": "OP03-067",
@@ -3877,7 +5257,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-076_P1",
+        "suffix": "_P1",
+        "name": "Rob Lucci",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-076.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP03-077": {
     "code": "OP03-077",
@@ -3887,7 +5277,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-077_P1",
+        "suffix": "_P1",
+        "name": "Charlotte Linlin",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-077.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP03-078": {
     "code": "OP03-078",
@@ -3896,8 +5296,18 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-078.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SP CARD",
-    "variants": []
+    "rarity": "SR",
+    "variants": [
+      {
+        "id": "OP03-078_P1",
+        "suffix": "_P1",
+        "name": "Issho",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-078.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP03-079": {
     "code": "OP03-079",
@@ -3907,7 +5317,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-079_P1",
+        "suffix": "_P1",
+        "name": "Vergo",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-079.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP03-080": {
     "code": "OP03-080",
@@ -3917,7 +5337,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-080_P1",
+        "suffix": "_P1",
+        "name": "Kaku",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-080.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP03-081": {
     "code": "OP03-081",
@@ -3927,7 +5357,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-081_P1",
+        "suffix": "_P1",
+        "name": "Kalifa",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-081.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP03-082": {
     "code": "OP03-082",
@@ -3977,7 +5417,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-086_P1",
+        "suffix": "_P1",
+        "name": "Spandam",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-086.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP03-087": {
     "code": "OP03-087",
@@ -3997,7 +5447,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-088_P1",
+        "suffix": "_P1",
+        "name": "Fukurou",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-088.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP03-089": {
     "code": "OP03-089",
@@ -4007,7 +5467,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-089_P1",
+        "suffix": "_P1",
+        "name": "Brannew",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-089.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP03-090": {
     "code": "OP03-090",
@@ -4036,8 +5506,18 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-092.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SR",
-    "variants": []
+    "rarity": "SP CARD",
+    "variants": [
+      {
+        "id": "OP03-092_P1",
+        "suffix": "_P1",
+        "name": "Rob Lucci",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-092.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP03-093": {
     "code": "OP03-093",
@@ -4057,7 +5537,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-094_P1",
+        "suffix": "_P1",
+        "name": "Air Door",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-094.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP03-095": {
     "code": "OP03-095",
@@ -4107,7 +5597,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-099_P1",
+        "suffix": "_P1",
+        "name": "Charlotte Katakuri",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-099.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP03-100": {
     "code": "OP03-100",
@@ -4137,7 +5637,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-102_P1",
+        "suffix": "_P1",
+        "name": "Sanji",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-102.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP03-103": {
     "code": "OP03-103",
@@ -4177,7 +5687,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-106_P1",
+        "suffix": "_P1",
+        "name": "Charlotte Opera",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-106.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP03-107": {
     "code": "OP03-107",
@@ -4187,7 +5707,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-107_P1",
+        "suffix": "_P1",
+        "name": "Charlotte Galette",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-107.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP03-108": {
     "code": "OP03-108",
@@ -4197,7 +5727,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-108_P1",
+        "suffix": "_P1",
+        "name": "Charlotte Cracker",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-108.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP03-109": {
     "code": "OP03-109",
@@ -4217,7 +5757,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-110_P1",
+        "suffix": "_P1",
+        "name": "Charlotte Smoothie",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-110.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP03-111": {
     "code": "OP03-111",
@@ -4236,8 +5786,18 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-112.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "R",
-    "variants": []
+    "rarity": "SP CARD",
+    "variants": [
+      {
+        "id": "OP03-112_P1",
+        "suffix": "_P1",
+        "name": "Charlotte Pudding",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-112.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP03-113": {
     "code": "OP03-113",
@@ -4247,7 +5807,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-113_P1",
+        "suffix": "_P1",
+        "name": "Charlotte Perospero",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-113.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP03-114": {
     "code": "OP03-114",
@@ -4257,7 +5827,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-114_P1",
+        "suffix": "_P1",
+        "name": "Charlotte Linlin",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-114.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SP CARD"
+      }
+    ]
   },
   "OP03-115": {
     "code": "OP03-115",
@@ -4267,7 +5847,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-115_P1",
+        "suffix": "_P1",
+        "name": "Streusen",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-115.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP03-116": {
     "code": "OP03-116",
@@ -4277,7 +5867,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-116_P1",
+        "suffix": "_P1",
+        "name": "Shirahoshi",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-116.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP03-117": {
     "code": "OP03-117",
@@ -4297,7 +5897,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-118_P1",
+        "suffix": "_P1",
+        "name": "Ikoku Sovereignty",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-118.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP03-119": {
     "code": "OP03-119",
@@ -4327,7 +5937,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-121_P1",
+        "suffix": "_P1",
+        "name": "Thunder Bolt",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-121.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP03-122": {
     "code": "OP03-122",
@@ -4337,7 +5957,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-122_P1",
+        "suffix": "_P1",
+        "name": "Sogeking",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-122.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SEC"
+      }
+    ]
   },
   "OP03-123": {
     "code": "OP03-123",
@@ -4347,7 +5977,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP03-123_P1",
+        "suffix": "_P1",
+        "name": "Charlotte Katakuri",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-123.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SEC"
+      }
+    ]
   },
   "OP04-001": {
     "code": "OP04-001",
@@ -4357,7 +5997,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-001_P1",
+        "suffix": "_P1",
+        "name": "Nefeltari Vivi",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-001.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP04-002": {
     "code": "OP04-002",
@@ -4447,7 +6097,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-010_P1",
+        "suffix": "_P1",
+        "name": "Tony Tony.Chopper",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-010.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP04-011": {
     "code": "OP04-011",
@@ -4477,7 +6137,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-013_P1",
+        "suffix": "_P1",
+        "name": "Pell",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-013.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP04-014": {
     "code": "OP04-014",
@@ -4537,7 +6207,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-019_P1",
+        "suffix": "_P1",
+        "name": "Donquixote Doflamingo",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-019.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP04-020": {
     "code": "OP04-020",
@@ -4547,7 +6227,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-020_P1",
+        "suffix": "_P1",
+        "name": "Issho",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-020.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP04-021": {
     "code": "OP04-021",
@@ -4586,8 +6276,18 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-024.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SP CARD",
-    "variants": []
+    "rarity": "SR",
+    "variants": [
+      {
+        "id": "OP04-024_P1",
+        "suffix": "_P1",
+        "name": "Sugar",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-024.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP04-025": {
     "code": "OP04-025",
@@ -4627,7 +6327,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-028_P1",
+        "suffix": "_P1",
+        "name": "Diamante",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-028.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP04-029": {
     "code": "OP04-029",
@@ -4637,7 +6347,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-029_P1",
+        "suffix": "_P1",
+        "name": "Dellinger",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-029.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP04-030": {
     "code": "OP04-030",
@@ -4647,7 +6367,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-030_P1",
+        "suffix": "_P1",
+        "name": "Trebol",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-030.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP04-031": {
     "code": "OP04-031",
@@ -4657,7 +6387,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-031_P1",
+        "suffix": "_P1",
+        "name": "Donquixote Doflamingo",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-031.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP04-032": {
     "code": "OP04-032",
@@ -4667,7 +6407,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-032_P1",
+        "suffix": "_P1",
+        "name": "Baby 5",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-032.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP04-033": {
     "code": "OP04-033",
@@ -4707,7 +6457,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-036_P1",
+        "suffix": "_P1",
+        "name": "Donquixote Family",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-036.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP04-037": {
     "code": "OP04-037",
@@ -4737,7 +6497,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-039_P1",
+        "suffix": "_P1",
+        "name": "Rebecca",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-039.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP04-040": {
     "code": "OP04-040",
@@ -4747,7 +6517,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-040_P1",
+        "suffix": "_P1",
+        "name": "Queen",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-040.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP04-041": {
     "code": "OP04-041",
@@ -4787,7 +6567,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-044_P1",
+        "suffix": "_P1",
+        "name": "Kaido",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-044.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP04-045": {
     "code": "OP04-045",
@@ -4857,7 +6647,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-051_P1",
+        "suffix": "_P1",
+        "name": "Who's.Who",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-051.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP04-052": {
     "code": "OP04-052",
@@ -4907,7 +6707,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-056_P1",
+        "suffix": "_P1",
+        "name": "Gum-Gum Red Roc",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-056.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP04-057": {
     "code": "OP04-057",
@@ -4927,7 +6737,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-058_P1",
+        "suffix": "_P1",
+        "name": "Crocodile",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-058.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP04-059": {
     "code": "OP04-059",
@@ -4947,7 +6767,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-060_P1",
+        "suffix": "_P1",
+        "name": "Crocodile",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-060.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP04-061": {
     "code": "OP04-061",
@@ -4987,7 +6817,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SP CARD",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-064_P1",
+        "suffix": "_P1",
+        "name": "Ms. All Sunday",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-064.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP04-065": {
     "code": "OP04-065",
@@ -4997,17 +6837,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP04-065_P1",
-        "suffix": "_P1",
-        "name": "Miss.Goldenweek(Marianne)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-065.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP04-066": {
     "code": "OP04-066",
@@ -5017,17 +6847,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP04-066_P1",
-        "suffix": "_P1",
-        "name": "Miss.Valentine(Mikita)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-066.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP04-067": {
     "code": "OP04-067",
@@ -5037,17 +6857,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP04-067_P1",
-        "suffix": "_P1",
-        "name": "Miss.MerryChristmas(Drophy)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-067.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP04-068": {
     "code": "OP04-068",
@@ -5067,17 +6877,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP04-069_P1",
-        "suffix": "_P1",
-        "name": "Mr.2.Bon.Kurei(Bentham)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-069.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP04-070": {
     "code": "OP04-070",
@@ -5087,17 +6887,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP04-070_P1",
-        "suffix": "_P1",
-        "name": "Mr.3(Galdino)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-070.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP04-071": {
     "code": "OP04-071",
@@ -5107,17 +6897,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP04-071_P1",
-        "suffix": "_P1",
-        "name": "Mr.4(Babe)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-071.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP04-072": {
     "code": "OP04-072",
@@ -5237,7 +7017,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-082_P1",
+        "suffix": "_P1",
+        "name": "Kyros",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-082.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP04-083": {
     "code": "OP04-083",
@@ -5247,7 +7037,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-083_P1",
+        "suffix": "_P1",
+        "name": "Sabo",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-083.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP04-084": {
     "code": "OP04-084",
@@ -5307,7 +7107,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-089_P1",
+        "suffix": "_P1",
+        "name": "Bartolomeo",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-089.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP04-090": {
     "code": "OP04-090",
@@ -5317,7 +7127,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-090_P1",
+        "suffix": "_P1",
+        "name": "Monkey.D.Luffy",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-090.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP04-091": {
     "code": "OP04-091",
@@ -5337,7 +7157,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-092_P1",
+        "suffix": "_P1",
+        "name": "Rebecca",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-092.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP04-093": {
     "code": "OP04-093",
@@ -5367,7 +7197,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-095_P1",
+        "suffix": "_P1",
+        "name": "Barrier!!",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-095.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP04-096": {
     "code": "OP04-096",
@@ -5427,7 +7267,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-118_P1",
+        "suffix": "_P1",
+        "name": "Nefeltari Vivi",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-118.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SEC"
+      }
+    ]
   },
   "OP04-119": {
     "code": "OP04-119",
@@ -5436,8 +7286,18 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-119.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SP CARD",
-    "variants": []
+    "rarity": "SEC",
+    "variants": [
+      {
+        "id": "OP04-119_P1",
+        "suffix": "_P1",
+        "name": "Donquixote Rosinante",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-119.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SEC"
+      }
+    ]
   },
   "OP05-001": {
     "code": "OP05-001",
@@ -5447,7 +7307,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-001_P1",
+        "suffix": "_P1",
+        "name": "Sabo",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-001.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP05-002": {
     "code": "OP05-002",
@@ -5457,7 +7327,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-002_P1",
+        "suffix": "_P1",
+        "name": "Belo Betty",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-002.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP05-003": {
     "code": "OP05-003",
@@ -5497,7 +7377,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-006_P1",
+        "suffix": "_P1",
+        "name": "Koala",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-006.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP05-007": {
     "code": "OP05-007",
@@ -5507,7 +7397,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-007_P1",
+        "suffix": "_P1",
+        "name": "Sabo",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-007.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP05-008": {
     "code": "OP05-008",
@@ -5537,7 +7437,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-010_P1",
+        "suffix": "_P1",
+        "name": "Nico Robin",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-010.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP05-011": {
     "code": "OP05-011",
@@ -5587,7 +7497,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-015_P1",
+        "suffix": "_P1",
+        "name": "Belo Betty",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-015.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP05-016": {
     "code": "OP05-016",
@@ -5657,7 +7577,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-022_P1",
+        "suffix": "_P1",
+        "name": "Donquixote Rosinante",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-022.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP05-023": {
     "code": "OP05-023",
@@ -5757,7 +7687,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-032_P1",
+        "suffix": "_P1",
+        "name": "Pica",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-032.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP05-033": {
     "code": "OP05-033",
@@ -5777,7 +7717,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-034_P1",
+        "suffix": "_P1",
+        "name": "Baby 5",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-034.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP05-035": {
     "code": "OP05-035",
@@ -5797,7 +7747,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-036_P1",
+        "suffix": "_P1",
+        "name": "Monet",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-036.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP05-037": {
     "code": "OP05-037",
@@ -5847,7 +7807,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-041_P1",
+        "suffix": "_P1",
+        "name": "Sakazuki",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-041.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP05-042": {
     "code": "OP05-042",
@@ -5867,7 +7837,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-043_P1",
+        "suffix": "_P1",
+        "name": "Ulti",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-043.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP05-044": {
     "code": "OP05-044",
@@ -5946,8 +7926,18 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-051.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SP CARD",
-    "variants": []
+    "rarity": "SR",
+    "variants": [
+      {
+        "id": "OP05-051_P1",
+        "suffix": "_P1",
+        "name": "Borsalino",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-051.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP05-052": {
     "code": "OP05-052",
@@ -5987,7 +7977,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-055_P1",
+        "suffix": "_P1",
+        "name": "X.Drake",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-055.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP05-056": {
     "code": "OP05-056",
@@ -6007,7 +8007,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-057_P1",
+        "suffix": "_P1",
+        "name": "Hound Blaze",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-057.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP05-058": {
     "code": "OP05-058",
@@ -6037,7 +8047,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-060_P1",
+        "suffix": "_P1",
+        "name": "Monkey.D.Luffy",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-060.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP05-061": {
     "code": "OP05-061",
@@ -6047,7 +8067,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-061_P1",
+        "suffix": "_P1",
+        "name": "Uso-Hachi",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-061.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP05-062": {
     "code": "OP05-062",
@@ -6067,7 +8097,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-063_P1",
+        "suffix": "_P1",
+        "name": "O-Robi",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-063.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP05-064": {
     "code": "OP05-064",
@@ -6097,7 +8137,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-066_P1",
+        "suffix": "_P1",
+        "name": "Jinbe",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-066.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP05-067": {
     "code": "OP05-067",
@@ -6107,7 +8157,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-067_P1",
+        "suffix": "_P1",
+        "name": "Zoro-Juurou",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-067.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP05-068": {
     "code": "OP05-068",
@@ -6117,7 +8177,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-068_P1",
+        "suffix": "_P1",
+        "name": "Chopa-Emon",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-068.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP05-069": {
     "code": "OP05-069",
@@ -6127,7 +8197,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-069_P1",
+        "suffix": "_P1",
+        "name": "Trafalgar Law",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-069.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP05-070": {
     "code": "OP05-070",
@@ -6137,7 +8217,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-070_P1",
+        "suffix": "_P1",
+        "name": "Fra-Nosuke",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-070.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP05-071": {
     "code": "OP05-071",
@@ -6157,7 +8247,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-072_P1",
+        "suffix": "_P1",
+        "name": "Hone-Kichi",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-072.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP05-073": {
     "code": "OP05-073",
@@ -6187,7 +8287,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-074_P1",
+        "suffix": "_P1",
+        "name": "Eustass\"Captain\"Kid",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-074.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP05-075": {
     "code": "OP05-075",
@@ -6197,17 +8307,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP05-075_P1",
-        "suffix": "_P1",
-        "name": "Mr.1(Daz.Bonez)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-075.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP05-076": {
     "code": "OP05-076",
@@ -6217,7 +8317,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-076_P1",
+        "suffix": "_P1",
+        "name": "When You're at Sea You Fight against Pirates!!",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-076.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP05-077": {
     "code": "OP05-077",
@@ -6267,7 +8377,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-081_P1",
+        "suffix": "_P1",
+        "name": "One-Legged Toy Soldier",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-081.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP05-082": {
     "code": "OP05-082",
@@ -6277,7 +8397,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-082_P1",
+        "suffix": "_P1",
+        "name": "Shirahoshi",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-082.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP05-083": {
     "code": "OP05-083",
@@ -6317,7 +8447,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-086_P1",
+        "suffix": "_P1",
+        "name": "Nefeltari Vivi",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-086.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP05-087": {
     "code": "OP05-087",
@@ -6337,7 +8477,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-088_P1",
+        "suffix": "_P1",
+        "name": "Mansherry",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-088.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP05-089": {
     "code": "OP05-089",
@@ -6366,8 +8516,18 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-091.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SP CARD",
-    "variants": []
+    "rarity": "SR",
+    "variants": [
+      {
+        "id": "OP05-091_P1",
+        "suffix": "_P1",
+        "name": "Rebecca",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-091.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP05-092": {
     "code": "OP05-092",
@@ -6386,8 +8546,18 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-093.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SR",
-    "variants": []
+    "rarity": "SP CARD",
+    "variants": [
+      {
+        "id": "OP05-093_P1",
+        "suffix": "_P1",
+        "name": "Rob Lucci",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-093.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP05-094": {
     "code": "OP05-094",
@@ -6437,7 +8607,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-118_P1",
+        "suffix": "_P1",
+        "name": "Kaido",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-118.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SEC"
+      }
+    ]
   },
   "OP05-119": {
     "code": "OP05-119",
@@ -6447,7 +8627,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-119_P1",
+        "suffix": "_P1",
+        "name": "Monkey.D.Luffy",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-119.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SP CARD"
+      }
+    ]
   },
   "OP06-001": {
     "code": "OP06-001",
@@ -6457,7 +8647,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-001_P1",
+        "suffix": "_P1",
+        "name": "Uta",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-001.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP06-002": {
     "code": "OP06-002",
@@ -6477,7 +8677,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-003_P1",
+        "suffix": "_P1",
+        "name": "Emporio.Ivankov",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-003.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP06-004": {
     "code": "OP06-004",
@@ -6517,7 +8727,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-007_P1",
+        "suffix": "_P1",
+        "name": "Shanks",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-007.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP06-008": {
     "code": "OP06-008",
@@ -6537,7 +8757,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-009_P1",
+        "suffix": "_P1",
+        "name": "Shuraiya",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-009.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP06-010": {
     "code": "OP06-010",
@@ -6577,7 +8807,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-013_P1",
+        "suffix": "_P1",
+        "name": "Monkey.D.Luffy",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-013.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP06-014": {
     "code": "OP06-014",
@@ -6647,7 +8887,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-020_P1",
+        "suffix": "_P1",
+        "name": "Hody Jones",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-020.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP06-021": {
     "code": "OP06-021",
@@ -6657,7 +8907,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-021_P1",
+        "suffix": "_P1",
+        "name": "Perona",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-021.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP06-022": {
     "code": "OP06-022",
@@ -6667,7 +8927,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-022_P1",
+        "suffix": "_P1",
+        "name": "Yamato",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-022.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP06-023": {
     "code": "OP06-023",
@@ -6677,7 +8947,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-023_P1",
+        "suffix": "_P1",
+        "name": "Arlong",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-023.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP06-024": {
     "code": "OP06-024",
@@ -6697,7 +8977,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-025_P1",
+        "suffix": "_P1",
+        "name": "Camie",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-025.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP06-026": {
     "code": "OP06-026",
@@ -6797,7 +9087,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-035_P1",
+        "suffix": "_P1",
+        "name": "Hody Jones",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-035.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP06-036": {
     "code": "OP06-036",
@@ -6807,7 +9107,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-036_P1",
+        "suffix": "_P1",
+        "name": "Ryuma",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-036.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP06-037": {
     "code": "OP06-037",
@@ -6827,7 +9137,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-038_P1",
+        "suffix": "_P1",
+        "name": "The Billion-fold World Trichiliocosm",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-038.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP06-039": {
     "code": "OP06-039",
@@ -6867,7 +9187,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-042_P1",
+        "suffix": "_P1",
+        "name": "Vinsmoke Reiju",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-042.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP06-043": {
     "code": "OP06-043",
@@ -6877,7 +9207,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-043_P1",
+        "suffix": "_P1",
+        "name": "Aramaki",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-043.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP06-044": {
     "code": "OP06-044",
@@ -6947,7 +9287,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-050_P1",
+        "suffix": "_P1",
+        "name": "Tashigi",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-050.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP06-051": {
     "code": "OP06-051",
@@ -7007,7 +9357,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-056_P1",
+        "suffix": "_P1",
+        "name": "Ama no Murakumo Sword",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-056.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP06-057": {
     "code": "OP06-057",
@@ -7047,7 +9407,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-060_P1",
+        "suffix": "_P1",
+        "name": "Vinsmoke Ichiji",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-060.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP06-061": {
     "code": "OP06-061",
@@ -7057,7 +9427,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-061_P1",
+        "suffix": "_P1",
+        "name": "Vinsmoke Ichiji",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-061.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP06-062": {
     "code": "OP06-062",
@@ -7067,7 +9447,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-062_P1",
+        "suffix": "_P1",
+        "name": "Vinsmoke Judge",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-062.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP06-063": {
     "code": "OP06-063",
@@ -7087,7 +9477,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-064_P1",
+        "suffix": "_P1",
+        "name": "Vinsmoke Niji",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-064.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP06-065": {
     "code": "OP06-065",
@@ -7097,7 +9497,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-065_P1",
+        "suffix": "_P1",
+        "name": "Vinsmoke Niji",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-065.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP06-066": {
     "code": "OP06-066",
@@ -7107,7 +9517,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-066_P1",
+        "suffix": "_P1",
+        "name": "Vinsmoke Yonji",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-066.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP06-067": {
     "code": "OP06-067",
@@ -7117,7 +9537,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-067_P1",
+        "suffix": "_P1",
+        "name": "Vinsmoke Yonji",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-067.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP06-068": {
     "code": "OP06-068",
@@ -7127,7 +9557,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-068_P1",
+        "suffix": "_P1",
+        "name": "Vinsmoke Reiju",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-068.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP06-069": {
     "code": "OP06-069",
@@ -7137,7 +9577,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-069_P1",
+        "suffix": "_P1",
+        "name": "Vinsmoke Reiju",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-069.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP06-070": {
     "code": "OP06-070",
@@ -7187,17 +9637,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP06-074_P1",
-        "suffix": "_P1",
-        "name": "Zephyr (Navy)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-074.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP06-075": {
     "code": "OP06-075",
@@ -7247,7 +9687,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-079_P1",
+        "suffix": "_P1",
+        "name": "Kingdom of GERMA",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-079.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP06-080": {
     "code": "OP06-080",
@@ -7257,7 +9707,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-080_P1",
+        "suffix": "_P1",
+        "name": "Gecko Moria",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-080.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP06-081": {
     "code": "OP06-081",
@@ -7267,7 +9727,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-081_P1",
+        "suffix": "_P1",
+        "name": "Absalom",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-081.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP06-082": {
     "code": "OP06-082",
@@ -7317,7 +9787,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-086_P1",
+        "suffix": "_P1",
+        "name": "Gecko Moria",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-086.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP06-087": {
     "code": "OP06-087",
@@ -7367,7 +9847,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-091_P1",
+        "suffix": "_P1",
+        "name": "Victoria Cindry",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-091.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP06-092": {
     "code": "OP06-092",
@@ -7387,7 +9877,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-093_P1",
+        "suffix": "_P1",
+        "name": "Perona",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-093.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP06-094": {
     "code": "OP06-094",
@@ -7447,7 +9947,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-118_P1",
+        "suffix": "_P1",
+        "name": "Roronoa Zoro",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-118.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SEC"
+      }
+    ]
   },
   "OP06-119": {
     "code": "OP06-119",
@@ -7457,7 +9967,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-119_P1",
+        "suffix": "_P1",
+        "name": "Sanji",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-119.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SEC"
+      }
+    ]
   },
   "OP07-001": {
     "code": "OP07-001",
@@ -7467,7 +9987,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP07-001_P1",
+        "suffix": "_P1",
+        "name": "Monkey.D.Dragon",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-001.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP07-002": {
     "code": "OP07-002",
@@ -7507,7 +10037,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP07-005_P1",
+        "suffix": "_P1",
+        "name": "Carina",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-005.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP07-006": {
     "code": "OP07-006",
@@ -7607,7 +10147,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP07-015_P1",
+        "suffix": "_P1",
+        "name": "Monkey.D.Dragon",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-015.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SP CARD"
+      }
+    ]
   },
   "OP07-016": {
     "code": "OP07-016",
@@ -7647,7 +10197,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP07-019_P1",
+        "suffix": "_P1",
+        "name": "Jewelry Bonney",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-019.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP07-020": {
     "code": "OP07-020",
@@ -7667,7 +10227,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP07-021_P1",
+        "suffix": "_P1",
+        "name": "Urouge",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-021.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP07-022": {
     "code": "OP07-022",
@@ -7677,7 +10247,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP07-022_P1",
+        "suffix": "_P1",
+        "name": "Otama",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-022.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP07-023": {
     "code": "OP07-023",
@@ -7717,7 +10297,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP07-026_P1",
+        "suffix": "_P1",
+        "name": "Jewelry Bonney",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-026.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP07-027": {
     "code": "OP07-027",
@@ -7747,7 +10337,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP07-029_P1",
+        "suffix": "_P1",
+        "name": "Basil Hawkins",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-029.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP07-030": {
     "code": "OP07-030",
@@ -7837,7 +10437,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP07-038_P1",
+        "suffix": "_P1",
+        "name": "Boa Hancock",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-038.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP07-039": {
     "code": "OP07-039",
@@ -7857,7 +10467,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP07-040_P1",
+        "suffix": "_P1",
+        "name": "Crocodile",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-040.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP07-041": {
     "code": "OP07-041",
@@ -7867,17 +10487,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP07-041_P1",
-        "suffix": "_P1",
-        "name": "Gloriosa (Grandma Nyon)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-041.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP07-042": {
     "code": "OP07-042",
@@ -7917,7 +10527,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP07-045_P1",
+        "suffix": "_P1",
+        "name": "Jinbe",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-045.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP07-046": {
     "code": "OP07-046",
@@ -7927,7 +10547,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP07-046_P1",
+        "suffix": "_P1",
+        "name": "Sengoku",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-046.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP07-047": {
     "code": "OP07-047",
@@ -7937,7 +10567,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP07-047_P1",
+        "suffix": "_P1",
+        "name": "Trafalgar Law",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-047.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP07-048": {
     "code": "OP07-048",
@@ -7976,8 +10616,18 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-051.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SP CARD",
-    "variants": []
+    "rarity": "SR",
+    "variants": [
+      {
+        "id": "OP07-051_P1",
+        "suffix": "_P1",
+        "name": "Boa Hancock",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-051.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP07-052": {
     "code": "OP07-052",
@@ -7997,7 +10647,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP07-053_P1",
+        "suffix": "_P1",
+        "name": "Portgas.D.Ace",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-053.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP07-054": {
     "code": "OP07-054",
@@ -8057,7 +10717,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP07-059_P1",
+        "suffix": "_P1",
+        "name": "Foxy",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-059.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP07-060": {
     "code": "OP07-060",
@@ -8107,7 +10777,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP07-064_P1",
+        "suffix": "_P1",
+        "name": "Sanji",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-064.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP07-065": {
     "code": "OP07-065",
@@ -8147,7 +10827,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP07-079_P1",
+        "suffix": "_P1",
+        "name": "Rob Lucci",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-079.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP07-080": {
     "code": "OP07-080",
@@ -8207,7 +10897,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP07-085_P1",
+        "suffix": "_P1",
+        "name": "Stussy",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-085.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP07-086": {
     "code": "OP07-086",
@@ -8267,7 +10967,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP07-091_P1",
+        "suffix": "_P1",
+        "name": "Monkey.D.Luffy",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-091.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP07-092": {
     "code": "OP07-092",
@@ -8327,7 +11037,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP07-118_P1",
+        "suffix": "_P1",
+        "name": "Sabo",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-118.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SEC"
+      }
+    ]
   },
   "OP08-001": {
     "code": "OP08-001",
@@ -8337,7 +11057,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP08-001_P1",
+        "suffix": "_P1",
+        "name": "Tony Tony.Chopper",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-001.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP08-002": {
     "code": "OP08-002",
@@ -8347,7 +11077,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP08-002_P1",
+        "suffix": "_P1",
+        "name": "Marco",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-002.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP08-003": {
     "code": "OP08-003",
@@ -8397,7 +11137,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP08-007_P1",
+        "suffix": "_P1",
+        "name": "Tony Tony.Chopper",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-007.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP08-008": {
     "code": "OP08-008",
@@ -8477,7 +11227,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP08-015_P1",
+        "suffix": "_P1",
+        "name": "Dr.Kureha",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-015.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP08-016": {
     "code": "OP08-016",
@@ -8537,7 +11297,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP08-021_P1",
+        "suffix": "_P1",
+        "name": "Carrot",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-021.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP08-022": {
     "code": "OP08-022",
@@ -8557,7 +11327,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP08-023_P1",
+        "suffix": "_P1",
+        "name": "Carrot",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-023.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP08-024": {
     "code": "OP08-024",
@@ -8627,7 +11407,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP08-030_P1",
+        "suffix": "_P1",
+        "name": "Pedro",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-030.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP08-031": {
     "code": "OP08-031",
@@ -8757,7 +11547,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP08-043_P1",
+        "suffix": "_P1",
+        "name": "Edward.Newgate",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-043.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP08-044": {
     "code": "OP08-044",
@@ -8847,7 +11647,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP08-052_P1",
+        "suffix": "_P1",
+        "name": "Portgas.D.Ace",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-052.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP08-053": {
     "code": "OP08-053",
@@ -8897,7 +11707,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP08-057_P1",
+        "suffix": "_P1",
+        "name": "King",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-057.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP08-078": {
     "code": "OP08-078",
@@ -8917,7 +11737,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP08-079_P1",
+        "suffix": "_P1",
+        "name": "Kaido",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-079.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP08-080": {
     "code": "OP08-080",
@@ -8927,7 +11757,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP08-080_P1",
+        "suffix": "_P1",
+        "name": "Queen",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-080.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP08-081": {
     "code": "OP08-081",
@@ -8967,7 +11807,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP08-084_P1",
+        "suffix": "_P1",
+        "name": "Jack",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-084.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP08-085": {
     "code": "OP08-085",
@@ -9107,7 +11957,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP08-118_P1",
+        "suffix": "_P1",
+        "name": "Silvers Rayleigh",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-118.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SEC"
+      }
+    ]
   },
   "OP09-001": {
     "code": "OP09-001",
@@ -9117,7 +11977,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP09-001_P1",
+        "suffix": "_P1",
+        "name": "Shanks",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-001.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP09-002": {
     "code": "OP09-002",
@@ -9127,7 +11997,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP09-002_P1",
+        "suffix": "_P1",
+        "name": "Uta",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-002.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP09-003": {
     "code": "OP09-003",
@@ -9147,7 +12027,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP09-004_P1",
+        "suffix": "_P1",
+        "name": "Shanks",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-004.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP09-005": {
     "code": "OP09-005",
@@ -9197,7 +12087,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP09-009_P1",
+        "suffix": "_P1",
+        "name": "Benn.Beckman",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-009.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP09-010": {
     "code": "OP09-010",
@@ -9217,7 +12117,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP09-011_P1",
+        "suffix": "_P1",
+        "name": "Hongo",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-011.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP09-012": {
     "code": "OP09-012",
@@ -9327,7 +12237,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP09-022_P1",
+        "suffix": "_P1",
+        "name": "Lim",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-022.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP09-023": {
     "code": "OP09-023",
@@ -9337,7 +12257,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP09-023_P1",
+        "suffix": "_P1",
+        "name": "Adio",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-023.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP09-024": {
     "code": "OP09-024",
@@ -9447,7 +12377,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP09-034_P1",
+        "suffix": "_P1",
+        "name": "Perona",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-034.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP09-035": {
     "code": "OP09-035",
@@ -9477,7 +12417,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP09-037_P1",
+        "suffix": "_P1",
+        "name": "Lim",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-037.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP09-038": {
     "code": "OP09-038",
@@ -9527,7 +12477,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP09-042_P1",
+        "suffix": "_P1",
+        "name": "Buggy",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-042.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP09-043": {
     "code": "OP09-043",
@@ -9567,7 +12527,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP09-046_P1",
+        "suffix": "_P1",
+        "name": "Crocodile",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-046.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP09-047": {
     "code": "OP09-047",
@@ -9587,7 +12557,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP09-048_P1",
+        "suffix": "_P1",
+        "name": "Dracule Mihawk",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-048.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP09-049": {
     "code": "OP09-049",
@@ -9607,7 +12587,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP09-050_P1",
+        "suffix": "_P1",
+        "name": "Nami",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-050.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP09-051": {
     "code": "OP09-051",
@@ -9616,8 +12606,18 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-051.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SP CARD",
-    "variants": []
+    "rarity": "R",
+    "variants": [
+      {
+        "id": "OP09-051_P1",
+        "suffix": "_P1",
+        "name": "Buggy",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-051.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP09-052": {
     "code": "OP09-052",
@@ -9657,17 +12657,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP09-055_P1",
-        "suffix": "_P1",
-        "name": "Mr.1(Daz.Bonez)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-055.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP09-056": {
     "code": "OP09-056",
@@ -9677,17 +12667,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP09-056_P1",
-        "suffix": "_P1",
-        "name": "Mr.3(Galdino)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-056.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP09-057": {
     "code": "OP09-057",
@@ -9737,7 +12717,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP09-061_P1",
+        "suffix": "_P1",
+        "name": "Monkey.D.Luffy",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-061.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP09-081": {
     "code": "OP09-081",
@@ -9747,7 +12737,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP09-081_P1",
+        "suffix": "_P1",
+        "name": "Marshall.D.Teach",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-081.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "OP09-082": {
     "code": "OP09-082",
@@ -9866,8 +12866,18 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-093.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SP CARD",
-    "variants": []
+    "rarity": "SR",
+    "variants": [
+      {
+        "id": "OP09-093_P1",
+        "suffix": "_P1",
+        "name": "Marshall.D.Teach",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-093.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "OP09-094": {
     "code": "OP09-094",
@@ -9937,7 +12947,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP09-118_P1",
+        "suffix": "_P1",
+        "name": "Gol.D.Roger",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-118.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SEC"
+      }
+    ]
   },
   "PRB01-001": {
     "code": "PRB01-001",
@@ -9947,7 +12967,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "PRB01-001_P1",
+        "suffix": "_P1",
+        "name": "Sanji",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB01-001.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "ST01-001": {
     "code": "ST01-001",
@@ -9967,7 +12997,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST01-002_P1",
+        "suffix": "_P1",
+        "name": "Usopp",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-002.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "ST01-003": {
     "code": "ST01-003",
@@ -9987,7 +13027,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST01-004_P1",
+        "suffix": "_P1",
+        "name": "Sanji",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-004.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "ST01-005": {
     "code": "ST01-005",
@@ -9997,7 +13047,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST01-005_P1",
+        "suffix": "_P1",
+        "name": "Jinbe",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-005.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "ST01-006": {
     "code": "ST01-006",
@@ -10007,7 +13067,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST01-006_P1",
+        "suffix": "_P1",
+        "name": "Tony Tony.Chopper",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-006.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "ST01-007": {
     "code": "ST01-007",
@@ -10017,7 +13087,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST01-007_P1",
+        "suffix": "_P1",
+        "name": "Nami",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-007.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "ST01-008": {
     "code": "ST01-008",
@@ -10027,7 +13107,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST01-008_P1",
+        "suffix": "_P1",
+        "name": "Nico Robin",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-008.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "ST01-009": {
     "code": "ST01-009",
@@ -10037,7 +13127,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST01-009_P1",
+        "suffix": "_P1",
+        "name": "Nefeltari Vivi",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-009.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "ST01-010": {
     "code": "ST01-010",
@@ -10047,7 +13147,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST01-010_P1",
+        "suffix": "_P1",
+        "name": "Franky",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-010.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "ST01-011": {
     "code": "ST01-011",
@@ -10057,7 +13167,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST01-011_P1",
+        "suffix": "_P1",
+        "name": "Brook",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-011.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "ST01-012": {
     "code": "ST01-012",
@@ -10067,7 +13187,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST01-012_P1",
+        "suffix": "_P1",
+        "name": "Monkey.D.Luffy",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-012.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SP CARD"
+      }
+    ]
   },
   "ST01-013": {
     "code": "ST01-013",
@@ -10077,7 +13207,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST01-013_P1",
+        "suffix": "_P1",
+        "name": "Roronoa Zoro",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-013.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "ST01-014": {
     "code": "ST01-014",
@@ -10087,7 +13227,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST01-014_P1",
+        "suffix": "_P1",
+        "name": "Guard Point",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-014.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "ST01-015": {
     "code": "ST01-015",
@@ -10097,7 +13247,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST01-015_P1",
+        "suffix": "_P1",
+        "name": "Gum-Gum Jet Pistol",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-015.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "ST01-016": {
     "code": "ST01-016",
@@ -10137,7 +13297,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST03-002_P1",
+        "suffix": "_P1",
+        "name": "Edward Weevil",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST03-002.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "ST03-003": {
     "code": "ST03-003",
@@ -10147,7 +13317,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST03-003_P1",
+        "suffix": "_P1",
+        "name": "Crocodile",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST03-003.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "ST03-004": {
     "code": "ST03-004",
@@ -10156,8 +13336,18 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST03-004.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "C",
-    "variants": []
+    "rarity": "SP CARD",
+    "variants": [
+      {
+        "id": "ST03-004_P1",
+        "suffix": "_P1",
+        "name": "Gecko Moria",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST03-004.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "ST03-005": {
     "code": "ST03-005",
@@ -10167,7 +13357,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST03-005_P1",
+        "suffix": "_P1",
+        "name": "Dracule Mihawk",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST03-005.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "ST03-006": {
     "code": "ST03-006",
@@ -10187,7 +13387,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST03-007_P1",
+        "suffix": "_P1",
+        "name": "Sentomaru",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST03-007.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "ST03-008": {
     "code": "ST03-008",
@@ -10197,7 +13407,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST03-008_P1",
+        "suffix": "_P1",
+        "name": "Trafalgar Law",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST03-008.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "ST03-009": {
     "code": "ST03-009",
@@ -10206,8 +13426,18 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST03-009.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SP CARD",
-    "variants": []
+    "rarity": "SR",
+    "variants": [
+      {
+        "id": "ST03-009_P1",
+        "suffix": "_P1",
+        "name": "Donquixote Doflamingo",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST03-009.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SP CARD"
+      }
+    ]
   },
   "ST03-010": {
     "code": "ST03-010",
@@ -10247,7 +13477,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST03-013_P1",
+        "suffix": "_P1",
+        "name": "Boa Hancock",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST03-013.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "ST03-014": {
     "code": "ST03-014",
@@ -10257,7 +13497,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST03-014_P1",
+        "suffix": "_P1",
+        "name": "Marshall.D.Teach",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST03-014.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "ST03-015": {
     "code": "ST03-015",
@@ -10347,7 +13597,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST06-006_P1",
+        "suffix": "_P1",
+        "name": "Tashigi",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST06-006.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "ST06-007": {
     "code": "ST06-007",
@@ -10387,7 +13647,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST06-010_P1",
+        "suffix": "_P1",
+        "name": "Helmeppo",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST06-010.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "ST06-011": {
     "code": "ST06-011",
@@ -10427,7 +13697,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST06-014_P1",
+        "suffix": "_P1",
+        "name": "Shockwave",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST06-014.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "ST06-015": {
     "code": "ST06-015",
@@ -10587,17 +13867,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "ST08-013_P1",
-        "suffix": "_P1",
-        "name": "Mr.2.Bon.Kurei(Bentham)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST08-013.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "ST08-014": {
     "code": "ST08-014",
@@ -10667,7 +13937,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST10-005_P1",
+        "suffix": "_P1",
+        "name": "Jinbe",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST10-005.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "ST10-006": {
     "code": "ST10-006",
@@ -10677,7 +13957,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST10-006_P1",
+        "suffix": "_P1",
+        "name": "Monkey.D.Luffy",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST10-006.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SR"
+      }
+    ]
   },
   "ST10-015": {
     "code": "ST10-015",
@@ -10767,7 +14057,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST12-014_P1",
+        "suffix": "_P1",
+        "name": "Duval",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST12-014.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "ST12-015": {
     "code": "ST12-015",
@@ -10797,7 +14097,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST13-001_P1",
+        "suffix": "_P1",
+        "name": "Sabo",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST13-001.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "ST13-002": {
     "code": "ST13-002",
@@ -10807,7 +14117,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST13-002_P1",
+        "suffix": "_P1",
+        "name": "Portgas.D.Ace",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST13-002.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "ST13-003": {
     "code": "ST13-003",
@@ -10817,7 +14137,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST13-003_P1",
+        "suffix": "_P1",
+        "name": "Monkey.D.Luffy",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST13-003.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "L"
+      }
+    ]
   },
   "ST14-001": {
     "code": "ST14-001",
