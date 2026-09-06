@@ -7,17 +7,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "EB01-001_P1",
-        "suffix": "_P1",
-        "name": "Kouzuki Oden (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-001.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "EB01-002": {
     "code": "EB01-002",
@@ -37,17 +27,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "EB01-003_P1",
-        "suffix": "_P1",
-        "name": "Kid & Killer (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-003.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "EB01-004": {
     "code": "EB01-004",
@@ -77,17 +57,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "EB01-006_P1",
-        "suffix": "_P1",
-        "name": "Tony Tony.Chopper (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-006.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "EB01-007": {
     "code": "EB01-007",
@@ -147,17 +117,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "EB01-012_P1",
-        "suffix": "_P1",
-        "name": "Cavendish (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-012.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "EB01-013": {
     "code": "EB01-013",
@@ -167,17 +127,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "EB01-013_P1",
-        "suffix": "_P1",
-        "name": "Kouzuki Hiyori (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-013.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "EB01-014": {
     "code": "EB01-014",
@@ -197,17 +147,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "EB01-015_P1",
-        "suffix": "_P1",
-        "name": "Scratchmen Apoo (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-015.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "EB01-016": {
     "code": "EB01-016",
@@ -267,17 +207,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "EB01-021_P1",
-        "suffix": "_P1",
-        "name": "Hannyabal (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-021.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "EB01-022": {
     "code": "EB01-022",
@@ -287,17 +217,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "EB01-022_P1",
-        "suffix": "_P1",
-        "name": "Inazuma (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-022.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "EB01-023": {
     "code": "EB01-023",
@@ -351,7 +271,16 @@
       {
         "id": "EB01-027_P1",
         "suffix": "_P1",
-        "name": "Mr.1 (Parallel)",
+        "name": "Mr.1(Daz.Bonez)",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-027.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      },
+      {
+        "id": "EB01-027_P2",
+        "suffix": "_P2",
+        "name": "Mr.1(Daz.Bonez)",
         "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-027.png",
         "price": 0.05,
         "currency": "USD",
@@ -397,17 +326,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "EB01-031_P1",
-        "suffix": "_P1",
-        "name": "Kalifa (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-031.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "EB01-032": {
     "code": "EB01-032",
@@ -437,17 +356,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "EB01-034_P1",
-        "suffix": "_P1",
-        "name": "Ms. Wednesday (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-034.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "EB01-035": {
     "code": "EB01-035",
@@ -507,17 +416,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "EB01-040_P1",
-        "suffix": "_P1",
-        "name": "Kyros (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-040.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "EB01-041": {
     "code": "EB01-041",
@@ -547,17 +446,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "EB01-043_P1",
-        "suffix": "_P1",
-        "name": "Spandine (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-043.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "EB01-044": {
     "code": "EB01-044",
@@ -587,17 +476,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "EB01-046_P1",
-        "suffix": "_P1",
-        "name": "Brook (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-046.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "EB01-047": {
     "code": "EB01-047",
@@ -617,17 +496,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "EB01-048_P1",
-        "suffix": "_P1",
-        "name": "Laboon (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-048.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "EB01-049": {
     "code": "EB01-049",
@@ -637,17 +506,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "EB01-049_P1",
-        "suffix": "_P1",
-        "name": "T-Bone (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-049.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "EB01-050": {
     "code": "EB01-050",
@@ -677,17 +536,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "EB01-052_P1",
-        "suffix": "_P1",
-        "name": "Viola (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-052.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "EB01-053": {
     "code": "EB01-053",
@@ -727,17 +576,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "EB01-056_P1",
-        "suffix": "_P1",
-        "name": "Charlotte Flampe (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-056.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "EB01-057": {
     "code": "EB01-057",
@@ -747,17 +586,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "EB01-057_P1",
-        "suffix": "_P1",
-        "name": "Shirahoshi (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-057.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "EB01-058": {
     "code": "EB01-058",
@@ -801,7 +630,16 @@
       {
         "id": "EB01-061_P1",
         "suffix": "_P1",
-        "name": "Mr.2.Bon.Kurei (Parallel)",
+        "name": "Mr.2.Bon.Kurei(Bentham)",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-061.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "SEC"
+      },
+      {
+        "id": "EB01-061_P2",
+        "suffix": "_P2",
+        "name": "Mr.2.Bon.Kurei(Bentham)",
         "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-061.png",
         "price": 0.05,
         "currency": "USD",
@@ -817,17 +655,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP01-001_P1",
-        "suffix": "_P1",
-        "name": "Roronoa Zoro (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-001.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP01-002": {
     "code": "OP01-002",
@@ -837,17 +665,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP01-002_P1",
-        "suffix": "_P1",
-        "name": "Trafalgar Law (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-002.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP01-003": {
     "code": "OP01-003",
@@ -857,17 +675,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP01-003_P1",
-        "suffix": "_P1",
-        "name": "Monkey.D.Luffy (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-003.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP01-004": {
     "code": "OP01-004",
@@ -877,17 +685,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP01-004_P1",
-        "suffix": "_P1",
-        "name": "Usopp (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-004.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP01-005": {
     "code": "OP01-005",
@@ -897,17 +695,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP01-005_P1",
-        "suffix": "_P1",
-        "name": "Uta (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-005.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP01-006": {
     "code": "OP01-006",
@@ -917,17 +705,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP01-006_P1",
-        "suffix": "_P1",
-        "name": "Otama (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-006.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP01-007": {
     "code": "OP01-007",
@@ -947,17 +725,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP01-008_P1",
-        "suffix": "_P1",
-        "name": "Cavendish (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-008.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP01-009": {
     "code": "OP01-009",
@@ -1007,17 +775,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP01-013_P1",
-        "suffix": "_P1",
-        "name": "Sanji (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-013.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP01-014": {
     "code": "OP01-014",
@@ -1027,17 +785,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP01-014_P1",
-        "suffix": "_P1",
-        "name": "Jinbe (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-014.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP01-015": {
     "code": "OP01-015",
@@ -1047,17 +795,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP01-015_P1",
-        "suffix": "_P1",
-        "name": "Tony Tony.Chopper (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-015.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP01-016": {
     "code": "OP01-016",
@@ -1067,17 +805,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP01-016_P1",
-        "suffix": "_P1",
-        "name": "Nami (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-016.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP01-017": {
     "code": "OP01-017",
@@ -1087,17 +815,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP01-017_P1",
-        "suffix": "_P1",
-        "name": "Nico Robin (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-017.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP01-018": {
     "code": "OP01-018",
@@ -1137,17 +855,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP01-021_P1",
-        "suffix": "_P1",
-        "name": "Franky (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-021.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP01-022": {
     "code": "OP01-022",
@@ -1157,17 +865,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP01-022_P1",
-        "suffix": "_P1",
-        "name": "Brook (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-022.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP01-023": {
     "code": "OP01-023",
@@ -1187,17 +885,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP01-024_P1",
-        "suffix": "_P1",
-        "name": "Monkey.D.Luffy (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-024.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP01-025": {
     "code": "OP01-025",
@@ -1207,17 +895,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP01-025_P1",
-        "suffix": "_P1",
-        "name": "Roronoa Zoro (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-025.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP01-026": {
     "code": "OP01-026",
@@ -1257,17 +935,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP01-029_P1",
-        "suffix": "_P1",
-        "name": "Radical Beam!! (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-029.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP01-030": {
     "code": "OP01-030",
@@ -1287,17 +955,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP01-031_P1",
-        "suffix": "_P1",
-        "name": "Kouzuki Oden (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-031.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP01-032": {
     "code": "OP01-032",
@@ -1317,17 +975,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP01-033_P1",
-        "suffix": "_P1",
-        "name": "Izo (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-033.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP01-034": {
     "code": "OP01-034",
@@ -1337,17 +985,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP01-034_P1",
-        "suffix": "_P1",
-        "name": "Inuarashi (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-034.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP01-035": {
     "code": "OP01-035",
@@ -1357,17 +995,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP01-035_P1",
-        "suffix": "_P1",
-        "name": "Okiku (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-035.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SP CARD"
-      }
-    ]
+    "variants": []
   },
   "OP01-036": {
     "code": "OP01-036",
@@ -1417,17 +1045,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP01-040_P1",
-        "suffix": "_P1",
-        "name": "Kin'emon (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-040.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP01-041": {
     "code": "OP01-041",
@@ -1437,17 +1055,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP01-041_P1",
-        "suffix": "_P1",
-        "name": "Kouzuki Momonosuke (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-041.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP01-042": {
     "code": "OP01-042",
@@ -1507,17 +1115,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP01-047_P1",
-        "suffix": "_P1",
-        "name": "Trafalgar Law (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-047.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP01-048": {
     "code": "OP01-048",
@@ -1527,17 +1125,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP01-048_P1",
-        "suffix": "_P1",
-        "name": "Nekomamushi (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-048.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP01-049": {
     "code": "OP01-049",
@@ -1567,17 +1155,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP01-051_P1",
-        "suffix": "_P1",
-        "name": "Eustass\"Captain\"Kid (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-051.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP01-052": {
     "code": "OP01-052",
@@ -1587,17 +1165,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP01-052_P1",
-        "suffix": "_P1",
-        "name": "Raizo (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-052.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP01-053": {
     "code": "OP01-053",
@@ -1677,17 +1245,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP01-060_P1",
-        "suffix": "_P1",
-        "name": "Donquixote Doflamingo (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-060.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP01-061": {
     "code": "OP01-061",
@@ -1697,17 +1255,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP01-061_P1",
-        "suffix": "_P1",
-        "name": "Kaido (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-061.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP01-062": {
     "code": "OP01-062",
@@ -1717,17 +1265,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP01-062_P1",
-        "suffix": "_P1",
-        "name": "Crocodile (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-062.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP01-063": {
     "code": "OP01-063",
@@ -1747,17 +1285,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP01-064_P1",
-        "suffix": "_P1",
-        "name": "Alvida (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-064.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP01-065": {
     "code": "OP01-065",
@@ -1787,17 +1315,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP01-067_P1",
-        "suffix": "_P1",
-        "name": "Crocodile (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-067.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP01-068": {
     "code": "OP01-068",
@@ -1827,17 +1345,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP01-070_P1",
-        "suffix": "_P1",
-        "name": "Dracule Mihawk (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-070.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP01-071": {
     "code": "OP01-071",
@@ -1867,17 +1375,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP01-073_P1",
-        "suffix": "_P1",
-        "name": "Donquixote Doflamingo (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-073.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP01-074": {
     "code": "OP01-074",
@@ -1917,17 +1415,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP01-077_P1",
-        "suffix": "_P1",
-        "name": "Perona (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-077.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP01-078": {
     "code": "OP01-078",
@@ -1937,17 +1425,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP01-078_P1",
-        "suffix": "_P1",
-        "name": "Boa Hancock (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-078.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP01-079": {
     "code": "OP01-079",
@@ -1967,7 +1445,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-080_P1",
+        "suffix": "_P1",
+        "name": "Miss Doublefinger(Zala)",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-080.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP01-081": {
     "code": "OP01-081",
@@ -1997,7 +1485,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-083_P1",
+        "suffix": "_P1",
+        "name": "Mr.1(Daz.Bonez)",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-083.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP01-084": {
     "code": "OP01-084",
@@ -2007,7 +1505,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-084_P1",
+        "suffix": "_P1",
+        "name": "Mr.2.Bon.Kurei(Bentham)",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-084.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP01-085": {
     "code": "OP01-085",
@@ -2017,7 +1525,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP01-085_P1",
+        "suffix": "_P1",
+        "name": "Mr.3(Galdino)",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-085.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP01-086": {
     "code": "OP01-086",
@@ -2027,17 +1545,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP01-086_P1",
-        "suffix": "_P1",
-        "name": "Overheat (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-086.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP01-087": {
     "code": "OP01-087",
@@ -2087,17 +1595,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP01-091_P1",
-        "suffix": "_P1",
-        "name": "King (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-091.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP01-092": {
     "code": "OP01-092",
@@ -2117,17 +1615,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP01-093_P1",
-        "suffix": "_P1",
-        "name": "Ulti (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-093.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP01-094": {
     "code": "OP01-094",
@@ -2137,17 +1625,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP01-094_P1",
-        "suffix": "_P1",
-        "name": "Kaido (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-094.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP01-095": {
     "code": "OP01-095",
@@ -2167,17 +1645,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP01-096_P1",
-        "suffix": "_P1",
-        "name": "King (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-096.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP01-097": {
     "code": "OP01-097",
@@ -2187,17 +1655,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP01-097_P1",
-        "suffix": "_P1",
-        "name": "Queen (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-097.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP01-098": {
     "code": "OP01-098",
@@ -2237,17 +1695,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP01-101_P1",
-        "suffix": "_P1",
-        "name": "Sasaki (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-101.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP01-102": {
     "code": "OP01-102",
@@ -2257,17 +1705,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP01-102_P1",
-        "suffix": "_P1",
-        "name": "Jack (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-102.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP01-103": {
     "code": "OP01-103",
@@ -2337,17 +1775,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP01-109_P1",
-        "suffix": "_P1",
-        "name": "Who's.Who (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-109.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP01-110": {
     "code": "OP01-110",
@@ -2457,17 +1885,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": [
-      {
-        "id": "OP01-120_P1",
-        "suffix": "_P1",
-        "name": "Shanks (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-120.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SEC"
-      }
-    ]
+    "variants": []
   },
   "OP01-121": {
     "code": "OP01-121",
@@ -2477,17 +1895,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": [
-      {
-        "id": "OP01-121_P1",
-        "suffix": "_P1",
-        "name": "Yamato (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-121.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SEC"
-      }
-    ]
+    "variants": []
   },
   "OP02-001": {
     "code": "OP02-001",
@@ -2497,17 +1905,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP02-001_P1",
-        "suffix": "_P1",
-        "name": "Edward.Newgate (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-001.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP02-002": {
     "code": "OP02-002",
@@ -2517,17 +1915,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP02-002_P1",
-        "suffix": "_P1",
-        "name": "Monkey.D.Garp (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-002.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP02-003": {
     "code": "OP02-003",
@@ -2547,17 +1935,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP02-004_P1",
-        "suffix": "_P1",
-        "name": "Edward.Newgate (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-004.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP02-005": {
     "code": "OP02-005",
@@ -2597,17 +1975,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP02-008_P1",
-        "suffix": "_P1",
-        "name": "Jozu (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-008.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP02-009": {
     "code": "OP02-009",
@@ -2617,17 +1985,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP02-009_P1",
-        "suffix": "_P1",
-        "name": "Squard (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-009.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP02-010": {
     "code": "OP02-010",
@@ -2666,18 +2024,8 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-013.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SP CARD",
-    "variants": [
-      {
-        "id": "OP02-013_P1",
-        "suffix": "_P1",
-        "name": "Portgas.D.Ace (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-013.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "rarity": "SR",
+    "variants": []
   },
   "OP02-014": {
     "code": "OP02-014",
@@ -2697,17 +2045,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP02-015_P1",
-        "suffix": "_P1",
-        "name": "Makino (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-015.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP02-016": {
     "code": "OP02-016",
@@ -2727,17 +2065,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP02-017_P1",
-        "suffix": "_P1",
-        "name": "Masked Deuce (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-017.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP02-018": {
     "code": "OP02-018",
@@ -2747,17 +2075,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP02-018_P1",
-        "suffix": "_P1",
-        "name": "Marco (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-018.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP02-019": {
     "code": "OP02-019",
@@ -2767,17 +2085,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP02-019_P1",
-        "suffix": "_P1",
-        "name": "Rakuyo (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-019.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP02-020": {
     "code": "OP02-020",
@@ -2807,17 +2115,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP02-022_P1",
-        "suffix": "_P1",
-        "name": "Whitebeard Pirates (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-022.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP02-023": {
     "code": "OP02-023",
@@ -2827,17 +2125,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP02-023_P1",
-        "suffix": "_P1",
-        "name": "You May Be a Fool...but I Still Love You (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-023.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP02-024": {
     "code": "OP02-024",
@@ -2857,17 +2145,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP02-025_P1",
-        "suffix": "_P1",
-        "name": "Kin'emon (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-025.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP02-026": {
     "code": "OP02-026",
@@ -2877,17 +2155,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP02-026_P1",
-        "suffix": "_P1",
-        "name": "Sanji (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-026.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP02-027": {
     "code": "OP02-027",
@@ -2907,17 +2175,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP02-028_P1",
-        "suffix": "_P1",
-        "name": "Usopp (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-028.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP02-029": {
     "code": "OP02-029",
@@ -2937,17 +2195,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP02-030_P1",
-        "suffix": "_P1",
-        "name": "Kouzuki Oden (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-030.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP02-031": {
     "code": "OP02-031",
@@ -2957,17 +2205,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP02-031_P1",
-        "suffix": "_P1",
-        "name": "Kouzuki Toki (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-031.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP02-032": {
     "code": "OP02-032",
@@ -2987,17 +2225,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP02-033_P1",
-        "suffix": "_P1",
-        "name": "Jinbe (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-033.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP02-034": {
     "code": "OP02-034",
@@ -3007,17 +2235,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP02-034_P1",
-        "suffix": "_P1",
-        "name": "Tony Tony.Chopper (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-034.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP02-035": {
     "code": "OP02-035",
@@ -3027,17 +2245,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP02-035_P1",
-        "suffix": "_P1",
-        "name": "Trafalgar Law (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-035.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP02-036": {
     "code": "OP02-036",
@@ -3047,17 +2255,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP02-036_P1",
-        "suffix": "_P1",
-        "name": "Nami (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-036.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP02-037": {
     "code": "OP02-037",
@@ -3067,17 +2265,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP02-037_P1",
-        "suffix": "_P1",
-        "name": "Nico Robin (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-037.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP02-038": {
     "code": "OP02-038",
@@ -3097,17 +2285,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP02-039_P1",
-        "suffix": "_P1",
-        "name": "Franky (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-039.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP02-040": {
     "code": "OP02-040",
@@ -3117,17 +2295,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP02-040_P1",
-        "suffix": "_P1",
-        "name": "Brook (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-040.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP02-041": {
     "code": "OP02-041",
@@ -3137,17 +2305,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP02-041_P1",
-        "suffix": "_P1",
-        "name": "Monkey.D.Luffy (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-041.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP02-042": {
     "code": "OP02-042",
@@ -3167,17 +2325,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP02-043_P1",
-        "suffix": "_P1",
-        "name": "Roronoa Zoro (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-043.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP02-044": {
     "code": "OP02-044",
@@ -3197,17 +2345,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP02-045_P1",
-        "suffix": "_P1",
-        "name": "Three Sword Style Oni Giri (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-045.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP02-046": {
     "code": "OP02-046",
@@ -3247,17 +2385,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP02-049_P1",
-        "suffix": "_P1",
-        "name": "Emporio.Ivankov (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-049.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP02-050": {
     "code": "OP02-050",
@@ -3277,17 +2405,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP02-051_P1",
-        "suffix": "_P1",
-        "name": "Emporio.Ivankov (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-051.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP02-052": {
     "code": "OP02-052",
@@ -3317,17 +2435,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP02-054_P1",
-        "suffix": "_P1",
-        "name": "Gecko Moria (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-054.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP02-055": {
     "code": "OP02-055",
@@ -3357,17 +2465,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP02-057_P1",
-        "suffix": "_P1",
-        "name": "Bartholomew Kuma (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-057.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP02-058": {
     "code": "OP02-058",
@@ -3377,17 +2475,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP02-058_P1",
-        "suffix": "_P1",
-        "name": "Buggy (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-058.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP02-059": {
     "code": "OP02-059",
@@ -3397,17 +2485,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP02-059_P1",
-        "suffix": "_P1",
-        "name": "Boa Hancock (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-059.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP02-060": {
     "code": "OP02-060",
@@ -3437,17 +2515,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP02-062_P1",
-        "suffix": "_P1",
-        "name": "Monkey.D.Luffy (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-062.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP02-063": {
     "code": "OP02-063",
@@ -3461,7 +2529,16 @@
       {
         "id": "OP02-063_P1",
         "suffix": "_P1",
-        "name": "Mr.1 (Parallel)",
+        "name": "Mr.1(Daz.Bonez)",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-063.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      },
+      {
+        "id": "OP02-063_P2",
+        "suffix": "_P2",
+        "name": "Mr.1(Daz.Bonez)",
         "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-063.png",
         "price": 0.05,
         "currency": "USD",
@@ -3477,7 +2554,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-064_P1",
+        "suffix": "_P1",
+        "name": "Mr.2.Bon.Kurei(Bentham)",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-064.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP02-065": {
     "code": "OP02-065",
@@ -3487,7 +2574,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP02-065_P1",
+        "suffix": "_P1",
+        "name": "Mr.3(Galdino)",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-065.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP02-066": {
     "code": "OP02-066",
@@ -3547,17 +2644,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP02-071_P1",
-        "suffix": "_P1",
-        "name": "Magellan (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-071.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP02-072": {
     "code": "OP02-072",
@@ -3567,17 +2654,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP02-072_P1",
-        "suffix": "_P1",
-        "name": "Zephyr (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-072.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP02-073": {
     "code": "OP02-073",
@@ -3587,17 +2664,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP02-073_P1",
-        "suffix": "_P1",
-        "name": "Little Sadi (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-073.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP02-074": {
     "code": "OP02-074",
@@ -3716,18 +2783,8 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-085.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SP CARD",
-    "variants": [
-      {
-        "id": "OP02-085_P1",
-        "suffix": "_P1",
-        "name": "Magellan (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-085.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "rarity": "SR",
+    "variants": []
   },
   "OP02-086": {
     "code": "OP02-086",
@@ -3737,17 +2794,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP02-086_P1",
-        "suffix": "_P1",
-        "name": "Minokoala (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-086.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP02-087": {
     "code": "OP02-087",
@@ -3777,17 +2824,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP02-089_P1",
-        "suffix": "_P1",
-        "name": "Judgment of Hell (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-089.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP02-090": {
     "code": "OP02-090",
@@ -3827,17 +2864,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP02-093_P1",
-        "suffix": "_P1",
-        "name": "Smoker (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-093.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP02-094": {
     "code": "OP02-094",
@@ -3867,17 +2894,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP02-096_P1",
-        "suffix": "_P1",
-        "name": "Kuzan (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-096.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP02-097": {
     "code": "OP02-097",
@@ -3897,17 +2914,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP02-098_P1",
-        "suffix": "_P1",
-        "name": "Koby (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-098.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP02-099": {
     "code": "OP02-099",
@@ -3917,17 +2924,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP02-099_P1",
-        "suffix": "_P1",
-        "name": "Sakazuki (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-099.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP02-100": {
     "code": "OP02-100",
@@ -3987,17 +2984,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP02-105_P1",
-        "suffix": "_P1",
-        "name": "Tashigi (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-105.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP02-106": {
     "code": "OP02-106",
@@ -4007,17 +2994,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP02-106_P1",
-        "suffix": "_P1",
-        "name": "Tsuru (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-106.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP02-107": {
     "code": "OP02-107",
@@ -4037,17 +3014,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP02-108_P1",
-        "suffix": "_P1",
-        "name": "Donquixote Rosinante (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-108.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP02-109": {
     "code": "OP02-109",
@@ -4057,17 +3024,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP02-109_P1",
-        "suffix": "_P1",
-        "name": "Jaguar.D.Saul (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-109.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP02-110": {
     "code": "OP02-110",
@@ -4107,17 +3064,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP02-113_P1",
-        "suffix": "_P1",
-        "name": "Helmeppo (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-113.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP02-114": {
     "code": "OP02-114",
@@ -4127,17 +3074,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP02-114_P1",
-        "suffix": "_P1",
-        "name": "Borsalino (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-114.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP02-115": {
     "code": "OP02-115",
@@ -4147,17 +3084,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP02-115_P1",
-        "suffix": "_P1",
-        "name": "Monkey.D.Garp (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-115.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP02-116": {
     "code": "OP02-116",
@@ -4167,17 +3094,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP02-116_P1",
-        "suffix": "_P1",
-        "name": "Yamakaji (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-116.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP02-117": {
     "code": "OP02-117",
@@ -4187,17 +3104,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP02-117_P1",
-        "suffix": "_P1",
-        "name": "Ice Age (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-117.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP02-118": {
     "code": "OP02-118",
@@ -4226,18 +3133,8 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-120.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SEC",
-    "variants": [
-      {
-        "id": "OP02-120_P1",
-        "suffix": "_P1",
-        "name": "Uta (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-120.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SEC"
-      }
-    ]
+    "rarity": "SP CARD",
+    "variants": []
   },
   "OP02-121": {
     "code": "OP02-121",
@@ -4247,17 +3144,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": [
-      {
-        "id": "OP02-121_P1",
-        "suffix": "_P1",
-        "name": "Kuzan (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-121.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SEC"
-      }
-    ]
+    "variants": []
   },
   "OP03-001": {
     "code": "OP03-001",
@@ -4267,17 +3154,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP03-001_P1",
-        "suffix": "_P1",
-        "name": "Portgas.D.Ace (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-001.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP03-002": {
     "code": "OP03-002",
@@ -4297,17 +3174,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP03-003_P1",
-        "suffix": "_P1",
-        "name": "Izo (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-003.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP03-004": {
     "code": "OP03-004",
@@ -4337,17 +3204,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP03-006_P1",
-        "suffix": "_P1",
-        "name": "Speed Jil (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-006.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP03-007": {
     "code": "OP03-007",
@@ -4357,17 +3214,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP03-007_P1",
-        "suffix": "_P1",
-        "name": "Namule (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-007.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP03-008": {
     "code": "OP03-008",
@@ -4376,18 +3223,8 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-008.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP03-008_P1",
-        "suffix": "_P1",
-        "name": "Buggy (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-008.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SP CARD"
-      }
-    ]
+    "rarity": "SP CARD",
+    "variants": []
   },
   "OP03-009": {
     "code": "OP03-009",
@@ -4397,17 +3234,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP03-009_P1",
-        "suffix": "_P1",
-        "name": "Haruta (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-009.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP03-010": {
     "code": "OP03-010",
@@ -4417,17 +3244,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP03-010_P1",
-        "suffix": "_P1",
-        "name": "Fossa (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-010.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP03-011": {
     "code": "OP03-011",
@@ -4457,17 +3274,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP03-013_P1",
-        "suffix": "_P1",
-        "name": "Marco (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-013.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP03-014": {
     "code": "OP03-014",
@@ -4517,17 +3324,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP03-018_P1",
-        "suffix": "_P1",
-        "name": "Fire Fist (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-018.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP03-019": {
     "code": "OP03-019",
@@ -4557,17 +3354,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP03-021_P1",
-        "suffix": "_P1",
-        "name": "Kuro (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-021.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP03-022": {
     "code": "OP03-022",
@@ -4577,17 +3364,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP03-022_P1",
-        "suffix": "_P1",
-        "name": "Arlong (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-022.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP03-023": {
     "code": "OP03-023",
@@ -4607,17 +3384,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP03-024_P1",
-        "suffix": "_P1",
-        "name": "Gin (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-024.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP03-025": {
     "code": "OP03-025",
@@ -4627,17 +3394,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP03-025_P1",
-        "suffix": "_P1",
-        "name": "Krieg (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-025.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP03-026": {
     "code": "OP03-026",
@@ -4717,17 +3474,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP03-033_P1",
-        "suffix": "_P1",
-        "name": "Hatchan (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-033.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP03-034": {
     "code": "OP03-034",
@@ -4797,17 +3544,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP03-040_P1",
-        "suffix": "_P1",
-        "name": "Nami (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-040.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP03-041": {
     "code": "OP03-041",
@@ -4817,17 +3554,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP03-041_P1",
-        "suffix": "_P1",
-        "name": "Usopp (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-041.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP03-042": {
     "code": "OP03-042",
@@ -4857,17 +3584,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP03-044_P1",
-        "suffix": "_P1",
-        "name": "Kaya (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-044.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP03-045": {
     "code": "OP03-045",
@@ -4897,17 +3614,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP03-047_P1",
-        "suffix": "_P1",
-        "name": "Zeff (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-047.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP03-048": {
     "code": "OP03-048",
@@ -4987,17 +3694,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP03-055_P1",
-        "suffix": "_P1",
-        "name": "Gum-Gum Giant Gavel (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-055.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP03-056": {
     "code": "OP03-056",
@@ -5007,17 +3704,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP03-056_P1",
-        "suffix": "_P1",
-        "name": "Sanji's Pilaf (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-056.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP03-057": {
     "code": "OP03-057",
@@ -5027,17 +3714,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP03-057_P1",
-        "suffix": "_P1",
-        "name": "Three Thousand Worlds (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-057.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP03-058": {
     "code": "OP03-058",
@@ -5047,17 +3724,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP03-058_P1",
-        "suffix": "_P1",
-        "name": "Iceburg (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-058.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP03-059": {
     "code": "OP03-059",
@@ -5077,17 +3744,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP03-060_P1",
-        "suffix": "_P1",
-        "name": "Kalifa (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-060.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP03-061": {
     "code": "OP03-061",
@@ -5147,17 +3804,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP03-066_P1",
-        "suffix": "_P1",
-        "name": "Paulie (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-066.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP03-067": {
     "code": "OP03-067",
@@ -5257,17 +3904,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP03-076_P1",
-        "suffix": "_P1",
-        "name": "Rob Lucci (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-076.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP03-077": {
     "code": "OP03-077",
@@ -5277,17 +3914,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP03-077_P1",
-        "suffix": "_P1",
-        "name": "Charlotte Linlin (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-077.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP03-078": {
     "code": "OP03-078",
@@ -5296,18 +3923,8 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-078.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP03-078_P1",
-        "suffix": "_P1",
-        "name": "Issho (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-078.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "rarity": "SP CARD",
+    "variants": []
   },
   "OP03-079": {
     "code": "OP03-079",
@@ -5317,17 +3934,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP03-079_P1",
-        "suffix": "_P1",
-        "name": "Vergo (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-079.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP03-080": {
     "code": "OP03-080",
@@ -5337,17 +3944,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP03-080_P1",
-        "suffix": "_P1",
-        "name": "Kaku (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-080.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP03-081": {
     "code": "OP03-081",
@@ -5357,17 +3954,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP03-081_P1",
-        "suffix": "_P1",
-        "name": "Kalifa (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-081.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP03-082": {
     "code": "OP03-082",
@@ -5417,17 +4004,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP03-086_P1",
-        "suffix": "_P1",
-        "name": "Spandam (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-086.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP03-087": {
     "code": "OP03-087",
@@ -5447,17 +4024,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP03-088_P1",
-        "suffix": "_P1",
-        "name": "Fukurou (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-088.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP03-089": {
     "code": "OP03-089",
@@ -5467,17 +4034,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP03-089_P1",
-        "suffix": "_P1",
-        "name": "Brannew (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-089.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP03-090": {
     "code": "OP03-090",
@@ -5506,18 +4063,8 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-092.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SP CARD",
-    "variants": [
-      {
-        "id": "OP03-092_P1",
-        "suffix": "_P1",
-        "name": "Rob Lucci (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-092.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "rarity": "SR",
+    "variants": []
   },
   "OP03-093": {
     "code": "OP03-093",
@@ -5537,17 +4084,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP03-094_P1",
-        "suffix": "_P1",
-        "name": "Air Door (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-094.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP03-095": {
     "code": "OP03-095",
@@ -5597,17 +4134,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP03-099_P1",
-        "suffix": "_P1",
-        "name": "Charlotte Katakuri (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-099.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP03-100": {
     "code": "OP03-100",
@@ -5637,17 +4164,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP03-102_P1",
-        "suffix": "_P1",
-        "name": "Sanji (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-102.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP03-103": {
     "code": "OP03-103",
@@ -5687,17 +4204,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP03-106_P1",
-        "suffix": "_P1",
-        "name": "Charlotte Opera (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-106.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP03-107": {
     "code": "OP03-107",
@@ -5707,17 +4214,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP03-107_P1",
-        "suffix": "_P1",
-        "name": "Charlotte Galette (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-107.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP03-108": {
     "code": "OP03-108",
@@ -5727,17 +4224,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP03-108_P1",
-        "suffix": "_P1",
-        "name": "Charlotte Cracker (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-108.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP03-109": {
     "code": "OP03-109",
@@ -5757,17 +4244,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP03-110_P1",
-        "suffix": "_P1",
-        "name": "Charlotte Smoothie (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-110.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP03-111": {
     "code": "OP03-111",
@@ -5786,18 +4263,8 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-112.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SP CARD",
-    "variants": [
-      {
-        "id": "OP03-112_P1",
-        "suffix": "_P1",
-        "name": "Charlotte Pudding (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-112.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "rarity": "R",
+    "variants": []
   },
   "OP03-113": {
     "code": "OP03-113",
@@ -5807,17 +4274,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP03-113_P1",
-        "suffix": "_P1",
-        "name": "Charlotte Perospero (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-113.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP03-114": {
     "code": "OP03-114",
@@ -5827,17 +4284,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP03-114_P1",
-        "suffix": "_P1",
-        "name": "Charlotte Linlin (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-114.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SP CARD"
-      }
-    ]
+    "variants": []
   },
   "OP03-115": {
     "code": "OP03-115",
@@ -5847,17 +4294,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP03-115_P1",
-        "suffix": "_P1",
-        "name": "Streusen (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-115.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP03-116": {
     "code": "OP03-116",
@@ -5867,17 +4304,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP03-116_P1",
-        "suffix": "_P1",
-        "name": "Shirahoshi (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-116.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP03-117": {
     "code": "OP03-117",
@@ -5897,17 +4324,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP03-118_P1",
-        "suffix": "_P1",
-        "name": "Ikoku Sovereignty (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-118.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP03-119": {
     "code": "OP03-119",
@@ -5937,17 +4354,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP03-121_P1",
-        "suffix": "_P1",
-        "name": "Thunder Bolt (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-121.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP03-122": {
     "code": "OP03-122",
@@ -5957,17 +4364,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": [
-      {
-        "id": "OP03-122_P1",
-        "suffix": "_P1",
-        "name": "Sogeking (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-122.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SEC"
-      }
-    ]
+    "variants": []
   },
   "OP03-123": {
     "code": "OP03-123",
@@ -5977,17 +4374,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": [
-      {
-        "id": "OP03-123_P1",
-        "suffix": "_P1",
-        "name": "Charlotte Katakuri (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-123.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SEC"
-      }
-    ]
+    "variants": []
   },
   "OP04-001": {
     "code": "OP04-001",
@@ -5997,17 +4384,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP04-001_P1",
-        "suffix": "_P1",
-        "name": "Nefeltari Vivi (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-001.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP04-002": {
     "code": "OP04-002",
@@ -6097,17 +4474,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP04-010_P1",
-        "suffix": "_P1",
-        "name": "Tony Tony.Chopper (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-010.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP04-011": {
     "code": "OP04-011",
@@ -6137,17 +4504,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP04-013_P1",
-        "suffix": "_P1",
-        "name": "Pell (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-013.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP04-014": {
     "code": "OP04-014",
@@ -6207,17 +4564,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP04-019_P1",
-        "suffix": "_P1",
-        "name": "Donquixote Doflamingo (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-019.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP04-020": {
     "code": "OP04-020",
@@ -6227,17 +4574,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP04-020_P1",
-        "suffix": "_P1",
-        "name": "Issho (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-020.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP04-021": {
     "code": "OP04-021",
@@ -6276,18 +4613,8 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-024.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP04-024_P1",
-        "suffix": "_P1",
-        "name": "Sugar (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-024.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "rarity": "SP CARD",
+    "variants": []
   },
   "OP04-025": {
     "code": "OP04-025",
@@ -6327,17 +4654,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP04-028_P1",
-        "suffix": "_P1",
-        "name": "Diamante (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-028.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP04-029": {
     "code": "OP04-029",
@@ -6347,17 +4664,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP04-029_P1",
-        "suffix": "_P1",
-        "name": "Dellinger (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-029.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP04-030": {
     "code": "OP04-030",
@@ -6367,17 +4674,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP04-030_P1",
-        "suffix": "_P1",
-        "name": "Trebol (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-030.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP04-031": {
     "code": "OP04-031",
@@ -6387,17 +4684,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP04-031_P1",
-        "suffix": "_P1",
-        "name": "Donquixote Doflamingo (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-031.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP04-032": {
     "code": "OP04-032",
@@ -6407,17 +4694,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP04-032_P1",
-        "suffix": "_P1",
-        "name": "Baby 5 (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-032.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP04-033": {
     "code": "OP04-033",
@@ -6457,17 +4734,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP04-036_P1",
-        "suffix": "_P1",
-        "name": "Donquixote Family (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-036.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP04-037": {
     "code": "OP04-037",
@@ -6497,17 +4764,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP04-039_P1",
-        "suffix": "_P1",
-        "name": "Rebecca (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-039.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP04-040": {
     "code": "OP04-040",
@@ -6517,17 +4774,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP04-040_P1",
-        "suffix": "_P1",
-        "name": "Queen (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-040.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP04-041": {
     "code": "OP04-041",
@@ -6567,17 +4814,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP04-044_P1",
-        "suffix": "_P1",
-        "name": "Kaido (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-044.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP04-045": {
     "code": "OP04-045",
@@ -6647,17 +4884,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP04-051_P1",
-        "suffix": "_P1",
-        "name": "Who's.Who (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-051.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP04-052": {
     "code": "OP04-052",
@@ -6707,17 +4934,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP04-056_P1",
-        "suffix": "_P1",
-        "name": "Gum-Gum Red Roc (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-056.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP04-057": {
     "code": "OP04-057",
@@ -6737,17 +4954,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP04-058_P1",
-        "suffix": "_P1",
-        "name": "Crocodile (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-058.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP04-059": {
     "code": "OP04-059",
@@ -6767,17 +4974,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP04-060_P1",
-        "suffix": "_P1",
-        "name": "Crocodile (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-060.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP04-061": {
     "code": "OP04-061",
@@ -6817,17 +5014,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SP CARD",
-    "variants": [
-      {
-        "id": "OP04-064_P1",
-        "suffix": "_P1",
-        "name": "Ms. All Sunday (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-064.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP04-065": {
     "code": "OP04-065",
@@ -6837,7 +5024,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-065_P1",
+        "suffix": "_P1",
+        "name": "Miss.Goldenweek(Marianne)",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-065.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP04-066": {
     "code": "OP04-066",
@@ -6847,7 +5044,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-066_P1",
+        "suffix": "_P1",
+        "name": "Miss.Valentine(Mikita)",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-066.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP04-067": {
     "code": "OP04-067",
@@ -6857,7 +5064,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-067_P1",
+        "suffix": "_P1",
+        "name": "Miss.MerryChristmas(Drophy)",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-067.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP04-068": {
     "code": "OP04-068",
@@ -6877,7 +5094,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-069_P1",
+        "suffix": "_P1",
+        "name": "Mr.2.Bon.Kurei(Bentham)",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-069.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP04-070": {
     "code": "OP04-070",
@@ -6887,7 +5114,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-070_P1",
+        "suffix": "_P1",
+        "name": "Mr.3(Galdino)",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-070.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP04-071": {
     "code": "OP04-071",
@@ -6897,7 +5134,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP04-071_P1",
+        "suffix": "_P1",
+        "name": "Mr.4(Babe)",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-071.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP04-072": {
     "code": "OP04-072",
@@ -6911,7 +5158,16 @@
       {
         "id": "OP04-072_P1",
         "suffix": "_P1",
-        "name": "Mr.5 (Parallel)",
+        "name": "Mr.5(Gem)",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-072.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      },
+      {
+        "id": "OP04-072_P2",
+        "suffix": "_P2",
+        "name": "Mr.5(Gem)",
         "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-072.png",
         "price": 0.05,
         "currency": "USD",
@@ -7017,17 +5273,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP04-082_P1",
-        "suffix": "_P1",
-        "name": "Kyros (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-082.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP04-083": {
     "code": "OP04-083",
@@ -7037,17 +5283,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP04-083_P1",
-        "suffix": "_P1",
-        "name": "Sabo (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-083.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP04-084": {
     "code": "OP04-084",
@@ -7107,17 +5343,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP04-089_P1",
-        "suffix": "_P1",
-        "name": "Bartolomeo (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-089.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP04-090": {
     "code": "OP04-090",
@@ -7127,17 +5353,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP04-090_P1",
-        "suffix": "_P1",
-        "name": "Monkey.D.Luffy (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-090.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP04-091": {
     "code": "OP04-091",
@@ -7157,17 +5373,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP04-092_P1",
-        "suffix": "_P1",
-        "name": "Rebecca (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-092.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP04-093": {
     "code": "OP04-093",
@@ -7197,17 +5403,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP04-095_P1",
-        "suffix": "_P1",
-        "name": "Barrier!! (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-095.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP04-096": {
     "code": "OP04-096",
@@ -7267,17 +5463,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": [
-      {
-        "id": "OP04-118_P1",
-        "suffix": "_P1",
-        "name": "Nefeltari Vivi (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-118.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SEC"
-      }
-    ]
+    "variants": []
   },
   "OP04-119": {
     "code": "OP04-119",
@@ -7286,18 +5472,8 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-119.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SEC",
-    "variants": [
-      {
-        "id": "OP04-119_P1",
-        "suffix": "_P1",
-        "name": "Donquixote Rosinante (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP04-119.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SEC"
-      }
-    ]
+    "rarity": "SP CARD",
+    "variants": []
   },
   "OP05-001": {
     "code": "OP05-001",
@@ -7307,17 +5483,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP05-001_P1",
-        "suffix": "_P1",
-        "name": "Sabo (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-001.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP05-002": {
     "code": "OP05-002",
@@ -7327,17 +5493,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP05-002_P1",
-        "suffix": "_P1",
-        "name": "Belo Betty (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-002.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP05-003": {
     "code": "OP05-003",
@@ -7377,17 +5533,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP05-006_P1",
-        "suffix": "_P1",
-        "name": "Koala (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-006.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP05-007": {
     "code": "OP05-007",
@@ -7397,17 +5543,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP05-007_P1",
-        "suffix": "_P1",
-        "name": "Sabo (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-007.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP05-008": {
     "code": "OP05-008",
@@ -7437,17 +5573,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP05-010_P1",
-        "suffix": "_P1",
-        "name": "Nico Robin (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-010.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP05-011": {
     "code": "OP05-011",
@@ -7497,17 +5623,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP05-015_P1",
-        "suffix": "_P1",
-        "name": "Belo Betty (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-015.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP05-016": {
     "code": "OP05-016",
@@ -7577,17 +5693,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP05-022_P1",
-        "suffix": "_P1",
-        "name": "Donquixote Rosinante (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-022.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP05-023": {
     "code": "OP05-023",
@@ -7687,17 +5793,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP05-032_P1",
-        "suffix": "_P1",
-        "name": "Pica (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-032.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP05-033": {
     "code": "OP05-033",
@@ -7717,17 +5813,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP05-034_P1",
-        "suffix": "_P1",
-        "name": "Baby 5 (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-034.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP05-035": {
     "code": "OP05-035",
@@ -7747,17 +5833,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP05-036_P1",
-        "suffix": "_P1",
-        "name": "Monet (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-036.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP05-037": {
     "code": "OP05-037",
@@ -7807,17 +5883,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP05-041_P1",
-        "suffix": "_P1",
-        "name": "Sakazuki (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-041.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP05-042": {
     "code": "OP05-042",
@@ -7837,17 +5903,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP05-043_P1",
-        "suffix": "_P1",
-        "name": "Ulti (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-043.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP05-044": {
     "code": "OP05-044",
@@ -7926,18 +5982,8 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-051.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP05-051_P1",
-        "suffix": "_P1",
-        "name": "Borsalino (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-051.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "rarity": "SP CARD",
+    "variants": []
   },
   "OP05-052": {
     "code": "OP05-052",
@@ -7977,17 +6023,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP05-055_P1",
-        "suffix": "_P1",
-        "name": "X.Drake (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-055.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP05-056": {
     "code": "OP05-056",
@@ -8007,17 +6043,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP05-057_P1",
-        "suffix": "_P1",
-        "name": "Hound Blaze (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-057.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP05-058": {
     "code": "OP05-058",
@@ -8047,17 +6073,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP05-060_P1",
-        "suffix": "_P1",
-        "name": "Monkey.D.Luffy (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-060.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP05-061": {
     "code": "OP05-061",
@@ -8067,17 +6083,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP05-061_P1",
-        "suffix": "_P1",
-        "name": "Uso-Hachi (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-061.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP05-062": {
     "code": "OP05-062",
@@ -8097,17 +6103,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP05-063_P1",
-        "suffix": "_P1",
-        "name": "O-Robi (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-063.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP05-064": {
     "code": "OP05-064",
@@ -8137,17 +6133,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP05-066_P1",
-        "suffix": "_P1",
-        "name": "Jinbe (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-066.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP05-067": {
     "code": "OP05-067",
@@ -8157,17 +6143,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP05-067_P1",
-        "suffix": "_P1",
-        "name": "Zoro-Juurou (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-067.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP05-068": {
     "code": "OP05-068",
@@ -8177,17 +6153,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP05-068_P1",
-        "suffix": "_P1",
-        "name": "Chopa-Emon (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-068.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP05-069": {
     "code": "OP05-069",
@@ -8197,17 +6163,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP05-069_P1",
-        "suffix": "_P1",
-        "name": "Trafalgar Law (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-069.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP05-070": {
     "code": "OP05-070",
@@ -8217,17 +6173,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP05-070_P1",
-        "suffix": "_P1",
-        "name": "Fra-Nosuke (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-070.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP05-071": {
     "code": "OP05-071",
@@ -8247,17 +6193,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP05-072_P1",
-        "suffix": "_P1",
-        "name": "Hone-Kichi (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-072.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP05-073": {
     "code": "OP05-073",
@@ -8271,7 +6207,34 @@
       {
         "id": "OP05-073_P1",
         "suffix": "_P1",
-        "name": "Miss Doublefinger (Parallel)",
+        "name": "Miss Doublefinger(Zala)",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-073.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      },
+      {
+        "id": "OP05-073_P2",
+        "suffix": "_P2",
+        "name": "Miss Doublefinger(Zala)",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-073.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      },
+      {
+        "id": "OP05-073_P3",
+        "suffix": "_P3",
+        "name": "Miss Doublefinger(Zala)",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-073.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      },
+      {
+        "id": "OP05-073_P4",
+        "suffix": "_P4",
+        "name": "Miss Doublefinger(Zala)",
         "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-073.png",
         "price": 0.05,
         "currency": "USD",
@@ -8287,17 +6250,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP05-074_P1",
-        "suffix": "_P1",
-        "name": "Eustass\"Captain\"Kid (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-074.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP05-075": {
     "code": "OP05-075",
@@ -8307,7 +6260,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP05-075_P1",
+        "suffix": "_P1",
+        "name": "Mr.1(Daz.Bonez)",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-075.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP05-076": {
     "code": "OP05-076",
@@ -8317,17 +6280,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP05-076_P1",
-        "suffix": "_P1",
-        "name": "When You're at Sea You Fight against Pirates!! (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-076.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP05-077": {
     "code": "OP05-077",
@@ -8377,17 +6330,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP05-081_P1",
-        "suffix": "_P1",
-        "name": "One-Legged Toy Soldier (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-081.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP05-082": {
     "code": "OP05-082",
@@ -8397,17 +6340,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP05-082_P1",
-        "suffix": "_P1",
-        "name": "Shirahoshi (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-082.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP05-083": {
     "code": "OP05-083",
@@ -8447,17 +6380,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP05-086_P1",
-        "suffix": "_P1",
-        "name": "Nefeltari Vivi (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-086.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP05-087": {
     "code": "OP05-087",
@@ -8477,17 +6400,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP05-088_P1",
-        "suffix": "_P1",
-        "name": "Mansherry (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-088.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP05-089": {
     "code": "OP05-089",
@@ -8516,18 +6429,8 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-091.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP05-091_P1",
-        "suffix": "_P1",
-        "name": "Rebecca (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-091.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "rarity": "SP CARD",
+    "variants": []
   },
   "OP05-092": {
     "code": "OP05-092",
@@ -8546,18 +6449,8 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-093.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SP CARD",
-    "variants": [
-      {
-        "id": "OP05-093_P1",
-        "suffix": "_P1",
-        "name": "Rob Lucci (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-093.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "rarity": "SR",
+    "variants": []
   },
   "OP05-094": {
     "code": "OP05-094",
@@ -8607,17 +6500,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": [
-      {
-        "id": "OP05-118_P1",
-        "suffix": "_P1",
-        "name": "Kaido (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-118.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SEC"
-      }
-    ]
+    "variants": []
   },
   "OP05-119": {
     "code": "OP05-119",
@@ -8627,17 +6510,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": [
-      {
-        "id": "OP05-119_P1",
-        "suffix": "_P1",
-        "name": "Monkey.D.Luffy (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-119.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SP CARD"
-      }
-    ]
+    "variants": []
   },
   "OP06-001": {
     "code": "OP06-001",
@@ -8647,17 +6520,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP06-001_P1",
-        "suffix": "_P1",
-        "name": "Uta (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-001.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP06-002": {
     "code": "OP06-002",
@@ -8677,17 +6540,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP06-003_P1",
-        "suffix": "_P1",
-        "name": "Emporio.Ivankov (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-003.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP06-004": {
     "code": "OP06-004",
@@ -8727,17 +6580,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP06-007_P1",
-        "suffix": "_P1",
-        "name": "Shanks (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-007.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP06-008": {
     "code": "OP06-008",
@@ -8757,17 +6600,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP06-009_P1",
-        "suffix": "_P1",
-        "name": "Shuraiya (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-009.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP06-010": {
     "code": "OP06-010",
@@ -8807,17 +6640,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP06-013_P1",
-        "suffix": "_P1",
-        "name": "Monkey.D.Luffy (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-013.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP06-014": {
     "code": "OP06-014",
@@ -8887,17 +6710,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP06-020_P1",
-        "suffix": "_P1",
-        "name": "Hody Jones (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-020.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP06-021": {
     "code": "OP06-021",
@@ -8907,17 +6720,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP06-021_P1",
-        "suffix": "_P1",
-        "name": "Perona (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-021.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP06-022": {
     "code": "OP06-022",
@@ -8927,17 +6730,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP06-022_P1",
-        "suffix": "_P1",
-        "name": "Yamato (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-022.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP06-023": {
     "code": "OP06-023",
@@ -8947,17 +6740,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP06-023_P1",
-        "suffix": "_P1",
-        "name": "Arlong (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-023.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP06-024": {
     "code": "OP06-024",
@@ -8977,17 +6760,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP06-025_P1",
-        "suffix": "_P1",
-        "name": "Camie (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-025.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP06-026": {
     "code": "OP06-026",
@@ -9087,17 +6860,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP06-035_P1",
-        "suffix": "_P1",
-        "name": "Hody Jones (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-035.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP06-036": {
     "code": "OP06-036",
@@ -9107,17 +6870,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP06-036_P1",
-        "suffix": "_P1",
-        "name": "Ryuma (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-036.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP06-037": {
     "code": "OP06-037",
@@ -9137,17 +6890,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP06-038_P1",
-        "suffix": "_P1",
-        "name": "The Billion-fold World Trichiliocosm (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-038.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP06-039": {
     "code": "OP06-039",
@@ -9187,17 +6930,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP06-042_P1",
-        "suffix": "_P1",
-        "name": "Vinsmoke Reiju (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-042.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP06-043": {
     "code": "OP06-043",
@@ -9207,17 +6940,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP06-043_P1",
-        "suffix": "_P1",
-        "name": "Aramaki (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-043.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP06-044": {
     "code": "OP06-044",
@@ -9287,17 +7010,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP06-050_P1",
-        "suffix": "_P1",
-        "name": "Tashigi (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-050.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP06-051": {
     "code": "OP06-051",
@@ -9357,17 +7070,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP06-056_P1",
-        "suffix": "_P1",
-        "name": "Ama no Murakumo Sword (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-056.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP06-057": {
     "code": "OP06-057",
@@ -9407,17 +7110,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP06-060_P1",
-        "suffix": "_P1",
-        "name": "Vinsmoke Ichiji (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-060.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP06-061": {
     "code": "OP06-061",
@@ -9427,17 +7120,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP06-061_P1",
-        "suffix": "_P1",
-        "name": "Vinsmoke Ichiji (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-061.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP06-062": {
     "code": "OP06-062",
@@ -9447,17 +7130,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP06-062_P1",
-        "suffix": "_P1",
-        "name": "Vinsmoke Judge (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-062.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP06-063": {
     "code": "OP06-063",
@@ -9477,17 +7150,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP06-064_P1",
-        "suffix": "_P1",
-        "name": "Vinsmoke Niji (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-064.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP06-065": {
     "code": "OP06-065",
@@ -9497,17 +7160,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP06-065_P1",
-        "suffix": "_P1",
-        "name": "Vinsmoke Niji (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-065.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP06-066": {
     "code": "OP06-066",
@@ -9517,17 +7170,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP06-066_P1",
-        "suffix": "_P1",
-        "name": "Vinsmoke Yonji (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-066.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP06-067": {
     "code": "OP06-067",
@@ -9537,17 +7180,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP06-067_P1",
-        "suffix": "_P1",
-        "name": "Vinsmoke Yonji (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-067.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP06-068": {
     "code": "OP06-068",
@@ -9557,17 +7190,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP06-068_P1",
-        "suffix": "_P1",
-        "name": "Vinsmoke Reiju (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-068.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP06-069": {
     "code": "OP06-069",
@@ -9577,17 +7200,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP06-069_P1",
-        "suffix": "_P1",
-        "name": "Vinsmoke Reiju (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-069.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP06-070": {
     "code": "OP06-070",
@@ -9637,7 +7250,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP06-074_P1",
+        "suffix": "_P1",
+        "name": "Zephyr (Navy)",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-074.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP06-075": {
     "code": "OP06-075",
@@ -9687,17 +7310,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "OP06-079_P1",
-        "suffix": "_P1",
-        "name": "Kingdom of GERMA (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-079.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "OP06-080": {
     "code": "OP06-080",
@@ -9707,17 +7320,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP06-080_P1",
-        "suffix": "_P1",
-        "name": "Gecko Moria (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-080.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP06-081": {
     "code": "OP06-081",
@@ -9727,17 +7330,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP06-081_P1",
-        "suffix": "_P1",
-        "name": "Absalom (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-081.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP06-082": {
     "code": "OP06-082",
@@ -9787,17 +7380,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP06-086_P1",
-        "suffix": "_P1",
-        "name": "Gecko Moria (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-086.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP06-087": {
     "code": "OP06-087",
@@ -9847,17 +7430,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP06-091_P1",
-        "suffix": "_P1",
-        "name": "Victoria Cindry (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-091.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP06-092": {
     "code": "OP06-092",
@@ -9877,17 +7450,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP06-093_P1",
-        "suffix": "_P1",
-        "name": "Perona (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-093.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP06-094": {
     "code": "OP06-094",
@@ -9947,17 +7510,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": [
-      {
-        "id": "OP06-118_P1",
-        "suffix": "_P1",
-        "name": "Roronoa Zoro (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-118.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SEC"
-      }
-    ]
+    "variants": []
   },
   "OP06-119": {
     "code": "OP06-119",
@@ -9967,17 +7520,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": [
-      {
-        "id": "OP06-119_P1",
-        "suffix": "_P1",
-        "name": "Sanji (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-119.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SEC"
-      }
-    ]
+    "variants": []
   },
   "OP07-001": {
     "code": "OP07-001",
@@ -9987,17 +7530,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP07-001_P1",
-        "suffix": "_P1",
-        "name": "Monkey.D.Dragon (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-001.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP07-002": {
     "code": "OP07-002",
@@ -10037,17 +7570,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP07-005_P1",
-        "suffix": "_P1",
-        "name": "Carina (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-005.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP07-006": {
     "code": "OP07-006",
@@ -10147,17 +7670,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP07-015_P1",
-        "suffix": "_P1",
-        "name": "Monkey.D.Dragon (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-015.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SP CARD"
-      }
-    ]
+    "variants": []
   },
   "OP07-016": {
     "code": "OP07-016",
@@ -10197,17 +7710,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP07-019_P1",
-        "suffix": "_P1",
-        "name": "Jewelry Bonney (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-019.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP07-020": {
     "code": "OP07-020",
@@ -10227,17 +7730,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP07-021_P1",
-        "suffix": "_P1",
-        "name": "Urouge (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-021.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP07-022": {
     "code": "OP07-022",
@@ -10247,17 +7740,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP07-022_P1",
-        "suffix": "_P1",
-        "name": "Otama (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-022.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP07-023": {
     "code": "OP07-023",
@@ -10297,17 +7780,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP07-026_P1",
-        "suffix": "_P1",
-        "name": "Jewelry Bonney (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-026.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP07-027": {
     "code": "OP07-027",
@@ -10337,17 +7810,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP07-029_P1",
-        "suffix": "_P1",
-        "name": "Basil Hawkins (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-029.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP07-030": {
     "code": "OP07-030",
@@ -10437,17 +7900,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP07-038_P1",
-        "suffix": "_P1",
-        "name": "Boa Hancock (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-038.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP07-039": {
     "code": "OP07-039",
@@ -10467,17 +7920,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP07-040_P1",
-        "suffix": "_P1",
-        "name": "Crocodile (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-040.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP07-041": {
     "code": "OP07-041",
@@ -10487,7 +7930,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP07-041_P1",
+        "suffix": "_P1",
+        "name": "Gloriosa (Grandma Nyon)",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-041.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "UC"
+      }
+    ]
   },
   "OP07-042": {
     "code": "OP07-042",
@@ -10527,17 +7980,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP07-045_P1",
-        "suffix": "_P1",
-        "name": "Jinbe (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-045.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP07-046": {
     "code": "OP07-046",
@@ -10547,17 +7990,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP07-046_P1",
-        "suffix": "_P1",
-        "name": "Sengoku (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-046.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP07-047": {
     "code": "OP07-047",
@@ -10567,17 +8000,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP07-047_P1",
-        "suffix": "_P1",
-        "name": "Trafalgar Law (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-047.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP07-048": {
     "code": "OP07-048",
@@ -10616,18 +8039,8 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-051.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP07-051_P1",
-        "suffix": "_P1",
-        "name": "Boa Hancock (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-051.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "rarity": "SP CARD",
+    "variants": []
   },
   "OP07-052": {
     "code": "OP07-052",
@@ -10647,17 +8060,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP07-053_P1",
-        "suffix": "_P1",
-        "name": "Portgas.D.Ace (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-053.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP07-054": {
     "code": "OP07-054",
@@ -10717,17 +8120,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP07-059_P1",
-        "suffix": "_P1",
-        "name": "Foxy (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-059.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP07-060": {
     "code": "OP07-060",
@@ -10777,17 +8170,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP07-064_P1",
-        "suffix": "_P1",
-        "name": "Sanji (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-064.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP07-065": {
     "code": "OP07-065",
@@ -10827,17 +8210,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP07-079_P1",
-        "suffix": "_P1",
-        "name": "Rob Lucci (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-079.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP07-080": {
     "code": "OP07-080",
@@ -10897,17 +8270,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP07-085_P1",
-        "suffix": "_P1",
-        "name": "Stussy (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-085.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP07-086": {
     "code": "OP07-086",
@@ -10967,17 +8330,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP07-091_P1",
-        "suffix": "_P1",
-        "name": "Monkey.D.Luffy (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-091.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP07-092": {
     "code": "OP07-092",
@@ -11037,17 +8390,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": [
-      {
-        "id": "OP07-118_P1",
-        "suffix": "_P1",
-        "name": "Sabo (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-118.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SEC"
-      }
-    ]
+    "variants": []
   },
   "OP08-001": {
     "code": "OP08-001",
@@ -11057,17 +8400,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP08-001_P1",
-        "suffix": "_P1",
-        "name": "Tony Tony.Chopper (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-001.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP08-002": {
     "code": "OP08-002",
@@ -11077,17 +8410,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP08-002_P1",
-        "suffix": "_P1",
-        "name": "Marco (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-002.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP08-003": {
     "code": "OP08-003",
@@ -11137,17 +8460,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP08-007_P1",
-        "suffix": "_P1",
-        "name": "Tony Tony.Chopper (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-007.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP08-008": {
     "code": "OP08-008",
@@ -11227,17 +8540,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP08-015_P1",
-        "suffix": "_P1",
-        "name": "Dr.Kureha (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-015.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP08-016": {
     "code": "OP08-016",
@@ -11297,17 +8600,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP08-021_P1",
-        "suffix": "_P1",
-        "name": "Carrot (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-021.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP08-022": {
     "code": "OP08-022",
@@ -11327,17 +8620,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP08-023_P1",
-        "suffix": "_P1",
-        "name": "Carrot (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-023.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP08-024": {
     "code": "OP08-024",
@@ -11407,17 +8690,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP08-030_P1",
-        "suffix": "_P1",
-        "name": "Pedro (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-030.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP08-031": {
     "code": "OP08-031",
@@ -11547,17 +8820,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP08-043_P1",
-        "suffix": "_P1",
-        "name": "Edward.Newgate (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-043.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP08-044": {
     "code": "OP08-044",
@@ -11647,17 +8910,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP08-052_P1",
-        "suffix": "_P1",
-        "name": "Portgas.D.Ace (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-052.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP08-053": {
     "code": "OP08-053",
@@ -11707,17 +8960,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP08-057_P1",
-        "suffix": "_P1",
-        "name": "King (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-057.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP08-078": {
     "code": "OP08-078",
@@ -11737,17 +8980,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP08-079_P1",
-        "suffix": "_P1",
-        "name": "Kaido (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-079.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP08-080": {
     "code": "OP08-080",
@@ -11757,17 +8990,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP08-080_P1",
-        "suffix": "_P1",
-        "name": "Queen (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-080.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP08-081": {
     "code": "OP08-081",
@@ -11807,17 +9030,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP08-084_P1",
-        "suffix": "_P1",
-        "name": "Jack (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-084.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP08-085": {
     "code": "OP08-085",
@@ -11957,17 +9170,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": [
-      {
-        "id": "OP08-118_P1",
-        "suffix": "_P1",
-        "name": "Silvers Rayleigh (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP08-118.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SEC"
-      }
-    ]
+    "variants": []
   },
   "OP09-001": {
     "code": "OP09-001",
@@ -11977,17 +9180,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP09-001_P1",
-        "suffix": "_P1",
-        "name": "Shanks (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-001.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP09-002": {
     "code": "OP09-002",
@@ -11997,17 +9190,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP09-002_P1",
-        "suffix": "_P1",
-        "name": "Uta (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-002.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP09-003": {
     "code": "OP09-003",
@@ -12027,17 +9210,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP09-004_P1",
-        "suffix": "_P1",
-        "name": "Shanks (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-004.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP09-005": {
     "code": "OP09-005",
@@ -12087,17 +9260,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP09-009_P1",
-        "suffix": "_P1",
-        "name": "Benn.Beckman (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-009.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP09-010": {
     "code": "OP09-010",
@@ -12117,17 +9280,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "UC",
-    "variants": [
-      {
-        "id": "OP09-011_P1",
-        "suffix": "_P1",
-        "name": "Hongo (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-011.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "UC"
-      }
-    ]
+    "variants": []
   },
   "OP09-012": {
     "code": "OP09-012",
@@ -12237,17 +9390,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP09-022_P1",
-        "suffix": "_P1",
-        "name": "Lim (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-022.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP09-023": {
     "code": "OP09-023",
@@ -12257,17 +9400,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP09-023_P1",
-        "suffix": "_P1",
-        "name": "Adio (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-023.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP09-024": {
     "code": "OP09-024",
@@ -12377,17 +9510,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP09-034_P1",
-        "suffix": "_P1",
-        "name": "Perona (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-034.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP09-035": {
     "code": "OP09-035",
@@ -12417,17 +9540,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP09-037_P1",
-        "suffix": "_P1",
-        "name": "Lim (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-037.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP09-038": {
     "code": "OP09-038",
@@ -12477,17 +9590,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP09-042_P1",
-        "suffix": "_P1",
-        "name": "Buggy (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-042.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP09-043": {
     "code": "OP09-043",
@@ -12527,17 +9630,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP09-046_P1",
-        "suffix": "_P1",
-        "name": "Crocodile (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-046.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP09-047": {
     "code": "OP09-047",
@@ -12557,17 +9650,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP09-048_P1",
-        "suffix": "_P1",
-        "name": "Dracule Mihawk (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-048.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "OP09-049": {
     "code": "OP09-049",
@@ -12587,17 +9670,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": [
-      {
-        "id": "OP09-050_P1",
-        "suffix": "_P1",
-        "name": "Nami (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-050.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "variants": []
   },
   "OP09-051": {
     "code": "OP09-051",
@@ -12606,18 +9679,8 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-051.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "R",
-    "variants": [
-      {
-        "id": "OP09-051_P1",
-        "suffix": "_P1",
-        "name": "Buggy (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-051.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "R"
-      }
-    ]
+    "rarity": "SP CARD",
+    "variants": []
   },
   "OP09-052": {
     "code": "OP09-052",
@@ -12657,7 +9720,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP09-055_P1",
+        "suffix": "_P1",
+        "name": "Mr.1(Daz.Bonez)",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-055.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "OP09-056": {
     "code": "OP09-056",
@@ -12667,7 +9740,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "R",
-    "variants": []
+    "variants": [
+      {
+        "id": "OP09-056_P1",
+        "suffix": "_P1",
+        "name": "Mr.3(Galdino)",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-056.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "R"
+      }
+    ]
   },
   "OP09-057": {
     "code": "OP09-057",
@@ -12717,17 +9800,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP09-061_P1",
-        "suffix": "_P1",
-        "name": "Monkey.D.Luffy (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-061.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP09-081": {
     "code": "OP09-081",
@@ -12737,17 +9810,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "OP09-081_P1",
-        "suffix": "_P1",
-        "name": "Marshall.D.Teach (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-081.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "OP09-082": {
     "code": "OP09-082",
@@ -12866,18 +9929,8 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-093.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SR",
-    "variants": [
-      {
-        "id": "OP09-093_P1",
-        "suffix": "_P1",
-        "name": "Marshall.D.Teach (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-093.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "rarity": "SP CARD",
+    "variants": []
   },
   "OP09-094": {
     "code": "OP09-094",
@@ -12947,17 +10000,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SEC",
-    "variants": [
-      {
-        "id": "OP09-118_P1",
-        "suffix": "_P1",
-        "name": "Gol.D.Roger (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP09-118.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SEC"
-      }
-    ]
+    "variants": []
   },
   "PRB01-001": {
     "code": "PRB01-001",
@@ -12967,17 +10010,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "PRB01-001_P1",
-        "suffix": "_P1",
-        "name": "Sanji (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB01-001.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "ST01-001": {
     "code": "ST01-001",
@@ -12997,17 +10030,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "ST01-002_P1",
-        "suffix": "_P1",
-        "name": "Usopp (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-002.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "ST01-003": {
     "code": "ST01-003",
@@ -13027,17 +10050,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "ST01-004_P1",
-        "suffix": "_P1",
-        "name": "Sanji (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-004.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "ST01-005": {
     "code": "ST01-005",
@@ -13047,17 +10060,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "ST01-005_P1",
-        "suffix": "_P1",
-        "name": "Jinbe (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-005.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "ST01-006": {
     "code": "ST01-006",
@@ -13067,17 +10070,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "ST01-006_P1",
-        "suffix": "_P1",
-        "name": "Tony Tony.Chopper (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-006.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "ST01-007": {
     "code": "ST01-007",
@@ -13087,17 +10080,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "ST01-007_P1",
-        "suffix": "_P1",
-        "name": "Nami (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-007.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "ST01-008": {
     "code": "ST01-008",
@@ -13107,17 +10090,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "ST01-008_P1",
-        "suffix": "_P1",
-        "name": "Nico Robin (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-008.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "ST01-009": {
     "code": "ST01-009",
@@ -13127,17 +10100,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "ST01-009_P1",
-        "suffix": "_P1",
-        "name": "Nefeltari Vivi (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-009.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "ST01-010": {
     "code": "ST01-010",
@@ -13147,17 +10110,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "ST01-010_P1",
-        "suffix": "_P1",
-        "name": "Franky (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-010.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "ST01-011": {
     "code": "ST01-011",
@@ -13167,17 +10120,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "ST01-011_P1",
-        "suffix": "_P1",
-        "name": "Brook (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-011.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "ST01-012": {
     "code": "ST01-012",
@@ -13187,17 +10130,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "ST01-012_P1",
-        "suffix": "_P1",
-        "name": "Monkey.D.Luffy (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-012.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SP CARD"
-      }
-    ]
+    "variants": []
   },
   "ST01-013": {
     "code": "ST01-013",
@@ -13207,17 +10140,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "ST01-013_P1",
-        "suffix": "_P1",
-        "name": "Roronoa Zoro (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-013.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "ST01-014": {
     "code": "ST01-014",
@@ -13227,17 +10150,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "ST01-014_P1",
-        "suffix": "_P1",
-        "name": "Guard Point (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-014.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "ST01-015": {
     "code": "ST01-015",
@@ -13247,17 +10160,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "ST01-015_P1",
-        "suffix": "_P1",
-        "name": "Gum-Gum Jet Pistol (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST01-015.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "ST01-016": {
     "code": "ST01-016",
@@ -13297,17 +10200,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "ST03-002_P1",
-        "suffix": "_P1",
-        "name": "Edward Weevil (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST03-002.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "ST03-003": {
     "code": "ST03-003",
@@ -13317,17 +10210,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "ST03-003_P1",
-        "suffix": "_P1",
-        "name": "Crocodile (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST03-003.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "ST03-004": {
     "code": "ST03-004",
@@ -13336,18 +10219,8 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST03-004.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SP CARD",
-    "variants": [
-      {
-        "id": "ST03-004_P1",
-        "suffix": "_P1",
-        "name": "Gecko Moria (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST03-004.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "rarity": "C",
+    "variants": []
   },
   "ST03-005": {
     "code": "ST03-005",
@@ -13357,17 +10230,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "ST03-005_P1",
-        "suffix": "_P1",
-        "name": "Dracule Mihawk (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST03-005.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "ST03-006": {
     "code": "ST03-006",
@@ -13387,17 +10250,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "ST03-007_P1",
-        "suffix": "_P1",
-        "name": "Sentomaru (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST03-007.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "ST03-008": {
     "code": "ST03-008",
@@ -13407,17 +10260,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "ST03-008_P1",
-        "suffix": "_P1",
-        "name": "Trafalgar Law (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST03-008.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "ST03-009": {
     "code": "ST03-009",
@@ -13426,18 +10269,8 @@
     "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST03-009.png",
     "price": 0.05,
     "currency": "USD",
-    "rarity": "SR",
-    "variants": [
-      {
-        "id": "ST03-009_P1",
-        "suffix": "_P1",
-        "name": "Donquixote Doflamingo (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST03-009.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SP CARD"
-      }
-    ]
+    "rarity": "SP CARD",
+    "variants": []
   },
   "ST03-010": {
     "code": "ST03-010",
@@ -13477,17 +10310,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "ST03-013_P1",
-        "suffix": "_P1",
-        "name": "Boa Hancock (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST03-013.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "ST03-014": {
     "code": "ST03-014",
@@ -13497,17 +10320,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "ST03-014_P1",
-        "suffix": "_P1",
-        "name": "Marshall.D.Teach (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST03-014.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "ST03-015": {
     "code": "ST03-015",
@@ -13597,17 +10410,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "ST06-006_P1",
-        "suffix": "_P1",
-        "name": "Tashigi (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST06-006.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "ST06-007": {
     "code": "ST06-007",
@@ -13647,17 +10450,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "ST06-010_P1",
-        "suffix": "_P1",
-        "name": "Helmeppo (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST06-010.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "ST06-011": {
     "code": "ST06-011",
@@ -13697,17 +10490,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "ST06-014_P1",
-        "suffix": "_P1",
-        "name": "Shockwave (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST06-014.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "ST06-015": {
     "code": "ST06-015",
@@ -13867,7 +10650,17 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": []
+    "variants": [
+      {
+        "id": "ST08-013_P1",
+        "suffix": "_P1",
+        "name": "Mr.2.Bon.Kurei(Bentham)",
+        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST08-013.png",
+        "price": 0.05,
+        "currency": "USD",
+        "rarity": "C"
+      }
+    ]
   },
   "ST08-014": {
     "code": "ST08-014",
@@ -13937,17 +10730,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "ST10-005_P1",
-        "suffix": "_P1",
-        "name": "Jinbe (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST10-005.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "ST10-006": {
     "code": "ST10-006",
@@ -13957,17 +10740,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "SR",
-    "variants": [
-      {
-        "id": "ST10-006_P1",
-        "suffix": "_P1",
-        "name": "Monkey.D.Luffy (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST10-006.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "SR"
-      }
-    ]
+    "variants": []
   },
   "ST10-015": {
     "code": "ST10-015",
@@ -14057,17 +10830,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "C",
-    "variants": [
-      {
-        "id": "ST12-014_P1",
-        "suffix": "_P1",
-        "name": "Duval (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST12-014.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "C"
-      }
-    ]
+    "variants": []
   },
   "ST12-015": {
     "code": "ST12-015",
@@ -14097,17 +10860,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "ST13-001_P1",
-        "suffix": "_P1",
-        "name": "Sabo (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST13-001.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "ST13-002": {
     "code": "ST13-002",
@@ -14117,17 +10870,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "ST13-002_P1",
-        "suffix": "_P1",
-        "name": "Portgas.D.Ace (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST13-002.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "ST13-003": {
     "code": "ST13-003",
@@ -14137,17 +10880,7 @@
     "price": 0.05,
     "currency": "USD",
     "rarity": "L",
-    "variants": [
-      {
-        "id": "ST13-003_P1",
-        "suffix": "_P1",
-        "name": "Monkey.D.Luffy (Parallel)",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST13-003.png",
-        "price": 0.05,
-        "currency": "USD",
-        "rarity": "L"
-      }
-    ]
+    "variants": []
   },
   "ST14-001": {
     "code": "ST14-001",
