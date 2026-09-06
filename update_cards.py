@@ -19,30 +19,25 @@ def get_all_cards_from_api():
     
     all_cards = []
     page = 1
-    max_pages = 100  
     
-    while page <= max_pages:
+    while True:
         url = f"{base_url}?page={page}"
         print(f"-> Solicitando página {page}...")
         try:
             response = requests.get(url, headers=headers, timeout=30)
             if response.status_code != 200:
-                print(f"⚠️ La API respondió con código {response.status_code} en la página {page}.")
                 break
                 
             data = response.json()
-            cards_chunk = []
-            if isinstance(data, dict):
-                cards_chunk = data.get("data", data.get("results", data.get("cards", [])))
-            elif isinstance(data, list):
-                cards_chunk = data
+            cards_chunk = data.get("data", data.get("results", [])) if isinstance(data, dict) else data
                 
             if not cards_chunk:
-                print(f"-> Página {page} vacía. Fin de la paginación.")
                 break
                 
             all_cards.extend(cards_chunk)
-            print(f"   (+{len(cards_chunk)} cartas añadidas. Total acumulado: {len(all_cards)})")
+            if len(cards_chunk) < 10:  
+                break
+                
             page += 1
         except Exception as e:
             print(f"⚠️ Error al conectar con la API en la página {page}: {e}")
@@ -59,12 +54,11 @@ def main():
 
     print(f"Total de registros descargados de la API: {len(cards_list)}")
 
-    raw_grouped_by_code = {}
+    grouped_cards = {}
+    variant_counters = {}
 
     for item in cards_list:
-        if not isinstance(item, dict):
-            continue
-
+        # BUSCAMOS EL CÓDIGO OFICIAL REAL (ej. OP01-001, EB01-001) en lugar del ID interno aleatorio
         card_code = (
             item.get("card_number") or 
             item.get("number") or 
@@ -72,7 +66,9 @@ def main():
             ""
         ).strip().upper()
 
+        # Si el formato del código no parece un código de TCG válido (ej. formato antiguo con guion), lo filtramos
         if not re.match(r'^[A-Z]{2,4}\d{2}-\d{3}', card_code):
+            # Intentamos buscar si viene en otro campo o descartamos si no es un código válido
             continue
 
         raw_name = item.get("name") or item.get("title") or ""
@@ -82,103 +78,73 @@ def main():
             continue
 
         rarity = item.get("rarity", "Common")
+        
+        # URL de imagen oficial limpia basada en el código real de la carta
         image_url = item.get("image_url") or item.get("imageUrl") or f"https://en.onepiece-cardgame.com/images/cardlist/card/{card_code}.png"
         
-        # Lectura de metadatos de variante de la API
-        parallel_val = item.get("parallel", False)
-        if isinstance(parallel_val, str):
-            is_parallel = parallel_val.lower() == "true"
-        else:
-            is_parallel = bool(parallel_val)
-            
-        variant_type = item.get("variant_type") or item.get("variantType") or ""
-        if isinstance(variant_type, str):
-            variant_type = variant_type.strip().lower()
-
-        # Extracción robusta de precios
+        # Obtener precio en USD
         price = 0.0
-        for p_key in ["market_price", "marketPrice", "price", "tcgplayer_price", "cardmarket_price"]:
-            val = item.get(p_key)
-            if val is not None:
+        for p_key in ["price", "marketPrice", "market_price"]:
+            if p_key in item and item[p_key] is not None:
                 try:
-                    price = float(val)
-                    if price > 0:
-                        break
+                    price = float(item[p_key])
+                    break
                 except (ValueError, TypeError):
                     continue
-        
         if price <= 0:
             price = DEFAULT_PRICE_USD
 
-        if card_code not in raw_grouped_by_code:
-            raw_grouped_by_code[card_code] = []
+        # Detectar variantes mediante los paréntesis en el nombre
+        is_variant = "(" in name and ")" in name
 
-        raw_grouped_by_code[card_code].append({
-            "name": name,
-            "imageUrl": image_url,
-            "price": price,
-            "rarity": rarity,
-            "is_parallel": is_parallel,
-            "variant_type": variant_type
-        })
+        if not is_variant:
+            # CARTA BASE
+            grouped_cards[card_code] = {
+                "code": card_code,
+                "game": "One Piece",
+                "name": name,
+                "imageUrl": image_url,
+                "price": price,
+                "currency": "USD",
+                "rarity": rarity,
+                "variants": []
+            }
+        else:
+            # VARIANTE ANIDADA
+            base_code = card_code
+            if base_code not in grouped_cards:
+                grouped_cards[base_code] = {
+                    "code": base_code,
+                    "game": "One Piece",
+                    "name": name.split("(")[0].strip(),
+                    "imageUrl": f"https://en.onepiece-cardgame.com/images/cardlist/card/{base_code}.png",
+                    "price": DEFAULT_PRICE_USD,
+                    "currency": "USD",
+                    "rarity": rarity,
+                    "variants": []
+                }
 
-    grouped_cards = {}
-
-    for card_code, entries in raw_grouped_by_code.items():
-        # Ordenamos para asegurar que la carta base (no paralelo) quede primera
-        entries.sort(key=lambda x: (x["is_parallel"], len(x["name"])))
-
-        base_entry = entries[0]
-        base_name = base_entry["name"].split("(")[0].strip()
-
-        grouped_cards[card_code] = {
-            "code": card_code,
-            "game": "One Piece",
-            "name": base_name,
-            "imageUrl": base_entry["imageUrl"],
-            "price": base_entry["price"],
-            "currency": "USD",
-            "rarity": base_entry["rarity"],
-            "variants": []
-        }
-
-        variant_counter = 1
-        seen_variant_identifiers = set()
-
-        for entry in entries[1:]:
-            clean_var_name = entry["name"].split("(")[0].strip()
-            
-            # Asignar etiqueta descriptiva basada en los datos de la API
-            if entry["variant_type"] == "manga":
-                formatted_var_name = f"{clean_var_name} (Manga)"
-            elif entry["variant_type"] == "alt_art" or entry["is_parallel"]:
-                formatted_var_name = f"{clean_var_name} (Parallel)"
-            elif entry["variant_type"]:
-                formatted_var_name = f"{clean_var_name} ({entry['variant_type'].capitalize()})"
+            if base_code not in variant_counters:
+                variant_counters[base_code] = 1
             else:
-                formatted_var_name = f"{clean_var_name} (Parallel)"
+                variant_counters[base_code] += 1
+            
+            var_index = variant_counters[base_code]
+            suffix = f"_P{var_index}"
+            var_unique_id = f"{base_code}{suffix}"
 
-            identifier = (formatted_var_name, entry["price"])
-            if identifier in seen_variant_identifiers:
-                continue
-            seen_variant_identifiers.add(identifier)
-
-            suffix = f"_P{variant_counter}"
-            var_unique_id = f"{card_code}{suffix}"
-
-            grouped_cards[card_code]["variants"].append({
+            grouped_cards[base_code]["variants"].append({
                 "id": var_unique_id,
                 "suffix": suffix,
-                "name": formatted_var_name,
-                "imageUrl": entry["imageUrl"],
-                "price": entry["price"],
+                "name": name,
+                "imageUrl": image_url,
+                "price": price,
                 "currency": "USD",
-                "rarity": entry["rarity"]
+                "rarity": rarity
             })
-            variant_counter += 1
 
     total_base_cards = len(grouped_cards)
-    print(f"Total de cartas base estructuradas correctamente: {total_base_cards}")
+    print(f"Total de cartas base agrupadas correctamente: {total_base_cards}")
 
     if total_base_cards < MIN_CARDS_THRESHOLD:
         print(f"ALERTA DE SEGURIDAD: Solo se procesaron {total_base_cards} cartas base. Abortando.")
