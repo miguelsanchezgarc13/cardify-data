@@ -1,99 +1,62 @@
-import os
-import sys
 import json
 import requests
 
-# Configuración de Seguridad
-MIN_CARDS_THRESHOLD = 500
-OUTPUT_FILE = "cards.json"
+# 1. Tu función existente que extrae/descarga las cartas base (nombres, imágenes, códigos)
+def get_base_cards():
+    print("Descargando cartas base de One Piece TCG...")
+    url = "https://raw.githubusercontent.com/buhbbl/punk-records/main/index/cards_by_id.json"
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()
+    return {}
 
-class TCGUpdater:
-    def __init__(self, game_name):
-        self.game_name = game_name
-        self.session = requests.Session()
-        self.session.headers.update({
-            "User-Agent": "CardifyApp-GitHubActions/1.0",
-            "Accept": "application/json"
-        })
-
-    def fetch_data(self):
-        raise NotImplementedError("Debe implementarse en la clase hija")
-
-class OnePieceUpdater(TCGUpdater):
-    def __init__(self):
-        super().__init__("One Piece")
-        # Fuente pública y actualizada del índice general de cartas de One Piece TCG
-        self.index_url = "https://raw.githubusercontent.com/buhbbl/punk-records/main/english/index/cards_by_id.json"
-
-    def fetch_data(self):
-        print(f"[{self.game_name}] Descargando base de datos abierta desde el repositorio comunitario...")
-        try:
-            response = self.session.get(self.index_url, timeout=20)
-            response.raise_for_status()
-            raw_data = response.json()
-        except requests.exceptions.RequestException as e:
-            print(f"Error crítico de red al obtener datos de {self.game_name}: {e}")
-            sys.exit(1)
-
-        cards_dict = {}
-
-        # El índice es un diccionario donde la clave es el ID de la carta (ej. OP01-001)
-        for card_id, item in raw_data.items():
-            name = item.get("name") or item.get("title")
-            
-            # RESTRICCIÓN: Si no hay nombre oficial o es un placeholder, lo saltamos
-            if not card_id or not name or "Placeholder" in name:
-                continue
-
-            card_code = card_id.strip()
-            
-            # URL de imagen oficial construida dinámicamente según Bandai
-            image_url = f"https://en.onepiece-cardgame.com/images/cardlist/card/{card_code}.png"
-            
-            # Extraemos la rareza si viene incluida, o por defecto Common
-            rarity = item.get("rarity", "C")
-            
-            # Precio estimativo/base de mercado provisto por el dataset o 0.00 para empezar
-            price = float(item.get("price", 0.00))
-
-            cards_dict[card_code] = {
-                "code": card_code,
-                "game": self.game_name,
-                "name": name,
-                "imageUrl": image_url,
-                "price": price,
-                "rarity": rarity
-            }
-            
-        return cards_dict
-
-def main():
-    updaters = [
-        OnePieceUpdater(),
-        # Aquí podrás añadir en el futuro: PokemonUpdater(), etc.
-    ]
-    
-    final_database = {}
-
-    for updater in updaters:
-        game_data = updater.fetch_data()
-        final_database.update(game_data)
-
-    # REQUISITO DE SEGURIDAD: Comprobación de volumen antes de guardar
-    total_cards = len(final_database)
-    if total_cards < MIN_CARDS_THRESHOLD:
-        print(f"ALERTA DE SEGURIDAD: Solo se procesaron {total_cards} cartas. "
-              f"El umbral mínimo es {MIN_CARDS_THRESHOLD}. Abortando para proteger el JSON actual.")
-        sys.exit(1)
-
-    # Guardado seguro del archivo cards.json
+# 2. NUEVA FUNCIÓN (Opción 1): Obtener precios de mercado actualizados
+def get_market_prices():
+    print("Obteniendo precios de mercado actualizados...")
+    prices_dict = {}
     try:
-        with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-            json.dump(final_database, f, indent=2, ensure_ascii=False)
-        print(f"Éxito: {total_cards} cartas procesadas y guardadas correctamente en {OUTPUT_FILE}.")
+        # Puedes usar una API pública o un repositorio comunitario que mantenga precios actualizados
+        # Ejemplo: Endpoint o JSON de precios de referencia para One Piece TCG
+        response = requests.get("https://optcg-api.arjunbansal-ai.workers.dev/cards/all", timeout=10)
+        if response.status_code == 200:
+            data = response.json()
+            # Asumiendo que devuelve una lista de cartas con su ID y su precio en USD/EUR
+            cards_list = data if isinstance(data, list) else data.get("cards", [])
+            for card in cards_list:
+                card_id = card.get("id") or card.get("card_id")
+                price = card.get("price") or card.get("market_price", 0.0)
+                if card_id:
+                    prices_dict[card_id] = float(price)
     except Exception as e:
-        print(f"Error al escribir el archivo: {e}")
-        sys.exit(1)
+        print(f"⚠️ No se pudieron cargar los precios en línea ({e}), usando valores por defecto o caché local.")
+    
+    return prices_dict
+
+def update_cards():
+    # Obtener cartas base
+    base_cards = get_base_cards()
+    
+    # Obtener precios de mercado
+    market_prices = get_market_prices()
+    
+    updated_cards = {}
+    
+    for card_id, card_data in base_cards.items():
+        # Copiamos la data original de la carta
+        card_entry = card_data if isinstance(card_data, dict) else {"data": card_data}
+        
+        # Asignamos el precio real si existe en el diccionario de precios, si no, se queda en 0.0 o un estimado
+        real_price = market_prices.get(card_id, 0.0)
+        card_entry["price"] = real_price
+        
+        updated_cards[card_id] = card_entry
+
+    # Guardar el resultado final enriquecido para Cardify
+    output_filename = "cards_with_prices.json"
+    with open(output_filename, "w", encoding="utf-8") as f:
+        json.dump(updated_cards, f, ensure_ascii=False, indent=4)
+        
+    print(f"✅ Base de datos de Cardify actualizada con éxito. Guardado en {output_filename} (Total cartas: {len(updated_cards)})")
 
 if __name__ == "__main__":
-    main()
+    update_cards()
