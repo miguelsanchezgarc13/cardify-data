@@ -6,6 +6,7 @@ import requests
 
 MIN_CARDS_THRESHOLD = 500
 OUTPUT_FILE = "cards.json"
+DEFAULT_PRICE = 0.02  # Precio por defecto para cartas comunes sin stock listado
 
 def get_base_cards():
     print("Descargando catálogo base de One Piece TCG...")
@@ -14,14 +15,13 @@ def get_base_cards():
     response.raise_for_status()
     return response.json()
 
-def get_shopify_store_prices():
-    print("Obteniendo precios reales de mercado (Tienda externa - Shopify)...")
+def fetch_shopify_store(base_url, store_name):
+    print(f"Obteniendo precios de mercado desde: {store_name}...")
     prices_dict = {}
     page = 1
     
-    # Bucle para recorrer la paginación de la tienda de forma automatizada
     while True:
-        url = f"https://www.elduelista.com/collections/one-piece-single/products.json?limit=250&page={page}"
+        url = f"{base_url}?limit=250&page={page}"
         try:
             headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
             response = requests.get(url, headers=headers, timeout=15)
@@ -33,8 +33,6 @@ def get_shopify_store_prices():
             if not products:
                 break
                 
-            print(f"Página {page} procesada: {len(products)} productos encontrados.")
-            
             for product in products:
                 title = product.get("title", "")
                 variants = product.get("variants", [])
@@ -44,20 +42,20 @@ def get_shopify_store_prices():
                     except ValueError:
                         continue
                     
-                    # Expresión regular para detectar códigos oficiales de cartas (ej: OP01-001, EB01-001)
                     matches = re.findall(r'([A-Z]{2,3}\d{2}-\d{3})', title.upper())
                     for code in matches:
-                        prices_dict[code] = price
+                        # Guardamos el precio solo si es mayor que 0
+                        if price > 0:
+                            prices_dict[code] = price
             
-            # Si devuelve menos de 250 productos, hemos llegado al final del catálogo
             if len(products) < 250:
                 break
             page += 1
         except Exception as e:
-            print(f"⚠️ Aviso al consultar la página {page} de precios: {e}")
+            print(f"⚠️ Aviso al consultar {store_name} (página {page}): {e}")
             break
             
-    print(f"Total de precios mapeados con éxito: {len(prices_dict)}")
+    print(f"-> Precios extraídos de {store_name}: {len(prices_dict)}")
     return prices_dict
 
 def main():
@@ -67,8 +65,22 @@ def main():
         print(f"Error crítico al descargar el catálogo base: {e}")
         sys.exit(1)
 
-    # Obtenemos los precios de mercado en directo
-    market_prices = get_shopify_store_prices()
+    # Pasada 1: El Duelista
+    prices_duelista = fetch_shopify_store(
+        "https://www.elduelista.com/collections/one-piece-single/products.json", 
+        "El Duelista"
+    )
+    
+    # Pasada 2: Pokemillon (para rellenar los huecos que no tenga la primera)
+    prices_pokemillon = fetch_shopify_store(
+        "https://www.pokemillon.com/collections/cartas-sueltas-one-piece-1/products.json", 
+        "Pokemillon"
+    )
+
+    # Fusionamos ambas fuentes (priorizando El Duelista, y si falta, tiramos de Pokemillon)
+    market_prices = prices_pokemillon.copy()
+    market_prices.update(prices_duelista)
+    print(f"Total combinado de precios únicos de mercado: {len(market_prices)}")
     
     updated_cards = {}
 
@@ -81,8 +93,8 @@ def main():
         image_url = f"https://en.onepiece-cardgame.com/images/cardlist/card/{card_code}.png"
         rarity = item.get("rarity", "C")
         
-        # Inyectamos el precio real si la tienda lo tiene listado; si no, queda a 0.0 temporalmente
-        price = market_prices.get(card_code, 0.0)
+        # Asignamos el precio real de las tiendas, o el valor por defecto de 0.02€
+        price = market_prices.get(card_code, DEFAULT_PRICE)
 
         updated_cards[card_code] = {
             "code": card_code,
