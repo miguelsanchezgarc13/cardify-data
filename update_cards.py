@@ -1,6 +1,8 @@
 import html
 import json
+import os
 import re
+import subprocess
 import sys
 import requests
 
@@ -8,6 +10,41 @@ MIN_CARDS_THRESHOLD = 500
 OUTPUT_FILE = "cards.json"
 RAW_OUTPUT_FILE = "cards_api_raw.json"
 DEFAULT_PRICE_USD = 0.05
+
+
+def publish_generated_files(include_cards_file=True):
+    files_to_add = [RAW_OUTPUT_FILE]
+    if include_cards_file:
+        files_to_add.append(OUTPUT_FILE)
+
+    branch_name = os.environ.get("GITHUB_REF_NAME")
+    if not branch_name:
+        branch_name = subprocess.check_output(
+            ["git", "rev-parse", "--abbrev-ref", "HEAD"], text=True
+        ).strip()
+
+    try:
+        subprocess.run(["git", "config", "user.name", "github-actions[bot]"], check=True)
+        subprocess.run(
+            ["git", "config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com"],
+            check=True,
+        )
+        subprocess.run(["git", "add", "--", *files_to_add], check=True)
+
+        changes = subprocess.run(["git", "diff", "--cached", "--quiet"])
+        if changes.returncode == 0:
+            print("No hay cambios en los archivos generados; no se crea ningún commit.")
+            return
+
+        subprocess.run(
+            ["git", "commit", "-m", "chore: actualizar catálogo de cartas"],
+            check=True,
+        )
+        subprocess.run(["git", "push", "origin", f"HEAD:{branch_name}"], check=True)
+        print(f"Archivos publicados en la rama {branch_name}: {', '.join(files_to_add)}")
+    except (OSError, subprocess.CalledProcessError) as publish_err:
+        print(f"Error al publicar los archivos generados en GitHub: {publish_err}")
+        sys.exit(1)
 
 def get_all_cards_from_api():
     print("Descargando catálogo completo y precios de optcgapi.com...")
@@ -157,6 +194,7 @@ def main():
 
     if total_base_cards < MIN_CARDS_THRESHOLD:
         print(f"ALERTA DE SEGURIDAD: Solo se procesaron {total_base_cards} cartas base. Abortando.")
+        publish_generated_files(include_cards_file=False)
         sys.exit(1)
 
     try:
@@ -166,6 +204,8 @@ def main():
     except Exception as write_err:
         print(f"Error al escribir el archivo: {write_err}")
         sys.exit(1)
+
+    publish_generated_files()
 
 if __name__ == "__main__":
     main()
