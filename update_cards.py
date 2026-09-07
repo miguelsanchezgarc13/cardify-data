@@ -10,12 +10,18 @@ OUTPUT_FILE = "cards.json"
 RAW_OUTPUT_FILE = "cards_api_raw.json"
 PRICE_API_URL = "https://www.optcgapi.com/api/allSetCards/"
 PRICE_RAW_OUTPUT_FILE = "cards_prices_raw.json"
+# Cambiar a True solo para guardar y publicar las respuestas JSON originales.
+SAVE_RAW_FILES = False
 
 
 def publish_generated_files(include_cards_file=True):
-    files_to_add = [RAW_OUTPUT_FILE, PRICE_RAW_OUTPUT_FILE]
+    files_to_add = []
+    if SAVE_RAW_FILES:
+        files_to_add.extend([RAW_OUTPUT_FILE, PRICE_RAW_OUTPUT_FILE])
     if include_cards_file:
         files_to_add.append(OUTPUT_FILE)
+    if not files_to_add:
+        return
 
     branch_name = os.environ.get("GITHUB_REF_NAME")
     if not branch_name:
@@ -60,7 +66,6 @@ def get_all_cards_from_api():
     page = 1
     
     while True:
-        print(f"-> Solicitando página {page}...")
         try:
             response = requests.get(
                 base_url,
@@ -69,7 +74,7 @@ def get_all_cards_from_api():
                 timeout=30,
             )
             if response.status_code != 200:
-                print(f"La API respondió con HTTP {response.status_code}.")
+                print(f"La API oficial respondió con HTTP {response.status_code}.")
                 break
                 
             data = response.json()
@@ -134,6 +139,24 @@ def get_price(item):
     return None
 
 
+def get_first_value(*values):
+    for value in values:
+        if value is not None and str(value).strip().upper() != "NULL":
+            return value
+    return None
+
+
+def get_number(*values):
+    value = get_first_value(*values)
+    if value is None:
+        return None
+    try:
+        number = float(value)
+        return int(number) if number.is_integer() else number
+    except (TypeError, ValueError):
+        return value
+
+
 def match_score(official_item, price_item):
     official_name = normalize_text(official_item.get("name"))
     price_name = normalize_text(price_item.get("card_name"))
@@ -158,21 +181,38 @@ def match_score(official_item, price_item):
 
 
 def build_card_record(code, official_item=None, price_item=None):
-    name = (price_item or {}).get("card_name") or (official_item or {}).get("name") or ""
+    official_item = official_item or {}
+    price_item = price_item or {}
+    name = get_first_value(price_item.get("card_name"), official_item.get("name"), "")
     official_image = f"https://en.onepiece-cardgame.com/images/cardlist/card/{code}.png"
     image_url = official_image
-    if official_item is None and price_item:
+    if not official_item:
         image_url = price_item.get("card_image") or official_image
 
-    rarity = (price_item or {}).get("rarity") or (official_item or {}).get("rarity") or "Common"
+    rarity = get_first_value(price_item.get("rarity"), official_item.get("rarity"), "Common")
     return {
+        "id": get_first_value(official_item.get("id"), price_item.get("card_image_id")),
         "code": code,
         "game": "One Piece",
         "name": html.unescape(str(name)).strip(),
         "imageUrl": image_url,
-        "price": get_price(price_item or {}) if price_item else None,
+        "price": get_price(price_item),
+        "inventoryPrice": get_number(price_item.get("inventory_price")),
+        "marketPrice": get_number(price_item.get("market_price")),
         "currency": "USD",
         "rarity": rarity,
+        "setName": get_first_value(price_item.get("set_name"), official_item.get("set")),
+        "setId": get_first_value(price_item.get("set_id")),
+        "type": get_first_value(price_item.get("card_type"), official_item.get("type")),
+        "effect": get_first_value(price_item.get("card_text"), official_item.get("effect")),
+        "cost": get_number(price_item.get("card_cost"), official_item.get("cost")),
+        "power": get_number(price_item.get("card_power"), official_item.get("power")),
+        "counter": get_number(price_item.get("counter_amount"), official_item.get("counter")),
+        "life": get_number(price_item.get("life"), official_item.get("life")),
+        "color": get_first_value(price_item.get("card_color"), official_item.get("color")),
+        "attribute": get_first_value(price_item.get("attribute"), official_item.get("attribute")),
+        "class": get_first_value(price_item.get("sub_types"), official_item.get("class")),
+        "priceDate": price_item.get("date_scraped"),
     }
 
 def main():
@@ -192,16 +232,15 @@ def main():
 
     print(f"Total de registros descargados de la API de precios: {len(price_cards)}")
 
-    try:
-        with open(RAW_OUTPUT_FILE, "w", encoding="utf-8") as f:
-            json.dump(cards_list, f, indent=2, ensure_ascii=False)
-        print(f"Respuesta cruda de la API guardada en {RAW_OUTPUT_FILE}.")
-        with open(PRICE_RAW_OUTPUT_FILE, "w", encoding="utf-8") as f:
-            json.dump(price_cards, f, indent=2, ensure_ascii=False)
-        print(f"Respuesta cruda de precios guardada en {PRICE_RAW_OUTPUT_FILE}.")
-    except (OSError, TypeError) as write_err:
-        print(f"Error al escribir la respuesta cruda de la API: {write_err}")
-        sys.exit(1)
+    if SAVE_RAW_FILES:
+        try:
+            with open(RAW_OUTPUT_FILE, "w", encoding="utf-8") as f:
+                json.dump(cards_list, f, indent=2, ensure_ascii=False)
+            with open(PRICE_RAW_OUTPUT_FILE, "w", encoding="utf-8") as f:
+                json.dump(price_cards, f, indent=2, ensure_ascii=False)
+        except (OSError, TypeError) as write_err:
+            print(f"Error al escribir los archivos raw: {write_err}")
+            sys.exit(1)
 
     official_by_code = {}
     price_by_code = {}
@@ -245,7 +284,7 @@ def main():
         base_record["variants"] = []
         for index, variant in enumerate(merged_records[1:], start=1):
             suffix = f"_P{index}"
-            variant["id"] = f"{code}{suffix}"
+            variant["id"] = variant.get("id") or f"{code}{suffix}"
             variant["suffix"] = suffix
             base_record["variants"].append(variant)
         grouped_cards[code] = base_record
