@@ -6,8 +6,10 @@ import sys
 import requests
 
 
-COMMUNITY_REPOSITORY = "https://api.github.com/repos/sstockdev/optcgdb/git/trees/master"
-RAW_OUTPUT_FILE = "optcgdb_extra_cards_raw.json"
+COMMUNITY_JSON_URL = (
+    "https://raw.githubusercontent.com/BepoTCG/OPTCG-Card-List/main/OPTCG.json"
+)
+RAW_OUTPUT_FILE = "bepotcg_extra_cards_raw.json"
 
 
 def publish_raw_data():
@@ -47,15 +49,14 @@ def publish_raw_data():
 
 
 def fetch_community_data():
-    print(f"Inspeccionando fuente comunitaria: {COMMUNITY_REPOSITORY}")
+    print(f"Descargando fuente comunitaria: {COMMUNITY_JSON_URL}")
     headers = {
-        "Accept": "application/vnd.github+json",
         "User-Agent": "OPTCG-App-Data-Discovery/1.0",
     }
 
     try:
         response = requests.get(
-            COMMUNITY_REPOSITORY,
+            COMMUNITY_JSON_URL,
             headers=headers,
             timeout=30,
         )
@@ -70,20 +71,7 @@ def fetch_community_data():
         print(f"La respuesta no contiene un JSON válido: {error}")
         sys.exit(1)
 
-    json_paths = [
-        item["path"]
-        for item in repository_tree.get("tree", [])
-        if item.get("type") == "blob" and item.get("path", "").lower().endswith(".json")
-    ]
-    if json_paths:
-        print(f"Archivos JSON encontrados en el repositorio: {', '.join(json_paths)}")
-        print("El script necesita una URL directa a uno de esos JSON para descargarlo.")
-    else:
-        print(
-            "El repositorio no publica ningún JSON de cartas. "
-            "La ruta propuesta por Gemini ya no existe y devuelve HTTP 404."
-        )
-    sys.exit(1)
+    return repository_tree
 
 
 def save_raw_data(data):
