@@ -1,7 +1,6 @@
 import html
 import json
 import os
-import re
 import subprocess
 import sys
 import requests
@@ -9,11 +8,12 @@ import requests
 MIN_CARDS_THRESHOLD = 500
 OUTPUT_FILE = "cards.json"
 RAW_OUTPUT_FILE = "cards_api_raw.json"
-DEFAULT_PRICE_USD = 0.05
+PRICE_API_URL = "https://www.optcgapi.com/api/allSetCards/"
+PRICE_RAW_OUTPUT_FILE = "cards_prices_raw.json"
 
 
 def publish_generated_files(include_cards_file=True):
-    files_to_add = [RAW_OUTPUT_FILE]
+    files_to_add = [RAW_OUTPUT_FILE, PRICE_RAW_OUTPUT_FILE]
     if include_cards_file:
         files_to_add.append(OUTPUT_FILE)
 
@@ -47,8 +47,9 @@ def publish_generated_files(include_cards_file=True):
         sys.exit(1)
 
 def get_all_cards_from_api():
-    print("Descargando catálogo completo y precios de optcgapi.com...")
+    print("Descargando el catálogo completo de optcgapi.com...")
     base_url = "https://optcg-api.ryanmichaelhirst.us/api/v1/cards"
+    per_page = 20
     
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
@@ -59,21 +60,34 @@ def get_all_cards_from_api():
     page = 1
     
     while True:
-        url = f"{base_url}?page={page}"
         print(f"-> Solicitando página {page}...")
         try:
-            response = requests.get(url, headers=headers, timeout=30)
+            response = requests.get(
+                base_url,
+                params={"page": page, "per_page": per_page},
+                headers=headers,
+                timeout=30,
+            )
             if response.status_code != 200:
+                print(f"La API respondió con HTTP {response.status_code}.")
                 break
                 
             data = response.json()
-            cards_chunk = data.get("data", data.get("results", [])) if isinstance(data, dict) else data
+            if isinstance(data, dict):
+                cards_chunk = data.get("data", data.get("results", []))
+                total_pages = data.get("total_pages")
+            else:
+                cards_chunk = data
+                total_pages = None
                 
-            if not cards_chunk:
+            if not isinstance(cards_chunk, list) or not cards_chunk:
                 break
                 
             all_cards.extend(cards_chunk)
-            if len(cards_chunk) < 10:  
+
+            if total_pages is not None and page >= int(total_pages):
+                break
+            if total_pages is None and len(cards_chunk) < per_page:
                 break
                 
             page += 1
@@ -82,6 +96,84 @@ def get_all_cards_from_api():
             break
             
     return all_cards
+
+
+def get_all_cards_with_prices():
+    print("Descargando catálogo y precios de optcgapi.com...")
+    response = requests.get(PRICE_API_URL, timeout=60)
+    response.raise_for_status()
+    data = response.json()
+    if not isinstance(data, list):
+        raise ValueError("La API de precios no devolvió una lista de cartas.")
+    return data
+
+
+def normalize_text(value):
+    return " ".join(str(value or "").casefold().split())
+
+
+def get_image_keys(*values):
+    keys = set()
+    for value in values:
+        normalized = normalize_text(value)
+        if normalized:
+            keys.add(normalized.rsplit("/", 1)[-1].rsplit(".", 1)[0])
+    return keys
+
+
+def get_price(item):
+    for key in ("market_price", "marketPrice", "price", "inventory_price"):
+        value = item.get(key)
+        if value is not None:
+            try:
+                value = float(value)
+            except (TypeError, ValueError):
+                continue
+            if value >= 0:
+                return value
+    return None
+
+
+def match_score(official_item, price_item):
+    official_name = normalize_text(official_item.get("name"))
+    price_name = normalize_text(price_item.get("card_name"))
+    score = 0
+    if official_name and official_name == price_name:
+        score += 100
+    if get_image_keys(
+        official_item.get("image"),
+        official_item.get("id"),
+    ) & get_image_keys(
+        price_item.get("card_image"),
+        price_item.get("card_image_id"),
+    ):
+        score += 80
+    if normalize_text(official_item.get("rarity")) == normalize_text(price_item.get("rarity")):
+        score += 10
+    if normalize_text(official_item.get("type")) == normalize_text(price_item.get("card_type")):
+        score += 5
+    if normalize_text(official_item.get("color")) == normalize_text(price_item.get("card_color")):
+        score += 5
+    return score
+
+
+def build_card_record(code, official_item=None, price_item=None):
+    name = (price_item or {}).get("card_name") or (official_item or {}).get("name") or ""
+    official_image = f"https://en.onepiece-cardgame.com/images/cardlist/card/{code}.png"
+    image_url = official_image
+    if official_item is None and price_item:
+        image_url = price_item.get("card_image") or official_image
+
+    rarity = (price_item or {}).get("rarity") or (official_item or {}).get("rarity") or "Common"
+    return {
+        "code": code,
+        "game": "One Piece",
+        "name": html.unescape(str(name)).strip(),
+        "imageUrl": image_url,
+        "price": get_price(price_item or {}) if price_item else None,
+        "currency": "USD",
+        "rarity": rarity,
+    }
 
 def main():
     cards_list = get_all_cards_from_api()
@@ -93,101 +185,70 @@ def main():
     print(f"Total de registros descargados de la API: {len(cards_list)}")
 
     try:
+        price_cards = get_all_cards_with_prices()
+    except (OSError, ValueError, requests.RequestException) as price_err:
+        print(f"Error al descargar el catálogo de precios: {price_err}")
+        sys.exit(1)
+
+    print(f"Total de registros descargados de la API de precios: {len(price_cards)}")
+
+    try:
         with open(RAW_OUTPUT_FILE, "w", encoding="utf-8") as f:
             json.dump(cards_list, f, indent=2, ensure_ascii=False)
         print(f"Respuesta cruda de la API guardada en {RAW_OUTPUT_FILE}.")
+        with open(PRICE_RAW_OUTPUT_FILE, "w", encoding="utf-8") as f:
+            json.dump(price_cards, f, indent=2, ensure_ascii=False)
+        print(f"Respuesta cruda de precios guardada en {PRICE_RAW_OUTPUT_FILE}.")
     except (OSError, TypeError) as write_err:
         print(f"Error al escribir la respuesta cruda de la API: {write_err}")
         sys.exit(1)
 
-    grouped_cards = {}
-    variant_counters = {}
-
+    official_by_code = {}
+    price_by_code = {}
     for item in cards_list:
-        # BUSCAMOS EL CÓDIGO OFICIAL REAL (ej. OP01-001, EB01-001) en lugar del ID interno aleatorio
-        card_code = (
-            item.get("card_number") or 
-            item.get("number") or 
-            item.get("code") or 
-            ""
-        ).strip().upper()
+        code = str(item.get("code") or item.get("card_number") or item.get("number") or "").strip().upper()
+        if code and item.get("name") and "placeholder" not in normalize_text(item.get("name")):
+            official_by_code.setdefault(code, []).append(item)
+    for item in price_cards:
+        code = str(item.get("card_set_id") or "").strip().upper()
+        if code and item.get("card_name"):
+            price_by_code.setdefault(code, []).append(item)
 
-        # Si el formato del código no parece un código de TCG válido (ej. formato antiguo con guion), lo filtramos
-        if not re.match(r'^[A-Z]{2,4}\d{2}-\d{3}', card_code):
-            # Intentamos buscar si viene en otro campo o descartamos si no es un código válido
-            continue
+    grouped_cards = {}
+    all_codes = list(official_by_code)
+    all_codes.extend(code for code in price_by_code if code not in official_by_code)
+    for code in all_codes:
+        official_items = official_by_code.get(code, [])
+        price_items = price_by_code.get(code, [])
+        unmatched_official = list(official_items)
+        merged_records = []
 
-        raw_name = item.get("name") or item.get("title") or ""
-        name = html.unescape(raw_name).strip()
-        
-        if not card_code or not name or "Placeholder" in name:
-            continue
-
-        rarity = item.get("rarity", "Common")
-        
-        # URL de imagen oficial limpia basada en el código real de la carta
-        image_url = item.get("image_url") or item.get("imageUrl") or f"https://en.onepiece-cardgame.com/images/cardlist/card/{card_code}.png"
-        
-        # Obtener precio en USD
-        price = 0.0
-        for p_key in ["price", "marketPrice", "market_price"]:
-            if p_key in item and item[p_key] is not None:
-                try:
-                    price = float(item[p_key])
-                    break
-                except (ValueError, TypeError):
-                    continue
-        if price <= 0:
-            price = DEFAULT_PRICE_USD
-
-        # Detectar variantes mediante los paréntesis en el nombre
-        is_variant = "(" in name and ")" in name
-
-        if not is_variant:
-            # CARTA BASE
-            grouped_cards[card_code] = {
-                "code": card_code,
-                "game": "One Piece",
-                "name": name,
-                "imageUrl": image_url,
-                "price": price,
-                "currency": "USD",
-                "rarity": rarity,
-                "variants": []
-            }
-        else:
-            # VARIANTE ANIDADA
-            base_code = card_code
-            if base_code not in grouped_cards:
-                grouped_cards[base_code] = {
-                    "code": base_code,
-                    "game": "One Piece",
-                    "name": name.split("(")[0].strip(),
-                    "imageUrl": f"https://en.onepiece-cardgame.com/images/cardlist/card/{base_code}.png",
-                    "price": DEFAULT_PRICE_USD,
-                    "currency": "USD",
-                    "rarity": rarity,
-                    "variants": []
-                }
-
-            if base_code not in variant_counters:
-                variant_counters[base_code] = 1
+        for price_item in price_items:
+            best_item = None
+            best_score = 0
+            for official_item in unmatched_official:
+                score = match_score(official_item, price_item)
+                if score > best_score:
+                    best_item = official_item
+                    best_score = score
+            if best_item is not None and best_score >= 100:
+                unmatched_official.remove(best_item)
+                merged_records.append(build_card_record(code, best_item, price_item))
             else:
-                variant_counters[base_code] += 1
-            
-            var_index = variant_counters[base_code]
-            suffix = f"_P{var_index}"
-            var_unique_id = f"{base_code}{suffix}"
+                merged_records.append(build_card_record(code, None, price_item))
 
-            grouped_cards[base_code]["variants"].append({
-                "id": var_unique_id,
-                "suffix": suffix,
-                "name": name,
-                "imageUrl": image_url,
-                "price": price,
-                "currency": "USD",
-                "rarity": rarity
-            })
+        merged_records.extend(build_card_record(code, item) for item in unmatched_official)
+        if not merged_records:
+            continue
+
+        base_record = merged_records[0]
+        base_record["variants"] = []
+        for index, variant in enumerate(merged_records[1:], start=1):
+            suffix = f"_P{index}"
+            variant["id"] = f"{code}{suffix}"
+            variant["suffix"] = suffix
+            base_record["variants"].append(variant)
+        grouped_cards[code] = base_record
 
     total_base_cards = len(grouped_cards)
     print(f"Total de cartas base agrupadas correctamente: {total_base_cards}")
