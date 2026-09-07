@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import subprocess
 import sys
 
@@ -109,6 +110,10 @@ def normalize_text(value):
     return " ".join(str(value or "").casefold().split())
 
 
+def normalize_variant_code(code):
+    return re.sub(r"_(?:p|r)\d+$", "", str(code).strip(), flags=re.IGNORECASE).upper()
+
+
 def get_number(*values):
     for value in values:
         if value is None or str(value).strip().upper() == "NULL":
@@ -122,10 +127,31 @@ def get_number(*values):
 
 
 def get_price(price_item):
-    return get_number(
-        price_item.get("usd"),
-        price_item.get("market_price"),
-        price_item.get("inventory_price"),
+    return {
+        "usd": get_number(
+            price_item.get("usd"),
+            price_item.get("market_price"),
+            price_item.get("inventory_price"),
+        ),
+        "eur": get_number(price_item.get("eur")),
+        "date": price_item.get("date_scraped") or price_item.get("updatedAt"),
+        "source": price_item.get("src") or "optcgapi",
+    }
+
+
+def select_price_item(items, code=None):
+    matching_items = [
+        item for item in items
+        if code is None or str(item.get("card_set_id", "")).upper() == code
+    ]
+    if not matching_items:
+        return {}
+    return max(
+        matching_items,
+        key=lambda item: (
+            str(item.get("date_scraped") or ""),
+            float(get_number(item.get("market_price"), item.get("usd")) or 0),
+        ),
     )
 
 
@@ -169,14 +195,15 @@ def source_record(code, card=None, price=None, cardmarket=None):
         or card.get("image")
         or f"https://en.onepiece-cardgame.com/images/cardlist/card/{code}.png"
     )
+    prices = get_price(price)
     return {
         "id": cardmarket.get("id") or card.get("id") or price.get("id") or code,
         "code": code,
         "game": "One Piece",
         "name": str(name).strip(),
         "imageUrl": image_url,
-        "price": get_price(price) if price else None,
-        "priceEur": get_number(price.get("eur")),
+        "priceUsd": prices["usd"],
+        "priceEur": prices["eur"],
         "inventoryPrice": get_number(price.get("inventory_price")),
         "marketPrice": get_number(price.get("market_price")),
         "currency": "USD",
@@ -192,8 +219,8 @@ def source_record(code, card=None, price=None, cardmarket=None):
         "color": ", ".join(cardmarket.get("colors", [])) or price.get("card_color") or card.get("color"),
         "attribute": ", ".join(cardmarket.get("attributes", [])) or price.get("attribute") or card.get("attribute"),
         "class": ", ".join(cardmarket.get("types", [])) or price.get("sub_types") or card.get("class"),
-        "priceDate": price.get("date_scraped"),
-        "priceSource": price.get("src") or "optcgapi",
+        "priceDate": prices["date"],
+        "priceSource": prices["source"],
         "sources": [],
     }
 
@@ -207,11 +234,11 @@ def merge_sources(official_cards, price_cards, cardmarket_cards, cardmarket_pric
         if code:
             official_by_code.setdefault(code, []).append(item)
     for item in price_cards:
-        code = str(item.get("card_set_id") or "").strip().upper()
+        code = normalize_variant_code(item.get("card_set_id") or "")
         if code:
             price_by_code.setdefault(code, []).append(item)
     for code, item in cardmarket_cards.items():
-        base_code = str(code).split("_p", 1)[0].upper()
+        base_code = normalize_variant_code(code)
         cardmarket_by_code.setdefault(base_code, []).append((code, item))
 
     all_codes = set(official_by_code) | set(price_by_code) | set(cardmarket_by_code)
@@ -225,19 +252,17 @@ def merge_sources(official_cards, price_cards, cardmarket_cards, cardmarket_pric
         market_items = cardmarket_by_code.get(code, [])
         market_by_key = {key: item for key, item in market_items}
         keys = set(market_by_key)
-        keys.update(
-            item.get("card_set_id", code).upper()
-            for item in price_items
-            if item.get("card_set_id")
-        )
+        keys.add(code)
         if not keys:
             keys = {code}
         for key in sorted(keys):
             market_item = market_by_key.get(key, {})
-            price_item = next(
-                (item for item in price_items if str(item.get("card_set_id", "")).upper() == key),
-                {},
+            price_item = select_price_item(
+                price_items,
+                key if key != code else None,
             )
+            if not price_item and key == code:
+                price_item = select_price_item(price_items)
             market_price_item = cardmarket_prices.get(key, {})
             combined_price = dict(market_price_item)
             combined_price.update(price_item)
@@ -266,8 +291,7 @@ def merge_sources(official_cards, price_cards, cardmarket_cards, cardmarket_pric
             stats["new_variants"] += 1
         merged[code] = base
     return merged, stats
-
-
+	
 def main():
     community_data = fetch_community_data()
     save_raw_data(community_data)
