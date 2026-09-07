@@ -6,6 +6,7 @@ import requests
 
 MIN_CARDS_THRESHOLD = 500
 OUTPUT_FILE = "cards.json"
+RAW_OUTPUT_FILE = "cards_api_raw.json"
 DEFAULT_PRICE_USD = 0.05
 
 def get_all_cards_from_api():
@@ -14,7 +15,7 @@ def get_all_cards_from_api():
     
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-        "Accept": "application/json, text/plain, */*"
+        "Accept": "application/json, text/plain, /"
     }
     
     all_cards = []
@@ -53,6 +54,14 @@ def main():
         sys.exit(1)
 
     print(f"Total de registros descargados de la API: {len(cards_list)}")
+
+    try:
+        with open(RAW_OUTPUT_FILE, "w", encoding="utf-8") as f:
+            json.dump(cards_list, f, indent=2, ensure_ascii=False)
+        print(f"Respuesta cruda de la API guardada en {RAW_OUTPUT_FILE}.")
+    except (OSError, TypeError) as write_err:
+        print(f"Error al escribir la respuesta cruda de la API: {write_err}")
+        sys.exit(1)
 
     grouped_cards = {}
     variant_counters = {}
