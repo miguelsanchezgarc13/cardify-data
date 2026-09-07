@@ -1,9 +1,9 @@
 name: Run Discover Extra Cards
 
 on:
-  workflow_dispatch: # Esto te permite darle a un botón para ejecutarlo manualmente desde GitHub Actions
+  workflow_dispatch: # Permite ejecutarlo manualmente con el botón en GitHub Actions
   # push:
-  #   branches: [ main ] # Descomenta esto si quieres que se ejecute solo al hacer push a main
+  #   branches: [ main ] # Descomenta si quieres que se ejecute también al hacer push
 
 jobs:
   run-python-script:
@@ -18,14 +18,15 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10' # Cambia la versión si tu script usa otra (ej. 3.11)
+          python-version: '3.10'
 
-      # 3. Instala dependencias si tu proyecto usa un archivo requirements.txt
+      # 3. Instala las dependencias necesarias (incluyendo requests)
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
+          pip install requests
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      # 4. Ejecuta el script que ya está en la raíz
+      # 4. Ejecuta el script que está en la raíz
       - name: Run discover_extra_cards.py
         run: python discover_extra_cards.py
