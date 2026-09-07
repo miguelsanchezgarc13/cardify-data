@@ -1,0 +1,31 @@
+name: Run Discover Extra Cards
+
+on:
+  workflow_dispatch: # Esto te permite darle a un botón para ejecutarlo manualmente desde GitHub Actions
+  # push:
+  #   branches: [ main ] # Descomenta esto si quieres que se ejecute solo al hacer push a main
+
+jobs:
+  run-python-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Descarga/clona tu repositorio en el servidor virtual de GitHub
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Configura Python en el entorno
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10' # Cambia la versión si tu script usa otra (ej. 3.11)
+
+      # 3. Instala dependencias si tu proyecto usa un archivo requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      # 4. Ejecuta el script que ya está en la raíz
+      - name: Run discover_extra_cards.py
+        run: python discover_extra_cards.py
