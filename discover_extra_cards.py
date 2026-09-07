@@ -6,10 +6,18 @@ import sys
 import requests
 
 
-COMMUNITY_JSON_URL = (
-    "https://raw.githubusercontent.com/BepoTCG/OPTCG-Card-List/main/OPTCG.json"
+CARDMARKET_PRICES_URL = (
+    "https://raw.githubusercontent.com/michalkiral/optcg-data-cardmarket/main/"
+    "data/prices/summary.json"
 )
-RAW_OUTPUT_FILE = "bepotcg_extra_cards_raw.json"
+CARDMARKET_CARDS_URL = (
+    "https://raw.githubusercontent.com/michalkiral/optcg-data-cardmarket/main/"
+    "data/index/cards_by_id.json"
+)
+RAW_OUTPUT_FILES = {
+    "cardmarket_prices_raw.json": CARDMARKET_PRICES_URL,
+    "cardmarket_cards_raw.json": CARDMARKET_CARDS_URL,
+}
 
 
 def publish_raw_data():
@@ -30,74 +38,66 @@ def publish_raw_data():
             ],
             check=True,
         )
-        subprocess.run(["git", "add", "--", RAW_OUTPUT_FILE], check=True)
+        subprocess.run(["git", "add", "--", *RAW_OUTPUT_FILES], check=True)
 
         changes = subprocess.run(["git", "diff", "--cached", "--quiet"])
         if changes.returncode == 0:
-            print("No hay cambios en el RAW comunitario; no se crea ningún commit.")
+            print("No hay cambios en los RAW de Cardmarket; no se crea ningún commit.")
             return
 
         subprocess.run(
-            ["git", "commit", "-m", "chore: actualizar datos de optcgdb"],
+            ["git", "commit", "-m", "chore: actualizar datos de cardmarket"],
             check=True,
         )
         subprocess.run(["git", "push", "origin", f"HEAD:{branch_name}"], check=True)
-        print(f"RAW comunitario publicado: {RAW_OUTPUT_FILE}")
+        print(f"RAW de Cardmarket publicados: {', '.join(RAW_OUTPUT_FILES)}")
     except (OSError, subprocess.CalledProcessError) as error:
-        print(f"Error al publicar el RAW comunitario: {error}")
+        print(f"Error al publicar los RAW de Cardmarket: {error}")
         sys.exit(1)
 
 
 def fetch_community_data():
-    print(f"Descargando fuente comunitaria: {COMMUNITY_JSON_URL}")
     headers = {
         "User-Agent": "OPTCG-App-Data-Discovery/1.0",
     }
 
-    try:
-        response = requests.get(
-            COMMUNITY_JSON_URL,
-            headers=headers,
-            timeout=30,
-        )
-        response.raise_for_status()
-    except requests.RequestException as error:
-        print(f"Error de red durante la descarga: {error}")
-        sys.exit(1)
+    downloaded_data = {}
+    for output_file, source_url in RAW_OUTPUT_FILES.items():
+        print(f"Descargando fuente Cardmarket: {source_url}")
+        try:
+            response = requests.get(source_url, headers=headers, timeout=60)
+            response.raise_for_status()
+            downloaded_data[output_file] = response.json()
+        except requests.RequestException as error:
+            print(f"Error de red descargando {output_file}: {error}")
+            sys.exit(1)
+        except ValueError as error:
+            print(f"{output_file} no contiene un JSON válido: {error}")
+            sys.exit(1)
 
-    try:
-        repository_tree = response.json()
-    except ValueError as error:
-        print(f"La respuesta no contiene un JSON válido: {error}")
-        sys.exit(1)
-
-    return repository_tree
+    return downloaded_data
 
 
-def save_raw_data(data):
-    try:
-        with open(RAW_OUTPUT_FILE, "w", encoding="utf-8") as output_file:
-            json.dump(data, output_file, indent=2, ensure_ascii=False)
-    except (OSError, TypeError) as error:
-        print(f"Error al escribir {RAW_OUTPUT_FILE}: {error}")
-        sys.exit(1)
+def save_raw_data(downloaded_data):
+    for output_file, data in downloaded_data.items():
+        try:
+            with open(output_file, "w", encoding="utf-8") as output_handle:
+                json.dump(data, output_handle, indent=2, ensure_ascii=False)
+        except (OSError, TypeError) as error:
+            print(f"Error al escribir {output_file}: {error}")
+            sys.exit(1)
 
-    print(f"Datos crudos guardados en {RAW_OUTPUT_FILE}.")
+        print(f"Datos crudos guardados en {output_file}.")
 
 
 def print_structure_summary(data):
-    if isinstance(data, list):
-        print(f"Registros encontrados: {len(data)}")
-        if data:
-            print("Campos del primer registro:")
-            print(json.dumps(data[0], indent=2, ensure_ascii=False)[:2000])
-        return
-
-    if isinstance(data, dict):
-        print(f"La raíz es un objeto. Claves encontradas: {list(data)[:20]}")
-        return
-
-    print(f"Tipo de raíz no esperado: {type(data).__name__}")
+    for output_file, source_data in data.items():
+        if isinstance(source_data, list):
+            print(f"{output_file}: {len(source_data)} registros.")
+        elif isinstance(source_data, dict):
+            print(f"{output_file}: objeto con {len(source_data)} claves principales.")
+        else:
+            print(f"{output_file}: tipo de raíz {type(source_data).__name__}.")
 
 
 def main():
