@@ -1612,6 +1612,25 @@ def _validate_product_code_mismatches(mapping: dict, products_by_id: dict[int, d
         if product is not None and actual_code == expected_code:
             continue
 
+        # V3.6: the public Cardmarket catalogue occasionally contains a wrong
+        # card number while the product name and expansion are unambiguous. A
+        # name-based mapping is allowed to survive future QA runs only when it
+        # was created by our strict release+exact-name rule and the evidence
+        # still matches the live product. This is not a generic code-mismatch
+        # bypass.
+        name_evidence = entry.get("validationEvidence") or {}
+        if (
+            product is not None
+            and entry.get("source") == "auto-bandai-release-name-unique"
+            and name_evidence.get("rule")
+            == "unique-unused-product-name-in-bandai-release-expansion"
+            and slugify(_product_display_name(product))
+            == name_evidence.get("normalizedName")
+            and product.get("idExpansion")
+            == (name_evidence.get("releaseProfile") or {}).get("value")
+        ):
+            continue
+
         expansion = entry.get("idExpansion")
         legacy_name = normalize_text(entry.get("legacyName"))
         candidates = []
@@ -1958,29 +1977,503 @@ def _bandai_structured_release_codes(records: list[dict]) -> set[str]:
     return codes
 
 
+def _stable_release_expansion_profiles(
+    mapping: dict,
+    products_by_id: dict[int, dict],
+) -> dict[str, dict]:
+    """High-confidence legacy/current mapping evidence: Bandai release -> Cardmarket expansion."""
+    profiles = _build_mapping_profiles(mapping, products_by_id)
+    stable = {}
+    for release_code, counts in profiles["releaseExpansions"].items():
+        dominant = _dominant_counter_value(
+            counts,
+            min_support=3,
+            min_ratio=0.90,
+        )
+        if dominant:
+            stable[release_code] = dominant
+    return stable
+
+
+def validate_mapping_against_bandai(
+    bandai_cards: list[dict],
+    mapping: dict,
+    products_by_id: dict[int, dict],
+) -> dict:
+    """
+    Bandai-authoritative identity firewall.
+
+    A historical mapping key may collide with a *different* current Bandai image
+    after Bandai renumbers P/R suffixes. Exact text equality is therefore not
+    enough. When Bandai gives one structured release and the validated mapping
+    establishes a high-confidence Cardmarket expansion for that release, an
+    exact-key mapping whose product belongs to another expansion is quarantined.
+
+    Generic Bandai buckets ("Promotion card", "Other Product Card") are not
+    quarantined here because they do not provide a structured release identity.
+    """
+    entries = mapping.setdefault("mappings", {})
+    mapping["schemaVersion"] = max(int(mapping.get("schemaVersion") or 0), 4)
+    stable = _stable_release_expansion_profiles(mapping, products_by_id)
+
+    by_source = defaultdict(list)
+    for card in bandai_cards:
+        source_id = canonical_id(card.get("sourcePrintingId"))
+        if source_id:
+            by_source[source_id].append(card)
+
+    quarantined = []
+    for printing_id, records in sorted(by_source.items()):
+        entry = entries.get(printing_id)
+        if not isinstance(entry, dict):
+            continue
+        product_number = get_number(entry.get("productId"))
+        if product_number is None:
+            continue
+
+        release_codes = _bandai_structured_release_codes(records)
+        if len(release_codes) != 1:
+            continue
+        release_code = next(iter(release_codes))
+        profile = stable.get(release_code)
+        if not profile:
+            continue
+
+        product_id = int(product_number)
+        product = products_by_id.get(product_id)
+        current_expansion = (
+            product.get("idExpansion")
+            if isinstance(product, dict)
+            else entry.get("idExpansion")
+        )
+        expected_expansion = profile["value"]
+        if current_expansion == expected_expansion:
+            continue
+
+        old_url = entry.get("url")
+        old_source = entry.get("source")
+        previous_evidence = entry.get("validationEvidence")
+        entry["invalidProductId"] = product_id
+        entry["invalidUrl"] = old_url
+        entry["invalidReason"] = "bandai-release-expansion-mismatch"
+        entry["productId"] = None
+        entry["url"] = None
+        entry["confirmed"] = False
+        entry["source"] = "auto-quarantine-bandai-release"
+        if previous_evidence is not None:
+            entry["previousValidationEvidence"] = previous_evidence
+        entry["validationEvidence"] = {
+            "bandaiReleaseCode": release_code,
+            "releaseProfile": profile,
+            "currentExpansion": current_expansion,
+            "expectedExpansion": expected_expansion,
+            "rule": "bandai-source-id-must-match-release-expansion",
+        }
+
+        quarantined.append(
+            {
+                "printingId": printing_id,
+                "oldProductId": product_id,
+                "oldSource": old_source,
+                "bandaiReleaseCode": release_code,
+                "currentExpansion": current_expansion,
+                "expectedExpansion": expected_expansion,
+                "reason": "bandai-release-expansion-mismatch",
+            }
+        )
+
+    if quarantined:
+        mapping["updatedAt"] = utc_now_iso()
+
+    return {
+        "quarantined": quarantined,
+        "summary": {
+            "quarantined": len(quarantined),
+            "reasonCounts": {
+                "bandai-release-expansion-mismatch": len(quarantined)
+            } if quarantined else {},
+        },
+        "releaseProfiles": stable,
+    }
+
+
+def _card_code_from_product(product: dict) -> str | None:
+    matches = list(CARD_CODE_RE.finditer(str(product.get("name") or "")))
+    if not matches:
+        return None
+    return canonical_id(matches[-1].group(0))
+
+
+def _multiset_similarity(left: Counter, right: Counter) -> dict:
+    keys = set(left) | set(right)
+    intersection = sum(min(left[key], right[key]) for key in keys)
+    missing = sum(max(left[key] - right[key], 0) for key in keys)
+    extra = sum(max(right[key] - left[key], 0) for key in keys)
+    left_total = sum(left.values())
+    right_total = sum(right.values())
+    precision = intersection / right_total if right_total else 0.0
+    recall = intersection / left_total if left_total else 0.0
+    f1 = (
+        2.0 * precision * recall / (precision + recall)
+        if precision + recall
+        else 0.0
+    )
+    return {
+        "intersection": intersection,
+        "missing": missing,
+        "extra": extra,
+        "bandaiTotal": left_total,
+        "cardmarketTotal": right_total,
+        "precision": precision,
+        "recall": recall,
+        "f1": f1,
+        "distance": missing + extra,
+    }
+
+
+def infer_release_expansions_from_catalog(
+    bandai_cards: list[dict],
+    products: list[dict],
+    existing_profiles: dict[str, dict],
+) -> tuple[dict[str, dict], dict[str, dict]]:
+    """
+    Infer *new* Cardmarket expansion IDs from the public catalogue only when the
+    Bandai release multiset has one overwhelmingly better Cardmarket match.
+
+    This intentionally rejects near ties such as English vs Asia-region/Japanese
+    twins. It never overrides an already established release profile.
+    """
+    by_series = defaultdict(list)
+    for card in bandai_cards:
+        series_id = str(card.get("seriesId") or "")
+        if series_id:
+            by_series[series_id].append(card)
+
+    expansion_counts = defaultdict(Counter)
+    for product in products:
+        code = _card_code_from_product(product)
+        if code:
+            expansion_counts[product.get("idExpansion")][code] += 1
+
+    candidates_by_release = defaultdict(list)
+    diagnostics = {}
+
+    for series_id, records in by_series.items():
+        release_codes = _bandai_structured_release_codes(records)
+        if len(release_codes) != 1:
+            continue
+        release_code = next(iter(release_codes))
+        if release_code in existing_profiles:
+            continue
+
+        bandai_counts = Counter(
+            canonical_id(card.get("cardNo"))
+            for card in records
+            if canonical_id(card.get("cardNo"))
+        )
+        if sum(bandai_counts.values()) < 10:
+            continue
+
+        ranked = []
+        for expansion_id, product_counts in expansion_counts.items():
+            score = _multiset_similarity(bandai_counts, product_counts)
+            if score["intersection"] < 10:
+                continue
+            ranked.append(
+                {
+                    "idExpansion": expansion_id,
+                    **score,
+                }
+            )
+        ranked.sort(
+            key=lambda row: (
+                row["f1"],
+                -row["distance"],
+                row["intersection"],
+            ),
+            reverse=True,
+        )
+        if not ranked:
+            continue
+
+        top = ranked[0]
+        second = ranked[1] if len(ranked) > 1 else None
+        margin = top["f1"] - (second["f1"] if second else 0.0)
+        diagnostics[release_code] = {
+            "seriesId": series_id,
+            "top": top,
+            "second": second,
+            "margin": margin,
+        }
+
+        if (
+            top["f1"] >= 0.90
+            and top["precision"] >= 0.90
+            and top["recall"] >= 0.90
+            and margin >= 0.05
+        ):
+            candidates_by_release[release_code].append(
+                {
+                    "value": top["idExpansion"],
+                    "count": top["intersection"],
+                    "total": top["bandaiTotal"],
+                    "ratio": top["recall"],
+                    "precision": top["precision"],
+                    "f1": top["f1"],
+                    "margin": margin,
+                    "source": "bandai-cardmarket-multiset",
+                    "seriesId": series_id,
+                }
+            )
+
+    inferred = {}
+    for release_code, proposals in candidates_by_release.items():
+        expansion_ids = {proposal["value"] for proposal in proposals}
+        if len(expansion_ids) == 1:
+            inferred[release_code] = max(
+                proposals,
+                key=lambda proposal: (
+                    proposal["f1"],
+                    proposal["count"],
+                ),
+            )
+
+    return inferred, diagnostics
+
+
+def _semantic_class_from_printing_id(printing_id: str) -> str:
+    pid = canonical_id(printing_id)
+    if re.search(r"_R\d+(?:_|$)", pid):
+        return "reprint"
+    if re.search(r"_P\d+(?:_|$)", pid):
+        return "parallel"
+    return "base"
+
+
+def _semantic_class_from_bandai_records(
+    printing_id: str,
+    records: list[dict],
+) -> str:
+    if any(bool(record.get("isReprint")) for record in records):
+        return "reprint"
+    if any(bool(record.get("isParallel")) for record in records):
+        return "parallel"
+    return _semantic_class_from_printing_id(printing_id)
+
+
+def _product_expansion_for_mapping_entry(
+    entry: dict,
+    products_by_id: dict[int, dict],
+) -> int | None:
+    product_number = get_number(entry.get("productId"))
+    if product_number is None:
+        return None
+    product = products_by_id.get(int(product_number))
+    if isinstance(product, dict):
+        return product.get("idExpansion")
+    return entry.get("idExpansion")
+
+
+def _migrate_semantic_release_aliases(
+    bandai_by_source: dict[str, list[dict]],
+    mapping: dict,
+    products_by_id: dict[int, dict],
+    release_profiles: dict[str, dict],
+) -> list[dict]:
+    """
+    Repair suffix drift without guessing suffix numbers.
+
+    A historical mapped P/R key may no longer exist in current Bandai, or may
+    now live in Bandai's generic Promotion/Other bucket. We move its Cardmarket
+    product only when:
+      * current Bandai gives one explicit structured release,
+      * the product belongs to that release's trusted Cardmarket expansion,
+      * historical and current semantic classes agree (parallel/reprint/base),
+      * exactly one donor exists, and
+      * the donor is orphaned or generic in current Bandai.
+
+    Explicit current Bandai releases are never stolen from.
+    """
+    entries = mapping.setdefault("mappings", {})
+    unresolved = []
+
+    for printing_id, records in sorted(bandai_by_source.items()):
+        if not records:
+            continue
+        cm_key, _ = resolve_cardmarket_mapping_key_for_bandai_record(
+            records[0], entries
+        )
+        if cm_key is not None:
+            continue
+
+        release_codes = _bandai_structured_release_codes(records)
+        if len(release_codes) != 1:
+            continue
+        release_code = next(iter(release_codes))
+        profile = release_profiles.get(release_code)
+        if not profile:
+            continue
+
+        unresolved.append(
+            {
+                "printingId": printing_id,
+                "baseCode": base_code(printing_id),
+                "releaseCode": release_code,
+                "idExpansion": profile["value"],
+                "releaseProfile": profile,
+                "semanticClass": _semantic_class_from_bandai_records(
+                    printing_id, records
+                ),
+            }
+        )
+
+    proposals = []
+    for target in unresolved:
+        donors = []
+        for donor_key, donor_entry in entries.items():
+            if donor_key == target["printingId"]:
+                continue
+            if not isinstance(donor_entry, dict):
+                continue
+            product_number = get_number(donor_entry.get("productId"))
+            if product_number is None:
+                continue
+            if base_code(donor_key) != target["baseCode"]:
+                continue
+            if (
+                _product_expansion_for_mapping_entry(
+                    donor_entry, products_by_id
+                )
+                != target["idExpansion"]
+            ):
+                continue
+            if (
+                _semantic_class_from_printing_id(donor_key)
+                != target["semanticClass"]
+            ):
+                continue
+
+            donor_records = bandai_by_source.get(canonical_id(donor_key), [])
+            donor_release_codes = (
+                _bandai_structured_release_codes(donor_records)
+                if donor_records
+                else set()
+            )
+            # Only orphan/generic donors. Never steal from another explicit
+            # current Bandai release.
+            if donor_release_codes:
+                continue
+
+            donors.append(
+                {
+                    "mappingKey": donor_key,
+                    "productId": int(product_number),
+                }
+            )
+
+        if len(donors) == 1:
+            proposals.append({**target, "donor": donors[0]})
+
+    product_owners = defaultdict(list)
+    for proposal in proposals:
+        product_owners[proposal["donor"]["productId"]].append(proposal)
+
+    migrated = []
+    for proposal in proposals:
+        product_id = proposal["donor"]["productId"]
+        if len(product_owners[product_id]) != 1:
+            continue
+
+        printing_id = proposal["printingId"]
+        donor_key = proposal["donor"]["mappingKey"]
+        donor = entries[donor_key]
+        target = entries.get(printing_id)
+        if not isinstance(target, dict):
+            target = {}
+            entries[printing_id] = target
+
+        previous_legacy_set = target.get("legacySet")
+        if (
+            previous_legacy_set
+            and _structured_release_code(previous_legacy_set)
+            != proposal["releaseCode"]
+        ):
+            target.setdefault("previousLegacySet", previous_legacy_set)
+
+        if target.get("invalidProductId") is not None:
+            target.setdefault("supersededProductId", target.get("invalidProductId"))
+            target.setdefault("supersededUrl", target.get("invalidUrl"))
+
+        product = products_by_id[product_id]
+        target["legacySet"] = proposal["releaseCode"]
+        target["productId"] = product_id
+        target["url"] = (
+            donor.get("url")
+            or CARDMARKET_PRODUCT_REDIRECT.format(product_id=product_id)
+        )
+        target["confirmed"] = False
+        target["source"] = "auto-bandai-release-semantic-alias"
+        target.setdefault("addedAt", utc_now_iso())
+        target["productName"] = product.get("name")
+        target["idExpansion"] = product.get("idExpansion")
+        target["idMetacard"] = product.get("idMetacard")
+        target["dateAdded"] = product.get("dateAdded")
+        target["validationEvidence"] = {
+            "bandaiReleaseCode": proposal["releaseCode"],
+            "releaseProfile": proposal["releaseProfile"],
+            "donorMappingKey": donor_key,
+            "semanticClass": proposal["semanticClass"],
+            "rule": "unique-semantic-alias-in-bandai-release-expansion",
+        }
+        for field in ("invalidProductId", "invalidUrl", "invalidReason"):
+            target.pop(field, None)
+
+        donor["previousProductId"] = product_id
+        donor["previousUrl"] = donor.get("url")
+        donor["productId"] = None
+        donor["url"] = None
+        donor["confirmed"] = False
+        donor["source"] = "alias-moved-to-current-bandai-id"
+        donor["aliasMovedTo"] = printing_id
+
+        migrated.append(
+            {
+                "printingId": printing_id,
+                "productId": product_id,
+                "donorMappingKey": donor_key,
+                "bandaiReleaseCode": proposal["releaseCode"],
+                "semanticClass": proposal["semanticClass"],
+            }
+        )
+
+    if migrated:
+        mapping["updatedAt"] = utc_now_iso()
+    return migrated
+
+
 def _auto_map_by_bandai_release(
     bandai_by_base: dict,
     mapping: dict,
     products_by_base: dict,
     products_by_id: dict[int, dict],
     mapped_product_ids: set[int],
+    release_profiles: dict[str, dict] | None = None,
 ) -> list[dict]:
     """
     Resolve unmapped printings only when Bandai supplies one structured release,
-    the validated mapping establishes a high-confidence Cardmarket expansion for
-    that release, and exactly one unused Cardmarket product is available.
+    a trusted Cardmarket expansion is known for that release, and exactly one
+    unused Cardmarket product with the exact card code is available.
 
     Proposals are accepted only one-to-one. If two Bandai printings compete for
     the same Cardmarket idProduct, neither is mapped. This deliberately avoids
     inferring V.1/V.2 from order, dates or ascending product IDs.
     """
     entries = mapping.setdefault("mappings", {})
-    profiles = _build_mapping_profiles(mapping, products_by_id)
-    stable_release_expansion = {}
-    for release_code, counts in profiles["releaseExpansions"].items():
-        dominant = _dominant_counter_value(counts, min_support=3, min_ratio=0.90)
-        if dominant:
-            stable_release_expansion[release_code] = dominant
+    stable_release_expansion = (
+        dict(release_profiles)
+        if release_profiles is not None
+        else _stable_release_expansion_profiles(mapping, products_by_id)
+    )
 
     proposals = []
     for base in sorted(bandai_by_base):
@@ -2023,7 +2516,6 @@ def _auto_map_by_bandai_release(
                 }
             )
 
-    # One-to-one safeguard across the whole catalogue.
     proposal_owners = defaultdict(list)
     for proposal in proposals:
         proposal_owners[int(proposal["candidate"]["idProduct"])].append(proposal)
@@ -2043,9 +2535,15 @@ def _auto_map_by_bandai_release(
             entries[printing_id] = entry
 
         previous_legacy_set = entry.get("legacySet")
-        if previous_legacy_set and _structured_release_code(previous_legacy_set) != release_code:
+        if (
+            previous_legacy_set
+            and _structured_release_code(previous_legacy_set) != release_code
+        ):
             entry.setdefault("previousLegacySet", previous_legacy_set)
-        # Bandai is authoritative for the physical release identity.
+        if entry.get("invalidProductId") is not None:
+            entry.setdefault("supersededProductId", entry.get("invalidProductId"))
+            entry.setdefault("supersededUrl", entry.get("invalidUrl"))
+
         entry["legacySet"] = release_code
         entry["productId"] = product_id
         entry["url"] = candidate.get("website")
@@ -2080,6 +2578,136 @@ def _auto_map_by_bandai_release(
     return accepted
 
 
+def _auto_map_by_bandai_release_name(
+    bandai_by_source: dict[str, list[dict]],
+    mapping: dict,
+    products: list[dict],
+    products_by_id: dict[int, dict],
+    mapped_product_ids: set[int],
+    release_profiles: dict[str, dict],
+) -> list[dict]:
+    """
+    Secondary typo-safe fallback inside an already trusted expansion.
+
+    It is used only when one unused Cardmarket product has exactly the same
+    normalized card name as Bandai. One-to-one ownership is still mandatory.
+    This handles catalogue code typos without fuzzy matching.
+    """
+    entries = mapping.setdefault("mappings", {})
+    products_by_expansion_name = defaultdict(list)
+    for product in products:
+        key = (
+            product.get("idExpansion"),
+            slugify(_product_display_name(product)),
+        )
+        products_by_expansion_name[key].append(product)
+
+    proposals = []
+    for printing_id, records in sorted(bandai_by_source.items()):
+        if not records:
+            continue
+        cm_key, _ = resolve_cardmarket_mapping_key_for_bandai_record(
+            records[0], entries
+        )
+        if cm_key is not None:
+            continue
+
+        release_codes = _bandai_structured_release_codes(records)
+        if len(release_codes) != 1:
+            continue
+        release_code = next(iter(release_codes))
+        profile = release_profiles.get(release_code)
+        if not profile:
+            continue
+
+        normalized_name = slugify(records[0].get("name"))
+        if not normalized_name:
+            continue
+
+        candidates = [
+            product
+            for product in products_by_expansion_name.get(
+                (profile["value"], normalized_name),
+                [],
+            )
+            if int(product["idProduct"]) not in mapped_product_ids
+        ]
+        if len(candidates) != 1:
+            continue
+
+        proposals.append(
+            {
+                "printingId": printing_id,
+                "releaseCode": release_code,
+                "releaseProfile": profile,
+                "normalizedName": normalized_name,
+                "candidate": candidates[0],
+            }
+        )
+
+    proposal_owners = defaultdict(list)
+    for proposal in proposals:
+        proposal_owners[int(proposal["candidate"]["idProduct"])].append(proposal)
+
+    accepted = []
+    for proposal in proposals:
+        product = proposal["candidate"]
+        product_id = int(product["idProduct"])
+        if len(proposal_owners[product_id]) != 1:
+            continue
+
+        printing_id = proposal["printingId"]
+        entry = entries.get(printing_id)
+        if not isinstance(entry, dict):
+            entry = {}
+            entries[printing_id] = entry
+
+        previous_legacy_set = entry.get("legacySet")
+        if (
+            previous_legacy_set
+            and _structured_release_code(previous_legacy_set)
+            != proposal["releaseCode"]
+        ):
+            entry.setdefault("previousLegacySet", previous_legacy_set)
+        if entry.get("invalidProductId") is not None:
+            entry.setdefault("supersededProductId", entry.get("invalidProductId"))
+            entry.setdefault("supersededUrl", entry.get("invalidUrl"))
+
+        entry["legacySet"] = proposal["releaseCode"]
+        entry["productId"] = product_id
+        entry["url"] = product.get("website")
+        entry["confirmed"] = False
+        entry["source"] = "auto-bandai-release-name-unique"
+        entry.setdefault("addedAt", utc_now_iso())
+        entry["productName"] = product.get("name")
+        entry["idExpansion"] = product.get("idExpansion")
+        entry["idMetacard"] = product.get("idMetacard")
+        entry["dateAdded"] = product.get("dateAdded")
+        entry["validationEvidence"] = {
+            "bandaiReleaseCode": proposal["releaseCode"],
+            "releaseProfile": proposal["releaseProfile"],
+            "normalizedName": proposal["normalizedName"],
+            "rule": "unique-unused-product-name-in-bandai-release-expansion",
+        }
+        for field in ("invalidProductId", "invalidUrl", "invalidReason"):
+            entry.pop(field, None)
+
+        mapped_product_ids.add(product_id)
+        accepted.append(
+            {
+                "printingId": printing_id,
+                "productId": product_id,
+                "reason": "bandai-release-name-unique",
+                "bandaiReleaseCode": proposal["releaseCode"],
+                "idExpansion": product.get("idExpansion"),
+            }
+        )
+
+    if accepted:
+        mapping["updatedAt"] = utc_now_iso()
+    return accepted
+
+
 def auto_map_and_build_review(
     bandai_cards: list[dict],
     mapping: dict,
@@ -2087,6 +2715,8 @@ def auto_map_and_build_review(
     allow_auto_map: bool,
 ) -> dict:
     mapping_entries = mapping.setdefault("mappings", {})
+    products_by_id = {int(product["idProduct"]): product for product in products}
+
     products_by_base = defaultdict(list)
     for product in products:
         product_name = str(product.get("name") or "")
@@ -2094,35 +2724,100 @@ def auto_map_and_build_review(
             products_by_base[canonical_id(match.group(0))].append(product)
 
     bandai_by_base = defaultdict(list)
+    bandai_by_source = defaultdict(list)
     for card in bandai_cards:
         source_id = canonical_id(card.get("sourcePrintingId"))
+        if not source_id:
+            continue
         bandai_by_base[base_code(source_id)].append((source_id, card))
+        bandai_by_source[source_id].append(card)
+
+    existing_profiles = _stable_release_expansion_profiles(
+        mapping, products_by_id
+    )
+    inferred_profiles, inference_diagnostics = (
+        infer_release_expansions_from_catalog(
+            bandai_cards,
+            products,
+            existing_profiles,
+        )
+    )
+    release_profiles = dict(existing_profiles)
+    for release_code, profile in inferred_profiles.items():
+        release_profiles.setdefault(release_code, profile)
 
     auto_added = []
-    review_items = []
-
-    mapped_product_ids = {
-        int(e.get("productId"))
-        for e in mapping_entries.values()
-        if isinstance(e, dict) and get_number(e.get("productId")) is not None
-    }
+    semantic_aliases = []
 
     if allow_auto_map:
-        auto_added.extend(
-            _auto_map_by_bandai_release(
+        # One pass is enough in normal data, but a second fixed-point pass makes
+        # the behavior deterministic if an alias move frees a unique candidate.
+        for _ in range(3):
+            changed = 0
+
+            moved = _migrate_semantic_release_aliases(
+                bandai_by_source,
+                mapping,
+                products_by_id,
+                release_profiles,
+            )
+            semantic_aliases.extend(moved)
+            changed += len(moved)
+
+            mapped_product_ids = {
+                int(entry.get("productId"))
+                for entry in mapping_entries.values()
+                if (
+                    isinstance(entry, dict)
+                    and get_number(entry.get("productId")) is not None
+                )
+            }
+
+            exact_added = _auto_map_by_bandai_release(
                 bandai_by_base,
                 mapping,
                 products_by_base,
-                {int(p["idProduct"]): p for p in products},
+                products_by_id,
                 mapped_product_ids,
+                release_profiles=release_profiles,
             )
+            auto_added.extend(exact_added)
+            changed += len(exact_added)
+
+            name_added = _auto_map_by_bandai_release_name(
+                bandai_by_source,
+                mapping,
+                products,
+                products_by_id,
+                mapped_product_ids,
+                release_profiles,
+            )
+            auto_added.extend(name_added)
+            changed += len(name_added)
+
+            if not changed:
+                break
+
+    review_items = []
+
+    mapped_product_ids = {
+        int(entry.get("productId"))
+        for entry in mapping_entries.values()
+        if (
+            isinstance(entry, dict)
+            and get_number(entry.get("productId")) is not None
         )
+    }
 
     for base in sorted(bandai_by_base):
         source_ids = sorted({source_id for source_id, _ in bandai_by_base[base]})
         missing_ids = []
         for source_id in source_ids:
-            examples = [c for sid, c in bandai_by_base[base] if sid == source_id]
+            examples = [
+                card
+                for sid, card in bandai_by_base[base]
+                if sid == source_id
+            ]
             representative = examples[0]
             cm_key, _ = resolve_cardmarket_mapping_key_for_bandai_record(
                 representative, mapping_entries
@@ -2135,7 +2830,9 @@ def auto_map_and_build_review(
 
         candidates = products_by_base.get(base, [])
         unmapped_candidate_products = [
-            p for p in candidates if int(p["idProduct"]) not in mapped_product_ids
+            product
+            for product in candidates
+            if int(product["idProduct"]) not in mapped_product_ids
         ]
 
         # Truly trivial only: one Bandai physical printing in the whole card
@@ -2160,16 +2857,48 @@ def auto_map_and_build_review(
                 "dateAdded": product.get("dateAdded"),
             }
             mapped_product_ids.add(int(product["idProduct"]))
-            auto_added.append({"printingId": printing_id, "productId": product["idProduct"]})
+            auto_added.append(
+                {
+                    "printingId": printing_id,
+                    "productId": product["idProduct"],
+                    "reason": "exact-card-code-family-unique",
+                }
+            )
             continue
 
         for printing_id in missing_ids:
             bandai_examples = [
-                c for source_id, c in bandai_by_base[base]
+                card
+                for source_id, card in bandai_by_base[base]
                 if source_id == printing_id
             ]
+
+            candidate_union = {
+                int(product["idProduct"]): product
+                for product in candidates
+            }
+            normalized_name = (
+                slugify(bandai_examples[0].get("name"))
+                if bandai_examples
+                else ""
+            )
+            if normalized_name:
+                release_codes = _bandai_structured_release_codes(
+                    bandai_examples
+                )
+                if len(release_codes) == 1:
+                    profile = release_profiles.get(next(iter(release_codes)))
+                    if profile:
+                        for product in products:
+                            if (
+                                product.get("idExpansion") == profile["value"]
+                                and slugify(_product_display_name(product))
+                                == normalized_name
+                            ):
+                                candidate_union[int(product["idProduct"])] = product
+
             candidate_rows = []
-            for product in candidates[:25]:
+            for product in list(candidate_union.values())[:25]:
                 candidate_rows.append(
                     {
                         "idProduct": product.get("idProduct"),
@@ -2179,8 +2908,14 @@ def auto_map_and_build_review(
                         "dateAdded": product.get("dateAdded"),
                         "website": product.get("website"),
                         "version": (
-                            int(VERSION_RE.search(str(product.get("name") or "")).group(1))
-                            if VERSION_RE.search(str(product.get("name") or ""))
+                            int(
+                                VERSION_RE.search(
+                                    str(product.get("name") or "")
+                                ).group(1)
+                            )
+                            if VERSION_RE.search(
+                                str(product.get("name") or "")
+                            )
                             else None
                         ),
                     }
@@ -2190,13 +2925,21 @@ def auto_map_and_build_review(
                 {
                     "printingId": printing_id,
                     "baseCode": base,
-                    "name": bandai_examples[0].get("name") if bandai_examples else None,
-                    "imageUrl": bandai_examples[0].get("imageUrl") if bandai_examples else None,
+                    "name": (
+                        bandai_examples[0].get("name")
+                        if bandai_examples
+                        else None
+                    ),
+                    "imageUrl": (
+                        bandai_examples[0].get("imageUrl")
+                        if bandai_examples
+                        else None
+                    ),
                     "bandaiReleases": sorted(
                         {
-                            x.get("seriesLabel")
-                            for x in bandai_examples
-                            if x.get("seriesLabel")
+                            card.get("seriesLabel")
+                            for card in bandai_examples
+                            if card.get("seriesLabel")
                         }
                     ),
                     "legacyMapping": mapping_entries.get(printing_id),
@@ -2208,12 +2951,15 @@ def auto_map_and_build_review(
                 }
             )
 
-    if auto_added:
+    if auto_added or semantic_aliases:
         mapping["updatedAt"] = utc_now_iso()
 
     return {
         "generatedAt": utc_now_iso(),
         "autoMappingsAdded": auto_added,
+        "semanticAliasesMoved": semantic_aliases,
+        "inferredReleaseProfiles": inferred_profiles,
+        "inferenceDiagnostics": inference_diagnostics,
         "needsReview": review_items,
     }
 
@@ -3000,6 +3746,172 @@ def run_self_test() -> None:
     assert "OP98-020_R1" not in release_mapping["mappings"]
     assert any(x["printingId"] == "OP98-010_R1" for x in release_review["autoMappingsAdded"])
 
+    # V3.6 regression: an exact historical suffix is NOT authoritative when
+    # current Bandai places that suffix in another structured release.
+    identity_products = {}
+    identity_mapping = {"schemaVersion": 3, "mappings": {}}
+    for product_id, code in (
+        (4001, "ST97-001"),
+        (4002, "ST97-002"),
+        (4003, "ST97-003"),
+    ):
+        product = normalize_cardmarket_product({
+            "idProduct": product_id,
+            "name": f"Anchor ({code})",
+            "idCategory": 1621,
+            "idExpansion": 700,
+            "idMetacard": 24000 + product_id,
+        })
+        identity_products[product_id] = product
+        identity_mapping["mappings"][code] = {
+            "productId": product_id,
+            "legacySet": "ST97",
+            "legacyName": "Anchor",
+        }
+    collision_product = normalize_cardmarket_product({
+        "idProduct": 4010,
+        "name": "Collision (OP96-010)",
+        "idCategory": 1621,
+        "idExpansion": 701,
+        "idMetacard": 28010,
+    })
+    identity_products[4010] = collision_product
+    identity_mapping["mappings"]["OP96-010_P1"] = {
+        "productId": 4010,
+        "legacySet": "misc-promos",
+        "legacyName": "Collision",
+    }
+    identity_cards = [{
+        "cardNo": "OP96-010",
+        "sourcePrintingId": "OP96-010_P1",
+        "name": "Collision",
+        "seriesId": "569097",
+        "seriesLabel": "STARTER DECK [ST-97]",
+        "cardSetsText": "STARTER DECK [ST-97]",
+        "isParallel": True,
+        "isReprint": False,
+    }]
+    identity_result = validate_mapping_against_bandai(
+        identity_cards,
+        identity_mapping,
+        identity_products,
+    )
+    assert identity_mapping["mappings"]["OP96-010_P1"]["productId"] is None
+    assert identity_result["summary"]["quarantined"] == 1
+
+    # V3.6 regression: suffix drift may migrate an orphan historical parallel
+    # only when semantic class + structured release + product are one-to-one.
+    alias_products = list(identity_products.values())
+    alias_product = normalize_cardmarket_product({
+        "idProduct": 4020,
+        "name": "Alias Target (OP96-020)",
+        "idCategory": 1621,
+        "idExpansion": 700,
+        "idMetacard": 28020,
+    })
+    alias_products.append(alias_product)
+    alias_mapping = {
+        "schemaVersion": 4,
+        "mappings": {
+            "ST97-001": {
+                "productId": 4001, "legacySet": "ST97", "legacyName": "Anchor",
+            },
+            "ST97-002": {
+                "productId": 4002, "legacySet": "ST97", "legacyName": "Anchor",
+            },
+            "ST97-003": {
+                "productId": 4003, "legacySet": "ST97", "legacyName": "Anchor",
+            },
+            "OP96-020_P1": {
+                "productId": 4020,
+                "legacySet": "ST97",
+                "legacyName": "Alias Target",
+            },
+        },
+    }
+    alias_cards = [{
+        "cardNo": "OP96-020",
+        "sourcePrintingId": "OP96-020_P2",
+        "name": "Alias Target",
+        "seriesId": "569097",
+        "seriesLabel": "STARTER DECK [ST-97]",
+        "cardSetsText": "STARTER DECK [ST-97]",
+        "isParallel": True,
+        "isReprint": False,
+    }]
+    alias_review = auto_map_and_build_review(
+        alias_cards,
+        alias_mapping,
+        alias_products,
+        allow_auto_map=True,
+    )
+    assert alias_mapping["mappings"]["OP96-020_P2"]["productId"] == 4020
+    assert alias_mapping["mappings"]["OP96-020_P1"]["productId"] is None
+    assert alias_review["semanticAliasesMoved"][0]["donorMappingKey"] == "OP96-020_P1"
+
+    # V3.6 regression: a new release expansion may be learned from the public
+    # catalogue only with a large similarity margin. Near-tied twins stay
+    # unresolved (e.g. English vs Asia-region/Japanese catalogues).
+    infer_cards = []
+    infer_products = []
+    for number in range(1, 11):
+        code = f"OP95-{number:03d}"
+        infer_cards.append({
+            "cardNo": code,
+            "sourcePrintingId": code,
+            "name": f"Infer {number}",
+            "seriesId": "569096",
+            "seriesLabel": "STARTER DECK [ST-96]",
+            "cardSetsText": "STARTER DECK [ST-96]",
+        })
+        infer_products.append(normalize_cardmarket_product({
+            "idProduct": 5000 + number,
+            "name": f"Infer {number} ({code})",
+            "idCategory": 1621,
+            "idExpansion": 702,
+            "idMetacard": 35000 + number,
+        }))
+    infer_products.append(normalize_cardmarket_product({
+        "idProduct": 5099,
+        "name": "Infer 1 (OP95-001)",
+        "idCategory": 1621,
+        "idExpansion": 703,
+        "idMetacard": 35001,
+    }))
+    inferred_profiles, _ = infer_release_expansions_from_catalog(
+        infer_cards,
+        [product for product in infer_products if product],
+        {},
+    )
+    assert inferred_profiles["ST96"]["value"] == 702
+
+    twin_cards = []
+    twin_products = []
+    for number in range(1, 11):
+        code = f"OP94-{number:03d}"
+        twin_cards.append({
+            "cardNo": code,
+            "sourcePrintingId": code,
+            "name": f"Twin {number}",
+            "seriesId": "569095",
+            "seriesLabel": "STARTER DECK [ST-95]",
+            "cardSetsText": "STARTER DECK [ST-95]",
+        })
+        for expansion_id, offset in ((704, 0), (705, 100)):
+            twin_products.append(normalize_cardmarket_product({
+                "idProduct": 5100 + offset + number,
+                "name": f"Twin {number} ({code})",
+                "idCategory": 1621,
+                "idExpansion": expansion_id,
+                "idMetacard": 36000 + number,
+            }))
+    twin_profiles, _ = infer_release_expansions_from_catalog(
+        twin_cards,
+        [product for product in twin_products if product],
+        {},
+    )
+    assert "ST95" not in twin_profiles
+
     # Regression: current Bandai query contract is series=<id> first.
     class _FakeResponse:
         def __init__(self, text):
@@ -3092,6 +4004,11 @@ def main() -> None:
     )
     enrich_existing_mapping(mapping, products_by_id)
     mapping_validation = validate_and_repair_mapping(mapping, products_by_id)
+    bandai_identity_validation = validate_mapping_against_bandai(
+        bandai_cards,
+        mapping,
+        products_by_id,
+    )
 
     review = auto_map_and_build_review(
         bandai_cards,
@@ -3154,6 +4071,10 @@ def main() -> None:
             "validationQuarantined": mapping_validation.get("quarantined", []),
             "validationSummary": mapping_validation.get("summary", {}),
             "duplicateProductGroups": mapping_validation.get("duplicateProductGroups", []),
+            "bandaiIdentityQuarantined": bandai_identity_validation.get("quarantined", []),
+            "bandaiIdentitySummary": bandai_identity_validation.get("summary", {}),
+            "semanticAliasesMoved": len(review.get("semanticAliasesMoved", [])),
+            "inferredReleaseProfiles": review.get("inferredReleaseProfiles", {}),
             "needsReview": len(review.get("needsReview", [])),
         },
         "images": {
@@ -3183,10 +4104,19 @@ def main() -> None:
     print(f"- Con precio Cardmarket actual: {catalogue_stats['printingsWithCardmarketPrice']}")
     print(f"- Mappings pendientes de revisión: {len(review.get('needsReview', []))}")
     print(f"- Auto mappings añadidos: {len(review.get('autoMappingsAdded', []))}")
+    print(f"- Alias semánticos migrados: {len(review.get('semanticAliasesMoved', []))}")
     print(
         "- Mapping QA: "
         f"{len(mapping_validation.get('repaired', []))} reparados / "
         f"{len(mapping_validation.get('quarantined', []))} en cuarentena"
+    )
+    print(
+        "- QA identidad Bandai: "
+        f"{len(bandai_identity_validation.get('quarantined', []))} en cuarentena"
+    )
+    print(
+        "- Perfiles release inferidos: "
+        f"{len(review.get('inferredReleaseProfiles', {}))}"
     )
     print(f"- Price Guide createdAt: {price_created_at}")
 
