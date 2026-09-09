@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-09-09T17:56:23+00:00",
+  "generatedAt": "2026-09-09T19:16:23+00:00",
   "schemaVersion": 3,
   "sources": {
     "bandai": {
       "url": "https://en.onepiece-cardgame.com/cardlist/",
-      "fetchedAt": "2026-09-09T17:56:09+00:00",
+      "fetchedAt": "2026-09-09T19:16:07+00:00",
       "records": 4844,
       "series": 60
     },
@@ -21,8 +21,8 @@
   },
   "mapping": {
     "bootstrappedThisRun": false,
-    "entries": 4833,
-    "autoMappingsAdded": 225,
+    "entries": 4946,
+    "autoMappingsAdded": 124,
     "validationRepairs": [],
     "validationQuarantined": [],
     "validationSummary": {
@@ -38,7 +38,597 @@
       "reasonCounts": {}
     },
     "duplicateProductGroups": [],
-    "needsReview": 661
+    "bandaiIdentityQuarantined": [
+      {
+        "printingId": "EB01-015_P3",
+        "oldProductId": 842333,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "ST24",
+        "currentExpansion": 5303,
+        "expectedExpansion": 6151,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP01-025_P2",
+        "oldProductId": 719318,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "ST10",
+        "currentExpansion": 5262,
+        "expectedExpansion": 5380,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP01-029_P3",
+        "oldProductId": 768038,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB01",
+        "currentExpansion": 5303,
+        "expectedExpansion": 5805,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP01-033_P3",
+        "oldProductId": 752041,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB01",
+        "currentExpansion": 5262,
+        "expectedExpansion": 5805,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP01-035_P2",
+        "oldProductId": 729806,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "OP07",
+        "currentExpansion": 5303,
+        "expectedExpansion": 5586,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP01-039_P1",
+        "oldProductId": 696705,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB02",
+        "currentExpansion": 5303,
+        "expectedExpansion": 6242,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP01-041_P3",
+        "oldProductId": 787471,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB01",
+        "currentExpansion": 5262,
+        "expectedExpansion": 5805,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP02-005_P1",
+        "oldProductId": 768042,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB02",
+        "currentExpansion": 5303,
+        "expectedExpansion": 6242,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP02-034_P1",
+        "oldProductId": 717496,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "ST11",
+        "currentExpansion": 5262,
+        "expectedExpansion": 5427,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP02-099_P2",
+        "oldProductId": 708382,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "OP04",
+        "currentExpansion": 5262,
+        "expectedExpansion": 5365,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP03-055_P3",
+        "oldProductId": 799688,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB01",
+        "currentExpansion": 5303,
+        "expectedExpansion": 5805,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP03-112_P4",
+        "oldProductId": 794885,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "OP08",
+        "currentExpansion": 5303,
+        "expectedExpansion": 5610,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP03-116_P5",
+        "oldProductId": 794716,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB01",
+        "currentExpansion": 5262,
+        "expectedExpansion": 5805,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP03-121_P3",
+        "oldProductId": 768048,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB01",
+        "currentExpansion": 5303,
+        "expectedExpansion": 5805,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP04-032_P3",
+        "oldProductId": 823243,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB01",
+        "currentExpansion": 5303,
+        "expectedExpansion": 5805,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP04-095_P3",
+        "oldProductId": 799682,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB01",
+        "currentExpansion": 5303,
+        "expectedExpansion": 5805,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP05-004_P1",
+        "oldProductId": 823245,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB02",
+        "currentExpansion": 5303,
+        "expectedExpansion": 6242,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP05-006_P3",
+        "oldProductId": 873873,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB01",
+        "currentExpansion": 5303,
+        "expectedExpansion": 5805,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP05-007_P3",
+        "oldProductId": 866566,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB01",
+        "currentExpansion": 5303,
+        "expectedExpansion": 5805,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP05-030_P1",
+        "oldProductId": 815152,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB02",
+        "currentExpansion": 5267,
+        "expectedExpansion": 6242,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP05-036_P2",
+        "oldProductId": 787434,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB02",
+        "currentExpansion": 5262,
+        "expectedExpansion": 6242,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP05-060_P4",
+        "oldProductId": 814902,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "EB02",
+        "currentExpansion": 5303,
+        "expectedExpansion": 6028,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP05-067_P4",
+        "oldProductId": 841119,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "OP09",
+        "currentExpansion": 5262,
+        "expectedExpansion": 5755,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP05-076_P1",
+        "oldProductId": 828349,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "ST18",
+        "currentExpansion": 5303,
+        "expectedExpansion": 5750,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP05-098_P2",
+        "oldProductId": 814903,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "EB02",
+        "currentExpansion": 5303,
+        "expectedExpansion": 6028,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP05-114_P3",
+        "oldProductId": 799686,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB01",
+        "currentExpansion": 5303,
+        "expectedExpansion": 5805,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP05-119_P7",
+        "oldProductId": 830642,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "OP11",
+        "currentExpansion": 5303,
+        "expectedExpansion": 6033,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP06-038_P3",
+        "oldProductId": 799683,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB01",
+        "currentExpansion": 5303,
+        "expectedExpansion": 5805,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP06-047_P2",
+        "oldProductId": 806197,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB02",
+        "currentExpansion": 6684,
+        "expectedExpansion": 6242,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP06-076_P2",
+        "oldProductId": 806199,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB02",
+        "currentExpansion": 6684,
+        "expectedExpansion": 6242,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP07-021_P2",
+        "oldProductId": 808730,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "OP10",
+        "currentExpansion": 5262,
+        "expectedExpansion": 5974,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP07-040_P3",
+        "oldProductId": 848333,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB02",
+        "currentExpansion": 5303,
+        "expectedExpansion": 6242,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP07-109_P2",
+        "oldProductId": 787438,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "OP08",
+        "currentExpansion": 5262,
+        "expectedExpansion": 5610,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP07-116_P1",
+        "oldProductId": 874869,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "ST28",
+        "currentExpansion": 5303,
+        "expectedExpansion": 6147,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP09-013_P2",
+        "oldProductId": 840743,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "OP12",
+        "currentExpansion": 5262,
+        "expectedExpansion": 6186,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP09-078_P1",
+        "oldProductId": 852454,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "ST26",
+        "currentExpansion": 6242,
+        "expectedExpansion": 6149,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "OP14-029_P1",
+        "oldProductId": 867183,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "OP16",
+        "currentExpansion": 5303,
+        "expectedExpansion": 6457,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "P-044",
+        "oldProductId": 766649,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB02",
+        "currentExpansion": 5230,
+        "expectedExpansion": 6242,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "P-053_P3",
+        "oldProductId": 768124,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB01",
+        "currentExpansion": 5230,
+        "expectedExpansion": 5805,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "P-055_P3",
+        "oldProductId": 768126,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB01",
+        "currentExpansion": 5230,
+        "expectedExpansion": 5805,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "P-063",
+        "oldProductId": 766650,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB02",
+        "currentExpansion": 5230,
+        "expectedExpansion": 6242,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "P-063_P1",
+        "oldProductId": 787454,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB02",
+        "currentExpansion": 5262,
+        "expectedExpansion": 6242,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "P-073",
+        "oldProductId": 823250,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB02",
+        "currentExpansion": 5230,
+        "expectedExpansion": 6242,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "P-074",
+        "oldProductId": 869927,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB02",
+        "currentExpansion": 5230,
+        "expectedExpansion": 6242,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "P-084",
+        "oldProductId": 817502,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "ST25",
+        "currentExpansion": 5230,
+        "expectedExpansion": 6150,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "ST01-007_P3",
+        "oldProductId": 717516,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "OP06",
+        "currentExpansion": 5267,
+        "expectedExpansion": 5524,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "ST01-011_P4",
+        "oldProductId": 743382,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB02",
+        "currentExpansion": 5262,
+        "expectedExpansion": 6242,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "ST02-004_P4",
+        "oldProductId": 799685,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB01",
+        "currentExpansion": 5303,
+        "expectedExpansion": 5805,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "ST02-007_P2",
+        "oldProductId": 716602,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "OP08",
+        "currentExpansion": 6684,
+        "expectedExpansion": 5610,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "ST02-007_P3",
+        "oldProductId": 743381,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB02",
+        "currentExpansion": 5262,
+        "expectedExpansion": 6242,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "ST03-004_P1",
+        "oldProductId": 717500,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "OP08",
+        "currentExpansion": 5262,
+        "expectedExpansion": 5610,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "ST03-013_P4",
+        "oldProductId": 799684,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB01",
+        "currentExpansion": 5303,
+        "expectedExpansion": 5805,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "ST04-005_P1",
+        "oldProductId": 719319,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "OP08",
+        "currentExpansion": 5262,
+        "expectedExpansion": 5610,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "ST04-016_P3",
+        "oldProductId": 768040,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB01",
+        "currentExpansion": 5303,
+        "expectedExpansion": 5805,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "ST06-008_P1",
+        "oldProductId": 799689,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB02",
+        "currentExpansion": 5303,
+        "expectedExpansion": 6242,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "ST10-008_P3",
+        "oldProductId": 858531,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB02",
+        "currentExpansion": 6684,
+        "expectedExpansion": 6242,
+        "reason": "bandai-release-expansion-mismatch"
+      },
+      {
+        "printingId": "ST17-003_P3",
+        "oldProductId": 848342,
+        "oldSource": "legacy-cardmarket-snapshot",
+        "bandaiReleaseCode": "PRB02",
+        "currentExpansion": 5303,
+        "expectedExpansion": 6242,
+        "reason": "bandai-release-expansion-mismatch"
+      }
+    ],
+    "bandaiIdentitySummary": {
+      "quarantined": 57,
+      "reasonCounts": {
+        "bandai-release-expansion-mismatch": 57
+      }
+    },
+    "semanticAliasesMoved": 102,
+    "inferredReleaseProfiles": {
+      "ST31": {
+        "value": 6650,
+        "count": 15,
+        "total": 15,
+        "ratio": 1.0,
+        "precision": 1.0,
+        "f1": 1.0,
+        "margin": 1.0,
+        "source": "bandai-cardmarket-multiset",
+        "seriesId": "569031"
+      },
+      "ST32": {
+        "value": 6649,
+        "count": 15,
+        "total": 15,
+        "ratio": 1.0,
+        "precision": 1.0,
+        "f1": 1.0,
+        "margin": 1.0,
+        "source": "bandai-cardmarket-multiset",
+        "seriesId": "569032"
+      },
+      "ST33": {
+        "value": 6648,
+        "count": 15,
+        "total": 15,
+        "ratio": 1.0,
+        "precision": 1.0,
+        "f1": 1.0,
+        "margin": 1.0,
+        "source": "bandai-cardmarket-multiset",
+        "seriesId": "569033"
+      },
+      "ST34": {
+        "value": 6647,
+        "count": 15,
+        "total": 15,
+        "ratio": 1.0,
+        "precision": 1.0,
+        "f1": 1.0,
+        "margin": 1.0,
+        "source": "bandai-cardmarket-multiset",
+        "seriesId": "569034"
+      },
+      "ST35": {
+        "value": 6646,
+        "count": 14,
+        "total": 15,
+        "ratio": 0.9333333333333333,
+        "precision": 0.9333333333333333,
+        "f1": 0.9333333333333333,
+        "margin": 0.9333333333333333,
+        "source": "bandai-cardmarket-multiset",
+        "seriesId": "569035"
+      },
+      "ST36": {
+        "value": 6645,
+        "count": 15,
+        "total": 15,
+        "ratio": 1.0,
+        "precision": 1.0,
+        "f1": 1.0,
+        "margin": 1.0,
+        "source": "bandai-cardmarket-multiset",
+        "seriesId": "569036"
+      }
+    },
+    "needsReview": 510
   },
   "images": {
     "totalUrls": 4843,
@@ -49,11 +639,11 @@
   "output": {
     "cards": 2785,
     "printings": 4843,
-    "printingsWithCardmarketMapping": 4182,
-    "printingsWithCardmarketPrice": 4182,
+    "printingsWithCardmarketMapping": 4333,
+    "printingsWithCardmarketPrice": 4333,
     "printingsWithoutValidatedImage": 0,
     "cardmarketMappingRelations": {
-      "exact": 4182
+      "exact": 4333
     },
     "bandaiPrintingIdImageCollisions": [],
     "mechanicConflicts": [
@@ -308,7 +898,7 @@
     ]
   },
   "fingerprints": {
-    "catalog": "e52f452f170d903df4ba69c3425062f27e1f3a82d538073cb3cda4c9e964563c",
-    "mapping": "577d561d8348952616d259b789a594c2875d70e585365edfcd819cffe59a27ba"
+    "catalog": "459899f11d1a072604d047a638996f6890d137dc50a3d3f8fa9bf23fd1bfba7e",
+    "mapping": "0313290487184fdc3c8a22cc4901ba43cfb67439ed6d0441fbe0f7fa507bbf25"
   }
 }
