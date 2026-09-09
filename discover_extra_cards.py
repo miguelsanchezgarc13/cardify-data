@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-One Piece TCG catalogue pipeline v3.
+One Piece TCG catalogue pipeline v3.1.
 
 Live sources:
   1) Bandai official card list -> card/game/printing/image metadata
@@ -84,7 +84,7 @@ LEGACY_CARDS_FILENAME = "cardmarket_cards_raw.json"
 
 HEADERS = {
     "User-Agent": (
-        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.0; "
+        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.1; "
         "+https://github.com/)"
     ),
     "Accept-Language": "en-US,en;q=0.9",
@@ -332,6 +332,14 @@ def normalize_label(value: str) -> str:
     return " ".join(str(value or "").strip().casefold().split())
 
 
+def clean_bandai_label(value: str) -> str:
+    """Normalize Bandai option labels, including literal escaped <br> markup."""
+    text = str(value or "")
+    text = re.sub(r"<br\b[^>]*>", " ", text, flags=re.I)
+    text = re.sub(r"&lt;br\b.*?&gt;", " ", text, flags=re.I)
+    return " ".join(text.split())
+
+
 def discover_bandai_series(html: str) -> list[dict]:
     soup = BeautifulSoup(html, "html.parser")
     candidates = []
@@ -340,7 +348,7 @@ def discover_bandai_series(html: str) -> list[dict]:
         options = []
         for option in select.find_all("option"):
             value = str(option.get("value") or "").strip()
-            label = " ".join(option.get_text(" ", strip=True).split())
+            label = clean_bandai_label(option.get_text(" ", strip=True))
             if not value or not label:
                 continue
             if not re.fullmatch(r"\d{5,9}", value):
@@ -564,6 +572,82 @@ def parse_bandai_card_page(
     return records
 
 
+def count_bandai_card_images(html: str) -> int:
+    soup = BeautifulSoup(html, "html.parser")
+    return sum(
+        1
+        for img in soup.find_all("img")
+        if "/images/cardlist/card/" in str(img.get("src") or "")
+    )
+
+
+def selected_bandai_series_id(html: str) -> str | None:
+    """Return the series option marked selected, if Bandai exposes it in HTML."""
+    soup = BeautifulSoup(html, "html.parser")
+    for option in soup.find_all("option"):
+        value = str(option.get("value") or "").strip()
+        if re.fullmatch(r"\d{5,9}", value) and option.has_attr("selected"):
+            return value
+    return None
+
+
+def fetch_bandai_series_records(
+    session: requests.Session,
+    selected_url: str,
+    item: dict,
+) -> tuple[list[dict], list[dict]]:
+    """Fetch one Bandai series using the current query shape plus a legacy fallback.
+
+    As of September 2026 the official site and active scrapers use ?series=<id>.
+    Older versions of this script incorrectly sent search=true as well, which can
+    return the card-list shell with zero card rows.
+    """
+    attempts = [
+        ("current", {"series": item["id"]}),
+        ("legacy-search-flag", {"search": "true", "series": item["id"]}),
+    ]
+    diagnostics = []
+
+    for attempt_name, params in attempts:
+        html = fetch_text(session, selected_url, params=params)
+        marker_count = count_bandai_card_images(html)
+        selected_series = selected_bandai_series_id(html)
+        records = parse_bandai_card_page(
+            html,
+            selected_url,
+            item["id"],
+            item["label"],
+        )
+
+        # If Bandai explicitly says a different series is selected, the query was
+        # ignored/redirected. Never tag those cards as the requested release.
+        if selected_series and selected_series != item["id"]:
+            records = []
+            mismatch = True
+        else:
+            mismatch = False
+
+        diagnostics.append(
+            {
+                "attempt": attempt_name,
+                "params": params,
+                "selectedSeries": selected_series,
+                "seriesMismatch": mismatch,
+                "candidateCardImages": marker_count,
+                "records": len(records),
+            }
+        )
+        if records:
+            if attempt_name != "current":
+                print(
+                    f"  Bandai fallback usado para series={item['id']}: "
+                    f"{attempt_name}"
+                )
+            return records, diagnostics
+
+    return [], diagnostics
+
+
 def fetch_bandai_raw(session: requests.Session, delay_seconds: float) -> dict:
     last_error = None
     selected_url = None
@@ -588,29 +672,57 @@ def fetch_bandai_raw(session: requests.Session, delay_seconds: float) -> dict:
 
     all_records = []
     series_reports = []
+    prefetched = {}
+
+    # Fail fast against a known, stable booster instead of wasting 60 requests
+    # when Bandai has changed its query/HTML contract.
+    smoke_item = next((x for x in series if x["id"] == "569116"), series[0])
+    print(f"Smoke test Bandai: series={smoke_item['id']}")
+    smoke_records, smoke_diag = fetch_bandai_series_records(
+        session, selected_url, smoke_item
+    )
+    if not smoke_records:
+        raise RuntimeError(
+            "Bandai respondió pero no pudimos extraer cartas del smoke test "
+            f"series={smoke_item['id']}. Diagnóstico: "
+            + json.dumps(smoke_diag, ensure_ascii=False)
+        )
+    prefetched[smoke_item["id"]] = (smoke_records, smoke_diag)
+    print(f"Smoke test Bandai OK: {len(smoke_records)} printings")
 
     for position, item in enumerate(series, start=1):
         print(
             f"Bandai {position}/{len(series)}: {item['label']} "
             f"(series={item['id']})"
         )
-        html = fetch_text(
-            session,
-            selected_url,
-            params={"search": "true", "series": item["id"]},
-        )
-        records = parse_bandai_card_page(
-            html,
-            selected_url,
-            item["id"],
-            item["label"],
-        )
+        if item["id"] in prefetched:
+            records, diagnostics = prefetched[item["id"]]
+        else:
+            records, diagnostics = fetch_bandai_series_records(
+                session, selected_url, item
+            )
+
         if not records:
-            print(f"AVISO: Bandai devolvió 0 cartas para series={item['id']}")
+            print(
+                f"AVISO: Bandai devolvió 0 cartas utilizables para "
+                f"series={item['id']} | diagnóstico="
+                + json.dumps(diagnostics, ensure_ascii=False)
+            )
         all_records.extend(records)
-        series_reports.append({**item, "records": len(records)})
+        series_reports.append(
+            {**item, "records": len(records), "diagnostics": diagnostics}
+        )
         if delay_seconds > 0:
             time.sleep(delay_seconds)
+
+    nonempty_series = sum(1 for row in series_reports if row["records"] > 0)
+    if len(all_records) < 1000 or nonempty_series < max(10, len(series) // 2):
+        raise RuntimeError(
+            "Bandai devolvió un catálogo anormalmente pequeño; se aborta para "
+            "no publicar datos parciales. "
+            f"records={len(all_records)}, seriesConCartas={nonempty_series}/"
+            f"{len(series)}"
+        )
 
     return {
         "source": "Bandai official One Piece Card Game cardlist",
@@ -1632,6 +1744,32 @@ def run_self_test() -> None:
     }
     assert resolve_mapping_key_for_bandai_record(original, reprint_mapping) == "OP01-120_P2"
     assert resolve_mapping_key_for_bandai_record(reprint, reprint_mapping) == "OP01-120_P2_R1"
+    # Regression: current Bandai query contract is series=<id> first.
+    class _FakeResponse:
+        def __init__(self, text):
+            self.text = text
+            self.status_code = 200
+        def raise_for_status(self):
+            return None
+
+    class _FakeSession:
+        def __init__(self, text):
+            self.text = text
+            self.calls = []
+        def get(self, url, params=None, timeout=None):
+            self.calls.append((url, params))
+            return _FakeResponse(self.text)
+
+    fake = _FakeSession(fixture)
+    fetched, diag = fetch_bandai_series_records(
+        fake,
+        "https://en.onepiece-cardgame.com/cardlist/",
+        {"id": "569117", "label": "The World's Strongest Warriors"},
+    )
+    assert len(fetched) == 2
+    assert fake.calls[0][1] == {"series": "569117"}
+    assert diag[0]["attempt"] == "current"
+
     print("SELF-TEST OK")
 
 
