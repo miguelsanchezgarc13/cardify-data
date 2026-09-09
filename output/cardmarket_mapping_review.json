@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-09T16:10:57+00:00",
+  "generatedAt": "2026-09-09T17:20:59+00:00",
   "autoMappingsAdded": [],
   "needsReview": [
     {
@@ -13302,6 +13302,129 @@
       ]
     },
     {
+      "printingId": "OP03-048_P1",
+      "baseCode": "OP03-048",
+      "name": "Nojiko",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-048_p1.png?260828",
+      "bandaiReleases": [
+        "PREMIUM BOOSTER -ONE PIECE CARD THE BEST vol.2- [PRB-02]"
+      ],
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "quarantined-cardmarket-url-expansion-mismatch+release-expansion-mismatch",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "PRB02",
+        "legacyName": "Nojiko",
+        "legacyRarity": "Pirate Foil",
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP03/OP03-048_p1_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "Nojiko (OP03-048)",
+        "idExpansion": 5364,
+        "idMetacard": 421321,
+        "dateAdded": "2023-06-24 11:56:53",
+        "invalidProductId": 719998,
+        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Nojiko-OP03-048-V2",
+        "invalidReason": "cardmarket-url-expansion-mismatch+release-expansion-mismatch",
+        "validationEvidence": {
+          "currentExpansion": 5364,
+          "urlSlug": "the-best-vol2",
+          "legacySet": "PRB02",
+          "releaseProfile": {
+            "value": 6242,
+            "count": 124,
+            "total": 130,
+            "ratio": 0.9538461538461539
+          },
+          "currentExpansionUrlProfile": {
+            "value": "pillars-of-strength",
+            "count": 153,
+            "total": 153,
+            "ratio": 1.0
+          },
+          "urlCompatibleExpansions": [
+            6242
+          ]
+        }
+      },
+      "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
+      "candidateProducts": [
+        {
+          "idProduct": 719998,
+          "name": "Nojiko (OP03-048)",
+          "idExpansion": 5364,
+          "idMetacard": 421321,
+          "dateAdded": "2023-06-24 11:56:53",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=719998",
+          "version": null
+        },
+        {
+          "idProduct": 720198,
+          "name": "Nojiko (OP03-048)",
+          "idExpansion": 5413,
+          "idMetacard": 421321,
+          "dateAdded": "2023-06-26 11:12:26",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=720198",
+          "version": null
+        },
+        {
+          "idProduct": 744796,
+          "name": "Nojiko (OP03-048)",
+          "idExpansion": 5482,
+          "idMetacard": 421321,
+          "dateAdded": "2023-11-10 04:45:59",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=744796",
+          "version": null
+        },
+        {
+          "idProduct": 838718,
+          "name": "Nojiko (OP03-048)",
+          "idExpansion": 6233,
+          "idMetacard": 421321,
+          "dateAdded": "2025-07-28 10:13:07",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=838718",
+          "version": null
+        },
+        {
+          "idProduct": 838719,
+          "name": "Nojiko (OP03-048)",
+          "idExpansion": 6233,
+          "idMetacard": 421321,
+          "dateAdded": "2025-07-28 10:13:35",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=838719",
+          "version": null
+        },
+        {
+          "idProduct": 852332,
+          "name": "Nojiko (OP03-048)",
+          "idExpansion": 6242,
+          "idMetacard": 421321,
+          "dateAdded": "2025-10-01 22:43:49",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852332",
+          "version": null
+        },
+        {
+          "idProduct": 852333,
+          "name": "Nojiko (OP03-048)",
+          "idExpansion": 6242,
+          "idMetacard": 421321,
+          "dateAdded": "2025-10-01 22:43:58",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852333",
+          "version": null
+        },
+        {
+          "idProduct": 884491,
+          "name": "Nojiko (OP03-048)",
+          "idExpansion": 5510,
+          "idMetacard": 421321,
+          "dateAdded": "2026-04-24 11:39:02",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=884491",
+          "version": null
+        }
+      ]
+    },
+    {
       "printingId": "OP03-048_R1",
       "baseCode": "OP03-048",
       "name": "Nojiko",
@@ -23143,6 +23266,111 @@
           "idMetacard": 424899,
           "dateAdded": "2024-11-07 15:49:53",
           "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=799316",
+          "version": null
+        }
+      ]
+    },
+    {
+      "printingId": "OP05-052_P1",
+      "baseCode": "OP05-052",
+      "name": "Maynard",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-052_p1.png?260828",
+      "bandaiReleases": [
+        "PREMIUM BOOSTER -ONE PIECE CARD THE BEST vol.2- [PRB-02]"
+      ],
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "quarantined-release-expansion-mismatch",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "PRB02",
+        "legacyName": "Maynard",
+        "legacyRarity": "Pirate Foil",
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP05/OP05-052_p1_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "Maynard (OP05-052)",
+        "idExpansion": 6233,
+        "idMetacard": 424908,
+        "dateAdded": "2025-07-28 10:43:01",
+        "invalidProductId": 838794,
+        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Maynard-OP05-052-V2",
+        "invalidReason": "release-expansion-mismatch",
+        "validationEvidence": {
+          "currentExpansion": 6233,
+          "urlSlug": "the-best-vol2",
+          "legacySet": "PRB02",
+          "releaseProfile": {
+            "value": 6242,
+            "count": 124,
+            "total": 130,
+            "ratio": 0.9538461538461539
+          }
+        }
+      },
+      "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
+      "candidateProducts": [
+        {
+          "idProduct": 733348,
+          "name": "Maynard (OP05-052)",
+          "idExpansion": 5481,
+          "idMetacard": 424908,
+          "dateAdded": "2023-09-18 12:46:18",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=733348",
+          "version": null
+        },
+        {
+          "idProduct": 747508,
+          "name": "Maynard (OP05-052)",
+          "idExpansion": 5426,
+          "idMetacard": 424908,
+          "dateAdded": "2023-11-30 14:44:57",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=747508",
+          "version": null
+        },
+        {
+          "idProduct": 749385,
+          "name": "Maynard (OP05-052)",
+          "idExpansion": 5565,
+          "idMetacard": 424908,
+          "dateAdded": "2023-12-27 12:12:54",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=749385",
+          "version": null
+        },
+        {
+          "idProduct": 838792,
+          "name": "Maynard (OP05-052)",
+          "idExpansion": 6233,
+          "idMetacard": 424908,
+          "dateAdded": "2025-07-28 10:42:47",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=838792",
+          "version": null
+        },
+        {
+          "idProduct": 838794,
+          "name": "Maynard (OP05-052)",
+          "idExpansion": 6233,
+          "idMetacard": 424908,
+          "dateAdded": "2025-07-28 10:43:01",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=838794",
+          "version": null
+        },
+        {
+          "idProduct": 852353,
+          "name": "Maynard (OP05-052)",
+          "idExpansion": 6242,
+          "idMetacard": 424908,
+          "dateAdded": "2025-10-01 22:52:20",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852353",
+          "version": null
+        },
+        {
+          "idProduct": 852354,
+          "name": "Maynard (OP05-052)",
+          "idExpansion": 6242,
+          "idMetacard": 424908,
+          "dateAdded": "2025-10-01 22:52:29",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852354",
           "version": null
         }
       ]
@@ -37430,6 +37658,183 @@
       ]
     },
     {
+      "printingId": "OP07-040_P1",
+      "baseCode": "OP07-040",
+      "name": "Crocodile",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP07-040_p1.png?260828",
+      "bandaiReleases": [
+        "Promotion card"
+      ],
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "quarantined-release-expansion-mismatch",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "PRB02",
+        "legacyName": "Crocodile",
+        "legacyRarity": "Pirate Foil",
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP07/OP07-040_p1_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "Crocodile (OP07-040)",
+        "idExpansion": 5587,
+        "idMetacard": 431988,
+        "dateAdded": "2024-02-28 10:46:24",
+        "invalidProductId": 759054,
+        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Crocodile-OP07-040-V2",
+        "invalidReason": "release-expansion-mismatch",
+        "validationEvidence": {
+          "currentExpansion": 5587,
+          "urlSlug": "the-best-vol2",
+          "legacySet": "PRB02",
+          "releaseProfile": {
+            "value": 6242,
+            "count": 124,
+            "total": 130,
+            "ratio": 0.9538461538461539
+          }
+        }
+      },
+      "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
+      "candidateProducts": [
+        {
+          "idProduct": 759054,
+          "name": "Crocodile (OP07-040)",
+          "idExpansion": 5587,
+          "idMetacard": 431988,
+          "dateAdded": "2024-02-28 10:46:24",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=759054",
+          "version": null
+        },
+        {
+          "idProduct": 775404,
+          "name": "Crocodile (OP07-040)",
+          "idExpansion": 5586,
+          "idMetacard": 431988,
+          "dateAdded": "2024-06-21 10:28:17",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=775404",
+          "version": null
+        },
+        {
+          "idProduct": 776732,
+          "name": "Crocodile (OP07-040)",
+          "idExpansion": 5803,
+          "idMetacard": 431988,
+          "dateAdded": "2024-07-03 11:59:32",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=776732",
+          "version": null
+        },
+        {
+          "idProduct": 794688,
+          "name": "Crocodile (OP07-040)",
+          "idExpansion": 5303,
+          "idMetacard": 431988,
+          "dateAdded": "2024-10-24 05:24:04",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=794688",
+          "version": null
+        },
+        {
+          "idProduct": 794689,
+          "name": "Crocodile (OP07-040)",
+          "idExpansion": 5303,
+          "idMetacard": 431988,
+          "dateAdded": "2024-10-24 05:24:39",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=794689",
+          "version": null
+        },
+        {
+          "idProduct": 808792,
+          "name": "Crocodile (OP07-040)",
+          "idExpansion": 5510,
+          "idMetacard": 431988,
+          "dateAdded": "2025-01-29 03:17:07",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=808792",
+          "version": null
+        },
+        {
+          "idProduct": 830557,
+          "name": "Crocodile (OP07-040)",
+          "idExpansion": 5312,
+          "idMetacard": 431988,
+          "dateAdded": "2025-06-24 00:20:20",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=830557",
+          "version": null
+        },
+        {
+          "idProduct": 838932,
+          "name": "Crocodile (OP07-040)",
+          "idExpansion": 6233,
+          "idMetacard": 431988,
+          "dateAdded": "2025-07-28 12:59:02",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=838932",
+          "version": null
+        },
+        {
+          "idProduct": 838933,
+          "name": "Crocodile (OP07-040)",
+          "idExpansion": 6233,
+          "idMetacard": 431988,
+          "dateAdded": "2025-07-28 12:59:13",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=838933",
+          "version": null
+        },
+        {
+          "idProduct": 838936,
+          "name": "Crocodile (OP07-040)",
+          "idExpansion": 6233,
+          "idMetacard": 431988,
+          "dateAdded": "2025-07-28 13:00:00",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=838936",
+          "version": null
+        },
+        {
+          "idProduct": 848333,
+          "name": "Crocodile (OP07-040)",
+          "idExpansion": 5303,
+          "idMetacard": 431988,
+          "dateAdded": "2025-09-11 13:37:58",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=848333",
+          "version": null
+        },
+        {
+          "idProduct": 848351,
+          "name": "Crocodile (OP07-040)",
+          "idExpansion": 5510,
+          "idMetacard": 431988,
+          "dateAdded": "2025-09-11 14:19:24",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=848351",
+          "version": null
+        },
+        {
+          "idProduct": 852402,
+          "name": "Crocodile (OP07-040)",
+          "idExpansion": 6242,
+          "idMetacard": 431988,
+          "dateAdded": "2025-10-01 23:11:19",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852402",
+          "version": null
+        },
+        {
+          "idProduct": 852403,
+          "name": "Crocodile (OP07-040)",
+          "idExpansion": 6242,
+          "idMetacard": 431988,
+          "dateAdded": "2025-10-01 23:11:28",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852403",
+          "version": null
+        },
+        {
+          "idProduct": 852404,
+          "name": "Crocodile (OP07-040)",
+          "idExpansion": 6242,
+          "idMetacard": 431988,
+          "dateAdded": "2025-10-01 23:11:38",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852404",
+          "version": null
+        }
+      ]
+    },
+    {
       "printingId": "OP07-040_P4",
       "baseCode": "OP07-040",
       "name": "Crocodile",
@@ -49025,6 +49430,147 @@
       ]
     },
     {
+      "printingId": "OP10-108_P1",
+      "baseCode": "OP10-108",
+      "name": "Scratchmen Apoo",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP10-108_p1.png?260828",
+      "bandaiReleases": [
+        "PREMIUM BOOSTER -ONE PIECE CARD THE BEST vol.2- [PRB-02]"
+      ],
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "quarantined-release-expansion-mismatch",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "PRB02",
+        "legacyName": "Scratchmen Apoo",
+        "legacyRarity": "Pirate Foil",
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP10/OP10-108_p1_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "Scratchmen Apoo (OP10-108)",
+        "idExpansion": 6233,
+        "idMetacard": 443685,
+        "dateAdded": "2025-07-28 16:07:05",
+        "invalidProductId": 839399,
+        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Scratchmen-Apoo-OP10-108-V2",
+        "invalidReason": "release-expansion-mismatch",
+        "validationEvidence": {
+          "currentExpansion": 6233,
+          "urlSlug": "the-best-vol2",
+          "legacySet": "PRB02",
+          "releaseProfile": {
+            "value": 6242,
+            "count": 124,
+            "total": 130,
+            "ratio": 0.9538461538461539
+          }
+        }
+      },
+      "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
+      "candidateProducts": [
+        {
+          "idProduct": 802318,
+          "name": "Scratchmen Apoo (OP10-108)",
+          "idExpansion": 5975,
+          "idMetacard": 443685,
+          "dateAdded": "2024-11-29 15:03:44",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=802318",
+          "version": null
+        },
+        {
+          "idProduct": 817130,
+          "name": "Scratchmen Apoo (OP10-108)",
+          "idExpansion": 5974,
+          "idMetacard": 443685,
+          "dateAdded": "2025-03-13 20:47:13",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=817130",
+          "version": null
+        },
+        {
+          "idProduct": 817577,
+          "name": "Scratchmen Apoo (OP10-108)",
+          "idExpansion": 6090,
+          "idMetacard": 443685,
+          "dateAdded": "2025-03-15 00:59:06",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=817577",
+          "version": null
+        },
+        {
+          "idProduct": 839398,
+          "name": "Scratchmen Apoo (OP10-108)",
+          "idExpansion": 6233,
+          "idMetacard": 443685,
+          "dateAdded": "2025-07-28 16:06:48",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=839398",
+          "version": null
+        },
+        {
+          "idProduct": 839399,
+          "name": "Scratchmen Apoo (OP10-108)",
+          "idExpansion": 6233,
+          "idMetacard": 443685,
+          "dateAdded": "2025-07-28 16:07:05",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=839399",
+          "version": null
+        },
+        {
+          "idProduct": 852480,
+          "name": "Scratchmen Apoo (OP10-108)",
+          "idExpansion": 6242,
+          "idMetacard": 443685,
+          "dateAdded": "2025-10-01 23:40:52",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852480",
+          "version": null
+        },
+        {
+          "idProduct": 852481,
+          "name": "Scratchmen Apoo (OP10-108)",
+          "idExpansion": 6242,
+          "idMetacard": 443685,
+          "dateAdded": "2025-10-01 23:41:00",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852481",
+          "version": null
+        },
+        {
+          "idProduct": 894072,
+          "name": "Scratchmen Apoo (OP10-108)",
+          "idExpansion": 6625,
+          "idMetacard": 443685,
+          "dateAdded": "2026-06-18 14:38:38",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=894072",
+          "version": null
+        },
+        {
+          "idProduct": 900744,
+          "name": "Scratchmen Apoo (OP10-108)",
+          "idExpansion": 5267,
+          "idMetacard": 443685,
+          "dateAdded": "2026-08-02 02:34:02",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=900744",
+          "version": null
+        },
+        {
+          "idProduct": 901343,
+          "name": "Scratchmen Apoo (OP10-108)",
+          "idExpansion": 5303,
+          "idMetacard": 443685,
+          "dateAdded": "2026-08-07 04:43:08",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=901343",
+          "version": null
+        },
+        {
+          "idProduct": 901350,
+          "name": "Scratchmen Apoo (OP10-108)",
+          "idExpansion": 6684,
+          "idMetacard": 443685,
+          "dateAdded": "2026-08-07 04:53:09",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=901350",
+          "version": null
+        }
+      ]
+    },
+    {
       "printingId": "OP10-108_P2",
       "baseCode": "OP10-108",
       "name": "Scratchmen Apoo",
@@ -53138,6 +53684,66 @@
           "idMetacard": 457002,
           "dateAdded": "2026-08-02 02:38:16",
           "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=900750",
+          "version": null
+        }
+      ]
+    },
+    {
+      "printingId": "OP14-092",
+      "baseCode": "OP14-092",
+      "name": "Mr.3(Galdino)",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP14-092.png?260828",
+      "bandaiReleases": [
+        "BOOSTER PACK -THE AZURE SEA’S SEVEN- [OP14-EB04]"
+      ],
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "quarantined-release-expansion-mismatch",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "OP14",
+        "legacyName": "Mr.3(Galdino)",
+        "legacyRarity": "Rare",
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP14/OP14-092_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "Mr.3(Galdino) (OP14-092)",
+        "idExpansion": 6411,
+        "idMetacard": 457057,
+        "dateAdded": "2025-12-02 14:22:56",
+        "invalidProductId": 861912,
+        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Azure-Seas-Seven/Mr3Galdino-OP14-092",
+        "invalidReason": "release-expansion-mismatch",
+        "validationEvidence": {
+          "currentExpansion": 6411,
+          "urlSlug": "the-azure-seas-seven",
+          "legacySet": "OP14",
+          "releaseProfile": {
+            "value": 6432,
+            "count": 194,
+            "total": 196,
+            "ratio": 0.9897959183673469
+          }
+        }
+      },
+      "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
+      "candidateProducts": [
+        {
+          "idProduct": 861912,
+          "name": "Mr.3(Galdino) (OP14-092)",
+          "idExpansion": 6411,
+          "idMetacard": 457057,
+          "dateAdded": "2025-12-02 14:22:56",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=861912",
+          "version": null
+        },
+        {
+          "idProduct": 865513,
+          "name": "Mr.3(Galdino) (OP14-092)",
+          "idExpansion": 6432,
+          "idMetacard": 457057,
+          "dateAdded": "2026-01-09 03:49:20",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=865513",
           "version": null
         }
       ]
@@ -61639,6 +62245,226 @@
       ]
     },
     {
+      "printingId": "P-030",
+      "baseCode": "P-030",
+      "name": "Jinbe",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-030.png?260828",
+      "bandaiReleases": [
+        "Promotion card"
+      ],
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "quarantined-duplicate-product-id-across-printings",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "event-pack-01",
+        "legacyName": "Jinbe",
+        "legacyRarity": null,
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-030_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "Jinbe (P-030)",
+        "idExpansion": 5970,
+        "idMetacard": 415757,
+        "dateAdded": "2024-11-29 09:48:09",
+        "invalidProductId": 802136,
+        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Jinbe-P-030",
+        "invalidReason": "duplicate-product-id-across-printings",
+        "validationEvidence": {
+          "productId": 802136,
+          "mappingKeys": [
+            "P-030",
+            "P-030_P2"
+          ]
+        }
+      },
+      "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
+      "candidateProducts": [
+        {
+          "idProduct": 692224,
+          "name": "Jinbe (P-030)",
+          "idExpansion": 5230,
+          "idMetacard": 415757,
+          "dateAdded": "2023-01-17 15:18:31",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=692224",
+          "version": null
+        },
+        {
+          "idProduct": 752020,
+          "name": "Jinbe (P-030)",
+          "idExpansion": 5262,
+          "idMetacard": 415757,
+          "dateAdded": "2024-01-22 11:00:01",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=752020",
+          "version": null
+        },
+        {
+          "idProduct": 794651,
+          "name": "Jinbe (P-030)",
+          "idExpansion": 5749,
+          "idMetacard": 415757,
+          "dateAdded": "2024-10-24 03:59:54",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=794651",
+          "version": null
+        },
+        {
+          "idProduct": 802136,
+          "name": "Jinbe (P-030)",
+          "idExpansion": 5970,
+          "idMetacard": 415757,
+          "dateAdded": "2024-11-29 09:48:09",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=802136",
+          "version": null
+        },
+        {
+          "idProduct": 813724,
+          "name": "Jinbe (P-030)",
+          "idExpansion": 5511,
+          "idMetacard": 415757,
+          "dateAdded": "2025-02-24 16:51:22",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=813724",
+          "version": null
+        },
+        {
+          "idProduct": 845299,
+          "name": "Jinbe (P-030)",
+          "idExpansion": 5262,
+          "idMetacard": 415757,
+          "dateAdded": "2025-08-26 07:19:00",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=845299",
+          "version": null
+        },
+        {
+          "idProduct": 848340,
+          "name": "Jinbe (P-030)",
+          "idExpansion": 5230,
+          "idMetacard": 415757,
+          "dateAdded": "2025-09-11 13:47:48",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=848340",
+          "version": null
+        },
+        {
+          "idProduct": 871913,
+          "name": "Jinbe (P-030)",
+          "idExpansion": 5511,
+          "idMetacard": 415757,
+          "dateAdded": "2026-02-09 12:14:37",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=871913",
+          "version": null
+        }
+      ]
+    },
+    {
+      "printingId": "P-030_P2",
+      "baseCode": "P-030",
+      "name": "Jinbe",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-030_p2.png?260828",
+      "bandaiReleases": [
+        "Other Product Card"
+      ],
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "quarantined-duplicate-product-id-across-printings",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "premium-card-collection-bandai-card-games-fest-23-24",
+        "legacyName": "Jinbe",
+        "legacyRarity": null,
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-030_p2_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "Jinbe (P-030)",
+        "idExpansion": 5970,
+        "idMetacard": 415757,
+        "dateAdded": "2024-11-29 09:48:09",
+        "invalidProductId": 802136,
+        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Jinbe-P-030",
+        "invalidReason": "duplicate-product-id-across-printings",
+        "validationEvidence": {
+          "productId": 802136,
+          "mappingKeys": [
+            "P-030",
+            "P-030_P2"
+          ]
+        }
+      },
+      "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
+      "candidateProducts": [
+        {
+          "idProduct": 692224,
+          "name": "Jinbe (P-030)",
+          "idExpansion": 5230,
+          "idMetacard": 415757,
+          "dateAdded": "2023-01-17 15:18:31",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=692224",
+          "version": null
+        },
+        {
+          "idProduct": 752020,
+          "name": "Jinbe (P-030)",
+          "idExpansion": 5262,
+          "idMetacard": 415757,
+          "dateAdded": "2024-01-22 11:00:01",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=752020",
+          "version": null
+        },
+        {
+          "idProduct": 794651,
+          "name": "Jinbe (P-030)",
+          "idExpansion": 5749,
+          "idMetacard": 415757,
+          "dateAdded": "2024-10-24 03:59:54",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=794651",
+          "version": null
+        },
+        {
+          "idProduct": 802136,
+          "name": "Jinbe (P-030)",
+          "idExpansion": 5970,
+          "idMetacard": 415757,
+          "dateAdded": "2024-11-29 09:48:09",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=802136",
+          "version": null
+        },
+        {
+          "idProduct": 813724,
+          "name": "Jinbe (P-030)",
+          "idExpansion": 5511,
+          "idMetacard": 415757,
+          "dateAdded": "2025-02-24 16:51:22",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=813724",
+          "version": null
+        },
+        {
+          "idProduct": 845299,
+          "name": "Jinbe (P-030)",
+          "idExpansion": 5262,
+          "idMetacard": 415757,
+          "dateAdded": "2025-08-26 07:19:00",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=845299",
+          "version": null
+        },
+        {
+          "idProduct": 848340,
+          "name": "Jinbe (P-030)",
+          "idExpansion": 5230,
+          "idMetacard": 415757,
+          "dateAdded": "2025-09-11 13:47:48",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=848340",
+          "version": null
+        },
+        {
+          "idProduct": 871913,
+          "name": "Jinbe (P-030)",
+          "idExpansion": 5511,
+          "idMetacard": 415757,
+          "dateAdded": "2026-02-09 12:14:37",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=871913",
+          "version": null
+        }
+      ]
+    },
+    {
       "printingId": "P-030_P3",
       "baseCode": "P-030",
       "name": "Jinbe",
@@ -62488,6 +63314,318 @@
           "idMetacard": 424697,
           "dateAdded": "2026-03-13 19:21:45",
           "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=877590",
+          "version": null
+        }
+      ]
+    },
+    {
+      "printingId": "P-057_P1",
+      "baseCode": "P-057",
+      "name": "Fleeting Lullaby",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-057_p1.png?260828",
+      "bandaiReleases": [
+        "STARTER DECK -Green Uta- [ST-16]"
+      ],
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "quarantined-cardmarket-url-expansion-mismatch",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "ST16",
+        "legacyName": "Fleeting Lullaby",
+        "legacyRarity": null,
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-057_p1_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "Fleeting Lullaby (P-057)",
+        "idExpansion": 5230,
+        "idMetacard": 429247,
+        "dateAdded": "2024-02-02 23:32:20",
+        "invalidProductId": 754827,
+        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/Fleeting-Lullaby-P-057",
+        "invalidReason": "cardmarket-url-expansion-mismatch",
+        "validationEvidence": {
+          "currentExpansion": 5230,
+          "urlSlug": "starter-deck-green-uta",
+          "legacySet": "ST16",
+          "currentExpansionUrlProfile": {
+            "value": "promos",
+            "count": 143,
+            "total": 148,
+            "ratio": 0.9662162162162162
+          }
+        }
+      },
+      "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
+      "candidateProducts": [
+        {
+          "idProduct": 750505,
+          "name": "Fleeting Lullaby (P-057)",
+          "idExpansion": 5511,
+          "idMetacard": 429247,
+          "dateAdded": "2024-01-12 07:01:24",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=750505",
+          "version": null
+        },
+        {
+          "idProduct": 754827,
+          "name": "Fleeting Lullaby (P-057)",
+          "idExpansion": 5230,
+          "idMetacard": 429247,
+          "dateAdded": "2024-02-02 23:32:20",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=754827",
+          "version": null
+        },
+        {
+          "idProduct": 794635,
+          "name": "Fleeting Lullaby (P-057)",
+          "idExpansion": 5748,
+          "idMetacard": 429247,
+          "dateAdded": "2024-10-24 03:47:16",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=794635",
+          "version": null
+        },
+        {
+          "idProduct": 802108,
+          "name": "Fleeting Lullaby (P-057)",
+          "idExpansion": 5969,
+          "idMetacard": 429247,
+          "dateAdded": "2024-11-29 09:35:56",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=802108",
+          "version": null
+        }
+      ]
+    },
+    {
+      "printingId": "P-058_P1",
+      "baseCode": "P-058",
+      "name": "Where the Wind Blows",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-058_p1.png?260828",
+      "bandaiReleases": [
+        "STARTER DECK -Green Uta- [ST-16]"
+      ],
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "quarantined-cardmarket-url-expansion-mismatch",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "ST16",
+        "legacyName": "Where the Wind Blows",
+        "legacyRarity": null,
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-058_p1_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "Where the Wind Blows (P-058)",
+        "idExpansion": 5230,
+        "idMetacard": 429248,
+        "dateAdded": "2024-02-02 23:34:21",
+        "invalidProductId": 754830,
+        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/Where-the-Wind-Blows-P-058",
+        "invalidReason": "cardmarket-url-expansion-mismatch",
+        "validationEvidence": {
+          "currentExpansion": 5230,
+          "urlSlug": "starter-deck-green-uta",
+          "legacySet": "ST16",
+          "currentExpansionUrlProfile": {
+            "value": "promos",
+            "count": 143,
+            "total": 148,
+            "ratio": 0.9662162162162162
+          }
+        }
+      },
+      "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
+      "candidateProducts": [
+        {
+          "idProduct": 750506,
+          "name": "Where the Wind Blows (P-058)",
+          "idExpansion": 5511,
+          "idMetacard": 429248,
+          "dateAdded": "2024-01-12 07:02:03",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=750506",
+          "version": null
+        },
+        {
+          "idProduct": 754830,
+          "name": "Where the Wind Blows (P-058)",
+          "idExpansion": 5230,
+          "idMetacard": 429248,
+          "dateAdded": "2024-02-02 23:34:21",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=754830",
+          "version": null
+        },
+        {
+          "idProduct": 794636,
+          "name": "Where the Wind Blows (P-058)",
+          "idExpansion": 5748,
+          "idMetacard": 429248,
+          "dateAdded": "2024-10-24 03:47:38",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=794636",
+          "version": null
+        },
+        {
+          "idProduct": 802107,
+          "name": "Where the Wind Blows (P-058)",
+          "idExpansion": 5969,
+          "idMetacard": 429248,
+          "dateAdded": "2024-11-29 09:35:39",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=802107",
+          "version": null
+        }
+      ]
+    },
+    {
+      "printingId": "P-059_P1",
+      "baseCode": "P-059",
+      "name": "The World's Continuation",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-059_p1.png?260828",
+      "bandaiReleases": [
+        "STARTER DECK -Green Uta- [ST-16]"
+      ],
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "quarantined-cardmarket-url-expansion-mismatch",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "ST16",
+        "legacyName": "The World's Continuation",
+        "legacyRarity": null,
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-059_p1_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "The World's Continuation (P-059)",
+        "idExpansion": 5230,
+        "idMetacard": 429249,
+        "dateAdded": "2024-02-02 23:33:30",
+        "invalidProductId": 754828,
+        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/The-Worlds-Continuation-P-059",
+        "invalidReason": "cardmarket-url-expansion-mismatch",
+        "validationEvidence": {
+          "currentExpansion": 5230,
+          "urlSlug": "starter-deck-green-uta",
+          "legacySet": "ST16",
+          "currentExpansionUrlProfile": {
+            "value": "promos",
+            "count": 143,
+            "total": 148,
+            "ratio": 0.9662162162162162
+          }
+        }
+      },
+      "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
+      "candidateProducts": [
+        {
+          "idProduct": 750507,
+          "name": "The World's Continuation (P-059)",
+          "idExpansion": 5511,
+          "idMetacard": 429249,
+          "dateAdded": "2024-01-12 07:02:35",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=750507",
+          "version": null
+        },
+        {
+          "idProduct": 754828,
+          "name": "The World's Continuation (P-059)",
+          "idExpansion": 5230,
+          "idMetacard": 429249,
+          "dateAdded": "2024-02-02 23:33:30",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=754828",
+          "version": null
+        },
+        {
+          "idProduct": 794637,
+          "name": "The World's Continuation (P-059)",
+          "idExpansion": 5748,
+          "idMetacard": 429249,
+          "dateAdded": "2024-10-24 03:48:36",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=794637",
+          "version": null
+        },
+        {
+          "idProduct": 802106,
+          "name": "The World's Continuation (P-059)",
+          "idExpansion": 5969,
+          "idMetacard": 429249,
+          "dateAdded": "2024-11-29 09:35:25",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=802106",
+          "version": null
+        }
+      ]
+    },
+    {
+      "printingId": "P-060_P1",
+      "baseCode": "P-060",
+      "name": "Tot Musica",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-060_p1.png?260828",
+      "bandaiReleases": [
+        "STARTER DECK -Green Uta- [ST-16]"
+      ],
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "quarantined-cardmarket-url-expansion-mismatch",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "ST16",
+        "legacyName": "Tot Musica",
+        "legacyRarity": null,
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-060_p1_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "Tot Musica (P-060)",
+        "idExpansion": 5230,
+        "idMetacard": 429250,
+        "dateAdded": "2024-02-02 23:33:55",
+        "invalidProductId": 754829,
+        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/Tot-Musica-P-060",
+        "invalidReason": "cardmarket-url-expansion-mismatch",
+        "validationEvidence": {
+          "currentExpansion": 5230,
+          "urlSlug": "starter-deck-green-uta",
+          "legacySet": "ST16",
+          "currentExpansionUrlProfile": {
+            "value": "promos",
+            "count": 143,
+            "total": 148,
+            "ratio": 0.9662162162162162
+          }
+        }
+      },
+      "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
+      "candidateProducts": [
+        {
+          "idProduct": 750508,
+          "name": "Tot Musica (P-060)",
+          "idExpansion": 5511,
+          "idMetacard": 429250,
+          "dateAdded": "2024-01-12 07:03:25",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=750508",
+          "version": null
+        },
+        {
+          "idProduct": 754829,
+          "name": "Tot Musica (P-060)",
+          "idExpansion": 5230,
+          "idMetacard": 429250,
+          "dateAdded": "2024-02-02 23:33:55",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=754829",
+          "version": null
+        },
+        {
+          "idProduct": 794638,
+          "name": "Tot Musica (P-060)",
+          "idExpansion": 5748,
+          "idMetacard": 429250,
+          "dateAdded": "2024-10-24 03:48:58",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=794638",
+          "version": null
+        },
+        {
+          "idProduct": 802105,
+          "name": "Tot Musica (P-060)",
+          "idExpansion": 5969,
+          "idMetacard": 429250,
+          "dateAdded": "2024-11-29 09:35:09",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=802105",
           "version": null
         }
       ]
@@ -65155,6 +66293,132 @@
       ]
     },
     {
+      "printingId": "P-079_P1",
+      "baseCode": "P-079",
+      "name": "Lim",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-079_p1.png?260828",
+      "bandaiReleases": [
+        "Promotion card"
+      ],
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "quarantined-cardmarket-url-expansion-mismatch",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "championship-25-26-event-pack",
+        "legacyName": "Lim",
+        "legacyRarity": null,
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-079_p1_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "Lim (P-079)",
+        "idExpansion": 5262,
+        "idMetacard": 445266,
+        "dateAdded": "2025-08-12 22:17:33",
+        "invalidProductId": 842347,
+        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Lim-P-079-V2",
+        "invalidReason": "cardmarket-url-expansion-mismatch",
+        "validationEvidence": {
+          "currentExpansion": 5262,
+          "urlSlug": "promos",
+          "legacySet": "championship-25-26-event-pack",
+          "currentExpansionUrlProfile": {
+            "value": "special-tournaments-promos",
+            "count": 172,
+            "total": 172,
+            "ratio": 1.0
+          },
+          "urlCompatibleExpansions": [
+            5230
+          ]
+        }
+      },
+      "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
+      "candidateProducts": [
+        {
+          "idProduct": 808726,
+          "name": "Lim (P-079)",
+          "idExpansion": 5230,
+          "idMetacard": 445266,
+          "dateAdded": "2025-01-28 16:01:38",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=808726",
+          "version": null
+        },
+        {
+          "idProduct": 829843,
+          "name": "Lim (P-079)",
+          "idExpansion": 5511,
+          "idMetacard": 445266,
+          "dateAdded": "2025-06-11 00:30:32",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=829843",
+          "version": null
+        },
+        {
+          "idProduct": 839439,
+          "name": "Lim (P-079)",
+          "idExpansion": 6233,
+          "idMetacard": 445266,
+          "dateAdded": "2025-07-28 16:28:52",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=839439",
+          "version": null
+        },
+        {
+          "idProduct": 839440,
+          "name": "Lim (P-079)",
+          "idExpansion": 6233,
+          "idMetacard": 445266,
+          "dateAdded": "2025-07-28 16:29:04",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=839440",
+          "version": null
+        },
+        {
+          "idProduct": 842347,
+          "name": "Lim (P-079)",
+          "idExpansion": 5262,
+          "idMetacard": 445266,
+          "dateAdded": "2025-08-12 22:17:33",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=842347",
+          "version": null
+        },
+        {
+          "idProduct": 852509,
+          "name": "Lim (P-079)",
+          "idExpansion": 6242,
+          "idMetacard": 445266,
+          "dateAdded": "2025-10-01 23:50:36",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852509",
+          "version": null
+        },
+        {
+          "idProduct": 852510,
+          "name": "Lim (P-079)",
+          "idExpansion": 6242,
+          "idMetacard": 445266,
+          "dateAdded": "2025-10-01 23:50:44",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852510",
+          "version": null
+        },
+        {
+          "idProduct": 878512,
+          "name": "Lim (P-079)",
+          "idExpansion": 5262,
+          "idMetacard": 445266,
+          "dateAdded": "2026-03-24 11:01:10",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=878512",
+          "version": null
+        },
+        {
+          "idProduct": 894429,
+          "name": "Lim (P-079)",
+          "idExpansion": 5511,
+          "idMetacard": 445266,
+          "dateAdded": "2026-06-22 03:03:01",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=894429",
+          "version": null
+        }
+      ]
+    },
+    {
       "printingId": "P-079_P2",
       "baseCode": "P-079",
       "name": "Lim",
@@ -65881,6 +67145,126 @@
       ]
     },
     {
+      "printingId": "P-083_P3",
+      "baseCode": "P-083",
+      "name": "Shanks",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-083_p3.png?260828",
+      "bandaiReleases": [
+        "PREMIUM BOOSTER -ONE PIECE CARD THE BEST vol.2- [PRB-02]"
+      ],
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "quarantined-release-expansion-mismatch",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "PRB02",
+        "legacyName": "Shanks",
+        "legacyRarity": "Pirate Foil",
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-083_p3_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "Shanks (P-083)",
+        "idExpansion": 6233,
+        "idMetacard": 441785,
+        "dateAdded": "2025-07-28 16:58:04",
+        "invalidProductId": 839448,
+        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Shanks-P-083-V2",
+        "invalidReason": "release-expansion-mismatch",
+        "validationEvidence": {
+          "currentExpansion": 6233,
+          "urlSlug": "the-best-vol2",
+          "legacySet": "PRB02",
+          "releaseProfile": {
+            "value": 6242,
+            "count": 124,
+            "total": 131,
+            "ratio": 0.9465648854961832
+          },
+          "releaseUrlProfile": {
+            "value": "the-best-vol2",
+            "count": 124,
+            "total": 124,
+            "ratio": 1.0
+          }
+        }
+      },
+      "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
+      "candidateProducts": [
+        {
+          "idProduct": 794884,
+          "name": "Shanks (P-083)",
+          "idExpansion": 5511,
+          "idMetacard": 441785,
+          "dateAdded": "2024-10-24 15:46:04",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=794884",
+          "version": null
+        },
+        {
+          "idProduct": 808727,
+          "name": "Shanks (P-083)",
+          "idExpansion": 5230,
+          "idMetacard": 441785,
+          "dateAdded": "2025-01-28 16:01:59",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=808727",
+          "version": null
+        },
+        {
+          "idProduct": 839447,
+          "name": "Shanks (P-083)",
+          "idExpansion": 6233,
+          "idMetacard": 441785,
+          "dateAdded": "2025-07-28 16:57:57",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=839447",
+          "version": null
+        },
+        {
+          "idProduct": 839448,
+          "name": "Shanks (P-083)",
+          "idExpansion": 6233,
+          "idMetacard": 441785,
+          "dateAdded": "2025-07-28 16:58:04",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=839448",
+          "version": null
+        },
+        {
+          "idProduct": 842364,
+          "name": "Shanks (P-083)",
+          "idExpansion": 5230,
+          "idMetacard": 441785,
+          "dateAdded": "2025-08-12 22:31:47",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=842364",
+          "version": null
+        },
+        {
+          "idProduct": 852515,
+          "name": "Shanks (P-083)",
+          "idExpansion": 6242,
+          "idMetacard": 441785,
+          "dateAdded": "2025-10-01 23:51:52",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852515",
+          "version": null
+        },
+        {
+          "idProduct": 852516,
+          "name": "Shanks (P-083)",
+          "idExpansion": 6242,
+          "idMetacard": 441785,
+          "dateAdded": "2025-10-01 23:52:00",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852516",
+          "version": null
+        },
+        {
+          "idProduct": 858759,
+          "name": "Shanks (P-083)",
+          "idExpansion": 5230,
+          "idMetacard": 441785,
+          "dateAdded": "2025-11-12 09:32:47",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=858759",
+          "version": null
+        }
+      ]
+    },
+    {
       "printingId": "P-083_R1",
       "baseCode": "P-083",
       "name": "Shanks",
@@ -65961,6 +67345,141 @@
           "idMetacard": 441785,
           "dateAdded": "2025-11-12 09:32:47",
           "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=858759",
+          "version": null
+        }
+      ]
+    },
+    {
+      "printingId": "P-085",
+      "baseCode": "P-085",
+      "name": "Jewelry Bonney",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-085.png?260828",
+      "bandaiReleases": [
+        "Promotion card"
+      ],
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "quarantined-cardmarket-url-expansion-mismatch",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "regional-participation-pack-2025-2",
+        "legacyName": "Jewelry Bonney",
+        "legacyRarity": null,
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-085_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "Jewelry Bonney (P-085)",
+        "idExpansion": 6242,
+        "idMetacard": 444118,
+        "dateAdded": "2025-10-01 23:52:28",
+        "invalidProductId": 852518,
+        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Jewelry-Bonney-P-085-V1",
+        "invalidReason": "cardmarket-url-expansion-mismatch",
+        "validationEvidence": {
+          "currentExpansion": 6242,
+          "urlSlug": "promos",
+          "legacySet": "regional-participation-pack-2025-2",
+          "currentExpansionUrlProfile": {
+            "value": "the-best-vol2",
+            "count": 132,
+            "total": 137,
+            "ratio": 0.9635036496350365
+          },
+          "urlCompatibleExpansions": [
+            5230
+          ]
+        }
+      },
+      "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
+      "candidateProducts": [
+        {
+          "idProduct": 804823,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 5511,
+          "idMetacard": 444118,
+          "dateAdded": "2025-01-03 14:01:11",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=804823",
+          "version": null
+        },
+        {
+          "idProduct": 839449,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 6233,
+          "idMetacard": 444118,
+          "dateAdded": "2025-07-28 16:58:22",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=839449",
+          "version": null
+        },
+        {
+          "idProduct": 839450,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 6233,
+          "idMetacard": 444118,
+          "dateAdded": "2025-07-28 16:58:30",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=839450",
+          "version": null
+        },
+        {
+          "idProduct": 840666,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 5230,
+          "idMetacard": 444118,
+          "dateAdded": "2025-08-04 09:41:37",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=840666",
+          "version": null
+        },
+        {
+          "idProduct": 840667,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 5262,
+          "idMetacard": 444118,
+          "dateAdded": "2025-08-04 09:42:13",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=840667",
+          "version": null
+        },
+        {
+          "idProduct": 840668,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 5262,
+          "idMetacard": 444118,
+          "dateAdded": "2025-08-04 09:42:26",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=840668",
+          "version": null
+        },
+        {
+          "idProduct": 850914,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 5230,
+          "idMetacard": 444118,
+          "dateAdded": "2025-09-24 16:20:55",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=850914",
+          "version": null
+        },
+        {
+          "idProduct": 852517,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 6242,
+          "idMetacard": 444118,
+          "dateAdded": "2025-10-01 23:52:16",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852517",
+          "version": null
+        },
+        {
+          "idProduct": 852518,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 6242,
+          "idMetacard": 444118,
+          "dateAdded": "2025-10-01 23:52:28",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852518",
+          "version": null
+        },
+        {
+          "idProduct": 900576,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 6645,
+          "idMetacard": 444118,
+          "dateAdded": "2026-07-31 16:10:28",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=900576",
           "version": null
         }
       ]
@@ -72514,6 +74033,120 @@
       ]
     },
     {
+      "printingId": "ST10-005_P2",
+      "baseCode": "ST10-005",
+      "name": "Jinbe",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST10-005_p2.png?260828",
+      "bandaiReleases": [
+        "PREMIUM BOOSTER -ONE PIECE CARD THE BEST vol.2- [PRB-02]"
+      ],
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "quarantined-cardmarket-url-expansion-mismatch+release-expansion-mismatch",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "PRB02",
+        "legacyName": "Jinbe",
+        "legacyRarity": "Pirate Foil",
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/ST10/ST10-005_p2_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "Jinbe (ST10-005)",
+        "idExpansion": 5380,
+        "idMetacard": 427679,
+        "dateAdded": "2023-11-10 04:05:51",
+        "invalidProductId": 744751,
+        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Jinbe-ST10-005-V2",
+        "invalidReason": "cardmarket-url-expansion-mismatch+release-expansion-mismatch",
+        "validationEvidence": {
+          "currentExpansion": 5380,
+          "urlSlug": "the-best-vol2",
+          "legacySet": "PRB02",
+          "releaseProfile": {
+            "value": 6242,
+            "count": 124,
+            "total": 130,
+            "ratio": 0.9538461538461539
+          },
+          "currentExpansionUrlProfile": {
+            "value": "ultra-deck-the-three-captains",
+            "count": 19,
+            "total": 19,
+            "ratio": 1.0
+          },
+          "urlCompatibleExpansions": [
+            6242
+          ]
+        }
+      },
+      "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
+      "candidateProducts": [
+        {
+          "idProduct": 744751,
+          "name": "Jinbe (ST10-005)",
+          "idExpansion": 5380,
+          "idMetacard": 427679,
+          "dateAdded": "2023-11-10 04:05:51",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=744751",
+          "version": null
+        },
+        {
+          "idProduct": 747212,
+          "name": "Jinbe (ST10-005)",
+          "idExpansion": 5558,
+          "idMetacard": 427679,
+          "dateAdded": "2023-11-28 13:51:36",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=747212",
+          "version": null
+        },
+        {
+          "idProduct": 778607,
+          "name": "Jinbe (ST10-005)",
+          "idExpansion": 5267,
+          "idMetacard": 427679,
+          "dateAdded": "2024-07-18 10:05:57",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=778607",
+          "version": null
+        },
+        {
+          "idProduct": 839495,
+          "name": "Jinbe (ST10-005)",
+          "idExpansion": 6233,
+          "idMetacard": 427679,
+          "dateAdded": "2025-07-28 18:04:56",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=839495",
+          "version": null
+        },
+        {
+          "idProduct": 839496,
+          "name": "Jinbe (ST10-005)",
+          "idExpansion": 6233,
+          "idMetacard": 427679,
+          "dateAdded": "2025-07-28 18:05:05",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=839496",
+          "version": null
+        },
+        {
+          "idProduct": 852563,
+          "name": "Jinbe (ST10-005)",
+          "idExpansion": 6242,
+          "idMetacard": 427679,
+          "dateAdded": "2025-10-02 00:07:26",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852563",
+          "version": null
+        },
+        {
+          "idProduct": 852564,
+          "name": "Jinbe (ST10-005)",
+          "idExpansion": 6242,
+          "idMetacard": 427679,
+          "dateAdded": "2025-10-02 00:07:34",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852564",
+          "version": null
+        }
+      ]
+    },
+    {
       "printingId": "ST10-005_R1",
       "baseCode": "ST10-005",
       "name": "Jinbe",
@@ -74364,6 +75997,111 @@
       ]
     },
     {
+      "printingId": "ST14-016_P1",
+      "baseCode": "ST14-016",
+      "name": "I Have My Crew!!",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST14-016_p1.png?260828",
+      "bandaiReleases": [
+        "PREMIUM BOOSTER -ONE PIECE CARD THE BEST vol.2- [PRB-02]"
+      ],
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "quarantined-cardmarket-url-expansion-mismatch+release-expansion-mismatch",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "PRB02",
+        "legacyName": "I Have My Crew!!",
+        "legacyRarity": "Pirate Foil",
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/ST14/ST14-016_p1_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "I Have My Crew!! (ST14-016)",
+        "idExpansion": 5611,
+        "idMetacard": 438637,
+        "dateAdded": "2024-08-19 08:51:44",
+        "invalidProductId": 783339,
+        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/I-Have-My-Crewo-ST14-016-V2",
+        "invalidReason": "cardmarket-url-expansion-mismatch+release-expansion-mismatch",
+        "validationEvidence": {
+          "currentExpansion": 5611,
+          "urlSlug": "the-best-vol2",
+          "legacySet": "PRB02",
+          "releaseProfile": {
+            "value": 6242,
+            "count": 124,
+            "total": 130,
+            "ratio": 0.9538461538461539
+          },
+          "currentExpansionUrlProfile": {
+            "value": "starter-deck-3d2y",
+            "count": 15,
+            "total": 15,
+            "ratio": 1.0
+          },
+          "urlCompatibleExpansions": [
+            6242
+          ]
+        }
+      },
+      "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
+      "candidateProducts": [
+        {
+          "idProduct": 782376,
+          "name": "I Have My Crew!! (ST14-016)",
+          "idExpansion": 5850,
+          "idMetacard": 438637,
+          "dateAdded": "2024-08-12 07:23:35",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=782376",
+          "version": null
+        },
+        {
+          "idProduct": 783339,
+          "name": "I Have My Crew!! (ST14-016)",
+          "idExpansion": 5611,
+          "idMetacard": 438637,
+          "dateAdded": "2024-08-19 08:51:44",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=783339",
+          "version": null
+        },
+        {
+          "idProduct": 839600,
+          "name": "I Have My Crew!!o (ST14-016)",
+          "idExpansion": 6233,
+          "idMetacard": 452257,
+          "dateAdded": "2025-07-29 07:21:37",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=839600",
+          "version": null
+        },
+        {
+          "idProduct": 839601,
+          "name": "I Have My Crew!!o (ST14-016)",
+          "idExpansion": 6233,
+          "idMetacard": 452257,
+          "dateAdded": "2025-07-29 07:21:57",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=839601",
+          "version": null
+        },
+        {
+          "idProduct": 852587,
+          "name": "I Have My Crew!!o (ST14-016)",
+          "idExpansion": 6242,
+          "idMetacard": 452257,
+          "dateAdded": "2025-10-02 00:21:37",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852587",
+          "version": null
+        },
+        {
+          "idProduct": 852588,
+          "name": "I Have My Crew!!o (ST14-016)",
+          "idExpansion": 6242,
+          "idMetacard": 452257,
+          "dateAdded": "2025-10-02 00:21:54",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852588",
+          "version": null
+        }
+      ]
+    },
+    {
       "printingId": "ST14-016_R1",
       "baseCode": "ST14-016",
       "name": "I Have My Crew!!",
@@ -75678,6 +77416,147 @@
           "idMetacard": 441674,
           "dateAdded": "2025-10-02 00:35:50",
           "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852602",
+          "version": null
+        }
+      ]
+    },
+    {
+      "printingId": "ST17-005_P1",
+      "baseCode": "ST17-005",
+      "name": "Marshall.D.Teach",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST17-005_p1.png?260828",
+      "bandaiReleases": [
+        "PREMIUM BOOSTER -ONE PIECE CARD THE BEST vol.2- [PRB-02]"
+      ],
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "quarantined-cardmarket-url-expansion-mismatch+release-expansion-mismatch",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "PRB02",
+        "legacyName": "Marshall.D.Teach",
+        "legacyRarity": "Pirate Foil",
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/ST17/ST17-005_p1_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "Marshall.D.Teach (ST17-005)",
+        "idExpansion": 5749,
+        "idMetacard": 441676,
+        "dateAdded": "2024-10-24 04:01:55",
+        "invalidProductId": 794656,
+        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/MarshallDTeach-ST17-005-V2",
+        "invalidReason": "cardmarket-url-expansion-mismatch+release-expansion-mismatch",
+        "validationEvidence": {
+          "currentExpansion": 5749,
+          "urlSlug": "the-best-vol2",
+          "legacySet": "PRB02",
+          "releaseProfile": {
+            "value": 6242,
+            "count": 124,
+            "total": 130,
+            "ratio": 0.9538461538461539
+          },
+          "currentExpansionUrlProfile": {
+            "value": "starter-deck-donquixote-doflamingo",
+            "count": 5,
+            "total": 5,
+            "ratio": 1.0
+          },
+          "urlCompatibleExpansions": [
+            6242
+          ]
+        }
+      },
+      "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
+      "candidateProducts": [
+        {
+          "idProduct": 794656,
+          "name": "Marshall.D.Teach (ST17-005)",
+          "idExpansion": 5749,
+          "idMetacard": 441676,
+          "dateAdded": "2024-10-24 04:01:55",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=794656",
+          "version": null
+        },
+        {
+          "idProduct": 802135,
+          "name": "Marshall.D.Teach (ST17-005)",
+          "idExpansion": 5970,
+          "idMetacard": 441676,
+          "dateAdded": "2024-11-29 09:47:26",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=802135",
+          "version": null
+        },
+        {
+          "idProduct": 808788,
+          "name": "Marshall.D.Teach (ST17-005)",
+          "idExpansion": 5510,
+          "idMetacard": 441676,
+          "dateAdded": "2025-01-29 03:14:44",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=808788",
+          "version": null
+        },
+        {
+          "idProduct": 839616,
+          "name": "Marshall.D.Teach (ST17-005)",
+          "idExpansion": 6233,
+          "idMetacard": 441676,
+          "dateAdded": "2025-07-29 07:29:55",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=839616",
+          "version": null
+        },
+        {
+          "idProduct": 839617,
+          "name": "Marshall.D.Teach (ST17-005)",
+          "idExpansion": 6233,
+          "idMetacard": 441676,
+          "dateAdded": "2025-07-29 07:30:05",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=839617",
+          "version": null
+        },
+        {
+          "idProduct": 848339,
+          "name": "Marshall.D.Teach (ST17-005)",
+          "idExpansion": 5303,
+          "idMetacard": 441676,
+          "dateAdded": "2025-09-11 13:46:38",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=848339",
+          "version": null
+        },
+        {
+          "idProduct": 848345,
+          "name": "Marshall.D.Teach (ST17-005)",
+          "idExpansion": 5510,
+          "idMetacard": 441676,
+          "dateAdded": "2025-09-11 14:16:29",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=848345",
+          "version": null
+        },
+        {
+          "idProduct": 852603,
+          "name": "Marshall.D.Teach (ST17-005)",
+          "idExpansion": 6242,
+          "idMetacard": 441676,
+          "dateAdded": "2025-10-02 00:36:07",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852603",
+          "version": null
+        },
+        {
+          "idProduct": 852604,
+          "name": "Marshall.D.Teach (ST17-005)",
+          "idExpansion": 6242,
+          "idMetacard": 441676,
+          "dateAdded": "2025-10-02 00:36:22",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852604",
+          "version": null
+        },
+        {
+          "idProduct": 878035,
+          "name": "Marshall.D.Teach (ST17-005)",
+          "idExpansion": 5312,
+          "idMetacard": 441676,
+          "dateAdded": "2026-03-19 11:49:51",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=878035",
           "version": null
         }
       ]

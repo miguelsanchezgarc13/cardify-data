@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "description": "Persistent mapping from physical printing IDs to Cardmarket idProduct, including legacy release metadata used to disambiguate Bandai reprints. Prices are never stored here.",
-  "updatedAt": "2026-09-09T16:10:54+00:00",
+  "updatedAt": "2026-09-09T17:20:55+00:00",
   "mappings": {
     "EB01-001": {
       "productId": 767953,
@@ -240,10 +240,10 @@
       "dateAdded": "2024-10-24 05:47:00"
     },
     "EB01-007": {
-      "productId": 754144,
+      "productId": 767963,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Memorial-Collection/Yamato-EB01-007",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "EB01",
       "legacyName": "Yamato",
@@ -251,9 +251,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/EB01/EB01-007_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Yamato (EB01-007)",
-      "idExpansion": 5580,
+      "idExpansion": 5585,
       "idMetacard": 430417,
-      "dateAdded": "2024-01-29 10:08:25"
+      "dateAdded": "2024-05-02 08:52:44",
+      "previousProductId": 754144,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Memorial-Collection/Yamato-EB01-007",
+      "validationEvidence": {
+        "currentExpansion": 5580,
+        "urlSlug": "memorial-collection",
+        "legacySet": "EB01",
+        "releaseProfile": {
+          "value": 5585,
+          "count": 77,
+          "total": 79,
+          "ratio": 0.9746835443037974
+        }
+      }
     },
     "EB01-007_P1": {
       "productId": 850930,
@@ -892,10 +905,10 @@
       "dateAdded": "2024-05-02 09:04:28"
     },
     "EB01-026": {
-      "productId": 754168,
+      "productId": 767986,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Memorial-Collection/Prince-Bellett-EB01-026",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "EB01",
       "legacyName": "Prince Bellett",
@@ -903,9 +916,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/EB01/EB01-026_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Prince Bellett (EB01-026)",
-      "idExpansion": 5580,
+      "idExpansion": 5585,
       "idMetacard": 430436,
-      "dateAdded": "2024-01-29 10:40:24"
+      "dateAdded": "2024-05-02 09:04:55",
+      "previousProductId": 754168,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Memorial-Collection/Prince-Bellett-EB01-026",
+      "validationEvidence": {
+        "currentExpansion": 5580,
+        "urlSlug": "memorial-collection",
+        "legacySet": "EB01",
+        "releaseProfile": {
+          "value": 5585,
+          "count": 77,
+          "total": 79,
+          "ratio": 0.9746835443037974
+        }
+      }
     },
     "EB01-027": {
       "productId": 767987,
@@ -1768,10 +1794,10 @@
       "dateAdded": "2024-05-02 09:35:47"
     },
     "EB01-060": {
-      "productId": 754231,
+      "productId": 768030,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Memorial-Collection/Did-Someone-SayKami-EB01-060",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "EB01",
       "legacyName": "Did Someone Say...Kami?",
@@ -1779,9 +1805,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/EB01/EB01-060_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Did Someone Say...Kami? (EB01-060)",
-      "idExpansion": 5580,
+      "idExpansion": 5585,
       "idMetacard": 430476,
-      "dateAdded": "2024-01-29 11:50:33"
+      "dateAdded": "2024-05-02 09:36:10",
+      "previousProductId": 754231,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Memorial-Collection/Did-Someone-SayKami-EB01-060",
+      "validationEvidence": {
+        "currentExpansion": 5580,
+        "urlSlug": "memorial-collection",
+        "legacySet": "EB01",
+        "releaseProfile": {
+          "value": 5585,
+          "count": 77,
+          "total": 79,
+          "ratio": 0.9746835443037974
+        }
+      }
     },
     "EB01-060_P1": {
       "productId": 852317,
@@ -2812,10 +2851,10 @@
       "dateAdded": "2026-02-27 16:21:17"
     },
     "EB02-042": {
-      "productId": 808146,
+      "productId": 823477,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Anime-25th-Collection/All-Hunt-Grount-EB02-042",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "EB02",
       "legacyName": "All-Hunt Grount",
@@ -2823,9 +2862,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/EB02/EB02-042_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "All-Hunt Grount (EB02-042)",
-      "idExpansion": 6018,
+      "idExpansion": 6028,
       "idMetacard": 445021,
-      "dateAdded": "2025-01-26 22:39:38"
+      "dateAdded": "2025-04-30 13:32:47",
+      "previousProductId": 808146,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Anime-25th-Collection/All-Hunt-Grount-EB02-042",
+      "validationEvidence": {
+        "currentExpansion": 6018,
+        "urlSlug": "anime-25th-collection",
+        "legacySet": "EB02",
+        "releaseProfile": {
+          "value": 6028,
+          "count": 104,
+          "total": 104,
+          "ratio": 1.0
+        }
+      }
     },
     "EB02-043": {
       "productId": 823478,
@@ -3588,10 +3640,10 @@
       "addedAt": "2026-09-09T10:20:32+00:00"
     },
     "EB03-013": {
-      "productId": 858289,
+      "productId": 871977,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Heroines-Edition/Carrot-EB03-013-V1",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "EB03",
       "legacyName": "Carrot",
@@ -3599,9 +3651,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/EB03/EB03-013_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Carrot (EB03-013)",
-      "idExpansion": 6379,
-      "idMetacard": 456284,
-      "dateAdded": "2025-11-10 11:43:34"
+      "idExpansion": 6449,
+      "idMetacard": 459487,
+      "dateAdded": "2026-02-09 16:38:26",
+      "previousProductId": 858289,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Heroines-Edition/Carrot-EB03-013-V1",
+      "validationEvidence": {
+        "currentExpansion": 6379,
+        "urlSlug": "heroines-edition",
+        "legacySet": "EB03",
+        "releaseProfile": {
+          "value": 6449,
+          "count": 88,
+          "total": 88,
+          "ratio": 1.0
+        }
+      }
     },
     "EB03-013_P1": {
       "productId": 871978,
@@ -4992,10 +5057,10 @@
       "dateAdded": "2026-03-27 10:38:48"
     },
     "EB04-011": {
-      "productId": 870613,
+      "productId": 865118,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Azure-Seas-Seven/Scaled-Neptunian-EB04-011",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP14",
       "legacyName": "Scaled Neptunian",
@@ -5003,9 +5068,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/EB04/EB04-011_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Scaled Neptunian (EB04-011)",
-      "idExpansion": 6478,
+      "idExpansion": 6432,
       "idMetacard": 457972,
-      "dateAdded": "2026-02-02 16:34:44"
+      "dateAdded": "2026-01-07 14:30:35",
+      "previousProductId": 870613,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Azure-Seas-Seven/Scaled-Neptunian-EB04-011",
+      "validationEvidence": {
+        "currentExpansion": 6478,
+        "urlSlug": "the-azure-seas-seven",
+        "legacySet": "OP14",
+        "releaseProfile": {
+          "value": 6432,
+          "count": 194,
+          "total": 196,
+          "ratio": 0.9897959183673469
+        }
+      }
     },
     "EB04-012": {
       "productId": 865120,
@@ -10907,10 +10985,10 @@
       "dateAdded": "2023-03-02 10:46:01"
     },
     "OP02-018_P2": {
-      "productId": 696708,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Marco-OP02-018",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "quarantined-cardmarket-url-expansion-mismatch",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "promotion-pack-02",
       "legacyName": "Marco",
@@ -10920,7 +10998,24 @@
       "productName": "Marco (OP02-018)",
       "idExpansion": 5303,
       "idMetacard": 416746,
-      "dateAdded": "2023-02-15 10:36:03"
+      "dateAdded": "2023-02-15 10:36:03",
+      "invalidProductId": 696708,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Marco-OP02-018",
+      "invalidReason": "cardmarket-url-expansion-mismatch",
+      "validationEvidence": {
+        "currentExpansion": 5303,
+        "urlSlug": "promos",
+        "legacySet": "promotion-pack-02",
+        "currentExpansionUrlProfile": {
+          "value": "unnumbered-promos",
+          "count": 252,
+          "total": 252,
+          "ratio": 1.0
+        },
+        "urlCompatibleExpansions": [
+          5230
+        ]
+      }
     },
     "OP02-018_P3": {
       "productId": 719924,
@@ -15231,10 +15326,10 @@
       "dateAdded": "2023-06-20 01:59:42"
     },
     "OP03-048": {
-      "productId": 852333,
+      "productId": 719998,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Pillars-of-Strength/Nojiko-OP03-048",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP03",
       "legacyName": "Nojiko",
@@ -15242,15 +15337,37 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP03/OP03-048_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Nojiko (OP03-048)",
-      "idExpansion": 6242,
+      "idExpansion": 5364,
       "idMetacard": 421321,
-      "dateAdded": "2025-10-01 22:43:58"
+      "dateAdded": "2023-06-24 11:56:53",
+      "previousProductId": 852333,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Pillars-of-Strength/Nojiko-OP03-048",
+      "validationEvidence": {
+        "currentExpansion": 6242,
+        "urlSlug": "pillars-of-strength",
+        "legacySet": "OP03",
+        "releaseProfile": {
+          "value": 5364,
+          "count": 153,
+          "total": 153,
+          "ratio": 1.0
+        },
+        "currentExpansionUrlProfile": {
+          "value": "the-best-vol2",
+          "count": 132,
+          "total": 137,
+          "ratio": 0.9635036496350365
+        },
+        "urlCompatibleExpansions": [
+          5364
+        ]
+      }
     },
     "OP03-048_P1": {
-      "productId": 719998,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Nojiko-OP03-048-V2",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "quarantined-cardmarket-url-expansion-mismatch+release-expansion-mismatch",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB02",
       "legacyName": "Nojiko",
@@ -15260,7 +15377,30 @@
       "productName": "Nojiko (OP03-048)",
       "idExpansion": 5364,
       "idMetacard": 421321,
-      "dateAdded": "2023-06-24 11:56:53"
+      "dateAdded": "2023-06-24 11:56:53",
+      "invalidProductId": 719998,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Nojiko-OP03-048-V2",
+      "invalidReason": "cardmarket-url-expansion-mismatch+release-expansion-mismatch",
+      "validationEvidence": {
+        "currentExpansion": 5364,
+        "urlSlug": "the-best-vol2",
+        "legacySet": "PRB02",
+        "releaseProfile": {
+          "value": 6242,
+          "count": 124,
+          "total": 130,
+          "ratio": 0.9538461538461539
+        },
+        "currentExpansionUrlProfile": {
+          "value": "pillars-of-strength",
+          "count": 153,
+          "total": 153,
+          "ratio": 1.0
+        },
+        "urlCompatibleExpansions": [
+          6242
+        ]
+      }
     },
     "OP03-048_R1": {
       "productId": null,
@@ -18079,10 +18219,10 @@
       "dateAdded": "2023-09-15 09:03:31"
     },
     "OP04-004": {
-      "productId": 733078,
+      "productId": 732890,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Kingdoms-of-Intrigue/Karoo-OP04-004",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP04",
       "legacyName": "Karoo",
@@ -18090,9 +18230,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP04/OP04-004_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Karoo (OP04-004)",
-      "idExpansion": 5485,
+      "idExpansion": 5365,
       "idMetacard": 424750,
-      "dateAdded": "2023-09-16 21:55:57"
+      "dateAdded": "2023-09-15 09:06:25",
+      "previousProductId": 733078,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Kingdoms-of-Intrigue/Karoo-OP04-004",
+      "validationEvidence": {
+        "currentExpansion": 5485,
+        "urlSlug": "kingdoms-of-intrigue",
+        "legacySet": "OP04",
+        "releaseProfile": {
+          "value": 5365,
+          "count": 146,
+          "total": 148,
+          "ratio": 0.9864864864864865
+        }
+      }
     },
     "OP04-005": {
       "productId": 732891,
@@ -18239,10 +18392,10 @@
       "dateAdded": "2025-08-12 22:29:47"
     },
     "OP04-011": {
-      "productId": 733085,
+      "productId": 732897,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Kingdoms-of-Intrigue/Nami-OP04-011",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP04",
       "legacyName": "Nami",
@@ -18250,9 +18403,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP04/OP04-011_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Nami (OP04-011)",
-      "idExpansion": 5485,
+      "idExpansion": 5365,
       "idMetacard": 424757,
-      "dateAdded": "2023-09-16 22:07:41"
+      "dateAdded": "2023-09-15 09:11:21",
+      "previousProductId": 733085,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Kingdoms-of-Intrigue/Nami-OP04-011",
+      "validationEvidence": {
+        "currentExpansion": 5485,
+        "urlSlug": "kingdoms-of-intrigue",
+        "legacySet": "OP04",
+        "releaseProfile": {
+          "value": 5365,
+          "count": 146,
+          "total": 148,
+          "ratio": 0.9864864864864865
+        }
+      }
     },
     "OP04-012": {
       "productId": 732898,
@@ -19283,10 +19449,10 @@
       "dateAdded": "2023-09-15 10:06:12"
     },
     "OP04-050": {
-      "productId": 733141,
+      "productId": 732927,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Kingdoms-of-Intrigue/Hanger-OP04-050",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP04",
       "legacyName": "Hanger",
@@ -19294,9 +19460,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP04/OP04-050_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Hanger (OP04-050)",
-      "idExpansion": 5485,
+      "idExpansion": 5365,
       "idMetacard": 424786,
-      "dateAdded": "2023-09-17 04:21:22"
+      "dateAdded": "2023-09-15 10:06:44",
+      "previousProductId": 733141,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Kingdoms-of-Intrigue/Hanger-OP04-050",
+      "validationEvidence": {
+        "currentExpansion": 5485,
+        "urlSlug": "kingdoms-of-intrigue",
+        "legacySet": "OP04",
+        "releaseProfile": {
+          "value": 5365,
+          "count": 146,
+          "total": 148,
+          "ratio": 0.9864864864864865
+        }
+      }
     },
     "OP04-051": {
       "productId": 732788,
@@ -21343,10 +21522,10 @@
       "dateAdded": "2024-11-08 06:03:29"
     },
     "OP05-006": {
-      "productId": 799295,
+      "productId": 747444,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Awakening-of-the-New-Era/Koala-OP05-006-V1",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP05",
       "legacyName": "Koala",
@@ -21354,9 +21533,31 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP05/OP05-006_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Koala (OP05-006)",
-      "idExpansion": 5805,
+      "idExpansion": 5426,
       "idMetacard": 424862,
-      "dateAdded": "2024-11-07 14:02:57"
+      "dateAdded": "2023-11-30 12:20:07",
+      "previousProductId": 799295,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Awakening-of-the-New-Era/Koala-OP05-006-V1",
+      "validationEvidence": {
+        "currentExpansion": 5805,
+        "urlSlug": "awakening-of-the-new-era",
+        "legacySet": "OP05",
+        "releaseProfile": {
+          "value": 5426,
+          "count": 148,
+          "total": 150,
+          "ratio": 0.9866666666666667
+        },
+        "currentExpansionUrlProfile": {
+          "value": "the-best",
+          "count": 176,
+          "total": 176,
+          "ratio": 1.0
+        },
+        "urlCompatibleExpansions": [
+          5426
+        ]
+      }
     },
     "OP05-006_P1": {
       "productId": 747445,
@@ -22203,10 +22404,10 @@
       "dateAdded": "2023-11-30 14:35:14"
     },
     "OP05-034_P2": {
-      "productId": 781099,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Baby-5-OP05-034-V2",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "quarantined-release-expansion-mismatch",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB01",
       "legacyName": "Baby 5",
@@ -22216,7 +22417,21 @@
       "productName": "Baby 5 (OP05-034)",
       "idExpansion": 5804,
       "idMetacard": 424890,
-      "dateAdded": "2024-07-30 02:15:57"
+      "dateAdded": "2024-07-30 02:15:57",
+      "invalidProductId": 781099,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Baby-5-OP05-034-V2",
+      "invalidReason": "release-expansion-mismatch",
+      "validationEvidence": {
+        "currentExpansion": 5804,
+        "urlSlug": "the-best",
+        "legacySet": "PRB01",
+        "releaseProfile": {
+          "value": 5805,
+          "count": 170,
+          "total": 170,
+          "ratio": 1.0
+        }
+      }
     },
     "OP05-034_P3": {
       "productId": 799313,
@@ -22511,10 +22726,10 @@
       "dateAdded": "2023-11-30 14:38:59"
     },
     "OP05-043": {
-      "productId": 733331,
+      "productId": 747497,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Awakening-of-the-New-Era/Ulti-OP05-043-V1",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP05",
       "legacyName": "Ulti",
@@ -22522,9 +22737,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP05/OP05-043_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Ulti (OP05-043)",
-      "idExpansion": 5481,
+      "idExpansion": 5426,
       "idMetacard": 424899,
-      "dateAdded": "2023-09-18 12:00:13"
+      "dateAdded": "2023-11-30 14:39:48",
+      "previousProductId": 733331,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Awakening-of-the-New-Era/Ulti-OP05-043-V1",
+      "validationEvidence": {
+        "currentExpansion": 5481,
+        "urlSlug": "awakening-of-the-new-era",
+        "legacySet": "OP05",
+        "releaseProfile": {
+          "value": 5426,
+          "count": 148,
+          "total": 150,
+          "ratio": 0.9866666666666667
+        }
+      }
     },
     "OP05-043_P1": {
       "productId": 747498,
@@ -22747,10 +22975,10 @@
       "dateAdded": "2023-11-30 14:44:57"
     },
     "OP05-052_P1": {
-      "productId": 838794,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Maynard-OP05-052-V2",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "quarantined-release-expansion-mismatch",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB02",
       "legacyName": "Maynard",
@@ -22760,7 +22988,21 @@
       "productName": "Maynard (OP05-052)",
       "idExpansion": 6233,
       "idMetacard": 424908,
-      "dateAdded": "2025-07-28 10:43:01"
+      "dateAdded": "2025-07-28 10:43:01",
+      "invalidProductId": 838794,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Maynard-OP05-052-V2",
+      "invalidReason": "release-expansion-mismatch",
+      "validationEvidence": {
+        "currentExpansion": 6233,
+        "urlSlug": "the-best-vol2",
+        "legacySet": "PRB02",
+        "releaseProfile": {
+          "value": 6242,
+          "count": 124,
+          "total": 130,
+          "ratio": 0.9538461538461539
+        }
+      }
     },
     "OP05-052_R1": {
       "productId": null,
@@ -23823,10 +24065,10 @@
       "dateAdded": "2023-12-01 05:22:50"
     },
     "OP05-081": {
-      "productId": 781109,
+      "productId": 747544,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Awakening-of-the-New-Era/One-Legged-Toy-Soldier-OP05-081",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP05",
       "legacyName": "One-Legged Toy Soldier",
@@ -23834,9 +24076,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP05/OP05-081_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "One-Legged Toy Soldier (OP05-081)",
-      "idExpansion": 5804,
+      "idExpansion": 5426,
       "idMetacard": 424937,
-      "dateAdded": "2024-07-30 02:26:01"
+      "dateAdded": "2023-12-01 05:24:32",
+      "previousProductId": 781109,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Awakening-of-the-New-Era/One-Legged-Toy-Soldier-OP05-081",
+      "validationEvidence": {
+        "currentExpansion": 5804,
+        "urlSlug": "awakening-of-the-new-era",
+        "legacySet": "OP05",
+        "releaseProfile": {
+          "value": 5426,
+          "count": 148,
+          "total": 150,
+          "ratio": 0.9866666666666667
+        }
+      }
     },
     "OP05-081_P1": {
       "productId": 799327,
@@ -30731,10 +30986,10 @@
       "dateAdded": "2024-06-21 10:28:17"
     },
     "OP07-040_P1": {
-      "productId": 759054,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Crocodile-OP07-040-V2",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "quarantined-release-expansion-mismatch",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB02",
       "legacyName": "Crocodile",
@@ -30744,7 +30999,21 @@
       "productName": "Crocodile (OP07-040)",
       "idExpansion": 5587,
       "idMetacard": 431988,
-      "dateAdded": "2024-02-28 10:46:24"
+      "dateAdded": "2024-02-28 10:46:24",
+      "invalidProductId": 759054,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Crocodile-OP07-040-V2",
+      "invalidReason": "release-expansion-mismatch",
+      "validationEvidence": {
+        "currentExpansion": 5587,
+        "urlSlug": "the-best-vol2",
+        "legacySet": "PRB02",
+        "releaseProfile": {
+          "value": 6242,
+          "count": 124,
+          "total": 130,
+          "ratio": 0.9538461538461539
+        }
+      }
     },
     "OP07-040_P2": {
       "productId": 852404,
@@ -31335,10 +31604,10 @@
       "dateAdded": "2024-06-21 10:45:17"
     },
     "OP07-055": {
-      "productId": 759075,
+      "productId": 775445,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/500-Years-into-the-Future/Snake-Dance-OP07-055",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP07",
       "legacyName": "Snake Dance",
@@ -31346,9 +31615,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP07/OP07-055_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Snake Dance (OP07-055)",
-      "idExpansion": 5587,
+      "idExpansion": 5586,
       "idMetacard": 432003,
-      "dateAdded": "2024-02-28 11:15:30"
+      "dateAdded": "2024-06-21 10:45:37",
+      "previousProductId": 759075,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/500-Years-into-the-Future/Snake-Dance-OP07-055",
+      "validationEvidence": {
+        "currentExpansion": 5587,
+        "urlSlug": "500-years-into-the-future",
+        "legacySet": "OP07",
+        "releaseProfile": {
+          "value": 5586,
+          "count": 148,
+          "total": 148,
+          "ratio": 1.0
+        }
+      }
     },
     "OP07-056": {
       "productId": 775447,
@@ -34203,10 +34485,10 @@
       "dateAdded": "2024-09-12 14:38:38"
     },
     "OP08-049": {
-      "productId": 771672,
+      "productId": 787926,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Two-Legends/Speed-Jil-OP08-049",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP08",
       "legacyName": "Speed Jil",
@@ -34214,9 +34496,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP08/OP08-049_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Speed Jil (OP08-049)",
-      "idExpansion": 5744,
+      "idExpansion": 5610,
       "idMetacard": 435148,
-      "dateAdded": "2024-05-24 15:31:44"
+      "dateAdded": "2024-09-12 14:38:59",
+      "previousProductId": 771672,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Two-Legends/Speed-Jil-OP08-049",
+      "validationEvidence": {
+        "currentExpansion": 5744,
+        "urlSlug": "two-legends",
+        "legacySet": "OP08",
+        "releaseProfile": {
+          "value": 5610,
+          "count": 150,
+          "total": 150,
+          "ratio": 1.0
+        }
+      }
     },
     "OP08-050": {
       "productId": 787927,
@@ -36851,10 +37146,10 @@
       "addedAt": "2026-09-09T10:20:32+00:00"
     },
     "OP09-019": {
-      "productId": 786325,
+      "productId": 802882,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Emperors-in-the-New-World/Nobody-Hurts-a-Friend-of-Mine-OP09-019",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP09",
       "legacyName": "Nobody Hurts a Friend of Mine!!!!",
@@ -36862,9 +37157,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP09/OP09-019_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Nobody Hurts a Friend of Mine!!!! (OP09-019)",
-      "idExpansion": 5887,
+      "idExpansion": 5755,
       "idMetacard": 439543,
-      "dateAdded": "2024-09-04 04:32:35"
+      "dateAdded": "2024-12-05 11:49:21",
+      "previousProductId": 786325,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Emperors-in-the-New-World/Nobody-Hurts-a-Friend-of-Mine-OP09-019",
+      "validationEvidence": {
+        "currentExpansion": 5887,
+        "urlSlug": "emperors-in-the-new-world",
+        "legacySet": "OP09",
+        "releaseProfile": {
+          "value": 5755,
+          "count": 152,
+          "total": 155,
+          "ratio": 0.9806451612903225
+        }
+      }
     },
     "OP09-020": {
       "productId": 802883,
@@ -37139,10 +37447,10 @@
       "dateAdded": "2024-12-05 11:52:20"
     },
     "OP09-029": {
-      "productId": 786337,
+      "productId": 802894,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Emperors-in-the-New-World/Tony-TonyChopper-OP09-029",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP09",
       "legacyName": "Tony Tony.Chopper",
@@ -37150,9 +37458,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP09/OP09-029_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Tony Tony.Chopper (OP09-029)",
-      "idExpansion": 5887,
+      "idExpansion": 5755,
       "idMetacard": 439553,
-      "dateAdded": "2024-09-04 04:45:09"
+      "dateAdded": "2024-12-05 11:52:35",
+      "previousProductId": 786337,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Emperors-in-the-New-World/Tony-TonyChopper-OP09-029",
+      "validationEvidence": {
+        "currentExpansion": 5887,
+        "urlSlug": "emperors-in-the-new-world",
+        "legacySet": "OP09",
+        "releaseProfile": {
+          "value": 5755,
+          "count": 152,
+          "total": 155,
+          "ratio": 0.9806451612903225
+        }
+      }
     },
     "OP09-029_P1": {
       "productId": 828352,
@@ -38491,10 +38812,10 @@
       "addedAt": "2026-09-09T10:20:32+00:00"
     },
     "OP09-070": {
-      "productId": 786452,
+      "productId": 802948,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Emperors-in-the-New-World/Nami-OP09-070",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP09",
       "legacyName": "Nami",
@@ -38502,9 +38823,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP09/OP09-070_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Nami (OP09-070)",
-      "idExpansion": 5887,
+      "idExpansion": 5755,
       "idMetacard": 439623,
-      "dateAdded": "2024-09-04 11:49:42"
+      "dateAdded": "2024-12-05 12:08:01",
+      "previousProductId": 786452,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Emperors-in-the-New-World/Nami-OP09-070",
+      "validationEvidence": {
+        "currentExpansion": 5887,
+        "urlSlug": "emperors-in-the-new-world",
+        "legacySet": "OP09",
+        "releaseProfile": {
+          "value": 5755,
+          "count": 152,
+          "total": 155,
+          "ratio": 0.9806451612903225
+        }
+      }
     },
     "OP09-070_P1": {
       "productId": 850926,
@@ -39023,10 +39357,10 @@
       "addedAt": "2026-09-09T10:20:32+00:00"
     },
     "OP09-084": {
-      "productId": 852457,
+      "productId": 802964,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Emperors-in-the-New-World/Catarina-Devon-OP09-084",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP09",
       "legacyName": "Catarina Devon",
@@ -39034,9 +39368,31 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP09/OP09-084_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Catarina Devon (OP09-084)",
-      "idExpansion": 6242,
+      "idExpansion": 5755,
       "idMetacard": 439637,
-      "dateAdded": "2025-10-01 23:31:06"
+      "dateAdded": "2024-12-05 12:12:16",
+      "previousProductId": 852457,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Emperors-in-the-New-World/Catarina-Devon-OP09-084",
+      "validationEvidence": {
+        "currentExpansion": 6242,
+        "urlSlug": "emperors-in-the-new-world",
+        "legacySet": "OP09",
+        "releaseProfile": {
+          "value": 5755,
+          "count": 152,
+          "total": 155,
+          "ratio": 0.9806451612903225
+        },
+        "currentExpansionUrlProfile": {
+          "value": "the-best-vol2",
+          "count": 132,
+          "total": 137,
+          "ratio": 0.9635036496350365
+        },
+        "urlCompatibleExpansions": [
+          5755
+        ]
+      }
     },
     "OP09-084_P1": {
       "productId": 852458,
@@ -40443,10 +40799,10 @@
       "addedAt": "2026-09-09T10:20:32+00:00"
     },
     "OP10-012": {
-      "productId": 802177,
+      "productId": 817018,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Royal-Blood/Dragon-Number-Thirteen-OP10-012",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP10",
       "legacyName": "Dragon Number Thirteen",
@@ -40454,9 +40810,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP10/OP10-012_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Dragon Number Thirteen (OP10-012)",
-      "idExpansion": 5975,
+      "idExpansion": 5974,
       "idMetacard": 443590,
-      "dateAdded": "2024-11-29 12:20:56"
+      "dateAdded": "2025-03-13 17:54:47",
+      "previousProductId": 802177,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Royal-Blood/Dragon-Number-Thirteen-OP10-012",
+      "validationEvidence": {
+        "currentExpansion": 5975,
+        "urlSlug": "royal-blood",
+        "legacySet": "OP10",
+        "releaseProfile": {
+          "value": 5974,
+          "count": 146,
+          "total": 148,
+          "ratio": 0.9864864864864865
+        }
+      }
     },
     "OP10-013": {
       "productId": 817019,
@@ -40491,10 +40860,10 @@
       "dateAdded": "2025-03-13 17:57:48"
     },
     "OP10-015": {
-      "productId": 802180,
+      "productId": 817021,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Royal-Blood/Mocha-OP10-015",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP10",
       "legacyName": "Mocha",
@@ -40502,9 +40871,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP10/OP10-015_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Mocha (OP10-015)",
-      "idExpansion": 5975,
+      "idExpansion": 5974,
       "idMetacard": 443593,
-      "dateAdded": "2024-11-29 12:22:23"
+      "dateAdded": "2025-03-13 17:58:05",
+      "previousProductId": 802180,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Royal-Blood/Mocha-OP10-015",
+      "validationEvidence": {
+        "currentExpansion": 5975,
+        "urlSlug": "royal-blood",
+        "legacySet": "OP10",
+        "releaseProfile": {
+          "value": 5974,
+          "count": 146,
+          "total": 148,
+          "ratio": 0.9864864864864865
+        }
+      }
     },
     "OP10-016": {
       "productId": 817022,
@@ -40987,10 +41369,10 @@
       "dateAdded": "2025-03-13 20:02:46"
     },
     "OP10-036": {
-      "productId": 900288,
+      "productId": 817047,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Royal-Blood/Perona-OP10-036",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP10",
       "legacyName": "Perona",
@@ -40998,9 +41380,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP10/OP10-036_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Perona (OP10-036)",
-      "idExpansion": 6649,
+      "idExpansion": 5974,
       "idMetacard": 443614,
-      "dateAdded": "2026-07-30 03:48:16"
+      "dateAdded": "2025-03-13 20:03:04",
+      "previousProductId": 900288,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Royal-Blood/Perona-OP10-036",
+      "validationEvidence": {
+        "currentExpansion": 6649,
+        "urlSlug": "royal-blood",
+        "legacySet": "OP10",
+        "releaseProfile": {
+          "value": 5974,
+          "count": 146,
+          "total": 148,
+          "ratio": 0.9864864864864865
+        }
+      }
     },
     "OP10-037": {
       "productId": 817048,
@@ -42623,10 +43018,10 @@
       "dateAdded": "2025-03-13 20:47:13"
     },
     "OP10-108_P1": {
-      "productId": 839399,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Scratchmen-Apoo-OP10-108-V2",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "quarantined-release-expansion-mismatch",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB02",
       "legacyName": "Scratchmen Apoo",
@@ -42636,7 +43031,21 @@
       "productName": "Scratchmen Apoo (OP10-108)",
       "idExpansion": 6233,
       "idMetacard": 443685,
-      "dateAdded": "2025-07-28 16:07:05"
+      "dateAdded": "2025-07-28 16:07:05",
+      "invalidProductId": 839399,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Scratchmen-Apoo-OP10-108-V2",
+      "invalidReason": "release-expansion-mismatch",
+      "validationEvidence": {
+        "currentExpansion": 6233,
+        "urlSlug": "the-best-vol2",
+        "legacySet": "PRB02",
+        "releaseProfile": {
+          "value": 6242,
+          "count": 124,
+          "total": 130,
+          "ratio": 0.9538461538461539
+        }
+      }
     },
     "OP10-108_R1": {
       "productId": null,
@@ -43687,10 +44096,10 @@
       "dateAdded": "2025-05-27 10:10:39"
     },
     "OP11-029": {
-      "productId": 817386,
+      "productId": 827113,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/A-Fist-of-Divine-Speed/Charlotte-Praline-OP11-029",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP11",
       "legacyName": "Charlotte Praline",
@@ -43698,9 +44107,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP11/OP11-029_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Charlotte Praline (OP11-029)",
-      "idExpansion": 6034,
+      "idExpansion": 6033,
       "idMetacard": 447130,
-      "dateAdded": "2025-03-14 15:09:10"
+      "dateAdded": "2025-05-27 10:10:59",
+      "previousProductId": 817386,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/A-Fist-of-Divine-Speed/Charlotte-Praline-OP11-029",
+      "validationEvidence": {
+        "currentExpansion": 6034,
+        "urlSlug": "a-fist-of-divine-speed",
+        "legacySet": "OP11",
+        "releaseProfile": {
+          "value": 6033,
+          "count": 151,
+          "total": 152,
+          "ratio": 0.993421052631579
+        }
+      }
     },
     "OP11-030": {
       "productId": 827114,
@@ -44327,10 +44749,10 @@
       "dateAdded": "2025-11-01 12:02:38"
     },
     "OP11-059": {
-      "productId": 817424,
+      "productId": 827150,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/A-Fist-of-Divine-Speed/Gum-Gum-King-Cobra-OP11-059",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP11",
       "legacyName": "Gum-Gum King Cobra",
@@ -44338,9 +44760,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP11/OP11-059_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Gum-Gum King Cobra (OP11-059)",
-      "idExpansion": 6034,
+      "idExpansion": 6033,
       "idMetacard": 447160,
-      "dateAdded": "2025-03-14 16:27:22"
+      "dateAdded": "2025-05-27 10:59:34",
+      "previousProductId": 817424,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/A-Fist-of-Divine-Speed/Gum-Gum-King-Cobra-OP11-059",
+      "validationEvidence": {
+        "currentExpansion": 6034,
+        "urlSlug": "a-fist-of-divine-speed",
+        "legacySet": "OP11",
+        "releaseProfile": {
+          "value": 6033,
+          "count": 151,
+          "total": 152,
+          "ratio": 0.993421052631579
+        }
+      }
     },
     "OP11-060": {
       "productId": 827151,
@@ -46347,10 +46782,10 @@
       "dateAdded": "2026-01-29 23:42:29"
     },
     "OP12-029": {
-      "productId": 830257,
+      "productId": 842921,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Legacy-of-the-Master/Shimotsuki-Kouzaburou-OP12-029",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP12",
       "legacyName": "Shimotsuki Kouzaburou",
@@ -46358,9 +46793,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP12/OP12-029_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Shimotsuki Kouzaburou (OP12-029)",
-      "idExpansion": 6157,
+      "idExpansion": 6186,
       "idMetacard": 450457,
-      "dateAdded": "2025-06-19 15:49:42"
+      "dateAdded": "2025-08-15 01:17:56",
+      "previousProductId": 830257,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Legacy-of-the-Master/Shimotsuki-Kouzaburou-OP12-029",
+      "validationEvidence": {
+        "currentExpansion": 6157,
+        "urlSlug": "legacy-of-the-master",
+        "legacySet": "OP12",
+        "releaseProfile": {
+          "value": 6186,
+          "count": 150,
+          "total": 153,
+          "ratio": 0.9803921568627451
+        }
+      }
     },
     "OP12-030": {
       "productId": 842922,
@@ -46711,10 +47159,10 @@
       "addedAt": "2026-09-09T10:20:32+00:00"
     },
     "OP12-041": {
-      "productId": 830274,
+      "productId": 842938,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Legacy-of-the-Master/Sanji-OP12-041-V1",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP12",
       "legacyName": "Sanji",
@@ -46722,9 +47170,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP12/OP12-041_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Sanji (OP12-041)",
-      "idExpansion": 6157,
+      "idExpansion": 6186,
       "idMetacard": 450469,
-      "dateAdded": "2025-06-19 16:10:30"
+      "dateAdded": "2025-08-15 01:26:02",
+      "previousProductId": 830274,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Legacy-of-the-Master/Sanji-OP12-041-V1",
+      "validationEvidence": {
+        "currentExpansion": 6157,
+        "urlSlug": "legacy-of-the-master",
+        "legacySet": "OP12",
+        "releaseProfile": {
+          "value": 6186,
+          "count": 150,
+          "total": 153,
+          "ratio": 0.9803921568627451
+        }
+      }
     },
     "OP12-041_P1": {
       "productId": 842939,
@@ -47927,10 +48388,10 @@
       "dateAdded": "2026-04-01 12:40:52"
     },
     "OP12-095": {
-      "productId": 830339,
+      "productId": 843004,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Legacy-of-the-Master/Lindbergh-OP12-095",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP12",
       "legacyName": "Lindbergh",
@@ -47938,9 +48399,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP12/OP12-095_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Lindbergh (OP12-095)",
-      "idExpansion": 6157,
+      "idExpansion": 6186,
       "idMetacard": 450522,
-      "dateAdded": "2025-06-19 17:03:30"
+      "dateAdded": "2025-08-15 02:30:21",
+      "previousProductId": 830339,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Legacy-of-the-Master/Lindbergh-OP12-095",
+      "validationEvidence": {
+        "currentExpansion": 6157,
+        "urlSlug": "legacy-of-the-master",
+        "legacySet": "OP12",
+        "releaseProfile": {
+          "value": 6186,
+          "count": 150,
+          "total": 153,
+          "ratio": 0.9803921568627451
+        }
+      }
     },
     "OP12-096": {
       "productId": 843005,
@@ -48087,10 +48561,10 @@
       "dateAdded": "2025-08-15 02:42:23"
     },
     "OP12-103": {
-      "productId": 830348,
+      "productId": 843013,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Legacy-of-the-Master/Seto-OP12-103",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP12",
       "legacyName": "Seto",
@@ -48098,9 +48572,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP12/OP12-103_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Seto (OP12-103)",
-      "idExpansion": 6157,
+      "idExpansion": 6186,
       "idMetacard": 450530,
-      "dateAdded": "2025-06-19 17:06:50"
+      "dateAdded": "2025-08-15 02:43:06",
+      "previousProductId": 830348,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Legacy-of-the-Master/Seto-OP12-103",
+      "validationEvidence": {
+        "currentExpansion": 6157,
+        "urlSlug": "legacy-of-the-master",
+        "legacySet": "OP12",
+        "releaseProfile": {
+          "value": 6186,
+          "count": 150,
+          "total": 153,
+          "ratio": 0.9803921568627451
+        }
+      }
     },
     "OP12-104": {
       "productId": 843014,
@@ -48783,10 +49270,10 @@
       "dateAdded": "2025-11-02 10:51:18"
     },
     "OP13-012": {
-      "productId": 845259,
+      "productId": 857203,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Carrying-on-his-Will/Nefeltari-Vivi-OP13-012",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP13",
       "legacyName": "Nefeltari Vivi",
@@ -48794,9 +49281,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP13/OP13-012_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Nefeltari Vivi (OP13-012)",
-      "idExpansion": 6277,
+      "idExpansion": 6187,
       "idMetacard": 453164,
-      "dateAdded": "2025-08-25 18:24:37"
+      "dateAdded": "2025-11-02 10:51:39",
+      "previousProductId": 845259,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Carrying-on-his-Will/Nefeltari-Vivi-OP13-012",
+      "validationEvidence": {
+        "currentExpansion": 6277,
+        "urlSlug": "carrying-on-his-will",
+        "legacySet": "OP13",
+        "releaseProfile": {
+          "value": 6187,
+          "count": 169,
+          "total": 173,
+          "ratio": 0.976878612716763
+        }
+      }
     },
     "OP13-013": {
       "productId": 857204,
@@ -48831,10 +49331,10 @@
       "dateAdded": "2025-11-02 10:52:17"
     },
     "OP13-015": {
-      "productId": 845262,
+      "productId": 857206,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Carrying-on-his-Will/Makino-OP13-015",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP13",
       "legacyName": "Makino",
@@ -48842,9 +49342,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP13/OP13-015_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Makino (OP13-015)",
-      "idExpansion": 6277,
+      "idExpansion": 6187,
       "idMetacard": 453167,
-      "dateAdded": "2025-08-25 18:25:45"
+      "dateAdded": "2025-11-02 10:52:37",
+      "previousProductId": 845262,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Carrying-on-his-Will/Makino-OP13-015",
+      "validationEvidence": {
+        "currentExpansion": 6277,
+        "urlSlug": "carrying-on-his-will",
+        "legacySet": "OP13",
+        "releaseProfile": {
+          "value": 6187,
+          "count": 169,
+          "total": 173,
+          "ratio": 0.976878612716763
+        }
+      }
     },
     "OP13-016": {
       "productId": 857207,
@@ -49323,10 +49836,10 @@
       "addedAt": "2026-09-09T10:20:32+00:00"
     },
     "OP13-038": {
-      "productId": 845289,
+      "productId": 857233,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Carrying-on-his-Will/Gum-Gum-Elephant-Gun-OP13-038",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP13",
       "legacyName": "Gum-Gum Elephant Gun",
@@ -49334,9 +49847,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP13/OP13-038_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Gum-Gum Elephant Gun (OP13-038)",
-      "idExpansion": 6277,
+      "idExpansion": 6187,
       "idMetacard": 453190,
-      "dateAdded": "2025-08-25 19:29:36"
+      "dateAdded": "2025-11-02 11:03:20",
+      "previousProductId": 845289,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Carrying-on-his-Will/Gum-Gum-Elephant-Gun-OP13-038",
+      "validationEvidence": {
+        "currentExpansion": 6277,
+        "urlSlug": "carrying-on-his-will",
+        "legacySet": "OP13",
+        "releaseProfile": {
+          "value": 6187,
+          "count": 169,
+          "total": 173,
+          "ratio": 0.976878612716763
+        }
+      }
     },
     "OP13-039": {
       "productId": 857234,
@@ -49771,10 +50297,10 @@
       "dateAdded": "2025-11-02 11:14:26"
     },
     "OP13-059": {
-      "productId": 845330,
+      "productId": 857257,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Carrying-on-his-Will/Brilliant-Punk-OP13-059",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP13",
       "legacyName": "Brilliant Punk",
@@ -49782,9 +50308,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP13/OP13-059_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Brilliant Punk (OP13-059)",
-      "idExpansion": 6277,
+      "idExpansion": 6187,
       "idMetacard": 453213,
-      "dateAdded": "2025-08-26 08:48:44"
+      "dateAdded": "2025-11-02 11:14:55",
+      "previousProductId": 845330,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Carrying-on-his-Will/Brilliant-Punk-OP13-059",
+      "validationEvidence": {
+        "currentExpansion": 6277,
+        "urlSlug": "carrying-on-his-will",
+        "legacySet": "OP13",
+        "releaseProfile": {
+          "value": 6187,
+          "count": 169,
+          "total": 173,
+          "ratio": 0.976878612716763
+        }
+      }
     },
     "OP13-060": {
       "productId": 857258,
@@ -51083,10 +51622,10 @@
       "dateAdded": "2025-11-03 11:11:38"
     },
     "OP13-117": {
-      "productId": 845670,
+      "productId": 857336,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Carrying-on-his-Will/Gum-Gum-Dawn-Stamp-OP13-117",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP13",
       "legacyName": "Gum-Gum Dawn Stamp",
@@ -51094,9 +51633,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP13/OP13-117_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Gum-Gum Dawn Stamp (OP13-117)",
-      "idExpansion": 6277,
+      "idExpansion": 6187,
       "idMetacard": 453322,
-      "dateAdded": "2025-08-28 11:45:54"
+      "dateAdded": "2025-11-03 11:12:00",
+      "previousProductId": 845670,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Carrying-on-his-Will/Gum-Gum-Dawn-Stamp-OP13-117",
+      "validationEvidence": {
+        "currentExpansion": 6277,
+        "urlSlug": "carrying-on-his-will",
+        "legacySet": "OP13",
+        "releaseProfile": {
+          "value": 6187,
+          "count": 169,
+          "total": 173,
+          "ratio": 0.976878612716763
+        }
+      }
     },
     "OP13-118": {
       "productId": 857337,
@@ -51811,10 +52363,10 @@
       "dateAdded": "2026-01-09 02:47:46"
     },
     "OP14-021": {
-      "productId": 861789,
+      "productId": 865427,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Azure-Seas-Seven/Issho-OP14-021",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP14",
       "legacyName": "Issho",
@@ -51822,9 +52374,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP14/OP14-021_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Issho (OP14-021)",
-      "idExpansion": 6411,
+      "idExpansion": 6432,
       "idMetacard": 456986,
-      "dateAdded": "2025-12-02 06:03:51"
+      "dateAdded": "2026-01-09 02:48:55",
+      "previousProductId": 861789,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Azure-Seas-Seven/Issho-OP14-021",
+      "validationEvidence": {
+        "currentExpansion": 6411,
+        "urlSlug": "the-azure-seas-seven",
+        "legacySet": "OP14",
+        "releaseProfile": {
+          "value": 6432,
+          "count": 194,
+          "total": 196,
+          "ratio": 0.9897959183673469
+        }
+      }
     },
     "OP14-022": {
       "productId": 865428,
@@ -53315,10 +53880,10 @@
       "dateAdded": "2026-01-09 03:48:46"
     },
     "OP14-092": {
-      "productId": 861912,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Azure-Seas-Seven/Mr3Galdino-OP14-092",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "quarantined-release-expansion-mismatch",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP14",
       "legacyName": "Mr.3(Galdino)",
@@ -53328,7 +53893,21 @@
       "productName": "Mr.3(Galdino) (OP14-092)",
       "idExpansion": 6411,
       "idMetacard": 457057,
-      "dateAdded": "2025-12-02 14:22:56"
+      "dateAdded": "2025-12-02 14:22:56",
+      "invalidProductId": 861912,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Azure-Seas-Seven/Mr3Galdino-OP14-092",
+      "invalidReason": "release-expansion-mismatch",
+      "validationEvidence": {
+        "currentExpansion": 6411,
+        "urlSlug": "the-azure-seas-seven",
+        "legacySet": "OP14",
+        "releaseProfile": {
+          "value": 6432,
+          "count": 194,
+          "total": 196,
+          "ratio": 0.9897959183673469
+        }
+      }
     },
     "OP14-093": {
       "productId": 865514,
@@ -55275,10 +55854,10 @@
       "dateAdded": "2026-03-28 23:23:00"
     },
     "OP15-066": {
-      "productId": 875072,
+      "productId": 879988,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Adventure-on-Kamis-Island/Satori-OP15-066",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP15",
       "legacyName": "Satori",
@@ -55286,9 +55865,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP15/OP15-066_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Satori (OP15-066)",
-      "idExpansion": 6504,
+      "idExpansion": 6456,
       "idMetacard": 460402,
-      "dateAdded": "2026-03-01 10:14:06"
+      "dateAdded": "2026-03-28 23:23:37",
+      "previousProductId": 875072,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Adventure-on-Kamis-Island/Satori-OP15-066",
+      "validationEvidence": {
+        "currentExpansion": 6504,
+        "urlSlug": "adventure-on-kamis-island",
+        "legacySet": "OP15",
+        "releaseProfile": {
+          "value": 6456,
+          "count": 192,
+          "total": 192,
+          "ratio": 1.0
+        }
+      }
     },
     "OP15-067": {
       "productId": 879989,
@@ -57723,10 +58315,10 @@
       "dateAdded": "2026-06-03 00:33:30"
     },
     "OP16-069": {
-      "productId": 890457,
+      "productId": 890761,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/OP16/Donquixote-Doflamingo-OP16-069",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP16",
       "legacyName": "Donquixote Doflamingo",
@@ -57734,9 +58326,22 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP16/OP16-069_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Donquixote Doflamingo (OP16-069)",
-      "idExpansion": 6606,
+      "idExpansion": 6457,
       "idMetacard": 463699,
-      "dateAdded": "2026-06-02 18:36:07"
+      "dateAdded": "2026-06-03 00:33:47",
+      "previousProductId": 890457,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/OP16/Donquixote-Doflamingo-OP16-069",
+      "validationEvidence": {
+        "currentExpansion": 6606,
+        "urlSlug": "op16",
+        "legacySet": "OP16",
+        "releaseProfile": {
+          "value": 6457,
+          "count": 154,
+          "total": 154,
+          "ratio": 1.0
+        }
+      }
     },
     "OP16-070": {
       "productId": 890762,
@@ -59795,10 +60400,10 @@
       "addedAt": "2026-09-09T10:20:32+00:00"
     },
     "P-030": {
-      "productId": 802136,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Jinbe-P-030",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "quarantined-duplicate-product-id-across-printings",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "event-pack-01",
       "legacyName": "Jinbe",
@@ -59808,7 +60413,17 @@
       "productName": "Jinbe (P-030)",
       "idExpansion": 5970,
       "idMetacard": 415757,
-      "dateAdded": "2024-11-29 09:48:09"
+      "dateAdded": "2024-11-29 09:48:09",
+      "invalidProductId": 802136,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Jinbe-P-030",
+      "invalidReason": "duplicate-product-id-across-printings",
+      "validationEvidence": {
+        "productId": 802136,
+        "mappingKeys": [
+          "P-030",
+          "P-030_P2"
+        ]
+      }
     },
     "P-030_P1": {
       "productId": null,
@@ -59823,10 +60438,10 @@
       "addedAt": "2026-09-09T10:20:32+00:00"
     },
     "P-030_P2": {
-      "productId": 802136,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Jinbe-P-030",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "quarantined-duplicate-product-id-across-printings",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "premium-card-collection-bandai-card-games-fest-23-24",
       "legacyName": "Jinbe",
@@ -59836,7 +60451,17 @@
       "productName": "Jinbe (P-030)",
       "idExpansion": 5970,
       "idMetacard": 415757,
-      "dateAdded": "2024-11-29 09:48:09"
+      "dateAdded": "2024-11-29 09:48:09",
+      "invalidProductId": 802136,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Jinbe-P-030",
+      "invalidReason": "duplicate-product-id-across-printings",
+      "validationEvidence": {
+        "productId": 802136,
+        "mappingKeys": [
+          "P-030",
+          "P-030_P2"
+        ]
+      }
     },
     "P-030_P3": {
       "productId": null,
@@ -60787,10 +61412,10 @@
       "dateAdded": "2024-10-24 03:47:16"
     },
     "P-057_P1": {
-      "productId": 754827,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/Fleeting-Lullaby-P-057",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "quarantined-cardmarket-url-expansion-mismatch",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "ST16",
       "legacyName": "Fleeting Lullaby",
@@ -60800,7 +61425,21 @@
       "productName": "Fleeting Lullaby (P-057)",
       "idExpansion": 5230,
       "idMetacard": 429247,
-      "dateAdded": "2024-02-02 23:32:20"
+      "dateAdded": "2024-02-02 23:32:20",
+      "invalidProductId": 754827,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/Fleeting-Lullaby-P-057",
+      "invalidReason": "cardmarket-url-expansion-mismatch",
+      "validationEvidence": {
+        "currentExpansion": 5230,
+        "urlSlug": "starter-deck-green-uta",
+        "legacySet": "ST16",
+        "currentExpansionUrlProfile": {
+          "value": "promos",
+          "count": 143,
+          "total": 148,
+          "ratio": 0.9662162162162162
+        }
+      }
     },
     "P-058": {
       "productId": 794636,
@@ -60819,10 +61458,10 @@
       "dateAdded": "2024-10-24 03:47:38"
     },
     "P-058_P1": {
-      "productId": 754830,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/Where-the-Wind-Blows-P-058",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "quarantined-cardmarket-url-expansion-mismatch",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "ST16",
       "legacyName": "Where the Wind Blows",
@@ -60832,7 +61471,21 @@
       "productName": "Where the Wind Blows (P-058)",
       "idExpansion": 5230,
       "idMetacard": 429248,
-      "dateAdded": "2024-02-02 23:34:21"
+      "dateAdded": "2024-02-02 23:34:21",
+      "invalidProductId": 754830,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/Where-the-Wind-Blows-P-058",
+      "invalidReason": "cardmarket-url-expansion-mismatch",
+      "validationEvidence": {
+        "currentExpansion": 5230,
+        "urlSlug": "starter-deck-green-uta",
+        "legacySet": "ST16",
+        "currentExpansionUrlProfile": {
+          "value": "promos",
+          "count": 143,
+          "total": 148,
+          "ratio": 0.9662162162162162
+        }
+      }
     },
     "P-059": {
       "productId": 794637,
@@ -60851,10 +61504,10 @@
       "dateAdded": "2024-10-24 03:48:36"
     },
     "P-059_P1": {
-      "productId": 754828,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/The-Worlds-Continuation-P-059",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "quarantined-cardmarket-url-expansion-mismatch",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "ST16",
       "legacyName": "The World's Continuation",
@@ -60864,7 +61517,21 @@
       "productName": "The World's Continuation (P-059)",
       "idExpansion": 5230,
       "idMetacard": 429249,
-      "dateAdded": "2024-02-02 23:33:30"
+      "dateAdded": "2024-02-02 23:33:30",
+      "invalidProductId": 754828,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/The-Worlds-Continuation-P-059",
+      "invalidReason": "cardmarket-url-expansion-mismatch",
+      "validationEvidence": {
+        "currentExpansion": 5230,
+        "urlSlug": "starter-deck-green-uta",
+        "legacySet": "ST16",
+        "currentExpansionUrlProfile": {
+          "value": "promos",
+          "count": 143,
+          "total": 148,
+          "ratio": 0.9662162162162162
+        }
+      }
     },
     "P-060": {
       "productId": 794638,
@@ -60883,10 +61550,10 @@
       "dateAdded": "2024-10-24 03:48:58"
     },
     "P-060_P1": {
-      "productId": 754829,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/Tot-Musica-P-060",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "quarantined-cardmarket-url-expansion-mismatch",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "ST16",
       "legacyName": "Tot Musica",
@@ -60896,7 +61563,21 @@
       "productName": "Tot Musica (P-060)",
       "idExpansion": 5230,
       "idMetacard": 429250,
-      "dateAdded": "2024-02-02 23:33:55"
+      "dateAdded": "2024-02-02 23:33:55",
+      "invalidProductId": 754829,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/Tot-Musica-P-060",
+      "invalidReason": "cardmarket-url-expansion-mismatch",
+      "validationEvidence": {
+        "currentExpansion": 5230,
+        "urlSlug": "starter-deck-green-uta",
+        "legacySet": "ST16",
+        "currentExpansionUrlProfile": {
+          "value": "promos",
+          "count": 143,
+          "total": 148,
+          "ratio": 0.9662162162162162
+        }
+      }
     },
     "P-061": {
       "productId": 754831,
@@ -61631,10 +62312,10 @@
       "dateAdded": "2025-01-28 16:01:38"
     },
     "P-079_P1": {
-      "productId": 842347,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Lim-P-079-V2",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "quarantined-cardmarket-url-expansion-mismatch",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "championship-25-26-event-pack",
       "legacyName": "Lim",
@@ -61644,7 +62325,24 @@
       "productName": "Lim (P-079)",
       "idExpansion": 5262,
       "idMetacard": 445266,
-      "dateAdded": "2025-08-12 22:17:33"
+      "dateAdded": "2025-08-12 22:17:33",
+      "invalidProductId": 842347,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Lim-P-079-V2",
+      "invalidReason": "cardmarket-url-expansion-mismatch",
+      "validationEvidence": {
+        "currentExpansion": 5262,
+        "urlSlug": "promos",
+        "legacySet": "championship-25-26-event-pack",
+        "currentExpansionUrlProfile": {
+          "value": "special-tournaments-promos",
+          "count": 172,
+          "total": 172,
+          "ratio": 1.0
+        },
+        "urlCompatibleExpansions": [
+          5230
+        ]
+      }
     },
     "P-079_P2": {
       "productId": null,
@@ -61851,10 +62549,10 @@
       "addedAt": "2026-09-09T10:20:32+00:00"
     },
     "P-083_P3": {
-      "productId": 839448,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Shanks-P-083-V2",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "quarantined-release-expansion-mismatch",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB02",
       "legacyName": "Shanks",
@@ -61864,7 +62562,27 @@
       "productName": "Shanks (P-083)",
       "idExpansion": 6233,
       "idMetacard": 441785,
-      "dateAdded": "2025-07-28 16:58:04"
+      "dateAdded": "2025-07-28 16:58:04",
+      "invalidProductId": 839448,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Shanks-P-083-V2",
+      "invalidReason": "release-expansion-mismatch",
+      "validationEvidence": {
+        "currentExpansion": 6233,
+        "urlSlug": "the-best-vol2",
+        "legacySet": "PRB02",
+        "releaseProfile": {
+          "value": 6242,
+          "count": 124,
+          "total": 131,
+          "ratio": 0.9465648854961832
+        },
+        "releaseUrlProfile": {
+          "value": "the-best-vol2",
+          "count": 124,
+          "total": 124,
+          "ratio": 1.0
+        }
+      }
     },
     "P-084": {
       "productId": 817502,
@@ -61911,10 +62629,10 @@
       "addedAt": "2026-09-09T10:20:32+00:00"
     },
     "P-085": {
-      "productId": 852518,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Jewelry-Bonney-P-085-V1",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "quarantined-cardmarket-url-expansion-mismatch",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "regional-participation-pack-2025-2",
       "legacyName": "Jewelry Bonney",
@@ -61924,7 +62642,24 @@
       "productName": "Jewelry Bonney (P-085)",
       "idExpansion": 6242,
       "idMetacard": 444118,
-      "dateAdded": "2025-10-01 23:52:28"
+      "dateAdded": "2025-10-01 23:52:28",
+      "invalidProductId": 852518,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Jewelry-Bonney-P-085-V1",
+      "invalidReason": "cardmarket-url-expansion-mismatch",
+      "validationEvidence": {
+        "currentExpansion": 6242,
+        "urlSlug": "promos",
+        "legacySet": "regional-participation-pack-2025-2",
+        "currentExpansionUrlProfile": {
+          "value": "the-best-vol2",
+          "count": 132,
+          "total": 137,
+          "ratio": 0.9635036496350365
+        },
+        "urlCompatibleExpansions": [
+          5230
+        ]
+      }
     },
     "P-085_P1": {
       "productId": 852517,
@@ -61943,10 +62678,10 @@
       "dateAdded": "2025-10-01 23:52:16"
     },
     "P-085_P2": {
-      "productId": 840666,
+      "productId": 852518,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Jewelry-Bonney-P-085-V2",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB02",
       "legacyName": "Jewelry Bonney",
@@ -61954,9 +62689,37 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-085_p2_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Jewelry Bonney (P-085)",
-      "idExpansion": 5230,
+      "idExpansion": 6242,
       "idMetacard": 444118,
-      "dateAdded": "2025-08-04 09:41:37"
+      "dateAdded": "2025-10-01 23:52:28",
+      "previousProductId": 840666,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Jewelry-Bonney-P-085-V2",
+      "validationEvidence": {
+        "currentExpansion": 5230,
+        "urlSlug": "the-best-vol2",
+        "legacySet": "PRB02",
+        "releaseProfile": {
+          "value": 6242,
+          "count": 124,
+          "total": 131,
+          "ratio": 0.9465648854961832
+        },
+        "releaseUrlProfile": {
+          "value": "the-best-vol2",
+          "count": 124,
+          "total": 124,
+          "ratio": 1.0
+        },
+        "currentExpansionUrlProfile": {
+          "value": "promos",
+          "count": 143,
+          "total": 148,
+          "ratio": 0.9662162162162162
+        },
+        "urlCompatibleExpansions": [
+          6242
+        ]
+      }
     },
     "P-086": {
       "productId": null,
@@ -61971,10 +62734,10 @@
       "addedAt": "2026-09-09T10:20:32+00:00"
     },
     "P-088": {
-      "productId": 852519,
+      "productId": 840731,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Trafalgar-Law-P-088-V1",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "event-pack-07",
       "legacyName": "Trafalgar Law",
@@ -61982,15 +62745,31 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-088_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Trafalgar Law (P-088)",
-      "idExpansion": 6242,
+      "idExpansion": 5230,
       "idMetacard": 444109,
-      "dateAdded": "2025-10-01 23:52:46"
+      "dateAdded": "2025-08-04 10:07:12",
+      "previousProductId": 852519,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Trafalgar-Law-P-088-V1",
+      "validationEvidence": {
+        "currentExpansion": 6242,
+        "urlSlug": "promos",
+        "legacySet": "event-pack-07",
+        "currentExpansionUrlProfile": {
+          "value": "the-best-vol2",
+          "count": 132,
+          "total": 137,
+          "ratio": 0.9635036496350365
+        },
+        "urlCompatibleExpansions": [
+          5230
+        ]
+      }
     },
     "P-088_P1": {
-      "productId": 840731,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Trafalgar-Law-P-088-V1",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "quarantined-cardmarket-url-expansion-mismatch+release-expansion-mismatch",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB02",
       "legacyName": "Trafalgar Law",
@@ -62000,7 +62779,36 @@
       "productName": "Trafalgar Law (P-088)",
       "idExpansion": 5230,
       "idMetacard": 444109,
-      "dateAdded": "2025-08-04 10:07:12"
+      "dateAdded": "2025-08-04 10:07:12",
+      "invalidProductId": 840731,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Trafalgar-Law-P-088-V1",
+      "invalidReason": "cardmarket-url-expansion-mismatch+release-expansion-mismatch",
+      "validationEvidence": {
+        "currentExpansion": 5230,
+        "urlSlug": "the-best-vol2",
+        "legacySet": "PRB02",
+        "releaseProfile": {
+          "value": 6242,
+          "count": 124,
+          "total": 131,
+          "ratio": 0.9465648854961832
+        },
+        "releaseUrlProfile": {
+          "value": "the-best-vol2",
+          "count": 124,
+          "total": 124,
+          "ratio": 1.0
+        },
+        "currentExpansionUrlProfile": {
+          "value": "promos",
+          "count": 143,
+          "total": 148,
+          "ratio": 0.9662162162162162
+        },
+        "urlCompatibleExpansions": [
+          6242
+        ]
+      }
     },
     "P-088_P2": {
       "productId": null,
@@ -68483,10 +69291,10 @@
       "addedAt": "2026-09-09T10:20:32+00:00"
     },
     "ST10-005_P2": {
-      "productId": 744751,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Jinbe-ST10-005-V2",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "quarantined-cardmarket-url-expansion-mismatch+release-expansion-mismatch",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB02",
       "legacyName": "Jinbe",
@@ -68496,7 +69304,30 @@
       "productName": "Jinbe (ST10-005)",
       "idExpansion": 5380,
       "idMetacard": 427679,
-      "dateAdded": "2023-11-10 04:05:51"
+      "dateAdded": "2023-11-10 04:05:51",
+      "invalidProductId": 744751,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Jinbe-ST10-005-V2",
+      "invalidReason": "cardmarket-url-expansion-mismatch+release-expansion-mismatch",
+      "validationEvidence": {
+        "currentExpansion": 5380,
+        "urlSlug": "the-best-vol2",
+        "legacySet": "PRB02",
+        "releaseProfile": {
+          "value": 6242,
+          "count": 124,
+          "total": 130,
+          "ratio": 0.9538461538461539
+        },
+        "currentExpansionUrlProfile": {
+          "value": "ultra-deck-the-three-captains",
+          "count": 19,
+          "total": 19,
+          "ratio": 1.0
+        },
+        "urlCompatibleExpansions": [
+          6242
+        ]
+      }
     },
     "ST10-005_R1": {
       "productId": null,
@@ -68931,10 +69762,10 @@
       "dateAdded": "2023-11-10 04:10:16"
     },
     "ST11-001": {
-      "productId": 794639,
+      "productId": 754833,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Uta/Uta-ST11-001",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "ST11",
       "legacyName": "Uta",
@@ -68942,15 +69773,28 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/ST11/ST11-001_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Uta ( ST11-001)",
-      "idExpansion": 5748,
+      "idExpansion": 5427,
       "idMetacard": 429257,
-      "dateAdded": "2024-10-24 03:49:28"
+      "dateAdded": "2024-02-02 23:41:36",
+      "previousProductId": 794639,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Uta/Uta-ST11-001",
+      "validationEvidence": {
+        "currentExpansion": 5748,
+        "urlSlug": "starter-deck-uta",
+        "legacySet": "ST11",
+        "releaseProfile": {
+          "value": 5427,
+          "count": 4,
+          "total": 4,
+          "ratio": 1.0
+        }
+      }
     },
     "ST11-001_P1": {
-      "productId": 754833,
+      "productId": 794639,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/Uta-ST11-001",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "ST16",
       "legacyName": "Uta",
@@ -68958,9 +69802,28 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/ST11/ST11-001_p1_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Uta ( ST11-001)",
-      "idExpansion": 5427,
+      "idExpansion": 5748,
       "idMetacard": 429257,
-      "dateAdded": "2024-02-02 23:41:36"
+      "dateAdded": "2024-10-24 03:49:28",
+      "previousProductId": 754833,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/Uta-ST11-001",
+      "validationEvidence": {
+        "currentExpansion": 5427,
+        "urlSlug": "starter-deck-green-uta",
+        "legacySet": "ST16",
+        "releaseProfile": {
+          "value": 5748,
+          "count": 8,
+          "total": 8,
+          "ratio": 1.0
+        },
+        "currentExpansionUrlProfile": {
+          "value": "starter-deck-uta",
+          "count": 4,
+          "total": 4,
+          "ratio": 1.0
+        }
+      }
     },
     "ST11-002": {
       "productId": 754834,
@@ -70791,26 +71654,48 @@
       "addedAt": "2026-09-09T10:20:32+00:00"
     },
     "ST14-016": {
-      "productId": 852588,
+      "productId": 783339,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-3D2Y/I-Have-My-Crew-ST14-016",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "ST14",
       "legacyName": "I Have My Crew!!",
       "legacyRarity": "Common",
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/ST14/ST14-016_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
-      "productName": "I Have My Crew!!o (ST14-016)",
-      "idExpansion": 6242,
-      "idMetacard": 452257,
-      "dateAdded": "2025-10-02 00:21:54"
+      "productName": "I Have My Crew!! (ST14-016)",
+      "idExpansion": 5611,
+      "idMetacard": 438637,
+      "dateAdded": "2024-08-19 08:51:44",
+      "previousProductId": 852588,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-3D2Y/I-Have-My-Crew-ST14-016",
+      "validationEvidence": {
+        "currentExpansion": 6242,
+        "urlSlug": "starter-deck-3d2y",
+        "legacySet": "ST14",
+        "releaseProfile": {
+          "value": 5611,
+          "count": 15,
+          "total": 15,
+          "ratio": 1.0
+        },
+        "currentExpansionUrlProfile": {
+          "value": "the-best-vol2",
+          "count": 132,
+          "total": 137,
+          "ratio": 0.9635036496350365
+        },
+        "urlCompatibleExpansions": [
+          5611
+        ]
+      }
     },
     "ST14-016_P1": {
-      "productId": 783339,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/I-Have-My-Crewo-ST14-016-V2",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "quarantined-cardmarket-url-expansion-mismatch+release-expansion-mismatch",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB02",
       "legacyName": "I Have My Crew!!",
@@ -70820,7 +71705,30 @@
       "productName": "I Have My Crew!! (ST14-016)",
       "idExpansion": 5611,
       "idMetacard": 438637,
-      "dateAdded": "2024-08-19 08:51:44"
+      "dateAdded": "2024-08-19 08:51:44",
+      "invalidProductId": 783339,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/I-Have-My-Crewo-ST14-016-V2",
+      "invalidReason": "cardmarket-url-expansion-mismatch+release-expansion-mismatch",
+      "validationEvidence": {
+        "currentExpansion": 5611,
+        "urlSlug": "the-best-vol2",
+        "legacySet": "PRB02",
+        "releaseProfile": {
+          "value": 6242,
+          "count": 124,
+          "total": 130,
+          "ratio": 0.9538461538461539
+        },
+        "currentExpansionUrlProfile": {
+          "value": "starter-deck-3d2y",
+          "count": 15,
+          "total": 15,
+          "ratio": 1.0
+        },
+        "urlCompatibleExpansions": [
+          6242
+        ]
+      }
     },
     "ST14-016_R1": {
       "productId": null,
@@ -71423,10 +72331,10 @@
       "dateAdded": "2025-04-06 21:15:42"
     },
     "ST17-005": {
-      "productId": 852604,
+      "productId": 794656,
       "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Donquixote-Doflamingo/MarshallDTeach-ST17-005",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "confirmed": false,
+      "source": "auto-repair-mapping-consistency",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "ST17",
       "legacyName": "Marshall.D.Teach",
@@ -71434,15 +72342,34 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/ST17/ST17-005_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Marshall.D.Teach (ST17-005)",
-      "idExpansion": 6242,
+      "idExpansion": 5749,
       "idMetacard": 441676,
-      "dateAdded": "2025-10-02 00:36:22"
+      "dateAdded": "2024-10-24 04:01:55",
+      "previousProductId": 852604,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Donquixote-Doflamingo/MarshallDTeach-ST17-005",
+      "validationEvidence": {
+        "currentExpansion": 6242,
+        "urlSlug": "starter-deck-donquixote-doflamingo",
+        "legacySet": "ST17",
+        "releaseProfile": {
+          "value": 5749,
+          "count": 5,
+          "total": 5,
+          "ratio": 1.0
+        },
+        "currentExpansionUrlProfile": {
+          "value": "the-best-vol2",
+          "count": 132,
+          "total": 137,
+          "ratio": 0.9635036496350365
+        }
+      }
     },
     "ST17-005_P1": {
-      "productId": 794656,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/MarshallDTeach-ST17-005-V2",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "quarantined-cardmarket-url-expansion-mismatch+release-expansion-mismatch",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB02",
       "legacyName": "Marshall.D.Teach",
@@ -71452,7 +72379,30 @@
       "productName": "Marshall.D.Teach (ST17-005)",
       "idExpansion": 5749,
       "idMetacard": 441676,
-      "dateAdded": "2024-10-24 04:01:55"
+      "dateAdded": "2024-10-24 04:01:55",
+      "invalidProductId": 794656,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/MarshallDTeach-ST17-005-V2",
+      "invalidReason": "cardmarket-url-expansion-mismatch+release-expansion-mismatch",
+      "validationEvidence": {
+        "currentExpansion": 5749,
+        "urlSlug": "the-best-vol2",
+        "legacySet": "PRB02",
+        "releaseProfile": {
+          "value": 6242,
+          "count": 124,
+          "total": 130,
+          "ratio": 0.9538461538461539
+        },
+        "currentExpansionUrlProfile": {
+          "value": "starter-deck-donquixote-doflamingo",
+          "count": 5,
+          "total": 5,
+          "ratio": 1.0
+        },
+        "urlCompatibleExpansions": [
+          6242
+        ]
+      }
     },
     "ST17-005_P2": {
       "productId": null,

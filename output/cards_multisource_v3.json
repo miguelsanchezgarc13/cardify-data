@@ -1700,38 +1700,38 @@
         "cardmarket": {
           "mappingKey": "EB01-007",
           "mappingRelation": "exact",
-          "productId": 754144,
+          "productId": 767963,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Memorial-Collection/Yamato-EB01-007",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 754144,
+            "idProduct": 767963,
             "name": "Yamato (EB01-007)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 5580,
+            "idExpansion": 5585,
             "idMetacard": 430417,
-            "dateAdded": "2024-01-29 10:08:25",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=754144"
+            "dateAdded": "2024-05-02 08:52:44",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=767963"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 754144,
+            "idProduct": 767963,
             "idCategory": 1621,
-            "avg": 0.04,
+            "avg": 0.08,
             "low": 0.02,
-            "trend": 0.04,
-            "avg1": 0.02,
-            "avg7": 0.03,
-            "avg30": 0.03,
+            "trend": 0.08,
+            "avg1": 0.17,
+            "avg7": 0.1,
+            "avg30": 0.08,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.04
+            "valuationEur": 0.08
           }
         },
         "source": "bandai"
@@ -5622,38 +5622,38 @@
         "cardmarket": {
           "mappingKey": "EB01-026",
           "mappingRelation": "exact",
-          "productId": 754168,
+          "productId": 767986,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Memorial-Collection/Prince-Bellett-EB01-026",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 754168,
+            "idProduct": 767986,
             "name": "Prince Bellett (EB01-026)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 5580,
+            "idExpansion": 5585,
             "idMetacard": 430436,
-            "dateAdded": "2024-01-29 10:40:24",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=754168"
+            "dateAdded": "2024-05-02 09:04:55",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=767986"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 754168,
+            "idProduct": 767986,
             "idCategory": 1621,
             "avg": 0.04,
             "low": 0.02,
-            "trend": 0.03,
-            "avg1": 0.05,
-            "avg7": 0.03,
-            "avg30": 0.04,
+            "trend": 0.02,
+            "avg1": 0.02,
+            "avg7": 0.04,
+            "avg30": 0.05,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.03
+            "valuationEur": 0.02
           }
         },
         "source": "bandai"
@@ -11653,38 +11653,38 @@
         "cardmarket": {
           "mappingKey": "EB01-060",
           "mappingRelation": "exact",
-          "productId": 754231,
+          "productId": 768030,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Memorial-Collection/Did-Someone-SayKami-EB01-060",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 754231,
+            "idProduct": 768030,
             "name": "Did Someone Say...Kami? (EB01-060)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 5580,
+            "idExpansion": 5585,
             "idMetacard": 430476,
-            "dateAdded": "2024-01-29 11:50:33",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=754231"
+            "dateAdded": "2024-05-02 09:36:10",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=768030"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 754231,
+            "idProduct": 768030,
             "idCategory": 1621,
-            "avg": 0.05,
+            "avg": 0.03,
             "low": 0.02,
-            "trend": 0.03,
-            "avg1": 0.05,
+            "trend": 0.02,
+            "avg1": 0.07,
             "avg7": 0.03,
-            "avg30": 0.03,
+            "avg30": 0.05,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.03
+            "valuationEur": 0.02
           }
         },
         "source": "bandai"
@@ -18600,38 +18600,38 @@
         "cardmarket": {
           "mappingKey": "EB02-042",
           "mappingRelation": "exact",
-          "productId": 808146,
+          "productId": 823477,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Anime-25th-Collection/All-Hunt-Grount-EB02-042",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 808146,
+            "idProduct": 823477,
             "name": "All-Hunt Grount (EB02-042)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 6018,
+            "idExpansion": 6028,
             "idMetacard": 445021,
-            "dateAdded": "2025-01-26 22:39:38",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=808146"
+            "dateAdded": "2025-04-30 13:32:47",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=823477"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 808146,
+            "idProduct": 823477,
             "idCategory": 1621,
-            "avg": 0.03,
+            "avg": 0.05,
             "low": 0.02,
-            "trend": 0.03,
+            "trend": 0.08,
             "avg1": 0.02,
-            "avg7": 0.04,
-            "avg30": 0.03,
+            "avg7": 0.08,
+            "avg30": 0.04,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.03
+            "valuationEur": 0.08
           }
         },
         "source": "bandai"
@@ -23830,38 +23830,38 @@
         "cardmarket": {
           "mappingKey": "EB03-013",
           "mappingRelation": "exact",
-          "productId": 858289,
+          "productId": 871977,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Heroines-Edition/Carrot-EB03-013-V1",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 858289,
+            "idProduct": 871977,
             "name": "Carrot (EB03-013)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 6379,
-            "idMetacard": 456284,
-            "dateAdded": "2025-11-10 11:43:34",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=858289"
+            "idExpansion": 6449,
+            "idMetacard": 459487,
+            "dateAdded": "2026-02-09 16:38:26",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=871977"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 858289,
+            "idProduct": 871977,
             "idCategory": 1621,
-            "avg": 0.1,
+            "avg": 0.17,
             "low": 0.02,
-            "trend": 0.15,
-            "avg1": 0.16,
-            "avg7": 0.12,
-            "avg30": 0.11,
+            "trend": 0.14,
+            "avg1": 0.18,
+            "avg7": 0.14,
+            "avg30": 0.17,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.15
+            "valuationEur": 0.14
           }
         },
         "source": "bandai"
@@ -33554,30 +33554,30 @@
         "cardmarket": {
           "mappingKey": "EB04-011",
           "mappingRelation": "exact",
-          "productId": 870613,
+          "productId": 865118,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Azure-Seas-Seven/Scaled-Neptunian-EB04-011",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 870613,
+            "idProduct": 865118,
             "name": "Scaled Neptunian (EB04-011)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 6478,
+            "idExpansion": 6432,
             "idMetacard": 457972,
-            "dateAdded": "2026-02-02 16:34:44",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=870613"
+            "dateAdded": "2026-01-07 14:30:35",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=865118"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 870613,
+            "idProduct": 865118,
             "idCategory": 1621,
-            "avg": 0.02,
+            "avg": 0.04,
             "low": 0.02,
-            "trend": 0.03,
-            "avg1": 0.02,
-            "avg7": 0.02,
+            "trend": 0.05,
+            "avg1": 0.04,
+            "avg7": 0.04,
             "avg30": 0.04,
             "avgHolo": null,
             "lowHolo": null,
@@ -33585,7 +33585,7 @@
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.03
+            "valuationEur": 0.05
           }
         },
         "source": "bandai"
@@ -94741,38 +94741,38 @@
         "cardmarket": {
           "mappingKey": "OP03-048",
           "mappingRelation": "exact",
-          "productId": 852333,
+          "productId": 719998,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Pillars-of-Strength/Nojiko-OP03-048",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 852333,
+            "idProduct": 719998,
             "name": "Nojiko (OP03-048)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 6242,
+            "idExpansion": 5364,
             "idMetacard": 421321,
-            "dateAdded": "2025-10-01 22:43:58",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852333"
+            "dateAdded": "2023-06-24 11:56:53",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=719998"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 852333,
+            "idProduct": 719998,
             "idCategory": 1621,
-            "avg": 0.15,
+            "avg": 0.34,
             "low": 0.02,
-            "trend": 0.08,
+            "trend": 0.39,
             "avg1": 0.05,
-            "avg7": 0.08,
-            "avg30": 0.14,
+            "avg7": 0.47,
+            "avg30": 0.3,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.08
+            "valuationEur": 0.39
           }
         },
         "source": "bandai"
@@ -94827,43 +94827,7 @@
           "trigger": null
         },
         "mechanicsDifferFromBase": [],
-        "cardmarket": {
-          "mappingKey": "OP03-048_P1",
-          "mappingRelation": "exact",
-          "productId": 719998,
-          "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Nojiko-OP03-048-V2",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
-          "product": {
-            "idProduct": 719998,
-            "name": "Nojiko (OP03-048)",
-            "idCategory": 1621,
-            "categoryName": "One Piece Single",
-            "idExpansion": 5364,
-            "idMetacard": 421321,
-            "dateAdded": "2023-06-24 11:56:53",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=719998"
-          },
-          "price": {
-            "currency": "EUR",
-            "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 719998,
-            "idCategory": 1621,
-            "avg": 0.34,
-            "low": 0.02,
-            "trend": 0.39,
-            "avg1": 0.05,
-            "avg7": 0.47,
-            "avg30": 0.3,
-            "avgHolo": null,
-            "lowHolo": null,
-            "trendHolo": null,
-            "avg1Holo": null,
-            "avg7Holo": null,
-            "avg30Holo": null,
-            "valuationEur": 0.39
-          }
-        },
+        "cardmarket": null,
         "source": "bandai"
       },
       {
@@ -110740,38 +110704,38 @@
         "cardmarket": {
           "mappingKey": "OP04-004",
           "mappingRelation": "exact",
-          "productId": 733078,
+          "productId": 732890,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Kingdoms-of-Intrigue/Karoo-OP04-004",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 733078,
+            "idProduct": 732890,
             "name": "Karoo (OP04-004)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 5485,
+            "idExpansion": 5365,
             "idMetacard": 424750,
-            "dateAdded": "2023-09-16 21:55:57",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=733078"
+            "dateAdded": "2023-09-15 09:06:25",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=732890"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 733078,
+            "idProduct": 732890,
             "idCategory": 1621,
-            "avg": 0.03,
+            "avg": 0.04,
             "low": 0.02,
-            "trend": 0.02,
-            "avg1": 0.02,
+            "trend": 0.03,
+            "avg1": 0.05,
             "avg7": 0.03,
-            "avg30": 0.05,
+            "avg30": 0.04,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.02
+            "valuationEur": 0.03
           }
         },
         "source": "bandai"
@@ -111760,31 +111724,31 @@
         "cardmarket": {
           "mappingKey": "OP04-011",
           "mappingRelation": "exact",
-          "productId": 733085,
+          "productId": 732897,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Kingdoms-of-Intrigue/Nami-OP04-011",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 733085,
+            "idProduct": 732897,
             "name": "Nami (OP04-011)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 5485,
+            "idExpansion": 5365,
             "idMetacard": 424757,
-            "dateAdded": "2023-09-16 22:07:41",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=733085"
+            "dateAdded": "2023-09-15 09:11:21",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=732897"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 733085,
+            "idProduct": 732897,
             "idCategory": 1621,
-            "avg": 0.02,
+            "avg": 0.04,
             "low": 0.02,
             "trend": 0.06,
-            "avg1": 0.29,
-            "avg7": 0.07,
-            "avg30": 0.07,
+            "avg1": 0.05,
+            "avg7": 0.04,
+            "avg30": 0.04,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
@@ -118522,31 +118486,31 @@
         "cardmarket": {
           "mappingKey": "OP04-050",
           "mappingRelation": "exact",
-          "productId": 733141,
+          "productId": 732927,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Kingdoms-of-Intrigue/Hanger-OP04-050",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 733141,
+            "idProduct": 732927,
             "name": "Hanger (OP04-050)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 5485,
+            "idExpansion": 5365,
             "idMetacard": 424786,
-            "dateAdded": "2023-09-17 04:21:22",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=733141"
+            "dateAdded": "2023-09-15 10:06:44",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=732927"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 733141,
+            "idProduct": 732927,
             "idCategory": 1621,
-            "avg": 0.02,
+            "avg": 0.05,
             "low": 0.02,
             "trend": 0.04,
-            "avg1": 0.02,
+            "avg1": 0.05,
             "avg7": 0.04,
-            "avg30": 0.04,
+            "avg30": 0.05,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
@@ -131559,38 +131523,38 @@
         "cardmarket": {
           "mappingKey": "OP05-006",
           "mappingRelation": "exact",
-          "productId": 799295,
+          "productId": 747444,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Awakening-of-the-New-Era/Koala-OP05-006-V1",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 799295,
+            "idProduct": 747444,
             "name": "Koala (OP05-006)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 5805,
+            "idExpansion": 5426,
             "idMetacard": 424862,
-            "dateAdded": "2024-11-07 14:02:57",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=799295"
+            "dateAdded": "2023-11-30 12:20:07",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=747444"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 799295,
+            "idProduct": 747444,
             "idCategory": 1621,
-            "avg": 0.63,
-            "low": 0.05,
-            "trend": 0.61,
-            "avg1": 0.75,
-            "avg7": 0.75,
-            "avg30": 0.7,
+            "avg": 0.65,
+            "low": 0.02,
+            "trend": 0.35,
+            "avg1": 0.93,
+            "avg7": 0.64,
+            "avg30": 0.59,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.61
+            "valuationEur": 0.35
           }
         },
         "source": "bandai"
@@ -138683,38 +138647,38 @@
         "cardmarket": {
           "mappingKey": "OP05-043",
           "mappingRelation": "exact",
-          "productId": 733331,
+          "productId": 747497,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Awakening-of-the-New-Era/Ulti-OP05-043-V1",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 733331,
+            "idProduct": 747497,
             "name": "Ulti (OP05-043)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 5481,
+            "idExpansion": 5426,
             "idMetacard": 424899,
-            "dateAdded": "2023-09-18 12:00:13",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=733331"
+            "dateAdded": "2023-11-30 14:39:48",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=747497"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 733331,
+            "idProduct": 747497,
             "idCategory": 1621,
-            "avg": 0.2,
+            "avg": 0.28,
             "low": 0.02,
-            "trend": 0.26,
-            "avg1": 0.02,
-            "avg7": 0.32,
-            "avg30": 0.17,
+            "trend": 0.28,
+            "avg1": 1,
+            "avg7": 0.27,
+            "avg30": 0.25,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.26
+            "valuationEur": 0.28
           }
         },
         "source": "bandai"
@@ -140222,43 +140186,7 @@
         "mechanicsDifferFromBase": [
           "block"
         ],
-        "cardmarket": {
-          "mappingKey": "OP05-052_P1",
-          "mappingRelation": "exact",
-          "productId": 838794,
-          "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Maynard-OP05-052-V2",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
-          "product": {
-            "idProduct": 838794,
-            "name": "Maynard (OP05-052)",
-            "idCategory": 1621,
-            "categoryName": "One Piece Single",
-            "idExpansion": 6233,
-            "idMetacard": 424908,
-            "dateAdded": "2025-07-28 10:43:01",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=838794"
-          },
-          "price": {
-            "currency": "EUR",
-            "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 838794,
-            "idCategory": 1621,
-            "avg": 0.05,
-            "low": 0.02,
-            "trend": 0.06,
-            "avg1": 0.06,
-            "avg7": 0.08,
-            "avg30": 0.1,
-            "avgHolo": null,
-            "lowHolo": null,
-            "trendHolo": null,
-            "avg1Holo": null,
-            "avg7Holo": null,
-            "avg30Holo": null,
-            "valuationEur": 0.06
-          }
-        },
+        "cardmarket": null,
         "source": "bandai"
       },
       {
@@ -146611,38 +146539,38 @@
         "cardmarket": {
           "mappingKey": "OP05-081",
           "mappingRelation": "exact",
-          "productId": 781109,
+          "productId": 747544,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Awakening-of-the-New-Era/One-Legged-Toy-Soldier-OP05-081",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 781109,
+            "idProduct": 747544,
             "name": "One-Legged Toy Soldier (OP05-081)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 5804,
+            "idExpansion": 5426,
             "idMetacard": 424937,
-            "dateAdded": "2024-07-30 02:26:01",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=781109"
+            "dateAdded": "2023-12-01 05:24:32",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=747544"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 781109,
+            "idProduct": 747544,
             "idCategory": 1621,
             "avg": 0.14,
             "low": 0.02,
-            "trend": 0.07,
-            "avg1": 0.25,
-            "avg7": 0.08,
-            "avg30": 0.06,
+            "trend": 0.12,
+            "avg1": 0.13,
+            "avg7": 0.12,
+            "avg30": 0.13,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.07
+            "valuationEur": 0.12
           }
         },
         "source": "bandai"
@@ -187725,43 +187653,7 @@
           "trigger": null
         },
         "mechanicsDifferFromBase": [],
-        "cardmarket": {
-          "mappingKey": "OP07-040_P1",
-          "mappingRelation": "exact",
-          "productId": 759054,
-          "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Crocodile-OP07-040-V2",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
-          "product": {
-            "idProduct": 759054,
-            "name": "Crocodile (OP07-040)",
-            "idCategory": 1621,
-            "categoryName": "One Piece Single",
-            "idExpansion": 5587,
-            "idMetacard": 431988,
-            "dateAdded": "2024-02-28 10:46:24",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=759054"
-          },
-          "price": {
-            "currency": "EUR",
-            "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 759054,
-            "idCategory": 1621,
-            "avg": 0.04,
-            "low": 0.02,
-            "trend": 0.05,
-            "avg1": 0.08,
-            "avg7": 0.03,
-            "avg30": 0.05,
-            "avgHolo": null,
-            "lowHolo": null,
-            "trendHolo": null,
-            "avg1Holo": null,
-            "avg7Holo": null,
-            "avg30Holo": null,
-            "valuationEur": 0.05
-          }
-        },
+        "cardmarket": null,
         "source": "bandai"
       },
       {
@@ -191470,38 +191362,38 @@
         "cardmarket": {
           "mappingKey": "OP07-055",
           "mappingRelation": "exact",
-          "productId": 759075,
+          "productId": 775445,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/500-Years-into-the-Future/Snake-Dance-OP07-055",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 759075,
+            "idProduct": 775445,
             "name": "Snake Dance (OP07-055)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 5587,
+            "idExpansion": 5586,
             "idMetacard": 432003,
-            "dateAdded": "2024-02-28 11:15:30",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=759075"
+            "dateAdded": "2024-06-21 10:45:37",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=775445"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 759075,
+            "idProduct": 775445,
             "idCategory": 1621,
-            "avg": 0.02,
+            "avg": 0.08,
             "low": 0.02,
-            "trend": 0.02,
+            "trend": 0.05,
             "avg1": 0.02,
-            "avg7": 0.02,
-            "avg30": 0.03,
+            "avg7": 0.05,
+            "avg30": 0.06,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.02
+            "valuationEur": 0.05
           }
         },
         "source": "bandai"
@@ -209738,38 +209630,38 @@
         "cardmarket": {
           "mappingKey": "OP08-049",
           "mappingRelation": "exact",
-          "productId": 771672,
+          "productId": 787926,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Two-Legends/Speed-Jil-OP08-049",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 771672,
+            "idProduct": 787926,
             "name": "Speed Jil (OP08-049)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 5744,
+            "idExpansion": 5610,
             "idMetacard": 435148,
-            "dateAdded": "2024-05-24 15:31:44",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=771672"
+            "dateAdded": "2024-09-12 14:38:59",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=787926"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 771672,
+            "idProduct": 787926,
             "idCategory": 1621,
-            "avg": 0.02,
+            "avg": 0.04,
             "low": 0.02,
-            "trend": 0.03,
+            "trend": 0.05,
             "avg1": 0.02,
             "avg7": 0.03,
-            "avg30": 0.03,
+            "avg30": 0.04,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.03
+            "valuationEur": 0.05
           }
         },
         "source": "bandai"
@@ -226237,38 +226129,38 @@
         "cardmarket": {
           "mappingKey": "OP09-019",
           "mappingRelation": "exact",
-          "productId": 786325,
+          "productId": 802882,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Emperors-in-the-New-World/Nobody-Hurts-a-Friend-of-Mine-OP09-019",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 786325,
+            "idProduct": 802882,
             "name": "Nobody Hurts a Friend of Mine!!!! (OP09-019)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 5887,
+            "idExpansion": 5755,
             "idMetacard": 439543,
-            "dateAdded": "2024-09-04 04:32:35",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=786325"
+            "dateAdded": "2024-12-05 11:49:21",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=802882"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 786325,
+            "idProduct": 802882,
             "idCategory": 1621,
-            "avg": 0.02,
+            "avg": 0.03,
             "low": 0.02,
-            "trend": 0.02,
-            "avg1": 0.02,
+            "trend": 0.03,
+            "avg1": 0.03,
             "avg7": 0.02,
-            "avg30": 0.03,
+            "avg30": 0.06,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.02
+            "valuationEur": 0.03
           }
         },
         "source": "bandai"
@@ -228052,38 +227944,38 @@
         "cardmarket": {
           "mappingKey": "OP09-029",
           "mappingRelation": "exact",
-          "productId": 786337,
+          "productId": 802894,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Emperors-in-the-New-World/Tony-TonyChopper-OP09-029",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 786337,
+            "idProduct": 802894,
             "name": "Tony Tony.Chopper (OP09-029)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 5887,
+            "idExpansion": 5755,
             "idMetacard": 439553,
-            "dateAdded": "2024-09-04 04:45:09",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=786337"
+            "dateAdded": "2024-12-05 11:52:35",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=802894"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 786337,
+            "idProduct": 802894,
             "idCategory": 1621,
-            "avg": 0.03,
+            "avg": 0.04,
             "low": 0.02,
-            "trend": 0.03,
-            "avg1": 0.02,
-            "avg7": 0.02,
-            "avg30": 0.03,
+            "trend": 0.05,
+            "avg1": 0.04,
+            "avg7": 0.04,
+            "avg30": 0.04,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.03
+            "valuationEur": 0.05
           }
         },
         "source": "bandai"
@@ -236190,30 +236082,30 @@
         "cardmarket": {
           "mappingKey": "OP09-070",
           "mappingRelation": "exact",
-          "productId": 786452,
+          "productId": 802948,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Emperors-in-the-New-World/Nami-OP09-070",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 786452,
+            "idProduct": 802948,
             "name": "Nami (OP09-070)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 5887,
+            "idExpansion": 5755,
             "idMetacard": 439623,
-            "dateAdded": "2024-09-04 11:49:42",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=786452"
+            "dateAdded": "2024-12-05 12:08:01",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=802948"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 786452,
+            "idProduct": 802948,
             "idCategory": 1621,
-            "avg": 0.03,
+            "avg": 0.05,
             "low": 0.02,
-            "trend": 0.06,
-            "avg1": 0.05,
-            "avg7": 0.03,
+            "trend": 0.05,
+            "avg1": 0.03,
+            "avg7": 0.04,
             "avg30": 0.04,
             "avgHolo": null,
             "lowHolo": null,
@@ -236221,7 +236113,7 @@
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.06
+            "valuationEur": 0.05
           }
         },
         "source": "bandai"
@@ -239213,38 +239105,38 @@
         "cardmarket": {
           "mappingKey": "OP09-084",
           "mappingRelation": "exact",
-          "productId": 852457,
+          "productId": 802964,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Emperors-in-the-New-World/Catarina-Devon-OP09-084",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 852457,
+            "idProduct": 802964,
             "name": "Catarina Devon (OP09-084)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 6242,
+            "idExpansion": 5755,
             "idMetacard": 439637,
-            "dateAdded": "2025-10-01 23:31:06",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852457"
+            "dateAdded": "2024-12-05 12:12:16",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=802964"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 852457,
+            "idProduct": 802964,
             "idCategory": 1621,
-            "avg": 0.03,
+            "avg": 0.11,
             "low": 0.02,
-            "trend": 0.03,
-            "avg1": 0.05,
-            "avg7": 0.04,
-            "avg30": 0.05,
+            "trend": 0.09,
+            "avg1": 0.23,
+            "avg7": 0.11,
+            "avg30": 0.09,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.03
+            "valuationEur": 0.09
           }
         },
         "source": "bandai"
@@ -248555,31 +248447,31 @@
         "cardmarket": {
           "mappingKey": "OP10-012",
           "mappingRelation": "exact",
-          "productId": 802177,
+          "productId": 817018,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Royal-Blood/Dragon-Number-Thirteen-OP10-012",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 802177,
+            "idProduct": 817018,
             "name": "Dragon Number Thirteen (OP10-012)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 5975,
+            "idExpansion": 5974,
             "idMetacard": 443590,
-            "dateAdded": "2024-11-29 12:20:56",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=802177"
+            "dateAdded": "2025-03-13 17:54:47",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=817018"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 802177,
+            "idProduct": 817018,
             "idCategory": 1621,
-            "avg": 0.02,
+            "avg": 0.07,
             "low": 0.02,
             "trend": 0.03,
-            "avg1": 0.02,
-            "avg7": 0.04,
-            "avg30": 0.04,
+            "avg1": 0.03,
+            "avg7": 0.03,
+            "avg30": 0.05,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
@@ -248915,38 +248807,38 @@
         "cardmarket": {
           "mappingKey": "OP10-015",
           "mappingRelation": "exact",
-          "productId": 802180,
+          "productId": 817021,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Royal-Blood/Mocha-OP10-015",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 802180,
+            "idProduct": 817021,
             "name": "Mocha (OP10-015)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 5975,
+            "idExpansion": 5974,
             "idMetacard": 443593,
-            "dateAdded": "2024-11-29 12:22:23",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=802180"
+            "dateAdded": "2025-03-13 17:58:05",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=817021"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 802180,
+            "idProduct": 817021,
             "idCategory": 1621,
-            "avg": 0.02,
+            "avg": 0.05,
             "low": 0.02,
-            "trend": 0.02,
-            "avg1": 0.02,
-            "avg7": 0.03,
-            "avg30": 0.05,
+            "trend": 0.06,
+            "avg1": 0.06,
+            "avg7": 0.05,
+            "avg30": 0.06,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.02
+            "valuationEur": 0.06
           }
         },
         "source": "bandai"
@@ -252289,38 +252181,38 @@
         "cardmarket": {
           "mappingKey": "OP10-036",
           "mappingRelation": "exact",
-          "productId": 900288,
+          "productId": 817047,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Royal-Blood/Perona-OP10-036",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 900288,
+            "idProduct": 817047,
             "name": "Perona (OP10-036)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 6649,
+            "idExpansion": 5974,
             "idMetacard": 443614,
-            "dateAdded": "2026-07-30 03:48:16",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=900288"
+            "dateAdded": "2025-03-13 20:03:04",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=817047"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 900288,
+            "idProduct": 817047,
             "idCategory": 1621,
             "avg": 0.05,
             "low": 0.02,
-            "trend": 0.1,
-            "avg1": 0.04,
-            "avg7": 0.07,
-            "avg30": 0.05,
+            "trend": 0.02,
+            "avg1": 0.02,
+            "avg7": 0.04,
+            "avg30": 0.04,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.1
+            "valuationEur": 0.02
           }
         },
         "source": "bandai"
@@ -263620,43 +263512,7 @@
           "trigger": null
         },
         "mechanicsDifferFromBase": [],
-        "cardmarket": {
-          "mappingKey": "OP10-108_P1",
-          "mappingRelation": "exact",
-          "productId": 839399,
-          "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Scratchmen-Apoo-OP10-108-V2",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
-          "product": {
-            "idProduct": 839399,
-            "name": "Scratchmen Apoo (OP10-108)",
-            "idCategory": 1621,
-            "categoryName": "One Piece Single",
-            "idExpansion": 6233,
-            "idMetacard": 443685,
-            "dateAdded": "2025-07-28 16:07:05",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=839399"
-          },
-          "price": {
-            "currency": "EUR",
-            "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 839399,
-            "idCategory": 1621,
-            "avg": 0.05,
-            "low": 0.02,
-            "trend": 0.08,
-            "avg1": 0.08,
-            "avg7": 0.07,
-            "avg30": 0.08,
-            "avgHolo": null,
-            "lowHolo": null,
-            "trendHolo": null,
-            "avg1Holo": null,
-            "avg7Holo": null,
-            "avg30Holo": null,
-            "valuationEur": 0.08
-          }
-        },
+        "cardmarket": null,
         "source": "bandai"
       },
       {
@@ -270726,38 +270582,38 @@
         "cardmarket": {
           "mappingKey": "OP11-029",
           "mappingRelation": "exact",
-          "productId": 817386,
+          "productId": 827113,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/A-Fist-of-Divine-Speed/Charlotte-Praline-OP11-029",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 817386,
+            "idProduct": 827113,
             "name": "Charlotte Praline (OP11-029)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 6034,
+            "idExpansion": 6033,
             "idMetacard": 447130,
-            "dateAdded": "2025-03-14 15:09:10",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=817386"
+            "dateAdded": "2025-05-27 10:10:59",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=827113"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 817386,
+            "idProduct": 827113,
             "idCategory": 1621,
-            "avg": 0.04,
+            "avg": 0.03,
             "low": 0.02,
-            "trend": 0.03,
+            "trend": 0.04,
             "avg1": 0.02,
             "avg7": 0.03,
-            "avg30": 0.04,
+            "avg30": 0.03,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.03
+            "valuationEur": 0.04
           }
         },
         "source": "bandai"
@@ -275196,38 +275052,38 @@
         "cardmarket": {
           "mappingKey": "OP11-059",
           "mappingRelation": "exact",
-          "productId": 817424,
+          "productId": 827150,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/A-Fist-of-Divine-Speed/Gum-Gum-King-Cobra-OP11-059",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 817424,
+            "idProduct": 827150,
             "name": "Gum-Gum King Cobra (OP11-059)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 6034,
+            "idExpansion": 6033,
             "idMetacard": 447160,
-            "dateAdded": "2025-03-14 16:27:22",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=817424"
+            "dateAdded": "2025-05-27 10:59:34",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=827150"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 817424,
+            "idProduct": 827150,
             "idCategory": 1621,
-            "avg": 0.02,
+            "avg": 0.04,
             "low": 0.02,
-            "trend": 0.02,
+            "trend": 0.06,
             "avg1": 0.02,
-            "avg7": 0.02,
-            "avg30": 0.03,
+            "avg7": 0.06,
+            "avg30": 0.04,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.02
+            "valuationEur": 0.06
           }
         },
         "source": "bandai"
@@ -289283,38 +289139,38 @@
         "cardmarket": {
           "mappingKey": "OP12-029",
           "mappingRelation": "exact",
-          "productId": 830257,
+          "productId": 842921,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Legacy-of-the-Master/Shimotsuki-Kouzaburou-OP12-029",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 830257,
+            "idProduct": 842921,
             "name": "Shimotsuki Kouzaburou (OP12-029)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 6157,
+            "idExpansion": 6186,
             "idMetacard": 450457,
-            "dateAdded": "2025-06-19 15:49:42",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=830257"
+            "dateAdded": "2025-08-15 01:17:56",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=842921"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 830257,
+            "idProduct": 842921,
             "idCategory": 1621,
-            "avg": 0.02,
+            "avg": 0.14,
             "low": 0.02,
-            "trend": 0.05,
-            "avg1": 0.02,
-            "avg7": 0.06,
-            "avg30": 0.04,
+            "trend": 0.1,
+            "avg1": 0.1,
+            "avg7": 0.07,
+            "avg30": 0.12,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.05
+            "valuationEur": 0.1
           }
         },
         "source": "bandai"
@@ -291668,38 +291524,38 @@
         "cardmarket": {
           "mappingKey": "OP12-041",
           "mappingRelation": "exact",
-          "productId": 830274,
+          "productId": 842938,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Legacy-of-the-Master/Sanji-OP12-041-V1",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 830274,
+            "idProduct": 842938,
             "name": "Sanji (OP12-041)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 6157,
+            "idExpansion": 6186,
             "idMetacard": 450469,
-            "dateAdded": "2025-06-19 16:10:30",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=830274"
+            "dateAdded": "2025-08-15 01:26:02",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=842938"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 830274,
+            "idProduct": 842938,
             "idCategory": 1621,
-            "avg": 0.03,
+            "avg": 0.08,
             "low": 0.02,
-            "trend": 0.09,
+            "trend": 0.1,
             "avg1": 0.05,
-            "avg7": 0.05,
-            "avg30": 0.07,
+            "avg7": 0.08,
+            "avg30": 0.09,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.09
+            "valuationEur": 0.1
           }
         },
         "source": "bandai"
@@ -300304,31 +300160,31 @@
         "cardmarket": {
           "mappingKey": "OP12-095",
           "mappingRelation": "exact",
-          "productId": 830339,
+          "productId": 843004,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Legacy-of-the-Master/Lindbergh-OP12-095",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 830339,
+            "idProduct": 843004,
             "name": "Lindbergh (OP12-095)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 6157,
+            "idExpansion": 6186,
             "idMetacard": 450522,
-            "dateAdded": "2025-06-19 17:03:30",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=830339"
+            "dateAdded": "2025-08-15 02:30:21",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=843004"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 830339,
+            "idProduct": 843004,
             "idCategory": 1621,
-            "avg": 0.04,
+            "avg": 0.03,
             "low": 0.02,
             "trend": 0.04,
             "avg1": 0.02,
             "avg7": 0.04,
-            "avg30": 0.04,
+            "avg30": 0.03,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
@@ -301484,38 +301340,38 @@
         "cardmarket": {
           "mappingKey": "OP12-103",
           "mappingRelation": "exact",
-          "productId": 830348,
+          "productId": 843013,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Legacy-of-the-Master/Seto-OP12-103",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 830348,
+            "idProduct": 843013,
             "name": "Seto (OP12-103)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 6157,
+            "idExpansion": 6186,
             "idMetacard": 450530,
-            "dateAdded": "2025-06-19 17:06:50",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=830348"
+            "dateAdded": "2025-08-15 02:43:06",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=843013"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 830348,
+            "idProduct": 843013,
             "idCategory": 1621,
-            "avg": 0.02,
+            "avg": 0.06,
             "low": 0.02,
-            "trend": 0.03,
-            "avg1": 0.02,
-            "avg7": 0.02,
-            "avg30": 0.05,
+            "trend": 0.06,
+            "avg1": 0.18,
+            "avg7": 0.11,
+            "avg30": 0.06,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.03
+            "valuationEur": 0.06
           }
         },
         "source": "bandai"
@@ -306350,38 +306206,38 @@
         "cardmarket": {
           "mappingKey": "OP13-012",
           "mappingRelation": "exact",
-          "productId": 845259,
+          "productId": 857203,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Carrying-on-his-Will/Nefeltari-Vivi-OP13-012",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 845259,
+            "idProduct": 857203,
             "name": "Nefeltari Vivi (OP13-012)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 6277,
+            "idExpansion": 6187,
             "idMetacard": 453164,
-            "dateAdded": "2025-08-25 18:24:37",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=845259"
+            "dateAdded": "2025-11-02 10:51:39",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=857203"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 845259,
+            "idProduct": 857203,
             "idCategory": 1621,
-            "avg": 0.05,
+            "avg": 0.11,
             "low": 0.02,
-            "trend": 0.08,
-            "avg1": 0.1,
-            "avg7": 0.05,
-            "avg30": 0.06,
+            "trend": 0.12,
+            "avg1": 0.14,
+            "avg7": 0.1,
+            "avg30": 0.1,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.08
+            "valuationEur": 0.12
           }
         },
         "source": "bandai"
@@ -306704,38 +306560,38 @@
         "cardmarket": {
           "mappingKey": "OP13-015",
           "mappingRelation": "exact",
-          "productId": 845262,
+          "productId": 857206,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Carrying-on-his-Will/Makino-OP13-015",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 845262,
+            "idProduct": 857206,
             "name": "Makino (OP13-015)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 6277,
+            "idExpansion": 6187,
             "idMetacard": 453167,
-            "dateAdded": "2025-08-25 18:25:45",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=845262"
+            "dateAdded": "2025-11-02 10:52:37",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=857206"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 845262,
+            "idProduct": 857206,
             "idCategory": 1621,
-            "avg": 0.03,
+            "avg": 0.09,
             "low": 0.02,
-            "trend": 0.02,
-            "avg1": 0.02,
-            "avg7": 0.03,
-            "avg30": 0.04,
+            "trend": 0.06,
+            "avg1": 0.09,
+            "avg7": 0.05,
+            "avg30": 0.08,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.02
+            "valuationEur": 0.06
           }
         },
         "source": "bandai"
@@ -310211,38 +310067,38 @@
         "cardmarket": {
           "mappingKey": "OP13-038",
           "mappingRelation": "exact",
-          "productId": 845289,
+          "productId": 857233,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Carrying-on-his-Will/Gum-Gum-Elephant-Gun-OP13-038",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 845289,
+            "idProduct": 857233,
             "name": "Gum-Gum Elephant Gun (OP13-038)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 6277,
+            "idExpansion": 6187,
             "idMetacard": 453190,
-            "dateAdded": "2025-08-25 19:29:36",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=845289"
+            "dateAdded": "2025-11-02 11:03:20",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=857233"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 845289,
+            "idProduct": 857233,
             "idCategory": 1621,
-            "avg": 0.04,
+            "avg": 0.07,
             "low": 0.02,
-            "trend": 0.04,
-            "avg1": 0.04,
-            "avg7": 0.04,
-            "avg30": 0.04,
+            "trend": 0.05,
+            "avg1": 0.07,
+            "avg7": 0.06,
+            "avg30": 0.07,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.04
+            "valuationEur": 0.05
           }
         },
         "source": "bandai"
@@ -313131,38 +312987,38 @@
         "cardmarket": {
           "mappingKey": "OP13-059",
           "mappingRelation": "exact",
-          "productId": 845330,
+          "productId": 857257,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Carrying-on-his-Will/Brilliant-Punk-OP13-059",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 845330,
+            "idProduct": 857257,
             "name": "Brilliant Punk (OP13-059)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 6277,
+            "idExpansion": 6187,
             "idMetacard": 453213,
-            "dateAdded": "2025-08-26 08:48:44",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=845330"
+            "dateAdded": "2025-11-02 11:14:55",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=857257"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 845330,
+            "idProduct": 857257,
             "idCategory": 1621,
-            "avg": 0.04,
+            "avg": 0.05,
             "low": 0.02,
-            "trend": 0.04,
-            "avg1": 0.04,
-            "avg7": 0.04,
-            "avg30": 0.03,
+            "trend": 0.06,
+            "avg1": 0.05,
+            "avg7": 0.03,
+            "avg30": 0.04,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.04
+            "valuationEur": 0.06
           }
         },
         "source": "bandai"
@@ -322297,30 +322153,30 @@
         "cardmarket": {
           "mappingKey": "OP13-117",
           "mappingRelation": "exact",
-          "productId": 845670,
+          "productId": 857336,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Carrying-on-his-Will/Gum-Gum-Dawn-Stamp-OP13-117",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 845670,
+            "idProduct": 857336,
             "name": "Gum-Gum Dawn Stamp (OP13-117)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 6277,
+            "idExpansion": 6187,
             "idMetacard": 453322,
-            "dateAdded": "2025-08-28 11:45:54",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=845670"
+            "dateAdded": "2025-11-03 11:12:00",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=857336"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 845670,
+            "idProduct": 857336,
             "idCategory": 1621,
-            "avg": 0.03,
+            "avg": 0.09,
             "low": 0.02,
-            "trend": 0.05,
-            "avg1": 0.02,
-            "avg7": 0.03,
+            "trend": 0.1,
+            "avg1": 0.14,
+            "avg7": 0.07,
             "avg30": 0.07,
             "avgHolo": null,
             "lowHolo": null,
@@ -322328,7 +322184,7 @@
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.05
+            "valuationEur": 0.1
           }
         },
         "source": "bandai"
@@ -327014,30 +326870,30 @@
         "cardmarket": {
           "mappingKey": "OP14-021",
           "mappingRelation": "exact",
-          "productId": 861789,
+          "productId": 865427,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Azure-Seas-Seven/Issho-OP14-021",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 861789,
+            "idProduct": 865427,
             "name": "Issho (OP14-021)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 6411,
+            "idExpansion": 6432,
             "idMetacard": 456986,
-            "dateAdded": "2025-12-02 06:03:51",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=861789"
+            "dateAdded": "2026-01-09 02:48:55",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=865427"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 861789,
+            "idProduct": 865427,
             "idCategory": 1621,
             "avg": 0.05,
             "low": 0.02,
-            "trend": 0.03,
+            "trend": 0.05,
             "avg1": 0.02,
-            "avg7": 0.03,
+            "avg7": 0.04,
             "avg30": 0.03,
             "avgHolo": null,
             "lowHolo": null,
@@ -327045,7 +326901,7 @@
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.03
+            "valuationEur": 0.05
           }
         },
         "source": "bandai"
@@ -337424,8 +337280,7 @@
     "effect": "[Opponent's Turn] [Once Per Turn] If this Character would be K.O.'d, you may place 3 cards from your trash at the bottom of your deck in any order instead.",
     "trigger": null,
     "sources": [
-      "bandai",
-      "cardmarket"
+      "bandai"
     ],
     "printings": [
       {
@@ -337478,43 +337333,7 @@
           "trigger": null
         },
         "mechanicsDifferFromBase": [],
-        "cardmarket": {
-          "mappingKey": "OP14-092",
-          "mappingRelation": "exact",
-          "productId": 861912,
-          "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Azure-Seas-Seven/Mr3Galdino-OP14-092",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
-          "product": {
-            "idProduct": 861912,
-            "name": "Mr.3(Galdino) (OP14-092)",
-            "idCategory": 1621,
-            "categoryName": "One Piece Single",
-            "idExpansion": 6411,
-            "idMetacard": 457057,
-            "dateAdded": "2025-12-02 14:22:56",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=861912"
-          },
-          "price": {
-            "currency": "EUR",
-            "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 861912,
-            "idCategory": 1621,
-            "avg": 0.14,
-            "low": 0.02,
-            "trend": 0.08,
-            "avg1": 0.02,
-            "avg7": 0.04,
-            "avg30": 0.08,
-            "avgHolo": null,
-            "lowHolo": null,
-            "trendHolo": null,
-            "avg1Holo": null,
-            "avg7Holo": null,
-            "avg30Holo": null,
-            "valuationEur": 0.08
-          }
-        },
+        "cardmarket": null,
         "source": "bandai"
       }
     ]
@@ -351116,38 +350935,38 @@
         "cardmarket": {
           "mappingKey": "OP15-066",
           "mappingRelation": "exact",
-          "productId": 875072,
+          "productId": 879988,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Adventure-on-Kamis-Island/Satori-OP15-066",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 875072,
+            "idProduct": 879988,
             "name": "Satori (OP15-066)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 6504,
+            "idExpansion": 6456,
             "idMetacard": 460402,
-            "dateAdded": "2026-03-01 10:14:06",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=875072"
+            "dateAdded": "2026-03-28 23:23:37",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=879988"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 875072,
+            "idProduct": 879988,
             "idCategory": 1621,
-            "avg": 0.15,
+            "avg": 0.25,
             "low": 0.02,
-            "trend": 0.15,
-            "avg1": 0.1,
-            "avg7": 0.15,
-            "avg30": 0.1,
+            "trend": 0.33,
+            "avg1": 0.41,
+            "avg7": 0.36,
+            "avg30": 0.27,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.15
+            "valuationEur": 0.33
           }
         },
         "source": "bandai"
@@ -368454,38 +368273,38 @@
         "cardmarket": {
           "mappingKey": "OP16-069",
           "mappingRelation": "exact",
-          "productId": 890457,
+          "productId": 890761,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/OP16/Donquixote-Doflamingo-OP16-069",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 890457,
+            "idProduct": 890761,
             "name": "Donquixote Doflamingo (OP16-069)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 6606,
+            "idExpansion": 6457,
             "idMetacard": 463699,
-            "dateAdded": "2026-06-02 18:36:07",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=890457"
+            "dateAdded": "2026-06-03 00:33:47",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=890761"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 890457,
+            "idProduct": 890761,
             "idCategory": 1621,
-            "avg": 0.08,
-            "low": 0.03,
-            "trend": 0.08,
-            "avg1": 0.1,
-            "avg7": 0.07,
-            "avg30": 0.07,
+            "avg": 0.06,
+            "low": 0.02,
+            "trend": 0.03,
+            "avg1": 0.03,
+            "avg7": 0.03,
+            "avg30": 0.05,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.08
+            "valuationEur": 0.03
           }
         },
         "source": "bandai"
@@ -392278,8 +392097,7 @@
     "effect": "[On K.O.] Place up to 1 Character with a cost of 3 or less at the bottom of the owner's deck.",
     "trigger": null,
     "sources": [
-      "bandai",
-      "cardmarket"
+      "bandai"
     ],
     "printings": [
       {
@@ -392334,43 +392152,7 @@
           "trigger": null
         },
         "mechanicsDifferFromBase": [],
-        "cardmarket": {
-          "mappingKey": "P-030",
-          "mappingRelation": "exact",
-          "productId": 802136,
-          "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Jinbe-P-030",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
-          "product": {
-            "idProduct": 802136,
-            "name": "Jinbe (P-030)",
-            "idCategory": 1621,
-            "categoryName": "One Piece Single",
-            "idExpansion": 5970,
-            "idMetacard": 415757,
-            "dateAdded": "2024-11-29 09:48:09",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=802136"
-          },
-          "price": {
-            "currency": "EUR",
-            "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 802136,
-            "idCategory": 1621,
-            "avg": 3.96,
-            "low": 0.2,
-            "trend": 2.53,
-            "avg1": 0.19,
-            "avg7": 2.48,
-            "avg30": 1.16,
-            "avgHolo": null,
-            "lowHolo": null,
-            "trendHolo": null,
-            "avg1Holo": null,
-            "avg7Holo": null,
-            "avg30Holo": null,
-            "valuationEur": 2.53
-          }
-        },
+        "cardmarket": null,
         "source": "bandai"
       },
       {
@@ -392425,43 +392207,7 @@
           "trigger": null
         },
         "mechanicsDifferFromBase": [],
-        "cardmarket": {
-          "mappingKey": "P-030_P2",
-          "mappingRelation": "exact",
-          "productId": 802136,
-          "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Jinbe-P-030",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
-          "product": {
-            "idProduct": 802136,
-            "name": "Jinbe (P-030)",
-            "idCategory": 1621,
-            "categoryName": "One Piece Single",
-            "idExpansion": 5970,
-            "idMetacard": 415757,
-            "dateAdded": "2024-11-29 09:48:09",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=802136"
-          },
-          "price": {
-            "currency": "EUR",
-            "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 802136,
-            "idCategory": 1621,
-            "avg": 3.96,
-            "low": 0.2,
-            "trend": 2.53,
-            "avg1": 0.19,
-            "avg7": 2.48,
-            "avg30": 1.16,
-            "avgHolo": null,
-            "lowHolo": null,
-            "trendHolo": null,
-            "avg1Holo": null,
-            "avg7Holo": null,
-            "avg30Holo": null,
-            "valuationEur": 2.53
-          }
-        },
+        "cardmarket": null,
         "source": "bandai"
       },
       {
@@ -397057,43 +396803,7 @@
           "trigger": "[Trigger] Activate this card's [Main] effect."
         },
         "mechanicsDifferFromBase": [],
-        "cardmarket": {
-          "mappingKey": "P-057_P1",
-          "mappingRelation": "exact",
-          "productId": 754827,
-          "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/Fleeting-Lullaby-P-057",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
-          "product": {
-            "idProduct": 754827,
-            "name": "Fleeting Lullaby (P-057)",
-            "idCategory": 1621,
-            "categoryName": "One Piece Single",
-            "idExpansion": 5230,
-            "idMetacard": 429247,
-            "dateAdded": "2024-02-02 23:32:20",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=754827"
-          },
-          "price": {
-            "currency": "EUR",
-            "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 754827,
-            "idCategory": 1621,
-            "avg": 0.62,
-            "low": 0.02,
-            "trend": 0.2,
-            "avg1": 0.3,
-            "avg7": 0.2,
-            "avg30": 1.02,
-            "avgHolo": null,
-            "lowHolo": null,
-            "trendHolo": null,
-            "avg1Holo": null,
-            "avg7Holo": null,
-            "avg30Holo": null,
-            "valuationEur": 0.2
-          }
-        },
+        "cardmarket": null,
         "source": "bandai"
       }
     ]
@@ -397261,43 +396971,7 @@
           "trigger": "[Trigger] Set all of your {FILM} type Characters as active."
         },
         "mechanicsDifferFromBase": [],
-        "cardmarket": {
-          "mappingKey": "P-058_P1",
-          "mappingRelation": "exact",
-          "productId": 754830,
-          "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/Where-the-Wind-Blows-P-058",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
-          "product": {
-            "idProduct": 754830,
-            "name": "Where the Wind Blows (P-058)",
-            "idCategory": 1621,
-            "categoryName": "One Piece Single",
-            "idExpansion": 5230,
-            "idMetacard": 429248,
-            "dateAdded": "2024-02-02 23:34:21",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=754830"
-          },
-          "price": {
-            "currency": "EUR",
-            "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 754830,
-            "idCategory": 1621,
-            "avg": 0.2,
-            "low": 0.04,
-            "trend": 0.25,
-            "avg1": 0.3,
-            "avg7": 0.2,
-            "avg30": 0.27,
-            "avgHolo": null,
-            "lowHolo": null,
-            "trendHolo": null,
-            "avg1Holo": null,
-            "avg7Holo": null,
-            "avg30Holo": null,
-            "valuationEur": 0.25
-          }
-        },
+        "cardmarket": null,
         "source": "bandai"
       }
     ]
@@ -397465,43 +397139,7 @@
           "trigger": null
         },
         "mechanicsDifferFromBase": [],
-        "cardmarket": {
-          "mappingKey": "P-059_P1",
-          "mappingRelation": "exact",
-          "productId": 754828,
-          "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/The-Worlds-Continuation-P-059",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
-          "product": {
-            "idProduct": 754828,
-            "name": "The World's Continuation (P-059)",
-            "idCategory": 1621,
-            "categoryName": "One Piece Single",
-            "idExpansion": 5230,
-            "idMetacard": 429249,
-            "dateAdded": "2024-02-02 23:33:30",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=754828"
-          },
-          "price": {
-            "currency": "EUR",
-            "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 754828,
-            "idCategory": 1621,
-            "avg": 0.21,
-            "low": 0.08,
-            "trend": 0.25,
-            "avg1": 0.3,
-            "avg7": 0.18,
-            "avg30": 0.23,
-            "avgHolo": null,
-            "lowHolo": null,
-            "trendHolo": null,
-            "avg1Holo": null,
-            "avg7Holo": null,
-            "avg30Holo": null,
-            "valuationEur": 0.25
-          }
-        },
+        "cardmarket": null,
         "source": "bandai"
       }
     ]
@@ -397669,43 +397307,7 @@
           "trigger": null
         },
         "mechanicsDifferFromBase": [],
-        "cardmarket": {
-          "mappingKey": "P-060_P1",
-          "mappingRelation": "exact",
-          "productId": 754829,
-          "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/Tot-Musica-P-060",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
-          "product": {
-            "idProduct": 754829,
-            "name": "Tot Musica (P-060)",
-            "idCategory": 1621,
-            "categoryName": "One Piece Single",
-            "idExpansion": 5230,
-            "idMetacard": 429250,
-            "dateAdded": "2024-02-02 23:33:55",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=754829"
-          },
-          "price": {
-            "currency": "EUR",
-            "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 754829,
-            "idCategory": 1621,
-            "avg": 0.19,
-            "low": 0.02,
-            "trend": 0.22,
-            "avg1": 0.15,
-            "avg7": 0.18,
-            "avg30": 0.25,
-            "avgHolo": null,
-            "lowHolo": null,
-            "trendHolo": null,
-            "avg1Holo": null,
-            "avg7Holo": null,
-            "avg30Holo": null,
-            "valuationEur": 0.22
-          }
-        },
+        "cardmarket": null,
         "source": "bandai"
       }
     ]
@@ -401674,43 +401276,7 @@
           "trigger": null
         },
         "mechanicsDifferFromBase": [],
-        "cardmarket": {
-          "mappingKey": "P-079_P1",
-          "mappingRelation": "exact",
-          "productId": 842347,
-          "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Lim-P-079-V2",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
-          "product": {
-            "idProduct": 842347,
-            "name": "Lim (P-079)",
-            "idCategory": 1621,
-            "categoryName": "One Piece Single",
-            "idExpansion": 5262,
-            "idMetacard": 445266,
-            "dateAdded": "2025-08-12 22:17:33",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=842347"
-          },
-          "price": {
-            "currency": "EUR",
-            "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 842347,
-            "idCategory": 1621,
-            "avg": 14.84,
-            "low": 14,
-            "trend": 16.35,
-            "avg1": 15,
-            "avg7": 14.49,
-            "avg30": 13.6,
-            "avgHolo": null,
-            "lowHolo": null,
-            "trendHolo": null,
-            "avg1Holo": null,
-            "avg7Holo": null,
-            "avg30Holo": null,
-            "valuationEur": 16.35
-          }
-        },
+        "cardmarket": null,
         "source": "bandai"
       },
       {
@@ -402818,43 +402384,7 @@
           "trigger": null
         },
         "mechanicsDifferFromBase": [],
-        "cardmarket": {
-          "mappingKey": "P-083_P3",
-          "mappingRelation": "exact",
-          "productId": 839448,
-          "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Shanks-P-083-V2",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
-          "product": {
-            "idProduct": 839448,
-            "name": "Shanks (P-083)",
-            "idCategory": 1621,
-            "categoryName": "One Piece Single",
-            "idExpansion": 6233,
-            "idMetacard": 441785,
-            "dateAdded": "2025-07-28 16:58:04",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=839448"
-          },
-          "price": {
-            "currency": "EUR",
-            "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 839448,
-            "idCategory": 1621,
-            "avg": 0.1,
-            "low": 0.02,
-            "trend": 0.16,
-            "avg1": 0.15,
-            "avg7": 0.12,
-            "avg30": 0.15,
-            "avgHolo": null,
-            "lowHolo": null,
-            "trendHolo": null,
-            "avg1Holo": null,
-            "avg7Holo": null,
-            "avg30Holo": null,
-            "valuationEur": 0.16
-          }
-        },
+        "cardmarket": null,
         "source": "bandai"
       },
       {
@@ -403202,43 +402732,7 @@
           "trigger": null
         },
         "mechanicsDifferFromBase": [],
-        "cardmarket": {
-          "mappingKey": "P-085",
-          "mappingRelation": "exact",
-          "productId": 852518,
-          "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Jewelry-Bonney-P-085-V1",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
-          "product": {
-            "idProduct": 852518,
-            "name": "Jewelry Bonney (P-085)",
-            "idCategory": 1621,
-            "categoryName": "One Piece Single",
-            "idExpansion": 6242,
-            "idMetacard": 444118,
-            "dateAdded": "2025-10-01 23:52:28",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852518"
-          },
-          "price": {
-            "currency": "EUR",
-            "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 852518,
-            "idCategory": 1621,
-            "avg": 0.17,
-            "low": 0.02,
-            "trend": 0.17,
-            "avg1": 0.19,
-            "avg7": 0.33,
-            "avg30": 0.2,
-            "avgHolo": null,
-            "lowHolo": null,
-            "trendHolo": null,
-            "avg1Holo": null,
-            "avg7Holo": null,
-            "avg30Holo": null,
-            "valuationEur": 0.17
-          }
-        },
+        "cardmarket": null,
         "source": "bandai"
       },
       {
@@ -403385,38 +402879,38 @@
         "cardmarket": {
           "mappingKey": "P-085_P2",
           "mappingRelation": "exact",
-          "productId": 840666,
+          "productId": 852518,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Jewelry-Bonney-P-085-V2",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 840666,
+            "idProduct": 852518,
             "name": "Jewelry Bonney (P-085)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 5230,
+            "idExpansion": 6242,
             "idMetacard": 444118,
-            "dateAdded": "2025-08-04 09:41:37",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=840666"
+            "dateAdded": "2025-10-01 23:52:28",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852518"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 840666,
+            "idProduct": 852518,
             "idCategory": 1621,
-            "avg": 12.56,
-            "low": 7,
-            "trend": 9.03,
-            "avg1": 11,
-            "avg7": 10.8,
-            "avg30": 13.06,
+            "avg": 0.17,
+            "low": 0.02,
+            "trend": 0.17,
+            "avg1": 0.19,
+            "avg7": 0.33,
+            "avg30": 0.2,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 9.03
+            "valuationEur": 0.17
           }
         },
         "source": "bandai"
@@ -403667,38 +403161,38 @@
         "cardmarket": {
           "mappingKey": "P-088",
           "mappingRelation": "exact",
-          "productId": 852519,
+          "productId": 840731,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Trafalgar-Law-P-088-V1",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 852519,
+            "idProduct": 840731,
             "name": "Trafalgar Law (P-088)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 6242,
+            "idExpansion": 5230,
             "idMetacard": 444109,
-            "dateAdded": "2025-10-01 23:52:46",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852519"
+            "dateAdded": "2025-08-04 10:07:12",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=840731"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 852519,
+            "idProduct": 840731,
             "idCategory": 1621,
-            "avg": 2.25,
-            "low": 0.99,
-            "trend": 0.97,
-            "avg1": 1.15,
-            "avg7": 1.08,
-            "avg30": 2.69,
+            "avg": 10.94,
+            "low": 9,
+            "trend": 7.71,
+            "avg1": 10,
+            "avg7": 9.93,
+            "avg30": 14.59,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.97
+            "valuationEur": 7.71
           }
         },
         "source": "bandai"
@@ -440828,43 +440322,7 @@
           "trigger": null
         },
         "mechanicsDifferFromBase": [],
-        "cardmarket": {
-          "mappingKey": "ST10-005_P2",
-          "mappingRelation": "exact",
-          "productId": 744751,
-          "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Jinbe-ST10-005-V2",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
-          "product": {
-            "idProduct": 744751,
-            "name": "Jinbe (ST10-005)",
-            "idCategory": 1621,
-            "categoryName": "One Piece Single",
-            "idExpansion": 5380,
-            "idMetacard": 427679,
-            "dateAdded": "2023-11-10 04:05:51",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=744751"
-          },
-          "price": {
-            "currency": "EUR",
-            "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 744751,
-            "idCategory": 1621,
-            "avg": 0.21,
-            "low": 0.02,
-            "trend": 0.14,
-            "avg1": 0.02,
-            "avg7": 0.22,
-            "avg30": 0.17,
-            "avgHolo": null,
-            "lowHolo": null,
-            "trendHolo": null,
-            "avg1Holo": null,
-            "avg7Holo": null,
-            "avg30Holo": null,
-            "valuationEur": 0.14
-          }
-        },
+        "cardmarket": null,
         "source": "bandai"
       },
       {
@@ -443335,38 +442793,38 @@
         "cardmarket": {
           "mappingKey": "ST11-001",
           "mappingRelation": "exact",
-          "productId": 794639,
+          "productId": 754833,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Uta/Uta-ST11-001",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 794639,
+            "idProduct": 754833,
             "name": "Uta ( ST11-001)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 5748,
+            "idExpansion": 5427,
             "idMetacard": 429257,
-            "dateAdded": "2024-10-24 03:49:28",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=794639"
+            "dateAdded": "2024-02-02 23:41:36",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=754833"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 794639,
+            "idProduct": 754833,
             "idCategory": 1621,
-            "avg": 0.73,
-            "low": 0.39,
-            "trend": 0.61,
-            "avg1": 0.44,
-            "avg7": 0.67,
-            "avg30": 0.72,
+            "avg": 1.57,
+            "low": 0.05,
+            "trend": 1.32,
+            "avg1": 0.2,
+            "avg7": 1.42,
+            "avg30": 1.45,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.61
+            "valuationEur": 1.32
           }
         },
         "source": "bandai"
@@ -443424,38 +442882,38 @@
         "cardmarket": {
           "mappingKey": "ST11-001_P1",
           "mappingRelation": "exact",
-          "productId": 754833,
+          "productId": 794639,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/Uta-ST11-001",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 754833,
+            "idProduct": 794639,
             "name": "Uta ( ST11-001)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 5427,
+            "idExpansion": 5748,
             "idMetacard": 429257,
-            "dateAdded": "2024-02-02 23:41:36",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=754833"
+            "dateAdded": "2024-10-24 03:49:28",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=794639"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 754833,
+            "idProduct": 794639,
             "idCategory": 1621,
-            "avg": 1.57,
-            "low": 0.05,
-            "trend": 1.32,
-            "avg1": 0.2,
-            "avg7": 1.42,
-            "avg30": 1.45,
+            "avg": 0.73,
+            "low": 0.39,
+            "trend": 0.61,
+            "avg1": 0.44,
+            "avg7": 0.67,
+            "avg30": 0.72,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 1.32
+            "valuationEur": 0.61
           }
         },
         "source": "bandai"
@@ -454271,38 +453729,38 @@
         "cardmarket": {
           "mappingKey": "ST14-016",
           "mappingRelation": "exact",
-          "productId": 852588,
+          "productId": 783339,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-3D2Y/I-Have-My-Crew-ST14-016",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 852588,
-            "name": "I Have My Crew!!o (ST14-016)",
+            "idProduct": 783339,
+            "name": "I Have My Crew!! (ST14-016)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 6242,
-            "idMetacard": 452257,
-            "dateAdded": "2025-10-02 00:21:54",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852588"
+            "idExpansion": 5611,
+            "idMetacard": 438637,
+            "dateAdded": "2024-08-19 08:51:44",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=783339"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 852588,
+            "idProduct": 783339,
             "idCategory": 1621,
-            "avg": 0.12,
+            "avg": 0.22,
             "low": 0.02,
-            "trend": 0.08,
-            "avg1": 0.02,
-            "avg7": 0.08,
-            "avg30": 0.12,
+            "trend": 0.18,
+            "avg1": 0.08,
+            "avg7": 0.21,
+            "avg30": 0.17,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.08
+            "valuationEur": 0.18
           }
         },
         "source": "bandai"
@@ -454355,43 +453813,7 @@
           "trigger": "[Trigger] K.O. up to 1 of your opponent's Characters with a cost of 3 or less."
         },
         "mechanicsDifferFromBase": [],
-        "cardmarket": {
-          "mappingKey": "ST14-016_P1",
-          "mappingRelation": "exact",
-          "productId": 783339,
-          "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/I-Have-My-Crewo-ST14-016-V2",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
-          "product": {
-            "idProduct": 783339,
-            "name": "I Have My Crew!! (ST14-016)",
-            "idCategory": 1621,
-            "categoryName": "One Piece Single",
-            "idExpansion": 5611,
-            "idMetacard": 438637,
-            "dateAdded": "2024-08-19 08:51:44",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=783339"
-          },
-          "price": {
-            "currency": "EUR",
-            "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 783339,
-            "idCategory": 1621,
-            "avg": 0.22,
-            "low": 0.02,
-            "trend": 0.18,
-            "avg1": 0.08,
-            "avg7": 0.21,
-            "avg30": 0.17,
-            "avgHolo": null,
-            "lowHolo": null,
-            "trendHolo": null,
-            "avg1Holo": null,
-            "avg7Holo": null,
-            "avg30Holo": null,
-            "valuationEur": 0.18
-          }
-        },
+        "cardmarket": null,
         "source": "bandai"
       },
       {
@@ -458073,38 +457495,38 @@
         "cardmarket": {
           "mappingKey": "ST17-005",
           "mappingRelation": "exact",
-          "productId": 852604,
+          "productId": 794656,
           "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Donquixote-Doflamingo/MarshallDTeach-ST17-005",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
+          "mappingConfirmed": false,
+          "mappingSource": "auto-repair-mapping-consistency",
           "product": {
-            "idProduct": 852604,
+            "idProduct": 794656,
             "name": "Marshall.D.Teach (ST17-005)",
             "idCategory": 1621,
             "categoryName": "One Piece Single",
-            "idExpansion": 6242,
+            "idExpansion": 5749,
             "idMetacard": 441676,
-            "dateAdded": "2025-10-02 00:36:22",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852604"
+            "dateAdded": "2024-10-24 04:01:55",
+            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=794656"
           },
           "price": {
             "currency": "EUR",
             "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 852604,
+            "idProduct": 794656,
             "idCategory": 1621,
-            "avg": 0.12,
+            "avg": 0.11,
             "low": 0.02,
-            "trend": 0.08,
-            "avg1": 0.1,
-            "avg7": 0.07,
-            "avg30": 0.11,
+            "trend": 0.16,
+            "avg1": 0.14,
+            "avg7": 0.11,
+            "avg30": 0.13,
             "avgHolo": null,
             "lowHolo": null,
             "trendHolo": null,
             "avg1Holo": null,
             "avg7Holo": null,
             "avg30Holo": null,
-            "valuationEur": 0.08
+            "valuationEur": 0.16
           }
         },
         "source": "bandai"
@@ -458160,43 +457582,7 @@
           "trigger": null
         },
         "mechanicsDifferFromBase": [],
-        "cardmarket": {
-          "mappingKey": "ST17-005_P1",
-          "mappingRelation": "exact",
-          "productId": 794656,
-          "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/MarshallDTeach-ST17-005-V2",
-          "mappingConfirmed": true,
-          "mappingSource": "legacy-cardmarket-snapshot",
-          "product": {
-            "idProduct": 794656,
-            "name": "Marshall.D.Teach (ST17-005)",
-            "idCategory": 1621,
-            "categoryName": "One Piece Single",
-            "idExpansion": 5749,
-            "idMetacard": 441676,
-            "dateAdded": "2024-10-24 04:01:55",
-            "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=794656"
-          },
-          "price": {
-            "currency": "EUR",
-            "createdAt": "2026-09-09T02:45:52+0200",
-            "idProduct": 794656,
-            "idCategory": 1621,
-            "avg": 0.11,
-            "low": 0.02,
-            "trend": 0.16,
-            "avg1": 0.14,
-            "avg7": 0.11,
-            "avg30": 0.13,
-            "avgHolo": null,
-            "lowHolo": null,
-            "trendHolo": null,
-            "avg1Holo": null,
-            "avg7Holo": null,
-            "avg30Holo": null,
-            "valuationEur": 0.16
-          }
-        },
+        "cardmarket": null,
         "source": "bandai"
       },
       {
