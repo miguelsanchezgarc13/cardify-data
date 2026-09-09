@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-One Piece TCG catalogue pipeline v3.1.
+One Piece TCG catalogue pipeline v3.2.
 
 Live sources:
   1) Bandai official card list -> card/game/printing/image metadata
@@ -21,7 +21,10 @@ import hashlib
 import json
 import os
 import re
+import shutil
 import subprocess
+import tempfile
+import html as html_lib
 import sys
 import time
 import unicodedata
@@ -63,6 +66,9 @@ CARDMARKET_PRICE_GUIDE_URL = (
 CARDMARKET_BASE_URL = "https://www.cardmarket.com"
 CARDMARKET_PRODUCT_REDIRECT = "https://www.cardmarket.com/en/OnePiece/Products?idProduct={product_id}"
 
+VEGAPULL_PINNED_VERSION = "1.3.0"
+VEGAPULL_MIN_VERSION = (1, 2, 3)
+
 DEFAULT_RAW_DIR = Path("raw")
 DEFAULT_DATA_DIR = Path("data")
 DEFAULT_OUTPUT_DIR = Path("output")
@@ -84,7 +90,7 @@ LEGACY_CARDS_FILENAME = "cardmarket_cards_raw.json"
 
 HEADERS = {
     "User-Agent": (
-        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.1; "
+        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.2; "
         "+https://github.com/)"
     ),
     "Accept-Language": "en-US,en;q=0.9",
@@ -208,7 +214,15 @@ def parse_args() -> argparse.Namespace:
         "--bandai-delay",
         type=float,
         default=0.45,
-        help="Pausa entre peticiones de series Bandai (segundos).",
+        help="Pausa entre descargas de packs Bandai mediante vega (segundos).",
+    )
+    parser.add_argument(
+        "--vega-bin",
+        default=os.environ.get("VEGA_BIN", "vega"),
+        help=(
+            "Ruta/nombre del binario vega. Si se deja en 'vega' y no existe, "
+            "el script instala automáticamente vegapull 1.3.0 con cargo."
+        ),
     )
     parser.add_argument(
         "--self-test",
@@ -648,89 +662,404 @@ def fetch_bandai_series_records(
     return [], diagnostics
 
 
-def fetch_bandai_raw(session: requests.Session, delay_seconds: float) -> dict:
-    last_error = None
-    selected_url = None
-    index_html = None
-    series = None
+def _version_tuple(value: str | None) -> tuple[int, ...]:
+    match = re.search(r"(\d+)\.(\d+)\.(\d+)", str(value or ""))
+    if not match:
+        return ()
+    return tuple(int(x) for x in match.groups())
 
-    for candidate_url in BANDAI_CARDLIST_URLS:
-        try:
-            print(f"Probando Bandai oficial: {candidate_url}")
-            candidate_html = fetch_text(session, candidate_url)
-            candidate_series = discover_bandai_series(candidate_html)
-            selected_url = candidate_url
-            index_html = candidate_html
-            series = candidate_series
-            break
-        except Exception as error:  # network + HTML shape
-            last_error = error
-            print(f"Bandai no usable en {candidate_url}: {error}")
 
-    if not selected_url or index_html is None or not series:
-        raise RuntimeError(f"No se pudo acceder al cardlist oficial de Bandai: {last_error}")
-
-    all_records = []
-    series_reports = []
-    prefetched = {}
-
-    # Fail fast against a known, stable booster instead of wasting 60 requests
-    # when Bandai has changed its query/HTML contract.
-    smoke_item = next((x for x in series if x["id"] == "569116"), series[0])
-    print(f"Smoke test Bandai: series={smoke_item['id']}")
-    smoke_records, smoke_diag = fetch_bandai_series_records(
-        session, selected_url, smoke_item
+def _vega_version(vega_bin: str) -> str:
+    proc = subprocess.run(
+        [vega_bin, "--version"],
+        text=True,
+        capture_output=True,
+        check=False,
     )
-    if not smoke_records:
+    text = (proc.stdout or proc.stderr or "").strip()
+    if proc.returncode != 0:
         raise RuntimeError(
-            "Bandai respondió pero no pudimos extraer cartas del smoke test "
-            f"series={smoke_item['id']}. Diagnóstico: "
-            + json.dumps(smoke_diag, ensure_ascii=False)
+            f"No se pudo ejecutar {vega_bin!r} --version: {text or proc.returncode}"
         )
-    prefetched[smoke_item["id"]] = (smoke_records, smoke_diag)
-    print(f"Smoke test Bandai OK: {len(smoke_records)} printings")
+    return text
 
-    for position, item in enumerate(series, start=1):
+
+def ensure_vega_binary(requested: str = "vega") -> tuple[str, str]:
+    """Resolve vega; bootstrap the pinned release with cargo on CI if needed.
+
+    vegapull/vega is an extractor only. The live data source remains Bandai's
+    official card-list site. Pinning the version keeps CI deterministic.
+    """
+    resolved = shutil.which(requested)
+    if resolved:
+        version = _vega_version(resolved)
+        parsed = _version_tuple(version)
+        if parsed and parsed >= VEGAPULL_MIN_VERSION:
+            print(f"Extractor Bandai: {version} ({resolved})")
+            return resolved, version
+        if requested != "vega":
+            raise RuntimeError(
+                f"El binario vega indicado es demasiado antiguo: {version}. "
+                f"Se requiere >= {'.'.join(map(str, VEGAPULL_MIN_VERSION))}."
+            )
         print(
-            f"Bandai {position}/{len(series)}: {item['label']} "
-            f"(series={item['id']})"
+            f"vega encontrado pero demasiado antiguo ({version}); "
+            f"se instalará vegapull {VEGAPULL_PINNED_VERSION}."
         )
-        if item["id"] in prefetched:
-            records, diagnostics = prefetched[item["id"]]
-        else:
-            records, diagnostics = fetch_bandai_series_records(
-                session, selected_url, item
-            )
 
-        if not records:
-            print(
-                f"AVISO: Bandai devolvió 0 cartas utilizables para "
-                f"series={item['id']} | diagnóstico="
-                + json.dumps(diagnostics, ensure_ascii=False)
-            )
-        all_records.extend(records)
-        series_reports.append(
-            {**item, "records": len(records), "diagnostics": diagnostics}
-        )
-        if delay_seconds > 0:
-            time.sleep(delay_seconds)
+    elif requested != "vega":
+        raise RuntimeError(f"No existe el binario vega indicado: {requested}")
 
-    nonempty_series = sum(1 for row in series_reports if row["records"] > 0)
-    if len(all_records) < 1000 or nonempty_series < max(10, len(series) // 2):
+    cargo = shutil.which("cargo")
+    if not cargo:
         raise RuntimeError(
-            "Bandai devolvió un catálogo anormalmente pequeño; se aborta para "
-            "no publicar datos parciales. "
-            f"records={len(all_records)}, seriesConCartas={nonempty_series}/"
-            f"{len(series)}"
+            "No se encontró 'vega' ni 'cargo'. En GitHub Actions usa un runner "
+            "con Rust/cargo o instala vegapull antes de ejecutar el script."
         )
+
+    print(
+        f"vega no disponible. Instalando vegapull {VEGAPULL_PINNED_VERSION} "
+        "desde crates.io (una sola vez en este runner)..."
+    )
+    cmd = [
+        cargo,
+        "install",
+        "vegapull",
+        "--version",
+        VEGAPULL_PINNED_VERSION,
+        "--locked",
+        "--quiet",
+    ]
+    proc = subprocess.run(cmd, text=True, capture_output=True, check=False)
+    if proc.returncode != 0:
+        detail = (proc.stderr or proc.stdout or "").strip()
+        raise RuntimeError(
+            "No se pudo instalar vegapull automáticamente con cargo. "
+            f"Comando: {' '.join(cmd)}\n{detail[-4000:]}"
+        )
+
+    resolved = shutil.which("vega")
+    if not resolved:
+        candidate = Path.home() / ".cargo" / "bin" / "vega"
+        if candidate.exists():
+            resolved = str(candidate)
+    if not resolved:
+        raise RuntimeError(
+            "cargo terminó sin error pero el binario 'vega' no apareció en PATH."
+        )
+
+    version = _vega_version(resolved)
+    print(f"Extractor Bandai instalado: {version} ({resolved})")
+    return resolved, version
+
+
+def run_vega_command(
+    vega_bin: str,
+    args: list[str],
+    attempts: int = 4,
+    initial_backoff: float = 3.0,
+) -> subprocess.CompletedProcess:
+    """Run vega with retries for transient Bandai/network failures."""
+    last = None
+    for attempt in range(1, attempts + 1):
+        proc = subprocess.run(
+            [vega_bin, *args],
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        if proc.returncode == 0:
+            return proc
+        last = proc
+        if attempt < attempts:
+            wait = initial_backoff * (2 ** (attempt - 1))
+            print(
+                f"  vega falló ({attempt}/{attempts}); reintento en {wait:.0f}s..."
+            )
+            time.sleep(wait)
+
+    detail = ""
+    if last is not None:
+        detail = (last.stderr or last.stdout or "").strip()
+    raise RuntimeError(
+        f"vega falló tras {attempts} intentos: {' '.join(args)}\n{detail[-5000:]}"
+    )
+
+
+def _clean_vega_text(value) -> str | None:
+    text = nullable_text(value)
+    if not text:
+        return None
+    text = html_lib.unescape(text)
+    text = re.sub(r"<br\s*/?>", "\n", text, flags=re.I)
+    # Preserve inner text even for malformed custom tags such as <slash>.
+    text = re.sub(r"<[^>]+>", "", text)
+    lines = [" ".join(line.split()) for line in text.splitlines()]
+    text = "\n".join(line for line in lines if line)
+    return nullable_text(text)
+
+
+def _clean_vega_array(value) -> list[str]:
+    if value is None:
+        return []
+    values = value if isinstance(value, list) else [value]
+    out = []
+    seen = set()
+    for item in values:
+        cleaned = _clean_vega_text(item)
+        if not cleaned:
+            continue
+        key = normalize_text(cleaned)
+        if key not in seen:
+            seen.add(key)
+            out.append(cleaned)
+    return out
+
+
+def _normalize_vega_rarity(value) -> str | None:
+    text = _clean_vega_text(value)
+    if not text:
+        return None
+    aliases = {
+        "common": "Common",
+        "uncommon": "Uncommon",
+        "rare": "Rare",
+        "superrare": "Super Rare",
+        "secretrare": "Secret Rare",
+        "leader": "Leader",
+        "special": "Special",
+        "treasurerare": "Treasure Rare",
+        "promo": "Promo",
+    }
+    return aliases.get(re.sub(r"\s+", "", text).casefold(), normalize_rarity(text))
+
+
+def _normalize_vega_block(value):
+    text = nullable_text(value)
+    if text and text.upper() == "X":
+        return "X"
+    return get_number(value)
+
+
+def _vega_pack_label(pack: dict) -> str:
+    raw = _clean_vega_text(pack.get("raw_title"))
+    if raw:
+        return clean_bandai_label(raw)
+    parts = pack.get("title_parts") if isinstance(pack.get("title_parts"), dict) else {}
+    values = [parts.get("prefix"), parts.get("title"), parts.get("label")]
+    label = " ".join(x for x in (_clean_vega_text(v) for v in values) if x)
+    return clean_bandai_label(label) or str(pack.get("id") or "Bandai pack")
+
+
+def _normalize_vega_packs(data) -> list[dict]:
+    if isinstance(data, dict):
+        rows = [value for value in data.values() if isinstance(value, dict)]
+    elif isinstance(data, list):
+        rows = [value for value in data if isinstance(value, dict)]
+    else:
+        rows = []
+    out = []
+    seen = set()
+    for row in rows:
+        pack_id = str(row.get("id") or "").strip()
+        if not pack_id or pack_id in seen:
+            continue
+        seen.add(pack_id)
+        out.append({**row, "id": pack_id, "label": _vega_pack_label(row)})
+    return out
+
+
+def _vega_card_rows(data) -> list[dict]:
+    if isinstance(data, list):
+        return [row for row in data if isinstance(row, dict)]
+    if isinstance(data, dict):
+        for key in ("cards", "data", "results"):
+            value = data.get(key)
+            if isinstance(value, list):
+                return [row for row in value if isinstance(row, dict)]
+        # Defensive fallback if a future vega version returns id -> card.
+        if data and all(isinstance(v, dict) for v in data.values()):
+            return list(data.values())
+    return []
+
+
+def normalize_vega_card(row: dict, pack: dict) -> dict | None:
+    source_printing_id = canonical_id(row.get("id"))
+    if not source_printing_id or not CARD_CODE_RE.search(base_code(source_printing_id)):
+        return None
+
+    category_raw = _clean_vega_text(row.get("category"))
+    category = category_raw.title() if category_raw else None
+    if category and category.upper().startswith("DON"):
+        category = "Don"
+
+    raw_cost = get_number(row.get("cost"))
+    explicit_life = get_number(row.get("life"))
+    life = explicit_life if explicit_life is not None else (raw_cost if category == "Leader" else None)
+    cost = None if category == "Leader" else raw_cost
+
+    image_url = nullable_text(row.get("img_full_url") or row.get("image_url"))
+    if not image_url:
+        relative = nullable_text(row.get("img_url"))
+        if relative:
+            image_url = urljoin(BANDAI_CARDLIST_URLS[0], relative)
+
+    name = _clean_vega_text(row.get("name")) or base_code(source_printing_id)
+    effect = _clean_vega_text(row.get("effect"))
+    trigger = _clean_vega_text(row.get("trigger"))
+    label = pack.get("label") or _vega_pack_label(pack)
+    pack_id = str(row.get("pack_id") or pack.get("id") or "").strip()
 
     return {
-        "source": "Bandai official One Piece Card Game cardlist",
-        "sourceUrl": selected_url,
-        "fetchedAt": utc_now_iso(),
-        "series": series_reports,
-        "cards": all_records,
+        "cardNo": base_code(source_printing_id),
+        "sourcePrintingId": source_printing_id,
+        "name": strip_parallel_label(name) or name,
+        "displayName": name,
+        "rarityCode": None,
+        "rarity": _normalize_vega_rarity(row.get("rarity")),
+        "category": category,
+        "life": life,
+        "cost": cost,
+        "power": get_number(row.get("power")),
+        "counter": get_number(row.get("counter")),
+        "colors": _clean_vega_array(row.get("colors")),
+        "attributes": _clean_vega_array(row.get("attributes")),
+        "block": _normalize_vega_block(row.get("block_number") if "block_number" in row else row.get("block")),
+        "types": _clean_vega_array(row.get("types")),
+        "effect": effect,
+        "trigger": trigger,
+        "cardSetsText": label,
+        "notes": None,
+        "isParallel": bool(re.search(r"_P\d+", source_printing_id, re.I)),
+        "isReprint": bool(re.search(r"_R\d+", source_printing_id, re.I)),
+        "imageUrl": image_url,
+        "seriesId": pack_id,
+        "seriesLabel": label,
+        "sourceUrl": f"{BANDAI_CARDLIST_URLS[0]}?series={pack_id}" if pack_id else BANDAI_CARDLIST_URLS[0],
     }
+
+
+def fetch_bandai_raw(
+    session: requests.Session,
+    delay_seconds: float,
+    vega_requested: str = "vega",
+) -> dict:
+    """Fetch Bandai data through the pinned vega extractor.
+
+    Runtime source is still Bandai. vega is used because plain requests from
+    CI can receive the card-list shell without card blocks due to Bandai's
+    cookie/bot protections.
+    """
+    del session  # Cardmarket still uses the requests session; Bandai uses vega.
+    vega_bin, vega_version = ensure_vega_binary(vega_requested)
+
+    with tempfile.TemporaryDirectory(prefix="optcg-vega-") as temp_name:
+        work_dir = Path(temp_name)
+        print("Bandai: descargando lista oficial de packs mediante vega...")
+        run_vega_command(
+            vega_bin,
+            ["pull", "--language", "english", "--output", str(work_dir), "packs"],
+        )
+        packs_path = work_dir / "json" / "packs.json"
+        if not packs_path.exists():
+            raise RuntimeError(f"vega no generó el fichero esperado: {packs_path}")
+        packs_raw = load_json(packs_path)
+        packs = _normalize_vega_packs(packs_raw)
+        if len(packs) < 20:
+            raise RuntimeError(
+                f"vega devolvió una lista de packs anormalmente pequeña: {len(packs)}"
+            )
+        print(f"Bandai: {len(packs)} packs/series detectados.")
+
+        all_records = []
+        series_reports = []
+        prefetched = {}
+
+        smoke_pack = next((p for p in packs if p["id"] == "569116"), packs[0])
+        smoke_id = smoke_pack["id"]
+        print(f"Smoke test Bandai/vega: pack={smoke_id} ({smoke_pack['label']})")
+        run_vega_command(
+            vega_bin,
+            ["pull", "--language", "english", "--output", str(work_dir), "cards", smoke_id],
+        )
+        smoke_path = work_dir / "json" / f"cards_{smoke_id}.json"
+        smoke_rows = _vega_card_rows(load_json(smoke_path, default=[]))
+        smoke_records = [normalize_vega_card(row, smoke_pack) for row in smoke_rows]
+        smoke_records = [row for row in smoke_records if row]
+        if len(smoke_records) < 50:
+            raise RuntimeError(
+                "Bandai/vega respondió con un smoke test anormalmente pequeño: "
+                f"pack={smoke_id}, records={len(smoke_records)}"
+            )
+        prefetched[smoke_id] = smoke_records
+        print(f"Smoke test Bandai/vega OK: {len(smoke_records)} printings")
+
+        failures = []
+        for position, pack in enumerate(sorted(packs, key=lambda p: p["id"]), start=1):
+            pack_id = pack["id"]
+            print(f"Bandai {position}/{len(packs)}: {pack['label']} (pack={pack_id})")
+            if pack_id in prefetched:
+                records = prefetched[pack_id]
+            else:
+                target = work_dir / "json" / f"cards_{pack_id}.json"
+                if target.exists():
+                    target.unlink()
+                try:
+                    run_vega_command(
+                        vega_bin,
+                        ["pull", "--language", "english", "--output", str(work_dir), "cards", pack_id],
+                    )
+                    rows = _vega_card_rows(load_json(target, default=[]))
+                    records = [normalize_vega_card(row, pack) for row in rows]
+                    records = [row for row in records if row]
+                except Exception as error:
+                    failures.append({"id": pack_id, "label": pack["label"], "error": str(error)})
+                    records = []
+
+            if not records:
+                failures.append({
+                    "id": pack_id,
+                    "label": pack["label"],
+                    "error": "0 cartas utilizables",
+                })
+            else:
+                all_records.extend(records)
+            series_reports.append({**pack, "records": len(records)})
+            if delay_seconds > 0 and position < len(packs):
+                time.sleep(delay_seconds)
+
+        # We deliberately do not publish a partial Bandai catalogue. A single
+        # missing official pack can make Cardmarket mappings/prices misleading.
+        if failures:
+            # Deduplicate duplicate failure entries for the same pack.
+            unique = {}
+            for failure in failures:
+                unique[failure["id"]] = failure
+            raise RuntimeError(
+                "Bandai/vega no pudo completar todos los packs; se aborta para "
+                "no publicar un catálogo parcial. Fallos: "
+                + json.dumps(list(unique.values()), ensure_ascii=False)[:8000]
+            )
+
+        if len(all_records) < 1000:
+            raise RuntimeError(
+                "Bandai/vega devolvió un catálogo anormalmente pequeño; "
+                f"records={len(all_records)}"
+            )
+
+        return {
+            "source": "Bandai official One Piece Card Game cardlist",
+            "sourceUrl": BANDAI_CARDLIST_URLS[0],
+            "extractor": {
+                "name": "vegapull/vega",
+                "version": vega_version,
+                "pinnedVersion": VEGAPULL_PINNED_VERSION,
+            },
+            "fetchedAt": utc_now_iso(),
+            "packs": packs,
+            "series": series_reports,
+            "cards": all_records,
+        }
 
 
 # ---------------------------------------------------------------------------
@@ -1512,9 +1841,9 @@ def build_catalog(
 # ---------------------------------------------------------------------------
 
 
-def fetch_live_raw(session: requests.Session, bandai_delay: float) -> dict:
+def fetch_live_raw(session: requests.Session, bandai_delay: float, vega_bin: str = "vega") -> dict:
     print("Descargando Bandai oficial...")
-    bandai = fetch_bandai_raw(session, bandai_delay)
+    bandai = fetch_bandai_raw(session, bandai_delay, vega_bin)
 
     print("Descargando catálogo público oficial de Cardmarket...")
     cm_products = fetch_json(session, CARDMARKET_PRODUCTS_URL)
@@ -1663,6 +1992,34 @@ def run_self_test() -> None:
     assert cards[1]["sourcePrintingId"] == "OP17-001_P1"
     assert cards[1]["isParallel"] is True
 
+    vega_pack = {
+        "id": "569117",
+        "raw_title": "BOOSTER PACK -THE WORLD'S STRONGEST WARRIORS- [OP-17]",
+    }
+    vega_row = {
+        "id": "OP17-001_p1",
+        "pack_id": "569117",
+        "name": "Edward.Newgate",
+        "rarity": "Leader",
+        "category": "Leader",
+        "img_full_url": "https://en.onepiece-cardgame.com/images/cardlist/card/OP17-001_p1.png?260828",
+        "colors": ["Red"],
+        "cost": 5,
+        "attributes": ["Special"],
+        "power": 5000,
+        "counter": None,
+        "block_number": 5,
+        "types": ["The Four Emperors", "Whitebeard Pirates"],
+        "effect": "[Once Per Turn] Test.<br>Second line.",
+        "trigger": None,
+    }
+    vega_card = normalize_vega_card(vega_row, {**vega_pack, "label": _vega_pack_label(vega_pack)})
+    assert vega_card is not None
+    assert vega_card["sourcePrintingId"] == "OP17-001_P1"
+    assert vega_card["life"] == 5 and vega_card["cost"] is None
+    assert vega_card["isParallel"] is True
+    assert "Second line." in vega_card["effect"]
+
     legacy = {
         "updatedAt": "2026-08-04",
         "cards": {
@@ -1792,7 +2149,7 @@ def main() -> None:
     if args.from_raw:
         raw_data = load_raw(args.raw_dir)
     else:
-        raw_data = fetch_live_raw(session, args.bandai_delay)
+        raw_data = fetch_live_raw(session, args.bandai_delay, args.vega_bin)
         save_raw(args.raw_dir, raw_data)
 
     bandai_root = raw_data["bandai"]
