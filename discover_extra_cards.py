@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-One Piece TCG catalogue pipeline v3.2.
+One Piece TCG catalogue pipeline v3.3.
 
 Live sources:
   1) Bandai official card list -> card/game/printing/image metadata
@@ -90,14 +90,14 @@ LEGACY_CARDS_FILENAME = "cardmarket_cards_raw.json"
 
 HEADERS = {
     "User-Agent": (
-        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.2; "
+        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.3; "
         "+https://github.com/)"
     ),
     "Accept-Language": "en-US,en;q=0.9",
     "Accept": "text/html,application/json;q=0.9,*/*;q=0.8",
 }
 
-CARD_CODE_RE = re.compile(r"\b(?:OP\d{2}|EB\d{2}|ST\d{2}|P)-\d{3}\b", re.I)
+CARD_CODE_RE = re.compile(r"\b(?:OP\d{2}|EB\d{2}|ST\d{2}|PRB\d{2}|P)-\d{3}\b", re.I)
 VARIANT_SUFFIX_RE = re.compile(r"(?:_(?:p|r)\d+)+$", re.I)
 IMAGE_ID_RE = re.compile(
     r"/([^/?]+?)(?:_EN)?\.(?:png|jpe?g|webp|gif)(?:\?.*)?$", re.I
@@ -816,6 +816,39 @@ def _clean_vega_array(value) -> list[str]:
     return out
 
 
+def _clean_bandai_types(value) -> list[str]:
+    """Remove the UI label prefix that vega can preserve in the first Type value."""
+    out = []
+    seen = set()
+    for item in _clean_vega_array(value):
+        cleaned = re.sub(r"^\s*Type\s+", "", item, flags=re.I).strip()
+        if not cleaned:
+            continue
+        key = normalize_text(cleaned)
+        if key not in seen:
+            seen.add(key)
+            out.append(cleaned)
+    return out
+
+
+def _clean_bandai_trigger(value) -> str | None:
+    text = _clean_vega_text(value)
+    if not text:
+        return None
+    # vega may return the HTML label plus the actual game keyword, e.g.
+    # "Trigger [Trigger] Play this card.". Keep only the game text.
+    text = re.sub(r"^\s*Trigger\s+", "", text, flags=re.I)
+    return nullable_text(text)
+
+
+def _normalize_bandai_record_for_output(record: dict) -> dict:
+    """Clean known extractor presentation artifacts without changing mechanics."""
+    cleaned = dict(record)
+    cleaned["types"] = _clean_bandai_types(record.get("types"))
+    cleaned["trigger"] = _clean_bandai_trigger(record.get("trigger"))
+    return cleaned
+
+
 def _normalize_vega_rarity(value) -> str | None:
     text = _clean_vega_text(value)
     if not text:
@@ -906,7 +939,7 @@ def normalize_vega_card(row: dict, pack: dict) -> dict | None:
 
     name = _clean_vega_text(row.get("name")) or base_code(source_printing_id)
     effect = _clean_vega_text(row.get("effect"))
-    trigger = _clean_vega_text(row.get("trigger"))
+    trigger = _clean_bandai_trigger(row.get("trigger"))
     label = pack.get("label") or _vega_pack_label(pack)
     pack_id = str(row.get("pack_id") or pack.get("id") or "").strip()
 
@@ -925,7 +958,7 @@ def normalize_vega_card(row: dict, pack: dict) -> dict | None:
         "colors": _clean_vega_array(row.get("colors")),
         "attributes": _clean_vega_array(row.get("attributes")),
         "block": _normalize_vega_block(row.get("block_number") if "block_number" in row else row.get("block")),
-        "types": _clean_vega_array(row.get("types")),
+        "types": _clean_bandai_types(row.get("types")),
         "effect": effect,
         "trigger": trigger,
         "cardSetsText": label,
@@ -1293,7 +1326,7 @@ def enrich_existing_mapping(mapping: dict, products_by_id: dict[int, dict]) -> N
 
 
 def art_identity(printing_id: str | None) -> str:
-    """Bandai art identity, ignoring legacy reprint suffixes such as _R1."""
+    """Artwork family used only for conservative Cardmarket alias matching."""
     return re.sub(r"_R\d+", "", canonical_id(printing_id), flags=re.I)
 
 
@@ -1314,61 +1347,148 @@ def legacy_set_matches_bandai_record(legacy_set: str | None, record: dict) -> bo
     if legacy in haystack:
         return True
 
-    # Common legacy slug vs official Bandai wording aliases.
     event_match = re.fullmatch(r"eventpack0*(\d+)", legacy)
     if event_match and f"eventpackvol{int(event_match.group(1))}" in haystack:
         return True
     return False
 
 
-def unresolved_release_key(record: dict) -> str:
-    source_pid = canonical_id(record.get("sourcePrintingId"))
-    release_text = "|".join(
-        str(x or "")
-        for x in (record.get("seriesLabel"), record.get("cardSetsText"))
-    )
-    digest = hashlib.sha1(release_text.encode("utf-8")).hexdigest()[:8].upper()
-    return f"{source_pid}~BANDAI-RELEASE~{digest}"
+def _product_card_code(product: dict | None) -> str | None:
+    if not isinstance(product, dict):
+        return None
+    match = CARD_CODE_RE.search(str(product.get("name") or ""))
+    return canonical_id(match.group(0)) if match else None
 
 
-def resolve_mapping_key_for_bandai_record(record: dict, mapping_entries: dict) -> str:
+def _product_display_name(product: dict | None) -> str:
+    if not isinstance(product, dict):
+        return ""
+    name = str(product.get("name") or "")
+    name = CARD_CODE_RE.sub("", name)
+    name = re.sub(r"[()]+", " ", name)
+    return normalize_text(name)
+
+
+def validate_and_repair_mapping(mapping: dict, products_by_id: dict[int, dict]) -> dict:
     """
-    Resolve a Bandai record to our persistent physical-printing key.
+    Protect the catalogue from a stale/shifted legacy idProduct.
 
-    Reprints can reuse the exact same Bandai image/sourcePrintingId. Legacy
-    Cardmarket keys such as OP01-120_P2_R1 preserve that physical distinction.
-    We prefer a unique release/set match; if several historical printings share
-    the same art and the release cannot be proven, create a stable unresolved
-    key rather than attaching the wrong Cardmarket price.
+    A mapping whose current Cardmarket product name contains a different card
+    number can never be trusted. If there is exactly one same-expansion product
+    with the expected code and legacy name, repair it deterministically;
+    otherwise quarantine it by clearing productId while preserving the old ID.
+    """
+    entries = mapping.setdefault("mappings", {})
+    by_code_expansion = defaultdict(list)
+    for product in products_by_id.values():
+        code = _product_card_code(product)
+        if code:
+            by_code_expansion[(code, product.get("idExpansion"))].append(product)
+
+    repaired = []
+    quarantined = []
+    changed = False
+
+    for key, entry in entries.items():
+        if not isinstance(entry, dict):
+            continue
+        product_id = get_number(entry.get("productId"))
+        if product_id is None:
+            continue
+        product_id = int(product_id)
+        product = products_by_id.get(product_id)
+        expected_code = base_code(key)
+        actual_code = _product_card_code(product)
+        if product is not None and (actual_code is None or actual_code == expected_code):
+            continue
+
+        old_product_id = product_id
+        old_product_name = (product or {}).get("name")
+        expansion = entry.get("idExpansion")
+        legacy_name = normalize_text(entry.get("legacyName"))
+        candidates = []
+        for candidate in by_code_expansion.get((expected_code, expansion), []):
+            if legacy_name and _product_display_name(candidate) != legacy_name:
+                continue
+            candidates.append(candidate)
+
+        if len(candidates) == 1:
+            candidate = candidates[0]
+            entry["previousProductId"] = old_product_id
+            entry["productId"] = int(candidate["idProduct"])
+            entry["url"] = candidate.get("website")
+            entry["confirmed"] = False
+            entry["source"] = "auto-repair-product-code-same-expansion"
+            entry["productName"] = candidate.get("name")
+            entry["idExpansion"] = candidate.get("idExpansion")
+            entry["idMetacard"] = candidate.get("idMetacard")
+            entry["dateAdded"] = candidate.get("dateAdded")
+            entry.pop("invalidReason", None)
+            repaired.append({
+                "mappingKey": canonical_id(key),
+                "oldProductId": old_product_id,
+                "newProductId": int(candidate["idProduct"]),
+                "oldProductName": old_product_name,
+                "newProductName": candidate.get("name"),
+            })
+        else:
+            entry["invalidProductId"] = old_product_id
+            entry["productId"] = None
+            entry["url"] = None
+            entry["confirmed"] = False
+            entry["source"] = "quarantined-product-code-mismatch"
+            entry["invalidReason"] = (
+                f"Cardmarket product code mismatch: mapping {canonical_id(key)} "
+                f"pointed to {actual_code or 'unknown'} ({old_product_id})."
+            )
+            quarantined.append({
+                "mappingKey": canonical_id(key),
+                "oldProductId": old_product_id,
+                "oldProductName": old_product_name,
+                "candidateCount": len(candidates),
+            })
+        changed = True
+
+    if changed:
+        mapping["updatedAt"] = utc_now_iso()
+    return {"repaired": repaired, "quarantined": quarantined}
+
+
+def resolve_cardmarket_mapping_key_for_bandai_record(record: dict, mapping_entries: dict) -> tuple[str | None, str | None]:
+    """
+    Resolve only the Cardmarket mapping key. Never change Bandai printing identity.
+
+    Rules:
+    1. Exact Bandai sourcePrintingId with a productId wins.
+    2. If an exact mapping entry exists but is unresolved/null, respect that
+       physical distinction and do not borrow another printing's price.
+    3. With no exact entry, allow a different historical key only when exactly
+       one same-art mapping has a productId AND its legacy release matches Bandai.
+    4. Never fall back to the only artwork candidate when release does not match.
     """
     source_pid = canonical_id(record.get("sourcePrintingId"))
-    art = art_identity(source_pid)
-    candidates = [
-        (canonical_id(key), entry)
-        for key, entry in mapping_entries.items()
-        if isinstance(entry, dict) and art_identity(key) == art
-    ]
-    if not candidates:
-        return source_pid
-
-    release_matches = [
-        key for key, entry in candidates
-        if legacy_set_matches_bandai_record(entry.get("legacySet"), record)
-    ]
-    if len(release_matches) == 1:
-        return release_matches[0]
-
     exact_entry = mapping_entries.get(source_pid)
     if isinstance(exact_entry, dict):
-        if legacy_set_matches_bandai_record(exact_entry.get("legacySet"), record):
-            return source_pid
-        if len(candidates) == 1:
-            return source_pid
+        if get_number(exact_entry.get("productId")) is not None:
+            return source_pid, "exact"
+        return None, None
 
-    if len(candidates) == 1:
-        return candidates[0][0]
+    art = art_identity(source_pid)
+    release_matches = []
+    for key, entry in mapping_entries.items():
+        if not isinstance(entry, dict):
+            continue
+        if get_number(entry.get("productId")) is None:
+            continue
+        if art_identity(key) != art:
+            continue
+        if legacy_set_matches_bandai_record(entry.get("legacySet"), record):
+            release_matches.append(canonical_id(key))
 
-    return unresolved_release_key(record)
+    if len(release_matches) == 1:
+        return release_matches[0], "release-alias"
+    return None, None
+
 
 
 def product_contains_code(product: dict, code: str) -> bool:
@@ -1391,36 +1511,40 @@ def auto_map_and_build_review(
 
     bandai_by_base = defaultdict(list)
     for card in bandai_cards:
-        resolved_id = resolve_mapping_key_for_bandai_record(card, mapping_entries)
-        bandai_by_base[base_code(card.get("sourcePrintingId"))].append((resolved_id, card))
+        source_id = canonical_id(card.get("sourcePrintingId"))
+        bandai_by_base[base_code(source_id)].append((source_id, card))
 
     auto_added = []
     review_items = []
 
+    mapped_product_ids = {
+        int(e.get("productId"))
+        for e in mapping_entries.values()
+        if isinstance(e, dict) and get_number(e.get("productId")) is not None
+    }
+
     for base in sorted(bandai_by_base):
-        source_ids = sorted({resolved_id for resolved_id, _ in bandai_by_base[base]})
-        missing_ids = [
-            pid
-            for pid in source_ids
-            if pid not in mapping_entries
-            or get_number((mapping_entries.get(pid) or {}).get("productId")) is None
-        ]
+        source_ids = sorted({source_id for source_id, _ in bandai_by_base[base]})
+        missing_ids = []
+        for source_id in source_ids:
+            examples = [c for sid, c in bandai_by_base[base] if sid == source_id]
+            representative = examples[0]
+            cm_key, _ = resolve_cardmarket_mapping_key_for_bandai_record(
+                representative, mapping_entries
+            )
+            if cm_key is None:
+                missing_ids.append(source_id)
+
         if not missing_ids:
             continue
 
         candidates = products_by_base.get(base, [])
         unmapped_candidate_products = [
-            p for p in candidates
-            if int(p["idProduct"]) not in {
-                int(e.get("productId"))
-                for e in mapping_entries.values()
-                if isinstance(e, dict) and get_number(e.get("productId")) is not None
-            }
+            p for p in candidates if int(p["idProduct"]) not in mapped_product_ids
         ]
 
-        # Only auto-map the genuinely trivial case: one Bandai printing missing,
-        # one current Cardmarket product whose own product name contains the exact
-        # card number. Anything involving V.1/V.2 ordering is left for review.
+        # Truly trivial only: one Bandai physical printing in the whole card
+        # family and one unused Cardmarket product with the exact card number.
         if (
             allow_auto_map
             and len(missing_ids) == 1
@@ -1440,13 +1564,14 @@ def auto_map_and_build_review(
                 "idMetacard": product.get("idMetacard"),
                 "dateAdded": product.get("dateAdded"),
             }
+            mapped_product_ids.add(int(product["idProduct"]))
             auto_added.append({"printingId": printing_id, "productId": product["idProduct"]})
             continue
 
         for printing_id in missing_ids:
             bandai_examples = [
-                c for resolved_id, c in bandai_by_base[base]
-                if resolved_id == printing_id
+                c for source_id, c in bandai_by_base[base]
+                if source_id == printing_id
             ]
             candidate_rows = []
             for product in candidates[:25]:
@@ -1649,6 +1774,22 @@ def natural_printing_sort_key(printing: dict):
     return (base, rank, [(kind, int(number)) for kind, number in parts], printing.get("id"))
 
 
+def _printing_mechanics(record: dict) -> dict:
+    r = _normalize_bandai_record_for_output(record)
+    return {
+        "life": r.get("life"),
+        "cost": r.get("cost"),
+        "power": r.get("power"),
+        "counter": r.get("counter"),
+        "colors": r.get("colors") or [],
+        "attributes": r.get("attributes") or [],
+        "block": r.get("block"),
+        "types": r.get("types") or [],
+        "effect": r.get("effect"),
+        "trigger": r.get("trigger"),
+    }
+
+
 def build_catalog(
     bandai_cards: list[dict],
     mapping: dict,
@@ -1658,7 +1799,8 @@ def build_catalog(
     image_cache: dict,
 ) -> tuple[dict, dict]:
     by_base = defaultdict(list)
-    for record in bandai_cards:
+    for raw_record in bandai_cards:
+        record = _normalize_bandai_record_for_output(raw_record)
         pid = canonical_id(record.get("sourcePrintingId"))
         if pid:
             by_base[base_code(pid)].append(record)
@@ -1671,29 +1813,30 @@ def build_catalog(
     printings_with_price = 0
     printings_with_mapping = 0
     printings_without_valid_image = 0
+    mapping_relation_counts = defaultdict(int)
 
     for base in sorted(by_base):
         records = by_base[base]
-        canonical = choose_canonical_record(records, base)
+        canonical = _normalize_bandai_record_for_output(choose_canonical_record(records, base))
 
         mechanics = {}
         for field in ("name", "category", "life", "cost", "power", "counter", "colors", "attributes", "types", "effect", "trigger"):
             values = {
-                json.dumps(r.get(field), ensure_ascii=False, sort_keys=True)
+                json.dumps(_normalize_bandai_record_for_output(r).get(field), ensure_ascii=False, sort_keys=True)
                 for r in records
-                if r.get(field) not in (None, "", [], {})
+                if _normalize_bandai_record_for_output(r).get(field) not in (None, "", [], {})
             }
             if len(values) > 1:
                 mechanics[field] = [json.loads(v) for v in sorted(values)]
         if mechanics:
             mechanic_conflicts.append({"baseCode": base, "fields": mechanics})
 
+        # Bandai identity is authoritative. The only merge allowed is when the
+        # exact same sourcePrintingId appears in more than one Bandai release.
         grouped_printings = defaultdict(list)
         for record in records:
-            resolved_printing_id = resolve_mapping_key_for_bandai_record(
-                record, mapping_entries
-            )
-            grouped_printings[resolved_printing_id].append(record)
+            source_printing_id = canonical_id(record.get("sourcePrintingId"))
+            grouped_printings[source_printing_id].append(record)
 
         printings = []
         for printing_id in sorted(grouped_printings):
@@ -1702,7 +1845,7 @@ def build_catalog(
             for record in same_id_records:
                 by_image[str(record.get("imageUrl") or "")].append(record)
 
-            for image_index, (image_url, image_records) in enumerate(sorted(by_image.items()), start=1):
+            for image_url, image_records in sorted(by_image.items()):
                 internal_id = printing_id
                 if len(by_image) > 1:
                     digest = hashlib.sha1(image_url.encode("utf-8")).hexdigest()[:8].upper()
@@ -1718,7 +1861,7 @@ def build_catalog(
                         }
                     )
 
-                best = max(image_records, key=richness)
+                best = _normalize_bandai_record_for_output(max(image_records, key=richness))
                 releases = []
                 seen_release = set()
                 for r in image_records:
@@ -1736,8 +1879,6 @@ def build_catalog(
 
                 image_status = health.get(image_url) if image_url else None
                 if image_status is None:
-                    # When image checks are intentionally skipped, keep the official
-                    # URL; otherwise a cached explicit failure suppresses it.
                     safe_image_url = image_url
                 elif image_status.get("ok"):
                     safe_image_url = image_status.get("finalUrl") or image_url
@@ -1745,16 +1886,22 @@ def build_catalog(
                     safe_image_url = None
                     printings_without_valid_image += 1
 
-                map_entry = mapping_entries.get(printing_id)
+                cm_key, cm_relation = resolve_cardmarket_mapping_key_for_bandai_record(
+                    best, mapping_entries
+                )
+                map_entry = mapping_entries.get(cm_key) if cm_key else None
                 cm = None
                 if isinstance(map_entry, dict) and get_number(map_entry.get("productId")) is not None:
                     printings_with_mapping += 1
+                    mapping_relation_counts[cm_relation or "unknown"] += 1
                     product_id = int(get_number(map_entry.get("productId")))
                     product = products_by_id.get(product_id)
                     price = prices_by_id.get(product_id)
                     if price:
                         printings_with_price += 1
                     cm = {
+                        "mappingKey": cm_key,
+                        "mappingRelation": cm_relation,
                         "productId": product_id,
                         "url": map_entry.get("url") or (product or {}).get("website"),
                         "mappingConfirmed": bool(map_entry.get("confirmed")),
@@ -1780,15 +1927,19 @@ def build_catalog(
                         ),
                     }
 
-                bandai_source_ids = sorted(
-                    {canonical_id(r.get("sourcePrintingId")) for r in image_records}
-                )
+                printing_mechanics = _printing_mechanics(best)
+                canonical_mechanics = _printing_mechanics(canonical)
+                mechanics_differ = [
+                    field for field in printing_mechanics
+                    if printing_mechanics[field] != canonical_mechanics[field]
+                ]
+
                 printings.append(
                     {
                         "id": internal_id,
                         "printingId": printing_id,
-                        "sourcePrintingId": bandai_source_ids[0] if bandai_source_ids else None,
-                        "bandaiSourcePrintingIds": bandai_source_ids,
+                        "sourcePrintingId": printing_id,
+                        "bandaiSourcePrintingIds": [printing_id],
                         "baseCode": base,
                         "variantType": variant_type(printing_id, best.get("displayName"), best.get("rarity")),
                         "isParallel": bool(best.get("isParallel")) or bool(re.search(r"_P\d+", printing_id)),
@@ -1798,28 +1949,22 @@ def build_catalog(
                         "imageSourceUrl": image_url or None,
                         "imageHealth": image_status,
                         "releases": releases,
+                        "mechanics": printing_mechanics,
+                        "mechanicsDifferFromBase": mechanics_differ,
                         "cardmarket": cm,
                         "source": "bandai",
                     }
                 )
 
         printings.sort(key=natural_printing_sort_key)
+        canonical_mechanics = _printing_mechanics(canonical)
         output[base] = {
             "code": base,
             "game": "One Piece",
             "name": canonical.get("name") or base,
             "rarity": canonical.get("rarity"),
             "type": canonical.get("category"),
-            "life": canonical.get("life"),
-            "cost": canonical.get("cost"),
-            "power": canonical.get("power"),
-            "counter": canonical.get("counter"),
-            "colors": canonical.get("colors") or [],
-            "attributes": canonical.get("attributes") or [],
-            "block": canonical.get("block"),
-            "types": canonical.get("types") or [],
-            "effect": canonical.get("effect"),
-            "trigger": canonical.get("trigger"),
+            **canonical_mechanics,
             "sources": ["bandai", *( ["cardmarket"] if any(p.get("cardmarket") for p in printings) else [] )],
             "printings": printings,
         }
@@ -1830,6 +1975,7 @@ def build_catalog(
         "printingsWithCardmarketMapping": printings_with_mapping,
         "printingsWithCardmarketPrice": printings_with_price,
         "printingsWithoutValidatedImage": printings_without_valid_image,
+        "cardmarketMappingRelations": dict(sorted(mapping_relation_counts.items())),
         "bandaiPrintingIdImageCollisions": collisions,
         "mechanicConflicts": mechanic_conflicts,
     }
@@ -2019,6 +2165,8 @@ def run_self_test() -> None:
     assert vega_card["life"] == 5 and vega_card["cost"] is None
     assert vega_card["isParallel"] is True
     assert "Second line." in vega_card["effect"]
+    assert _clean_bandai_types(["Type Land of Wano", "Kouzuki Clan"]) == ["Land of Wano", "Kouzuki Clan"]
+    assert _clean_bandai_trigger("Trigger [Trigger] Play this card.") == "[Trigger] Play this card."
 
     legacy = {
         "updatedAt": "2026-08-04",
@@ -2083,8 +2231,8 @@ def run_self_test() -> None:
     assert catalog["OP17-001"]["printings"][0]["cardmarket"]["price"]["trend"] == 1.1
     assert stats["cards"] == 1
 
-    # Regression: a Bandai art reused in PRB01 must resolve to the legacy
-    # reprint key instead of inheriting the original product's price.
+    # Regression: Bandai printing identity is never rewritten by Cardmarket.
+    # An explicit unresolved reprint mapping must not borrow the original price.
     reprint_mapping = {
         "OP01-120_P2": {"productId": 690959, "legacySet": "OP01"},
         "OP01-120_P2_R1": {"productId": None, "legacySet": "PRB01"},
@@ -2095,12 +2243,18 @@ def run_self_test() -> None:
         "cardSetsText": "-ROMANCE DAWN- [OP-01]",
     }
     reprint = {
-        "sourcePrintingId": "OP01-120_P2",
+        "sourcePrintingId": "OP01-120_P2_R1",
         "seriesLabel": "ONE PIECE CARD THE BEST",
         "cardSetsText": "-ONE PIECE CARD THE BEST- [PRB-01]",
     }
-    assert resolve_mapping_key_for_bandai_record(original, reprint_mapping) == "OP01-120_P2"
-    assert resolve_mapping_key_for_bandai_record(reprint, reprint_mapping) == "OP01-120_P2_R1"
+    assert resolve_cardmarket_mapping_key_for_bandai_record(original, reprint_mapping) == ("OP01-120_P2", "exact")
+    assert resolve_cardmarket_mapping_key_for_bandai_record(reprint, reprint_mapping) == (None, None)
+
+    # Exact Bandai IDs with a product mapping win even if legacy release metadata
+    # is imperfect; this avoids suppressing valid promo mappings.
+    promo_mapping = {"P-041": {"productId": 750655, "legacySet": "ST18"}}
+    promo = {"sourcePrintingId": "P-041", "seriesLabel": "Promotion card", "cardSetsText": "Promotion card"}
+    assert resolve_cardmarket_mapping_key_for_bandai_record(promo, promo_mapping) == ("P-041", "exact")
     # Regression: current Bandai query contract is series=<id> first.
     class _FakeResponse:
         def __init__(self, text):
@@ -2192,6 +2346,7 @@ def main() -> None:
         args.data_dir, legacy_prices_path, legacy_cards_path
     )
     enrich_existing_mapping(mapping, products_by_id)
+    mapping_validation = validate_and_repair_mapping(mapping, products_by_id)
 
     review = auto_map_and_build_review(
         bandai_cards,
@@ -2250,6 +2405,8 @@ def main() -> None:
             "bootstrappedThisRun": bootstrapped,
             "entries": len(mapping.get("mappings", {})),
             "autoMappingsAdded": len(review.get("autoMappingsAdded", [])),
+            "validationRepairs": mapping_validation.get("repaired", []),
+            "validationQuarantined": mapping_validation.get("quarantined", []),
             "needsReview": len(review.get("needsReview", [])),
         },
         "images": {
