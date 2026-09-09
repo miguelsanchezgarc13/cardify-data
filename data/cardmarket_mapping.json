@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "description": "Persistent mapping from physical printing IDs to Cardmarket idProduct, including legacy release metadata used to disambiguate Bandai reprints. Prices are never stored here.",
-  "updatedAt": "2026-09-09T14:18:00+00:00",
+  "updatedAt": "2026-09-09T16:10:54+00:00",
   "mappings": {
     "EB01-001": {
       "productId": 767953,
@@ -5072,52 +5072,55 @@
       "dateAdded": "2026-01-07 14:54:39"
     },
     "EB04-014": {
-      "productId": 865233,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Azure-Seas-Seven/Bird-Neptunian-EB04-016",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": 865231,
+      "url": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=865231",
+      "confirmed": false,
+      "source": "auto-repair-product-code-same-expansion",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP14",
       "legacyName": "Kozuki Sukiyaki",
       "legacyRarity": "Common",
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/EB04/EB04-014_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
-      "productName": "Bird Neptunian (EB04-016)",
+      "productName": "Kozuki Sukiyaki (EB04-014)",
       "idExpansion": 6432,
-      "idMetacard": 458033,
-      "dateAdded": "2026-01-08 12:16:18"
+      "idMetacard": 458031,
+      "dateAdded": "2026-01-08 12:15:31",
+      "previousProductId": 865233
     },
     "EB04-015": {
-      "productId": 865231,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Azure-Seas-Seven/Kozuki-Sukiyaki-EB04-014",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": 865232,
+      "url": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=865232",
+      "confirmed": false,
+      "source": "auto-repair-product-code-same-expansion",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP14",
       "legacyName": "Jinbe",
       "legacyRarity": "Rare",
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/EB04/EB04-015_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
-      "productName": "Kozuki Sukiyaki (EB04-014)",
+      "productName": "Jinbe (EB04-015)",
       "idExpansion": 6432,
-      "idMetacard": 458031,
-      "dateAdded": "2026-01-08 12:15:31"
+      "idMetacard": 458032,
+      "dateAdded": "2026-01-08 12:15:55",
+      "previousProductId": 865231
     },
     "EB04-016": {
-      "productId": 865232,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Azure-Seas-Seven/Jinbe-EB04-015",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": 865233,
+      "url": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=865233",
+      "confirmed": false,
+      "source": "auto-repair-product-code-same-expansion",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP14",
       "legacyName": "Bird Neptunian",
       "legacyRarity": "Common",
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/EB04/EB04-016_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
-      "productName": "Jinbe (EB04-015)",
+      "productName": "Bird Neptunian (EB04-016)",
       "idExpansion": 6432,
-      "idMetacard": 458032,
-      "dateAdded": "2026-01-08 12:15:55"
+      "idMetacard": 458033,
+      "dateAdded": "2026-01-08 12:16:18",
+      "previousProductId": 865232
     },
     "EB04-017": {
       "productId": 865234,
@@ -5280,10 +5283,10 @@
       "dateAdded": "2026-01-08 13:09:20"
     },
     "EB04-025": {
-      "productId": 865312,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Azure-Seas-Seven/Boa-Hancock-EB04-027",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "quarantined-product-code-mismatch",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP14",
       "legacyName": "Nefeltari Vivi",
@@ -5293,7 +5296,9 @@
       "productName": "Boa Hancock (EB04-027)",
       "idExpansion": 6432,
       "idMetacard": 458044,
-      "dateAdded": "2026-01-08 13:13:50"
+      "dateAdded": "2026-01-08 13:13:50",
+      "invalidProductId": 865312,
+      "invalidReason": "Cardmarket product code mismatch: mapping EB04-025 pointed to EB04-027 (865312)."
     },
     "EB04-025_P1": {
       "productId": 865308,
@@ -5312,36 +5317,38 @@
       "dateAdded": "2026-01-08 13:10:33"
     },
     "EB04-026": {
-      "productId": 865306,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Azure-Seas-Seven/Nefeltari-Vivi-EB04-025-V1",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": 865311,
+      "url": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=865311",
+      "confirmed": false,
+      "source": "auto-repair-product-code-same-expansion",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP14",
       "legacyName": "Bluegrass",
       "legacyRarity": "Common",
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/EB04/EB04-026_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
-      "productName": "Nefeltari Vivi (EB04-025)",
+      "productName": "Bluegrass (EB04-026)",
       "idExpansion": 6432,
-      "idMetacard": 458042,
-      "dateAdded": "2026-01-08 13:10:21"
+      "idMetacard": 458043,
+      "dateAdded": "2026-01-08 13:13:09",
+      "previousProductId": 865306
     },
     "EB04-027": {
-      "productId": 865311,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Azure-Seas-Seven/Bluegrass-EB04-026",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": 865312,
+      "url": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=865312",
+      "confirmed": false,
+      "source": "auto-repair-product-code-same-expansion",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP14",
       "legacyName": "Boa Hancock",
       "legacyRarity": "Rare",
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/EB04/EB04-027_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
-      "productName": "Bluegrass (EB04-026)",
+      "productName": "Boa Hancock (EB04-027)",
       "idExpansion": 6432,
-      "idMetacard": 458043,
-      "dateAdded": "2026-01-08 13:13:09"
+      "idMetacard": 458044,
+      "dateAdded": "2026-01-08 13:13:50",
+      "previousProductId": 865311
     },
     "EB04-028": {
       "productId": 865314,
@@ -63344,10 +63351,10 @@
       "dateAdded": "2025-10-02 00:03:07"
     },
     "PRB02-015_P1": {
-      "productId": 852552,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Otama-PRB02-016-V2",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "quarantined-product-code-mismatch",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB02",
       "legacyName": "Shiryu",
@@ -63357,7 +63364,9 @@
       "productName": "Otama (PRB02-016)",
       "idExpansion": 6242,
       "idMetacard": 452195,
-      "dateAdded": "2025-10-02 00:03:59"
+      "dateAdded": "2025-10-02 00:03:59",
+      "invalidProductId": 852552,
+      "invalidReason": "Cardmarket product code mismatch: mapping PRB02-015_P1 pointed to PRB02-016 (852552)."
     },
     "PRB02-016": {
       "productId": 852551,
@@ -63376,10 +63385,10 @@
       "dateAdded": "2025-10-02 00:03:34"
     },
     "PRB02-016_P1": {
-      "productId": 852550,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Shiryu-PRB02-015-V2",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "quarantined-product-code-mismatch",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB02",
       "legacyName": "Otama",
@@ -63389,7 +63398,9 @@
       "productName": "Shiryu (PRB02-015)",
       "idExpansion": 6242,
       "idMetacard": 452194,
-      "dateAdded": "2025-10-02 00:03:18"
+      "dateAdded": "2025-10-02 00:03:18",
+      "invalidProductId": 852550,
+      "invalidReason": "Cardmarket product code mismatch: mapping PRB02-016_P1 pointed to PRB02-015 (852550)."
     },
     "PRB02-017": {
       "productId": 852553,

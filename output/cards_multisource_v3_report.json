@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-09T14:34:22+00:00",
+  "generatedAt": "2026-09-09T16:11:10+00:00",
   "schemaVersion": 3,
   "sources": {
     "bandai": {
       "url": "https://en.onepiece-cardgame.com/cardlist/",
-      "fetchedAt": "2026-09-09T14:17:30+00:00",
-      "records": 4804,
+      "fetchedAt": "2026-09-09T16:10:52+00:00",
+      "records": 4844,
       "series": 60
     },
     "cardmarketProducts": {
@@ -22,1127 +22,82 @@
   "mapping": {
     "bootstrappedThisRun": false,
     "entries": 4826,
-    "autoMappingsAdded": 28,
-    "needsReview": 802
+    "autoMappingsAdded": 0,
+    "validationRepairs": [
+      {
+        "mappingKey": "EB04-014",
+        "oldProductId": 865233,
+        "newProductId": 865231,
+        "oldProductName": "Bird Neptunian (EB04-016)",
+        "newProductName": "Kozuki Sukiyaki (EB04-014)"
+      },
+      {
+        "mappingKey": "EB04-015",
+        "oldProductId": 865231,
+        "newProductId": 865232,
+        "oldProductName": "Kozuki Sukiyaki (EB04-014)",
+        "newProductName": "Jinbe (EB04-015)"
+      },
+      {
+        "mappingKey": "EB04-016",
+        "oldProductId": 865232,
+        "newProductId": 865233,
+        "oldProductName": "Jinbe (EB04-015)",
+        "newProductName": "Bird Neptunian (EB04-016)"
+      },
+      {
+        "mappingKey": "EB04-026",
+        "oldProductId": 865306,
+        "newProductId": 865311,
+        "oldProductName": "Nefeltari Vivi (EB04-025)",
+        "newProductName": "Bluegrass (EB04-026)"
+      },
+      {
+        "mappingKey": "EB04-027",
+        "oldProductId": 865311,
+        "newProductId": 865312,
+        "oldProductName": "Bluegrass (EB04-026)",
+        "newProductName": "Boa Hancock (EB04-027)"
+      }
+    ],
+    "validationQuarantined": [
+      {
+        "mappingKey": "EB04-025",
+        "oldProductId": 865312,
+        "oldProductName": "Boa Hancock (EB04-027)",
+        "candidateCount": 2
+      },
+      {
+        "mappingKey": "PRB02-015_P1",
+        "oldProductId": 852552,
+        "oldProductName": "Otama (PRB02-016)",
+        "candidateCount": 2
+      },
+      {
+        "mappingKey": "PRB02-016_P1",
+        "oldProductId": 852550,
+        "oldProductName": "Shiryu (PRB02-015)",
+        "candidateCount": 2
+      }
+    ],
+    "needsReview": 869
   },
   "images": {
-    "totalUrls": 4803,
-    "checkedThisRun": 4803,
+    "totalUrls": 4843,
+    "checkedThisRun": 40,
     "failedThisRun": 0,
     "failed": []
   },
   "output": {
-    "cards": 2766,
-    "printings": 4803,
-    "printingsWithCardmarketMapping": 3997,
-    "printingsWithCardmarketPrice": 3997,
+    "cards": 2785,
+    "printings": 4843,
+    "printingsWithCardmarketMapping": 3974,
+    "printingsWithCardmarketPrice": 3974,
     "printingsWithoutValidatedImage": 0,
-    "bandaiPrintingIdImageCollisions": [
-      {
-        "printingId": "EB01-006",
-        "bandaiSourcePrintingIds": [
-          "EB01-006"
-        ],
-        "internalId": "EB01-006~BANDAI-IMAGE~D71BED4A",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-006.png?260828"
-      },
-      {
-        "printingId": "EB01-006",
-        "bandaiSourcePrintingIds": [
-          "EB01-006_R1"
-        ],
-        "internalId": "EB01-006~BANDAI-IMAGE~CF45F5FB",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-006_r1.png?260828"
-      },
-      {
-        "printingId": "EB03-032",
-        "bandaiSourcePrintingIds": [
-          "EB03-032"
-        ],
-        "internalId": "EB03-032~BANDAI-IMAGE~FDB03E5C",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB03-032.png?260828"
-      },
-      {
-        "printingId": "EB03-032",
-        "bandaiSourcePrintingIds": [
-          "EB03-032_R1"
-        ],
-        "internalId": "EB03-032~BANDAI-IMAGE~A92D491F",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB03-032_r1.png?260828"
-      },
-      {
-        "printingId": "EB03-035",
-        "bandaiSourcePrintingIds": [
-          "EB03-035"
-        ],
-        "internalId": "EB03-035~BANDAI-IMAGE~D103067A",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB03-035.png?260828"
-      },
-      {
-        "printingId": "EB03-035",
-        "bandaiSourcePrintingIds": [
-          "EB03-035_R1"
-        ],
-        "internalId": "EB03-035~BANDAI-IMAGE~19D4041D",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB03-035_r1.png?260828"
-      },
-      {
-        "printingId": "EB04-026",
-        "bandaiSourcePrintingIds": [
-          "EB04-026"
-        ],
-        "internalId": "EB04-026~BANDAI-IMAGE~D9DC03F3",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB04-026.png?260828"
-      },
-      {
-        "printingId": "EB04-026",
-        "bandaiSourcePrintingIds": [
-          "EB04-026_R1"
-        ],
-        "internalId": "EB04-026~BANDAI-IMAGE~DD74A8E1",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB04-026_r1.png?260828"
-      },
-      {
-        "printingId": "OP01-120_R1",
-        "bandaiSourcePrintingIds": [
-          "OP01-120_R1"
-        ],
-        "internalId": "OP01-120_R1~BANDAI-IMAGE~C0338415",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-120_r1.png?260828"
-      },
-      {
-        "printingId": "OP01-120_R1",
-        "bandaiSourcePrintingIds": [
-          "OP01-120_R2"
-        ],
-        "internalId": "OP01-120_R1~BANDAI-IMAGE~85B0B995",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP01-120_r2.png?260828"
-      },
-      {
-        "printingId": "OP02-013",
-        "bandaiSourcePrintingIds": [
-          "OP02-013"
-        ],
-        "internalId": "OP02-013~BANDAI-IMAGE~DB998752",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-013.png?260828"
-      },
-      {
-        "printingId": "OP02-013",
-        "bandaiSourcePrintingIds": [
-          "OP02-013_R1"
-        ],
-        "internalId": "OP02-013~BANDAI-IMAGE~8B1CD3CE",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP02-013_r1.png?260828"
-      },
-      {
-        "printingId": "OP03-122",
-        "bandaiSourcePrintingIds": [
-          "OP03-122"
-        ],
-        "internalId": "OP03-122~BANDAI-IMAGE~C2EF382C",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-122.png?260828"
-      },
-      {
-        "printingId": "OP03-122",
-        "bandaiSourcePrintingIds": [
-          "OP03-122_R1"
-        ],
-        "internalId": "OP03-122~BANDAI-IMAGE~8A5985EA",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-122_r1.png?260828"
-      },
-      {
-        "printingId": "OP05-069",
-        "bandaiSourcePrintingIds": [
-          "OP05-069"
-        ],
-        "internalId": "OP05-069~BANDAI-IMAGE~38654640",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-069.png?260828"
-      },
-      {
-        "printingId": "OP05-069",
-        "bandaiSourcePrintingIds": [
-          "OP05-069_R1"
-        ],
-        "internalId": "OP05-069~BANDAI-IMAGE~99C0208F",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-069_r1.png?260828"
-      },
-      {
-        "printingId": "OP05-074_R1",
-        "bandaiSourcePrintingIds": [
-          "OP05-074_R1"
-        ],
-        "internalId": "OP05-074_R1~BANDAI-IMAGE~2EC9C4CA",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-074_r1.png?260828"
-      },
-      {
-        "printingId": "OP05-074_R1",
-        "bandaiSourcePrintingIds": [
-          "OP05-074_R2"
-        ],
-        "internalId": "OP05-074_R1~BANDAI-IMAGE~673B1BE3",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-074_r2.png?260828"
-      },
-      {
-        "printingId": "OP05-119_R1",
-        "bandaiSourcePrintingIds": [
-          "OP05-119_R1"
-        ],
-        "internalId": "OP05-119_R1~BANDAI-IMAGE~A5C2F2B5",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-119_r1.png?260828"
-      },
-      {
-        "printingId": "OP05-119_R1",
-        "bandaiSourcePrintingIds": [
-          "OP05-119_R2"
-        ],
-        "internalId": "OP05-119_R1~BANDAI-IMAGE~8CC1D73B",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP05-119_r2.png?260828"
-      },
-      {
-        "printingId": "OP10-036",
-        "bandaiSourcePrintingIds": [
-          "OP10-036"
-        ],
-        "internalId": "OP10-036~BANDAI-IMAGE~27460891",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP10-036.png?260828"
-      },
-      {
-        "printingId": "OP10-036",
-        "bandaiSourcePrintingIds": [
-          "OP10-036_R1"
-        ],
-        "internalId": "OP10-036~BANDAI-IMAGE~DAE428DA",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP10-036_r1.png?260828"
-      },
-      {
-        "printingId": "OP10-101",
-        "bandaiSourcePrintingIds": [
-          "OP10-101"
-        ],
-        "internalId": "OP10-101~BANDAI-IMAGE~163048F2",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP10-101.png?260828"
-      },
-      {
-        "printingId": "OP10-101",
-        "bandaiSourcePrintingIds": [
-          "OP10-101_R1"
-        ],
-        "internalId": "OP10-101~BANDAI-IMAGE~15C1D050",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP10-101_r1.png?260828"
-      },
-      {
-        "printingId": "OP10-103",
-        "bandaiSourcePrintingIds": [
-          "OP10-103"
-        ],
-        "internalId": "OP10-103~BANDAI-IMAGE~1A46C812",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP10-103.png?260828"
-      },
-      {
-        "printingId": "OP10-103",
-        "bandaiSourcePrintingIds": [
-          "OP10-103_R1"
-        ],
-        "internalId": "OP10-103~BANDAI-IMAGE~86A074F2",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP10-103_r1.png?260828"
-      },
-      {
-        "printingId": "OP10-111",
-        "bandaiSourcePrintingIds": [
-          "OP10-111"
-        ],
-        "internalId": "OP10-111~BANDAI-IMAGE~24299ABE",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP10-111.png?260828"
-      },
-      {
-        "printingId": "OP10-111",
-        "bandaiSourcePrintingIds": [
-          "OP10-111_R1"
-        ],
-        "internalId": "OP10-111~BANDAI-IMAGE~4A02FA8D",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP10-111_r1.png?260828"
-      },
-      {
-        "printingId": "OP11-003",
-        "bandaiSourcePrintingIds": [
-          "OP11-003"
-        ],
-        "internalId": "OP11-003~BANDAI-IMAGE~FB9F7130",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP11-003.png?260828"
-      },
-      {
-        "printingId": "OP11-003",
-        "bandaiSourcePrintingIds": [
-          "OP11-003_R1"
-        ],
-        "internalId": "OP11-003~BANDAI-IMAGE~788FFC55",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP11-003_r1.png?260828"
-      },
-      {
-        "printingId": "OP11-009",
-        "bandaiSourcePrintingIds": [
-          "OP11-009"
-        ],
-        "internalId": "OP11-009~BANDAI-IMAGE~343128FF",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP11-009.png?260828"
-      },
-      {
-        "printingId": "OP11-009",
-        "bandaiSourcePrintingIds": [
-          "OP11-009_R1"
-        ],
-        "internalId": "OP11-009~BANDAI-IMAGE~19A2FECD",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP11-009_r1.png?260828"
-      },
-      {
-        "printingId": "OP11-012",
-        "bandaiSourcePrintingIds": [
-          "OP11-012"
-        ],
-        "internalId": "OP11-012~BANDAI-IMAGE~5FA32167",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP11-012.png?260828"
-      },
-      {
-        "printingId": "OP11-012",
-        "bandaiSourcePrintingIds": [
-          "OP11-012_R1"
-        ],
-        "internalId": "OP11-012~BANDAI-IMAGE~DFB9C2AB",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP11-012_r1.png?260828"
-      },
-      {
-        "printingId": "OP11-065",
-        "bandaiSourcePrintingIds": [
-          "OP11-065"
-        ],
-        "internalId": "OP11-065~BANDAI-IMAGE~34E9A680",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP11-065.png?260828"
-      },
-      {
-        "printingId": "OP11-065",
-        "bandaiSourcePrintingIds": [
-          "OP11-065_R1"
-        ],
-        "internalId": "OP11-065~BANDAI-IMAGE~62BF2F3C",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP11-065_r1.png?260828"
-      },
-      {
-        "printingId": "OP11-066",
-        "bandaiSourcePrintingIds": [
-          "OP11-066"
-        ],
-        "internalId": "OP11-066~BANDAI-IMAGE~BA7E44EF",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP11-066.png?260828"
-      },
-      {
-        "printingId": "OP11-066",
-        "bandaiSourcePrintingIds": [
-          "OP11-066_R1"
-        ],
-        "internalId": "OP11-066~BANDAI-IMAGE~B7ED29B0",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP11-066_r1.png?260828"
-      },
-      {
-        "printingId": "OP11-068",
-        "bandaiSourcePrintingIds": [
-          "OP11-068"
-        ],
-        "internalId": "OP11-068~BANDAI-IMAGE~13BEEB0E",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP11-068.png?260828"
-      },
-      {
-        "printingId": "OP11-068",
-        "bandaiSourcePrintingIds": [
-          "OP11-068_R1"
-        ],
-        "internalId": "OP11-068~BANDAI-IMAGE~A03F5939",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP11-068_r1.png?260828"
-      },
-      {
-        "printingId": "OP11-071",
-        "bandaiSourcePrintingIds": [
-          "OP11-071"
-        ],
-        "internalId": "OP11-071~BANDAI-IMAGE~39451DD2",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP11-071.png?260828"
-      },
-      {
-        "printingId": "OP11-071",
-        "bandaiSourcePrintingIds": [
-          "OP11-071_R1"
-        ],
-        "internalId": "OP11-071~BANDAI-IMAGE~670BE0D6",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP11-071_r1.png?260828"
-      },
-      {
-        "printingId": "OP11-079",
-        "bandaiSourcePrintingIds": [
-          "OP11-079"
-        ],
-        "internalId": "OP11-079~BANDAI-IMAGE~093A41CE",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP11-079.png?260828"
-      },
-      {
-        "printingId": "OP11-079",
-        "bandaiSourcePrintingIds": [
-          "OP11-079_R1"
-        ],
-        "internalId": "OP11-079~BANDAI-IMAGE~2A321DB9",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP11-079_r1.png?260828"
-      },
-      {
-        "printingId": "OP11-081",
-        "bandaiSourcePrintingIds": [
-          "OP11-081"
-        ],
-        "internalId": "OP11-081~BANDAI-IMAGE~0AA08AF7",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP11-081.png?260828"
-      },
-      {
-        "printingId": "OP11-081",
-        "bandaiSourcePrintingIds": [
-          "OP11-081_R1"
-        ],
-        "internalId": "OP11-081~BANDAI-IMAGE~44D8078C",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP11-081_r1.png?260828"
-      },
-      {
-        "printingId": "OP12-023",
-        "bandaiSourcePrintingIds": [
-          "OP12-023"
-        ],
-        "internalId": "OP12-023~BANDAI-IMAGE~4F6C8D84",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-023.png?260828"
-      },
-      {
-        "printingId": "OP12-023",
-        "bandaiSourcePrintingIds": [
-          "OP12-023_R1"
-        ],
-        "internalId": "OP12-023~BANDAI-IMAGE~33B2C10A",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-023_r1.png?260828"
-      },
-      {
-        "printingId": "OP12-026",
-        "bandaiSourcePrintingIds": [
-          "OP12-026"
-        ],
-        "internalId": "OP12-026~BANDAI-IMAGE~E3A0234C",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-026.png?260828"
-      },
-      {
-        "printingId": "OP12-026",
-        "bandaiSourcePrintingIds": [
-          "OP12-026_R1"
-        ],
-        "internalId": "OP12-026~BANDAI-IMAGE~74BA6B6D",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-026_r1.png?260828"
-      },
-      {
-        "printingId": "OP12-027",
-        "bandaiSourcePrintingIds": [
-          "OP12-027"
-        ],
-        "internalId": "OP12-027~BANDAI-IMAGE~F05CE1C2",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-027.png?260828"
-      },
-      {
-        "printingId": "OP12-027",
-        "bandaiSourcePrintingIds": [
-          "OP12-027_R1"
-        ],
-        "internalId": "OP12-027~BANDAI-IMAGE~45174D4B",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-027_r1.png?260828"
-      },
-      {
-        "printingId": "OP12-028",
-        "bandaiSourcePrintingIds": [
-          "OP12-028"
-        ],
-        "internalId": "OP12-028~BANDAI-IMAGE~BF6E315F",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-028.png?260828"
-      },
-      {
-        "printingId": "OP12-028",
-        "bandaiSourcePrintingIds": [
-          "OP12-028_R1"
-        ],
-        "internalId": "OP12-028~BANDAI-IMAGE~D0A3B555",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-028_r1.png?260828"
-      },
-      {
-        "printingId": "OP12-031",
-        "bandaiSourcePrintingIds": [
-          "OP12-031"
-        ],
-        "internalId": "OP12-031~BANDAI-IMAGE~C30911F9",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-031.png?260828"
-      },
-      {
-        "printingId": "OP12-031",
-        "bandaiSourcePrintingIds": [
-          "OP12-031_R1"
-        ],
-        "internalId": "OP12-031~BANDAI-IMAGE~550E017B",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-031_r1.png?260828"
-      },
-      {
-        "printingId": "OP12-043",
-        "bandaiSourcePrintingIds": [
-          "OP12-043"
-        ],
-        "internalId": "OP12-043~BANDAI-IMAGE~6D9ADE3D",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-043.png?260828"
-      },
-      {
-        "printingId": "OP12-043",
-        "bandaiSourcePrintingIds": [
-          "OP12-043_R1"
-        ],
-        "internalId": "OP12-043~BANDAI-IMAGE~BB3DFFC2",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-043_r1.png?260828"
-      },
-      {
-        "printingId": "OP12-045",
-        "bandaiSourcePrintingIds": [
-          "OP12-045"
-        ],
-        "internalId": "OP12-045~BANDAI-IMAGE~DEE5FA4A",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-045.png?260828"
-      },
-      {
-        "printingId": "OP12-045",
-        "bandaiSourcePrintingIds": [
-          "OP12-045_R1"
-        ],
-        "internalId": "OP12-045~BANDAI-IMAGE~56F105E1",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-045_r1.png?260828"
-      },
-      {
-        "printingId": "OP12-046",
-        "bandaiSourcePrintingIds": [
-          "OP12-046"
-        ],
-        "internalId": "OP12-046~BANDAI-IMAGE~D25C189F",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-046.png?260828"
-      },
-      {
-        "printingId": "OP12-046",
-        "bandaiSourcePrintingIds": [
-          "OP12-046_R1"
-        ],
-        "internalId": "OP12-046~BANDAI-IMAGE~B03C16CF",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-046_r1.png?260828"
-      },
-      {
-        "printingId": "OP12-047",
-        "bandaiSourcePrintingIds": [
-          "OP12-047"
-        ],
-        "internalId": "OP12-047~BANDAI-IMAGE~A4D7340A",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-047.png?260828"
-      },
-      {
-        "printingId": "OP12-047",
-        "bandaiSourcePrintingIds": [
-          "OP12-047_R1"
-        ],
-        "internalId": "OP12-047~BANDAI-IMAGE~F1A39479",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-047_r1.png?260828"
-      },
-      {
-        "printingId": "OP12-050",
-        "bandaiSourcePrintingIds": [
-          "OP12-050"
-        ],
-        "internalId": "OP12-050~BANDAI-IMAGE~8EED6025",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-050.png?260828"
-      },
-      {
-        "printingId": "OP12-050",
-        "bandaiSourcePrintingIds": [
-          "OP12-050_R1"
-        ],
-        "internalId": "OP12-050~BANDAI-IMAGE~91D31D98",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-050_r1.png?260828"
-      },
-      {
-        "printingId": "OP12-052",
-        "bandaiSourcePrintingIds": [
-          "OP12-052"
-        ],
-        "internalId": "OP12-052~BANDAI-IMAGE~D5E41BA7",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-052.png?260828"
-      },
-      {
-        "printingId": "OP12-052",
-        "bandaiSourcePrintingIds": [
-          "OP12-052_R1"
-        ],
-        "internalId": "OP12-052~BANDAI-IMAGE~D9E848F5",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-052_r1.png?260828"
-      },
-      {
-        "printingId": "OP12-057",
-        "bandaiSourcePrintingIds": [
-          "OP12-057"
-        ],
-        "internalId": "OP12-057~BANDAI-IMAGE~B9E1722F",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-057.png?260828"
-      },
-      {
-        "printingId": "OP12-057",
-        "bandaiSourcePrintingIds": [
-          "OP12-057_R1"
-        ],
-        "internalId": "OP12-057~BANDAI-IMAGE~4760E74B",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-057_r1.png?260828"
-      },
-      {
-        "printingId": "OP12-090",
-        "bandaiSourcePrintingIds": [
-          "OP12-090"
-        ],
-        "internalId": "OP12-090~BANDAI-IMAGE~D745798B",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-090.png?260828"
-      },
-      {
-        "printingId": "OP12-090",
-        "bandaiSourcePrintingIds": [
-          "OP12-090_R1"
-        ],
-        "internalId": "OP12-090~BANDAI-IMAGE~E376589A",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-090_r1.png?260828"
-      },
-      {
-        "printingId": "OP12-093",
-        "bandaiSourcePrintingIds": [
-          "OP12-093"
-        ],
-        "internalId": "OP12-093~BANDAI-IMAGE~1E4025A5",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-093.png?260828"
-      },
-      {
-        "printingId": "OP12-093",
-        "bandaiSourcePrintingIds": [
-          "OP12-093_R1"
-        ],
-        "internalId": "OP12-093~BANDAI-IMAGE~D3F61AB0",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-093_r1.png?260828"
-      },
-      {
-        "printingId": "OP12-098",
-        "bandaiSourcePrintingIds": [
-          "OP12-098"
-        ],
-        "internalId": "OP12-098~BANDAI-IMAGE~AEC1BCD6",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-098.png?260828"
-      },
-      {
-        "printingId": "OP12-098",
-        "bandaiSourcePrintingIds": [
-          "OP12-098_R1"
-        ],
-        "internalId": "OP12-098~BANDAI-IMAGE~B10FEC6C",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-098_r1.png?260828"
-      },
-      {
-        "printingId": "OP12-113",
-        "bandaiSourcePrintingIds": [
-          "OP12-113"
-        ],
-        "internalId": "OP12-113~BANDAI-IMAGE~07726289",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-113.png?260828"
-      },
-      {
-        "printingId": "OP12-113",
-        "bandaiSourcePrintingIds": [
-          "OP12-113_R1"
-        ],
-        "internalId": "OP12-113~BANDAI-IMAGE~18E6A1D6",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP12-113_r1.png?260828"
-      },
-      {
-        "printingId": "OP13-005",
-        "bandaiSourcePrintingIds": [
-          "OP13-005"
-        ],
-        "internalId": "OP13-005~BANDAI-IMAGE~1F879DD7",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP13-005.png?260828"
-      },
-      {
-        "printingId": "OP13-005",
-        "bandaiSourcePrintingIds": [
-          "OP13-005_R1"
-        ],
-        "internalId": "OP13-005~BANDAI-IMAGE~9F88EFF9",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP13-005_r1.png?260828"
-      },
-      {
-        "printingId": "OP13-008",
-        "bandaiSourcePrintingIds": [
-          "OP13-008"
-        ],
-        "internalId": "OP13-008~BANDAI-IMAGE~5B60106A",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP13-008.png?260828"
-      },
-      {
-        "printingId": "OP13-008",
-        "bandaiSourcePrintingIds": [
-          "OP13-008_R1"
-        ],
-        "internalId": "OP13-008~BANDAI-IMAGE~D4001DAA",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP13-008_r1.png?260828"
-      },
-      {
-        "printingId": "OP13-017",
-        "bandaiSourcePrintingIds": [
-          "OP13-017"
-        ],
-        "internalId": "OP13-017~BANDAI-IMAGE~D6C0E2BB",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP13-017.png?260828"
-      },
-      {
-        "printingId": "OP13-017",
-        "bandaiSourcePrintingIds": [
-          "OP13-017_R1"
-        ],
-        "internalId": "OP13-017~BANDAI-IMAGE~57588141",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP13-017_r1.png?260828"
-      },
-      {
-        "printingId": "OP13-021",
-        "bandaiSourcePrintingIds": [
-          "OP13-021"
-        ],
-        "internalId": "OP13-021~BANDAI-IMAGE~FBAFCAA0",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP13-021.png?260828"
-      },
-      {
-        "printingId": "OP13-021",
-        "bandaiSourcePrintingIds": [
-          "OP13-021_R1"
-        ],
-        "internalId": "OP13-021~BANDAI-IMAGE~7811B205",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP13-021_r1.png?260828"
-      },
-      {
-        "printingId": "OP13-081",
-        "bandaiSourcePrintingIds": [
-          "OP13-081"
-        ],
-        "internalId": "OP13-081~BANDAI-IMAGE~280C89CB",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP13-081.png?260828"
-      },
-      {
-        "printingId": "OP13-081",
-        "bandaiSourcePrintingIds": [
-          "OP13-081_R1"
-        ],
-        "internalId": "OP13-081~BANDAI-IMAGE~C5F2EFC6",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP13-081_r1.png?260828"
-      },
-      {
-        "printingId": "OP13-116",
-        "bandaiSourcePrintingIds": [
-          "OP13-116"
-        ],
-        "internalId": "OP13-116~BANDAI-IMAGE~4A7AFAAA",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP13-116.png?260828"
-      },
-      {
-        "printingId": "OP13-116",
-        "bandaiSourcePrintingIds": [
-          "OP13-116_R1"
-        ],
-        "internalId": "OP13-116~BANDAI-IMAGE~D7BEF5EA",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP13-116_r1.png?260828"
-      },
-      {
-        "printingId": "OP14-015",
-        "bandaiSourcePrintingIds": [
-          "OP14-015"
-        ],
-        "internalId": "OP14-015~BANDAI-IMAGE~79FACD93",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP14-015.png?260828"
-      },
-      {
-        "printingId": "OP14-015",
-        "bandaiSourcePrintingIds": [
-          "OP14-015_R1"
-        ],
-        "internalId": "OP14-015~BANDAI-IMAGE~FD227F0D",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP14-015_r1.png?260828"
-      },
-      {
-        "printingId": "OP15-036",
-        "bandaiSourcePrintingIds": [
-          "OP15-036"
-        ],
-        "internalId": "OP15-036~BANDAI-IMAGE~DA751064",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP15-036.png?260828"
-      },
-      {
-        "printingId": "OP15-036",
-        "bandaiSourcePrintingIds": [
-          "OP15-036_R1"
-        ],
-        "internalId": "OP15-036~BANDAI-IMAGE~3A2522D2",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP15-036_r1.png?260828"
-      },
-      {
-        "printingId": "P-044",
-        "bandaiSourcePrintingIds": [
-          "P-044"
-        ],
-        "internalId": "P-044~BANDAI-IMAGE~81BADA36",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-044.png?260828"
-      },
-      {
-        "printingId": "P-044",
-        "bandaiSourcePrintingIds": [
-          "P-044_R1"
-        ],
-        "internalId": "P-044~BANDAI-IMAGE~E48936F2",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-044_r1.png?260828"
-      },
-      {
-        "printingId": "P-063",
-        "bandaiSourcePrintingIds": [
-          "P-063"
-        ],
-        "internalId": "P-063~BANDAI-IMAGE~F211358A",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-063.png?260828"
-      },
-      {
-        "printingId": "P-063",
-        "bandaiSourcePrintingIds": [
-          "P-063_R1"
-        ],
-        "internalId": "P-063~BANDAI-IMAGE~12EE7D2B",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-063_r1.png?260828"
-      },
-      {
-        "printingId": "P-068",
-        "bandaiSourcePrintingIds": [
-          "P-068"
-        ],
-        "internalId": "P-068~BANDAI-IMAGE~2E68FE95",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-068.png?260828"
-      },
-      {
-        "printingId": "P-068",
-        "bandaiSourcePrintingIds": [
-          "P-068_R1"
-        ],
-        "internalId": "P-068~BANDAI-IMAGE~D7ACE4F3",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-068_r1.png?260828"
-      },
-      {
-        "printingId": "P-069",
-        "bandaiSourcePrintingIds": [
-          "P-069"
-        ],
-        "internalId": "P-069~BANDAI-IMAGE~DA994673",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-069.png?260828"
-      },
-      {
-        "printingId": "P-069",
-        "bandaiSourcePrintingIds": [
-          "P-069_R1"
-        ],
-        "internalId": "P-069~BANDAI-IMAGE~0C496609",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-069_r1.png?260828"
-      },
-      {
-        "printingId": "P-070",
-        "bandaiSourcePrintingIds": [
-          "P-070"
-        ],
-        "internalId": "P-070~BANDAI-IMAGE~4F146D4E",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-070.png?260828"
-      },
-      {
-        "printingId": "P-070",
-        "bandaiSourcePrintingIds": [
-          "P-070_R1"
-        ],
-        "internalId": "P-070~BANDAI-IMAGE~8B2FFB4E",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-070_r1.png?260828"
-      },
-      {
-        "printingId": "P-073",
-        "bandaiSourcePrintingIds": [
-          "P-073"
-        ],
-        "internalId": "P-073~BANDAI-IMAGE~AFB96BED",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-073.png?260828"
-      },
-      {
-        "printingId": "P-073",
-        "bandaiSourcePrintingIds": [
-          "P-073_R1"
-        ],
-        "internalId": "P-073~BANDAI-IMAGE~6365FD57",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-073_r1.png?260828"
-      },
-      {
-        "printingId": "P-074",
-        "bandaiSourcePrintingIds": [
-          "P-074"
-        ],
-        "internalId": "P-074~BANDAI-IMAGE~26BA7CC1",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-074.png?260828"
-      },
-      {
-        "printingId": "P-074",
-        "bandaiSourcePrintingIds": [
-          "P-074_R1"
-        ],
-        "internalId": "P-074~BANDAI-IMAGE~FD74FB6B",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-074_r1.png?260828"
-      },
-      {
-        "printingId": "P-075",
-        "bandaiSourcePrintingIds": [
-          "P-075"
-        ],
-        "internalId": "P-075~BANDAI-IMAGE~6A06A568",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-075.png?260828"
-      },
-      {
-        "printingId": "P-075",
-        "bandaiSourcePrintingIds": [
-          "P-075_R1"
-        ],
-        "internalId": "P-075~BANDAI-IMAGE~19E219D3",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-075_r1.png?260828"
-      },
-      {
-        "printingId": "P-078",
-        "bandaiSourcePrintingIds": [
-          "P-078"
-        ],
-        "internalId": "P-078~BANDAI-IMAGE~937A0D0A",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-078.png?260828"
-      },
-      {
-        "printingId": "P-078",
-        "bandaiSourcePrintingIds": [
-          "P-078_R1"
-        ],
-        "internalId": "P-078~BANDAI-IMAGE~B7DA709D",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-078_r1.png?260828"
-      },
-      {
-        "printingId": "P-079",
-        "bandaiSourcePrintingIds": [
-          "P-079"
-        ],
-        "internalId": "P-079~BANDAI-IMAGE~76D2F035",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-079.png?260828"
-      },
-      {
-        "printingId": "P-079",
-        "bandaiSourcePrintingIds": [
-          "P-079_R1"
-        ],
-        "internalId": "P-079~BANDAI-IMAGE~2D613013",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-079_r1.png?260828"
-      },
-      {
-        "printingId": "P-081",
-        "bandaiSourcePrintingIds": [
-          "P-081"
-        ],
-        "internalId": "P-081~BANDAI-IMAGE~533DFCCF",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-081.png?260828"
-      },
-      {
-        "printingId": "P-081",
-        "bandaiSourcePrintingIds": [
-          "P-081_R1"
-        ],
-        "internalId": "P-081~BANDAI-IMAGE~CA79432E",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-081_r1.png?260828"
-      },
-      {
-        "printingId": "P-082",
-        "bandaiSourcePrintingIds": [
-          "P-082"
-        ],
-        "internalId": "P-082~BANDAI-IMAGE~591B403B",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-082.png?260828"
-      },
-      {
-        "printingId": "P-082",
-        "bandaiSourcePrintingIds": [
-          "P-082_R1"
-        ],
-        "internalId": "P-082~BANDAI-IMAGE~7C720972",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-082_r1.png?260828"
-      },
-      {
-        "printingId": "P-083",
-        "bandaiSourcePrintingIds": [
-          "P-083"
-        ],
-        "internalId": "P-083~BANDAI-IMAGE~2099DD97",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-083.png?260828"
-      },
-      {
-        "printingId": "P-083",
-        "bandaiSourcePrintingIds": [
-          "P-083_R1"
-        ],
-        "internalId": "P-083~BANDAI-IMAGE~15A45985",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-083_r1.png?260828"
-      },
-      {
-        "printingId": "P-085",
-        "bandaiSourcePrintingIds": [
-          "P-085"
-        ],
-        "internalId": "P-085~BANDAI-IMAGE~EDAE89D8",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-085.png?260828"
-      },
-      {
-        "printingId": "P-085",
-        "bandaiSourcePrintingIds": [
-          "P-085_R1"
-        ],
-        "internalId": "P-085~BANDAI-IMAGE~41B46DC4",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-085_r1.png?260828"
-      },
-      {
-        "printingId": "P-085",
-        "bandaiSourcePrintingIds": [
-          "P-085_R2"
-        ],
-        "internalId": "P-085~BANDAI-IMAGE~425CDE4B",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-085_r2.png?260828"
-      },
-      {
-        "printingId": "P-088",
-        "bandaiSourcePrintingIds": [
-          "P-088"
-        ],
-        "internalId": "P-088~BANDAI-IMAGE~C057793E",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-088.png?260828"
-      },
-      {
-        "printingId": "P-088",
-        "bandaiSourcePrintingIds": [
-          "P-088_R1"
-        ],
-        "internalId": "P-088~BANDAI-IMAGE~5AA76706",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-088_r1.png?260828"
-      },
-      {
-        "printingId": "P-088",
-        "bandaiSourcePrintingIds": [
-          "P-088_R2"
-        ],
-        "internalId": "P-088~BANDAI-IMAGE~7C1BD62A",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-088_r2.png?260828"
-      },
-      {
-        "printingId": "P-090",
-        "bandaiSourcePrintingIds": [
-          "P-090"
-        ],
-        "internalId": "P-090~BANDAI-IMAGE~8C44D607",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-090.png?260828"
-      },
-      {
-        "printingId": "P-090",
-        "bandaiSourcePrintingIds": [
-          "P-090_R1"
-        ],
-        "internalId": "P-090~BANDAI-IMAGE~0A6C5F73",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-090_r1.png?260828"
-      },
-      {
-        "printingId": "P-101",
-        "bandaiSourcePrintingIds": [
-          "P-101"
-        ],
-        "internalId": "P-101~BANDAI-IMAGE~88E550F3",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-101.png?260828"
-      },
-      {
-        "printingId": "P-101",
-        "bandaiSourcePrintingIds": [
-          "P-101_R1"
-        ],
-        "internalId": "P-101~BANDAI-IMAGE~FFE51263",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-101_r1.png?260828"
-      },
-      {
-        "printingId": "P-105",
-        "bandaiSourcePrintingIds": [
-          "P-105"
-        ],
-        "internalId": "P-105~BANDAI-IMAGE~F8E2B2F8",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-105.png?260828"
-      },
-      {
-        "printingId": "P-105",
-        "bandaiSourcePrintingIds": [
-          "P-105_R1"
-        ],
-        "internalId": "P-105~BANDAI-IMAGE~33989A8F",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-105_r1.png?260828"
-      },
-      {
-        "printingId": "ST21-001",
-        "bandaiSourcePrintingIds": [
-          "ST21-001"
-        ],
-        "internalId": "ST21-001~BANDAI-IMAGE~89C0D78E",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST21-001.png?260828"
-      },
-      {
-        "printingId": "ST21-001",
-        "bandaiSourcePrintingIds": [
-          "ST21-001_R1"
-        ],
-        "internalId": "ST21-001~BANDAI-IMAGE~EC5DE7F5",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST21-001_r1.png?260828"
-      },
-      {
-        "printingId": "ST23-004",
-        "bandaiSourcePrintingIds": [
-          "ST23-004"
-        ],
-        "internalId": "ST23-004~BANDAI-IMAGE~863DB651",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST23-004.png?260828"
-      },
-      {
-        "printingId": "ST23-004",
-        "bandaiSourcePrintingIds": [
-          "ST23-004_R1"
-        ],
-        "internalId": "ST23-004~BANDAI-IMAGE~EBB4E8AB",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST23-004_r1.png?260828"
-      },
-      {
-        "printingId": "ST24-005",
-        "bandaiSourcePrintingIds": [
-          "ST24-005"
-        ],
-        "internalId": "ST24-005~BANDAI-IMAGE~19C4A2E3",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST24-005.png?260828"
-      },
-      {
-        "printingId": "ST24-005",
-        "bandaiSourcePrintingIds": [
-          "ST24-005_R1"
-        ],
-        "internalId": "ST24-005~BANDAI-IMAGE~CAEC6463",
-        "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST24-005_r1.png?260828"
-      }
-    ],
+    "cardmarketMappingRelations": {
+      "exact": 3974
+    },
+    "bandaiPrintingIdImageCollisions": [],
     "mechanicConflicts": [
       {
         "baseCode": "EB01-003",
@@ -1357,11 +312,11 @@
         "fields": {
           "types": [
             [
-              "Type Music",
+              "Music",
               "FILM"
             ],
             [
-              "Type 音楽",
+              "音楽",
               "FILM"
             ]
           ]
@@ -1372,11 +327,11 @@
         "fields": {
           "types": [
             [
-              "Type Animal",
+              "Animal",
               "Straw Hat Crew"
             ],
             [
-              "Type FILM",
+              "FILM",
               "Supernovas",
               "Straw Hat Crew"
             ]
@@ -1395,7 +350,7 @@
     ]
   },
   "fingerprints": {
-    "catalog": "8d1777dd38bc24c8610aeeeed69467f9190b10acdd07059f17e5ecb9ed7ff5f3",
-    "mapping": "ff118077806e29a421482a24d1ea2e5c45c75f4f9424617eb18936617424cde4"
+    "catalog": "ce18838edf819741c97022cb569d16e68f7a0a94ebf727641f3d219d18d9d089",
+    "mapping": "c18fdbbbd3b1057673eb7308f15119d7a5b3db3dc6a330558bc72777f7a741c1"
   }
 }

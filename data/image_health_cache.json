@@ -48030,7 +48030,407 @@
       "signature": "png",
       "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/ST36-005.png?260828",
       "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB01-001.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:10:57+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB01-001.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB01-001_p1.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:10:58+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB01-001_p1.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-001.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:10:58+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-001.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-001_p1.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:10:58+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-001_p1.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-002.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:10:58+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-002.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-002_p1.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:10:58+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-002_p1.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-003.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:10:58+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-003.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-003_p1.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:10:59+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-003_p1.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-004.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:10:59+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-004.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-004_p1.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:10:59+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-004_p1.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-005.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:10:59+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-005.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-005_p1.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:10:59+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-005_p1.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-006.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:00+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-006.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-006_p1.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:00+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-006_p1.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-006_p2.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:00+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-006_p2.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-007.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:00+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-007.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-007_p1.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:00+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-007_p1.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-008.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:00+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-008.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-008_p1.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:01+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-008_p1.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-009.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:01+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-009.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-009_p1.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:01+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-009_p1.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-010.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:01+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-010.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-010_p1.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:01+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-010_p1.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-011.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:01+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-011.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-011_p1.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:02+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-011_p1.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-012.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:02+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-012.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-012_p1.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:02+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-012_p1.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-013.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:02+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-013.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-013_p1.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:02+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-013_p1.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-014.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:02+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-014.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-014_p1.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:03+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-014_p1.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-014_p2.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:03+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-014_p2.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-015.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:03+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-015.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-015_p1.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:03+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-015_p1.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-016.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:03+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-016.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-016_p1.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:04+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-016_p1.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-017.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:04+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-017.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-017_p1.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:04+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-017_p1.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-018.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:04+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-018.png?260828",
+      "error": null
+    },
+    "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-018_p1.png?260828": {
+      "ok": true,
+      "checkedAt": "2026-09-09T16:11:04+00:00",
+      "httpStatus": 206,
+      "contentType": "image/png",
+      "contentDisposition": null,
+      "signature": "png",
+      "finalUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/PRB02-018_p1.png?260828",
+      "error": null
     }
   },
-  "updatedAt": "2026-09-09T14:33:59+00:00"
+  "updatedAt": "2026-09-09T16:11:04+00:00"
 }
