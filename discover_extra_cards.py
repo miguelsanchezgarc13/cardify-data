@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-One Piece TCG catalogue pipeline v3.3.
+One Piece TCG catalogue pipeline v3.4.
 
 Live sources:
   1) Bandai official card list -> card/game/printing/image metadata
@@ -31,7 +31,7 @@ import unicodedata
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 
 import requests
 from requests.adapters import HTTPAdapter
@@ -90,7 +90,7 @@ LEGACY_CARDS_FILENAME = "cardmarket_cards_raw.json"
 
 HEADERS = {
     "User-Agent": (
-        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.3; "
+        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.4; "
         "+https://github.com/)"
     ),
     "Accept-Language": "en-US,en;q=0.9",
@@ -1201,11 +1201,11 @@ def price_guide_created_at(data) -> str | None:
 
 def empty_mapping() -> dict:
     return {
-        "schemaVersion": 2,
+        "schemaVersion": 3,
         "description": (
-            "Persistent mapping from physical printing IDs to Cardmarket idProduct, "
-            "including legacy release metadata used to disambiguate Bandai reprints. "
-            "Prices are never stored here."
+            "Persistent mapping from physical printing IDs to Cardmarket idProduct. "
+            "Mappings are validated generically by card code, release/expansion coherence, "
+            "Cardmarket URL family and one-product-per-printing uniqueness. Prices are never stored here."
         ),
         "updatedAt": utc_now_iso(),
         "mappings": {},
@@ -1369,15 +1369,227 @@ def _product_display_name(product: dict | None) -> str:
     return normalize_text(name)
 
 
-def validate_and_repair_mapping(mapping: dict, products_by_id: dict[int, dict]) -> dict:
-    """
-    Protect the catalogue from a stale/shifted legacy idProduct.
+def _structured_release_code(value: str | None) -> str | None:
+    """Normalize OP-03/OP03, EB-01, ST-10 and PRB-02 style release codes."""
+    compact = re.sub(r"[^A-Z0-9]+", "", str(value or "").upper())
+    match = re.fullmatch(r"(OP|EB|ST|PRB)0*(\d{1,2})", compact)
+    if not match:
+        return None
+    return f"{match.group(1)}{int(match.group(2)):02d}"
 
-    A mapping whose current Cardmarket product name contains a different card
-    number can never be trusted. If there is exactly one same-expansion product
-    with the expected code and legacy name, repair it deterministically;
-    otherwise quarantine it by clearing productId while preserving the old ID.
+
+def _cardmarket_url_expansion_slug(url: str | None) -> str | None:
+    """Return the pretty Cardmarket expansion path segment after /Singles/."""
+    if not url:
+        return None
+    try:
+        parts = [part for part in urlparse(str(url)).path.split("/") if part]
+    except Exception:
+        return None
+    lowered = [part.casefold() for part in parts]
+    if "singles" not in lowered:
+        return None
+    idx = lowered.index("singles")
+    if idx + 1 >= len(parts):
+        return None
+    slug = slugify(parts[idx + 1])
+    return slug or None
+
+
+def _dominant_counter_value(
+    counter: Counter,
+    *,
+    exclude_value=None,
+    min_support: int = 3,
+    min_ratio: float = 0.90,
+) -> dict | None:
+    """High-confidence majority, optionally evaluated leave-one-out."""
+    work = Counter(counter)
+    if exclude_value is not None and work.get(exclude_value, 0) > 0:
+        work[exclude_value] -= 1
+        if work[exclude_value] <= 0:
+            del work[exclude_value]
+    total = sum(work.values())
+    if total < min_support or not work:
+        return None
+    value, count = work.most_common(1)[0]
+    ratio = count / total
+    if ratio < min_ratio:
+        return None
+    return {"value": value, "count": count, "total": total, "ratio": ratio}
+
+
+def _mapping_product_rows(mapping: dict, products_by_id: dict[int, dict]) -> dict[str, dict]:
+    rows = {}
+    for key, entry in mapping.setdefault("mappings", {}).items():
+        if not isinstance(entry, dict):
+            continue
+        product_id = get_number(entry.get("productId"))
+        if product_id is None:
+            continue
+        product_id = int(product_id)
+        product = products_by_id.get(product_id)
+        expected_code = base_code(key)
+        actual_code = _product_card_code(product)
+        if product is None or actual_code != expected_code:
+            continue
+        rows[canonical_id(key)] = {
+            "key": canonical_id(key),
+            "entry": entry,
+            "product": product,
+            "productId": product_id,
+            "baseCode": expected_code,
+            "idExpansion": product.get("idExpansion"),
+            "urlSlug": _cardmarket_url_expansion_slug(entry.get("url")),
+            "releaseCode": _structured_release_code(entry.get("legacySet")),
+        }
+    return rows
+
+
+def _build_mapping_profiles(mapping: dict, products_by_id: dict[int, dict]) -> dict:
     """
+    Build statistical profiles from the mapping itself, not from hard-coded cards.
+
+    Two independent signals are retained:
+      * structured Bandai/legacy release code -> Cardmarket expansion ID
+      * Cardmarket expansion ID -> pretty URL expansion slug
+
+    Release profiles intentionally use non-Promo card numbers as anchors. A P-xxx
+    card can be distributed inside a starter product while Cardmarket still keeps
+    another P-xxx printing under Promos, so P-xxx rows are consumers of the profile,
+    not evidence used to create it.
+    """
+    rows = _mapping_product_rows(mapping, products_by_id)
+    release_expansions = defaultdict(Counter)
+    release_slugs = defaultdict(Counter)
+    expansion_slugs = defaultdict(Counter)
+
+    for row in rows.values():
+        expansion = row.get("idExpansion")
+        slug = row.get("urlSlug")
+        release = row.get("releaseCode")
+        if expansion is not None and slug:
+            expansion_slugs[expansion][slug] += 1
+        if release and not row["baseCode"].startswith("P-") and expansion is not None:
+            release_expansions[release][expansion] += 1
+            if slug:
+                release_slugs[(release, expansion)][slug] += 1
+
+    # Reverse map only expansions whose URL family is itself very stable.
+    stable_expansion_slug = {}
+    slug_to_expansions = defaultdict(set)
+    for expansion, counts in expansion_slugs.items():
+        dominant = _dominant_counter_value(
+            counts, min_support=4, min_ratio=0.90
+        )
+        if dominant:
+            stable_expansion_slug[expansion] = dominant
+            slug_to_expansions[dominant["value"]].add(expansion)
+
+    return {
+        "rows": rows,
+        "releaseExpansions": release_expansions,
+        "releaseSlugs": release_slugs,
+        "expansionSlugs": expansion_slugs,
+        "stableExpansionSlug": stable_expansion_slug,
+        "slugToExpansions": slug_to_expansions,
+    }
+
+
+def _candidate_products_for_expected_expansions(
+    mapping_key: str,
+    entry: dict,
+    products_by_id: dict[int, dict],
+    expected_expansions: set,
+    blocked_product_ids: set[int],
+) -> list[dict]:
+    expected_code = base_code(mapping_key)
+    legacy_name = normalize_text(entry.get("legacyName"))
+    candidates = []
+    for product in products_by_id.values():
+        if product.get("idExpansion") not in expected_expansions:
+            continue
+        if _product_card_code(product) != expected_code:
+            continue
+        if legacy_name and _product_display_name(product) != legacy_name:
+            continue
+        product_id = int(product["idProduct"])
+        if product_id in blocked_product_ids:
+            continue
+        candidates.append(product)
+    return sorted(candidates, key=lambda item: int(item["idProduct"]))
+
+
+def _repair_mapping_entry(
+    mapping_key: str,
+    entry: dict,
+    candidate: dict,
+    old_product_id: int,
+    reason: str,
+    evidence: dict,
+) -> dict:
+    old_url = entry.get("url")
+    entry["previousProductId"] = old_product_id
+    if old_url:
+        entry["previousUrl"] = old_url
+    entry["productId"] = int(candidate["idProduct"])
+    # Preserve a specific legacy pretty URL when it still identifies the same
+    # card code/release. The downloadable catalogue only gives us a generic
+    # idProduct redirect, which is less informative for later QA.
+    if not old_url:
+        entry["url"] = candidate.get("website")
+    entry["confirmed"] = False
+    entry["source"] = "auto-repair-mapping-consistency"
+    entry["productName"] = candidate.get("name")
+    entry["idExpansion"] = candidate.get("idExpansion")
+    entry["idMetacard"] = candidate.get("idMetacard")
+    entry["dateAdded"] = candidate.get("dateAdded")
+    entry["validationEvidence"] = evidence
+    for field in ("invalidProductId", "invalidUrl", "invalidReason"):
+        entry.pop(field, None)
+    return {
+        "mappingKey": canonical_id(mapping_key),
+        "oldProductId": old_product_id,
+        "newProductId": int(candidate["idProduct"]),
+        "oldProductName": None,
+        "newProductName": candidate.get("name"),
+        "reason": reason,
+        "evidence": evidence,
+    }
+
+
+def _quarantine_mapping_entry(
+    mapping_key: str,
+    entry: dict,
+    old_product_id: int,
+    reason: str,
+    evidence: dict,
+    candidate_count: int | None = None,
+) -> dict:
+    old_url = entry.get("url")
+    entry["invalidProductId"] = old_product_id
+    if old_url:
+        entry["invalidUrl"] = old_url
+    entry["productId"] = None
+    entry["url"] = None
+    entry["confirmed"] = False
+    entry["source"] = f"quarantined-{reason}"
+    entry["invalidReason"] = reason
+    entry["validationEvidence"] = evidence
+    item = {
+        "mappingKey": canonical_id(mapping_key),
+        "oldProductId": old_product_id,
+        "oldProductName": entry.get("productName"),
+        "reason": reason,
+        "evidence": evidence,
+    }
+    if candidate_count is not None:
+        item["candidateCount"] = candidate_count
+    return item
+
+
+def _validate_product_code_mismatches(mapping: dict, products_by_id: dict[int, dict]) -> dict:
+    """V3.3 invariant: a product can never belong to a different card number."""
     entries = mapping.setdefault("mappings", {})
     by_code_expansion = defaultdict(list)
     for product in products_by_id.values():
@@ -1387,8 +1599,6 @@ def validate_and_repair_mapping(mapping: dict, products_by_id: dict[int, dict]) 
 
     repaired = []
     quarantined = []
-    changed = False
-
     for key, entry in entries.items():
         if not isinstance(entry, dict):
             continue
@@ -1399,11 +1609,9 @@ def validate_and_repair_mapping(mapping: dict, products_by_id: dict[int, dict]) 
         product = products_by_id.get(product_id)
         expected_code = base_code(key)
         actual_code = _product_card_code(product)
-        if product is not None and (actual_code is None or actual_code == expected_code):
+        if product is not None and actual_code == expected_code:
             continue
 
-        old_product_id = product_id
-        old_product_name = (product or {}).get("name")
         expansion = entry.get("idExpansion")
         legacy_name = normalize_text(entry.get("legacyName"))
         candidates = []
@@ -1412,47 +1620,288 @@ def validate_and_repair_mapping(mapping: dict, products_by_id: dict[int, dict]) 
                 continue
             candidates.append(candidate)
 
+        evidence = {
+            "expectedCode": expected_code,
+            "actualCode": actual_code,
+            "idExpansion": expansion,
+        }
         if len(candidates) == 1:
-            candidate = candidates[0]
-            entry["previousProductId"] = old_product_id
-            entry["productId"] = int(candidate["idProduct"])
-            entry["url"] = candidate.get("website")
-            entry["confirmed"] = False
-            entry["source"] = "auto-repair-product-code-same-expansion"
-            entry["productName"] = candidate.get("name")
-            entry["idExpansion"] = candidate.get("idExpansion")
-            entry["idMetacard"] = candidate.get("idMetacard")
-            entry["dateAdded"] = candidate.get("dateAdded")
-            entry.pop("invalidReason", None)
-            repaired.append({
-                "mappingKey": canonical_id(key),
-                "oldProductId": old_product_id,
-                "newProductId": int(candidate["idProduct"]),
-                "oldProductName": old_product_name,
-                "newProductName": candidate.get("name"),
-            })
-        else:
-            entry["invalidProductId"] = old_product_id
-            entry["productId"] = None
-            entry["url"] = None
-            entry["confirmed"] = False
-            entry["source"] = "quarantined-product-code-mismatch"
-            entry["invalidReason"] = (
-                f"Cardmarket product code mismatch: mapping {canonical_id(key)} "
-                f"pointed to {actual_code or 'unknown'} ({old_product_id})."
+            old_name = (product or {}).get("name")
+            result = _repair_mapping_entry(
+                key,
+                entry,
+                candidates[0],
+                product_id,
+                "product-code-mismatch",
+                evidence,
             )
-            quarantined.append({
-                "mappingKey": canonical_id(key),
-                "oldProductId": old_product_id,
-                "oldProductName": old_product_name,
-                "candidateCount": len(candidates),
-            })
-        changed = True
-
-    if changed:
-        mapping["updatedAt"] = utc_now_iso()
+            result["oldProductName"] = old_name
+            repaired.append(result)
+        else:
+            reason = (
+                f"product-code-mismatch:{expected_code}->{actual_code or 'unknown'}"
+            )
+            quarantined.append(
+                _quarantine_mapping_entry(
+                    key, entry, product_id, reason, evidence, len(candidates)
+                )
+            )
     return {"repaired": repaired, "quarantined": quarantined}
 
+
+def _validate_release_and_url_consistency(
+    mapping: dict,
+    products_by_id: dict[int, dict],
+) -> dict:
+    """
+    Detect release/language/version-family drift without hard-coded card IDs.
+
+    The rule is deliberately conservative:
+      * release expansion inference is leave-one-out and needs >=90% agreement;
+      * URL-family inference needs >=95% agreement for the current expansion;
+      * automatic repair is allowed only when all available signals agree on one
+        expansion and exactly one unused product candidate exists;
+      * otherwise the mapping is quarantined instead of guessing a price.
+    """
+    entries = mapping.setdefault("mappings", {})
+    profiles = _build_mapping_profiles(mapping, products_by_id)
+    rows = profiles["rows"]
+    suspect = {}
+
+    for key, row in rows.items():
+        entry = row["entry"]
+        current_expansion = row.get("idExpansion")
+        own_slug = row.get("urlSlug")
+        release_code = row.get("releaseCode")
+        reasons = []
+        expected_expansion_sets = []
+        evidence = {
+            "currentExpansion": current_expansion,
+            "urlSlug": own_slug,
+            "legacySet": entry.get("legacySet"),
+        }
+
+        # Structured release inference. For normal OP/EB/ST/PRB card numbers,
+        # evaluate leave-one-out. P-xxx cards consume the profile only when their
+        # pretty Cardmarket URL agrees with the release's dominant URL family.
+        if release_code:
+            counts = profiles["releaseExpansions"].get(release_code, Counter())
+            if row["baseCode"].startswith("P-"):
+                dominant = _dominant_counter_value(
+                    counts, min_support=4, min_ratio=0.90
+                )
+                if dominant and own_slug:
+                    expected_expansion = dominant["value"]
+                    slug_profile = _dominant_counter_value(
+                        profiles["releaseSlugs"].get(
+                            (release_code, expected_expansion), Counter()
+                        ),
+                        min_support=3,
+                        min_ratio=0.90,
+                    )
+                    if slug_profile and slug_profile["value"] == own_slug:
+                        evidence["releaseProfile"] = dominant
+                        evidence["releaseUrlProfile"] = slug_profile
+                        if current_expansion != expected_expansion:
+                            reasons.append("release-expansion-mismatch")
+                            expected_expansion_sets.append({expected_expansion})
+            else:
+                dominant = _dominant_counter_value(
+                    counts,
+                    exclude_value=current_expansion,
+                    min_support=3,
+                    min_ratio=0.90,
+                )
+                if dominant:
+                    evidence["releaseProfile"] = dominant
+                    if current_expansion != dominant["value"]:
+                        reasons.append("release-expansion-mismatch")
+                        expected_expansion_sets.append({dominant["value"]})
+
+        # Cardmarket-native check: one idExpansion should overwhelmingly use one
+        # pretty /Singles/<expansion>/ URL family. This catches swapped original
+        # vs reprint IDs even when both products have the same card number.
+        if current_expansion is not None and own_slug:
+            dominant_slug = _dominant_counter_value(
+                profiles["expansionSlugs"].get(current_expansion, Counter()),
+                exclude_value=own_slug,
+                min_support=4,
+                min_ratio=0.95,
+            )
+            if dominant_slug and dominant_slug["value"] != own_slug:
+                reasons.append("cardmarket-url-expansion-mismatch")
+                evidence["currentExpansionUrlProfile"] = dominant_slug
+                reverse = {
+                    expansion
+                    for expansion, profile in profiles["stableExpansionSlug"].items()
+                    if profile["value"] == own_slug
+                }
+                if reverse:
+                    expected_expansion_sets.append(reverse)
+                    evidence["urlCompatibleExpansions"] = sorted(reverse)
+
+        if not reasons:
+            continue
+
+        # Intersect independent expected-expansion signals. If they disagree or
+        # no reliable target can be derived, quarantine rather than guess.
+        expected = None
+        if expected_expansion_sets:
+            expected = set(expected_expansion_sets[0])
+            for values in expected_expansion_sets[1:]:
+                expected &= set(values)
+        suspect[key] = {
+            "row": row,
+            "reasons": sorted(set(reasons)),
+            "evidence": evidence,
+            "expectedExpansions": expected or set(),
+        }
+
+    # Product IDs owned by entries that are NOT suspect cannot be stolen by an
+    # auto-repair. IDs owned only by suspect rows may be reused after those rows
+    # are repaired/quarantined in this same validation pass.
+    owners = defaultdict(set)
+    for key, row in rows.items():
+        owners[row["productId"]].add(key)
+    suspect_keys = set(suspect)
+    blocked_product_ids = {
+        product_id
+        for product_id, keys in owners.items()
+        if any(key not in suspect_keys for key in keys)
+    }
+
+    repaired = []
+    quarantined = []
+    for key in sorted(suspect):
+        item = suspect[key]
+        row = item["row"]
+        entry = row["entry"]
+        old_product_id = row["productId"]
+        expected_expansions = item["expectedExpansions"]
+        reason = "+".join(item["reasons"])
+
+        candidates = []
+        if len(expected_expansions) == 1:
+            candidates = _candidate_products_for_expected_expansions(
+                key,
+                entry,
+                products_by_id,
+                expected_expansions,
+                blocked_product_ids - {old_product_id},
+            )
+
+        if len(candidates) == 1:
+            result = _repair_mapping_entry(
+                key,
+                entry,
+                candidates[0],
+                old_product_id,
+                reason,
+                item["evidence"],
+            )
+            result["oldProductName"] = row["product"].get("name")
+            repaired.append(result)
+        else:
+            quarantined.append(
+                _quarantine_mapping_entry(
+                    key,
+                    entry,
+                    old_product_id,
+                    reason,
+                    item["evidence"],
+                    len(candidates),
+                )
+            )
+
+    return {"repaired": repaired, "quarantined": quarantined}
+
+
+def _quarantine_duplicate_product_ids(mapping: dict) -> dict:
+    """One physical Bandai printing <-> one Cardmarket product ID."""
+    entries = mapping.setdefault("mappings", {})
+    owners = defaultdict(list)
+    for key, entry in entries.items():
+        if not isinstance(entry, dict):
+            continue
+        product_id = get_number(entry.get("productId"))
+        if product_id is not None:
+            owners[int(product_id)].append(canonical_id(key))
+
+    duplicate_groups = []
+    quarantined = []
+    for product_id, keys in sorted(owners.items()):
+        unique_keys = sorted(set(keys))
+        if len(unique_keys) <= 1:
+            continue
+        duplicate_groups.append({"productId": product_id, "mappingKeys": unique_keys})
+        for key in unique_keys:
+            entry = entries[key]
+            evidence = {"productId": product_id, "mappingKeys": unique_keys}
+            quarantined.append(
+                _quarantine_mapping_entry(
+                    key,
+                    entry,
+                    product_id,
+                    "duplicate-product-id-across-printings",
+                    evidence,
+                    len(unique_keys),
+                )
+            )
+    return {"groups": duplicate_groups, "quarantined": quarantined}
+
+
+def validate_and_repair_mapping(mapping: dict, products_by_id: dict[int, dict]) -> dict:
+    """
+    Generic mapping integrity firewall.
+
+    Nothing in this validator is keyed to a known card ID. Production decisions
+    are derived from generic invariants and high-confidence catalogue evidence;
+    regression examples live only in self-tests.
+    """
+    mapping["schemaVersion"] = max(int(mapping.get("schemaVersion") or 0), 3)
+    repaired = []
+    quarantined = []
+
+    code_result = _validate_product_code_mismatches(mapping, products_by_id)
+    repaired.extend(code_result["repaired"])
+    quarantined.extend(code_result["quarantined"])
+
+    # Two rounds let the first repairs remove poisoned outliers from the
+    # statistical profiles before evaluating smaller release families.
+    consistency_rounds = []
+    for _ in range(2):
+        result = _validate_release_and_url_consistency(mapping, products_by_id)
+        consistency_rounds.append(
+            {"repaired": len(result["repaired"]), "quarantined": len(result["quarantined"])}
+        )
+        repaired.extend(result["repaired"])
+        quarantined.extend(result["quarantined"])
+        if not result["repaired"] and not result["quarantined"]:
+            break
+
+    duplicate_result = _quarantine_duplicate_product_ids(mapping)
+    quarantined.extend(duplicate_result["quarantined"])
+
+    if repaired or quarantined:
+        mapping["updatedAt"] = utc_now_iso()
+
+    reason_counts = Counter()
+    for item in repaired + quarantined:
+        for reason in str(item.get("reason") or "unknown").split("+"):
+            reason_counts[reason] += 1
+
+    return {
+        "repaired": repaired,
+        "quarantined": quarantined,
+        "duplicateProductGroups": duplicate_result["groups"],
+        "summary": {
+            "repaired": len(repaired),
+            "quarantined": len(quarantined),
+            "duplicateProductGroups": len(duplicate_result["groups"]),
+            "consistencyRounds": consistency_rounds,
+            "reasonCounts": dict(sorted(reason_counts.items())),
+        },
+    }
 
 def resolve_cardmarket_mapping_key_for_bandai_record(record: dict, mapping_entries: dict) -> tuple[str | None, str | None]:
     """
@@ -2255,6 +2704,93 @@ def run_self_test() -> None:
     promo_mapping = {"P-041": {"productId": 750655, "legacySet": "ST18"}}
     promo = {"sourcePrintingId": "P-041", "seriesLabel": "Promotion card", "cardSetsText": "Promotion card"}
     assert resolve_cardmarket_mapping_key_for_bandai_record(promo, promo_mapping) == ("P-041", "exact")
+
+    # V3.4 regression: release/expansion drift is repaired generically, without
+    # naming any real card. Three trustworthy OP99 rows establish expansion 100;
+    # the fourth row points to the same card code in expansion 200 and must move
+    # to the unique product in expansion 100.
+    qa_products = {}
+    for pid, code, expansion in (
+        (1001, "OP99-001", 100),
+        (1002, "OP99-002", 100),
+        (1003, "OP99-003", 100),
+        (1004, "OP99-004", 200),
+        (1005, "OP99-004", 100),
+        (2001, "P-099", 300),
+    ):
+        product = normalize_cardmarket_product(
+            {
+                "idProduct": pid,
+                "name": f"Test Card ({code})",
+                "idCategory": 1621,
+                "categoryName": "One Piece Single",
+                "idExpansion": expansion,
+                "idMetacard": pid + 5000,
+                "dateAdded": "2026-09-01 00:00:00",
+            }
+        )
+        qa_products[pid] = product
+
+    qa_mapping = {
+        "schemaVersion": 2,
+        "mappings": {
+            "OP99-001": {
+                "productId": 1001, "legacySet": "OP99", "legacyName": "Test Card",
+                "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Test-Set/Test-Card-OP99-001",
+            },
+            "OP99-002": {
+                "productId": 1002, "legacySet": "OP99", "legacyName": "Test Card",
+                "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Test-Set/Test-Card-OP99-002",
+            },
+            "OP99-003": {
+                "productId": 1003, "legacySet": "OP99", "legacyName": "Test Card",
+                "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Test-Set/Test-Card-OP99-003",
+            },
+            "OP99-004": {
+                "productId": 1004, "legacySet": "OP99", "legacyName": "Test Card",
+                "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Test-Set/Test-Card-OP99-004",
+                "idExpansion": 200,
+            },
+            # P-xxx may be distributed in a starter product while Cardmarket
+            # keeps another printing under Promos. It must not inherit ST18's
+            # expansion merely from legacySet.
+            "P-099": {
+                "productId": 2001, "legacySet": "ST18", "legacyName": "Test Card",
+                "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Test-Card-P-099",
+                "idExpansion": 300,
+            },
+        },
+    }
+    qa_result = validate_and_repair_mapping(qa_mapping, qa_products)
+    assert qa_mapping["mappings"]["OP99-004"]["productId"] == 1005
+    assert qa_mapping["mappings"]["P-099"]["productId"] == 2001
+    assert any(x["mappingKey"] == "OP99-004" for x in qa_result["repaired"])
+
+    # V3.4 regression: the same Cardmarket idProduct cannot price two distinct
+    # physical Bandai printings. Ambiguity is quarantined, never guessed.
+    duplicate_mapping = {
+        "schemaVersion": 3,
+        "mappings": {
+            "P-001": {"productId": 2001, "legacyName": "Test Card"},
+            "P-001_P1": {"productId": 2001, "legacyName": "Test Card"},
+        },
+    }
+    duplicate_products = {
+        2001: normalize_cardmarket_product(
+            {
+                "idProduct": 2001,
+                "name": "Test Card (P-001)",
+                "idCategory": 1621,
+                "idExpansion": 300,
+                "idMetacard": 9999,
+            }
+        )
+    }
+    duplicate_result = validate_and_repair_mapping(duplicate_mapping, duplicate_products)
+    assert duplicate_mapping["mappings"]["P-001"]["productId"] is None
+    assert duplicate_mapping["mappings"]["P-001_P1"]["productId"] is None
+    assert duplicate_result["summary"]["duplicateProductGroups"] == 1
+
     # Regression: current Bandai query contract is series=<id> first.
     class _FakeResponse:
         def __init__(self, text):
@@ -2407,6 +2943,8 @@ def main() -> None:
             "autoMappingsAdded": len(review.get("autoMappingsAdded", [])),
             "validationRepairs": mapping_validation.get("repaired", []),
             "validationQuarantined": mapping_validation.get("quarantined", []),
+            "validationSummary": mapping_validation.get("summary", {}),
+            "duplicateProductGroups": mapping_validation.get("duplicateProductGroups", []),
             "needsReview": len(review.get("needsReview", [])),
         },
         "images": {
@@ -2435,6 +2973,11 @@ def main() -> None:
     print(f"- Con mapping Cardmarket: {catalogue_stats['printingsWithCardmarketMapping']}")
     print(f"- Con precio Cardmarket actual: {catalogue_stats['printingsWithCardmarketPrice']}")
     print(f"- Mappings pendientes de revisión: {len(review.get('needsReview', []))}")
+    print(
+        "- Mapping QA: "
+        f"{len(mapping_validation.get('repaired', []))} reparados / "
+        f"{len(mapping_validation.get('quarantined', []))} en cuarentena"
+    )
     print(f"- Price Guide createdAt: {price_created_at}")
 
     if not args.no_push:
