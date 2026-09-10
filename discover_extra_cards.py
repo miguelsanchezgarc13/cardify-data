@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-One Piece TCG catalogue pipeline v3.7.
+One Piece TCG catalogue pipeline v3.9.
 
 Live sources:
   1) Bandai official card list -> card/game/printing/image metadata
@@ -90,7 +90,7 @@ LEGACY_CARDS_FILENAME = "cardmarket_cards_raw.json"
 
 HEADERS = {
     "User-Agent": (
-        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.7; "
+        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.9; "
         "+https://github.com/)"
     ),
     "Accept-Language": "en-US,en;q=0.9",
@@ -3703,6 +3703,20 @@ def _printing_mechanics(record: dict) -> dict:
     }
 
 
+def _price_valuation_eur(price: dict | None):
+    if not isinstance(price, dict):
+        return None
+    return (
+        price.get("trend")
+        if price.get("trend") is not None
+        else price.get("avg7")
+        if price.get("avg7") is not None
+        else price.get("avg30")
+        if price.get("avg30") is not None
+        else price.get("avg")
+    )
+
+
 def build_catalog(
     bandai_cards: list[dict],
     mapping: dict,
@@ -3710,6 +3724,7 @@ def build_catalog(
     prices_by_id: dict[int, dict],
     price_created_at: str | None,
     image_cache: dict,
+    series_expansion_profiles: dict[str, dict] | None = None,
 ) -> tuple[dict, dict]:
     by_base = defaultdict(list)
     for raw_record in bandai_cards:
@@ -3723,10 +3738,13 @@ def build_catalog(
     output = {}
     collisions = []
     mechanic_conflicts = []
-    printings_with_price = 0
+    code_discrepancies = []
+    printings_with_price_guide = 0
+    printings_with_valuation = 0
     printings_with_mapping = 0
     printings_without_valid_image = 0
     mapping_relation_counts = defaultdict(int)
+    series_expansion_profiles = series_expansion_profiles or {}
 
     for base in sorted(by_base):
         records = by_base[base]
@@ -3810,8 +3828,55 @@ def build_catalog(
                     product_id = int(get_number(map_entry.get("productId")))
                     product = products_by_id.get(product_id)
                     price = prices_by_id.get(product_id)
+                    valuation = _price_valuation_eur(price)
                     if price:
-                        printings_with_price += 1
+                        printings_with_price_guide += 1
+                    if isinstance(valuation, (int, float)):
+                        printings_with_valuation += 1
+
+                    product_code = _product_card_code(product)
+                    code_matches = (product_code == base) if product_code else None
+                    bandai_name = normalize_text(best.get("name") or canonical.get("name") or "")
+                    product_name = _product_display_name(product)
+                    name_matches = (bandai_name == product_name) if bandai_name and product_name else None
+
+                    expected_expansions = sorted({
+                        int(profile["value"])
+                        for release in releases
+                        for profile in [series_expansion_profiles.get(str(release.get("seriesId") or ""))]
+                        if isinstance(profile, dict) and get_number(profile.get("value")) is not None
+                    })
+                    product_expansion = get_number((product or {}).get("idExpansion"))
+                    release_matches = (
+                        int(product_expansion) in expected_expansions
+                        if expected_expansions and product_expansion is not None
+                        else None
+                    )
+                    mapping_evidence = {
+                        "bandaiBaseCode": base,
+                        "cardmarketProductCode": product_code,
+                        "codeMatches": code_matches,
+                        "nameMatches": name_matches,
+                        "releaseMatches": release_matches,
+                        "expectedExpansionIds": expected_expansions,
+                        "cardmarketExpansionId": (
+                            int(product_expansion) if product_expansion is not None else None
+                        ),
+                        "sourceCodeDiscrepancy": code_matches is False,
+                    }
+                    if code_matches is False:
+                        code_discrepancies.append({
+                            "printingId": printing_id,
+                            "bandaiBaseCode": base,
+                            "bandaiName": best.get("name") or canonical.get("name"),
+                            "productId": product_id,
+                            "cardmarketProductCode": product_code,
+                            "cardmarketProductName": (product or {}).get("name"),
+                            "mappingConfirmed": bool(map_entry.get("confirmed")),
+                            "mappingSource": map_entry.get("source"),
+                            **mapping_evidence,
+                        })
+
                     cm = {
                         "mappingKey": cm_key,
                         "mappingRelation": cm_relation,
@@ -3819,21 +3884,14 @@ def build_catalog(
                         "url": map_entry.get("url") or (product or {}).get("website"),
                         "mappingConfirmed": bool(map_entry.get("confirmed")),
                         "mappingSource": map_entry.get("source"),
+                        "mappingEvidence": mapping_evidence,
                         "product": product,
                         "price": (
                             {
                                 "currency": "EUR",
                                 "createdAt": price_created_at,
                                 **price,
-                                "valuationEur": (
-                                    price.get("trend")
-                                    if price.get("trend") is not None
-                                    else price.get("avg7")
-                                    if price.get("avg7") is not None
-                                    else price.get("avg30")
-                                    if price.get("avg30") is not None
-                                    else price.get("avg")
-                                ),
+                                "valuationEur": valuation,
                             }
                             if price
                             else None
@@ -3872,6 +3930,7 @@ def build_catalog(
         printings.sort(key=natural_printing_sort_key)
         canonical_mechanics = _printing_mechanics(canonical)
         output[base] = {
+            "catalogId": base,
             "code": base,
             "game": "One Piece",
             "name": canonical.get("name") or base,
@@ -3886,10 +3945,12 @@ def build_catalog(
         "cards": len(output),
         "printings": sum(len(card["printings"]) for card in output.values()),
         "printingsWithCardmarketMapping": printings_with_mapping,
-        "printingsWithCardmarketPrice": printings_with_price,
-        "printingsWithoutValidatedImage": printings_without_valid_image,
+        "printingsWithCardmarketPriceGuide": printings_with_price_guide,
+        "printingsWithCardmarketValuation": printings_with_valuation,
+        "bandaiPrintingsWithoutValidatedImage": printings_without_valid_image,
         "cardmarketMappingRelations": dict(sorted(mapping_relation_counts.items())),
         "bandaiPrintingIdImageCollisions": collisions,
+        "cardmarketCodeDiscrepancies": code_discrepancies,
         "mechanicConflicts": mechanic_conflicts,
     }
     return output, stats
@@ -3914,15 +3975,7 @@ def _cardmarket_price_payload(
     price = prices_by_id.get(int(product_id))
     if not price:
         return None
-    valuation = (
-        price.get("trend")
-        if price.get("trend") is not None
-        else price.get("avg7")
-        if price.get("avg7") is not None
-        else price.get("avg30")
-        if price.get("avg30") is not None
-        else price.get("avg")
-    )
+    valuation = _price_valuation_eur(price)
     return {
         "currency": "EUR",
         "createdAt": price_created_at,
@@ -3998,15 +4051,23 @@ def add_cardmarket_supplements(
     prices_by_id: dict[int, dict],
     price_created_at: str | None,
 ) -> dict:
-    """Add market-only standard codes and DON!! designs without weakening Bandai identity.
+    """Add Cardmarket-only standard cards and DON!! designs conservatively.
 
-    Standard card codes absent from Bandai are grouped by their printed code.  They
-    remain explicitly market-only: mechanics and official images are unknown until
-    Bandai publishes them.  DON!! has no stable Bandai card code in this pipeline, so
-    each Cardmarket idMetacard is used as a stable design identity and each idProduct
-    remains a distinct direct Cardmarket product.
+    V3.9 identity contract:
+      * Bandai cards keep the official printed code as catalogId.
+      * Standard Cardmarket-only entities use idMetacard as identity:
+        CMCARD-<idMetacard>. Their printed ``code`` remains metadata and is NOT
+        assumed globally unique while Bandai has not published the card.
+      * DON!! continues to use DON-CM-<idMetacard>.
+
+    Every idProduct remains a distinct direct Cardmarket product/printing.
     """
-    bandai_codes = set(catalog)
+    bandai_codes = {
+        canonical_id(card.get("code"))
+        for card in catalog.values()
+        if isinstance(card, dict) and "bandai" in (card.get("sources") or [])
+        and card.get("code")
+    }
     existing_product_ids = {
         int(cm["productId"])
         for card in catalog.values()
@@ -4017,6 +4078,7 @@ def add_cardmarket_supplements(
 
     standard_groups = defaultdict(list)
     don_groups = defaultdict(list)
+    standard_without_metacard = []
 
     for product in products_by_id.values():
         product_id = int(product["idProduct"])
@@ -4027,32 +4089,67 @@ def add_cardmarket_supplements(
             if metacard is not None:
                 don_groups[int(metacard)].append(product)
             continue
+
         code = _product_card_code(product)
-        if code and code not in bandai_codes:
-            standard_groups[code].append(product)
+        if not code or code in bandai_codes:
+            continue
+        metacard = get_number(product.get("idMetacard"))
+        if metacard is None:
+            # Never merge by printed code when idMetacard is absent: there is no
+            # safe Cardmarket card identity, so keep the product isolated.
+            identity = f"PRODUCT-{product_id}"
+            standard_without_metacard.append(product_id)
+        else:
+            identity = str(int(metacard))
+        standard_groups[identity].append(product)
 
     standard_products = 0
-    standard_priced = 0
-    for code in sorted(standard_groups):
-        rows = sorted(standard_groups[code], key=lambda x: int(x["idProduct"]))
+    standard_price_guides = 0
+    standard_valuations = 0
+    standard_codes = set()
+    for identity in sorted(standard_groups, key=lambda x: (not x.isdigit(), int(x) if x.isdigit() else x)):
+        rows = sorted(standard_groups[identity], key=lambda x: int(x["idProduct"]))
+        metacard = get_number(rows[0].get("idMetacard"))
+        catalog_id = (
+            f"CMCARD-{int(metacard)}"
+            if metacard is not None
+            else f"CMCARD-{identity}"
+        )
+        printed_codes = sorted({
+            code for row in rows for code in [_product_card_code(row)] if code
+        })
+        standard_codes.update(printed_codes)
+        code = printed_codes[0] if printed_codes else None
+
         names = [nullable_text(row.get("name")) for row in rows if nullable_text(row.get("name"))]
-        display_name = names[0] if names else code
-        # Strip the trailing printed code while preserving the Cardmarket name.
-        display_name = re.sub(r"\s*\(" + re.escape(code) + r"\)\s*$", "", display_name, flags=re.I).strip() or code
+        display_name = names[0] if names else (code or catalog_id)
+        if code:
+            display_name = re.sub(
+                r"\s*\(" + re.escape(code) + r"\)\s*$", "", display_name, flags=re.I
+            ).strip() or code
+
         printings = [
             _direct_cardmarket_printing(
-                row, prices_by_id, price_created_at, code, collectible_type="standard-card"
+                row,
+                prices_by_id,
+                price_created_at,
+                code or catalog_id,
+                collectible_type="standard-card",
             )
             for row in rows
         ]
         standard_products += len(printings)
-        standard_priced += sum(
-            1 for printing in printings
-            if isinstance(printing.get("cardmarket"), dict)
-            and printing["cardmarket"].get("price") is not None
-        )
-        catalog[code] = {
+        for printing in printings:
+            price = (printing.get("cardmarket") or {}).get("price")
+            if price is not None:
+                standard_price_guides += 1
+            if isinstance((price or {}).get("valuationEur"), (int, float)):
+                standard_valuations += 1
+
+        catalog[catalog_id] = {
+            "catalogId": catalog_id,
             "code": code,
+            "printedCodes": printed_codes,
             "game": "One Piece",
             "name": display_name,
             "rarity": None,
@@ -4071,16 +4168,15 @@ def add_cardmarket_supplements(
             "catalogOrigin": "cardmarket-only",
             "bandaiCanonical": False,
             "dataCompleteness": "market-only",
-            "cardmarketMetacardIds": sorted({
-                int(v) for row in rows
-                for v in [get_number(row.get("idMetacard"))]
-                if v is not None
-            }),
+            "collectibleType": "standard-card",
+            "identitySource": "cardmarket-idMetacard" if metacard is not None else "cardmarket-idProduct-fallback",
+            "cardmarketMetacardId": int(metacard) if metacard is not None else None,
             "printings": printings,
         }
 
     don_products = 0
-    don_priced = 0
+    don_price_guides = 0
+    don_valuations = 0
     for metacard in sorted(don_groups):
         rows = sorted(don_groups[metacard], key=lambda x: int(x["idProduct"]))
         key = f"DON-CM-{metacard}"
@@ -4092,12 +4188,14 @@ def add_cardmarket_supplements(
             for row in rows
         ]
         don_products += len(printings)
-        don_priced += sum(
-            1 for printing in printings
-            if isinstance(printing.get("cardmarket"), dict)
-            and printing["cardmarket"].get("price") is not None
-        )
+        for printing in printings:
+            price = (printing.get("cardmarket") or {}).get("price")
+            if price is not None:
+                don_price_guides += 1
+            if isinstance((price or {}).get("valuationEur"), (int, float)):
+                don_valuations += 1
         catalog[key] = {
+            "catalogId": key,
             "code": key,
             "game": "One Piece",
             "name": name,
@@ -4118,6 +4216,7 @@ def add_cardmarket_supplements(
             "bandaiCanonical": False,
             "dataCompleteness": "market-only",
             "collectibleType": "don",
+            "identitySource": "cardmarket-idMetacard",
             "cardmarketMetacardId": metacard,
             "printings": printings,
         }
@@ -4125,11 +4224,14 @@ def add_cardmarket_supplements(
     return {
         "standardCards": len(standard_groups),
         "standardProducts": standard_products,
-        "standardProductsWithPrice": standard_priced,
-        "standardCodes": sorted(standard_groups),
+        "standardProductsWithPriceGuide": standard_price_guides,
+        "standardProductsWithValuation": standard_valuations,
+        "standardCodes": sorted(standard_codes),
+        "standardProductsWithoutMetacard": sorted(standard_without_metacard),
         "donCards": len(don_groups),
         "donProducts": don_products,
-        "donProductsWithPrice": don_priced,
+        "donProductsWithPriceGuide": don_price_guides,
+        "donProductsWithValuation": don_valuations,
     }
 
 
@@ -4378,11 +4480,13 @@ def run_self_test() -> None:
         "2026-09-09T02:00:00+0200",
         image_cache,
     )
+    assert catalog["OP17-001"]["catalogId"] == "OP17-001"
     assert catalog["OP17-001"]["life"] == 5
     assert catalog["OP17-001"]["printings"][0]["cardmarket"]["price"]["trend"] == 1.1
     assert stats["cards"] == 1
 
-    # V3.8 regression: Cardmarket-only standard codes and DON!! are additive
+    # V3.9 regression: Cardmarket-only standard cards use idMetacard identity,
+    # while DON!! remains additive and also uses idMetacard identity.
     # supplements. They never overwrite Bandai cards or enter the Bandai mapping.
     extra_product = normalize_cardmarket_product({
         "idProduct": 124,
@@ -4416,10 +4520,71 @@ def run_self_test() -> None:
     assert supplement_stats["standardProducts"] == 1
     assert supplement_stats["donCards"] == 1
     assert supplement_stats["donProducts"] == 1
-    assert supplement_catalog["P-999"]["catalogOrigin"] == "cardmarket-only"
-    assert supplement_catalog["P-999"]["printings"][0]["cardmarket"]["price"]["valuationEur"] == 2.5
+    assert supplement_catalog["CMCARD-9001"]["catalogOrigin"] == "cardmarket-only"
+    assert supplement_catalog["CMCARD-9001"]["catalogId"] == "CMCARD-9001"
+    assert supplement_catalog["CMCARD-9001"]["code"] == "P-999"
+    assert supplement_catalog["CMCARD-9001"]["printings"][0]["cardmarket"]["price"]["valuationEur"] == 2.5
     assert supplement_catalog["DON-CM-9002"]["type"] == "Don"
+    assert supplement_catalog["DON-CM-9002"]["catalogId"] == "DON-CM-9002"
     assert supplement_catalog["DON-CM-9002"]["printings"][0]["cardmarket"]["price"]["valuationEur"] == 3.5
+    assert supplement_stats["standardProductsWithPriceGuide"] == 1
+    assert supplement_stats["standardProductsWithValuation"] == 1
+
+    # Same printed code can refer to different Cardmarket metacards. They must
+    # never collapse into one catalogue entity.
+    same_code_a = normalize_cardmarket_product({
+        "idProduct": 126, "name": "Alpha (P-998)", "idCategory": 1621,
+        "idExpansion": 779, "idMetacard": 9101,
+    })
+    same_code_b = normalize_cardmarket_product({
+        "idProduct": 127, "name": "Beta (P-998)", "idCategory": 1621,
+        "idExpansion": 780, "idMetacard": 9102,
+    })
+    split_catalog = dict(catalog)
+    split_stats = add_cardmarket_supplements(
+        split_catalog, {126: same_code_a, 127: same_code_b}, {}, None
+    )
+    assert split_stats["standardCards"] == 2
+    assert split_catalog["CMCARD-9101"]["code"] == "P-998"
+    assert split_catalog["CMCARD-9101"]["name"] == "Alpha"
+    assert split_catalog["CMCARD-9102"]["code"] == "P-998"
+    assert split_catalog["CMCARD-9102"]["name"] == "Beta"
+
+    # A Price Guide row with only `low` exists as market data but does not
+    # produce valuationEur under the catalogue valuation policy.
+    low_only = normalize_cardmarket_product({
+        "idProduct": 129, "name": "Low Only (P-997)", "idCategory": 1621,
+        "idExpansion": 781, "idMetacard": 9201,
+    })
+    low_catalog = dict(catalog)
+    low_stats = add_cardmarket_supplements(
+        low_catalog, {129: low_only},
+        {129: normalize_price_row({"idProduct": 129, "low": 20})},
+        "2026-09-10T02:00:00+0200",
+    )
+    assert low_stats["standardProductsWithPriceGuide"] == 1
+    assert low_stats["standardProductsWithValuation"] == 0
+    assert low_catalog["CMCARD-9201"]["printings"][0]["cardmarket"]["price"]["valuationEur"] is None
+
+    # A Cardmarket code disagreeing with Bandai is diagnosed explicitly rather
+    # than silently accepted or automatically quarantined when other evidence
+    # (name/release) still supports the physical product identity.
+    mismatch_product = normalize_cardmarket_product({
+        "idProduct": 128, "name": "Edward.Newgate (OP17-099)",
+        "idCategory": 1621, "idExpansion": 999, "idMetacard": 888,
+    })
+    mismatch_mapping = {"mappings": {
+        "OP17-001": {"productId": 128, "confirmed": False, "source": "test-name-release"}
+    }}
+    mismatch_catalog, mismatch_stats = build_catalog(
+        cards, mismatch_mapping, {128: mismatch_product}, {}, None, image_cache,
+        series_expansion_profiles={"569117": {"value": 999}},
+    )
+    mismatch_evidence = mismatch_catalog["OP17-001"]["printings"][0]["cardmarket"]["mappingEvidence"]
+    assert mismatch_evidence["codeMatches"] is False
+    assert mismatch_evidence["nameMatches"] is True
+    assert mismatch_evidence["releaseMatches"] is True
+    assert mismatch_stats["cardmarketCodeDiscrepancies"][0]["cardmarketProductCode"] == "OP17-099"
 
     # Regression: Bandai printing identity is never rewritten by Cardmarket.
     # An explicit unresolved reprint mapping must not borrow the original price.
@@ -5139,6 +5304,7 @@ def main() -> None:
         prices_by_id,
         price_created_at,
         image_cache,
+        series_expansion_profiles=series_expansion_profiles,
     )
     bandai_catalogue_stats = dict(catalogue_stats)
     supplemental_stats = add_cardmarket_supplements(
@@ -5148,23 +5314,30 @@ def main() -> None:
         "bandaiCards": bandai_catalogue_stats["cards"],
         "bandaiPrintings": bandai_catalogue_stats["printings"],
         "bandaiPrintingsWithCardmarketMapping": bandai_catalogue_stats["printingsWithCardmarketMapping"],
-        "bandaiPrintingsWithCardmarketPrice": bandai_catalogue_stats["printingsWithCardmarketPrice"],
+        "bandaiPrintingsWithCardmarketPriceGuide": bandai_catalogue_stats["printingsWithCardmarketPriceGuide"],
+        "bandaiPrintingsWithCardmarketValuation": bandai_catalogue_stats["printingsWithCardmarketValuation"],
         "cardmarketOnlyCards": supplemental_stats["standardCards"],
         "cardmarketOnlyProducts": supplemental_stats["standardProducts"],
         "donCards": supplemental_stats["donCards"],
         "donProducts": supplemental_stats["donProducts"],
+        "cardmarketDirectProducts": supplemental_stats["standardProducts"] + supplemental_stats["donProducts"],
         "cards": len(catalog),
         "printings": sum(len(card.get("printings", [])) for card in catalog.values()),
-        "printingsWithCardmarketPrice": (
-            bandai_catalogue_stats["printingsWithCardmarketPrice"]
-            + supplemental_stats["standardProductsWithPrice"]
-            + supplemental_stats["donProductsWithPrice"]
+        "printingsWithCardmarketPriceGuide": (
+            bandai_catalogue_stats["printingsWithCardmarketPriceGuide"]
+            + supplemental_stats["standardProductsWithPriceGuide"]
+            + supplemental_stats["donProductsWithPriceGuide"]
+        ),
+        "printingsWithCardmarketValuation": (
+            bandai_catalogue_stats["printingsWithCardmarketValuation"]
+            + supplemental_stats["standardProductsWithValuation"]
+            + supplemental_stats["donProductsWithValuation"]
         ),
     })
 
     report = {
         "generatedAt": utc_now_iso(),
-        "schemaVersion": 4,
+        "schemaVersion": 5,
         "sources": {
             "bandai": {
                 "url": bandai_root.get("sourceUrl") if isinstance(bandai_root, dict) else None,
@@ -5243,7 +5416,9 @@ def main() -> None:
     print(f"- Productos solo Cardmarket: {catalogue_stats['cardmarketOnlyProducts']}")
     print(f"- Productos DON!!: {catalogue_stats['donProducts']}")
     print(f"- Bandai con mapping Cardmarket: {catalogue_stats['bandaiPrintingsWithCardmarketMapping']}")
-    print(f"- Con precio Cardmarket actual (total): {catalogue_stats['printingsWithCardmarketPrice']}")
+    print(f"- Con Price Guide Cardmarket (total): {catalogue_stats['printingsWithCardmarketPriceGuide']}")
+    print(f"- Con valoración EUR utilizable: {catalogue_stats['printingsWithCardmarketValuation']}")
+    print(f"- Discrepancias código Bandai/Cardmarket: {len(catalogue_stats.get('cardmarketCodeDiscrepancies', []))}")
     print(f"- Mappings pendientes de revisión: {len(review.get('needsReview', []))}")
     print(f"- Auto mappings añadidos: {len(review.get('autoMappingsAdded', []))}")
     print(f"- Alias semánticos migrados: {len(review.get('semanticAliasesMoved', []))}")
@@ -5253,13 +5428,13 @@ def main() -> None:
         f"{len(mapping_validation.get('quarantined', []))} en cuarentena"
     )
     print(
-        "- QA identidad Bandai V3.8: "
+        "- QA identidad Bandai V3.9: "
         f"{len(all_identity_quarantined)} detectadas / "
         f"{len(identity_quarantined_final)} siguen en cuarentena / "
         f"{len(identity_resolved_during_run)} resueltas en el run"
     )
     print(
-        "- QA drift semántico V3.8: "
+        "- QA drift semántico V3.9: "
         f"{len(review.get('semanticDriftQuarantined', []))} en cuarentena"
     )
     print(
