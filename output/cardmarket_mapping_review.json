@@ -1,349 +1,8 @@
 {
-  "generatedAt": "2026-09-10T14:49:28+00:00",
-  "autoMappingsAdded": [
-    {
-      "printingId": "P-070_R1",
-      "productId": 852499,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB02",
-      "idExpansion": 6242
-    }
-  ],
-  "semanticAliasesMoved": [
-    {
-      "printingId": "EB01-003_P5",
-      "productId": 865551,
-      "donorMappingKey": "EB01-003_P3",
-      "idExpansion": 6432,
-      "donorSemanticClass": "parallel",
-      "targetSemanticClass": "parallel",
-      "reason": "release-specific-semantic-drift"
-    },
-    {
-      "printingId": "OP06-093_P5",
-      "productId": 865553,
-      "donorMappingKey": "OP06-093_P4",
-      "idExpansion": 6432,
-      "donorSemanticClass": "parallel",
-      "targetSemanticClass": "parallel",
-      "reason": "release-specific-semantic-drift"
-    },
-    {
-      "printingId": "OP11-106_P2",
-      "productId": 880055,
-      "donorMappingKey": "OP11-106_P3",
-      "idExpansion": 6456,
-      "donorSemanticClass": "parallel",
-      "targetSemanticClass": "parallel",
-      "reason": "release-specific-semantic-drift"
-    },
-    {
-      "printingId": "P-057_P1",
-      "productId": 794635,
-      "donorMappingKey": "P-057",
-      "idExpansion": 5748,
-      "donorSemanticClass": "base",
-      "targetSemanticClass": "parallel",
-      "reason": "release-specific-semantic-drift"
-    },
-    {
-      "printingId": "P-058_P1",
-      "productId": 794636,
-      "donorMappingKey": "P-058",
-      "idExpansion": 5748,
-      "donorSemanticClass": "base",
-      "targetSemanticClass": "parallel",
-      "reason": "release-specific-semantic-drift"
-    },
-    {
-      "printingId": "P-059_P1",
-      "productId": 794637,
-      "donorMappingKey": "P-059",
-      "idExpansion": 5748,
-      "donorSemanticClass": "base",
-      "targetSemanticClass": "parallel",
-      "reason": "release-specific-semantic-drift"
-    },
-    {
-      "printingId": "P-060_P1",
-      "productId": 794638,
-      "donorMappingKey": "P-060",
-      "idExpansion": 5748,
-      "donorSemanticClass": "base",
-      "targetSemanticClass": "parallel",
-      "reason": "release-specific-semantic-drift"
-    }
-  ],
-  "semanticDriftQuarantined": [
-    {
-      "mappingKey": "OP01-041_P6",
-      "oldProductId": 799201,
-      "oldSource": "legacy-cardmarket-snapshot",
-      "reason": "ambiguous-release-specific-generic-mapping",
-      "productId": 799201,
-      "idExpansion": 5805,
-      "baseCode": "OP01-041",
-      "donorSemanticClass": "parallel",
-      "candidateBandaiPrintingIds": [
-        "OP01-041_P3",
-        "OP01-041_P4",
-        "OP01-041_P5",
-        "OP01-041_R1"
-      ]
-    },
-    {
-      "mappingKey": "OP02-117_P1",
-      "oldProductId": 799232,
-      "oldSource": "legacy-cardmarket-snapshot",
-      "reason": "ambiguous-release-specific-generic-mapping",
-      "productId": 799232,
-      "idExpansion": 5805,
-      "baseCode": "OP02-117",
-      "donorSemanticClass": "parallel",
-      "candidateBandaiPrintingIds": [
-        "OP02-117_P5",
-        "OP02-117_P6",
-        "OP02-117_R2"
-      ]
-    },
-    {
-      "mappingKey": "OP02-117_P2",
-      "oldProductId": 799233,
-      "oldSource": "legacy-cardmarket-snapshot",
-      "reason": "ambiguous-release-specific-generic-mapping",
-      "productId": 799233,
-      "idExpansion": 5805,
-      "baseCode": "OP02-117",
-      "donorSemanticClass": "parallel",
-      "candidateBandaiPrintingIds": [
-        "OP02-117_P5",
-        "OP02-117_P6",
-        "OP02-117_R2"
-      ]
-    },
-    {
-      "mappingKey": "OP03-003_P2",
-      "oldProductId": 799236,
-      "oldSource": "legacy-cardmarket-snapshot",
-      "reason": "ambiguous-release-specific-generic-mapping",
-      "productId": 799236,
-      "idExpansion": 5805,
-      "baseCode": "OP03-003",
-      "donorSemanticClass": "parallel",
-      "candidateBandaiPrintingIds": [
-        "OP03-003_P4",
-        "OP03-003_P5",
-        "OP03-003_P6",
-        "OP03-003_R2"
-      ]
-    },
-    {
-      "mappingKey": "OP03-079_P1",
-      "oldProductId": 799249,
-      "oldSource": "legacy-cardmarket-snapshot",
-      "reason": "ambiguous-release-specific-generic-mapping",
-      "productId": 799249,
-      "idExpansion": 5805,
-      "baseCode": "OP03-079",
-      "donorSemanticClass": "parallel",
-      "candidateBandaiPrintingIds": [
-        "OP03-079_P3",
-        "OP03-079_P4",
-        "OP03-079_R2"
-      ]
-    },
-    {
-      "mappingKey": "OP03-079_P2",
-      "oldProductId": 799250,
-      "oldSource": "legacy-cardmarket-snapshot",
-      "reason": "ambiguous-release-specific-generic-mapping",
-      "productId": 799250,
-      "idExpansion": 5805,
-      "baseCode": "OP03-079",
-      "donorSemanticClass": "parallel",
-      "candidateBandaiPrintingIds": [
-        "OP03-079_P3",
-        "OP03-079_P4",
-        "OP03-079_R2"
-      ]
-    },
-    {
-      "mappingKey": "OP03-089_P2",
-      "oldProductId": 799251,
-      "oldSource": "legacy-cardmarket-snapshot",
-      "reason": "ambiguous-release-specific-generic-mapping",
-      "productId": 799251,
-      "idExpansion": 5805,
-      "baseCode": "OP03-089",
-      "donorSemanticClass": "parallel",
-      "candidateBandaiPrintingIds": [
-        "OP03-089_P4",
-        "OP03-089_P5",
-        "OP03-089_P6",
-        "OP03-089_R2"
-      ]
-    },
-    {
-      "mappingKey": "OP03-089_P3",
-      "oldProductId": 799252,
-      "oldSource": "legacy-cardmarket-snapshot",
-      "reason": "ambiguous-release-specific-generic-mapping",
-      "productId": 799252,
-      "idExpansion": 5805,
-      "baseCode": "OP03-089",
-      "donorSemanticClass": "parallel",
-      "candidateBandaiPrintingIds": [
-        "OP03-089_P4",
-        "OP03-089_P5",
-        "OP03-089_P6",
-        "OP03-089_R2"
-      ]
-    },
-    {
-      "mappingKey": "OP03-110_P2",
-      "oldProductId": 799258,
-      "oldSource": "legacy-cardmarket-snapshot",
-      "reason": "ambiguous-release-specific-generic-mapping",
-      "productId": 799258,
-      "idExpansion": 5805,
-      "baseCode": "OP03-110",
-      "donorSemanticClass": "parallel",
-      "candidateBandaiPrintingIds": [
-        "OP03-110_P3",
-        "OP03-110_P4",
-        "OP03-110_P5",
-        "OP03-110_R2"
-      ]
-    },
-    {
-      "mappingKey": "OP03-116_P7",
-      "oldProductId": 799262,
-      "oldSource": "legacy-cardmarket-snapshot",
-      "reason": "ambiguous-release-specific-generic-mapping",
-      "productId": 799262,
-      "idExpansion": 5805,
-      "baseCode": "OP03-116",
-      "donorSemanticClass": "parallel",
-      "candidateBandaiPrintingIds": [
-        "OP03-116_P5",
-        "OP03-116_P6",
-        "OP03-116_R1"
-      ]
-    },
-    {
-      "mappingKey": "OP03-121_P2",
-      "oldProductId": 799264,
-      "oldSource": "legacy-cardmarket-snapshot",
-      "reason": "ambiguous-release-specific-generic-mapping",
-      "productId": 799264,
-      "idExpansion": 5805,
-      "baseCode": "OP03-121",
-      "donorSemanticClass": "parallel",
-      "candidateBandaiPrintingIds": [
-        "OP03-121_P3",
-        "OP03-121_P4",
-        "OP03-121_R2"
-      ]
-    },
-    {
-      "mappingKey": "OP06-065_P1",
-      "oldProductId": 799369,
-      "oldSource": "legacy-cardmarket-snapshot",
-      "reason": "ambiguous-release-specific-generic-mapping",
-      "productId": 799369,
-      "idExpansion": 5805,
-      "baseCode": "OP06-065",
-      "donorSemanticClass": "parallel",
-      "candidateBandaiPrintingIds": [
-        "OP06-065_P2",
-        "OP06-065_P3",
-        "OP06-065_P4",
-        "OP06-065_R1"
-      ]
-    },
-    {
-      "mappingKey": "P-070_P2",
-      "oldProductId": 852499,
-      "oldSource": "legacy-cardmarket-snapshot",
-      "reason": "release-specific-product-on-generic-id-target-already-mapped",
-      "productId": 852499,
-      "idExpansion": 6242,
-      "baseCode": "P-070",
-      "donorSemanticClass": "parallel",
-      "candidateBandaiPrintingIds": [
-        "P-070_P3",
-        "P-070_R1"
-      ],
-      "targetPrintingId": "P-070_P3",
-      "targetProductId": 852500
-    },
-    {
-      "mappingKey": "P-075_P1",
-      "oldProductId": 852505,
-      "oldSource": "legacy-cardmarket-snapshot",
-      "reason": "ambiguous-release-specific-generic-mapping",
-      "productId": 852505,
-      "idExpansion": 6242,
-      "baseCode": "P-075",
-      "donorSemanticClass": "parallel",
-      "candidateBandaiPrintingIds": [
-        "P-075",
-        "P-075_R1"
-      ]
-    },
-    {
-      "mappingKey": "P-075_P2",
-      "oldProductId": 852506,
-      "oldSource": "legacy-cardmarket-snapshot",
-      "reason": "ambiguous-release-specific-generic-mapping",
-      "productId": 852506,
-      "idExpansion": 6242,
-      "baseCode": "P-075",
-      "donorSemanticClass": "parallel",
-      "candidateBandaiPrintingIds": [
-        "P-075",
-        "P-075_R1"
-      ]
-    },
-    {
-      "mappingKey": "P-085_P1",
-      "oldProductId": 852517,
-      "oldSource": "legacy-cardmarket-snapshot",
-      "reason": "multiple-release-specific-donors-for-bandai-printing",
-      "productId": 852517,
-      "idExpansion": 6242,
-      "baseCode": "P-085",
-      "donorSemanticClass": "parallel",
-      "candidateBandaiPrintingIds": [
-        "P-085_P3",
-        "P-085_R1"
-      ],
-      "targetPrintingId": "P-085_P3",
-      "competingDonorKeys": [
-        "P-085_P1",
-        "P-085_P2"
-      ]
-    },
-    {
-      "mappingKey": "P-085_P2",
-      "oldProductId": 852518,
-      "oldSource": "auto-repair-mapping-consistency",
-      "reason": "multiple-release-specific-donors-for-bandai-printing",
-      "productId": 852518,
-      "idExpansion": 6242,
-      "baseCode": "P-085",
-      "donorSemanticClass": "parallel",
-      "candidateBandaiPrintingIds": [
-        "P-085_P3",
-        "P-085_R1"
-      ],
-      "targetPrintingId": "P-085_P3",
-      "competingDonorKeys": [
-        "P-085_P1",
-        "P-085_P2"
-      ]
-    }
-  ],
+  "generatedAt": "2026-09-10T15:54:09+00:00",
+  "autoMappingsAdded": [],
+  "semanticAliasesMoved": [],
+  "semanticDriftQuarantined": [],
   "inferredReleaseProfiles": {},
   "inferenceDiagnostics": {
     "OP17": {
@@ -543,8 +202,8 @@
     },
     "569016": {
       "value": 5748,
-      "count": 11,
-      "total": 11,
+      "count": 15,
+      "total": 15,
       "ratio": 1.0,
       "source": "bandai-current-series-mapping-majority",
       "seriesId": "569016",
@@ -917,8 +576,8 @@
     },
     "569114": {
       "value": 6432,
-      "count": 194,
-      "total": 194,
+      "count": 196,
+      "total": 196,
       "ratio": 1.0,
       "source": "bandai-current-series-mapping-majority",
       "seriesId": "569114",
@@ -929,9 +588,9 @@
     },
     "569115": {
       "value": 6456,
-      "count": 193,
+      "count": 194,
       "total": 194,
-      "ratio": 0.9948453608247423,
+      "ratio": 1.0,
       "source": "bandai-current-series-mapping-majority",
       "seriesId": "569115",
       "releaseCodes": [
@@ -996,8 +655,8 @@
     },
     "569302": {
       "value": 6242,
-      "count": 251,
-      "total": 251,
+      "count": 252,
+      "total": 252,
       "ratio": 1.0,
       "source": "bandai-current-series-mapping-majority",
       "seriesId": "569302",
