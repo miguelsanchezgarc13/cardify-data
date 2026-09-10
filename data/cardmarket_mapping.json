@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "description": "Persistent mapping from physical printing IDs to Cardmarket idProduct, including legacy release metadata used to disambiguate Bandai reprints. Prices are never stored here.",
-  "updatedAt": "2026-09-09T19:16:20+00:00",
+  "updatedAt": "2026-09-10T14:49:28+00:00",
   "mappings": {
     "EB01-001": {
       "productId": 767953,
@@ -116,10 +116,10 @@
       "dateAdded": "2025-08-04 09:45:31"
     },
     "EB01-003_P3": {
-      "productId": 865551,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Azure-Seas-Seven/Kid-Killer-EB01-003",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "alias-moved-to-current-bandai-id-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP14",
       "legacyName": "Kid & Killer",
@@ -129,7 +129,10 @@
       "productName": "Kid & Killer (EB01-003)",
       "idExpansion": 6432,
       "idMetacard": 430413,
-      "dateAdded": "2026-01-09 04:07:59"
+      "dateAdded": "2026-01-09 04:07:59",
+      "previousProductId": 865551,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Azure-Seas-Seven/Kid-Killer-EB01-003",
+      "aliasMovedTo": "EB01-003_P5"
     },
     "EB01-004": {
       "productId": 767958,
@@ -6364,10 +6367,10 @@
       "dateAdded": "2026-03-28 12:00:12"
     },
     "EB04-061_P2": {
-      "productId": 882469,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Special-Tournaments-Promos/MonkeyDLuffy-EB04-061-V1",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "auto-quarantine-bandai-identity-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "prize-cards",
       "legacyName": "Monkey.D.Luffy",
@@ -6377,7 +6380,27 @@
       "productName": "Monkey.D.Luffy (EB04-061)",
       "idExpansion": 5262,
       "idMetacard": 459457,
-      "dateAdded": "2026-04-08 15:29:02"
+      "dateAdded": "2026-04-08 15:29:02",
+      "invalidProductId": 882469,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Special-Tournaments-Promos/MonkeyDLuffy-EB04-061-V1",
+      "invalidReason": "bandai-series-expansion-not-plausible",
+      "validationEvidence": {
+        "releaseCodes": [
+          "OP17"
+        ],
+        "seriesIds": [
+          "569117"
+        ],
+        "seriesProfile": null,
+        "releaseProfile": null,
+        "plausibleExpansions": [
+          6492,
+          6723
+        ],
+        "currentExpansion": 5262,
+        "expectedExpansion": null,
+        "rule": "current-bandai-printing-must-match-release-expansion"
+      }
     },
     "OP01-001": {
       "productId": 690368,
@@ -8355,10 +8378,10 @@
       "dateAdded": "2024-11-07 09:00:49"
     },
     "OP01-041_P6": {
-      "productId": 799201,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Kouzuki-Momonosuke-OP01-041-V4",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "auto-quarantine-bandai-semantic-drift-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB01",
       "legacyName": "Kouzuki Momonosuke",
@@ -8368,7 +8391,23 @@
       "productName": "Kouzuki Momonosuke (OP01-041)",
       "idExpansion": 5805,
       "idMetacard": 415473,
-      "dateAdded": "2024-11-07 09:01:25"
+      "dateAdded": "2024-11-07 09:01:25",
+      "invalidProductId": 799201,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Kouzuki-Momonosuke-OP01-041-V4",
+      "invalidReason": "ambiguous-release-specific-generic-mapping",
+      "validationEvidence": {
+        "productId": 799201,
+        "idExpansion": 5805,
+        "baseCode": "OP01-041",
+        "donorSemanticClass": "parallel",
+        "candidateBandaiPrintingIds": [
+          "OP01-041_P3",
+          "OP01-041_P4",
+          "OP01-041_P5",
+          "OP01-041_R1"
+        ],
+        "rule": "ambiguous-release-specific-generic-mapping"
+      }
     },
     "OP01-041_R1": {
       "productId": null,
@@ -14520,10 +14559,10 @@
       "dateAdded": "2023-03-03 12:12:46"
     },
     "OP02-117_P1": {
-      "productId": 799232,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Ice-Age-OP02-117-V1",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "auto-quarantine-bandai-semantic-drift-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB01",
       "legacyName": "Ice Age",
@@ -14533,13 +14572,28 @@
       "productName": "Ice Age (OP02-117)",
       "idExpansion": 5805,
       "idMetacard": 417374,
-      "dateAdded": "2024-11-07 10:16:15"
+      "dateAdded": "2024-11-07 10:16:15",
+      "invalidProductId": 799232,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Ice-Age-OP02-117-V1",
+      "invalidReason": "ambiguous-release-specific-generic-mapping",
+      "validationEvidence": {
+        "productId": 799232,
+        "idExpansion": 5805,
+        "baseCode": "OP02-117",
+        "donorSemanticClass": "parallel",
+        "candidateBandaiPrintingIds": [
+          "OP02-117_P5",
+          "OP02-117_P6",
+          "OP02-117_R2"
+        ],
+        "rule": "ambiguous-release-specific-generic-mapping"
+      }
     },
     "OP02-117_P2": {
-      "productId": 799233,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Ice-Age-OP02-117-V2",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "auto-quarantine-bandai-semantic-drift-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB01",
       "legacyName": "Ice Age",
@@ -14549,7 +14603,22 @@
       "productName": "Ice Age (OP02-117)",
       "idExpansion": 5805,
       "idMetacard": 417374,
-      "dateAdded": "2024-11-07 10:16:25"
+      "dateAdded": "2024-11-07 10:16:25",
+      "invalidProductId": 799233,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Ice-Age-OP02-117-V2",
+      "invalidReason": "ambiguous-release-specific-generic-mapping",
+      "validationEvidence": {
+        "productId": 799233,
+        "idExpansion": 5805,
+        "baseCode": "OP02-117",
+        "donorSemanticClass": "parallel",
+        "candidateBandaiPrintingIds": [
+          "OP02-117_P5",
+          "OP02-117_P6",
+          "OP02-117_R2"
+        ],
+        "rule": "ambiguous-release-specific-generic-mapping"
+      }
     },
     "OP02-117_P3": {
       "productId": 768044,
@@ -14861,10 +14930,10 @@
       "dateAdded": "2024-06-21 09:45:00"
     },
     "OP03-003_P2": {
-      "productId": 799236,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Izo-OP03-003-V1",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "auto-quarantine-bandai-semantic-drift-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB01",
       "legacyName": "Izo",
@@ -14874,7 +14943,23 @@
       "productName": "Izo (OP03-003)",
       "idExpansion": 5805,
       "idMetacard": 421270,
-      "dateAdded": "2024-11-07 11:13:18"
+      "dateAdded": "2024-11-07 11:13:18",
+      "invalidProductId": 799236,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Izo-OP03-003-V1",
+      "invalidReason": "ambiguous-release-specific-generic-mapping",
+      "validationEvidence": {
+        "productId": 799236,
+        "idExpansion": 5805,
+        "baseCode": "OP03-003",
+        "donorSemanticClass": "parallel",
+        "candidateBandaiPrintingIds": [
+          "OP03-003_P4",
+          "OP03-003_P5",
+          "OP03-003_P6",
+          "OP03-003_R2"
+        ],
+        "rule": "ambiguous-release-specific-generic-mapping"
+      }
     },
     "OP03-003_P3": {
       "productId": null,
@@ -17162,10 +17247,10 @@
       "dateAdded": "2023-06-24 12:09:01"
     },
     "OP03-079_P1": {
-      "productId": 799249,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Vergo-OP03-079-V1",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "auto-quarantine-bandai-semantic-drift-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB01",
       "legacyName": "Vergo",
@@ -17175,13 +17260,28 @@
       "productName": "Vergo (OP03-079)",
       "idExpansion": 5805,
       "idMetacard": 421347,
-      "dateAdded": "2024-11-07 11:23:18"
+      "dateAdded": "2024-11-07 11:23:18",
+      "invalidProductId": 799249,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Vergo-OP03-079-V1",
+      "invalidReason": "ambiguous-release-specific-generic-mapping",
+      "validationEvidence": {
+        "productId": 799249,
+        "idExpansion": 5805,
+        "baseCode": "OP03-079",
+        "donorSemanticClass": "parallel",
+        "candidateBandaiPrintingIds": [
+          "OP03-079_P3",
+          "OP03-079_P4",
+          "OP03-079_R2"
+        ],
+        "rule": "ambiguous-release-specific-generic-mapping"
+      }
     },
     "OP03-079_P2": {
-      "productId": 799250,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Vergo-OP03-079-V2",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "auto-quarantine-bandai-semantic-drift-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB01",
       "legacyName": "Vergo",
@@ -17191,7 +17291,22 @@
       "productName": "Vergo (OP03-079)",
       "idExpansion": 5805,
       "idMetacard": 421347,
-      "dateAdded": "2024-11-07 11:23:35"
+      "dateAdded": "2024-11-07 11:23:35",
+      "invalidProductId": 799250,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Vergo-OP03-079-V2",
+      "invalidReason": "ambiguous-release-specific-generic-mapping",
+      "validationEvidence": {
+        "productId": 799250,
+        "idExpansion": 5805,
+        "baseCode": "OP03-079",
+        "donorSemanticClass": "parallel",
+        "candidateBandaiPrintingIds": [
+          "OP03-079_P3",
+          "OP03-079_P4",
+          "OP03-079_R2"
+        ],
+        "rule": "ambiguous-release-specific-generic-mapping"
+      }
     },
     "OP03-079_R1": {
       "productId": null,
@@ -17538,10 +17653,10 @@
       "dateAdded": "2024-03-24 23:47:15"
     },
     "OP03-089_P2": {
-      "productId": 799251,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Brannew-OP03-089-V1",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "auto-quarantine-bandai-semantic-drift-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB01",
       "legacyName": "Brannew",
@@ -17551,13 +17666,29 @@
       "productName": "Brannew (OP03-089)",
       "idExpansion": 5805,
       "idMetacard": 421354,
-      "dateAdded": "2024-11-07 11:25:03"
+      "dateAdded": "2024-11-07 11:25:03",
+      "invalidProductId": 799251,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Brannew-OP03-089-V1",
+      "invalidReason": "ambiguous-release-specific-generic-mapping",
+      "validationEvidence": {
+        "productId": 799251,
+        "idExpansion": 5805,
+        "baseCode": "OP03-089",
+        "donorSemanticClass": "parallel",
+        "candidateBandaiPrintingIds": [
+          "OP03-089_P4",
+          "OP03-089_P5",
+          "OP03-089_P6",
+          "OP03-089_R2"
+        ],
+        "rule": "ambiguous-release-specific-generic-mapping"
+      }
     },
     "OP03-089_P3": {
-      "productId": 799252,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Brannew-OP03-089-V2",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "auto-quarantine-bandai-semantic-drift-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB01",
       "legacyName": "Brannew",
@@ -17567,7 +17698,23 @@
       "productName": "Brannew (OP03-089)",
       "idExpansion": 5805,
       "idMetacard": 421354,
-      "dateAdded": "2024-11-07 11:25:31"
+      "dateAdded": "2024-11-07 11:25:31",
+      "invalidProductId": 799252,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Brannew-OP03-089-V2",
+      "invalidReason": "ambiguous-release-specific-generic-mapping",
+      "validationEvidence": {
+        "productId": 799252,
+        "idExpansion": 5805,
+        "baseCode": "OP03-089",
+        "donorSemanticClass": "parallel",
+        "candidateBandaiPrintingIds": [
+          "OP03-089_P4",
+          "OP03-089_P5",
+          "OP03-089_P6",
+          "OP03-089_R2"
+        ],
+        "rule": "ambiguous-release-specific-generic-mapping"
+      }
     },
     "OP03-089_P4": {
       "productId": 799253,
@@ -18288,10 +18435,10 @@
       "addedAt": "2026-09-09T10:20:32+00:00"
     },
     "OP03-110_P2": {
-      "productId": 799258,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Charlotte-Smoothie-OP03-110-V2",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "auto-quarantine-bandai-semantic-drift-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB01",
       "legacyName": "Charlotte Smoothie",
@@ -18301,7 +18448,23 @@
       "productName": "Charlotte Smoothie (OP03-110)",
       "idExpansion": 5805,
       "idMetacard": 421372,
-      "dateAdded": "2024-11-07 11:29:47"
+      "dateAdded": "2024-11-07 11:29:47",
+      "invalidProductId": 799258,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Charlotte-Smoothie-OP03-110-V2",
+      "invalidReason": "ambiguous-release-specific-generic-mapping",
+      "validationEvidence": {
+        "productId": 799258,
+        "idExpansion": 5805,
+        "baseCode": "OP03-110",
+        "donorSemanticClass": "parallel",
+        "candidateBandaiPrintingIds": [
+          "OP03-110_P3",
+          "OP03-110_P4",
+          "OP03-110_P5",
+          "OP03-110_R2"
+        ],
+        "rule": "ambiguous-release-specific-generic-mapping"
+      }
     },
     "OP03-110_P3": {
       "productId": 799259,
@@ -18832,10 +18995,10 @@
       "addedAt": "2026-09-09T10:20:32+00:00"
     },
     "OP03-116_P7": {
-      "productId": 799262,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Shirahoshi-OP03-116-V2",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "auto-quarantine-bandai-semantic-drift-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB01",
       "legacyName": "Shirahoshi",
@@ -18845,7 +19008,22 @@
       "productName": "Shirahoshi (OP03-116)",
       "idExpansion": 5805,
       "idMetacard": 421375,
-      "dateAdded": "2024-11-07 11:32:03"
+      "dateAdded": "2024-11-07 11:32:03",
+      "invalidProductId": 799262,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Shirahoshi-OP03-116-V2",
+      "invalidReason": "ambiguous-release-specific-generic-mapping",
+      "validationEvidence": {
+        "productId": 799262,
+        "idExpansion": 5805,
+        "baseCode": "OP03-116",
+        "donorSemanticClass": "parallel",
+        "candidateBandaiPrintingIds": [
+          "OP03-116_P5",
+          "OP03-116_P6",
+          "OP03-116_R1"
+        ],
+        "rule": "ambiguous-release-specific-generic-mapping"
+      }
     },
     "OP03-116_P8": {
       "productId": 786100,
@@ -18980,10 +19158,10 @@
       "addedAt": "2026-09-09T10:20:32+00:00"
     },
     "OP03-121_P2": {
-      "productId": 799264,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Thunder-Bolt-OP03-121-V2",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "auto-quarantine-bandai-semantic-drift-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB01",
       "legacyName": "Thunder Bolt",
@@ -18993,7 +19171,22 @@
       "productName": "Thunder Bolt (OP03-121)",
       "idExpansion": 5805,
       "idMetacard": 421380,
-      "dateAdded": "2024-11-07 11:33:01"
+      "dateAdded": "2024-11-07 11:33:01",
+      "invalidProductId": 799264,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Thunder-Bolt-OP03-121-V2",
+      "invalidReason": "ambiguous-release-specific-generic-mapping",
+      "validationEvidence": {
+        "productId": 799264,
+        "idExpansion": 5805,
+        "baseCode": "OP03-121",
+        "donorSemanticClass": "parallel",
+        "candidateBandaiPrintingIds": [
+          "OP03-121_P3",
+          "OP03-121_P4",
+          "OP03-121_R2"
+        ],
+        "rule": "ambiguous-release-specific-generic-mapping"
+      }
     },
     "OP03-121_P3": {
       "productId": null,
@@ -29772,10 +29965,10 @@
       "dateAdded": "2024-03-07 22:04:00"
     },
     "OP06-065_P1": {
-      "productId": 799369,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Vinsmoke-Niji-OP06-065-V1",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "auto-quarantine-bandai-semantic-drift-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB01",
       "legacyName": "Vinsmoke Niji",
@@ -29785,7 +29978,23 @@
       "productName": "Vinsmoke Niji (OP06-065)",
       "idExpansion": 5805,
       "idMetacard": 428287,
-      "dateAdded": "2024-11-07 16:17:33"
+      "dateAdded": "2024-11-07 16:17:33",
+      "invalidProductId": 799369,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Vinsmoke-Niji-OP06-065-V1",
+      "invalidReason": "ambiguous-release-specific-generic-mapping",
+      "validationEvidence": {
+        "productId": 799369,
+        "idExpansion": 5805,
+        "baseCode": "OP06-065",
+        "donorSemanticClass": "parallel",
+        "candidateBandaiPrintingIds": [
+          "OP06-065_P2",
+          "OP06-065_P3",
+          "OP06-065_P4",
+          "OP06-065_R1"
+        ],
+        "rule": "ambiguous-release-specific-generic-mapping"
+      }
     },
     "OP06-065_P2": {
       "productId": 799370,
@@ -31058,10 +31267,10 @@
       "dateAdded": "2024-07-26 06:53:08"
     },
     "OP06-093_P4": {
-      "productId": 865553,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Azure-Seas-Seven/Perona-OP06-093",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "alias-moved-to-current-bandai-id-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP14",
       "legacyName": "Perona",
@@ -31071,7 +31280,10 @@
       "productName": "Perona (OP06-093)",
       "idExpansion": 6432,
       "idMetacard": 428315,
-      "dateAdded": "2026-01-09 04:09:27"
+      "dateAdded": "2026-01-09 04:09:27",
+      "previousProductId": 865553,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Azure-Seas-Seven/Perona-OP06-093",
+      "aliasMovedTo": "OP06-093_P5"
     },
     "OP06-094": {
       "productId": 760597,
@@ -49753,26 +49965,52 @@
       "dateAdded": "2025-05-27 15:03:37"
     },
     "OP11-106_P2": {
-      "productId": 825209,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Unnumbered-Promos/Zeus-OP11-106-V1",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": 880055,
+      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Adventure-on-Kamis-Island/Zeus-OP11-106",
+      "confirmed": false,
+      "source": "auto-bandai-release-semantic-alias-v37",
       "sourceSnapshotDate": "2026-08-04",
-      "legacySet": "misc-promos",
+      "legacySet": "OP15",
       "legacyName": "Zeus",
       "legacyRarity": "Alternate Art",
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP11/OP11-106_p2_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Zeus (OP11-106)",
-      "idExpansion": 5303,
+      "idExpansion": 6456,
       "idMetacard": 447207,
-      "dateAdded": "2025-05-14 16:03:30"
+      "dateAdded": "2026-03-29 14:18:41",
+      "validationEvidence": {
+        "targetBandaiProfile": {
+          "value": 6456,
+          "count": 193,
+          "total": 194,
+          "ratio": 0.9948453608247423,
+          "source": "bandai-current-series-mapping-majority",
+          "seriesId": "569115",
+          "releaseCodes": [
+            "EB04",
+            "OP15"
+          ],
+          "evidenceKind": "bandai-series",
+          "seriesIds": [
+            "569115"
+          ]
+        },
+        "donorMappingKey": "OP11-106_P3",
+        "donorSemanticClass": "parallel",
+        "targetSemanticClass": "parallel",
+        "idExpansion": 6456,
+        "rule": "unique-release-specific-product-moved-to-current-bandai-printing"
+      },
+      "supersededProductId": 825209,
+      "supersededUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Unnumbered-Promos/Zeus-OP11-106-V1",
+      "previousLegacySet": "misc-promos"
     },
     "OP11-106_P3": {
-      "productId": 880055,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Adventure-on-Kamis-Island/Zeus-OP11-106",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "alias-moved-to-current-bandai-id-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "OP15",
       "legacyName": "Zeus",
@@ -49782,7 +50020,10 @@
       "productName": "Zeus (OP11-106)",
       "idExpansion": 6456,
       "idMetacard": 447207,
-      "dateAdded": "2026-03-29 14:18:41"
+      "dateAdded": "2026-03-29 14:18:41",
+      "previousProductId": 880055,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Adventure-on-Kamis-Island/Zeus-OP11-106",
+      "aliasMovedTo": "OP11-106_P2"
     },
     "OP11-107": {
       "productId": 827245,
@@ -65580,10 +65821,10 @@
       "dateAdded": "2024-05-02 10:55:26"
     },
     "P-057": {
-      "productId": 794635,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Fleeting-Lullaby-P-057",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "alias-moved-to-current-bandai-id-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "uta-deck-battle-participation-pack",
       "legacyName": "Fleeting Lullaby",
@@ -65593,13 +65834,16 @@
       "productName": "Fleeting Lullaby (P-057)",
       "idExpansion": 5748,
       "idMetacard": 429247,
-      "dateAdded": "2024-10-24 03:47:16"
+      "dateAdded": "2024-10-24 03:47:16",
+      "previousProductId": 794635,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Fleeting-Lullaby-P-057",
+      "aliasMovedTo": "P-057_P1"
     },
     "P-057_P1": {
-      "productId": null,
-      "url": null,
+      "productId": 794635,
+      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Fleeting-Lullaby-P-057",
       "confirmed": false,
-      "source": "quarantined-cardmarket-url-expansion-mismatch",
+      "source": "auto-bandai-release-semantic-alias-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "ST16",
       "legacyName": "Fleeting Lullaby",
@@ -65607,29 +65851,39 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-057_p1_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Fleeting Lullaby (P-057)",
-      "idExpansion": 5230,
+      "idExpansion": 5748,
       "idMetacard": 429247,
-      "dateAdded": "2024-02-02 23:32:20",
-      "invalidProductId": 754827,
-      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/Fleeting-Lullaby-P-057",
-      "invalidReason": "cardmarket-url-expansion-mismatch",
+      "dateAdded": "2024-10-24 03:47:16",
       "validationEvidence": {
-        "currentExpansion": 5230,
-        "urlSlug": "starter-deck-green-uta",
-        "legacySet": "ST16",
-        "currentExpansionUrlProfile": {
-          "value": "promos",
-          "count": 143,
-          "total": 148,
-          "ratio": 0.9662162162162162
-        }
-      }
+        "targetBandaiProfile": {
+          "value": 5748,
+          "count": 11,
+          "total": 11,
+          "ratio": 1.0,
+          "source": "bandai-current-series-mapping-majority",
+          "seriesId": "569016",
+          "releaseCodes": [
+            "ST16"
+          ],
+          "evidenceKind": "bandai-series",
+          "seriesIds": [
+            "569016"
+          ]
+        },
+        "donorMappingKey": "P-057",
+        "donorSemanticClass": "base",
+        "targetSemanticClass": "parallel",
+        "idExpansion": 5748,
+        "rule": "unique-release-specific-product-moved-to-current-bandai-printing"
+      },
+      "supersededProductId": 754827,
+      "supersededUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/Fleeting-Lullaby-P-057"
     },
     "P-058": {
-      "productId": 794636,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Where-the-Wind-Blows-P-058",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "alias-moved-to-current-bandai-id-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "uta-deck-battle-participation-pack",
       "legacyName": "Where the Wind Blows",
@@ -65639,13 +65893,16 @@
       "productName": "Where the Wind Blows (P-058)",
       "idExpansion": 5748,
       "idMetacard": 429248,
-      "dateAdded": "2024-10-24 03:47:38"
+      "dateAdded": "2024-10-24 03:47:38",
+      "previousProductId": 794636,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Where-the-Wind-Blows-P-058",
+      "aliasMovedTo": "P-058_P1"
     },
     "P-058_P1": {
-      "productId": null,
-      "url": null,
+      "productId": 794636,
+      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Where-the-Wind-Blows-P-058",
       "confirmed": false,
-      "source": "quarantined-cardmarket-url-expansion-mismatch",
+      "source": "auto-bandai-release-semantic-alias-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "ST16",
       "legacyName": "Where the Wind Blows",
@@ -65653,29 +65910,39 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-058_p1_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Where the Wind Blows (P-058)",
-      "idExpansion": 5230,
+      "idExpansion": 5748,
       "idMetacard": 429248,
-      "dateAdded": "2024-02-02 23:34:21",
-      "invalidProductId": 754830,
-      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/Where-the-Wind-Blows-P-058",
-      "invalidReason": "cardmarket-url-expansion-mismatch",
+      "dateAdded": "2024-10-24 03:47:38",
       "validationEvidence": {
-        "currentExpansion": 5230,
-        "urlSlug": "starter-deck-green-uta",
-        "legacySet": "ST16",
-        "currentExpansionUrlProfile": {
-          "value": "promos",
-          "count": 143,
-          "total": 148,
-          "ratio": 0.9662162162162162
-        }
-      }
+        "targetBandaiProfile": {
+          "value": 5748,
+          "count": 11,
+          "total": 11,
+          "ratio": 1.0,
+          "source": "bandai-current-series-mapping-majority",
+          "seriesId": "569016",
+          "releaseCodes": [
+            "ST16"
+          ],
+          "evidenceKind": "bandai-series",
+          "seriesIds": [
+            "569016"
+          ]
+        },
+        "donorMappingKey": "P-058",
+        "donorSemanticClass": "base",
+        "targetSemanticClass": "parallel",
+        "idExpansion": 5748,
+        "rule": "unique-release-specific-product-moved-to-current-bandai-printing"
+      },
+      "supersededProductId": 754830,
+      "supersededUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/Where-the-Wind-Blows-P-058"
     },
     "P-059": {
-      "productId": 794637,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/The-Worlds-Continuation-P-059",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "alias-moved-to-current-bandai-id-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "uta-deck-battle-participation-pack",
       "legacyName": "The World's Continuation",
@@ -65685,13 +65952,16 @@
       "productName": "The World's Continuation (P-059)",
       "idExpansion": 5748,
       "idMetacard": 429249,
-      "dateAdded": "2024-10-24 03:48:36"
+      "dateAdded": "2024-10-24 03:48:36",
+      "previousProductId": 794637,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/The-Worlds-Continuation-P-059",
+      "aliasMovedTo": "P-059_P1"
     },
     "P-059_P1": {
-      "productId": null,
-      "url": null,
+      "productId": 794637,
+      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/The-Worlds-Continuation-P-059",
       "confirmed": false,
-      "source": "quarantined-cardmarket-url-expansion-mismatch",
+      "source": "auto-bandai-release-semantic-alias-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "ST16",
       "legacyName": "The World's Continuation",
@@ -65699,29 +65969,39 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-059_p1_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "The World's Continuation (P-059)",
-      "idExpansion": 5230,
+      "idExpansion": 5748,
       "idMetacard": 429249,
-      "dateAdded": "2024-02-02 23:33:30",
-      "invalidProductId": 754828,
-      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/The-Worlds-Continuation-P-059",
-      "invalidReason": "cardmarket-url-expansion-mismatch",
+      "dateAdded": "2024-10-24 03:48:36",
       "validationEvidence": {
-        "currentExpansion": 5230,
-        "urlSlug": "starter-deck-green-uta",
-        "legacySet": "ST16",
-        "currentExpansionUrlProfile": {
-          "value": "promos",
-          "count": 143,
-          "total": 148,
-          "ratio": 0.9662162162162162
-        }
-      }
+        "targetBandaiProfile": {
+          "value": 5748,
+          "count": 11,
+          "total": 11,
+          "ratio": 1.0,
+          "source": "bandai-current-series-mapping-majority",
+          "seriesId": "569016",
+          "releaseCodes": [
+            "ST16"
+          ],
+          "evidenceKind": "bandai-series",
+          "seriesIds": [
+            "569016"
+          ]
+        },
+        "donorMappingKey": "P-059",
+        "donorSemanticClass": "base",
+        "targetSemanticClass": "parallel",
+        "idExpansion": 5748,
+        "rule": "unique-release-specific-product-moved-to-current-bandai-printing"
+      },
+      "supersededProductId": 754828,
+      "supersededUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/The-Worlds-Continuation-P-059"
     },
     "P-060": {
-      "productId": 794638,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Tot-Musica-P-060",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "alias-moved-to-current-bandai-id-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "uta-deck-battle-participation-pack",
       "legacyName": "Tot Musica",
@@ -65731,13 +66011,16 @@
       "productName": "Tot Musica (P-060)",
       "idExpansion": 5748,
       "idMetacard": 429250,
-      "dateAdded": "2024-10-24 03:48:58"
+      "dateAdded": "2024-10-24 03:48:58",
+      "previousProductId": 794638,
+      "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Tot-Musica-P-060",
+      "aliasMovedTo": "P-060_P1"
     },
     "P-060_P1": {
-      "productId": null,
-      "url": null,
+      "productId": 794638,
+      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Tot-Musica-P-060",
       "confirmed": false,
-      "source": "quarantined-cardmarket-url-expansion-mismatch",
+      "source": "auto-bandai-release-semantic-alias-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "ST16",
       "legacyName": "Tot Musica",
@@ -65745,23 +66028,33 @@
       "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-060_p1_EN.webp",
       "addedAt": "2026-09-09T10:20:32+00:00",
       "productName": "Tot Musica (P-060)",
-      "idExpansion": 5230,
+      "idExpansion": 5748,
       "idMetacard": 429250,
-      "dateAdded": "2024-02-02 23:33:55",
-      "invalidProductId": 754829,
-      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/Tot-Musica-P-060",
-      "invalidReason": "cardmarket-url-expansion-mismatch",
+      "dateAdded": "2024-10-24 03:48:58",
       "validationEvidence": {
-        "currentExpansion": 5230,
-        "urlSlug": "starter-deck-green-uta",
-        "legacySet": "ST16",
-        "currentExpansionUrlProfile": {
-          "value": "promos",
-          "count": 143,
-          "total": 148,
-          "ratio": 0.9662162162162162
-        }
-      }
+        "targetBandaiProfile": {
+          "value": 5748,
+          "count": 11,
+          "total": 11,
+          "ratio": 1.0,
+          "source": "bandai-current-series-mapping-majority",
+          "seriesId": "569016",
+          "releaseCodes": [
+            "ST16"
+          ],
+          "evidenceKind": "bandai-series",
+          "seriesIds": [
+            "569016"
+          ]
+        },
+        "donorMappingKey": "P-060",
+        "donorSemanticClass": "base",
+        "targetSemanticClass": "parallel",
+        "idExpansion": 5748,
+        "rule": "unique-release-specific-product-moved-to-current-bandai-printing"
+      },
+      "supersededProductId": 754829,
+      "supersededUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/Tot-Musica-P-060"
     },
     "P-061": {
       "productId": 754831,
@@ -66195,10 +66488,10 @@
       "dateAdded": "2025-08-12 22:10:50"
     },
     "P-070_P2": {
-      "productId": 852499,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Carrot-P-070-V1",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "auto-quarantine-bandai-semantic-drift-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB02",
       "legacyName": "Carrot",
@@ -66208,7 +66501,23 @@
       "productName": "Carrot (P-070)",
       "idExpansion": 6242,
       "idMetacard": 445265,
-      "dateAdded": "2025-10-01 23:46:25"
+      "dateAdded": "2025-10-01 23:46:25",
+      "invalidProductId": 852499,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Carrot-P-070-V1",
+      "invalidReason": "release-specific-product-on-generic-id-target-already-mapped",
+      "validationEvidence": {
+        "productId": 852499,
+        "idExpansion": 6242,
+        "baseCode": "P-070",
+        "donorSemanticClass": "parallel",
+        "candidateBandaiPrintingIds": [
+          "P-070_P3",
+          "P-070_R1"
+        ],
+        "targetPrintingId": "P-070_P3",
+        "targetProductId": 852500,
+        "rule": "release-specific-product-on-generic-id-target-already-mapped"
+      }
     },
     "P-070_P3": {
       "productId": 852500,
@@ -66425,10 +66734,10 @@
       "addedAt": "2026-09-09T10:20:32+00:00"
     },
     "P-075_P1": {
-      "productId": 852505,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/MonkeyDLuffy-P-075-V1",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "auto-quarantine-bandai-semantic-drift-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB02",
       "legacyName": "Monkey.D.Luffy",
@@ -66438,13 +66747,27 @@
       "productName": "Monkey.D.Luffy (P-075)",
       "idExpansion": 6242,
       "idMetacard": 441082,
-      "dateAdded": "2025-10-01 23:49:16"
+      "dateAdded": "2025-10-01 23:49:16",
+      "invalidProductId": 852505,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/MonkeyDLuffy-P-075-V1",
+      "invalidReason": "ambiguous-release-specific-generic-mapping",
+      "validationEvidence": {
+        "productId": 852505,
+        "idExpansion": 6242,
+        "baseCode": "P-075",
+        "donorSemanticClass": "parallel",
+        "candidateBandaiPrintingIds": [
+          "P-075",
+          "P-075_R1"
+        ],
+        "rule": "ambiguous-release-specific-generic-mapping"
+      }
     },
     "P-075_P2": {
-      "productId": 852506,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/MonkeyDLuffy-P-075-V2",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "auto-quarantine-bandai-semantic-drift-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB02",
       "legacyName": "Monkey.D.Luffy",
@@ -66454,7 +66777,21 @@
       "productName": "Monkey.D.Luffy (P-075)",
       "idExpansion": 6242,
       "idMetacard": 441082,
-      "dateAdded": "2025-10-01 23:49:24"
+      "dateAdded": "2025-10-01 23:49:24",
+      "invalidProductId": 852506,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/MonkeyDLuffy-P-075-V2",
+      "invalidReason": "ambiguous-release-specific-generic-mapping",
+      "validationEvidence": {
+        "productId": 852506,
+        "idExpansion": 6242,
+        "baseCode": "P-075",
+        "donorSemanticClass": "parallel",
+        "candidateBandaiPrintingIds": [
+          "P-075",
+          "P-075_R1"
+        ],
+        "rule": "ambiguous-release-specific-generic-mapping"
+      }
     },
     "P-075_P3": {
       "productId": null,
@@ -66912,10 +67249,10 @@
       "supersededUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Buggy-P-084"
     },
     "P-084_P1": {
-      "productId": 817503,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Special-Tournaments-Promos/Buggy-P-084",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "auto-quarantine-bandai-identity-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "prize-cards",
       "legacyName": "Buggy",
@@ -66925,7 +67262,27 @@
       "productName": "Buggy (P-084)",
       "idExpansion": 5262,
       "idMetacard": 444095,
-      "dateAdded": "2025-03-15 00:06:30"
+      "dateAdded": "2025-03-15 00:06:30",
+      "invalidProductId": 817503,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Special-Tournaments-Promos/Buggy-P-084",
+      "invalidReason": "bandai-series-expansion-not-plausible",
+      "validationEvidence": {
+        "releaseCodes": [
+          "OP17"
+        ],
+        "seriesIds": [
+          "569117"
+        ],
+        "seriesProfile": null,
+        "releaseProfile": null,
+        "plausibleExpansions": [
+          6492,
+          6723
+        ],
+        "currentExpansion": 5262,
+        "expectedExpansion": null,
+        "rule": "current-bandai-printing-must-match-release-expansion"
+      }
     },
     "P-084_R1": {
       "productId": null,
@@ -66973,10 +67330,10 @@
       }
     },
     "P-085_P1": {
-      "productId": 852517,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Jewelry-Bonney-P-085-V1",
-      "confirmed": true,
-      "source": "legacy-cardmarket-snapshot",
+      "productId": null,
+      "url": null,
+      "confirmed": false,
+      "source": "auto-quarantine-bandai-semantic-drift-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB02",
       "legacyName": "Jewelry Bonney",
@@ -66986,13 +67343,32 @@
       "productName": "Jewelry Bonney (P-085)",
       "idExpansion": 6242,
       "idMetacard": 444118,
-      "dateAdded": "2025-10-01 23:52:16"
+      "dateAdded": "2025-10-01 23:52:16",
+      "invalidProductId": 852517,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Jewelry-Bonney-P-085-V1",
+      "invalidReason": "multiple-release-specific-donors-for-bandai-printing",
+      "validationEvidence": {
+        "productId": 852517,
+        "idExpansion": 6242,
+        "baseCode": "P-085",
+        "donorSemanticClass": "parallel",
+        "candidateBandaiPrintingIds": [
+          "P-085_P3",
+          "P-085_R1"
+        ],
+        "targetPrintingId": "P-085_P3",
+        "competingDonorKeys": [
+          "P-085_P1",
+          "P-085_P2"
+        ],
+        "rule": "multiple-release-specific-donors-for-bandai-printing"
+      }
     },
     "P-085_P2": {
-      "productId": 852518,
-      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Jewelry-Bonney-P-085-V2",
+      "productId": null,
+      "url": null,
       "confirmed": false,
-      "source": "auto-repair-mapping-consistency",
+      "source": "auto-quarantine-bandai-semantic-drift-v37",
       "sourceSnapshotDate": "2026-08-04",
       "legacySet": "PRB02",
       "legacyName": "Jewelry Bonney",
@@ -67006,6 +67382,25 @@
       "previousProductId": 840666,
       "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Jewelry-Bonney-P-085-V2",
       "validationEvidence": {
+        "productId": 852518,
+        "idExpansion": 6242,
+        "baseCode": "P-085",
+        "donorSemanticClass": "parallel",
+        "candidateBandaiPrintingIds": [
+          "P-085_P3",
+          "P-085_R1"
+        ],
+        "targetPrintingId": "P-085_P3",
+        "competingDonorKeys": [
+          "P-085_P1",
+          "P-085_P2"
+        ],
+        "rule": "multiple-release-specific-donors-for-bandai-printing"
+      },
+      "invalidProductId": 852518,
+      "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Jewelry-Bonney-P-085-V2",
+      "invalidReason": "multiple-release-specific-donors-for-bandai-printing",
+      "previousValidationEvidence": {
         "currentExpansion": 5230,
         "urlSlug": "the-best-vol2",
         "legacySet": "PRB02",
@@ -84188,6 +84583,98 @@
         },
         "normalizedName": "koala",
         "rule": "unique-unused-product-name-in-bandai-release-expansion"
+      }
+    },
+    "EB01-003_P5": {
+      "legacySet": "OP14",
+      "productId": 865551,
+      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Azure-Seas-Seven/Kid-Killer-EB01-003",
+      "confirmed": false,
+      "source": "auto-bandai-release-semantic-alias-v37",
+      "addedAt": "2026-09-10T14:49:06+00:00",
+      "productName": "Kid & Killer (EB01-003)",
+      "idExpansion": 6432,
+      "idMetacard": 430413,
+      "dateAdded": "2026-01-09 04:07:59",
+      "validationEvidence": {
+        "targetBandaiProfile": {
+          "value": 6432,
+          "count": 194,
+          "total": 194,
+          "ratio": 1.0,
+          "source": "bandai-current-series-mapping-majority",
+          "seriesId": "569114",
+          "releaseCodes": [
+            "EB04",
+            "OP14"
+          ],
+          "evidenceKind": "bandai-series",
+          "seriesIds": [
+            "569114"
+          ]
+        },
+        "donorMappingKey": "EB01-003_P3",
+        "donorSemanticClass": "parallel",
+        "targetSemanticClass": "parallel",
+        "idExpansion": 6432,
+        "rule": "unique-release-specific-product-moved-to-current-bandai-printing"
+      }
+    },
+    "OP06-093_P5": {
+      "legacySet": "OP14",
+      "productId": 865553,
+      "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Azure-Seas-Seven/Perona-OP06-093",
+      "confirmed": false,
+      "source": "auto-bandai-release-semantic-alias-v37",
+      "addedAt": "2026-09-10T14:49:06+00:00",
+      "productName": "Perona (OP06-093)",
+      "idExpansion": 6432,
+      "idMetacard": 428315,
+      "dateAdded": "2026-01-09 04:09:27",
+      "validationEvidence": {
+        "targetBandaiProfile": {
+          "value": 6432,
+          "count": 194,
+          "total": 194,
+          "ratio": 1.0,
+          "source": "bandai-current-series-mapping-majority",
+          "seriesId": "569114",
+          "releaseCodes": [
+            "EB04",
+            "OP14"
+          ],
+          "evidenceKind": "bandai-series",
+          "seriesIds": [
+            "569114"
+          ]
+        },
+        "donorMappingKey": "OP06-093_P4",
+        "donorSemanticClass": "parallel",
+        "targetSemanticClass": "parallel",
+        "idExpansion": 6432,
+        "rule": "unique-release-specific-product-moved-to-current-bandai-printing"
+      }
+    },
+    "P-070_R1": {
+      "legacySet": "PRB02",
+      "productId": 852499,
+      "url": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852499",
+      "confirmed": false,
+      "source": "auto-bandai-release-unique",
+      "addedAt": "2026-09-10T14:49:13+00:00",
+      "productName": "Carrot (P-070)",
+      "idExpansion": 6242,
+      "idMetacard": 445265,
+      "dateAdded": "2025-10-01 23:46:25",
+      "validationEvidence": {
+        "bandaiReleaseCode": "PRB02",
+        "releaseProfile": {
+          "value": 6242,
+          "count": 245,
+          "total": 245,
+          "ratio": 1.0
+        },
+        "rule": "unique-unused-product-in-bandai-release-expansion"
       }
     }
   }

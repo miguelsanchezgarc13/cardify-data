@@ -1,1762 +1,351 @@
 {
-  "generatedAt": "2026-09-09T19:16:20+00:00",
+  "generatedAt": "2026-09-10T14:49:28+00:00",
   "autoMappingsAdded": [
     {
-      "printingId": "EB01-015_P3",
-      "productId": 829112,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST24",
-      "idExpansion": 6151
-    },
-    {
-      "printingId": "EB01-015_R1",
-      "productId": 852305,
+      "printingId": "P-070_R1",
+      "productId": 852499,
       "reason": "bandai-release-expansion-unique",
       "bandaiReleaseCode": "PRB02",
       "idExpansion": 6242
-    },
-    {
-      "printingId": "EB03-032_R1",
-      "productId": 900479,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST34",
-      "idExpansion": 6647
-    },
-    {
-      "printingId": "EB03-035_R1",
-      "productId": 900482,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST34",
-      "idExpansion": 6647
-    },
-    {
-      "printingId": "EB04-026_R1",
-      "productId": 900303,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST33",
-      "idExpansion": 6648
-    },
-    {
-      "printingId": "EB04-028_P2",
-      "productId": 900304,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST33",
-      "idExpansion": 6648
-    },
-    {
-      "printingId": "OP01-016_P9",
-      "productId": 900273,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST31",
-      "idExpansion": 6650
-    },
-    {
-      "printingId": "OP01-024_R1",
-      "productId": 818010,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP01-047_R1",
-      "productId": 799202,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP01-051_R1",
-      "productId": 818013,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP01-070_R1",
-      "productId": 800785,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP01-078_R1",
-      "productId": 800786,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP02-015_R1",
-      "productId": 818014,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP02-089_R1",
-      "productId": 799224,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP02-106_R2",
-      "productId": 818017,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP02-121_R1",
-      "productId": 799234,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP03-057_R1",
-      "productId": 818022,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP03-060_R1",
-      "productId": 818023,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP03-094_R1",
-      "productId": 818026,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP03-108_R1",
-      "productId": 800791,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP03-113_R1",
-      "productId": 800792,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP03-123_R1",
-      "productId": 799266,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP04-016_P3",
-      "productId": 900274,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST31",
-      "idExpansion": 6650
-    },
-    {
-      "printingId": "OP04-031_R1",
-      "productId": 799270,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP04-036_R1",
-      "productId": 818032,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP04-044_R1",
-      "productId": 799276,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP04-104_R1",
-      "productId": 800784,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP05-010_R1",
-      "productId": 799299,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP05-043_R1",
-      "productId": 799315,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP05-057_R1",
-      "productId": 818038,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP05-073_R1",
-      "productId": 799320,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP05-076_P1",
-      "productId": 794659,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST18",
-      "idExpansion": 5750
-    },
-    {
-      "printingId": "OP05-081_R1",
-      "productId": 799326,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP05-082_R1",
-      "productId": 799330,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP05-117_R1",
-      "productId": 818043,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP05-118_R1",
-      "productId": 799346,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP06-003_R1",
-      "productId": 818044,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP06-035_R1",
-      "productId": 818045,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP06-036_R1",
-      "productId": 818046,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP06-056_R1",
-      "productId": 818048,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP06-060_R1",
-      "productId": 818049,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP06-067_R1",
-      "productId": 818053,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP06-068_R1",
-      "productId": 818054,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP06-069_R1",
-      "productId": 818055,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP06-079_R1",
-      "productId": 818056,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP06-086_R1",
-      "productId": 818057,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP06-091_R1",
-      "productId": 818058,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP06-100_R1",
-      "productId": 818059,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP06-106_R1",
-      "productId": 818060,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP06-110_R1",
-      "productId": 818061,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP06-114_R1",
-      "productId": 818062,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "OP07-021_R2",
-      "productId": 852396,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB02",
-      "idExpansion": 6242
-    },
-    {
-      "printingId": "OP07-116_P1",
-      "productId": 829179,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST28",
-      "idExpansion": 6147
-    },
-    {
-      "printingId": "OP09-020_R2",
-      "productId": 852434,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB02",
-      "idExpansion": 6242
-    },
-    {
-      "printingId": "OP09-057_R2",
-      "productId": 852444,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB02",
-      "idExpansion": 6242
-    },
-    {
-      "printingId": "OP09-078_P1",
-      "productId": 829150,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST26",
-      "idExpansion": 6149
-    },
-    {
-      "printingId": "OP10-018_R1",
-      "productId": 852470,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB02",
-      "idExpansion": 6242
-    },
-    {
-      "printingId": "OP10-036_R1",
-      "productId": 900288,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST32",
-      "idExpansion": 6649
-    },
-    {
-      "printingId": "OP10-099_P2",
-      "productId": 900568,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST36",
-      "idExpansion": 6645
-    },
-    {
-      "printingId": "OP10-101_R1",
-      "productId": 900569,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST36",
-      "idExpansion": 6645
-    },
-    {
-      "printingId": "OP10-103_R1",
-      "productId": 900570,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST36",
-      "idExpansion": 6645
-    },
-    {
-      "printingId": "OP10-109_R2",
-      "productId": 900571,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST36",
-      "idExpansion": 6645
-    },
-    {
-      "printingId": "OP10-111_R1",
-      "productId": 900572,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST36",
-      "idExpansion": 6645
-    },
-    {
-      "printingId": "OP10-114_R2",
-      "productId": 900573,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST36",
-      "idExpansion": 6645
-    },
-    {
-      "printingId": "OP11-003_R1",
-      "productId": 900275,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST31",
-      "idExpansion": 6650
-    },
-    {
-      "printingId": "OP11-009_R1",
-      "productId": 900276,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST31",
-      "idExpansion": 6650
-    },
-    {
-      "printingId": "OP11-012_R1",
-      "productId": 900277,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST31",
-      "idExpansion": 6650
-    },
-    {
-      "printingId": "OP11-062_P2",
-      "productId": 900484,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST34",
-      "idExpansion": 6647
-    },
-    {
-      "printingId": "OP11-065_R1",
-      "productId": 900518,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST34",
-      "idExpansion": 6647
-    },
-    {
-      "printingId": "OP11-066_R1",
-      "productId": 900519,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST34",
-      "idExpansion": 6647
-    },
-    {
-      "printingId": "OP11-068_R1",
-      "productId": 900522,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST34",
-      "idExpansion": 6647
-    },
-    {
-      "printingId": "OP11-071_R1",
-      "productId": 900524,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST34",
-      "idExpansion": 6647
-    },
-    {
-      "printingId": "OP11-079_R1",
-      "productId": 900530,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST34",
-      "idExpansion": 6647
-    },
-    {
-      "printingId": "OP11-081_R1",
-      "productId": 900532,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST34",
-      "idExpansion": 6647
-    },
-    {
-      "printingId": "OP12-020_P5",
-      "productId": 900289,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST32",
-      "idExpansion": 6649
-    },
-    {
-      "printingId": "OP12-023_R1",
-      "productId": 900290,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST32",
-      "idExpansion": 6649
-    },
-    {
-      "printingId": "OP12-026_R1",
-      "productId": 900291,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST32",
-      "idExpansion": 6649
-    },
-    {
-      "printingId": "OP12-027_R1",
-      "productId": 900292,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST32",
-      "idExpansion": 6649
-    },
-    {
-      "printingId": "OP12-028_R1",
-      "productId": 900293,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST32",
-      "idExpansion": 6649
-    },
-    {
-      "printingId": "OP12-031_R1",
-      "productId": 900294,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST32",
-      "idExpansion": 6649
-    },
-    {
-      "printingId": "OP12-039_P2",
-      "productId": 900295,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST32",
-      "idExpansion": 6649
-    },
-    {
-      "printingId": "OP12-040_P2",
-      "productId": 900305,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST33",
-      "idExpansion": 6648
-    },
-    {
-      "printingId": "OP12-043_R1",
-      "productId": 900306,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST33",
-      "idExpansion": 6648
-    },
-    {
-      "printingId": "OP12-045_R1",
-      "productId": 900307,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST33",
-      "idExpansion": 6648
-    },
-    {
-      "printingId": "OP12-046_R1",
-      "productId": 900308,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST33",
-      "idExpansion": 6648
-    },
-    {
-      "printingId": "OP12-047_R1",
-      "productId": 900309,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST33",
-      "idExpansion": 6648
-    },
-    {
-      "printingId": "OP12-050_R1",
-      "productId": 900310,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST33",
-      "idExpansion": 6648
-    },
-    {
-      "printingId": "OP12-052_R1",
-      "productId": 900311,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST33",
-      "idExpansion": 6648
-    },
-    {
-      "printingId": "OP12-057_R1",
-      "productId": 900312,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST33",
-      "idExpansion": 6648
-    },
-    {
-      "printingId": "OP12-090_R1",
-      "productId": 900553,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST35",
-      "idExpansion": 6646
-    },
-    {
-      "printingId": "OP12-093_R1",
-      "productId": 900554,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST35",
-      "idExpansion": 6646
-    },
-    {
-      "printingId": "OP12-098_R1",
-      "productId": 900555,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST35",
-      "idExpansion": 6646
-    },
-    {
-      "printingId": "OP12-113_R1",
-      "productId": 900574,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST36",
-      "idExpansion": 6645
-    },
-    {
-      "printingId": "OP13-004_P2",
-      "productId": 900556,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST35",
-      "idExpansion": 6646
-    },
-    {
-      "printingId": "OP13-005_R1",
-      "productId": 900557,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST35",
-      "idExpansion": 6646
-    },
-    {
-      "printingId": "OP13-008_R1",
-      "productId": 900558,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST35",
-      "idExpansion": 6646
-    },
-    {
-      "printingId": "OP13-017_R1",
-      "productId": 900559,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST35",
-      "idExpansion": 6646
-    },
-    {
-      "printingId": "OP13-021_R1",
-      "productId": 900278,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST31",
-      "idExpansion": 6650
-    },
-    {
-      "printingId": "OP13-116_R1",
-      "productId": 900575,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST36",
-      "idExpansion": 6645
-    },
-    {
-      "printingId": "OP14-015_R1",
-      "productId": 900279,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST31",
-      "idExpansion": 6650
-    },
-    {
-      "printingId": "OP15-036_R1",
-      "productId": 900296,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST32",
-      "idExpansion": 6649
-    },
-    {
-      "printingId": "P-014_R1",
-      "productId": 799393,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "P-081_R1",
-      "productId": 852511,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB02",
-      "idExpansion": 6242
-    },
-    {
-      "printingId": "P-082_R1",
-      "productId": 852513,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB02",
-      "idExpansion": 6242
-    },
-    {
-      "printingId": "P-084",
-      "productId": 829136,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST25",
-      "idExpansion": 6150
-    },
-    {
-      "printingId": "P-085_R2",
-      "productId": 900576,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST36",
-      "idExpansion": 6645
-    },
-    {
-      "printingId": "P-088_R2",
-      "productId": 900577,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST36",
-      "idExpansion": 6645
-    },
-    {
-      "printingId": "P-090_R1",
-      "productId": 900534,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST34",
-      "idExpansion": 6647
-    },
-    {
-      "printingId": "P-101_R1",
-      "productId": 900280,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST31",
-      "idExpansion": 6650
-    },
-    {
-      "printingId": "P-105_R1",
-      "productId": 900562,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST35",
-      "idExpansion": 6646
-    },
-    {
-      "printingId": "ST01-014_R1",
-      "productId": 818066,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "ST04-003_R1",
-      "productId": 818071,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "ST06-010_R1",
-      "productId": 799436,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "ST06-014_R1",
-      "productId": 818073,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "ST09-014_R1",
-      "productId": 818075,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "ST10-010_R1",
-      "productId": 799445,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "ST12-014_R1",
-      "productId": 818076,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "PRB01",
-      "idExpansion": 5805
-    },
-    {
-      "printingId": "ST21-001_R1",
-      "productId": 900281,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST31",
-      "idExpansion": 6650
-    },
-    {
-      "printingId": "ST23-004_R1",
-      "productId": 900282,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST31",
-      "idExpansion": 6650
-    },
-    {
-      "printingId": "ST24-005_R1",
-      "productId": 900297,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST32",
-      "idExpansion": 6649
-    },
-    {
-      "printingId": "ST31-004",
-      "productId": 900286,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST31",
-      "idExpansion": 6650
-    },
-    {
-      "printingId": "ST32-002",
-      "productId": 900299,
-      "reason": "bandai-release-expansion-unique",
-      "bandaiReleaseCode": "ST32",
-      "idExpansion": 6649
-    },
-    {
-      "printingId": "OP13-019_P2",
-      "productId": 900560,
-      "reason": "bandai-release-name-unique",
-      "bandaiReleaseCode": "ST35",
-      "idExpansion": 6646
-    },
-    {
-      "printingId": "OP13-081_R1",
-      "productId": 900561,
-      "reason": "bandai-release-name-unique",
-      "bandaiReleaseCode": "ST35",
-      "idExpansion": 6646
     }
   ],
   "semanticAliasesMoved": [
     {
-      "printingId": "EB01-015_P5",
-      "productId": 852306,
-      "donorMappingKey": "EB01-015_P4",
-      "bandaiReleaseCode": "PRB02",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP01-016_P8",
-      "productId": 799191,
-      "donorMappingKey": "OP01-016_P7",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP01-024_P3",
-      "productId": 799192,
-      "donorMappingKey": "OP01-024_P2",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP01-025_P2",
-      "productId": 744746,
-      "donorMappingKey": "OP01-025_P3",
-      "bandaiReleaseCode": "ST10",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP01-029_P3",
-      "productId": 799193,
-      "donorMappingKey": "OP01-029_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP01-033_P3",
-      "productId": 799197,
-      "donorMappingKey": "OP01-033_P6",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP01-035_P2",
-      "productId": 775292,
-      "donorMappingKey": "OP01-035_P4",
-      "bandaiReleaseCode": "OP07",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP01-039_P1",
-      "productId": 852322,
-      "donorMappingKey": "OP01-039_P3",
-      "bandaiReleaseCode": "PRB02",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP01-047_P4",
-      "productId": 799203,
-      "donorMappingKey": "OP01-047_P3",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP01-051_P4",
-      "productId": 799204,
-      "donorMappingKey": "OP01-051_P3",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP01-070_P4",
-      "productId": 799208,
-      "donorMappingKey": "OP01-070_P3",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP01-078_P4",
-      "productId": 799209,
-      "donorMappingKey": "OP01-078_P3",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP01-120_P5",
-      "productId": 799211,
-      "donorMappingKey": "OP01-120_P4",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP02-005_P1",
-      "productId": 852326,
-      "donorMappingKey": "OP02-005_P2",
-      "bandaiReleaseCode": "PRB02",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP02-015_P4",
-      "productId": 799219,
-      "donorMappingKey": "OP02-015_P2",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP02-089_P4",
-      "productId": 818016,
-      "donorMappingKey": "OP02-089_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP02-099_P2",
-      "productId": 732889,
-      "donorMappingKey": "OP02-099_P3",
-      "bandaiReleaseCode": "OP04",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP02-106_P5",
-      "productId": 799229,
-      "donorMappingKey": "OP02-106_P3",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP02-121_P3",
-      "productId": 799235,
-      "donorMappingKey": "OP02-121_P2",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP03-055_P3",
-      "productId": 799239,
-      "donorMappingKey": "OP03-055_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP03-057_P4",
-      "productId": 799244,
-      "donorMappingKey": "OP03-057_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP03-060_P3",
-      "productId": 799247,
-      "donorMappingKey": "OP03-060_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP03-094_P3",
-      "productId": 799254,
-      "donorMappingKey": "OP03-094_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP03-108_P3",
-      "productId": 799256,
-      "donorMappingKey": "OP03-108_P2",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP03-112_P4",
-      "productId": 787813,
-      "donorMappingKey": "OP03-112_P2",
-      "bandaiReleaseCode": "OP08",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP03-113_P3",
-      "productId": 799260,
-      "donorMappingKey": "OP03-113_P2",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP03-123_P4",
-      "productId": 799267,
-      "donorMappingKey": "OP03-123_P3",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP04-031_P3",
-      "productId": 799271,
-      "donorMappingKey": "OP04-031_P2",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP04-032_P3",
-      "productId": 799272,
-      "donorMappingKey": "OP04-032_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP04-036_P3",
-      "productId": 799274,
-      "donorMappingKey": "OP04-036_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP04-044_P4",
-      "productId": 799277,
-      "donorMappingKey": "OP04-044_P3",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP04-104_P3",
-      "productId": 799292,
-      "donorMappingKey": "OP04-104_P2",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP05-004_P1",
-      "productId": 852345,
-      "donorMappingKey": "OP05-004_P2",
-      "bandaiReleaseCode": "PRB02",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP05-006_P3",
-      "productId": 799296,
-      "donorMappingKey": "OP05-006_P2",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP05-007_P3",
-      "productId": 799298,
-      "donorMappingKey": "OP05-007_P2",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP05-010_P3",
-      "productId": 799300,
-      "donorMappingKey": "OP05-010_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP05-030_P1",
-      "productId": 852349,
-      "donorMappingKey": "OP05-030_P2",
-      "bandaiReleaseCode": "PRB02",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP05-036_P2",
-      "productId": 852351,
-      "donorMappingKey": "OP05-036_P3",
-      "bandaiReleaseCode": "PRB02",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP05-043_P3",
-      "productId": 799316,
-      "donorMappingKey": "OP05-043_P2",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP05-057_P4",
-      "productId": 799317,
-      "donorMappingKey": "OP05-057_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP05-060_P4",
-      "productId": 823521,
-      "donorMappingKey": "OP05-060_P5",
-      "bandaiReleaseCode": "EB02",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP05-067_P4",
-      "productId": 802852,
-      "donorMappingKey": "OP05-067_P3",
-      "bandaiReleaseCode": "OP09",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP05-073_P3",
-      "productId": 799321,
-      "donorMappingKey": "OP05-073_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP05-074_P5",
-      "productId": 799324,
-      "donorMappingKey": "OP05-074_P4",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP05-081_P4",
-      "productId": 799327,
-      "donorMappingKey": "OP05-081_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP05-082_P4",
-      "productId": 799331,
-      "donorMappingKey": "OP05-082_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP05-098_P2",
-      "productId": 823522,
-      "donorMappingKey": "OP05-098_P3",
-      "bandaiReleaseCode": "EB02",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP05-114_P3",
-      "productId": 799338,
-      "donorMappingKey": "OP05-114_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP05-117_P4",
-      "productId": 799343,
-      "donorMappingKey": "OP05-117_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP05-118_P3",
-      "productId": 799347,
-      "donorMappingKey": "OP05-118_P2",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP05-119_P6",
-      "productId": 802854,
-      "donorMappingKey": "OP05-119_P3",
-      "bandaiReleaseCode": "OP09",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP06-003_P3",
-      "productId": 799351,
-      "donorMappingKey": "OP06-003_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP06-035_P3",
-      "productId": 799357,
-      "donorMappingKey": "OP06-035_P2",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP06-036_P4",
-      "productId": 799358,
-      "donorMappingKey": "OP06-036_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP06-038_P3",
-      "productId": 799361,
-      "donorMappingKey": "OP06-038_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP06-047_P2",
-      "productId": 852368,
-      "donorMappingKey": "OP06-047_P4",
-      "bandaiReleaseCode": "PRB02",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP06-056_P3",
-      "productId": 799363,
-      "donorMappingKey": "OP06-056_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP06-060_P3",
-      "productId": 799365,
-      "donorMappingKey": "OP06-060_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP06-067_P4",
-      "productId": 799374,
-      "donorMappingKey": "OP06-067_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP06-068_P3",
-      "productId": 799377,
-      "donorMappingKey": "OP06-068_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP06-069_P4",
-      "productId": 799379,
-      "donorMappingKey": "OP06-069_P2",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP06-076_P2",
-      "productId": 852382,
-      "donorMappingKey": "OP06-076_P4",
-      "bandaiReleaseCode": "PRB02",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP06-079_P4",
-      "productId": 799380,
-      "donorMappingKey": "OP06-079_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP06-086_P3",
-      "productId": 799383,
-      "donorMappingKey": "OP06-086_P2",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP06-091_P3",
-      "productId": 799384,
-      "donorMappingKey": "OP06-091_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP06-100_P3",
-      "productId": 799386,
-      "donorMappingKey": "OP06-100_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP06-106_P3",
-      "productId": 799388,
-      "donorMappingKey": "OP06-106_P2",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP06-110_P4",
-      "productId": 799389,
-      "donorMappingKey": "OP06-110_P2",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP06-114_P3",
-      "productId": 799391,
-      "donorMappingKey": "OP06-114_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP07-021_P2",
-      "productId": 817000,
-      "donorMappingKey": "OP07-021_P1",
-      "bandaiReleaseCode": "OP10",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP07-021_P8",
-      "productId": 852397,
-      "donorMappingKey": "OP07-021_P3",
-      "bandaiReleaseCode": "PRB02",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP07-109_P2",
-      "productId": 787814,
-      "donorMappingKey": "OP07-109_P3",
-      "bandaiReleaseCode": "OP08",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP09-013_P2",
-      "productId": 843035,
-      "donorMappingKey": "OP09-013_P1",
-      "bandaiReleaseCode": "OP12",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP09-020_P2",
-      "productId": 852435,
-      "donorMappingKey": "OP09-020_P1",
-      "bandaiReleaseCode": "PRB02",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP09-057_P2",
-      "productId": 852445,
-      "donorMappingKey": "OP09-057_P1",
-      "bandaiReleaseCode": "PRB02",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP10-018_P2",
-      "productId": 852471,
-      "donorMappingKey": "OP10-018_P1",
-      "bandaiReleaseCode": "PRB02",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "OP14-029_P1",
-      "productId": 890826,
-      "donorMappingKey": "OP14-029_P2",
-      "bandaiReleaseCode": "OP16",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "P-014_P3",
-      "productId": 799394,
-      "donorMappingKey": "P-014_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "P-053_P3",
-      "productId": 799400,
-      "donorMappingKey": "P-053_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "P-063_P1",
-      "productId": 852494,
-      "donorMappingKey": "P-063_P4",
-      "bandaiReleaseCode": "PRB02",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "P-081_P2",
-      "productId": 852512,
-      "donorMappingKey": "P-081_P3",
-      "bandaiReleaseCode": "PRB02",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "P-082_P2",
-      "productId": 852514,
-      "donorMappingKey": "P-082_P3",
-      "bandaiReleaseCode": "PRB02",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "ST01-007_P3",
-      "productId": 760629,
-      "donorMappingKey": "ST01-007_P5",
-      "bandaiReleaseCode": "OP06",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "ST01-011_P4",
-      "productId": 852558,
-      "donorMappingKey": "ST01-011_P7",
-      "bandaiReleaseCode": "PRB02",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "ST01-014_P3",
-      "productId": 799419,
-      "donorMappingKey": "ST01-014_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "ST02-004_P4",
-      "productId": 818067,
-      "donorMappingKey": "ST02-004_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "ST02-007_P2",
-      "productId": 788033,
-      "donorMappingKey": "ST02-007_P4",
-      "bandaiReleaseCode": "OP08",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "ST02-007_P3",
-      "productId": 852560,
-      "donorMappingKey": "ST02-007_P5",
-      "bandaiReleaseCode": "PRB02",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "ST03-004_P1",
-      "productId": 788034,
-      "donorMappingKey": "ST03-004_P2",
-      "bandaiReleaseCode": "OP08",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "ST03-013_P4",
-      "productId": 799428,
-      "donorMappingKey": "ST03-013_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "ST04-003_P4",
-      "productId": 799431,
-      "donorMappingKey": "ST04-003_P6",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "ST04-005_P1",
-      "productId": 788035,
-      "donorMappingKey": "ST04-005_P2",
-      "bandaiReleaseCode": "OP08",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "ST04-016_P3",
-      "productId": 799434,
-      "donorMappingKey": "ST04-016_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "ST06-006_P2",
-      "productId": 788036,
-      "donorMappingKey": "ST06-006_P4",
-      "bandaiReleaseCode": "OP08",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "ST06-008_P1",
-      "productId": 852562,
-      "donorMappingKey": "ST06-008_P2",
-      "bandaiReleaseCode": "PRB02",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "ST06-010_P3",
-      "productId": 799437,
-      "donorMappingKey": "ST06-010_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "ST06-014_P3",
-      "productId": 799439,
-      "donorMappingKey": "ST06-014_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "ST09-014_P3",
-      "productId": 799443,
-      "donorMappingKey": "ST09-014_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "ST10-008_P3",
-      "productId": 852566,
-      "donorMappingKey": "ST10-008_P1",
-      "bandaiReleaseCode": "PRB02",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "ST10-010_P4",
-      "productId": 799446,
-      "donorMappingKey": "ST10-010_P3",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "ST12-014_P3",
-      "productId": 799447,
-      "donorMappingKey": "ST12-014_P1",
-      "bandaiReleaseCode": "PRB01",
-      "semanticClass": "parallel"
-    },
-    {
-      "printingId": "ST15-005_P5",
-      "productId": 890828,
-      "donorMappingKey": "ST15-005_P4",
-      "bandaiReleaseCode": "OP16",
-      "semanticClass": "parallel"
+      "printingId": "EB01-003_P5",
+      "productId": 865551,
+      "donorMappingKey": "EB01-003_P3",
+      "idExpansion": 6432,
+      "donorSemanticClass": "parallel",
+      "targetSemanticClass": "parallel",
+      "reason": "release-specific-semantic-drift"
+    },
+    {
+      "printingId": "OP06-093_P5",
+      "productId": 865553,
+      "donorMappingKey": "OP06-093_P4",
+      "idExpansion": 6432,
+      "donorSemanticClass": "parallel",
+      "targetSemanticClass": "parallel",
+      "reason": "release-specific-semantic-drift"
+    },
+    {
+      "printingId": "OP11-106_P2",
+      "productId": 880055,
+      "donorMappingKey": "OP11-106_P3",
+      "idExpansion": 6456,
+      "donorSemanticClass": "parallel",
+      "targetSemanticClass": "parallel",
+      "reason": "release-specific-semantic-drift"
+    },
+    {
+      "printingId": "P-057_P1",
+      "productId": 794635,
+      "donorMappingKey": "P-057",
+      "idExpansion": 5748,
+      "donorSemanticClass": "base",
+      "targetSemanticClass": "parallel",
+      "reason": "release-specific-semantic-drift"
+    },
+    {
+      "printingId": "P-058_P1",
+      "productId": 794636,
+      "donorMappingKey": "P-058",
+      "idExpansion": 5748,
+      "donorSemanticClass": "base",
+      "targetSemanticClass": "parallel",
+      "reason": "release-specific-semantic-drift"
+    },
+    {
+      "printingId": "P-059_P1",
+      "productId": 794637,
+      "donorMappingKey": "P-059",
+      "idExpansion": 5748,
+      "donorSemanticClass": "base",
+      "targetSemanticClass": "parallel",
+      "reason": "release-specific-semantic-drift"
+    },
+    {
+      "printingId": "P-060_P1",
+      "productId": 794638,
+      "donorMappingKey": "P-060",
+      "idExpansion": 5748,
+      "donorSemanticClass": "base",
+      "targetSemanticClass": "parallel",
+      "reason": "release-specific-semantic-drift"
     }
   ],
-  "inferredReleaseProfiles": {
-    "ST31": {
-      "value": 6650,
-      "count": 15,
-      "total": 15,
-      "ratio": 1.0,
-      "precision": 1.0,
-      "f1": 1.0,
-      "margin": 1.0,
-      "source": "bandai-cardmarket-multiset",
-      "seriesId": "569031"
+  "semanticDriftQuarantined": [
+    {
+      "mappingKey": "OP01-041_P6",
+      "oldProductId": 799201,
+      "oldSource": "legacy-cardmarket-snapshot",
+      "reason": "ambiguous-release-specific-generic-mapping",
+      "productId": 799201,
+      "idExpansion": 5805,
+      "baseCode": "OP01-041",
+      "donorSemanticClass": "parallel",
+      "candidateBandaiPrintingIds": [
+        "OP01-041_P3",
+        "OP01-041_P4",
+        "OP01-041_P5",
+        "OP01-041_R1"
+      ]
     },
-    "ST32": {
-      "value": 6649,
-      "count": 15,
-      "total": 15,
-      "ratio": 1.0,
-      "precision": 1.0,
-      "f1": 1.0,
-      "margin": 1.0,
-      "source": "bandai-cardmarket-multiset",
-      "seriesId": "569032"
+    {
+      "mappingKey": "OP02-117_P1",
+      "oldProductId": 799232,
+      "oldSource": "legacy-cardmarket-snapshot",
+      "reason": "ambiguous-release-specific-generic-mapping",
+      "productId": 799232,
+      "idExpansion": 5805,
+      "baseCode": "OP02-117",
+      "donorSemanticClass": "parallel",
+      "candidateBandaiPrintingIds": [
+        "OP02-117_P5",
+        "OP02-117_P6",
+        "OP02-117_R2"
+      ]
     },
-    "ST33": {
-      "value": 6648,
-      "count": 15,
-      "total": 15,
-      "ratio": 1.0,
-      "precision": 1.0,
-      "f1": 1.0,
-      "margin": 1.0,
-      "source": "bandai-cardmarket-multiset",
-      "seriesId": "569033"
+    {
+      "mappingKey": "OP02-117_P2",
+      "oldProductId": 799233,
+      "oldSource": "legacy-cardmarket-snapshot",
+      "reason": "ambiguous-release-specific-generic-mapping",
+      "productId": 799233,
+      "idExpansion": 5805,
+      "baseCode": "OP02-117",
+      "donorSemanticClass": "parallel",
+      "candidateBandaiPrintingIds": [
+        "OP02-117_P5",
+        "OP02-117_P6",
+        "OP02-117_R2"
+      ]
     },
-    "ST34": {
-      "value": 6647,
-      "count": 15,
-      "total": 15,
-      "ratio": 1.0,
-      "precision": 1.0,
-      "f1": 1.0,
-      "margin": 1.0,
-      "source": "bandai-cardmarket-multiset",
-      "seriesId": "569034"
+    {
+      "mappingKey": "OP03-003_P2",
+      "oldProductId": 799236,
+      "oldSource": "legacy-cardmarket-snapshot",
+      "reason": "ambiguous-release-specific-generic-mapping",
+      "productId": 799236,
+      "idExpansion": 5805,
+      "baseCode": "OP03-003",
+      "donorSemanticClass": "parallel",
+      "candidateBandaiPrintingIds": [
+        "OP03-003_P4",
+        "OP03-003_P5",
+        "OP03-003_P6",
+        "OP03-003_R2"
+      ]
     },
-    "ST35": {
-      "value": 6646,
-      "count": 14,
-      "total": 15,
-      "ratio": 0.9333333333333333,
-      "precision": 0.9333333333333333,
-      "f1": 0.9333333333333333,
-      "margin": 0.9333333333333333,
-      "source": "bandai-cardmarket-multiset",
-      "seriesId": "569035"
+    {
+      "mappingKey": "OP03-079_P1",
+      "oldProductId": 799249,
+      "oldSource": "legacy-cardmarket-snapshot",
+      "reason": "ambiguous-release-specific-generic-mapping",
+      "productId": 799249,
+      "idExpansion": 5805,
+      "baseCode": "OP03-079",
+      "donorSemanticClass": "parallel",
+      "candidateBandaiPrintingIds": [
+        "OP03-079_P3",
+        "OP03-079_P4",
+        "OP03-079_R2"
+      ]
     },
-    "ST36": {
-      "value": 6645,
-      "count": 15,
-      "total": 15,
-      "ratio": 1.0,
-      "precision": 1.0,
-      "f1": 1.0,
-      "margin": 1.0,
-      "source": "bandai-cardmarket-multiset",
-      "seriesId": "569036"
+    {
+      "mappingKey": "OP03-079_P2",
+      "oldProductId": 799250,
+      "oldSource": "legacy-cardmarket-snapshot",
+      "reason": "ambiguous-release-specific-generic-mapping",
+      "productId": 799250,
+      "idExpansion": 5805,
+      "baseCode": "OP03-079",
+      "donorSemanticClass": "parallel",
+      "candidateBandaiPrintingIds": [
+        "OP03-079_P3",
+        "OP03-079_P4",
+        "OP03-079_R2"
+      ]
+    },
+    {
+      "mappingKey": "OP03-089_P2",
+      "oldProductId": 799251,
+      "oldSource": "legacy-cardmarket-snapshot",
+      "reason": "ambiguous-release-specific-generic-mapping",
+      "productId": 799251,
+      "idExpansion": 5805,
+      "baseCode": "OP03-089",
+      "donorSemanticClass": "parallel",
+      "candidateBandaiPrintingIds": [
+        "OP03-089_P4",
+        "OP03-089_P5",
+        "OP03-089_P6",
+        "OP03-089_R2"
+      ]
+    },
+    {
+      "mappingKey": "OP03-089_P3",
+      "oldProductId": 799252,
+      "oldSource": "legacy-cardmarket-snapshot",
+      "reason": "ambiguous-release-specific-generic-mapping",
+      "productId": 799252,
+      "idExpansion": 5805,
+      "baseCode": "OP03-089",
+      "donorSemanticClass": "parallel",
+      "candidateBandaiPrintingIds": [
+        "OP03-089_P4",
+        "OP03-089_P5",
+        "OP03-089_P6",
+        "OP03-089_R2"
+      ]
+    },
+    {
+      "mappingKey": "OP03-110_P2",
+      "oldProductId": 799258,
+      "oldSource": "legacy-cardmarket-snapshot",
+      "reason": "ambiguous-release-specific-generic-mapping",
+      "productId": 799258,
+      "idExpansion": 5805,
+      "baseCode": "OP03-110",
+      "donorSemanticClass": "parallel",
+      "candidateBandaiPrintingIds": [
+        "OP03-110_P3",
+        "OP03-110_P4",
+        "OP03-110_P5",
+        "OP03-110_R2"
+      ]
+    },
+    {
+      "mappingKey": "OP03-116_P7",
+      "oldProductId": 799262,
+      "oldSource": "legacy-cardmarket-snapshot",
+      "reason": "ambiguous-release-specific-generic-mapping",
+      "productId": 799262,
+      "idExpansion": 5805,
+      "baseCode": "OP03-116",
+      "donorSemanticClass": "parallel",
+      "candidateBandaiPrintingIds": [
+        "OP03-116_P5",
+        "OP03-116_P6",
+        "OP03-116_R1"
+      ]
+    },
+    {
+      "mappingKey": "OP03-121_P2",
+      "oldProductId": 799264,
+      "oldSource": "legacy-cardmarket-snapshot",
+      "reason": "ambiguous-release-specific-generic-mapping",
+      "productId": 799264,
+      "idExpansion": 5805,
+      "baseCode": "OP03-121",
+      "donorSemanticClass": "parallel",
+      "candidateBandaiPrintingIds": [
+        "OP03-121_P3",
+        "OP03-121_P4",
+        "OP03-121_R2"
+      ]
+    },
+    {
+      "mappingKey": "OP06-065_P1",
+      "oldProductId": 799369,
+      "oldSource": "legacy-cardmarket-snapshot",
+      "reason": "ambiguous-release-specific-generic-mapping",
+      "productId": 799369,
+      "idExpansion": 5805,
+      "baseCode": "OP06-065",
+      "donorSemanticClass": "parallel",
+      "candidateBandaiPrintingIds": [
+        "OP06-065_P2",
+        "OP06-065_P3",
+        "OP06-065_P4",
+        "OP06-065_R1"
+      ]
+    },
+    {
+      "mappingKey": "P-070_P2",
+      "oldProductId": 852499,
+      "oldSource": "legacy-cardmarket-snapshot",
+      "reason": "release-specific-product-on-generic-id-target-already-mapped",
+      "productId": 852499,
+      "idExpansion": 6242,
+      "baseCode": "P-070",
+      "donorSemanticClass": "parallel",
+      "candidateBandaiPrintingIds": [
+        "P-070_P3",
+        "P-070_R1"
+      ],
+      "targetPrintingId": "P-070_P3",
+      "targetProductId": 852500
+    },
+    {
+      "mappingKey": "P-075_P1",
+      "oldProductId": 852505,
+      "oldSource": "legacy-cardmarket-snapshot",
+      "reason": "ambiguous-release-specific-generic-mapping",
+      "productId": 852505,
+      "idExpansion": 6242,
+      "baseCode": "P-075",
+      "donorSemanticClass": "parallel",
+      "candidateBandaiPrintingIds": [
+        "P-075",
+        "P-075_R1"
+      ]
+    },
+    {
+      "mappingKey": "P-075_P2",
+      "oldProductId": 852506,
+      "oldSource": "legacy-cardmarket-snapshot",
+      "reason": "ambiguous-release-specific-generic-mapping",
+      "productId": 852506,
+      "idExpansion": 6242,
+      "baseCode": "P-075",
+      "donorSemanticClass": "parallel",
+      "candidateBandaiPrintingIds": [
+        "P-075",
+        "P-075_R1"
+      ]
+    },
+    {
+      "mappingKey": "P-085_P1",
+      "oldProductId": 852517,
+      "oldSource": "legacy-cardmarket-snapshot",
+      "reason": "multiple-release-specific-donors-for-bandai-printing",
+      "productId": 852517,
+      "idExpansion": 6242,
+      "baseCode": "P-085",
+      "donorSemanticClass": "parallel",
+      "candidateBandaiPrintingIds": [
+        "P-085_P3",
+        "P-085_R1"
+      ],
+      "targetPrintingId": "P-085_P3",
+      "competingDonorKeys": [
+        "P-085_P1",
+        "P-085_P2"
+      ]
+    },
+    {
+      "mappingKey": "P-085_P2",
+      "oldProductId": 852518,
+      "oldSource": "auto-repair-mapping-consistency",
+      "reason": "multiple-release-specific-donors-for-bandai-printing",
+      "productId": 852518,
+      "idExpansion": 6242,
+      "baseCode": "P-085",
+      "donorSemanticClass": "parallel",
+      "candidateBandaiPrintingIds": [
+        "P-085_P3",
+        "P-085_R1"
+      ],
+      "targetPrintingId": "P-085_P3",
+      "competingDonorKeys": [
+        "P-085_P1",
+        "P-085_P2"
+      ]
     }
-  },
+  ],
+  "inferredReleaseProfiles": {},
   "inferenceDiagnostics": {
-    "ST31": {
-      "seriesId": "569031",
-      "top": {
-        "idExpansion": 6650,
-        "intersection": 15,
-        "missing": 0,
-        "extra": 0,
-        "bandaiTotal": 15,
-        "cardmarketTotal": 15,
-        "precision": 1.0,
-        "recall": 1.0,
-        "f1": 1.0,
-        "distance": 0
-      },
-      "second": null,
-      "margin": 1.0
-    },
-    "ST32": {
-      "seriesId": "569032",
-      "top": {
-        "idExpansion": 6649,
-        "intersection": 15,
-        "missing": 0,
-        "extra": 0,
-        "bandaiTotal": 15,
-        "cardmarketTotal": 15,
-        "precision": 1.0,
-        "recall": 1.0,
-        "f1": 1.0,
-        "distance": 0
-      },
-      "second": null,
-      "margin": 1.0
-    },
-    "ST33": {
-      "seriesId": "569033",
-      "top": {
-        "idExpansion": 6648,
-        "intersection": 15,
-        "missing": 0,
-        "extra": 0,
-        "bandaiTotal": 15,
-        "cardmarketTotal": 15,
-        "precision": 1.0,
-        "recall": 1.0,
-        "f1": 1.0,
-        "distance": 0
-      },
-      "second": null,
-      "margin": 1.0
-    },
-    "ST34": {
-      "seriesId": "569034",
-      "top": {
-        "idExpansion": 6647,
-        "intersection": 15,
-        "missing": 0,
-        "extra": 0,
-        "bandaiTotal": 15,
-        "cardmarketTotal": 15,
-        "precision": 1.0,
-        "recall": 1.0,
-        "f1": 1.0,
-        "distance": 0
-      },
-      "second": null,
-      "margin": 1.0
-    },
-    "ST35": {
-      "seriesId": "569035",
-      "top": {
-        "idExpansion": 6646,
-        "intersection": 14,
-        "missing": 1,
-        "extra": 1,
-        "bandaiTotal": 15,
-        "cardmarketTotal": 15,
-        "precision": 0.9333333333333333,
-        "recall": 0.9333333333333333,
-        "f1": 0.9333333333333333,
-        "distance": 2
-      },
-      "second": null,
-      "margin": 0.9333333333333333
-    },
-    "ST36": {
-      "seriesId": "569036",
-      "top": {
-        "idExpansion": 6645,
-        "intersection": 15,
-        "missing": 0,
-        "extra": 0,
-        "bandaiTotal": 15,
-        "cardmarketTotal": 15,
-        "precision": 1.0,
-        "recall": 1.0,
-        "f1": 1.0,
-        "distance": 0
-      },
-      "second": null,
-      "margin": 1.0
-    },
     "OP17": {
       "seriesId": "569117",
       "top": {
@@ -1786,16 +375,2737 @@
       "margin": 0.005899705014749235
     }
   },
+  "seriesExpansionProfiles": {
+    "569001": {
+      "value": 5237,
+      "count": 17,
+      "total": 17,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569001",
+      "releaseCodes": [
+        "ST01"
+      ]
+    },
+    "569002": {
+      "value": 5238,
+      "count": 17,
+      "total": 17,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569002",
+      "releaseCodes": [
+        "ST02"
+      ]
+    },
+    "569003": {
+      "value": 5239,
+      "count": 17,
+      "total": 17,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569003",
+      "releaseCodes": [
+        "ST03"
+      ]
+    },
+    "569004": {
+      "value": 5240,
+      "count": 17,
+      "total": 17,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569004",
+      "releaseCodes": [
+        "ST04"
+      ]
+    },
+    "569005": {
+      "value": 5255,
+      "count": 17,
+      "total": 17,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569005",
+      "releaseCodes": [
+        "ST05"
+      ]
+    },
+    "569006": {
+      "value": 5265,
+      "count": 17,
+      "total": 17,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569006",
+      "releaseCodes": [
+        "ST06"
+      ]
+    },
+    "569007": {
+      "value": 5377,
+      "count": 17,
+      "total": 17,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569007",
+      "releaseCodes": [
+        "ST07"
+      ]
+    },
+    "569008": {
+      "value": 5366,
+      "count": 15,
+      "total": 15,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569008",
+      "releaseCodes": [
+        "ST08"
+      ]
+    },
+    "569009": {
+      "value": 5367,
+      "count": 15,
+      "total": 15,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569009",
+      "releaseCodes": [
+        "ST09"
+      ]
+    },
+    "569010": {
+      "value": 5380,
+      "count": 19,
+      "total": 19,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569010",
+      "releaseCodes": [
+        "ST10"
+      ]
+    },
+    "569011": {
+      "value": 5427,
+      "count": 5,
+      "total": 5,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569011",
+      "releaseCodes": [
+        "ST11"
+      ]
+    },
+    "569012": {
+      "value": 5593,
+      "count": 17,
+      "total": 17,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569012",
+      "releaseCodes": [
+        "ST12"
+      ]
+    },
+    "569013": {
+      "value": 5595,
+      "count": 35,
+      "total": 35,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569013",
+      "releaseCodes": [
+        "ST13"
+      ]
+    },
+    "569014": {
+      "value": 5611,
+      "count": 17,
+      "total": 17,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569014",
+      "releaseCodes": [
+        "ST14"
+      ]
+    },
+    "569015": {
+      "value": 5747,
+      "count": 9,
+      "total": 9,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569015",
+      "releaseCodes": [
+        "ST15"
+      ]
+    },
+    "569016": {
+      "value": 5748,
+      "count": 11,
+      "total": 11,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569016",
+      "releaseCodes": [
+        "ST16"
+      ]
+    },
+    "569017": {
+      "value": 5749,
+      "count": 9,
+      "total": 9,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569017",
+      "releaseCodes": [
+        "ST17"
+      ]
+    },
+    "569018": {
+      "value": 5750,
+      "count": 9,
+      "total": 9,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569018",
+      "releaseCodes": [
+        "ST18"
+      ]
+    },
+    "569019": {
+      "value": 5751,
+      "count": 8,
+      "total": 8,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569019",
+      "releaseCodes": [
+        "ST19"
+      ]
+    },
+    "569020": {
+      "value": 5752,
+      "count": 9,
+      "total": 9,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569020",
+      "releaseCodes": [
+        "ST20"
+      ]
+    },
+    "569021": {
+      "value": 5998,
+      "count": 32,
+      "total": 32,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569021",
+      "releaseCodes": [
+        "ST21"
+      ]
+    },
+    "569022": {
+      "value": 6270,
+      "count": 31,
+      "total": 31,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569022",
+      "releaseCodes": [
+        "ST22"
+      ]
+    },
+    "569023": {
+      "value": 6152,
+      "count": 15,
+      "total": 15,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569023",
+      "releaseCodes": [
+        "ST23"
+      ]
+    },
+    "569024": {
+      "value": 6151,
+      "count": 15,
+      "total": 15,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569024",
+      "releaseCodes": [
+        "ST24"
+      ]
+    },
+    "569025": {
+      "value": 6150,
+      "count": 15,
+      "total": 15,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569025",
+      "releaseCodes": [
+        "ST25"
+      ]
+    },
+    "569026": {
+      "value": 6149,
+      "count": 15,
+      "total": 15,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569026",
+      "releaseCodes": [
+        "ST26"
+      ]
+    },
+    "569027": {
+      "value": 6148,
+      "count": 15,
+      "total": 15,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569027",
+      "releaseCodes": [
+        "ST27"
+      ]
+    },
+    "569028": {
+      "value": 6147,
+      "count": 15,
+      "total": 15,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569028",
+      "releaseCodes": [
+        "ST28"
+      ]
+    },
+    "569029": {
+      "value": 6444,
+      "count": 31,
+      "total": 31,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569029",
+      "releaseCodes": [
+        "ST29"
+      ]
+    },
+    "569030": {
+      "value": 6608,
+      "count": 34,
+      "total": 34,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569030",
+      "releaseCodes": [
+        "ST30"
+      ]
+    },
+    "569031": {
+      "value": 6650,
+      "count": 15,
+      "total": 15,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569031",
+      "releaseCodes": [
+        "ST31"
+      ]
+    },
+    "569032": {
+      "value": 6649,
+      "count": 15,
+      "total": 15,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569032",
+      "releaseCodes": [
+        "ST32"
+      ]
+    },
+    "569033": {
+      "value": 6648,
+      "count": 15,
+      "total": 15,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569033",
+      "releaseCodes": [
+        "ST33"
+      ]
+    },
+    "569034": {
+      "value": 6647,
+      "count": 15,
+      "total": 15,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569034",
+      "releaseCodes": [
+        "ST34"
+      ]
+    },
+    "569035": {
+      "value": 6646,
+      "count": 15,
+      "total": 15,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569035",
+      "releaseCodes": [
+        "ST35"
+      ]
+    },
+    "569036": {
+      "value": 6645,
+      "count": 15,
+      "total": 15,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569036",
+      "releaseCodes": [
+        "ST36"
+      ]
+    },
+    "569101": {
+      "value": 5229,
+      "count": 154,
+      "total": 154,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569101",
+      "releaseCodes": [
+        "OP01"
+      ]
+    },
+    "569102": {
+      "value": 5263,
+      "count": 154,
+      "total": 154,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569102",
+      "releaseCodes": [
+        "OP02"
+      ]
+    },
+    "569103": {
+      "value": 5364,
+      "count": 154,
+      "total": 154,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569103",
+      "releaseCodes": [
+        "OP03"
+      ]
+    },
+    "569104": {
+      "value": 5365,
+      "count": 149,
+      "total": 149,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569104",
+      "releaseCodes": [
+        "OP04"
+      ]
+    },
+    "569105": {
+      "value": 5426,
+      "count": 154,
+      "total": 154,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569105",
+      "releaseCodes": [
+        "OP05"
+      ]
+    },
+    "569106": {
+      "value": 5524,
+      "count": 151,
+      "total": 151,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569106",
+      "releaseCodes": [
+        "OP06"
+      ]
+    },
+    "569107": {
+      "value": 5586,
+      "count": 151,
+      "total": 151,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569107",
+      "releaseCodes": [
+        "OP07"
+      ]
+    },
+    "569108": {
+      "value": 5610,
+      "count": 151,
+      "total": 151,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569108",
+      "releaseCodes": [
+        "OP08"
+      ]
+    },
+    "569109": {
+      "value": 5755,
+      "count": 159,
+      "total": 159,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569109",
+      "releaseCodes": [
+        "OP09"
+      ]
+    },
+    "569110": {
+      "value": 5974,
+      "count": 151,
+      "total": 151,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569110",
+      "releaseCodes": [
+        "OP10"
+      ]
+    },
+    "569111": {
+      "value": 6033,
+      "count": 154,
+      "total": 154,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569111",
+      "releaseCodes": [
+        "OP11"
+      ]
+    },
+    "569112": {
+      "value": 6186,
+      "count": 155,
+      "total": 155,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569112",
+      "releaseCodes": [
+        "OP12"
+      ]
+    },
+    "569113": {
+      "value": 6187,
+      "count": 175,
+      "total": 175,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569113",
+      "releaseCodes": [
+        "OP13"
+      ]
+    },
+    "569114": {
+      "value": 6432,
+      "count": 194,
+      "total": 194,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569114",
+      "releaseCodes": [
+        "EB04",
+        "OP14"
+      ]
+    },
+    "569115": {
+      "value": 6456,
+      "count": 193,
+      "total": 194,
+      "ratio": 0.9948453608247423,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569115",
+      "releaseCodes": [
+        "EB04",
+        "OP15"
+      ]
+    },
+    "569116": {
+      "value": 6457,
+      "count": 155,
+      "total": 155,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569116",
+      "releaseCodes": [
+        "OP16"
+      ]
+    },
+    "569201": {
+      "value": 5585,
+      "count": 80,
+      "total": 80,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569201",
+      "releaseCodes": [
+        "EB01"
+      ]
+    },
+    "569202": {
+      "value": 6028,
+      "count": 105,
+      "total": 105,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569202",
+      "releaseCodes": [
+        "EB02"
+      ]
+    },
+    "569203": {
+      "value": 6449,
+      "count": 90,
+      "total": 90,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569203",
+      "releaseCodes": [
+        "EB03"
+      ]
+    },
+    "569301": {
+      "value": 5805,
+      "count": 241,
+      "total": 241,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569301",
+      "releaseCodes": [
+        "PRB01"
+      ]
+    },
+    "569302": {
+      "value": 6242,
+      "count": 251,
+      "total": 251,
+      "ratio": 1.0,
+      "source": "bandai-current-series-mapping-majority",
+      "seriesId": "569302",
+      "releaseCodes": [
+        "PRB02"
+      ]
+    }
+  },
+  "seriesExpansionDiagnostics": {
+    "569001": {
+      "seriesId": "569001",
+      "seriesLabels": [
+        "STARTER DECK -Straw Hat Crew- [ST-01]"
+      ],
+      "releaseCodes": [
+        "ST01"
+      ],
+      "bandaiTotal": 17,
+      "top": {
+        "idExpansion": 6029,
+        "intersection": 17,
+        "missing": 0,
+        "extra": 1,
+        "bandaiTotal": 17,
+        "cardmarketTotal": 18,
+        "precision": 0.9444444444444444,
+        "recall": 1.0,
+        "f1": 0.9714285714285714,
+        "distance": 1
+      },
+      "second": {
+        "idExpansion": 5237,
+        "intersection": 17,
+        "missing": 0,
+        "extra": 24,
+        "bandaiTotal": 17,
+        "cardmarketTotal": 41,
+        "precision": 0.4146341463414634,
+        "recall": 1.0,
+        "f1": 0.5862068965517241,
+        "distance": 24
+      },
+      "plausibleExpansions": [
+        6029,
+        5237
+      ],
+      "trustedProfile": null
+    },
+    "569002": {
+      "seriesId": "569002",
+      "seriesLabels": [
+        "STARTER DECK -Worst Generation- [ST-02]"
+      ],
+      "releaseCodes": [
+        "ST02"
+      ],
+      "bandaiTotal": 17,
+      "top": {
+        "idExpansion": 6030,
+        "intersection": 17,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 17,
+        "cardmarketTotal": 17,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 5238,
+        "intersection": 17,
+        "missing": 0,
+        "extra": 18,
+        "bandaiTotal": 17,
+        "cardmarketTotal": 35,
+        "precision": 0.4857142857142857,
+        "recall": 1.0,
+        "f1": 0.6538461538461539,
+        "distance": 18
+      },
+      "plausibleExpansions": [
+        6030,
+        5238
+      ],
+      "trustedProfile": null
+    },
+    "569003": {
+      "seriesId": "569003",
+      "seriesLabels": [
+        "STARTER DECK -The Seven Warlords of the Sea- [ST-03]"
+      ],
+      "releaseCodes": [
+        "ST03"
+      ],
+      "bandaiTotal": 17,
+      "top": {
+        "idExpansion": 6031,
+        "intersection": 17,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 17,
+        "cardmarketTotal": 17,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 5239,
+        "intersection": 17,
+        "missing": 0,
+        "extra": 18,
+        "bandaiTotal": 17,
+        "cardmarketTotal": 35,
+        "precision": 0.4857142857142857,
+        "recall": 1.0,
+        "f1": 0.6538461538461539,
+        "distance": 18
+      },
+      "plausibleExpansions": [
+        6031,
+        5239
+      ],
+      "trustedProfile": null
+    },
+    "569004": {
+      "seriesId": "569004",
+      "seriesLabels": [
+        "STARTER DECK -Animal Kingdom Pirates- [ST-04]"
+      ],
+      "releaseCodes": [
+        "ST04"
+      ],
+      "bandaiTotal": 17,
+      "top": {
+        "idExpansion": 6032,
+        "intersection": 17,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 17,
+        "cardmarketTotal": 17,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 5240,
+        "intersection": 17,
+        "missing": 0,
+        "extra": 17,
+        "bandaiTotal": 17,
+        "cardmarketTotal": 34,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666,
+        "distance": 17
+      },
+      "plausibleExpansions": [
+        6032,
+        5240
+      ],
+      "trustedProfile": null
+    },
+    "569005": {
+      "seriesId": "569005",
+      "seriesLabels": [
+        "STARTER DECK -ONE PIECE FILM edition- [ST-05]"
+      ],
+      "releaseCodes": [
+        "ST05"
+      ],
+      "bandaiTotal": 17,
+      "top": {
+        "idExpansion": 5255,
+        "intersection": 17,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 17,
+        "cardmarketTotal": 17,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": null,
+      "plausibleExpansions": [
+        5255
+      ],
+      "trustedProfile": {
+        "value": 5255,
+        "count": 17,
+        "total": 17,
+        "ratio": 1.0,
+        "precision": 1.0,
+        "f1": 1.0,
+        "margin": 1.0,
+        "source": "bandai-cardmarket-series-multiset",
+        "seriesId": "569005"
+      }
+    },
+    "569006": {
+      "seriesId": "569006",
+      "seriesLabels": [
+        "STARTER DECK -Absolute Justice- [ST-06]"
+      ],
+      "releaseCodes": [
+        "ST06"
+      ],
+      "bandaiTotal": 17,
+      "top": {
+        "idExpansion": 5265,
+        "intersection": 17,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 17,
+        "cardmarketTotal": 17,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": null,
+      "plausibleExpansions": [
+        5265
+      ],
+      "trustedProfile": {
+        "value": 5265,
+        "count": 17,
+        "total": 17,
+        "ratio": 1.0,
+        "precision": 1.0,
+        "f1": 1.0,
+        "margin": 1.0,
+        "source": "bandai-cardmarket-series-multiset",
+        "seriesId": "569006"
+      }
+    },
+    "569007": {
+      "seriesId": "569007",
+      "seriesLabels": [
+        "STARTER DECK -Big Mom Pirates- [ST-07]"
+      ],
+      "releaseCodes": [
+        "ST07"
+      ],
+      "bandaiTotal": 17,
+      "top": {
+        "idExpansion": 5377,
+        "intersection": 17,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 17,
+        "cardmarketTotal": 17,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": null,
+      "plausibleExpansions": [
+        5377
+      ],
+      "trustedProfile": {
+        "value": 5377,
+        "count": 17,
+        "total": 17,
+        "ratio": 1.0,
+        "precision": 1.0,
+        "f1": 1.0,
+        "margin": 1.0,
+        "source": "bandai-cardmarket-series-multiset",
+        "seriesId": "569007"
+      }
+    },
+    "569008": {
+      "seriesId": "569008",
+      "seriesLabels": [
+        "STARTER DECK -Monkey D. Luffy- [ST-08]"
+      ],
+      "releaseCodes": [
+        "ST08"
+      ],
+      "bandaiTotal": 15,
+      "top": {
+        "idExpansion": 5366,
+        "intersection": 15,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 15,
+        "cardmarketTotal": 15,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": null,
+      "plausibleExpansions": [
+        5366
+      ],
+      "trustedProfile": {
+        "value": 5366,
+        "count": 15,
+        "total": 15,
+        "ratio": 1.0,
+        "precision": 1.0,
+        "f1": 1.0,
+        "margin": 1.0,
+        "source": "bandai-cardmarket-series-multiset",
+        "seriesId": "569008"
+      }
+    },
+    "569009": {
+      "seriesId": "569009",
+      "seriesLabels": [
+        "STARTER DECK -Yamato- [ST-09]"
+      ],
+      "releaseCodes": [
+        "ST09"
+      ],
+      "bandaiTotal": 15,
+      "top": {
+        "idExpansion": 5367,
+        "intersection": 15,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 15,
+        "cardmarketTotal": 15,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 6215,
+        "intersection": 15,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 15,
+        "cardmarketTotal": 15,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "plausibleExpansions": [
+        5367,
+        6215
+      ],
+      "trustedProfile": null
+    },
+    "569010": {
+      "seriesId": "569010",
+      "seriesLabels": [
+        "ULTRA DECK -The Three Captains- [ST-10]"
+      ],
+      "releaseCodes": [
+        "ST10"
+      ],
+      "bandaiTotal": 19,
+      "top": {
+        "idExpansion": 5380,
+        "intersection": 19,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 19,
+        "cardmarketTotal": 19,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 5558,
+        "intersection": 19,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 19,
+        "cardmarketTotal": 19,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "plausibleExpansions": [
+        5380,
+        5558
+      ],
+      "trustedProfile": null
+    },
+    "569011": {
+      "seriesId": "569011",
+      "seriesLabels": [
+        "STARTER DECK -Uta- [ST-11]"
+      ],
+      "releaseCodes": [
+        "ST11"
+      ],
+      "bandaiTotal": 15,
+      "top": {
+        "idExpansion": 5483,
+        "intersection": 10,
+        "missing": 5,
+        "extra": 144,
+        "bandaiTotal": 15,
+        "cardmarketTotal": 154,
+        "precision": 0.06493506493506493,
+        "recall": 0.6666666666666666,
+        "f1": 0.11834319526627217,
+        "distance": 149
+      },
+      "second": {
+        "idExpansion": 5263,
+        "intersection": 10,
+        "missing": 5,
+        "extra": 145,
+        "bandaiTotal": 15,
+        "cardmarketTotal": 155,
+        "precision": 0.06451612903225806,
+        "recall": 0.6666666666666666,
+        "f1": 0.1176470588235294,
+        "distance": 150
+      },
+      "plausibleExpansions": [],
+      "trustedProfile": null
+    },
+    "569012": {
+      "seriesId": "569012",
+      "seriesLabels": [
+        "STARTER DECK -Zoro and Sanji- [ST-12]"
+      ],
+      "releaseCodes": [
+        "ST12"
+      ],
+      "bandaiTotal": 17,
+      "top": {
+        "idExpansion": 5592,
+        "intersection": 17,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 17,
+        "cardmarketTotal": 17,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 5593,
+        "intersection": 17,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 17,
+        "cardmarketTotal": 17,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "plausibleExpansions": [
+        5592,
+        5593
+      ],
+      "trustedProfile": null
+    },
+    "569013": {
+      "seriesId": "569013",
+      "seriesLabels": [
+        "ULTRA DECK -The Three Brothers- [ST-13]"
+      ],
+      "releaseCodes": [
+        "ST13"
+      ],
+      "bandaiTotal": 35,
+      "top": {
+        "idExpansion": 5594,
+        "intersection": 35,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 35,
+        "cardmarketTotal": 35,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 5595,
+        "intersection": 35,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 35,
+        "cardmarketTotal": 35,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "plausibleExpansions": [
+        5594,
+        5595
+      ],
+      "trustedProfile": null
+    },
+    "569014": {
+      "seriesId": "569014",
+      "seriesLabels": [
+        "STARTER DECK -3D2Y- [ST-14]"
+      ],
+      "releaseCodes": [
+        "ST14"
+      ],
+      "bandaiTotal": 17,
+      "top": {
+        "idExpansion": 5850,
+        "intersection": 17,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 17,
+        "cardmarketTotal": 17,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 5611,
+        "intersection": 17,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 17,
+        "cardmarketTotal": 17,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "plausibleExpansions": [
+        5850,
+        5611
+      ],
+      "trustedProfile": null
+    },
+    "569016": {
+      "seriesId": "569016",
+      "seriesLabels": [
+        "STARTER DECK -Green Uta- [ST-16]"
+      ],
+      "releaseCodes": [
+        "ST16"
+      ],
+      "bandaiTotal": 15,
+      "top": {
+        "idExpansion": 5748,
+        "intersection": 15,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 15,
+        "cardmarketTotal": 15,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 5969,
+        "intersection": 15,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 15,
+        "cardmarketTotal": 15,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "plausibleExpansions": [
+        5748,
+        5969
+      ],
+      "trustedProfile": null
+    },
+    "569021": {
+      "seriesId": "569021",
+      "seriesLabels": [
+        "STARTER DECK EX -GEAR5- [ST-21]"
+      ],
+      "releaseCodes": [
+        "ST21"
+      ],
+      "bandaiTotal": 32,
+      "top": {
+        "idExpansion": 5999,
+        "intersection": 32,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 32,
+        "cardmarketTotal": 32,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 5998,
+        "intersection": 32,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 32,
+        "cardmarketTotal": 32,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "plausibleExpansions": [
+        5999,
+        5998
+      ],
+      "trustedProfile": null
+    },
+    "569022": {
+      "seriesId": "569022",
+      "seriesLabels": [
+        "STARTER DECK -Ace & Newgate- [ST-22]"
+      ],
+      "releaseCodes": [
+        "ST22"
+      ],
+      "bandaiTotal": 31,
+      "top": {
+        "idExpansion": 6138,
+        "intersection": 31,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 31,
+        "cardmarketTotal": 31,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 6270,
+        "intersection": 31,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 31,
+        "cardmarketTotal": 31,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "plausibleExpansions": [
+        6138,
+        6270
+      ],
+      "trustedProfile": null
+    },
+    "569023": {
+      "seriesId": "569023",
+      "seriesLabels": [
+        "STARTER DECK -RED Shanks- [ST-23]"
+      ],
+      "releaseCodes": [
+        "ST23"
+      ],
+      "bandaiTotal": 15,
+      "top": {
+        "idExpansion": 6152,
+        "intersection": 15,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 15,
+        "cardmarketTotal": 15,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 6229,
+        "intersection": 15,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 15,
+        "cardmarketTotal": 15,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "plausibleExpansions": [
+        6152,
+        6229
+      ],
+      "trustedProfile": null
+    },
+    "569024": {
+      "seriesId": "569024",
+      "seriesLabels": [
+        "STARTER DECK -GREEN Jewelry Bonney- [ST-24]"
+      ],
+      "releaseCodes": [
+        "ST24"
+      ],
+      "bandaiTotal": 15,
+      "top": {
+        "idExpansion": 6151,
+        "intersection": 15,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 15,
+        "cardmarketTotal": 15,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 6228,
+        "intersection": 15,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 15,
+        "cardmarketTotal": 15,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "plausibleExpansions": [
+        6151,
+        6228
+      ],
+      "trustedProfile": null
+    },
+    "569025": {
+      "seriesId": "569025",
+      "seriesLabels": [
+        "STARTER DECK -BLUE Buggy- [ST-25]"
+      ],
+      "releaseCodes": [
+        "ST25"
+      ],
+      "bandaiTotal": 15,
+      "top": {
+        "idExpansion": 6150,
+        "intersection": 15,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 15,
+        "cardmarketTotal": 15,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 6227,
+        "intersection": 15,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 15,
+        "cardmarketTotal": 15,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "plausibleExpansions": [
+        6150,
+        6227
+      ],
+      "trustedProfile": null
+    },
+    "569026": {
+      "seriesId": "569026",
+      "seriesLabels": [
+        "STARTER DECK -PURPLE/BLACK Monkey.D.Luffy- [ST-26]"
+      ],
+      "releaseCodes": [
+        "ST26"
+      ],
+      "bandaiTotal": 15,
+      "top": {
+        "idExpansion": 6149,
+        "intersection": 15,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 15,
+        "cardmarketTotal": 15,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 6226,
+        "intersection": 15,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 15,
+        "cardmarketTotal": 15,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "plausibleExpansions": [
+        6149,
+        6226
+      ],
+      "trustedProfile": null
+    },
+    "569027": {
+      "seriesId": "569027",
+      "seriesLabels": [
+        "STARTER DECK -BLACK Marshall.D.Teach- [ST-27]"
+      ],
+      "releaseCodes": [
+        "ST27"
+      ],
+      "bandaiTotal": 15,
+      "top": {
+        "idExpansion": 6148,
+        "intersection": 15,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 15,
+        "cardmarketTotal": 15,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 6225,
+        "intersection": 15,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 15,
+        "cardmarketTotal": 15,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "plausibleExpansions": [
+        6148,
+        6225
+      ],
+      "trustedProfile": null
+    },
+    "569028": {
+      "seriesId": "569028",
+      "seriesLabels": [
+        "STARTER DECK -GREEN/YELLOW Yamato- [ST-28]"
+      ],
+      "releaseCodes": [
+        "ST28"
+      ],
+      "bandaiTotal": 15,
+      "top": {
+        "idExpansion": 6147,
+        "intersection": 15,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 15,
+        "cardmarketTotal": 15,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 6224,
+        "intersection": 14,
+        "missing": 1,
+        "extra": 1,
+        "bandaiTotal": 15,
+        "cardmarketTotal": 15,
+        "precision": 0.9333333333333333,
+        "recall": 0.9333333333333333,
+        "f1": 0.9333333333333333,
+        "distance": 2
+      },
+      "plausibleExpansions": [
+        6147
+      ],
+      "trustedProfile": {
+        "value": 6147,
+        "count": 15,
+        "total": 15,
+        "ratio": 1.0,
+        "precision": 1.0,
+        "f1": 1.0,
+        "margin": 0.06666666666666665,
+        "source": "bandai-cardmarket-series-multiset",
+        "seriesId": "569028"
+      }
+    },
+    "569029": {
+      "seriesId": "569029",
+      "seriesLabels": [
+        "STARTER DECK -Egghead- [ST-29]"
+      ],
+      "releaseCodes": [
+        "ST29"
+      ],
+      "bandaiTotal": 31,
+      "top": {
+        "idExpansion": 6444,
+        "intersection": 31,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 31,
+        "cardmarketTotal": 31,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 6445,
+        "intersection": 31,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 31,
+        "cardmarketTotal": 31,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "plausibleExpansions": [
+        6444,
+        6445
+      ],
+      "trustedProfile": null
+    },
+    "569030": {
+      "seriesId": "569030",
+      "seriesLabels": [
+        "STARTER DECK EX -Luffy & Ace- [ST-30]"
+      ],
+      "releaseCodes": [
+        "ST30"
+      ],
+      "bandaiTotal": 34,
+      "top": {
+        "idExpansion": 6560,
+        "intersection": 34,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 34,
+        "cardmarketTotal": 34,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 6608,
+        "intersection": 34,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 34,
+        "cardmarketTotal": 34,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "plausibleExpansions": [
+        6560,
+        6608
+      ],
+      "trustedProfile": null
+    },
+    "569031": {
+      "seriesId": "569031",
+      "seriesLabels": [
+        "STARTER DECK -RED Monkey.D.Luffy- [ST-31]"
+      ],
+      "releaseCodes": [
+        "ST31"
+      ],
+      "bandaiTotal": 15,
+      "top": {
+        "idExpansion": 6650,
+        "intersection": 15,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 15,
+        "cardmarketTotal": 15,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": null,
+      "plausibleExpansions": [
+        6650
+      ],
+      "trustedProfile": {
+        "value": 6650,
+        "count": 15,
+        "total": 15,
+        "ratio": 1.0,
+        "precision": 1.0,
+        "f1": 1.0,
+        "margin": 1.0,
+        "source": "bandai-cardmarket-series-multiset",
+        "seriesId": "569031"
+      }
+    },
+    "569032": {
+      "seriesId": "569032",
+      "seriesLabels": [
+        "STARTER DECK -GREEN Roronoa Zoro- [ST-32]"
+      ],
+      "releaseCodes": [
+        "ST32"
+      ],
+      "bandaiTotal": 15,
+      "top": {
+        "idExpansion": 6649,
+        "intersection": 15,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 15,
+        "cardmarketTotal": 15,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": null,
+      "plausibleExpansions": [
+        6649
+      ],
+      "trustedProfile": {
+        "value": 6649,
+        "count": 15,
+        "total": 15,
+        "ratio": 1.0,
+        "precision": 1.0,
+        "f1": 1.0,
+        "margin": 1.0,
+        "source": "bandai-cardmarket-series-multiset",
+        "seriesId": "569032"
+      }
+    },
+    "569033": {
+      "seriesId": "569033",
+      "seriesLabels": [
+        "STARTER DECK -BLUE Kuzan- [ST-33]"
+      ],
+      "releaseCodes": [
+        "ST33"
+      ],
+      "bandaiTotal": 15,
+      "top": {
+        "idExpansion": 6648,
+        "intersection": 15,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 15,
+        "cardmarketTotal": 15,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": null,
+      "plausibleExpansions": [
+        6648
+      ],
+      "trustedProfile": {
+        "value": 6648,
+        "count": 15,
+        "total": 15,
+        "ratio": 1.0,
+        "precision": 1.0,
+        "f1": 1.0,
+        "margin": 1.0,
+        "source": "bandai-cardmarket-series-multiset",
+        "seriesId": "569033"
+      }
+    },
+    "569034": {
+      "seriesId": "569034",
+      "seriesLabels": [
+        "STARTER DECK -PURPLE Charlotte Katakuri- [ST-34]"
+      ],
+      "releaseCodes": [
+        "ST34"
+      ],
+      "bandaiTotal": 15,
+      "top": {
+        "idExpansion": 6647,
+        "intersection": 15,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 15,
+        "cardmarketTotal": 15,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": null,
+      "plausibleExpansions": [
+        6647
+      ],
+      "trustedProfile": {
+        "value": 6647,
+        "count": 15,
+        "total": 15,
+        "ratio": 1.0,
+        "precision": 1.0,
+        "f1": 1.0,
+        "margin": 1.0,
+        "source": "bandai-cardmarket-series-multiset",
+        "seriesId": "569034"
+      }
+    },
+    "569035": {
+      "seriesId": "569035",
+      "seriesLabels": [
+        "STARTER DECK -RED/BLACK Sabo- [ST-35]"
+      ],
+      "releaseCodes": [
+        "ST35"
+      ],
+      "bandaiTotal": 15,
+      "top": {
+        "idExpansion": 6646,
+        "intersection": 14,
+        "missing": 1,
+        "extra": 1,
+        "bandaiTotal": 15,
+        "cardmarketTotal": 15,
+        "precision": 0.9333333333333333,
+        "recall": 0.9333333333333333,
+        "f1": 0.9333333333333333,
+        "distance": 2
+      },
+      "second": null,
+      "plausibleExpansions": [],
+      "trustedProfile": null
+    },
+    "569036": {
+      "seriesId": "569036",
+      "seriesLabels": [
+        "STARTER DECK -YELLOW Eustass\"Captain\"Kid- [ST-36]"
+      ],
+      "releaseCodes": [
+        "ST36"
+      ],
+      "bandaiTotal": 15,
+      "top": {
+        "idExpansion": 6645,
+        "intersection": 15,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 15,
+        "cardmarketTotal": 15,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": null,
+      "plausibleExpansions": [
+        6645
+      ],
+      "trustedProfile": {
+        "value": 6645,
+        "count": 15,
+        "total": 15,
+        "ratio": 1.0,
+        "precision": 1.0,
+        "f1": 1.0,
+        "margin": 1.0,
+        "source": "bandai-cardmarket-series-multiset",
+        "seriesId": "569036"
+      }
+    },
+    "569101": {
+      "seriesId": "569101",
+      "seriesLabels": [
+        "BOOSTER PACK -ROMANCE DAWN- [OP-01]"
+      ],
+      "releaseCodes": [
+        "OP01"
+      ],
+      "bandaiTotal": 154,
+      "top": {
+        "idExpansion": 5484,
+        "intersection": 154,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 154,
+        "cardmarketTotal": 154,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 5229,
+        "intersection": 154,
+        "missing": 0,
+        "extra": 3,
+        "bandaiTotal": 154,
+        "cardmarketTotal": 157,
+        "precision": 0.9808917197452229,
+        "recall": 1.0,
+        "f1": 0.9903536977491961,
+        "distance": 3
+      },
+      "plausibleExpansions": [
+        5484,
+        5229
+      ],
+      "trustedProfile": null
+    },
+    "569102": {
+      "seriesId": "569102",
+      "seriesLabels": [
+        "BOOSTER PACK -PARAMOUNT WAR- [OP-02]"
+      ],
+      "releaseCodes": [
+        "OP02"
+      ],
+      "bandaiTotal": 154,
+      "top": {
+        "idExpansion": 5483,
+        "intersection": 154,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 154,
+        "cardmarketTotal": 154,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 5263,
+        "intersection": 154,
+        "missing": 0,
+        "extra": 1,
+        "bandaiTotal": 154,
+        "cardmarketTotal": 155,
+        "precision": 0.9935483870967742,
+        "recall": 1.0,
+        "f1": 0.9967637540453074,
+        "distance": 1
+      },
+      "plausibleExpansions": [
+        5483,
+        5263
+      ],
+      "trustedProfile": null
+    },
+    "569103": {
+      "seriesId": "569103",
+      "seriesLabels": [
+        "BOOSTER PACK -PILLARS OF STRENGTH- [OP-03]"
+      ],
+      "releaseCodes": [
+        "OP03"
+      ],
+      "bandaiTotal": 154,
+      "top": {
+        "idExpansion": 5482,
+        "intersection": 154,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 154,
+        "cardmarketTotal": 154,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 5364,
+        "intersection": 154,
+        "missing": 0,
+        "extra": 1,
+        "bandaiTotal": 154,
+        "cardmarketTotal": 155,
+        "precision": 0.9935483870967742,
+        "recall": 1.0,
+        "f1": 0.9967637540453074,
+        "distance": 1
+      },
+      "plausibleExpansions": [
+        5482,
+        5364
+      ],
+      "trustedProfile": null
+    },
+    "569104": {
+      "seriesId": "569104",
+      "seriesLabels": [
+        "BOOSTER PACK -KINGDOMS OF INTRIGUE- [OP-04]"
+      ],
+      "releaseCodes": [
+        "OP04"
+      ],
+      "bandaiTotal": 149,
+      "top": {
+        "idExpansion": 5365,
+        "intersection": 149,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 149,
+        "cardmarketTotal": 149,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 5485,
+        "intersection": 149,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 149,
+        "cardmarketTotal": 149,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "plausibleExpansions": [
+        5365,
+        5485
+      ],
+      "trustedProfile": null
+    },
+    "569105": {
+      "seriesId": "569105",
+      "seriesLabels": [
+        "BOOSTER PACK -AWAKENING OF THE NEW ERA- [OP-05]"
+      ],
+      "releaseCodes": [
+        "OP05"
+      ],
+      "bandaiTotal": 154,
+      "top": {
+        "idExpansion": 5481,
+        "intersection": 154,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 154,
+        "cardmarketTotal": 154,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 5426,
+        "intersection": 154,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 154,
+        "cardmarketTotal": 154,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "plausibleExpansions": [
+        5481,
+        5426
+      ],
+      "trustedProfile": null
+    },
+    "569106": {
+      "seriesId": "569106",
+      "seriesLabels": [
+        "BOOSTER PACK -WINGS OF THE CAPTAIN- [OP-06]"
+      ],
+      "releaseCodes": [
+        "OP06"
+      ],
+      "bandaiTotal": 151,
+      "top": {
+        "idExpansion": 5524,
+        "intersection": 151,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 151,
+        "cardmarketTotal": 151,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 5551,
+        "intersection": 150,
+        "missing": 1,
+        "extra": 0,
+        "bandaiTotal": 151,
+        "cardmarketTotal": 150,
+        "precision": 1.0,
+        "recall": 0.9933774834437086,
+        "f1": 0.9966777408637874,
+        "distance": 1
+      },
+      "plausibleExpansions": [
+        5524,
+        5551
+      ],
+      "trustedProfile": null
+    },
+    "569107": {
+      "seriesId": "569107",
+      "seriesLabels": [
+        "BOOSTER PACK -500 YEARS IN THE FUTURE- [OP-07]"
+      ],
+      "releaseCodes": [
+        "OP07"
+      ],
+      "bandaiTotal": 151,
+      "top": {
+        "idExpansion": 5586,
+        "intersection": 151,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 151,
+        "cardmarketTotal": 151,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 5587,
+        "intersection": 150,
+        "missing": 1,
+        "extra": 1,
+        "bandaiTotal": 151,
+        "cardmarketTotal": 151,
+        "precision": 0.9933774834437086,
+        "recall": 0.9933774834437086,
+        "f1": 0.9933774834437086,
+        "distance": 2
+      },
+      "plausibleExpansions": [
+        5586,
+        5587
+      ],
+      "trustedProfile": null
+    },
+    "569108": {
+      "seriesId": "569108",
+      "seriesLabels": [
+        "BOOSTER PACK -TWO LEGENDS- [OP-08]"
+      ],
+      "releaseCodes": [
+        "OP08"
+      ],
+      "bandaiTotal": 151,
+      "top": {
+        "idExpansion": 5610,
+        "intersection": 151,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 151,
+        "cardmarketTotal": 151,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 5744,
+        "intersection": 150,
+        "missing": 1,
+        "extra": 1,
+        "bandaiTotal": 151,
+        "cardmarketTotal": 151,
+        "precision": 0.9933774834437086,
+        "recall": 0.9933774834437086,
+        "f1": 0.9933774834437086,
+        "distance": 2
+      },
+      "plausibleExpansions": [
+        5610,
+        5744
+      ],
+      "trustedProfile": null
+    },
+    "569109": {
+      "seriesId": "569109",
+      "seriesLabels": [
+        "BOOSTER PACK -EMPERORS IN THE NEW WORLD- [OP-09]"
+      ],
+      "releaseCodes": [
+        "OP09"
+      ],
+      "bandaiTotal": 159,
+      "top": {
+        "idExpansion": 5755,
+        "intersection": 159,
+        "missing": 0,
+        "extra": 1,
+        "bandaiTotal": 159,
+        "cardmarketTotal": 160,
+        "precision": 0.99375,
+        "recall": 1.0,
+        "f1": 0.9968652037617556,
+        "distance": 1
+      },
+      "second": {
+        "idExpansion": 5887,
+        "intersection": 158,
+        "missing": 1,
+        "extra": 1,
+        "bandaiTotal": 159,
+        "cardmarketTotal": 159,
+        "precision": 0.9937106918238994,
+        "recall": 0.9937106918238994,
+        "f1": 0.9937106918238994,
+        "distance": 2
+      },
+      "plausibleExpansions": [
+        5755,
+        5887
+      ],
+      "trustedProfile": null
+    },
+    "569110": {
+      "seriesId": "569110",
+      "seriesLabels": [
+        "BOOSTER PACK -ROYAL BLOOD- [OP-10]"
+      ],
+      "releaseCodes": [
+        "OP10"
+      ],
+      "bandaiTotal": 151,
+      "top": {
+        "idExpansion": 5974,
+        "intersection": 151,
+        "missing": 0,
+        "extra": 1,
+        "bandaiTotal": 151,
+        "cardmarketTotal": 152,
+        "precision": 0.993421052631579,
+        "recall": 1.0,
+        "f1": 0.9966996699669968,
+        "distance": 1
+      },
+      "second": {
+        "idExpansion": 5975,
+        "intersection": 150,
+        "missing": 1,
+        "extra": 1,
+        "bandaiTotal": 151,
+        "cardmarketTotal": 151,
+        "precision": 0.9933774834437086,
+        "recall": 0.9933774834437086,
+        "f1": 0.9933774834437086,
+        "distance": 2
+      },
+      "plausibleExpansions": [
+        5974,
+        5975
+      ],
+      "trustedProfile": null
+    },
+    "569111": {
+      "seriesId": "569111",
+      "seriesLabels": [
+        "BOOSTER PACK -A FIST OF DIVINE SPEED- [OP-11]"
+      ],
+      "releaseCodes": [
+        "OP11"
+      ],
+      "bandaiTotal": 156,
+      "top": {
+        "idExpansion": 6033,
+        "intersection": 156,
+        "missing": 0,
+        "extra": 1,
+        "bandaiTotal": 156,
+        "cardmarketTotal": 157,
+        "precision": 0.9936305732484076,
+        "recall": 1.0,
+        "f1": 0.9968051118210862,
+        "distance": 1
+      },
+      "second": {
+        "idExpansion": 6034,
+        "intersection": 155,
+        "missing": 1,
+        "extra": 1,
+        "bandaiTotal": 156,
+        "cardmarketTotal": 156,
+        "precision": 0.9935897435897436,
+        "recall": 0.9935897435897436,
+        "f1": 0.9935897435897436,
+        "distance": 2
+      },
+      "plausibleExpansions": [
+        6033,
+        6034
+      ],
+      "trustedProfile": null
+    },
+    "569112": {
+      "seriesId": "569112",
+      "seriesLabels": [
+        "BOOSTER PACK -LEGACY OF THE MASTER- [OP-12]"
+      ],
+      "releaseCodes": [
+        "OP12"
+      ],
+      "bandaiTotal": 155,
+      "top": {
+        "idExpansion": 6186,
+        "intersection": 155,
+        "missing": 0,
+        "extra": 1,
+        "bandaiTotal": 155,
+        "cardmarketTotal": 156,
+        "precision": 0.9935897435897436,
+        "recall": 1.0,
+        "f1": 0.9967845659163987,
+        "distance": 1
+      },
+      "second": {
+        "idExpansion": 6157,
+        "intersection": 154,
+        "missing": 1,
+        "extra": 1,
+        "bandaiTotal": 155,
+        "cardmarketTotal": 155,
+        "precision": 0.9935483870967742,
+        "recall": 0.9935483870967742,
+        "f1": 0.9935483870967742,
+        "distance": 2
+      },
+      "plausibleExpansions": [
+        6186,
+        6157
+      ],
+      "trustedProfile": null
+    },
+    "569113": {
+      "seriesId": "569113",
+      "seriesLabels": [
+        "BOOSTER PACK -CARRYING ON HIS WILL- [OP-13]"
+      ],
+      "releaseCodes": [
+        "OP13"
+      ],
+      "bandaiTotal": 175,
+      "top": {
+        "idExpansion": 6187,
+        "intersection": 175,
+        "missing": 0,
+        "extra": 2,
+        "bandaiTotal": 175,
+        "cardmarketTotal": 177,
+        "precision": 0.9887005649717514,
+        "recall": 1.0,
+        "f1": 0.9943181818181819,
+        "distance": 2
+      },
+      "second": {
+        "idExpansion": 6277,
+        "intersection": 174,
+        "missing": 1,
+        "extra": 1,
+        "bandaiTotal": 175,
+        "cardmarketTotal": 175,
+        "precision": 0.9942857142857143,
+        "recall": 0.9942857142857143,
+        "f1": 0.9942857142857143,
+        "distance": 2
+      },
+      "plausibleExpansions": [
+        6187,
+        6277
+      ],
+      "trustedProfile": null
+    },
+    "569114": {
+      "seriesId": "569114",
+      "seriesLabels": [
+        "BOOSTER PACK -THE AZURE SEA’S SEVEN- [OP14-EB04]"
+      ],
+      "releaseCodes": [
+        "EB04",
+        "OP14"
+      ],
+      "bandaiTotal": 199,
+      "top": {
+        "idExpansion": 6432,
+        "intersection": 199,
+        "missing": 0,
+        "extra": 1,
+        "bandaiTotal": 199,
+        "cardmarketTotal": 200,
+        "precision": 0.995,
+        "recall": 1.0,
+        "f1": 0.9974937343358395,
+        "distance": 1
+      },
+      "second": {
+        "idExpansion": 6411,
+        "intersection": 156,
+        "missing": 43,
+        "extra": 1,
+        "bandaiTotal": 199,
+        "cardmarketTotal": 157,
+        "precision": 0.9936305732484076,
+        "recall": 0.7839195979899497,
+        "f1": 0.8764044943820224,
+        "distance": 44
+      },
+      "plausibleExpansions": [
+        6432
+      ],
+      "trustedProfile": {
+        "value": 6432,
+        "count": 199,
+        "total": 199,
+        "ratio": 1.0,
+        "precision": 0.995,
+        "f1": 0.9974937343358395,
+        "margin": 0.12108923995381715,
+        "source": "bandai-cardmarket-series-multiset",
+        "seriesId": "569114"
+      }
+    },
+    "569115": {
+      "seriesId": "569115",
+      "seriesLabels": [
+        "BOOSTER PACK [OP15-EB04]"
+      ],
+      "releaseCodes": [
+        "EB04",
+        "OP15"
+      ],
+      "bandaiTotal": 196,
+      "top": {
+        "idExpansion": 6456,
+        "intersection": 196,
+        "missing": 0,
+        "extra": 1,
+        "bandaiTotal": 196,
+        "cardmarketTotal": 197,
+        "precision": 0.9949238578680203,
+        "recall": 1.0,
+        "f1": 0.9974554707379135,
+        "distance": 1
+      },
+      "second": {
+        "idExpansion": 6504,
+        "intersection": 152,
+        "missing": 44,
+        "extra": 1,
+        "bandaiTotal": 196,
+        "cardmarketTotal": 153,
+        "precision": 0.9934640522875817,
+        "recall": 0.7755102040816326,
+        "f1": 0.8710601719197707,
+        "distance": 45
+      },
+      "plausibleExpansions": [
+        6456
+      ],
+      "trustedProfile": {
+        "value": 6456,
+        "count": 196,
+        "total": 196,
+        "ratio": 1.0,
+        "precision": 0.9949238578680203,
+        "f1": 0.9974554707379135,
+        "margin": 0.12639529881814282,
+        "source": "bandai-cardmarket-series-multiset",
+        "seriesId": "569115"
+      }
+    },
+    "569116": {
+      "seriesId": "569116",
+      "seriesLabels": [
+        "BOOSTER PACK -THE TIME OF BATTLE- [OP-16]"
+      ],
+      "releaseCodes": [
+        "OP16"
+      ],
+      "bandaiTotal": 155,
+      "top": {
+        "idExpansion": 6457,
+        "intersection": 155,
+        "missing": 0,
+        "extra": 1,
+        "bandaiTotal": 155,
+        "cardmarketTotal": 156,
+        "precision": 0.9935897435897436,
+        "recall": 1.0,
+        "f1": 0.9967845659163987,
+        "distance": 1
+      },
+      "second": {
+        "idExpansion": 6606,
+        "intersection": 154,
+        "missing": 1,
+        "extra": 2,
+        "bandaiTotal": 155,
+        "cardmarketTotal": 156,
+        "precision": 0.9871794871794872,
+        "recall": 0.9935483870967742,
+        "f1": 0.990353697749196,
+        "distance": 3
+      },
+      "plausibleExpansions": [
+        6457,
+        6606
+      ],
+      "trustedProfile": null
+    },
+    "569117": {
+      "seriesId": "569117",
+      "seriesLabels": [
+        "BOOSTER PACK -THE WORLD’S STRONGEST WARRIORS- [OP-17]"
+      ],
+      "releaseCodes": [
+        "OP17"
+      ],
+      "bandaiTotal": 169,
+      "top": {
+        "idExpansion": 6492,
+        "intersection": 169,
+        "missing": 0,
+        "extra": 1,
+        "bandaiTotal": 169,
+        "cardmarketTotal": 170,
+        "precision": 0.9941176470588236,
+        "recall": 1.0,
+        "f1": 0.9970501474926253,
+        "distance": 1
+      },
+      "second": {
+        "idExpansion": 6723,
+        "intersection": 168,
+        "missing": 1,
+        "extra": 2,
+        "bandaiTotal": 169,
+        "cardmarketTotal": 170,
+        "precision": 0.9882352941176471,
+        "recall": 0.9940828402366864,
+        "f1": 0.9911504424778761,
+        "distance": 3
+      },
+      "plausibleExpansions": [
+        6492,
+        6723
+      ],
+      "trustedProfile": null
+    },
+    "569201": {
+      "seriesId": "569201",
+      "seriesLabels": [
+        "EXTRA BOOSTER -MEMORIAL COLLECTION- [EB-01]"
+      ],
+      "releaseCodes": [
+        "EB01"
+      ],
+      "bandaiTotal": 80,
+      "top": {
+        "idExpansion": 5580,
+        "intersection": 80,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 80,
+        "cardmarketTotal": 80,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 5585,
+        "intersection": 80,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 80,
+        "cardmarketTotal": 80,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "plausibleExpansions": [
+        5580,
+        5585
+      ],
+      "trustedProfile": null
+    },
+    "569202": {
+      "seriesId": "569202",
+      "seriesLabels": [
+        "EXTRA BOOSTER -Anime 25th Collection- [EB-02]"
+      ],
+      "releaseCodes": [
+        "EB02"
+      ],
+      "bandaiTotal": 105,
+      "top": {
+        "idExpansion": 6018,
+        "intersection": 105,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 105,
+        "cardmarketTotal": 105,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 6028,
+        "intersection": 105,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 105,
+        "cardmarketTotal": 105,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "plausibleExpansions": [
+        6018,
+        6028
+      ],
+      "trustedProfile": null
+    },
+    "569203": {
+      "seriesId": "569203",
+      "seriesLabels": [
+        "EXTRA BOOSTER -ONE PIECE HEROINES EDITION- [EB-03]"
+      ],
+      "releaseCodes": [
+        "EB03"
+      ],
+      "bandaiTotal": 90,
+      "top": {
+        "idExpansion": 6379,
+        "intersection": 90,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 90,
+        "cardmarketTotal": 90,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 6449,
+        "intersection": 90,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 90,
+        "cardmarketTotal": 90,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "plausibleExpansions": [
+        6379,
+        6449
+      ],
+      "trustedProfile": null
+    },
+    "569301": {
+      "seriesId": "569301",
+      "seriesLabels": [
+        "PREMIUM BOOSTER -ONE PIECE CARD THE BEST- [PRB-01]"
+      ],
+      "releaseCodes": [
+        "PRB01"
+      ],
+      "bandaiTotal": 319,
+      "top": {
+        "idExpansion": 5805,
+        "intersection": 318,
+        "missing": 1,
+        "extra": 0,
+        "bandaiTotal": 319,
+        "cardmarketTotal": 318,
+        "precision": 1.0,
+        "recall": 0.9968652037617555,
+        "f1": 0.9984301412872841,
+        "distance": 1
+      },
+      "second": {
+        "idExpansion": 5804,
+        "intersection": 222,
+        "missing": 97,
+        "extra": 0,
+        "bandaiTotal": 319,
+        "cardmarketTotal": 222,
+        "precision": 1.0,
+        "recall": 0.6959247648902821,
+        "f1": 0.8207024029574862,
+        "distance": 97
+      },
+      "plausibleExpansions": [
+        5805
+      ],
+      "trustedProfile": {
+        "value": 5805,
+        "count": 318,
+        "total": 319,
+        "ratio": 0.9968652037617555,
+        "precision": 1.0,
+        "f1": 0.9984301412872841,
+        "margin": 0.17772773832979794,
+        "source": "bandai-cardmarket-series-multiset",
+        "seriesId": "569301"
+      }
+    },
+    "569302": {
+      "seriesId": "569302",
+      "seriesLabels": [
+        "PREMIUM BOOSTER -ONE PIECE CARD THE BEST vol.2- [PRB-02]"
+      ],
+      "releaseCodes": [
+        "PRB02"
+      ],
+      "bandaiTotal": 316,
+      "top": {
+        "idExpansion": 6233,
+        "intersection": 316,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 316,
+        "cardmarketTotal": 316,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "second": {
+        "idExpansion": 6242,
+        "intersection": 316,
+        "missing": 0,
+        "extra": 0,
+        "bandaiTotal": 316,
+        "cardmarketTotal": 316,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "distance": 0
+      },
+      "plausibleExpansions": [
+        6233,
+        6242
+      ],
+      "trustedProfile": null
+    }
+  },
   "needsReview": [
     {
-      "printingId": "EB01-003_P4",
+      "printingId": "EB01-003_P3",
       "baseCode": "EB01-003",
       "name": "Kid & Killer",
-      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-003_p4.png?260828",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-003_p3.png?260828",
       "bandaiReleases": [
         "Promotion card"
       ],
-      "legacyMapping": null,
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "alias-moved-to-current-bandai-id-v37",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "OP14",
+        "legacyName": "Kid & Killer",
+        "legacyRarity": "Special Card",
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/EB01/EB01-003_p3_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "Kid & Killer (EB01-003)",
+        "idExpansion": 6432,
+        "idMetacard": 430413,
+        "dateAdded": "2026-01-09 04:07:59",
+        "previousProductId": 865551,
+        "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Azure-Seas-Seven/Kid-Killer-EB01-003",
+        "aliasMovedTo": "EB01-003_P5"
+      },
       "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
       "candidateProducts": [
         {
@@ -1918,12 +3228,12 @@
       ]
     },
     {
-      "printingId": "EB01-003_P5",
+      "printingId": "EB01-003_P4",
       "baseCode": "EB01-003",
       "name": "Kid & Killer",
-      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-003_p5.png?260828",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB01-003_p4.png?260828",
       "bandaiReleases": [
-        "BOOSTER PACK -THE AZURE SEA’S SEVEN- [OP14-EB04]"
+        "Promotion card"
       ],
       "legacyMapping": null,
       "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
@@ -3012,6 +4322,126 @@
           "idMetacard": 458045,
           "dateAdded": "2026-08-02 02:33:27",
           "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=900743",
+          "version": null
+        }
+      ]
+    },
+    {
+      "printingId": "EB04-061_P2",
+      "baseCode": "EB04-061",
+      "name": "Monkey.D.Luffy",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/EB04-061_p2.png?260828",
+      "bandaiReleases": [
+        "BOOSTER PACK -THE WORLD’S STRONGEST WARRIORS- [OP-17]"
+      ],
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "auto-quarantine-bandai-identity-v37",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "prize-cards",
+        "legacyName": "Monkey.D.Luffy",
+        "legacyRarity": "Serial Card",
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/EB04/EB04-061_p2_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "Monkey.D.Luffy (EB04-061)",
+        "idExpansion": 5262,
+        "idMetacard": 459457,
+        "dateAdded": "2026-04-08 15:29:02",
+        "invalidProductId": 882469,
+        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Special-Tournaments-Promos/MonkeyDLuffy-EB04-061-V1",
+        "invalidReason": "bandai-series-expansion-not-plausible",
+        "validationEvidence": {
+          "releaseCodes": [
+            "OP17"
+          ],
+          "seriesIds": [
+            "569117"
+          ],
+          "seriesProfile": null,
+          "releaseProfile": null,
+          "plausibleExpansions": [
+            6492,
+            6723
+          ],
+          "currentExpansion": 5262,
+          "expectedExpansion": null,
+          "rule": "current-bandai-printing-must-match-release-expansion"
+        }
+      },
+      "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
+      "candidateProducts": [
+        {
+          "idProduct": 871500,
+          "name": "Monkey.D.Luffy (EB04-061)",
+          "idExpansion": 6478,
+          "idMetacard": 459457,
+          "dateAdded": "2026-02-05 17:04:16",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=871500",
+          "version": null
+        },
+        {
+          "idProduct": 871501,
+          "name": "Monkey.D.Luffy (EB04-061)",
+          "idExpansion": 6478,
+          "idMetacard": 459457,
+          "dateAdded": "2026-02-05 17:04:33",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=871501",
+          "version": null
+        },
+        {
+          "idProduct": 879905,
+          "name": "Monkey.D.Luffy (EB04-061)",
+          "idExpansion": 6456,
+          "idMetacard": 459457,
+          "dateAdded": "2026-03-28 11:59:47",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=879905",
+          "version": null
+        },
+        {
+          "idProduct": 879906,
+          "name": "Monkey.D.Luffy (EB04-061)",
+          "idExpansion": 6456,
+          "idMetacard": 459457,
+          "dateAdded": "2026-03-28 12:00:12",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=879906",
+          "version": null
+        },
+        {
+          "idProduct": 882469,
+          "name": "Monkey.D.Luffy (EB04-061)",
+          "idExpansion": 5262,
+          "idMetacard": 459457,
+          "dateAdded": "2026-04-08 15:29:02",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=882469",
+          "version": null
+        },
+        {
+          "idProduct": 888287,
+          "name": "Monkey.D.Luffy (EB04-061)",
+          "idExpansion": 5598,
+          "idMetacard": 459457,
+          "dateAdded": "2026-05-19 14:43:49",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=888287",
+          "version": null
+        },
+        {
+          "idProduct": 904160,
+          "name": "Monkey.D.Luffy (EB04-061)",
+          "idExpansion": 6492,
+          "idMetacard": 459457,
+          "dateAdded": "2026-08-22 01:00:03",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=904160",
+          "version": null
+        },
+        {
+          "idProduct": 904798,
+          "name": "Monkey.D.Luffy (EB04-061)",
+          "idExpansion": 6723,
+          "idMetacard": 459457,
+          "dateAdded": "2026-08-28 12:33:33",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=904798",
           "version": null
         }
       ]
@@ -12448,6 +13878,220 @@
       ]
     },
     {
+      "printingId": "OP03-116_P7",
+      "baseCode": "OP03-116",
+      "name": "Shirahoshi",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP03-116_p7.png?260828",
+      "bandaiReleases": [
+        "Other Product Card"
+      ],
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "auto-quarantine-bandai-semantic-drift-v37",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "PRB01",
+        "legacyName": "Shirahoshi",
+        "legacyRarity": "Full Art",
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP03/OP03-116_p7_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "Shirahoshi (OP03-116)",
+        "idExpansion": 5805,
+        "idMetacard": 421375,
+        "dateAdded": "2024-11-07 11:32:03",
+        "invalidProductId": 799262,
+        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best/Shirahoshi-OP03-116-V2",
+        "invalidReason": "ambiguous-release-specific-generic-mapping",
+        "validationEvidence": {
+          "productId": 799262,
+          "idExpansion": 5805,
+          "baseCode": "OP03-116",
+          "donorSemanticClass": "parallel",
+          "candidateBandaiPrintingIds": [
+            "OP03-116_P5",
+            "OP03-116_P6",
+            "OP03-116_R1"
+          ],
+          "rule": "ambiguous-release-specific-generic-mapping"
+        }
+      },
+      "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
+      "candidateProducts": [
+        {
+          "idProduct": 720053,
+          "name": "Shirahoshi (OP03-116)",
+          "idExpansion": 5364,
+          "idMetacard": 421375,
+          "dateAdded": "2023-06-24 12:30:02",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=720053",
+          "version": null
+        },
+        {
+          "idProduct": 720214,
+          "name": "Shirahoshi (OP03-116)",
+          "idExpansion": 5413,
+          "idMetacard": 421375,
+          "dateAdded": "2023-06-26 11:15:54",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=720214",
+          "version": null
+        },
+        {
+          "idProduct": 737462,
+          "name": "Shirahoshi (OP03-116)",
+          "idExpansion": 5303,
+          "idMetacard": 421375,
+          "dateAdded": "2023-10-04 17:41:44",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=737462",
+          "version": null
+        },
+        {
+          "idProduct": 744878,
+          "name": "Shirahoshi (OP03-116)",
+          "idExpansion": 5482,
+          "idMetacard": 421375,
+          "dateAdded": "2023-11-10 05:23:34",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=744878",
+          "version": null
+        },
+        {
+          "idProduct": 750646,
+          "name": "Shirahoshi (OP03-116)",
+          "idExpansion": 5510,
+          "idMetacard": 421375,
+          "dateAdded": "2024-01-15 10:29:54",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=750646",
+          "version": null
+        },
+        {
+          "idProduct": 754938,
+          "name": "Shirahoshi (OP03-116)",
+          "idExpansion": 6677,
+          "idMetacard": 421375,
+          "dateAdded": "2024-02-05 13:39:19",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=754938",
+          "version": null
+        },
+        {
+          "idProduct": 754939,
+          "name": "Shirahoshi (OP03-116)",
+          "idExpansion": 6684,
+          "idMetacard": 421375,
+          "dateAdded": "2024-02-05 13:39:34",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=754939",
+          "version": null
+        },
+        {
+          "idProduct": 781063,
+          "name": "Shirahoshi (OP03-116)",
+          "idExpansion": 5804,
+          "idMetacard": 421375,
+          "dateAdded": "2024-07-30 01:43:12",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=781063",
+          "version": null
+        },
+        {
+          "idProduct": 781064,
+          "name": "Shirahoshi (OP03-116)",
+          "idExpansion": 5804,
+          "idMetacard": 421375,
+          "dateAdded": "2024-07-30 01:43:31",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=781064",
+          "version": null
+        },
+        {
+          "idProduct": 786100,
+          "name": "Shirahoshi (OP03-116)",
+          "idExpansion": 5303,
+          "idMetacard": 421375,
+          "dateAdded": "2024-08-30 13:26:56",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=786100",
+          "version": null
+        },
+        {
+          "idProduct": 787481,
+          "name": "Shirahoshi (OP03-116)",
+          "idExpansion": 5262,
+          "idMetacard": 421375,
+          "dateAdded": "2024-09-10 14:30:03",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=787481",
+          "version": null
+        },
+        {
+          "idProduct": 794686,
+          "name": "Shirahoshi (OP03-116)",
+          "idExpansion": 5303,
+          "idMetacard": 421375,
+          "dateAdded": "2024-10-24 05:22:30",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=794686",
+          "version": null
+        },
+        {
+          "idProduct": 794687,
+          "name": "Shirahoshi (OP03-116)",
+          "idExpansion": 5303,
+          "idMetacard": 421375,
+          "dateAdded": "2024-10-24 05:22:46",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=794687",
+          "version": null
+        },
+        {
+          "idProduct": 794716,
+          "name": "Shirahoshi (OP03-116)",
+          "idExpansion": 5262,
+          "idMetacard": 421375,
+          "dateAdded": "2024-10-24 06:06:19",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=794716",
+          "version": null
+        },
+        {
+          "idProduct": 799261,
+          "name": "Shirahoshi (OP03-116)",
+          "idExpansion": 5805,
+          "idMetacard": 421375,
+          "dateAdded": "2024-11-07 11:31:49",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=799261",
+          "version": null
+        },
+        {
+          "idProduct": 799262,
+          "name": "Shirahoshi (OP03-116)",
+          "idExpansion": 5805,
+          "idMetacard": 421375,
+          "dateAdded": "2024-11-07 11:32:03",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=799262",
+          "version": null
+        },
+        {
+          "idProduct": 813733,
+          "name": "Shirahoshi (OP03-116)",
+          "idExpansion": 5510,
+          "idMetacard": 421375,
+          "dateAdded": "2025-02-24 16:54:44",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=813733",
+          "version": null
+        },
+        {
+          "idProduct": 818028,
+          "name": "Shirahoshi (OP03-116)",
+          "idExpansion": 5805,
+          "idMetacard": 421375,
+          "dateAdded": "2025-03-21 13:09:39",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=818028",
+          "version": null
+        },
+        {
+          "idProduct": 896361,
+          "name": "Shirahoshi (OP03-116)",
+          "idExpansion": 5598,
+          "idMetacard": 421375,
+          "dateAdded": "2026-07-09 04:38:33",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=896361",
+          "version": null
+        }
+      ]
+    },
+    {
       "printingId": "OP03-116_R1",
       "baseCode": "OP03-116",
       "name": "Shirahoshi",
@@ -21148,14 +22792,32 @@
       ]
     },
     {
-      "printingId": "OP06-093_P5",
+      "printingId": "OP06-093_P4",
       "baseCode": "OP06-093",
       "name": "Perona",
-      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-093_p5.png?260828",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/OP06-093_p4.png?260828",
       "bandaiReleases": [
-        "BOOSTER PACK -THE AZURE SEA’S SEVEN- [OP14-EB04]"
+        "Promotion card"
       ],
-      "legacyMapping": null,
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "alias-moved-to-current-bandai-id-v37",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "OP14",
+        "legacyName": "Perona",
+        "legacyRarity": "Special Card",
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/OP06/OP06-093_p4_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "Perona (OP06-093)",
+        "idExpansion": 6432,
+        "idMetacard": 428315,
+        "dateAdded": "2026-01-09 04:09:27",
+        "previousProductId": 865553,
+        "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Azure-Seas-Seven/Perona-OP06-093",
+        "aliasMovedTo": "OP06-093_P5"
+      },
       "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
       "candidateProducts": [
         {
@@ -37307,42 +38969,31 @@
       ]
     },
     {
-      "printingId": "P-057_P1",
+      "printingId": "P-057",
       "baseCode": "P-057",
       "name": "Fleeting Lullaby",
-      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-057_p1.png?260828",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-057.png?260828",
       "bandaiReleases": [
-        "STARTER DECK -Green Uta- [ST-16]"
+        "Promotion card"
       ],
       "legacyMapping": {
         "productId": null,
         "url": null,
         "confirmed": false,
-        "source": "quarantined-cardmarket-url-expansion-mismatch",
+        "source": "alias-moved-to-current-bandai-id-v37",
         "sourceSnapshotDate": "2026-08-04",
-        "legacySet": "ST16",
+        "legacySet": "uta-deck-battle-participation-pack",
         "legacyName": "Fleeting Lullaby",
         "legacyRarity": null,
-        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-057_p1_EN.webp",
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-057_EN.webp",
         "addedAt": "2026-09-09T10:20:32+00:00",
         "productName": "Fleeting Lullaby (P-057)",
-        "idExpansion": 5230,
+        "idExpansion": 5748,
         "idMetacard": 429247,
-        "dateAdded": "2024-02-02 23:32:20",
-        "invalidProductId": 754827,
-        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/Fleeting-Lullaby-P-057",
-        "invalidReason": "cardmarket-url-expansion-mismatch",
-        "validationEvidence": {
-          "currentExpansion": 5230,
-          "urlSlug": "starter-deck-green-uta",
-          "legacySet": "ST16",
-          "currentExpansionUrlProfile": {
-            "value": "promos",
-            "count": 143,
-            "total": 148,
-            "ratio": 0.9662162162162162
-          }
-        }
+        "dateAdded": "2024-10-24 03:47:16",
+        "previousProductId": 794635,
+        "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Fleeting-Lullaby-P-057",
+        "aliasMovedTo": "P-057_P1"
       },
       "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
       "candidateProducts": [
@@ -37385,42 +39036,31 @@
       ]
     },
     {
-      "printingId": "P-058_P1",
+      "printingId": "P-058",
       "baseCode": "P-058",
       "name": "Where the Wind Blows",
-      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-058_p1.png?260828",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-058.png?260828",
       "bandaiReleases": [
-        "STARTER DECK -Green Uta- [ST-16]"
+        "Promotion card"
       ],
       "legacyMapping": {
         "productId": null,
         "url": null,
         "confirmed": false,
-        "source": "quarantined-cardmarket-url-expansion-mismatch",
+        "source": "alias-moved-to-current-bandai-id-v37",
         "sourceSnapshotDate": "2026-08-04",
-        "legacySet": "ST16",
+        "legacySet": "uta-deck-battle-participation-pack",
         "legacyName": "Where the Wind Blows",
         "legacyRarity": null,
-        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-058_p1_EN.webp",
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-058_EN.webp",
         "addedAt": "2026-09-09T10:20:32+00:00",
         "productName": "Where the Wind Blows (P-058)",
-        "idExpansion": 5230,
+        "idExpansion": 5748,
         "idMetacard": 429248,
-        "dateAdded": "2024-02-02 23:34:21",
-        "invalidProductId": 754830,
-        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/Where-the-Wind-Blows-P-058",
-        "invalidReason": "cardmarket-url-expansion-mismatch",
-        "validationEvidence": {
-          "currentExpansion": 5230,
-          "urlSlug": "starter-deck-green-uta",
-          "legacySet": "ST16",
-          "currentExpansionUrlProfile": {
-            "value": "promos",
-            "count": 143,
-            "total": 148,
-            "ratio": 0.9662162162162162
-          }
-        }
+        "dateAdded": "2024-10-24 03:47:38",
+        "previousProductId": 794636,
+        "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Where-the-Wind-Blows-P-058",
+        "aliasMovedTo": "P-058_P1"
       },
       "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
       "candidateProducts": [
@@ -37463,42 +39103,31 @@
       ]
     },
     {
-      "printingId": "P-059_P1",
+      "printingId": "P-059",
       "baseCode": "P-059",
       "name": "The World's Continuation",
-      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-059_p1.png?260828",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-059.png?260828",
       "bandaiReleases": [
-        "STARTER DECK -Green Uta- [ST-16]"
+        "Promotion card"
       ],
       "legacyMapping": {
         "productId": null,
         "url": null,
         "confirmed": false,
-        "source": "quarantined-cardmarket-url-expansion-mismatch",
+        "source": "alias-moved-to-current-bandai-id-v37",
         "sourceSnapshotDate": "2026-08-04",
-        "legacySet": "ST16",
+        "legacySet": "uta-deck-battle-participation-pack",
         "legacyName": "The World's Continuation",
         "legacyRarity": null,
-        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-059_p1_EN.webp",
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-059_EN.webp",
         "addedAt": "2026-09-09T10:20:32+00:00",
         "productName": "The World's Continuation (P-059)",
-        "idExpansion": 5230,
+        "idExpansion": 5748,
         "idMetacard": 429249,
-        "dateAdded": "2024-02-02 23:33:30",
-        "invalidProductId": 754828,
-        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/The-Worlds-Continuation-P-059",
-        "invalidReason": "cardmarket-url-expansion-mismatch",
-        "validationEvidence": {
-          "currentExpansion": 5230,
-          "urlSlug": "starter-deck-green-uta",
-          "legacySet": "ST16",
-          "currentExpansionUrlProfile": {
-            "value": "promos",
-            "count": 143,
-            "total": 148,
-            "ratio": 0.9662162162162162
-          }
-        }
+        "dateAdded": "2024-10-24 03:48:36",
+        "previousProductId": 794637,
+        "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/The-Worlds-Continuation-P-059",
+        "aliasMovedTo": "P-059_P1"
       },
       "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
       "candidateProducts": [
@@ -37541,42 +39170,31 @@
       ]
     },
     {
-      "printingId": "P-060_P1",
+      "printingId": "P-060",
       "baseCode": "P-060",
       "name": "Tot Musica",
-      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-060_p1.png?260828",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-060.png?260828",
       "bandaiReleases": [
-        "STARTER DECK -Green Uta- [ST-16]"
+        "Promotion card"
       ],
       "legacyMapping": {
         "productId": null,
         "url": null,
         "confirmed": false,
-        "source": "quarantined-cardmarket-url-expansion-mismatch",
+        "source": "alias-moved-to-current-bandai-id-v37",
         "sourceSnapshotDate": "2026-08-04",
-        "legacySet": "ST16",
+        "legacySet": "uta-deck-battle-participation-pack",
         "legacyName": "Tot Musica",
         "legacyRarity": null,
-        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-060_p1_EN.webp",
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-060_EN.webp",
         "addedAt": "2026-09-09T10:20:32+00:00",
         "productName": "Tot Musica (P-060)",
-        "idExpansion": 5230,
+        "idExpansion": 5748,
         "idMetacard": 429250,
-        "dateAdded": "2024-02-02 23:33:55",
-        "invalidProductId": 754829,
-        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Starter-Deck-Green-Uta/Tot-Musica-P-060",
-        "invalidReason": "cardmarket-url-expansion-mismatch",
-        "validationEvidence": {
-          "currentExpansion": 5230,
-          "urlSlug": "starter-deck-green-uta",
-          "legacySet": "ST16",
-          "currentExpansionUrlProfile": {
-            "value": "promos",
-            "count": 143,
-            "total": 148,
-            "ratio": 0.9662162162162162
-          }
-        }
+        "dateAdded": "2024-10-24 03:48:58",
+        "previousProductId": 794638,
+        "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/Tot-Musica-P-060",
+        "aliasMovedTo": "P-060_P1"
       },
       "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
       "candidateProducts": [
@@ -39096,14 +40714,45 @@
       ]
     },
     {
-      "printingId": "P-070_R1",
+      "printingId": "P-070_P2",
       "baseCode": "P-070",
       "name": "Carrot",
-      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-070_r1.png?260828",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-070_p2.png?260828",
       "bandaiReleases": [
-        "PREMIUM BOOSTER -ONE PIECE CARD THE BEST vol.2- [PRB-02]"
+        "Promotion card"
       ],
-      "legacyMapping": null,
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "auto-quarantine-bandai-semantic-drift-v37",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "PRB02",
+        "legacyName": "Carrot",
+        "legacyRarity": null,
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-070_p2_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "Carrot (P-070)",
+        "idExpansion": 6242,
+        "idMetacard": 445265,
+        "dateAdded": "2025-10-01 23:46:25",
+        "invalidProductId": 852499,
+        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Carrot-P-070-V1",
+        "invalidReason": "release-specific-product-on-generic-id-target-already-mapped",
+        "validationEvidence": {
+          "productId": 852499,
+          "idExpansion": 6242,
+          "baseCode": "P-070",
+          "donorSemanticClass": "parallel",
+          "candidateBandaiPrintingIds": [
+            "P-070_P3",
+            "P-070_R1"
+          ],
+          "targetPrintingId": "P-070_P3",
+          "targetProductId": 852500,
+          "rule": "release-specific-product-on-generic-id-target-already-mapped"
+        }
+      },
       "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
       "candidateProducts": [
         {
@@ -39176,24 +40825,6 @@
           "idMetacard": 445265,
           "dateAdded": "2026-07-23 12:08:57",
           "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=898815",
-          "version": null
-        },
-        {
-          "idProduct": 852416,
-          "name": "Carrot (OP08-023)",
-          "idExpansion": 6242,
-          "idMetacard": 435123,
-          "dateAdded": "2025-10-01 23:16:50",
-          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852416",
-          "version": null
-        },
-        {
-          "idProduct": 852417,
-          "name": "Carrot (OP08-023)",
-          "idExpansion": 6242,
-          "idMetacard": 435123,
-          "dateAdded": "2025-10-01 23:17:01",
-          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852417",
           "version": null
         }
       ]
@@ -40305,6 +41936,138 @@
           "idMetacard": 441671,
           "dateAdded": "2025-10-02 00:31:39",
           "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852598",
+          "version": null
+        }
+      ]
+    },
+    {
+      "printingId": "P-075_P1",
+      "baseCode": "P-075",
+      "name": "Monkey.D.Luffy",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-075_p1.png?260828",
+      "bandaiReleases": [
+        "Other Product Card"
+      ],
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "auto-quarantine-bandai-semantic-drift-v37",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "PRB02",
+        "legacyName": "Monkey.D.Luffy",
+        "legacyRarity": "Alternate Art",
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-075_p1_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "Monkey.D.Luffy (P-075)",
+        "idExpansion": 6242,
+        "idMetacard": 441082,
+        "dateAdded": "2025-10-01 23:49:16",
+        "invalidProductId": 852505,
+        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/MonkeyDLuffy-P-075-V1",
+        "invalidReason": "ambiguous-release-specific-generic-mapping",
+        "validationEvidence": {
+          "productId": 852505,
+          "idExpansion": 6242,
+          "baseCode": "P-075",
+          "donorSemanticClass": "parallel",
+          "candidateBandaiPrintingIds": [
+            "P-075",
+            "P-075_R1"
+          ],
+          "rule": "ambiguous-release-specific-generic-mapping"
+        }
+      },
+      "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
+      "candidateProducts": [
+        {
+          "idProduct": 792755,
+          "name": "Monkey.D.Luffy (P-075)",
+          "idExpansion": 5511,
+          "idMetacard": 441082,
+          "dateAdded": "2024-10-10 10:25:19",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=792755",
+          "version": null
+        },
+        {
+          "idProduct": 804388,
+          "name": "Monkey.D.Luffy (P-075)",
+          "idExpansion": 5511,
+          "idMetacard": 441082,
+          "dateAdded": "2024-12-20 17:18:34",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=804388",
+          "version": null
+        },
+        {
+          "idProduct": 804389,
+          "name": "Monkey.D.Luffy (P-075)",
+          "idExpansion": 5511,
+          "idMetacard": 441082,
+          "dateAdded": "2024-12-20 17:18:45",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=804389",
+          "version": null
+        },
+        {
+          "idProduct": 823246,
+          "name": "Monkey.D.Luffy (P-075)",
+          "idExpansion": 5230,
+          "idMetacard": 441082,
+          "dateAdded": "2025-04-28 14:54:06",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=823246",
+          "version": null
+        },
+        {
+          "idProduct": 839434,
+          "name": "Monkey.D.Luffy (P-075)",
+          "idExpansion": 6233,
+          "idMetacard": 441082,
+          "dateAdded": "2025-07-28 16:25:54",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=839434",
+          "version": null
+        },
+        {
+          "idProduct": 839435,
+          "name": "Monkey.D.Luffy (P-075)",
+          "idExpansion": 6233,
+          "idMetacard": 441082,
+          "dateAdded": "2025-07-28 16:26:05",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=839435",
+          "version": null
+        },
+        {
+          "idProduct": 852505,
+          "name": "Monkey.D.Luffy (P-075)",
+          "idExpansion": 6242,
+          "idMetacard": 441082,
+          "dateAdded": "2025-10-01 23:49:16",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852505",
+          "version": null
+        },
+        {
+          "idProduct": 852506,
+          "name": "Monkey.D.Luffy (P-075)",
+          "idExpansion": 6242,
+          "idMetacard": 441082,
+          "dateAdded": "2025-10-01 23:49:24",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852506",
+          "version": null
+        },
+        {
+          "idProduct": 869926,
+          "name": "Monkey.D.Luffy (P-075)",
+          "idExpansion": 5230,
+          "idMetacard": 441082,
+          "dateAdded": "2026-01-29 04:50:13",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=869926",
+          "version": null
+        },
+        {
+          "idProduct": 874457,
+          "name": "Monkey.D.Luffy (P-075)",
+          "idExpansion": 5230,
+          "idMetacard": 441082,
+          "dateAdded": "2026-02-26 10:56:03",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=874457",
           "version": null
         }
       ]
@@ -42044,6 +43807,117 @@
       ]
     },
     {
+      "printingId": "P-084_P1",
+      "baseCode": "P-084",
+      "name": "Buggy",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-084_p1.png?260828",
+      "bandaiReleases": [
+        "BOOSTER PACK -THE WORLD’S STRONGEST WARRIORS- [OP-17]"
+      ],
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "auto-quarantine-bandai-identity-v37",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "prize-cards",
+        "legacyName": "Buggy",
+        "legacyRarity": "Full Art",
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-084_p1_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "Buggy (P-084)",
+        "idExpansion": 5262,
+        "idMetacard": 444095,
+        "dateAdded": "2025-03-15 00:06:30",
+        "invalidProductId": 817503,
+        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Special-Tournaments-Promos/Buggy-P-084",
+        "invalidReason": "bandai-series-expansion-not-plausible",
+        "validationEvidence": {
+          "releaseCodes": [
+            "OP17"
+          ],
+          "seriesIds": [
+            "569117"
+          ],
+          "seriesProfile": null,
+          "releaseProfile": null,
+          "plausibleExpansions": [
+            6492,
+            6723
+          ],
+          "currentExpansion": 5262,
+          "expectedExpansion": null,
+          "rule": "current-bandai-printing-must-match-release-expansion"
+        }
+      },
+      "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
+      "candidateProducts": [
+        {
+          "idProduct": 804533,
+          "name": "Buggy (P-084)",
+          "idExpansion": 5511,
+          "idMetacard": 444095,
+          "dateAdded": "2024-12-30 07:28:44",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=804533",
+          "version": null
+        },
+        {
+          "idProduct": 817502,
+          "name": "Buggy (P-084)",
+          "idExpansion": 5230,
+          "idMetacard": 444095,
+          "dateAdded": "2025-03-15 00:06:16",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=817502",
+          "version": null
+        },
+        {
+          "idProduct": 817503,
+          "name": "Buggy (P-084)",
+          "idExpansion": 5262,
+          "idMetacard": 444095,
+          "dateAdded": "2025-03-15 00:06:30",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=817503",
+          "version": null
+        },
+        {
+          "idProduct": 829136,
+          "name": "Buggy (P-084)",
+          "idExpansion": 6150,
+          "idMetacard": 444095,
+          "dateAdded": "2025-06-06 08:15:54",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=829136",
+          "version": null
+        },
+        {
+          "idProduct": 850845,
+          "name": "Buggy (P-084)",
+          "idExpansion": 6227,
+          "idMetacard": 444095,
+          "dateAdded": "2025-09-24 13:34:21",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=850845",
+          "version": null
+        },
+        {
+          "idProduct": 904155,
+          "name": "Buggy (P-084)",
+          "idExpansion": 6492,
+          "idMetacard": 444095,
+          "dateAdded": "2026-08-22 00:57:43",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=904155",
+          "version": null
+        },
+        {
+          "idProduct": 905030,
+          "name": "Buggy (P-084)",
+          "idExpansion": 6723,
+          "idMetacard": 444095,
+          "dateAdded": "2026-08-28 15:16:56",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=905030",
+          "version": null
+        }
+      ]
+    },
+    {
       "printingId": "P-085",
       "baseCode": "P-085",
       "name": "Jewelry Bonney",
@@ -42081,6 +43955,308 @@
           },
           "urlCompatibleExpansions": [
             5230
+          ]
+        }
+      },
+      "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
+      "candidateProducts": [
+        {
+          "idProduct": 804823,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 5511,
+          "idMetacard": 444118,
+          "dateAdded": "2025-01-03 14:01:11",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=804823",
+          "version": null
+        },
+        {
+          "idProduct": 839449,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 6233,
+          "idMetacard": 444118,
+          "dateAdded": "2025-07-28 16:58:22",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=839449",
+          "version": null
+        },
+        {
+          "idProduct": 839450,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 6233,
+          "idMetacard": 444118,
+          "dateAdded": "2025-07-28 16:58:30",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=839450",
+          "version": null
+        },
+        {
+          "idProduct": 840666,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 5230,
+          "idMetacard": 444118,
+          "dateAdded": "2025-08-04 09:41:37",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=840666",
+          "version": null
+        },
+        {
+          "idProduct": 840667,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 5262,
+          "idMetacard": 444118,
+          "dateAdded": "2025-08-04 09:42:13",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=840667",
+          "version": null
+        },
+        {
+          "idProduct": 840668,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 5262,
+          "idMetacard": 444118,
+          "dateAdded": "2025-08-04 09:42:26",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=840668",
+          "version": null
+        },
+        {
+          "idProduct": 850914,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 5230,
+          "idMetacard": 444118,
+          "dateAdded": "2025-09-24 16:20:55",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=850914",
+          "version": null
+        },
+        {
+          "idProduct": 852517,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 6242,
+          "idMetacard": 444118,
+          "dateAdded": "2025-10-01 23:52:16",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852517",
+          "version": null
+        },
+        {
+          "idProduct": 852518,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 6242,
+          "idMetacard": 444118,
+          "dateAdded": "2025-10-01 23:52:28",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852518",
+          "version": null
+        },
+        {
+          "idProduct": 900576,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 6645,
+          "idMetacard": 444118,
+          "dateAdded": "2026-07-31 16:10:28",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=900576",
+          "version": null
+        }
+      ]
+    },
+    {
+      "printingId": "P-085_P1",
+      "baseCode": "P-085",
+      "name": "Jewelry Bonney",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-085_p1.png?260828",
+      "bandaiReleases": [
+        "Promotion card"
+      ],
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "auto-quarantine-bandai-semantic-drift-v37",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "PRB02",
+        "legacyName": "Jewelry Bonney",
+        "legacyRarity": null,
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-085_p1_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "Jewelry Bonney (P-085)",
+        "idExpansion": 6242,
+        "idMetacard": 444118,
+        "dateAdded": "2025-10-01 23:52:16",
+        "invalidProductId": 852517,
+        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Jewelry-Bonney-P-085-V1",
+        "invalidReason": "multiple-release-specific-donors-for-bandai-printing",
+        "validationEvidence": {
+          "productId": 852517,
+          "idExpansion": 6242,
+          "baseCode": "P-085",
+          "donorSemanticClass": "parallel",
+          "candidateBandaiPrintingIds": [
+            "P-085_P3",
+            "P-085_R1"
+          ],
+          "targetPrintingId": "P-085_P3",
+          "competingDonorKeys": [
+            "P-085_P1",
+            "P-085_P2"
+          ],
+          "rule": "multiple-release-specific-donors-for-bandai-printing"
+        }
+      },
+      "reason": "No existe un mapping persistente inequívoco. No se asigna precio hasta confirmar idProduct.",
+      "candidateProducts": [
+        {
+          "idProduct": 804823,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 5511,
+          "idMetacard": 444118,
+          "dateAdded": "2025-01-03 14:01:11",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=804823",
+          "version": null
+        },
+        {
+          "idProduct": 839449,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 6233,
+          "idMetacard": 444118,
+          "dateAdded": "2025-07-28 16:58:22",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=839449",
+          "version": null
+        },
+        {
+          "idProduct": 839450,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 6233,
+          "idMetacard": 444118,
+          "dateAdded": "2025-07-28 16:58:30",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=839450",
+          "version": null
+        },
+        {
+          "idProduct": 840666,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 5230,
+          "idMetacard": 444118,
+          "dateAdded": "2025-08-04 09:41:37",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=840666",
+          "version": null
+        },
+        {
+          "idProduct": 840667,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 5262,
+          "idMetacard": 444118,
+          "dateAdded": "2025-08-04 09:42:13",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=840667",
+          "version": null
+        },
+        {
+          "idProduct": 840668,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 5262,
+          "idMetacard": 444118,
+          "dateAdded": "2025-08-04 09:42:26",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=840668",
+          "version": null
+        },
+        {
+          "idProduct": 850914,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 5230,
+          "idMetacard": 444118,
+          "dateAdded": "2025-09-24 16:20:55",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=850914",
+          "version": null
+        },
+        {
+          "idProduct": 852517,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 6242,
+          "idMetacard": 444118,
+          "dateAdded": "2025-10-01 23:52:16",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852517",
+          "version": null
+        },
+        {
+          "idProduct": 852518,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 6242,
+          "idMetacard": 444118,
+          "dateAdded": "2025-10-01 23:52:28",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=852518",
+          "version": null
+        },
+        {
+          "idProduct": 900576,
+          "name": "Jewelry Bonney (P-085)",
+          "idExpansion": 6645,
+          "idMetacard": 444118,
+          "dateAdded": "2026-07-31 16:10:28",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=900576",
+          "version": null
+        }
+      ]
+    },
+    {
+      "printingId": "P-085_P2",
+      "baseCode": "P-085",
+      "name": "Jewelry Bonney",
+      "imageUrl": "https://en.onepiece-cardgame.com/images/cardlist/card/P-085_p2.png?260828",
+      "bandaiReleases": [
+        "Promotion card"
+      ],
+      "legacyMapping": {
+        "productId": null,
+        "url": null,
+        "confirmed": false,
+        "source": "auto-quarantine-bandai-semantic-drift-v37",
+        "sourceSnapshotDate": "2026-08-04",
+        "legacySet": "PRB02",
+        "legacyName": "Jewelry Bonney",
+        "legacyRarity": "Pirate Foil",
+        "legacyImageUrl": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/one-piece/P/P-085_p2_EN.webp",
+        "addedAt": "2026-09-09T10:20:32+00:00",
+        "productName": "Jewelry Bonney (P-085)",
+        "idExpansion": 6242,
+        "idMetacard": 444118,
+        "dateAdded": "2025-10-01 23:52:28",
+        "previousProductId": 840666,
+        "previousUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Jewelry-Bonney-P-085-V2",
+        "validationEvidence": {
+          "productId": 852518,
+          "idExpansion": 6242,
+          "baseCode": "P-085",
+          "donorSemanticClass": "parallel",
+          "candidateBandaiPrintingIds": [
+            "P-085_P3",
+            "P-085_R1"
+          ],
+          "targetPrintingId": "P-085_P3",
+          "competingDonorKeys": [
+            "P-085_P1",
+            "P-085_P2"
+          ],
+          "rule": "multiple-release-specific-donors-for-bandai-printing"
+        },
+        "invalidProductId": 852518,
+        "invalidUrl": "https://www.cardmarket.com/en/OnePiece/Products/Singles/The-Best-Vol2/Jewelry-Bonney-P-085-V2",
+        "invalidReason": "multiple-release-specific-donors-for-bandai-printing",
+        "previousValidationEvidence": {
+          "currentExpansion": 5230,
+          "urlSlug": "the-best-vol2",
+          "legacySet": "PRB02",
+          "releaseProfile": {
+            "value": 6242,
+            "count": 124,
+            "total": 131,
+            "ratio": 0.9465648854961832
+          },
+          "releaseUrlProfile": {
+            "value": "the-best-vol2",
+            "count": 124,
+            "total": 124,
+            "ratio": 1.0
+          },
+          "currentExpansionUrlProfile": {
+            "value": "promos",
+            "count": 143,
+            "total": 148,
+            "ratio": 0.9662162162162162
+          },
+          "urlCompatibleExpansions": [
+            6242
           ]
         }
       },
