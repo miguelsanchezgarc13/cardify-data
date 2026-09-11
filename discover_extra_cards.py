@@ -1,14 +1,20 @@
 #!/usr/bin/env python3
 """
-One Piece TCG catalogue pipeline v3.9.
+One Piece TCG catalogue pipeline v3.10.
 
 Live sources:
   1) Bandai official card list -> card/game/printing/image metadata
   2) Cardmarket public product catalogue -> product identifiers
   3) Cardmarket public daily price guide -> EUR prices
+  4) OPTCGAPI.com (optional community fallback) -> missing DON!!/promo preview images only
 
 Persistent local knowledge:
   data/cardmarket_mapping.json -> Bandai printing <-> Cardmarket idProduct
+  output/cardmarket_price_history_v3.json -> compact daily EUR valuation history
+
+V3.10 keeps the V3.9 identity contract intact. Community data is NEVER used
+to decide card identity, Cardmarket mapping or price; it can only provide a
+validated reference image when Bandai has no official image for that entity.
 
 The old community Cardmarket snapshot is used only once, if available, to seed
 cardmarket_mapping.json. It is never used as a live price source.
@@ -29,7 +35,8 @@ import sys
 import time
 import unicodedata
 from collections import Counter, defaultdict
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
+from difflib import SequenceMatcher
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
 
@@ -66,6 +73,16 @@ CARDMARKET_PRICE_GUIDE_URL = (
 CARDMARKET_BASE_URL = "https://www.cardmarket.com"
 CARDMARKET_PRODUCT_REDIRECT = "https://www.cardmarket.com/en/OnePiece/Products?idProduct={product_id}"
 
+# Optional community fallback used ONLY for missing preview images. OPTCGAPI.com
+# documents these GET endpoints as open/no-auth and explicitly lists app/database
+# consumption as a supported use. A failure here never aborts the official pipeline.
+OPTCGAPI_BASE_URL = "https://optcgapi.com"
+OPTCGAPI_DON_URL = f"{OPTCGAPI_BASE_URL}/api/allDonCards/"
+OPTCGAPI_PROMO_URLS = [
+    f"{OPTCGAPI_BASE_URL}/api/allPromos/",      # observed live route
+    f"{OPTCGAPI_BASE_URL}/api/allPromoCards/", # documented fallback
+]
+
 VEGAPULL_PINNED_VERSION = "1.3.0"
 VEGAPULL_MIN_VERSION = (1, 2, 3)
 
@@ -77,20 +94,25 @@ RAW_FILENAMES = {
     "bandai": "bandai_cards_raw.json",
     "cardmarket_products": "cardmarket_products_raw.json",
     "cardmarket_prices": "cardmarket_price_guide_raw.json",
+    "community_images": "optcgapi_images_raw.json",
 }
+OPTIONAL_RAW_KEYS = {"community_images"}
 
 MAPPING_FILENAME = "cardmarket_mapping.json"
 IMAGE_CACHE_FILENAME = "image_health_cache.json"
 CATALOG_FILENAME = "cards_multisource_v3.json"
 REPORT_FILENAME = "cards_multisource_v3_report.json"
 REVIEW_FILENAME = "cardmarket_mapping_review.json"
+SETS_FILENAME = "sets_multisource_v3.json"
+PRICE_HISTORY_FILENAME = "cardmarket_price_history_v3.json"
+MANIFEST_FILENAME = "catalog_manifest_v3.json"
 
 LEGACY_PRICE_FILENAME = "cardmarket_prices_raw.json"
 LEGACY_CARDS_FILENAME = "cardmarket_cards_raw.json"
 
 HEADERS = {
     "User-Agent": (
-        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.9; "
+        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.10; "
         "+https://github.com/)"
     ),
     "Accept-Language": "en-US,en;q=0.9",
@@ -223,6 +245,28 @@ def parse_args() -> argparse.Namespace:
             "Ruta/nombre del binario vega. Si se deja en 'vega' y no existe, "
             "el script instala automáticamente vegapull 1.3.0 con cargo."
         ),
+    )
+    parser.add_argument(
+        "--no-community-images",
+        action="store_true",
+        help=(
+            "No consulta OPTCGAPI.com para intentar completar imágenes de "
+            "DON!!/promos sin imagen oficial Bandai."
+        ),
+    )
+    parser.add_argument(
+        "--price-history-days",
+        type=int,
+        default=90,
+        help=(
+            "Días de histórico diario de valoración Cardmarket a conservar "
+            "en output/cardmarket_price_history_v3.json (por defecto: 90)."
+        ),
+    )
+    parser.add_argument(
+        "--no-price-history",
+        action="store_true",
+        help="No actualiza el histórico diario de valoraciones Cardmarket.",
     )
     parser.add_argument(
         "--self-test",
@@ -1154,6 +1198,15 @@ def normalize_cardmarket_product(row: dict) -> dict | None:
             or row.get("id_metacard")
         ),
         "dateAdded": nullable_text(row.get("dateAdded") or row.get("date_added")),
+        # The current public bulk catalogue normally exposes only idExpansion,
+        # but keep these optional fields if Cardmarket adds them in the future or
+        # a compatible cached source already contains them.
+        "expansionName": nullable_text(
+            row.get("expansionName") or row.get("expansion_name") or row.get("setName")
+        ),
+        "expansionCode": nullable_text(
+            row.get("expansionCode") or row.get("expansion_code") or row.get("setCode")
+        ),
         "website": url,
     }
 
@@ -3536,6 +3589,300 @@ def auto_map_and_build_review(
     }
 
 
+
+# ---------------------------------------------------------------------------
+# Optional community image enrichment (V3.10)
+# ---------------------------------------------------------------------------
+
+COMMUNITY_NAME_KEYS = (
+    "don_card_name", "promo_card_name", "card_name", "name", "display_name",
+    "full_name", "product_name",
+)
+COMMUNITY_IMAGE_URL_KEYS = (
+    "card_image", "image_url", "imageUrl", "image", "image_path", "imagePath",
+)
+COMMUNITY_IMAGE_ID_KEYS = (
+    "card_image_id", "image_id", "imageId",
+)
+COMMUNITY_CODE_KEYS = (
+    "card_set_id", "card_id", "cardId", "card_no", "card_number", "code",
+)
+
+
+def _dict_get_ci(row: dict, keys: tuple[str, ...]):
+    """Case-insensitive scalar lookup with a shallow nested fallback."""
+    if not isinstance(row, dict):
+        return None
+    lowered = {str(key).casefold(): value for key, value in row.items()}
+    for key in keys:
+        value = lowered.get(key.casefold())
+        if value not in (None, "", [], {}):
+            return value
+    for nested_key in ("card", "fields", "data", "result"):
+        nested = lowered.get(nested_key)
+        if isinstance(nested, dict):
+            value = _dict_get_ci(nested, keys)
+            if value not in (None, "", [], {}):
+                return value
+    return None
+
+
+def _iter_community_rows(value, depth: int = 0):
+    """Yield likely card rows from APIs whose wrapper shape may change."""
+    if depth > 6:
+        return
+    if isinstance(value, list):
+        for item in value:
+            if isinstance(item, dict):
+                yield item
+                yield from _iter_community_rows(item, depth + 1)
+        return
+    if not isinstance(value, dict):
+        return
+
+    lower_keys = {str(key).casefold() for key in value}
+    has_name = any(key.casefold() in lower_keys for key in COMMUNITY_NAME_KEYS)
+    has_image = any(key.casefold() in lower_keys for key in COMMUNITY_IMAGE_URL_KEYS)
+    if has_name and has_image:
+        yield value
+
+    for nested in value.values():
+        if isinstance(nested, (dict, list)):
+            yield from _iter_community_rows(nested, depth + 1)
+
+
+def _fetch_json_first(session: requests.Session, urls: list[str]) -> tuple[object | None, str | None, list[dict]]:
+    """Fetch an *optional* JSON source without inheriting official-source retries.
+
+    Bandai/Cardmarket are required and intentionally use the hardened session with
+    retries. Community image enrichment must never turn a temporary third-party
+    outage into a multi-minute catalogue failure, so it uses a short best-effort
+    request and falls back cleanly. ``session`` is kept in the signature to make
+    the orchestration explicit and for future per-source adapters.
+    """
+    del session
+    attempts = []
+    for url in urls:
+        try:
+            response = requests.get(url, headers=HEADERS, timeout=30)
+            response.raise_for_status()
+            data = response.json()
+            attempts.append({"url": url, "ok": True, "error": None})
+            return data, url, attempts
+        except Exception as error:
+            attempts.append({"url": url, "ok": False, "error": str(error)[:1000]})
+    return None, None, attempts
+
+
+def fetch_community_image_raw(session: requests.Session) -> dict:
+    """Fetch optional image-only metadata from OPTCGAPI.com.
+
+    This source is deliberately non-authoritative. Its prices/game metadata are
+    ignored; only a candidate name/code/image URL is retained for conservative
+    matching against entities already created from Bandai/Cardmarket.
+    """
+    result = {
+        "source": "OPTCGAPI.com community image fallback",
+        "sourceUrl": "https://optcgapi.com/documentation",
+        "fetchedAt": utc_now_iso(),
+        "don": None,
+        "promos": None,
+        "requests": [],
+    }
+
+    don, don_url, attempts = _fetch_json_first(session, [OPTCGAPI_DON_URL])
+    result["requests"].extend(attempts)
+    if don is not None:
+        result["don"] = {"endpoint": don_url, "payload": don}
+    else:
+        print("AVISO: OPTCGAPI DON no disponible; se continúa sin imágenes DON externas.")
+
+    promos, promo_url, attempts = _fetch_json_first(session, OPTCGAPI_PROMO_URLS)
+    result["requests"].extend(attempts)
+    if promos is not None:
+        result["promos"] = {"endpoint": promo_url, "payload": promos}
+    else:
+        print("AVISO: OPTCGAPI promos no disponible; se continúa sin imágenes promo externas.")
+
+    return result
+
+
+def normalize_community_image_records(raw: dict | None) -> list[dict]:
+    if not isinstance(raw, dict):
+        return []
+    normalized = []
+    seen = set()
+
+    for bucket_name, kind in (("don", "don"), ("promos", "promo")):
+        bucket = raw.get(bucket_name)
+        if not isinstance(bucket, dict):
+            continue
+        endpoint = nullable_text(bucket.get("endpoint"))
+        payload = bucket.get("payload")
+        for row in _iter_community_rows(payload):
+            raw_name = nullable_text(_dict_get_ci(row, COMMUNITY_NAME_KEYS))
+            image_url = nullable_text(_dict_get_ci(row, COMMUNITY_IMAGE_URL_KEYS))
+            if not raw_name or not image_url:
+                continue
+            image_url = urljoin(OPTCGAPI_BASE_URL + "/", image_url)
+
+            code_value = nullable_text(_dict_get_ci(row, COMMUNITY_CODE_KEYS))
+            code_match = CARD_CODE_RE.search(str(code_value or raw_name))
+            code = canonical_id(code_match.group(0)) if code_match else None
+            image_id = nullable_text(_dict_get_ci(row, COMMUNITY_IMAGE_ID_KEYS))
+            record_id = nullable_text(
+                _dict_get_ci(row, ("id", "pk", "don_id", "promo_id", "card_pk"))
+            )
+            key = (kind, raw_name, image_url, code)
+            if key in seen:
+                continue
+            seen.add(key)
+            normalized.append({
+                "kind": kind,
+                "name": raw_name,
+                "code": code,
+                "imageUrl": image_url,
+                "imageId": image_id,
+                "recordId": record_id,
+                "endpoint": endpoint,
+                "source": "optcgapi.com",
+            })
+    return normalized
+
+
+def _normalize_design_name(value: str | None, *, kind: str | None = None) -> str:
+    text = nullable_text(value) or ""
+    # OPTCGAPI often appends the set after " - ". Keep the actual design name.
+    text = re.split(
+        r"\s+-\s+(?=(?:One Piece|Premium Booster|Booster|Extra Booster|Starter|Promotion|Promo))",
+        text,
+        maxsplit=1,
+        flags=re.I,
+    )[0]
+    text = CARD_CODE_RE.sub(" ", text)
+    text = VERSION_RE.sub(" ", text)
+    text = re.sub(r"\b(?:version|ver\.?)[\s_-]*\d+\b", " ", text, flags=re.I)
+    if kind == "don":
+        text = re.sub(r"\bDON\s*!*\s*(?:CARD)?\b", " ", text, flags=re.I)
+    text = normalize_text(text)
+    # Singularise only a few harmless English plural endings for event labels.
+    tokens = []
+    for token in re.findall(r"[a-z0-9]+", text):
+        if len(token) > 4 and token.endswith("s") and token not in {"series"}:
+            token = token[:-1]
+        tokens.append(token)
+    return " ".join(tokens)
+
+
+def _name_similarity(left: str, right: str) -> float:
+    if not left or not right:
+        return 0.0
+    if left == right:
+        return 1.0
+    left_tokens = set(left.split())
+    right_tokens = set(right.split())
+    common = left_tokens & right_tokens
+    union = left_tokens | right_tokens
+    jaccard = len(common) / len(union) if union else 0.0
+    containment = (
+        len(common) / min(len(left_tokens), len(right_tokens))
+        if left_tokens and right_tokens
+        else 0.0
+    )
+    sequence = SequenceMatcher(None, left, right).ratio()
+    score = 0.68 * sequence + 0.32 * jaccard
+    # A source can contain an extra character/set qualifier while the shorter
+    # marketplace label remains exact. Reward strong token containment without
+    # treating a one-word coincidence as a match.
+    if min(len(left_tokens), len(right_tokens)) >= 2 and containment >= 0.90:
+        score = max(score, 0.92 + 0.05 * min(jaccard, 1.0))
+    if min(len(left), len(right)) >= 10 and (left in right or right in left):
+        score = max(score, 0.94)
+    return min(score, 1.0)
+
+
+def match_community_reference_image(
+    *,
+    kind: str,
+    display_name: str | None,
+    printed_codes: list[str] | None,
+    community_images: list[dict],
+) -> tuple[dict | None, dict]:
+    """Return one high-confidence reference image or an explicit non-match.
+
+    Standard cards require a matching printed card code. DON!! has no stable
+    printed code, so it uses a stricter unique-name match with a score margin.
+    """
+    wanted_name = _normalize_design_name(display_name, kind=kind)
+    wanted_codes = {canonical_id(code) for code in (printed_codes or []) if code}
+    ranked = []
+    for item in community_images:
+        if item.get("kind") != kind:
+            continue
+        if kind != "don":
+            item_code = canonical_id(item.get("code")) if item.get("code") else None
+            if not item_code or item_code not in wanted_codes:
+                continue
+        candidate_name = _normalize_design_name(item.get("name"), kind=kind)
+        score = _name_similarity(wanted_name, candidate_name)
+        ranked.append((score, candidate_name, item))
+
+    ranked.sort(key=lambda row: (row[0], row[1], str(row[2].get("imageUrl"))), reverse=True)
+    # Same source row can be exposed through nested wrappers. Collapse identical URLs.
+    unique = []
+    seen_urls = set()
+    for score, candidate_name, item in ranked:
+        url = item.get("imageUrl")
+        if not url or url in seen_urls:
+            continue
+        seen_urls.add(url)
+        unique.append((score, candidate_name, item))
+
+    threshold = 0.88 if kind == "don" else 0.80
+    margin_required = 0.06 if kind == "don" else 0.04
+    top_score = unique[0][0] if unique else 0.0
+    second_score = unique[1][0] if len(unique) > 1 else 0.0
+    diagnostic = {
+        "wantedName": wanted_name,
+        "candidateCount": len(unique),
+        "topScore": round(top_score, 4),
+        "secondScore": round(second_score, 4),
+        "requiredScore": threshold,
+        "requiredMargin": margin_required,
+    }
+    if not unique or top_score < threshold or (len(unique) > 1 and top_score - second_score < margin_required):
+        diagnostic["status"] = "unmatched-or-ambiguous"
+        return None, diagnostic
+
+    item = unique[0][2]
+    match = {
+        "url": item.get("imageUrl"),
+        "sourceUrl": item.get("endpoint"),
+        "source": item.get("source") or "optcgapi.com",
+        "sourceRecordId": item.get("recordId"),
+        "sourceImageId": item.get("imageId"),
+        "sourceName": item.get("name"),
+        "sourceCode": item.get("code"),
+        "matchMethod": "code+name" if kind != "don" else "unique-design-name",
+        "matchScore": round(top_score, 4),
+        "authoritative": False,
+        "scope": "entity-reference",
+    }
+    diagnostic["status"] = "matched"
+    return match, diagnostic
+
+
+def safe_image_from_cache(image_url: str | None, image_cache: dict) -> tuple[str | None, dict | None]:
+    if not image_url:
+        return None, None
+    health = (image_cache.get("images", {}) if isinstance(image_cache, dict) else {}).get(image_url)
+    if health is None:
+        return image_url, None
+    if health.get("ok"):
+        return health.get("finalUrl") or image_url, health
+    return None, health
+
+
 # ---------------------------------------------------------------------------
 # Image health cache
 # ---------------------------------------------------------------------------
@@ -3616,31 +3963,47 @@ def update_image_health_cache(
     cache: dict,
     skip: bool,
     force_all: bool,
+    extra_urls: list[str] | None = None,
 ) -> tuple[dict, dict]:
-    cache.setdefault("schemaVersion", 1)
+    cache.setdefault("schemaVersion", 2)
     cache.setdefault("images", {})
     images = cache["images"]
 
-    urls = sorted({str(card.get("imageUrl")) for card in bandai_cards if card.get("imageUrl")})
+    official_urls = {str(card.get("imageUrl")) for card in bandai_cards if card.get("imageUrl")}
+    community_urls = {str(url) for url in (extra_urls or []) if url}
+    urls = sorted(official_urls | community_urls)
     checked = 0
     failed = []
 
     if skip:
-        return cache, {"totalUrls": len(urls), "checkedThisRun": 0, "failed": []}
+        return cache, {
+            "totalUrls": len(urls),
+            "officialUrls": len(official_urls),
+            "communityUrls": len(community_urls),
+            "checkedThisRun": 0,
+            "failed": [],
+        }
 
     for index, url in enumerate(urls, start=1):
         if not force_all and isinstance(images.get(url), dict) and images[url].get("ok") is True:
             continue
-        print(f"Imagen {index}/{len(urls)}: {url}")
+        source_label = "community" if url in community_urls and url not in official_urls else "official"
+        print(f"Imagen {index}/{len(urls)} [{source_label}]: {url}")
         result = validate_image_url(session, url)
         images[url] = result
         checked += 1
         if not result.get("ok"):
-            failed.append({"url": url, **result})
+            failed.append({"url": url, "sourceKind": source_label, **result})
         time.sleep(0.05)
 
     cache["updatedAt"] = utc_now_iso()
-    return cache, {"totalUrls": len(urls), "checkedThisRun": checked, "failed": failed}
+    return cache, {
+        "totalUrls": len(urls),
+        "officialUrls": len(official_urls),
+        "communityUrls": len(community_urls),
+        "checkedThisRun": checked,
+        "failed": failed,
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -3715,6 +4078,79 @@ def _price_valuation_eur(price: dict | None):
         if price.get("avg30") is not None
         else price.get("avg")
     )
+
+
+
+def _release_kind(label: str | None) -> str:
+    text = normalize_text(label)
+    if "starter deck" in text or "ultra deck" in text:
+        return "starter-deck"
+    if "premium booster" in text:
+        return "premium-booster"
+    if "extra booster" in text:
+        return "extra-booster"
+    if "booster pack" in text:
+        return "booster"
+    if "promotion" in text or "promo" in text:
+        return "promotion"
+    if "other product" in text:
+        return "other-product"
+    return "other"
+
+
+def _release_code_from_label(label: str | None) -> str | None:
+    text = str(label or "")
+    bracket = re.findall(r"\[([^\]]+)\]", text)
+    candidate = bracket[-1].strip() if bracket else ""
+    if candidate:
+        # Keep combined releases such as OP14-EB04 intact while normalizing
+        # simple OP-16 / ST-01 labels to their official display form.
+        candidate = candidate.upper().replace(" ", "")
+        if re.fullmatch(r"(?:OP|ST|EB|PRB)-?\d{2}", candidate):
+            prefix = re.match(r"[A-Z]+", candidate).group(0)
+            number = re.search(r"\d{2}", candidate).group(0)
+            return f"{prefix}-{number}"
+        return candidate
+    if "promotion card" in text.casefold():
+        return "PROMO"
+    if "other product card" in text.casefold():
+        return "OTHER"
+    return None
+
+
+def _bandai_release_payload(record: dict) -> dict:
+    series_id = nullable_text(record.get("seriesId"))
+    label = nullable_text(record.get("seriesLabel") or record.get("cardSetsText"))
+    return {
+        "releaseId": f"BANDAI-{series_id}" if series_id else None,
+        "source": "bandai",
+        "seriesId": series_id,
+        "code": _release_code_from_label(label),
+        "kind": _release_kind(label),
+        "displayName": label,
+        "seriesLabel": record.get("seriesLabel"),
+        "cardSetsText": record.get("cardSetsText"),
+    }
+
+
+def _cardmarket_release_payload(product: dict) -> dict:
+    expansion_number = get_number((product or {}).get("idExpansion"))
+    expansion_id = int(expansion_number) if expansion_number is not None else None
+    expansion_name = nullable_text((product or {}).get("expansionName"))
+    expansion_code = nullable_text((product or {}).get("expansionCode"))
+    return {
+        "releaseId": f"CM-EXP-{expansion_id}" if expansion_id is not None else None,
+        "source": "cardmarket",
+        "seriesId": None,
+        "code": expansion_code,
+        "kind": "cardmarket-expansion",
+        "displayName": expansion_name or (
+            f"Cardmarket expansion #{expansion_id}" if expansion_id is not None else "Cardmarket"
+        ),
+        "seriesLabel": None,
+        "cardSetsText": None,
+        "cardmarketExpansionId": expansion_id,
+    }
 
 
 def build_catalog(
@@ -3800,13 +4236,7 @@ def build_catalog(
                     if release_key in seen_release:
                         continue
                     seen_release.add(release_key)
-                    releases.append(
-                        {
-                            "seriesId": r.get("seriesId"),
-                            "seriesLabel": r.get("seriesLabel"),
-                            "cardSetsText": r.get("cardSetsText"),
-                        }
-                    )
+                    releases.append(_bandai_release_payload(r))
 
                 image_status = health.get(image_url) if image_url else None
                 if image_status is None:
@@ -3919,6 +4349,18 @@ def build_catalog(
                         "imageUrl": safe_image_url,
                         "imageSourceUrl": image_url or None,
                         "imageHealth": image_status,
+                        "image": {
+                            "url": safe_image_url,
+                            "sourceUrl": image_url or None,
+                            "source": "bandai",
+                            "authoritative": True,
+                            "scope": "printing",
+                            "validated": (
+                                bool(image_status.get("ok"))
+                                if isinstance(image_status, dict)
+                                else None
+                            ),
+                        },
                         "releases": releases,
                         "mechanics": printing_mechanics,
                         "mechanicsDifferFromBase": mechanics_differ,
@@ -3929,15 +4371,36 @@ def build_catalog(
 
         printings.sort(key=natural_printing_sort_key)
         canonical_mechanics = _printing_mechanics(canonical)
+        preview_printing = next((p for p in printings if p.get("imageUrl")), None)
+        release_ids = sorted({
+            release.get("releaseId")
+            for printing in printings
+            for release in printing.get("releases", [])
+            if release.get("releaseId")
+        })
         output[base] = {
             "catalogId": base,
             "code": base,
+            "printedCodes": [base],
             "game": "One Piece",
             "name": canonical.get("name") or base,
             "rarity": canonical.get("rarity"),
             "type": canonical.get("category"),
             **canonical_mechanics,
             "sources": ["bandai", *( ["cardmarket"] if any(p.get("cardmarket") for p in printings) else [] )],
+            "releaseIds": release_ids,
+            "previewImageUrl": preview_printing.get("imageUrl") if preview_printing else None,
+            "previewImage": (
+                {
+                    "url": preview_printing.get("imageUrl"),
+                    "source": "bandai",
+                    "authoritative": True,
+                    "scope": "printing",
+                    "printingId": preview_printing.get("printingId"),
+                }
+                if preview_printing
+                else None
+            ),
             "printings": printings,
         }
 
@@ -3991,9 +4454,30 @@ def _direct_cardmarket_printing(
     base: str,
     *,
     collectible_type: str,
+    reference_image: dict | None = None,
+    assign_reference_to_printing: bool = False,
+    image_cache: dict | None = None,
 ) -> dict:
     product_id = int(product["idProduct"])
     direct_id = f"CM-{product_id}"
+    safe_reference_url = None
+    image_health = None
+    if reference_image and reference_image.get("url"):
+        safe_reference_url, image_health = safe_image_from_cache(
+            reference_image.get("url"), image_cache or {}
+        )
+    printing_image_url = safe_reference_url if assign_reference_to_printing else None
+    printing_image = None
+    if printing_image_url:
+        printing_image = {
+            **reference_image,
+            "url": printing_image_url,
+            "scope": "single-cardmarket-product",
+            "validated": (
+                bool(image_health.get("ok")) if isinstance(image_health, dict) else None
+            ),
+        }
+
     return {
         "id": direct_id,
         "printingId": direct_id,
@@ -4005,17 +4489,20 @@ def _direct_cardmarket_printing(
         "isReprint": None,
         "physicalVariantUnknown": True,
         "rarity": None,
-        "imageUrl": None,
-        "imageSourceUrl": None,
-        "imageHealth": None,
-        "releases": [
-            {
-                "seriesId": None,
-                "seriesLabel": None,
-                "cardSetsText": None,
-                "cardmarketExpansionId": product.get("idExpansion"),
-            }
-        ],
+        # V3.10 is conservative: a community image is assigned to a printing
+        # only when this Cardmarket entity has exactly one product. With multiple
+        # products it remains an entity-level reference image so we never pretend
+        # to know which V.1/V.2 artwork belongs to which idProduct.
+        "imageUrl": printing_image_url,
+        "imageSourceUrl": reference_image.get("url") if printing_image else None,
+        "imageHealth": image_health if printing_image else None,
+        "image": printing_image,
+        "referenceImage": (
+            {**reference_image, "url": safe_reference_url}
+            if reference_image and safe_reference_url
+            else None
+        ),
+        "releases": [_cardmarket_release_payload(product)],
         "mechanics": {
             "life": None,
             "cost": None,
@@ -4050,18 +4537,26 @@ def add_cardmarket_supplements(
     products_by_id: dict[int, dict],
     prices_by_id: dict[int, dict],
     price_created_at: str | None,
+    *,
+    community_images: list[dict] | None = None,
+    image_cache: dict | None = None,
 ) -> dict:
     """Add Cardmarket-only standard cards and DON!! designs conservatively.
 
-    V3.9 identity contract:
+    V3.10 identity contract (unchanged from V3.9):
       * Bandai cards keep the official printed code as catalogId.
       * Standard Cardmarket-only entities use idMetacard as identity:
-        CMCARD-<idMetacard>. Their printed ``code`` remains metadata and is NOT
-        assumed globally unique while Bandai has not published the card.
-      * DON!! continues to use DON-CM-<idMetacard>.
+        CMCARD-<idMetacard>. Printed codes are search aliases, not identity.
+      * DON!! uses DON-CM-<idMetacard>.
+      * Every idProduct remains a distinct direct Cardmarket product/printing.
 
-    Every idProduct remains a distinct direct Cardmarket product/printing.
+    New in V3.10: a community source may add a *reference/preview* image after
+    a high-confidence match. It can never create/merge an entity or set a price.
+    If an entity has multiple Cardmarket products, the image stays at entity
+    level and is deliberately not claimed to represent an exact printing.
     """
+    community_images = community_images or []
+    image_cache = image_cache or {}
     bandai_codes = {
         canonical_id(card.get("code"))
         for card in catalog.values()
@@ -4095,13 +4590,16 @@ def add_cardmarket_supplements(
             continue
         metacard = get_number(product.get("idMetacard"))
         if metacard is None:
-            # Never merge by printed code when idMetacard is absent: there is no
-            # safe Cardmarket card identity, so keep the product isolated.
             identity = f"PRODUCT-{product_id}"
             standard_without_metacard.append(product_id)
         else:
             identity = str(int(metacard))
         standard_groups[identity].append(product)
+
+    image_diag = []
+    standard_reference_images = 0
+    don_reference_images = 0
+    exact_printing_images = 0
 
     standard_products = 0
     standard_price_guides = 0
@@ -4125,9 +4623,41 @@ def add_cardmarket_supplements(
         display_name = names[0] if names else (code or catalog_id)
         if code:
             display_name = re.sub(
-                r"\s*\(" + re.escape(code) + r"\)\s*$", "", display_name, flags=re.I
+                r"\s*\(" + re.escape(code) + r"\)\s*(?:\(V\.\s*\d+\))?\s*$",
+                "",
+                display_name,
+                flags=re.I,
             ).strip() or code
 
+        reference_image, diagnostic = match_community_reference_image(
+            kind="promo",
+            display_name=display_name,
+            printed_codes=printed_codes,
+            community_images=community_images,
+        )
+        safe_reference_url = None
+        reference_health = None
+        if reference_image:
+            safe_reference_url, reference_health = safe_image_from_cache(
+                reference_image.get("url"), image_cache
+            )
+            if safe_reference_url:
+                reference_image = {
+                    **reference_image,
+                    "url": safe_reference_url,
+                    "validated": (
+                        bool(reference_health.get("ok"))
+                        if isinstance(reference_health, dict)
+                        else None
+                    ),
+                }
+                standard_reference_images += 1
+            else:
+                diagnostic["status"] = "matched-image-invalid"
+                reference_image = None
+        image_diag.append({"catalogId": catalog_id, "kind": "standard-card", **diagnostic})
+
+        assign_exact = bool(reference_image) and len(rows) == 1
         printings = [
             _direct_cardmarket_printing(
                 row,
@@ -4135,9 +4665,14 @@ def add_cardmarket_supplements(
                 price_created_at,
                 code or catalog_id,
                 collectible_type="standard-card",
+                reference_image=reference_image,
+                assign_reference_to_printing=assign_exact,
+                image_cache=image_cache,
             )
             for row in rows
         ]
+        if assign_exact:
+            exact_printing_images += 1
         standard_products += len(printings)
         for printing in printings:
             price = (printing.get("cardmarket") or {}).get("price")
@@ -4146,6 +4681,13 @@ def add_cardmarket_supplements(
             if isinstance((price or {}).get("valuationEur"), (int, float)):
                 standard_valuations += 1
 
+        release_ids = sorted({
+            release.get("releaseId")
+            for printing in printings
+            for release in printing.get("releases", [])
+            if release.get("releaseId")
+        })
+        sources = ["cardmarket"] + (["optcgapi"] if reference_image else [])
         catalog[catalog_id] = {
             "catalogId": catalog_id,
             "code": code,
@@ -4164,13 +4706,16 @@ def add_cardmarket_supplements(
             "types": [],
             "effect": None,
             "trigger": None,
-            "sources": ["cardmarket"],
+            "sources": sources,
             "catalogOrigin": "cardmarket-only",
             "bandaiCanonical": False,
             "dataCompleteness": "market-only",
             "collectibleType": "standard-card",
             "identitySource": "cardmarket-idMetacard" if metacard is not None else "cardmarket-idProduct-fallback",
             "cardmarketMetacardId": int(metacard) if metacard is not None else None,
+            "releaseIds": release_ids,
+            "previewImageUrl": reference_image.get("url") if reference_image else None,
+            "previewImage": reference_image,
             "printings": printings,
         }
 
@@ -4181,12 +4726,51 @@ def add_cardmarket_supplements(
         rows = sorted(don_groups[metacard], key=lambda x: int(x["idProduct"]))
         key = f"DON-CM-{metacard}"
         name = nullable_text(rows[0].get("name")) or "DON!!"
+
+        reference_image, diagnostic = match_community_reference_image(
+            kind="don",
+            display_name=name,
+            printed_codes=[],
+            community_images=community_images,
+        )
+        safe_reference_url = None
+        reference_health = None
+        if reference_image:
+            safe_reference_url, reference_health = safe_image_from_cache(
+                reference_image.get("url"), image_cache
+            )
+            if safe_reference_url:
+                reference_image = {
+                    **reference_image,
+                    "url": safe_reference_url,
+                    "validated": (
+                        bool(reference_health.get("ok"))
+                        if isinstance(reference_health, dict)
+                        else None
+                    ),
+                }
+                don_reference_images += 1
+            else:
+                diagnostic["status"] = "matched-image-invalid"
+                reference_image = None
+        image_diag.append({"catalogId": key, "kind": "don", **diagnostic})
+
+        assign_exact = bool(reference_image) and len(rows) == 1
         printings = [
             _direct_cardmarket_printing(
-                row, prices_by_id, price_created_at, key, collectible_type="don"
+                row,
+                prices_by_id,
+                price_created_at,
+                key,
+                collectible_type="don",
+                reference_image=reference_image,
+                assign_reference_to_printing=assign_exact,
+                image_cache=image_cache,
             )
             for row in rows
         ]
+        if assign_exact:
+            exact_printing_images += 1
         don_products += len(printings)
         for printing in printings:
             price = (printing.get("cardmarket") or {}).get("price")
@@ -4194,9 +4778,17 @@ def add_cardmarket_supplements(
                 don_price_guides += 1
             if isinstance((price or {}).get("valuationEur"), (int, float)):
                 don_valuations += 1
+        release_ids = sorted({
+            release.get("releaseId")
+            for printing in printings
+            for release in printing.get("releases", [])
+            if release.get("releaseId")
+        })
+        sources = ["cardmarket"] + (["optcgapi"] if reference_image else [])
         catalog[key] = {
             "catalogId": key,
             "code": key,
+            "printedCodes": [],
             "game": "One Piece",
             "name": name,
             "rarity": None,
@@ -4211,16 +4803,21 @@ def add_cardmarket_supplements(
             "types": [],
             "effect": None,
             "trigger": None,
-            "sources": ["cardmarket"],
+            "sources": sources,
             "catalogOrigin": "cardmarket-only",
             "bandaiCanonical": False,
             "dataCompleteness": "market-only",
             "collectibleType": "don",
             "identitySource": "cardmarket-idMetacard",
             "cardmarketMetacardId": metacard,
+            "releaseIds": release_ids,
+            "previewImageUrl": reference_image.get("url") if reference_image else None,
+            "previewImage": reference_image,
             "printings": printings,
         }
 
+    matched_diagnostics = [item for item in image_diag if item.get("status") == "matched"]
+    ambiguous_diagnostics = [item for item in image_diag if item.get("status") != "matched"]
     return {
         "standardCards": len(standard_groups),
         "standardProducts": standard_products,
@@ -4232,7 +4829,303 @@ def add_cardmarket_supplements(
         "donProducts": don_products,
         "donProductsWithPriceGuide": don_price_guides,
         "donProductsWithValuation": don_valuations,
+        "communityImages": {
+            "sourceRecords": len(community_images),
+            "matchedEntities": len(matched_diagnostics),
+            "standardEntitiesWithReferenceImage": standard_reference_images,
+            "donEntitiesWithReferenceImage": don_reference_images,
+            "exactSingleProductImages": exact_printing_images,
+            "unmatchedOrAmbiguous": len(ambiguous_diagnostics),
+            "diagnosticSample": ambiguous_diagnostics[:100],
+        },
     }
+
+
+# ---------------------------------------------------------------------------
+# V3.10 release/set index, compact price history and manifest
+# ---------------------------------------------------------------------------
+
+
+def _pack_release_date(pack: dict | None) -> str | None:
+    if not isinstance(pack, dict):
+        return None
+    for key in ("releaseDate", "release_date", "date", "release"):
+        value = nullable_text(pack.get(key))
+        if value:
+            match = re.search(r"\d{4}-\d{2}-\d{2}", value)
+            return match.group(0) if match else value
+    return None
+
+
+def _cardmarket_expansion_labels_from_mapping(mapping: dict | None) -> dict[int, str]:
+    counts = defaultdict(Counter)
+    for entry in (mapping or {}).get("mappings", {}).values():
+        if not isinstance(entry, dict):
+            continue
+        expansion = get_number(entry.get("idExpansion"))
+        slug = _cardmarket_url_expansion_slug(entry.get("url"))
+        if expansion is None or not slug:
+            continue
+        counts[int(expansion)][slug] += 1
+    labels = {}
+    for expansion, counter in counts.items():
+        slug, _ = counter.most_common(1)[0]
+        labels[expansion] = " ".join(part.capitalize() for part in slug.split("-") if part)
+    return labels
+
+
+def _set_sort_key(item: dict):
+    kind_order = {
+        "booster": 0,
+        "extra-booster": 1,
+        "premium-booster": 2,
+        "starter-deck": 3,
+        "promotion": 4,
+        "other-product": 5,
+        "cardmarket-expansion": 6,
+        "other": 7,
+    }
+    code = str(item.get("code") or "ZZZ")
+    numbers = tuple(int(x) for x in re.findall(r"\d+", code))
+    return (kind_order.get(item.get("kind"), 99), re.sub(r"\d+", "", code), numbers, code, item.get("id"))
+
+
+def build_sets_index(
+    catalog: dict,
+    bandai_root: dict | None,
+    mapping: dict | None = None,
+) -> dict:
+    """Build an app-friendly release index without changing catalogue identity.
+
+    `base` progress means one owned entity in the release. `master` progress means
+    every distinct printing exposed for that release. This gives Flutter enough
+    information for Set / Master Set screens without re-grouping 5k printings.
+    """
+    packs = {}
+    if isinstance(bandai_root, dict):
+        for pack in bandai_root.get("packs", []) or []:
+            if isinstance(pack, dict) and pack.get("id") is not None:
+                packs[str(pack.get("id"))] = pack
+    cm_labels = _cardmarket_expansion_labels_from_mapping(mapping)
+
+    releases = {}
+    for catalog_id, card in catalog.items():
+        if not isinstance(card, dict):
+            continue
+        for printing in card.get("printings", []) or []:
+            cm = printing.get("cardmarket") or {}
+            cm_product = cm.get("product") or {}
+            cm_expansion = get_number(cm_product.get("idExpansion"))
+            for release in printing.get("releases", []) or []:
+                release_id = nullable_text(release.get("releaseId"))
+                if not release_id:
+                    continue
+                source = release.get("source") or ("bandai" if release_id.startswith("BANDAI-") else "cardmarket")
+                series_id = nullable_text(release.get("seriesId"))
+                pack = packs.get(series_id or "") if source == "bandai" else None
+                parts = pack.get("title_parts") if isinstance(pack, dict) and isinstance(pack.get("title_parts"), dict) else {}
+                raw_title = nullable_text((pack or {}).get("raw_title")) if isinstance(pack, dict) else None
+                code = nullable_text(parts.get("label")) or nullable_text(release.get("code"))
+                name = nullable_text(parts.get("title")) or nullable_text(release.get("displayName"))
+                prefix = nullable_text(parts.get("prefix"))
+
+                if source == "cardmarket":
+                    release_expansion = get_number(release.get("cardmarketExpansionId"))
+                    if release_expansion is not None:
+                        release_expansion = int(release_expansion)
+                        generic = f"Cardmarket expansion #{release_expansion}"
+                        if not name or name == generic:
+                            name = cm_labels.get(release_expansion) or generic
+
+                item = releases.setdefault(release_id, {
+                    "id": release_id,
+                    "source": source,
+                    "seriesId": series_id,
+                    "code": code,
+                    "name": name,
+                    "prefix": prefix,
+                    "displayName": raw_title or nullable_text(release.get("displayName")) or name,
+                    "kind": release.get("kind") or _release_kind(raw_title or name),
+                    "releaseDate": _pack_release_date(pack),
+                    "sourceUrl": (
+                        f"{BANDAI_CARDLIST_URLS[0]}?series={series_id}"
+                        if source == "bandai" and series_id
+                        else None
+                    ),
+                    "cardmarketExpansionIds": set(),
+                    "cards": {},
+                })
+                if cm_expansion is not None:
+                    item["cardmarketExpansionIds"].add(int(cm_expansion))
+                rel_cm_exp = get_number(release.get("cardmarketExpansionId"))
+                if rel_cm_exp is not None:
+                    item["cardmarketExpansionIds"].add(int(rel_cm_exp))
+
+                card_ref = item["cards"].setdefault(catalog_id, {
+                    "catalogId": catalog_id,
+                    "code": card.get("code"),
+                    "name": card.get("name"),
+                    "printingIds": [],
+                    "basePrintingIds": [],
+                    "valuedPrintingIds": [],
+                    "imagePrintingIds": [],
+                })
+                printing_id = printing.get("printingId") or printing.get("id")
+                if printing_id and printing_id not in card_ref["printingIds"]:
+                    card_ref["printingIds"].append(printing_id)
+                if printing.get("variantType") == "base" and printing_id not in card_ref["basePrintingIds"]:
+                    card_ref["basePrintingIds"].append(printing_id)
+                valuation = ((printing.get("cardmarket") or {}).get("price") or {}).get("valuationEur")
+                if isinstance(valuation, (int, float)) and printing_id not in card_ref["valuedPrintingIds"]:
+                    card_ref["valuedPrintingIds"].append(printing_id)
+                if printing.get("imageUrl") and printing_id not in card_ref["imagePrintingIds"]:
+                    card_ref["imagePrintingIds"].append(printing_id)
+
+    result_sets = []
+    for item in releases.values():
+        cards = []
+        for card_ref in item.pop("cards").values():
+            for field in ("printingIds", "basePrintingIds", "valuedPrintingIds", "imagePrintingIds"):
+                card_ref[field] = sorted(card_ref[field])
+            cards.append(card_ref)
+        cards.sort(key=lambda row: (str(row.get("code") or "ZZZ"), str(row.get("name") or ""), row["catalogId"]))
+        printing_count = sum(len(row["printingIds"]) for row in cards)
+        valued_count = sum(len(row["valuedPrintingIds"]) for row in cards)
+        image_count = sum(len(row["imagePrintingIds"]) for row in cards)
+        base_printing_count = sum(len(row["basePrintingIds"]) for row in cards)
+        item["cardmarketExpansionIds"] = sorted(item["cardmarketExpansionIds"])
+        item["entityCount"] = len(cards)
+        item["printingCount"] = printing_count
+        item["basePrintingCount"] = base_printing_count
+        item["valuedPrintingCount"] = valued_count
+        item["printingImageCount"] = image_count
+        item["collectionTargets"] = {
+            "base": len(cards),
+            "master": printing_count,
+        }
+        item["cards"] = cards
+        result_sets.append(item)
+
+    result_sets.sort(key=_set_sort_key)
+    return {
+        "schemaVersion": 1,
+        "catalogVersion": "3.10",
+        "generatedAt": utc_now_iso(),
+        "definitions": {
+            "baseTarget": "one owned catalog entity that appears in the release",
+            "masterTarget": "every distinct printing that appears in the release",
+        },
+        "officialBandaiSetCount": sum(1 for item in result_sets if item.get("source") == "bandai"),
+        "cardmarketExpansionCount": sum(1 for item in result_sets if item.get("source") == "cardmarket"),
+        "sets": result_sets,
+    }
+
+
+def _history_snapshot_date(price_created_at: str | None) -> str:
+    text = nullable_text(price_created_at)
+    if text:
+        match = re.search(r"\d{4}-\d{2}-\d{2}", text)
+        if match:
+            return match.group(0)
+    return datetime.now(timezone.utc).date().isoformat()
+
+
+def update_price_history(
+    path: Path,
+    prices_by_id: dict[int, dict],
+    price_created_at: str | None,
+    *,
+    retention_days: int = 90,
+) -> tuple[dict, dict]:
+    """Append one compact daily valuation snapshot keyed by Cardmarket idProduct."""
+    retention_days = max(7, int(retention_days))
+    history = load_json(path, default={}) or {}
+    if not isinstance(history, dict):
+        history = {}
+    history.setdefault("schemaVersion", 1)
+    history["catalogVersion"] = "3.10"
+    history["currency"] = "EUR"
+    history["valuationPolicy"] = "trend ?? avg7 ?? avg30 ?? avg"
+    history["retentionDays"] = retention_days
+    snapshots = history.setdefault("snapshots", {})
+    if not isinstance(snapshots, dict):
+        snapshots = {}
+        history["snapshots"] = snapshots
+
+    snapshot_date = _history_snapshot_date(price_created_at)
+    values = {}
+    for product_id, price in prices_by_id.items():
+        valuation = _price_valuation_eur(price)
+        if isinstance(valuation, (int, float)):
+            values[str(int(product_id))] = round(float(valuation), 6)
+    overwritten = snapshot_date in snapshots
+    snapshots[snapshot_date] = values
+
+    try:
+        newest = datetime.fromisoformat(snapshot_date).date()
+        cutoff = newest - timedelta(days=retention_days - 1)
+        for date_key in list(snapshots):
+            try:
+                date_value = datetime.fromisoformat(date_key).date()
+            except ValueError:
+                continue
+            if date_value < cutoff:
+                del snapshots[date_key]
+    except ValueError:
+        pass
+
+    # Stable chronological JSON output makes Git diffs and app parsing predictable.
+    history["snapshots"] = {key: snapshots[key] for key in sorted(snapshots)}
+    history["updatedAt"] = utc_now_iso()
+    stats = {
+        "snapshotDate": snapshot_date,
+        "productsWithValuation": len(values),
+        "daysStored": len(history["snapshots"]),
+        "retentionDays": retention_days,
+        "overwroteExistingDay": overwritten,
+    }
+    return history, stats
+
+
+def build_catalog_manifest(
+    catalog: dict,
+    sets_index: dict,
+    price_history: dict | None,
+    *,
+    generated_at: str,
+) -> dict:
+    printings = sum(len(card.get("printings", [])) for card in catalog.values() if isinstance(card, dict))
+    manifest = {
+        "schemaVersion": 1,
+        "catalogVersion": "3.10",
+        "generatedAt": generated_at,
+        "backwardCompatibility": {
+            "catalogFilenameUnchanged": True,
+            "v39IdentityContractPreserved": True,
+            "catalogRootShape": "catalogId -> card object",
+        },
+        "files": {
+            "catalog": {
+                "path": f"output/{CATALOG_FILENAME}",
+                "sha256": hash_payload(catalog),
+                "entities": len(catalog),
+                "printings": printings,
+            },
+            "sets": {
+                "path": f"output/{SETS_FILENAME}",
+                "sha256": hash_payload(sets_index),
+                "sets": len(sets_index.get("sets", [])),
+            },
+        },
+    }
+    if isinstance(price_history, dict):
+        manifest["files"]["priceHistory"] = {
+            "path": f"output/{PRICE_HISTORY_FILENAME}",
+            "sha256": hash_payload(price_history),
+            "days": len(price_history.get("snapshots", {})),
+            "currency": price_history.get("currency"),
+        }
+    return manifest
 
 
 # ---------------------------------------------------------------------------
@@ -4240,7 +5133,13 @@ def add_cardmarket_supplements(
 # ---------------------------------------------------------------------------
 
 
-def fetch_live_raw(session: requests.Session, bandai_delay: float, vega_bin: str = "vega") -> dict:
+def fetch_live_raw(
+    session: requests.Session,
+    bandai_delay: float,
+    vega_bin: str = "vega",
+    *,
+    include_community_images: bool = True,
+) -> dict:
     print("Descargando Bandai oficial...")
     bandai = fetch_bandai_raw(session, bandai_delay, vega_bin)
 
@@ -4250,10 +5149,24 @@ def fetch_live_raw(session: requests.Session, bandai_delay: float, vega_bin: str
     print("Descargando Price Guide público oficial de Cardmarket...")
     cm_prices = fetch_json(session, CARDMARKET_PRICE_GUIDE_URL)
 
+    if include_community_images:
+        print("Descargando metadatos opcionales de imágenes OPTCGAPI.com...")
+        community_images = fetch_community_image_raw(session)
+    else:
+        community_images = {
+            "source": "OPTCGAPI.com community image fallback",
+            "fetchedAt": utc_now_iso(),
+            "disabled": True,
+            "don": None,
+            "promos": None,
+            "requests": [],
+        }
+
     return {
         "bandai": bandai,
         "cardmarket_products": cm_products,
         "cardmarket_prices": cm_prices,
+        "community_images": community_images,
     }
 
 
@@ -4261,7 +5174,12 @@ def save_raw(raw_dir: Path, raw_data: dict) -> None:
     raw_dir.mkdir(parents=True, exist_ok=True)
     for key, filename in RAW_FILENAMES.items():
         path = raw_dir / filename
-        save_json(path, raw_data[key])
+        value = raw_data.get(key)
+        if value is None and key in OPTIONAL_RAW_KEYS:
+            value = {"disabled": True, "fetchedAt": utc_now_iso()}
+        if value is None:
+            raise RuntimeError(f"Falta RAW requerido en memoria: {key}")
+        save_json(path, value)
         print(f"RAW guardado: {path}")
 
 
@@ -4270,7 +5188,10 @@ def load_raw(raw_dir: Path) -> dict:
     for key, filename in RAW_FILENAMES.items():
         path = raw_dir / filename
         data = load_json(path)
-        if data is None:
+        if data is None and key in OPTIONAL_RAW_KEYS:
+            print(f"RAW opcional no disponible: {path}; se continúa sin esa fuente.")
+            data = {"disabled": True, "fetchedAt": None, "don": None, "promos": None}
+        elif data is None:
             raise RuntimeError(f"Falta RAW requerido: {path}")
         result[key] = data
         print(f"RAW cargado: {path}")
@@ -5140,6 +6061,102 @@ def run_self_test() -> None:
     assert fake.calls[0][1] == {"series": "569117"}
     assert diag[0]["attempt"] == "current"
 
+    # V3.10 regression: optional community data can enrich images but can never
+    # participate in identity. Matching is code+name for standard promos and a
+    # conservative unique design-name match for DON!!.
+    community_fixture = {
+        "don": {
+            "endpoint": "https://optcgapi.com/api/allDonCards/",
+            "payload": [
+                {
+                    "id": 36,
+                    "don_card_name": "DON!! Card (Perona) - Premium Booster -The Best- (PRB-01)",
+                    "card_image_id": "don_36",
+                    "card_image": "/media/static/Card_Images/perona.jpg",
+                }
+            ],
+        },
+        "promos": {
+            "endpoint": "https://optcgapi.com/api/allPromos/",
+            "payload": [
+                {
+                    "id": 999,
+                    "card_name": "Future Promo",
+                    "card_set_id": "P-999",
+                    "card_image_id": "P-999",
+                    "card_image": "https://optcgapi.com/media/static/Card_Images/P-999.jpg",
+                }
+            ],
+        },
+    }
+    community_rows = normalize_community_image_records(community_fixture)
+    assert len(community_rows) == 2, community_rows
+    don_match, don_diag = match_community_reference_image(
+        kind="don", display_name="DON!! (Perona)", printed_codes=[], community_images=community_rows
+    )
+    assert don_match and don_match["sourceImageId"] == "don_36", don_diag
+    promo_match, promo_diag = match_community_reference_image(
+        kind="promo", display_name="Future Promo", printed_codes=["P-999"], community_images=community_rows
+    )
+    assert promo_match and promo_match["sourceCode"] == "P-999", promo_diag
+    wrong_code_match, _ = match_community_reference_image(
+        kind="promo", display_name="Future Promo", printed_codes=["P-998"], community_images=community_rows
+    )
+    assert wrong_code_match is None
+
+    # One direct Cardmarket product may use the matched image as an exact-enough
+    # preview; multiple products only get an entity reference image.
+    community_cache = {
+        "images": {
+            "https://optcgapi.com/media/static/Card_Images/P-999.jpg": {
+                "ok": True,
+                "finalUrl": "https://optcgapi.com/media/static/Card_Images/P-999.jpg",
+            }
+        }
+    }
+    image_catalog = dict(catalog)
+    image_stats = add_cardmarket_supplements(
+        image_catalog,
+        {124: extra_product},
+        {124: normalize_price_row({"idProduct": 124, "trend": 2.5})},
+        "2026-09-10T02:00:00+0200",
+        community_images=community_rows,
+        image_cache=community_cache,
+    )
+    assert image_catalog["CMCARD-9001"]["previewImageUrl"] is not None
+    assert image_catalog["CMCARD-9001"]["printings"][0]["imageUrl"] is not None
+    assert image_stats["communityImages"]["standardEntitiesWithReferenceImage"] == 1
+
+    # V3.10 set index exposes base/master targets without changing card identity.
+    sets_fixture = build_sets_index(catalog, {"packs": [{**vega_pack, "title_parts": {
+        "prefix": "BOOSTER PACK", "title": "THE WORLD'S STRONGEST WARRIORS", "label": "OP-17"
+    }}]}, mapping)
+    bandai_sets = [item for item in sets_fixture["sets"] if item["source"] == "bandai"]
+    assert bandai_sets and bandai_sets[0]["collectionTargets"]["master"] >= 1
+    assert bandai_sets[0]["cards"][0]["catalogId"] == "OP17-001"
+
+    # Compact daily history overwrites the same source day instead of duplicating it.
+    history_path = Path("/tmp/optcg_v310_history_test.json")
+    if history_path.exists():
+        history_path.unlink()
+    history, history_stats = update_price_history(
+        history_path,
+        {123: price},
+        "2026-09-10T02:00:00+0200",
+        retention_days=30,
+    )
+    save_json(history_path, history)
+    history2, history_stats2 = update_price_history(
+        history_path,
+        {123: normalize_price_row({"idProduct": 123, "trend": 1.2})},
+        "2026-09-10T23:00:00+0200",
+        retention_days=30,
+    )
+    assert history_stats["daysStored"] == 1
+    assert history_stats2["overwroteExistingDay"] is True
+    assert history2["snapshots"]["2026-09-10"]["123"] == 1.2
+    history_path.unlink(missing_ok=True)
+
     print("SELF-TEST OK")
 
 
@@ -5153,6 +6170,8 @@ def main() -> None:
     if args.self_test:
         run_self_test()
         return
+    if args.price_history_days < 7:
+        raise RuntimeError("--price-history-days debe ser >= 7")
 
     session = make_session()
     args.raw_dir.mkdir(parents=True, exist_ok=True)
@@ -5162,8 +6181,20 @@ def main() -> None:
     if args.from_raw:
         raw_data = load_raw(args.raw_dir)
     else:
-        raw_data = fetch_live_raw(session, args.bandai_delay, args.vega_bin)
+        raw_data = fetch_live_raw(
+            session,
+            args.bandai_delay,
+            args.vega_bin,
+            include_community_images=not args.no_community_images,
+        )
         save_raw(args.raw_dir, raw_data)
+
+    community_raw = raw_data.get("community_images")
+    community_images = (
+        []
+        if args.no_community_images
+        else normalize_community_image_records(community_raw)
+    )
 
     bandai_root = raw_data["bandai"]
     bandai_cards = bandai_root.get("cards", []) if isinstance(bandai_root, dict) else []
@@ -5266,8 +6297,6 @@ def main() -> None:
             identity_resolved_during_run.append(item)
 
     if final_identity_validation.get("quarantined"):
-        # Rebuild the review after the firewall removed a late mapping. Safety
-        # reconciliation remains active, but no new mappings are introduced.
         refreshed = auto_map_and_build_review(
             bandai_cards,
             mapping,
@@ -5286,14 +6315,20 @@ def main() -> None:
 
     save_json(args.data_dir / MAPPING_FILENAME, mapping)
 
+    # Validate both official Bandai images and the small optional community image
+    # candidate set. Cached successful URLs are not re-downloaded every run.
     image_cache_path = args.data_dir / IMAGE_CACHE_FILENAME
     image_cache = load_json(image_cache_path, default={}) or {}
+    community_image_urls = sorted({
+        item.get("imageUrl") for item in community_images if item.get("imageUrl")
+    })
     image_cache, image_report = update_image_health_cache(
         session,
         bandai_cards,
         image_cache,
         skip=args.skip_image_check,
         force_all=args.image_check_all,
+        extra_urls=community_image_urls,
     )
     save_json(image_cache_path, image_cache)
 
@@ -5308,7 +6343,12 @@ def main() -> None:
     )
     bandai_catalogue_stats = dict(catalogue_stats)
     supplemental_stats = add_cardmarket_supplements(
-        catalog, products_by_id, prices_by_id, price_created_at
+        catalog,
+        products_by_id,
+        prices_by_id,
+        price_created_at,
+        community_images=community_images,
+        image_cache=image_cache,
     )
     catalogue_stats.update({
         "bandaiCards": bandai_catalogue_stats["cards"],
@@ -5333,17 +6373,45 @@ def main() -> None:
             + supplemental_stats["standardProductsWithValuation"]
             + supplemental_stats["donProductsWithValuation"]
         ),
+        "entitiesWithPreviewImage": sum(
+            1 for card in catalog.values() if isinstance(card, dict) and card.get("previewImageUrl")
+        ),
     })
 
+    # New V3.10 outputs. The main cards JSON keeps its V3.9 root shape.
+    sets_index = build_sets_index(catalog, bandai_root, mapping)
+    history_path = args.output_dir / PRICE_HISTORY_FILENAME
+    price_history = load_json(history_path, default=None)
+    history_stats = {
+        "enabled": not args.no_price_history,
+        "daysStored": len((price_history or {}).get("snapshots", {})) if isinstance(price_history, dict) else 0,
+    }
+    if not args.no_price_history:
+        price_history, update_stats = update_price_history(
+            history_path,
+            prices_by_id,
+            price_created_at,
+            retention_days=args.price_history_days,
+        )
+        history_stats.update(update_stats)
+
+    generated_at = utc_now_iso()
+    community_requests = (
+        (community_raw or {}).get("requests", [])
+        if isinstance(community_raw, dict)
+        else []
+    )
     report = {
-        "generatedAt": utc_now_iso(),
-        "schemaVersion": 5,
+        "generatedAt": generated_at,
+        "schemaVersion": 6,
+        "catalogVersion": "3.10",
         "sources": {
             "bandai": {
                 "url": bandai_root.get("sourceUrl") if isinstance(bandai_root, dict) else None,
                 "fetchedAt": bandai_root.get("fetchedAt") if isinstance(bandai_root, dict) else None,
                 "records": len(bandai_cards),
                 "series": len(bandai_root.get("series", [])) if isinstance(bandai_root, dict) else None,
+                "authority": "official",
             },
             "cardmarketProducts": {
                 "url": CARDMARKET_PRODUCTS_URL,
@@ -5353,11 +6421,22 @@ def main() -> None:
                     if isinstance(raw_data["cardmarket_products"], dict)
                     else None
                 ),
+                "authority": "official-public-download",
             },
             "cardmarketPriceGuide": {
                 "url": CARDMARKET_PRICE_GUIDE_URL,
                 "records": len(prices),
                 "createdAt": price_created_at,
+                "authority": "official-public-download",
+            },
+            "communityImages": {
+                "enabled": not args.no_community_images,
+                "provider": "OPTCGAPI.com",
+                "purpose": "missing preview images only",
+                "normalizedImageRecords": len(community_images),
+                "requests": community_requests,
+                "authoritativeForIdentity": False,
+                "authoritativeForPrice": False,
             },
         },
         "mapping": {
@@ -5386,27 +6465,51 @@ def main() -> None:
             "needsReview": len(review.get("needsReview", [])),
         },
         "supplementalCardmarket": supplemental_stats,
+        "sets": {
+            "officialBandaiSetCount": sets_index.get("officialBandaiSetCount"),
+            "cardmarketExpansionCount": sets_index.get("cardmarketExpansionCount"),
+            "total": len(sets_index.get("sets", [])),
+        },
+        "priceHistory": history_stats,
         "images": {
             "totalUrls": image_report.get("totalUrls"),
+            "officialUrls": image_report.get("officialUrls"),
+            "communityUrls": image_report.get("communityUrls"),
             "checkedThisRun": image_report.get("checkedThisRun"),
             "failedThisRun": len(image_report.get("failed", [])),
             "failed": image_report.get("failed", [])[:100],
+            "communityMatching": supplemental_stats.get("communityImages", {}),
         },
         "output": catalogue_stats,
         "fingerprints": {
             "catalog": hash_payload(catalog),
             "mapping": hash_payload(mapping),
+            "sets": hash_payload(sets_index),
+            "priceHistory": hash_payload(price_history) if isinstance(price_history, dict) else None,
         },
     }
+
+    manifest = build_catalog_manifest(
+        catalog,
+        sets_index,
+        price_history if isinstance(price_history, dict) else None,
+        generated_at=generated_at,
+    )
 
     catalog_path = args.output_dir / CATALOG_FILENAME
     report_path = args.output_dir / REPORT_FILENAME
     review_path = args.output_dir / REVIEW_FILENAME
+    sets_path = args.output_dir / SETS_FILENAME
+    manifest_path = args.output_dir / MANIFEST_FILENAME
     save_json(catalog_path, catalog)
     save_json(report_path, report)
     save_json(review_path, review)
+    save_json(sets_path, sets_index)
+    if isinstance(price_history, dict):
+        save_json(history_path, price_history)
+    save_json(manifest_path, manifest)
 
-    print("\nGeneración completada:")
+    print("\nGeneración completada (V3.10):")
     print(f"- Cartas totales catálogo: {catalogue_stats['cards']}")
     print(f"- Cartas Bandai: {catalogue_stats['bandaiCards']}")
     print(f"- Cartas solo Cardmarket: {catalogue_stats['cardmarketOnlyCards']}")
@@ -5418,6 +6521,20 @@ def main() -> None:
     print(f"- Bandai con mapping Cardmarket: {catalogue_stats['bandaiPrintingsWithCardmarketMapping']}")
     print(f"- Con Price Guide Cardmarket (total): {catalogue_stats['printingsWithCardmarketPriceGuide']}")
     print(f"- Con valoración EUR utilizable: {catalogue_stats['printingsWithCardmarketValuation']}")
+    print(f"- Entidades con preview de imagen: {catalogue_stats['entitiesWithPreviewImage']}")
+    cm_image_stats = supplemental_stats.get("communityImages", {})
+    print(
+        "- Imágenes externas seguras: "
+        f"{cm_image_stats.get('standardEntitiesWithReferenceImage', 0)} market-only / "
+        f"{cm_image_stats.get('donEntitiesWithReferenceImage', 0)} DON!!"
+    )
+    print(f"- Sets/releases indexados: {len(sets_index.get('sets', []))}")
+    if isinstance(price_history, dict):
+        print(
+            "- Histórico precios: "
+            f"{history_stats.get('daysStored', 0)} días; "
+            f"snapshot {history_stats.get('snapshotDate', 'sin cambio')}"
+        )
     print(f"- Discrepancias código Bandai/Cardmarket: {len(catalogue_stats.get('cardmarketCodeDiscrepancies', []))}")
     print(f"- Mappings pendientes de revisión: {len(review.get('needsReview', []))}")
     print(f"- Auto mappings añadidos: {len(review.get('autoMappingsAdded', []))}")
@@ -5428,13 +6545,13 @@ def main() -> None:
         f"{len(mapping_validation.get('quarantined', []))} en cuarentena"
     )
     print(
-        "- QA identidad Bandai V3.9: "
+        "- QA identidad Bandai V3.10: "
         f"{len(all_identity_quarantined)} detectadas / "
         f"{len(identity_quarantined_final)} siguen en cuarentena / "
         f"{len(identity_resolved_during_run)} resueltas en el run"
     )
     print(
-        "- QA drift semántico V3.9: "
+        "- QA drift semántico V3.10: "
         f"{len(review.get('semanticDriftQuarantined', []))} en cuarentena"
     )
     print(
@@ -5448,12 +6565,17 @@ def main() -> None:
             args.raw_dir / RAW_FILENAMES["bandai"],
             args.raw_dir / RAW_FILENAMES["cardmarket_products"],
             args.raw_dir / RAW_FILENAMES["cardmarket_prices"],
+            args.raw_dir / RAW_FILENAMES["community_images"],
             args.data_dir / MAPPING_FILENAME,
             args.data_dir / IMAGE_CACHE_FILENAME,
             catalog_path,
             report_path,
             review_path,
+            sets_path,
+            manifest_path,
         ]
+        if history_path.exists():
+            publish_paths.append(history_path)
         publish_to_git(publish_paths)
 
 
