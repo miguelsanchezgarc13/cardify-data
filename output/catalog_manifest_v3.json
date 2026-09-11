@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "catalogVersion": "3.10",
+  "generatedAt": "2026-09-11T09:11:38+00:00",
+  "backwardCompatibility": {
+    "catalogFilenameUnchanged": true,
+    "v39IdentityContractPreserved": true,
+    "catalogRootShape": "catalogId -> card object"
+  },
+  "files": {
+    "catalog": {
+      "path": "output/cards_multisource_v3.json",
+      "sha256": "20a5e83439c6931e226a7675312cae41c8f21f5150422c8521fe811e9ac74ca5",
+      "entities": 3025,
+      "printings": 5513
+    },
+    "sets": {
+      "path": "output/sets_multisource_v3.json",
+      "sha256": "2530d50009845420783d55c808b41522d7e5eaeaa47cb411149e253392d36ade",
+      "sets": 117
+    },
+    "priceHistory": {
+      "path": "output/cardmarket_price_history_v3.json",
+      "sha256": "51a4f5ca0dae31081eeaaf1f521c48d5c710e1c6bd059ee9e2dd66df46df04d2",
+      "days": 1,
+      "currency": "EUR"
+    }
+  }
+}
