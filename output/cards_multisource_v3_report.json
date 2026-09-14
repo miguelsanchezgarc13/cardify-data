@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-14T18:44:18+00:00",
+  "generatedAt": "2026-09-14T20:22:05+00:00",
   "schemaVersion": 9,
-  "catalogVersion": "3.11.4",
+  "catalogVersion": "3.11.5",
   "sources": {
     "bandai": {
       "url": "https://en.onepiece-cardgame.com/cardlist/",
-      "fetchedAt": "2026-09-14T18:43:50+00:00",
+      "fetchedAt": "2026-09-14T20:21:28+00:00",
       "records": 4844,
       "series": 60,
       "authority": "official"
@@ -777,11 +777,19 @@
         }
       ]
     },
+    "legacyReferenceImages": {
+      "candidateProducts": 4400,
+      "uniqueProductReferences": 4400,
+      "ambiguousProducts": 0,
+      "ambiguousSample": [],
+      "linkedVariantReferences": 213
+    },
     "added": {
       "products": 6947,
       "productsWithPriceGuide": 6947,
       "productsWithValuation": 6718,
       "productsWithExactImage": 0,
+      "productsWithReferenceImage": 213,
       "languageCounts": {
         "ja": 173,
         "non-en": 2194,
@@ -2890,18 +2898,18 @@
     "overwroteExistingDay": true
   },
   "images": {
-    "totalUrls": 5970,
+    "totalUrls": 6183,
     "officialUrls": 4843,
-    "communityUrls": 1127,
+    "communityUrls": 1340,
     "cardmarketExactUrls": 0,
-    "checkedThisRun": 16,
+    "checkedThisRun": 229,
     "failedThisRun": 16,
     "failed": [
       {
         "url": "https://optcgapi.com/media/static/Card_Images/Bartolomeo_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T18:44:06+00:00",
+        "checkedAt": "2026-09-14T20:21:57+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2913,7 +2921,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/DON_Card_Boa_Hancock_-_Extra_Booster_One_Piece_Heroines_Edition_EB-03_img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T18:44:06+00:00",
+        "checkedAt": "2026-09-14T20:21:57+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2925,7 +2933,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/General_Franky_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T18:44:06+00:00",
+        "checkedAt": "2026-09-14T20:21:57+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2937,7 +2945,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Issho_Welcome_Pack_Vol._1_img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T18:44:06+00:00",
+        "checkedAt": "2026-09-14T20:21:57+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2949,7 +2957,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Jinbe_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T18:44:06+00:00",
+        "checkedAt": "2026-09-14T20:21:58+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2961,7 +2969,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Monkey.D.Luffy_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T18:44:06+00:00",
+        "checkedAt": "2026-09-14T20:21:58+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2973,7 +2981,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Portgas.D.Ace_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T18:44:06+00:00",
+        "checkedAt": "2026-09-14T20:21:58+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2985,7 +2993,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Raizo_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T18:44:06+00:00",
+        "checkedAt": "2026-09-14T20:21:58+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2997,7 +3005,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Sanji_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T18:44:06+00:00",
+        "checkedAt": "2026-09-14T20:21:58+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -3009,7 +3017,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Sanji_Demo_Deck_2023_img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T18:44:07+00:00",
+        "checkedAt": "2026-09-14T20:21:58+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -3021,7 +3029,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Satori_Welcome_Pack_Vol._1_img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T18:44:07+00:00",
+        "checkedAt": "2026-09-14T20:21:58+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -3033,7 +3041,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Sengoku_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T18:44:07+00:00",
+        "checkedAt": "2026-09-14T20:21:58+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -3045,7 +3053,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Trafalgar_Law_Welcome_Pack_Vol._1_img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T18:44:07+00:00",
+        "checkedAt": "2026-09-14T20:21:58+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -3057,7 +3065,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Tsuru_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T18:44:07+00:00",
+        "checkedAt": "2026-09-14T20:21:58+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -3069,7 +3077,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Usopp_Demo_Deck_2023_img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T18:44:07+00:00",
+        "checkedAt": "2026-09-14T20:21:58+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -3081,7 +3089,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Uta_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T18:44:07+00:00",
+        "checkedAt": "2026-09-14T20:21:58+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -3106,6 +3114,13 @@
       "errors": 0,
       "skippedRecentFailure": 0,
       "stoppedReason": null
+    },
+    "linkedLegacyReferences": {
+      "candidateProducts": 4400,
+      "uniqueProductReferences": 4400,
+      "ambiguousProducts": 0,
+      "ambiguousSample": [],
+      "linkedVariantReferences": 213
     },
     "communityMatching": {
       "sourceRecords": 1127,
@@ -4964,9 +4979,9 @@
     "entitiesWithPreviewImage": 2875
   },
   "fingerprints": {
-    "catalog": "070a0f7d1ac1d0f3cd9a6500b2fd489ad88ef2cd366a701fec04defe97e38fff",
+    "catalog": "c0d9e40a598315a8df7f338dd668101da3fa7388c6e22e4b0a24c840dff9ba50",
     "mapping": "3279e4026145d9ef3d99c1e39dbeb5482c493c6cf60d93366a83bd49d3a9d23e",
-    "sets": "0839f38e001dda97df29d01b0f096deacde0d79d0777953fd0074653bb186b0d",
-    "priceHistory": "13801749a9d185c00d5b8f63ebe83e69c12a73e249fb372046a4fdcb36145bcc"
+    "sets": "b9d52eb8d3efa5f35aa6937e9e59f1902b7a3082e0d1e8c5e0161bccf067d306",
+    "priceHistory": "0fff0f798a8b1ea6208b8a645ed6833ad8ce2d76b20666769ac4395a4f3ff18f"
   }
 }
