@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-One Piece TCG catalogue pipeline v3.11.1.
+One Piece TCG catalogue pipeline v3.11.2.
 
 Live sources:
   1) Bandai official card list -> card/game/printing/image metadata
@@ -14,7 +14,7 @@ Persistent local knowledge:
   data/cardmarket_image_mapping.json -> Cardmarket idProduct page metadata/cache (legacy filename kept for compatibility)
   output/cardmarket_price_history_v3.json -> compact daily EUR valuation history
 
-V3.11.1 keeps the V3.9 identity contract intact while exposing additional physical
+V3.11.2 keeps the V3.9 identity contract intact while exposing additional physical
 Cardmarket variants under the same Bandai catalogId when identity can be proven by
 a shared idMetacard anchored to an already validated Bandai mapping. This is what
 allows Japanese/non-English products to coexist with English Bandai printings
@@ -109,6 +109,11 @@ CARDMARKET_IMAGE_MAPPING_FILENAME = "cardmarket_image_mapping.json"
 CARDMARKET_PRODUCT_IMAGE_HOST = "product-images.s3.cardmarket.com"
 CARDMARKET_IMAGE_FAILURE_RETRY_DAYS = 7
 CARDMARKET_DIRECT_IMAGE_EXTENSIONS = ("png", "jpg")
+# Direct S3 probes are optional enrichment and must fail fast. A single slow or
+# filtered candidate must never stall the daily catalogue job for minutes.
+CARDMARKET_DIRECT_CONNECT_TIMEOUT_SECONDS = 4
+CARDMARKET_DIRECT_READ_TIMEOUT_SECONDS = 8
+CARDMARKET_DIRECT_PRODUCT_BUDGET_SECONDS = 45.0
 CARDMARKET_DIRECT_PROMO_CODES = (
     "P-JP", "P", "STP-JP", "STP", "UP-JP", "UP",
     "STR-JP", "STR", "WC-JP", "WC", "JDG", "R",
@@ -143,7 +148,7 @@ LEGACY_CARDS_FILENAME = "cardmarket_cards_raw.json"
 
 HEADERS = {
     "User-Agent": (
-        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.11.1; "
+        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.11.2; "
         "+https://github.com/)"
     ),
     "Accept-Language": "en-US,en;q=0.9",
@@ -4099,13 +4104,13 @@ def sniff_image_signature(chunk: bytes) -> str | None:
     return None
 
 
-def validate_image_url(session: requests.Session, url: str) -> dict:
+def validate_image_url(session: requests.Session, url: str, timeout=45) -> dict:
     checked_at = utc_now_iso()
     try:
         response = session.get(
             url,
             headers={"Range": "bytes=0-4095", "Accept": "image/*,*/*;q=0.5"},
-            timeout=45,
+            timeout=timeout,
             stream=True,
             allow_redirects=True,
         )
@@ -5159,6 +5164,8 @@ def fetch_cardmarket_direct_image_record(
     forbidden = 0
     not_found = 0
     errors = 0
+    budget_exceeded = False
+    started_monotonic = time.monotonic()
 
     for edition_code, url in cardmarket_direct_image_candidate_urls(product, edition_codes):
         health = images.get(url) if isinstance(images, dict) else None
@@ -5179,6 +5186,7 @@ def fetch_cardmarket_direct_image_record(
                 "exactProductMatch": True,
                 "directProbeCount": probes,
                 "directCachedProbeCount": cached_probes,
+                "directBudgetExceeded": budget_exceeded,
                 **metadata,
                 "error": None,
             }
@@ -5186,7 +5194,18 @@ def fetch_cardmarket_direct_image_record(
             cached_probes += 1
             continue
 
-        result = validate_image_url(session, url)
+        if probes > 0 and (time.monotonic() - started_monotonic) >= CARDMARKET_DIRECT_PRODUCT_BUDGET_SECONDS:
+            budget_exceeded = True
+            break
+
+        result = validate_image_url(
+            session,
+            url,
+            timeout=(
+                CARDMARKET_DIRECT_CONNECT_TIMEOUT_SECONDS,
+                CARDMARKET_DIRECT_READ_TIMEOUT_SECONDS,
+            ),
+        )
         probes += 1
         if result.get("ok") is True:
             if isinstance(images, dict):
@@ -5206,6 +5225,7 @@ def fetch_cardmarket_direct_image_record(
                 "exactProductMatch": True,
                 "directProbeCount": probes,
                 "directCachedProbeCount": cached_probes,
+                "directBudgetExceeded": budget_exceeded,
                 **metadata,
                 "error": None,
             }
@@ -5224,6 +5244,7 @@ def fetch_cardmarket_direct_image_record(
                 "exactProductMatch": False,
                 "directProbeCount": probes,
                 "directCachedProbeCount": cached_probes,
+                "directBudgetExceeded": budget_exceeded,
                 "httpStatus": 429,
                 "error": "Cardmarket product-image host devolvió HTTP 429.",
             }
@@ -5250,7 +5271,12 @@ def fetch_cardmarket_direct_image_record(
         "directForbiddenResponses": forbidden,
         "directNotFoundResponses": not_found,
         "directOtherErrors": errors,
-        "error": "No se encontró una imagen exacta validada en los folders Cardmarket candidatos.",
+        "directBudgetExceeded": budget_exceeded,
+        "error": (
+            "Se agotó el presupuesto de tiempo del producto sin encontrar una imagen exacta validada."
+            if budget_exceeded
+            else "No se encontró una imagen exacta validada en los folders Cardmarket candidatos."
+        ),
     }
 
 def _cardmarket_metadata_payload(metadata: dict | None) -> dict:
@@ -5287,6 +5313,22 @@ def make_cardmarket_product_page_session() -> requests.Session:
         "Referer": "https://www.cardmarket.com/en/OnePiece",
     })
     session.mount("https://", HTTPAdapter(max_retries=retry))
+    # Exact-image S3 probing is speculative. Do not inherit the HTML adapter's
+    # connect/read retries, otherwise one unreachable candidate can multiply a
+    # 45s timeout into several minutes.
+    direct_retry = Retry(
+        total=0,
+        connect=0,
+        read=0,
+        redirect=0,
+        status=0,
+        allowed_methods=frozenset({"GET"}),
+        raise_on_status=False,
+    )
+    session.mount(
+        f"https://{CARDMARKET_PRODUCT_IMAGE_HOST}/",
+        HTTPAdapter(max_retries=direct_retry),
+    )
     return session
 
 
@@ -5588,7 +5630,7 @@ def discover_cardmarket_product_images(
 ) -> tuple[dict, dict]:
     """Populate persistent Cardmarket exact-image/language metadata.
 
-    V3.11.1 uses the public product-image host as the primary channel. Folder
+    V3.11.2 uses the public product-image host as the primary channel. Folder
     names are only bounded candidates; a candidate is accepted exclusively when
     the exact idProduct URL returns a renderable image. The normal Cardmarket
     product page is a best-effort metadata fallback. If www.cardmarket.com
@@ -5653,6 +5695,7 @@ def discover_cardmarket_product_images(
         "directS3CachedProbes": 0,
         "directS3Found": 0,
         "directS3ForbiddenResponses": 0,
+        "directS3BudgetExceeded": 0,
         "directS3DisabledReason": None,
         "htmlFallbackAttempted": 0,
         "htmlFallbackFound": 0,
@@ -5731,9 +5774,11 @@ def discover_cardmarket_product_images(
                 stats["stoppedReason"] = f"max-new={max_new}"
                 break
 
+            product_started = time.monotonic()
             print(
                 f"Cardmarket producto {index}/{len(ordered_targets)}: "
-                f"idProduct={product_id}"
+                f"idProduct={product_id}",
+                flush=True,
             )
             stats["attempted"] += 1
             record = None
@@ -5748,6 +5793,8 @@ def discover_cardmarket_product_images(
                 stats["directS3Probes"] += int(direct_record.get("directProbeCount") or 0)
                 stats["directS3CachedProbes"] += int(direct_record.get("directCachedProbeCount") or 0)
                 stats["directS3ForbiddenResponses"] += int(direct_record.get("directForbiddenResponses") or 0)
+                if direct_record.get("directBudgetExceeded") is True:
+                    stats["directS3BudgetExceeded"] += 1
                 if direct_record.get("status") == "found":
                     record = direct_record
                     stats["directS3Found"] += 1
@@ -5823,6 +5870,17 @@ def discover_cardmarket_product_images(
                 stats["errors"] += 1
             else:
                 stats["notFound"] += 1
+
+            elapsed_product = time.monotonic() - product_started
+            if elapsed_product >= 5.0:
+                print(
+                    "  -> completado "
+                    f"idProduct={product_id} en {elapsed_product:.1f}s; "
+                    f"status={record.get('status')}; "
+                    f"S3 probes={int((direct_record or {}).get('directProbeCount') or 0)}"
+                    + ("; presupuesto agotado" if (direct_record or {}).get("directBudgetExceeded") else ""),
+                    flush=True,
+                )
 
             if delay_seconds:
                 time.sleep(delay_seconds)
@@ -6171,7 +6229,7 @@ def add_cardmarket_supplements(
       * DON!! uses DON-CM-<idMetacard>.
       * Every idProduct remains a distinct direct Cardmarket product/printing.
 
-    New in V3.11.1: Cardmarket's public product-image host may provide an exact
+    New in V3.11.2: Cardmarket's public product-image host may provide an exact
     printing image when the URL contains the same idProduct and the response passes
     image validation. Product-page HTML is only a best-effort metadata fallback. Community data remains only
     a conservative reference fallback: it can never create/merge an entity or set
@@ -6581,7 +6639,7 @@ def validate_final_catalog_integrity(catalog: dict) -> dict:
                     product_owner[product_id] = current
     if duplicate_printings or duplicate_products or catalog_key_mismatches:
         raise RuntimeError(
-            "QA catálogo V3.11.1 falló: "
+            "QA catálogo V3.11.2 falló: "
             f"duplicatePrintingIds={len(duplicate_printings)}, "
             f"duplicateCardmarketProducts={len(duplicate_products)}, "
             f"catalogKeyMismatches={len(catalog_key_mismatches)}"
@@ -6763,7 +6821,7 @@ def build_sets_index(
     result_sets.sort(key=_set_sort_key)
     return {
         "schemaVersion": 1,
-        "catalogVersion": "3.11.1",
+        "catalogVersion": "3.11.2",
         "generatedAt": utc_now_iso(),
         "definitions": {
             "collectionTarget": "one owned catalog entity that appears in the release",
@@ -6799,7 +6857,7 @@ def update_price_history(
     if not isinstance(history, dict):
         history = {}
     history.setdefault("schemaVersion", 1)
-    history["catalogVersion"] = "3.11.1"
+    history["catalogVersion"] = "3.11.2"
     history["currency"] = "EUR"
     history["valuationPolicy"] = "trend ?? avg7 ?? avg30 ?? avg"
     history["retentionDays"] = retention_days
@@ -6873,7 +6931,7 @@ def build_catalog_manifest(
     printings = sum(len(card.get("printings", [])) for card in catalog.values() if isinstance(card, dict))
     manifest = {
         "schemaVersion": 2,
-        "catalogVersion": "3.11.1",
+        "catalogVersion": "3.11.2",
         "generatedAt": generated_at,
         "sha256Semantics": "raw-file-bytes",
         "backwardCompatibility": {
@@ -8110,7 +8168,7 @@ def run_self_test() -> None:
     assert jp_metadata["marketVersion"] == 2, jp_metadata
     assert jp_metadata["imageUrl"].endswith("/707718/707718.png"), jp_metadata
 
-    # V3.11.1 regression: GitHub Actions may receive HTTP 403 from the normal
+    # V3.11.2 regression: GitHub Actions may receive HTTP 403 from the normal
     # Cardmarket HTML page. Exact image discovery must therefore work directly
     # against the product-image host, without guessing identity from the folder.
     direct_hints = build_cardmarket_expansion_direct_code_hints(jp_products)
@@ -8577,7 +8635,7 @@ def main() -> None:
     report = {
         "generatedAt": generated_at,
         "schemaVersion": 10,
-        "catalogVersion": "3.11.1",
+        "catalogVersion": "3.11.2",
         "sources": {
             "bandai": {
                 "url": bandai_root.get("sourceUrl") if isinstance(bandai_root, dict) else None,
@@ -8708,7 +8766,7 @@ def main() -> None:
     )
     save_json(manifest_path, manifest)
 
-    print("\nGeneración completada (V3.11.1):")
+    print("\nGeneración completada (V3.11.2):")
     print(f"- Cartas totales catálogo: {catalogue_stats['cards']}")
     print(f"- Cartas Bandai: {catalogue_stats['bandaiCards']}")
     print(f"- Cartas solo Cardmarket: {catalogue_stats['cardmarketOnlyCards']}")
@@ -8757,7 +8815,8 @@ def main() -> None:
         "  · S3 directo: "
         f"{cardmarket_image_discovery_stats.get('directS3Found', 0)} encontradas / "
         f"{cardmarket_image_discovery_stats.get('directS3Probes', 0)} probes / "
-        f"{cardmarket_image_discovery_stats.get('directS3ForbiddenResponses', 0)} respuestas 401/403"
+        f"{cardmarket_image_discovery_stats.get('directS3ForbiddenResponses', 0)} respuestas 401/403 / "
+        f"{cardmarket_image_discovery_stats.get('directS3BudgetExceeded', 0)} presupuestos agotados"
     )
     print(
         "  · HTML fallback: "
@@ -8786,13 +8845,13 @@ def main() -> None:
         f"{len(mapping_validation.get('quarantined', []))} en cuarentena"
     )
     print(
-        "- QA identidad Bandai V3.11.1: "
+        "- QA identidad Bandai V3.11.2: "
         f"{len(all_identity_quarantined)} detectadas / "
         f"{len(identity_quarantined_final)} siguen en cuarentena / "
         f"{len(identity_resolved_during_run)} resueltas en el run"
     )
     print(
-        "- QA drift semántico V3.11.1: "
+        "- QA drift semántico V3.11.2: "
         f"{len(review.get('semanticDriftQuarantined', []))} en cuarentena"
     )
     print(
