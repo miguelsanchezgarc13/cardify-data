@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-One Piece TCG catalogue pipeline v3.11.4 (language-only patch over v3.11.3).
+One Piece TCG catalogue pipeline v3.11.5 (Cardify compatibility/image-reference patch over v3.11.4).
 
 Live sources:
   1) Bandai official card list -> card/game/printing/image metadata
@@ -15,7 +15,7 @@ Persistent local knowledge:
   data/cardmarket_image_mapping.json -> Cardmarket idProduct <-> exact product image URL
   output/cardmarket_price_history_v3.json -> compact daily EUR valuation history
 
-V3.11.4 is a minimal language-classification patch over V3.11.3. It preserves
+V3.11.5 preserves the V3.11.4 language/identity contract and adds only safe image-reference bridging for linked variants. It preserves
 all V3.11.3 identity, mapping, pricing, image and Cardmarket-variant behavior.
 Language is attached to the physical printing and is only filled when supported by
 homogeneous explicit expansion evidence; unknown is preferred over guessing. The
@@ -127,7 +127,7 @@ LEGACY_CARDS_FILENAME = "cardmarket_cards_raw.json"
 
 HEADERS = {
     "User-Agent": (
-        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.11.4; "
+        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.11.5; "
         "+https://github.com/)"
     ),
     "Accept-Language": "en-US,en;q=0.9",
@@ -5198,6 +5198,63 @@ def cardmarket_bandai_variant_candidates(
     }
 
 
+def legacy_mapping_reference_images(mapping: dict | None) -> tuple[dict[int, dict], dict]:
+    """Return product-scoped reference images preserved by legacy mappings.
+
+    A reference is eligible only when the same Cardmarket ``idProduct`` has one
+    unique ``legacyImageUrl`` across mapping entries. These images remain
+    non-authoritative references and are still validated through image health.
+    """
+    by_product = defaultdict(list)
+    for mapping_key, entry in (mapping or {}).get("mappings", {}).items():
+        if not isinstance(entry, dict):
+            continue
+        product_id = get_number(entry.get("productId"))
+        image_url = nullable_text(entry.get("legacyImageUrl"))
+        if product_id is None or not image_url:
+            continue
+        by_product[int(product_id)].append((str(mapping_key), entry, image_url))
+
+    result: dict[int, dict] = {}
+    ambiguous = []
+    for product_id, rows in sorted(by_product.items()):
+        urls = sorted({image_url for _, _, image_url in rows})
+        if len(urls) != 1:
+            ambiguous.append({
+                "productId": product_id,
+                "mappingKeys": sorted({key for key, _, _ in rows}),
+                "urls": urls,
+            })
+            continue
+        url = urls[0]
+        keys = sorted({key for key, _, _ in rows})
+        legacy_sets = sorted({
+            str(entry.get("legacySet"))
+            for _, entry, _ in rows
+            if nullable_text(entry.get("legacySet"))
+        })
+        result[product_id] = {
+            "url": url,
+            "sourceUrl": url,
+            "source": "legacy-cardmarket-snapshot",
+            "sourceRecordId": ",".join(keys),
+            "sourceName": keys[0] if len(keys) == 1 else f"{len(keys)} legacy mappings",
+            "sourceFullName": legacy_sets[0] if len(legacy_sets) == 1 else None,
+            "matchMethod": "legacy-mapping-idProduct",
+            "authoritative": False,
+            "scope": "single-cardmarket-product",
+            "productId": product_id,
+            "validated": None,
+        }
+
+    return result, {
+        "candidateProducts": len(by_product),
+        "uniqueProductReferences": len(result),
+        "ambiguousProducts": len(ambiguous),
+        "ambiguousSample": ambiguous[:50],
+    }
+
+
 def _product_expansion_metadata(product: dict, expansion_metadata: dict[int, dict]) -> dict:
     expansion = get_number((product or {}).get("idExpansion"))
     if expansion is None:
@@ -5518,11 +5575,13 @@ def add_cardmarket_bandai_variants(
     *,
     expansion_metadata: dict[int, dict] | None = None,
     cardmarket_exact_images: dict[int, dict] | None = None,
+    linked_reference_images: dict[int, dict] | None = None,
     image_cache: dict | None = None,
 ) -> dict:
     """Attach extra Cardmarket products under existing Bandai entity identity."""
     expansion_metadata = expansion_metadata or {}
     cardmarket_exact_images = cardmarket_exact_images or {}
+    linked_reference_images = linked_reference_images or {}
     image_cache = image_cache or {}
     existing_product_ids = {
         int(cm["productId"])
@@ -5536,6 +5595,7 @@ def add_cardmarket_bandai_variants(
         "productsWithPriceGuide": 0,
         "productsWithValuation": 0,
         "productsWithExactImage": 0,
+        "productsWithReferenceImage": 0,
         "languageCounts": Counter(),
         "examples": [],
     }
@@ -5555,6 +5615,8 @@ def add_cardmarket_bandai_variants(
             price_created_at,
             catalog_id,
             collectible_type="standard-card",
+            reference_image=linked_reference_images.get(product_id),
+            assign_reference_to_printing=False,
             exact_image_record=cardmarket_exact_images.get(product_id),
             product_metadata=metadata,
             image_cache=image_cache,
@@ -5603,6 +5665,8 @@ def add_cardmarket_bandai_variants(
             stats["productsWithValuation"] += 1
         if isinstance(printing.get("image"), dict) and printing["image"].get("exactProductMatch") is True:
             stats["productsWithExactImage"] += 1
+        if isinstance(printing.get("referenceImage"), dict) and printing["referenceImage"].get("url"):
+            stats["productsWithReferenceImage"] += 1
         language_key = printing.get("language") or printing.get("languageGroup") or "unknown"
         stats["languageCounts"][language_key] += 1
         if len(stats["examples"]) < 50 and language_key != "unknown":
@@ -6017,7 +6081,7 @@ def add_cardmarket_supplements(
 
 
 # ---------------------------------------------------------------------------
-# V3.11.4 release/set index, compact price history and manifest
+# V3.11.5 release/set index, compact price history and manifest
 # ---------------------------------------------------------------------------
 
 
@@ -6184,7 +6248,7 @@ def build_sets_index(
     result_sets.sort(key=_set_sort_key)
     return {
         "schemaVersion": 1,
-        "catalogVersion": "3.11.4",
+        "catalogVersion": "3.11.5",
         "generatedAt": utc_now_iso(),
         "definitions": {
             "baseTarget": "one owned catalog entity that appears in the release",
@@ -6218,7 +6282,7 @@ def update_price_history(
     if not isinstance(history, dict):
         history = {}
     history.setdefault("schemaVersion", 1)
-    history["catalogVersion"] = "3.11.4"
+    history["catalogVersion"] = "3.11.5"
     history["currency"] = "EUR"
     history["valuationPolicy"] = "trend ?? avg7 ?? avg30 ?? avg"
     history["retentionDays"] = retention_days
@@ -6292,7 +6356,7 @@ def build_catalog_manifest(
     printings = sum(len(card.get("printings", [])) for card in catalog.values() if isinstance(card, dict))
     manifest = {
         "schemaVersion": 2,
-        "catalogVersion": "3.11.4",
+        "catalogVersion": "3.11.5",
         "generatedAt": generated_at,
         "sha256Semantics": "raw-file-bytes",
         "backwardCompatibility": {
@@ -7636,6 +7700,45 @@ def run_self_test() -> None:
     assert jp_catalog["P-028"]["printings"][0]["language"] == "ja"
     assert jp_catalog["P-028"]["printings"][0]["cardmarket"]["price"]["valuationEur"] == 19.32
 
+    # V3.11.5 regression: a legacy image tied to the same idProduct is reused
+    # only as a validated reference, never promoted to exact artwork.
+    legacy_url = "https://example.com/P-028_p2_EN.webp"
+    legacy_refs, legacy_ref_stats = legacy_mapping_reference_images({"mappings": {
+        "P-028_P2": {
+            "productId": 740383,
+            "legacyImageUrl": legacy_url,
+            "legacySet": "gift-collection-01",
+        }
+    }})
+    assert legacy_ref_stats["uniqueProductReferences"] == 1
+    assert legacy_refs[740383]["scope"] == "single-cardmarket-product"
+    legacy_catalog = {
+        "P-028": {
+            "catalogId": "P-028", "code": "P-028", "name": "Portgas.D.Ace",
+            "rarity": "Promo", "type": "Character", "life": None, "cost": 5,
+            "power": 6000, "counter": None, "colors": ["Red"], "attributes": ["Special"],
+            "block": 1, "types": ["Whitebeard Pirates"], "effect": "[Double Attack]",
+            "trigger": None, "sources": ["bandai"], "releaseIds": [], "printings": [],
+        }
+    }
+    legacy_product = normalize_cardmarket_product({
+        "idProduct": 740383, "name": "Portgas.D.Ace (P-028)",
+        "idCategory": 1621, "idExpansion": 5230, "idMetacard": 415755,
+    })
+    legacy_added = add_cardmarket_bandai_variants(
+        legacy_catalog, {740383: "P-028"}, {740383: legacy_product}, {}, None,
+        linked_reference_images=legacy_refs,
+        image_cache={"images": {legacy_url: {
+            "ok": True, "finalUrl": legacy_url, "httpStatus": 200, "contentType": "image/webp"
+        }}},
+    )
+    legacy_printing = legacy_catalog["P-028"]["printings"][0]
+    assert legacy_added["productsWithReferenceImage"] == 1
+    assert legacy_printing["imageUrl"] is None
+    assert legacy_printing["image"] is None
+    assert legacy_printing["referenceImage"]["url"] == legacy_url
+    assert legacy_printing["referenceImage"]["authoritative"] is False
+
     # Compact daily history overwrites the same source day instead of duplicating it.
     history_path = Path("/tmp/optcg_v3101_history_test.json")
     if history_path.exists():
@@ -7833,6 +7936,13 @@ def main() -> None:
     bandai_variant_candidates, bandai_variant_candidate_stats = cardmarket_bandai_variant_candidates(
         bandai_cards, mapping, products_by_id
     )
+    linked_legacy_reference_images, linked_legacy_reference_stats = legacy_mapping_reference_images(mapping)
+    linked_legacy_reference_images = {
+        product_id: record
+        for product_id, record in linked_legacy_reference_images.items()
+        if product_id in bandai_variant_candidates
+    }
+    linked_legacy_reference_stats["linkedVariantReferences"] = len(linked_legacy_reference_images)
 
     # Persistent exact Cardmarket product-image discovery. Only the old stable
     # Cardmarket-only/DON target set is eligible. Bandai-linked variants are never
@@ -7866,6 +7976,11 @@ def main() -> None:
     community_image_urls = sorted({
         item.get("imageUrl") for item in community_images if item.get("imageUrl")
     })
+    linked_legacy_reference_urls = sorted({
+        record.get("url")
+        for record in linked_legacy_reference_images.values()
+        if record.get("url")
+    })
     cardmarket_exact_image_urls = sorted({
         record.get("imageUrl")
         for product_id, record in cardmarket_exact_images.items()
@@ -7878,7 +7993,7 @@ def main() -> None:
         image_cache,
         skip=args.skip_image_check,
         force_all=args.image_check_all,
-        extra_urls=community_image_urls,
+        extra_urls=sorted(set(community_image_urls + linked_legacy_reference_urls)),
         cardmarket_urls=cardmarket_exact_image_urls,
     )
     save_json(image_cache_path, image_cache)
@@ -7901,6 +8016,7 @@ def main() -> None:
         price_created_at,
         expansion_metadata=expansion_metadata,
         cardmarket_exact_images=cardmarket_exact_images,
+        linked_reference_images=linked_legacy_reference_images,
         image_cache=image_cache,
     )
     supplemental_stats = add_cardmarket_supplements(
@@ -7970,7 +8086,7 @@ def main() -> None:
     report = {
         "generatedAt": generated_at,
         "schemaVersion": 9,
-        "catalogVersion": "3.11.4",
+        "catalogVersion": "3.11.5",
         "sources": {
             "bandai": {
                 "url": bandai_root.get("sourceUrl") if isinstance(bandai_root, dict) else None,
@@ -8052,6 +8168,7 @@ def main() -> None:
         },
         "bandaiLinkedCardmarketVariants": {
             "candidateDiscovery": bandai_variant_candidate_stats,
+            "legacyReferenceImages": linked_legacy_reference_stats,
             "added": linked_variant_stats,
         },
         "supplementalCardmarket": supplemental_stats,
@@ -8071,6 +8188,7 @@ def main() -> None:
             "failed": image_report.get("failed", [])[:100],
             "cardmarketExact": supplemental_stats.get("cardmarketExactImages", {}),
             "cardmarketDiscovery": cardmarket_image_discovery_stats,
+            "linkedLegacyReferences": linked_legacy_reference_stats,
             "communityMatching": supplemental_stats.get("communityImages", {}),
         },
         "output": catalogue_stats,
@@ -8105,7 +8223,7 @@ def main() -> None:
     )
     save_json(manifest_path, manifest)
 
-    print("\nGeneración completada (V3.11.4 candidata):")
+    print("\nGeneración completada (V3.11.5 candidata):")
     print(f"- Cartas totales catálogo: {catalogue_stats['cards']}")
     print(f"- Cartas Bandai: {catalogue_stats['bandaiCards']}")
     print(f"- Cartas solo Cardmarket: {catalogue_stats['cardmarketOnlyCards']}")
@@ -8115,6 +8233,10 @@ def main() -> None:
     print(f"- Productos solo Cardmarket: {catalogue_stats['cardmarketOnlyProducts']}")
     print(f"- Productos DON!!: {catalogue_stats['donProducts']}")
     print(f"- Variantes Cardmarket añadidas bajo identidad Bandai: {linked_variant_stats['products']}")
+    print(
+        "  · con imagen de referencia legacy validada: "
+        f"{linked_variant_stats.get('productsWithReferenceImage', 0)}"
+    )
     print(
         "  · idioma variantes: "
         f"JP={linked_variant_stats.get('japaneseProducts', 0)} / "
@@ -8166,13 +8288,13 @@ def main() -> None:
         f"{len(mapping_validation.get('quarantined', []))} en cuarentena"
     )
     print(
-        "- QA identidad Bandai V3.11.4: "
+        "- QA identidad Bandai V3.11.5: "
         f"{len(all_identity_quarantined)} detectadas / "
         f"{len(identity_quarantined_final)} siguen en cuarentena / "
         f"{len(identity_resolved_during_run)} resueltas en el run"
     )
     print(
-        "- QA drift semántico V3.11.4: "
+        "- QA drift semántico V3.11.5: "
         f"{len(review.get('semanticDriftQuarantined', []))} en cuarentena"
     )
     print(
