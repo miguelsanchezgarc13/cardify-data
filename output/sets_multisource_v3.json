@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "catalogVersion": "3.10",
-  "generatedAt": "2026-09-11T09:11:38+00:00",
+  "catalogVersion": "3.10.1",
+  "generatedAt": "2026-09-14T07:23:48+00:00",
   "definitions": {
     "baseTarget": "one owned catalog entity that appears in the release",
     "masterTarget": "every distinct printing that appears in the release"
@@ -64912,14 +64912,14 @@
       "cardmarketExpansionIds": [
         5230
       ],
-      "entityCount": 15,
-      "printingCount": 19,
+      "entityCount": 16,
+      "printingCount": 20,
       "basePrintingCount": 0,
-      "valuedPrintingCount": 19,
-      "printingImageCount": 1,
+      "valuedPrintingCount": 20,
+      "printingImageCount": 0,
       "collectionTargets": {
-        "base": 15,
-        "master": 19
+        "base": 16,
+        "master": 20
       },
       "cards": [
         {
@@ -65017,9 +65017,7 @@
           "valuedPrintingIds": [
             "CM-817504"
           ],
-          "imagePrintingIds": [
-            "CM-817504"
-          ]
+          "imagePrintingIds": []
         },
         {
           "catalogId": "CMCARD-458084",
@@ -65100,6 +65098,19 @@
           "imagePrintingIds": []
         },
         {
+          "catalogId": "CMCARD-466795",
+          "code": "P-157",
+          "name": "Monkey.D.Luffy",
+          "printingIds": [
+            "CM-907970"
+          ],
+          "basePrintingIds": [],
+          "valuedPrintingIds": [
+            "CM-907970"
+          ],
+          "imagePrintingIds": []
+        },
+        {
           "catalogId": "CMCARD-465523",
           "code": "P-159",
           "name": "Monkey.D.Luffy",
@@ -65147,7 +65158,7 @@
       "printingCount": 89,
       "basePrintingCount": 0,
       "valuedPrintingCount": 85,
-      "printingImageCount": 7,
+      "printingImageCount": 0,
       "collectionTargets": {
         "base": 78,
         "master": 89
@@ -65250,9 +65261,7 @@
           "valuedPrintingIds": [
             "CM-787546"
           ],
-          "imagePrintingIds": [
-            "CM-787546"
-          ]
+          "imagePrintingIds": []
         },
         {
           "catalogId": "DON-CM-441084",
@@ -65443,9 +65452,7 @@
           "valuedPrintingIds": [
             "CM-821340"
           ],
-          "imagePrintingIds": [
-            "CM-821340"
-          ]
+          "imagePrintingIds": []
         },
         {
           "catalogId": "DON-CM-448024",
@@ -65458,9 +65465,7 @@
           "valuedPrintingIds": [
             "CM-821341"
           ],
-          "imagePrintingIds": [
-            "CM-821341"
-          ]
+          "imagePrintingIds": []
         },
         {
           "catalogId": "DON-CM-448025",
@@ -65473,9 +65478,7 @@
           "valuedPrintingIds": [
             "CM-821342"
           ],
-          "imagePrintingIds": [
-            "CM-821342"
-          ]
+          "imagePrintingIds": []
         },
         {
           "catalogId": "DON-CM-448026",
@@ -65514,9 +65517,7 @@
           "valuedPrintingIds": [
             "CM-821347"
           ],
-          "imagePrintingIds": [
-            "CM-821347"
-          ]
+          "imagePrintingIds": []
         },
         {
           "catalogId": "DON-CM-450310",
@@ -65858,9 +65859,7 @@
           "valuedPrintingIds": [
             "CM-878060"
           ],
-          "imagePrintingIds": [
-            "CM-878060"
-          ]
+          "imagePrintingIds": []
         },
         {
           "catalogId": "DON-CM-461016",
@@ -66100,9 +66099,7 @@
           "valuedPrintingIds": [
             "CM-743070"
           ],
-          "imagePrintingIds": [
-            "CM-743070"
-          ]
+          "imagePrintingIds": []
         },
         {
           "catalogId": "DON-CM-463292",
@@ -66215,7 +66212,7 @@
       "printingCount": 25,
       "basePrintingCount": 0,
       "valuedPrintingCount": 25,
-      "printingImageCount": 11,
+      "printingImageCount": 0,
       "collectionTargets": {
         "base": 23,
         "master": 25
@@ -66245,9 +66242,7 @@
           "valuedPrintingIds": [
             "CM-773382"
           ],
-          "imagePrintingIds": [
-            "CM-773382"
-          ]
+          "imagePrintingIds": []
         },
         {
           "catalogId": "DON-CM-435808",
@@ -66286,9 +66281,7 @@
           "valuedPrintingIds": [
             "CM-826292"
           ],
-          "imagePrintingIds": [
-            "CM-826292"
-          ]
+          "imagePrintingIds": []
         },
         {
           "catalogId": "DON-CM-449047",
@@ -66301,9 +66294,7 @@
           "valuedPrintingIds": [
             "CM-826293"
           ],
-          "imagePrintingIds": [
-            "CM-826293"
-          ]
+          "imagePrintingIds": []
         },
         {
           "catalogId": "DON-CM-462562",
@@ -66316,9 +66307,7 @@
           "valuedPrintingIds": [
             "CM-696662"
           ],
-          "imagePrintingIds": [
-            "CM-696662"
-          ]
+          "imagePrintingIds": []
         },
         {
           "catalogId": "DON-CM-462563",
@@ -66331,9 +66320,7 @@
           "valuedPrintingIds": [
             "CM-696663"
           ],
-          "imagePrintingIds": [
-            "CM-696663"
-          ]
+          "imagePrintingIds": []
         },
         {
           "catalogId": "DON-CM-462565",
@@ -66346,9 +66333,7 @@
           "valuedPrintingIds": [
             "CM-696664"
           ],
-          "imagePrintingIds": [
-            "CM-696664"
-          ]
+          "imagePrintingIds": []
         },
         {
           "catalogId": "DON-CM-462567",
@@ -66361,9 +66346,7 @@
           "valuedPrintingIds": [
             "CM-696665"
           ],
-          "imagePrintingIds": [
-            "CM-696665"
-          ]
+          "imagePrintingIds": []
         },
         {
           "catalogId": "DON-CM-462568",
@@ -66389,9 +66372,7 @@
           "valuedPrintingIds": [
             "CM-696667"
           ],
-          "imagePrintingIds": [
-            "CM-696667"
-          ]
+          "imagePrintingIds": []
         },
         {
           "catalogId": "DON-CM-462570",
@@ -66404,9 +66385,7 @@
           "valuedPrintingIds": [
             "CM-696668"
           ],
-          "imagePrintingIds": [
-            "CM-696668"
-          ]
+          "imagePrintingIds": []
         },
         {
           "catalogId": "DON-CM-462572",
@@ -66419,9 +66398,7 @@
           "valuedPrintingIds": [
             "CM-696669"
           ],
-          "imagePrintingIds": [
-            "CM-696669"
-          ]
+          "imagePrintingIds": []
         },
         {
           "catalogId": "DON-CM-462573",
@@ -66447,9 +66424,7 @@
           "valuedPrintingIds": [
             "CM-696671"
           ],
-          "imagePrintingIds": [
-            "CM-696671"
-          ]
+          "imagePrintingIds": []
         },
         {
           "catalogId": "DON-CM-462577",
@@ -67424,7 +67399,7 @@
       "printingCount": 33,
       "basePrintingCount": 0,
       "valuedPrintingCount": 29,
-      "printingImageCount": 1,
+      "printingImageCount": 0,
       "collectionTargets": {
         "base": 25,
         "master": 33
@@ -67523,9 +67498,7 @@
           "valuedPrintingIds": [
             "CM-804820"
           ],
-          "imagePrintingIds": [
-            "CM-804820"
-          ]
+          "imagePrintingIds": []
         },
         {
           "catalogId": "CMCARD-444116",
@@ -71363,7 +71336,7 @@
       "entityCount": 27,
       "printingCount": 27,
       "basePrintingCount": 0,
-      "valuedPrintingCount": 2,
+      "valuedPrintingCount": 3,
       "printingImageCount": 0,
       "collectionTargets": {
         "base": 27,
@@ -71556,7 +71529,9 @@
             "CM-902879"
           ],
           "basePrintingIds": [],
-          "valuedPrintingIds": [],
+          "valuedPrintingIds": [
+            "CM-902879"
+          ],
           "imagePrintingIds": []
         },
         {

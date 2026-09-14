@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-11T09:09:11+00:00",
+  "generatedAt": "2026-09-14T07:23:34+00:00",
   "autoMappingsAdded": [],
   "semanticAliasesMoved": [],
   "semanticDriftQuarantined": [],
@@ -28335,6 +28335,15 @@
           "idMetacard": 450448,
           "dateAdded": "2026-07-30 03:48:46",
           "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=900289",
+          "version": null
+        },
+        {
+          "idProduct": 907972,
+          "name": "Roronoa Zoro (OP12-020)",
+          "idExpansion": 6712,
+          "idMetacard": 450448,
+          "dateAdded": "2026-09-10 19:42:12",
+          "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=907972",
           "version": null
         }
       ]
