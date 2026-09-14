@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-14T17:30:36+00:00",
-  "schemaVersion": 8,
-  "catalogVersion": "3.10.2",
+  "generatedAt": "2026-09-14T17:44:58+00:00",
+  "schemaVersion": 9,
+  "catalogVersion": "3.11.3",
   "sources": {
     "bandai": {
       "url": "https://en.onepiece-cardgame.com/cardlist/",
-      "fetchedAt": "2026-09-14T17:30:09+00:00",
+      "fetchedAt": "2026-09-14T17:44:40+00:00",
       "records": 4844,
       "series": 60,
       "authority": "official"
@@ -22,24 +22,31 @@
       "createdAt": "2026-09-14T02:46:38+0200",
       "authority": "official-public-download"
     },
+    "cardmarketNonSingles": {
+      "url": "https://downloads.s3.cardmarket.com/productCatalog/productList/products_nonsingles_18.json",
+      "records": 766,
+      "authority": "official-public-download",
+      "purpose": "expansion/language evidence without per-product HTML scraping"
+    },
     "cardmarketProductImages": {
-      "enabled": true,
-      "purpose": "exact image URL discovery for Cardmarket-only idProduct printings",
+      "enabled": false,
+      "defaultEnabled": false,
+      "purpose": "opt-in exact image URL discovery for Cardmarket-only/DON idProduct printings only",
       "cacheFile": "data/cardmarket_image_mapping.json",
       "host": "product-images.s3.cardmarket.com",
       "identityPolicy": "accept only image URLs containing the same idProduct",
       "rehosted": false,
       "stats": {
-        "enabled": true,
+        "enabled": false,
         "targets": 671,
         "cachedFound": 0,
-        "attempted": 2,
+        "attempted": 0,
         "discovered": 0,
         "refreshedAfterImageFailure": 0,
         "notFound": 0,
-        "errors": 2,
-        "skippedRecentFailure": 2,
-        "stoppedReason": "http-403"
+        "errors": 0,
+        "skippedRecentFailure": 0,
+        "stoppedReason": null
       }
     },
     "communityImages": {
@@ -726,6 +733,516 @@
     },
     "inferredReleaseProfiles": {},
     "needsReview": 516
+  },
+  "cardmarketExpansionMetadata": {
+    "stats": {
+      "expansionsWithMetadata": 50,
+      "languageEvidenceCounts": {
+        "en": 44,
+        "ja": 6
+      },
+      "verifiedExpansionIds": [
+        5511
+      ],
+      "nonsingleExpansionsWithExplicitLanguage": 45
+    },
+    "verified": {
+      "5511": {
+        "editionCode": "P-JP",
+        "editionName": "Promos (Japanese)",
+        "editionSlug": "Promos-Japanese",
+        "language": "ja",
+        "languageLabel": "Japanese",
+        "languageGroup": "ja",
+        "languageSource": "verified-cardmarket-expansion"
+      }
+    }
+  },
+  "bandaiLinkedCardmarketVariants": {
+    "candidateDiscovery": {
+      "uniqueMetacardAnchors": 2659,
+      "ambiguousMetacardAnchors": 0,
+      "ambiguousAnchorSample": [],
+      "candidateProducts": 6947,
+      "rejectedProducts": 1,
+      "rejectedSample": [
+        {
+          "productId": 733431,
+          "idMetacard": 424950,
+          "catalogId": "OP05-094",
+          "reason": "name-mismatch",
+          "expectedName": "haute-couture-patch-work",
+          "productName": "haute-couture-patchwork"
+        }
+      ]
+    },
+    "added": {
+      "products": 6947,
+      "productsWithPriceGuide": 6947,
+      "productsWithValuation": 6718,
+      "productsWithExactImage": 0,
+      "languageCounts": {
+        "en": 4193,
+        "ja": 218,
+        "unknown": 2536
+      },
+      "examples": [
+        {
+          "catalogId": "P-030",
+          "printingId": "CM-692224",
+          "productId": 692224,
+          "idExpansion": 5230,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "P"
+        },
+        {
+          "catalogId": "P-006",
+          "printingId": "CM-692238",
+          "productId": 692238,
+          "idExpansion": 5230,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "P"
+        },
+        {
+          "catalogId": "P-007",
+          "printingId": "CM-692239",
+          "productId": 692239,
+          "idExpansion": 5230,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "P"
+        },
+        {
+          "catalogId": "P-008",
+          "printingId": "CM-692240",
+          "productId": 692240,
+          "idExpansion": 5230,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "P"
+        },
+        {
+          "catalogId": "P-009",
+          "printingId": "CM-692247",
+          "productId": 692247,
+          "idExpansion": 5230,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "P"
+        },
+        {
+          "catalogId": "OP01-004",
+          "printingId": "CM-696189",
+          "productId": 696189,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "ST01-006",
+          "printingId": "CM-696190",
+          "productId": 696190,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "ST01-013",
+          "printingId": "CM-696191",
+          "productId": 696191,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "ST01-001",
+          "printingId": "CM-696192",
+          "productId": 696192,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "OP02-035",
+          "printingId": "CM-696677",
+          "productId": 696677,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "OP02-035",
+          "printingId": "CM-696678",
+          "productId": 696678,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "OP02-035",
+          "printingId": "CM-696679",
+          "productId": 696679,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "OP02-098",
+          "printingId": "CM-696680",
+          "productId": 696680,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "OP02-098",
+          "printingId": "CM-696681",
+          "productId": 696681,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "OP02-098",
+          "printingId": "CM-696682",
+          "productId": 696682,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "ST01-004",
+          "printingId": "CM-696683",
+          "productId": 696683,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "ST01-004",
+          "printingId": "CM-696684",
+          "productId": 696684,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "ST01-004",
+          "printingId": "CM-696685",
+          "productId": 696685,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "ST03-014",
+          "printingId": "CM-696687",
+          "productId": 696687,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "ST03-014",
+          "printingId": "CM-696688",
+          "productId": 696688,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "ST03-014",
+          "printingId": "CM-696689",
+          "productId": 696689,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "ST04-008",
+          "printingId": "CM-696690",
+          "productId": 696690,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "ST04-008",
+          "printingId": "CM-696691",
+          "productId": 696691,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "ST04-008",
+          "printingId": "CM-696692",
+          "productId": 696692,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "ST07-008",
+          "printingId": "CM-696693",
+          "productId": 696693,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "ST07-008",
+          "printingId": "CM-696694",
+          "productId": 696694,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "ST07-008",
+          "printingId": "CM-696695",
+          "productId": 696695,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "P-001",
+          "printingId": "CM-696702",
+          "productId": 696702,
+          "idExpansion": 5511,
+          "language": "ja",
+          "languageLabel": "Japanese",
+          "editionCode": "P-JP"
+        },
+        {
+          "catalogId": "OP01-039",
+          "printingId": "CM-696705",
+          "productId": 696705,
+          "idExpansion": 5303,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "UP"
+        },
+        {
+          "catalogId": "OP01-079",
+          "printingId": "CM-696706",
+          "productId": 696706,
+          "idExpansion": 5303,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "UP"
+        },
+        {
+          "catalogId": "OP01-093",
+          "printingId": "CM-696707",
+          "productId": 696707,
+          "idExpansion": 5303,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "UP"
+        },
+        {
+          "catalogId": "OP02-018",
+          "printingId": "CM-696708",
+          "productId": 696708,
+          "idExpansion": 5303,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "UP"
+        },
+        {
+          "catalogId": "ST06-002",
+          "printingId": "CM-696709",
+          "productId": 696709,
+          "idExpansion": 5303,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "UP"
+        },
+        {
+          "catalogId": "ST01-007",
+          "printingId": "CM-696716",
+          "productId": 696716,
+          "idExpansion": 5510,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": null
+        },
+        {
+          "catalogId": "OP02-035",
+          "printingId": "CM-696727",
+          "productId": 696727,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "OP02-035",
+          "printingId": "CM-696729",
+          "productId": 696729,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "OP02-035",
+          "printingId": "CM-696731",
+          "productId": 696731,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "OP02-098",
+          "printingId": "CM-698822",
+          "productId": 698822,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "OP02-098",
+          "printingId": "CM-698836",
+          "productId": 698836,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "OP02-098",
+          "printingId": "CM-698838",
+          "productId": 698838,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "ST01-004",
+          "printingId": "CM-698851",
+          "productId": 698851,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "ST01-004",
+          "printingId": "CM-698855",
+          "productId": 698855,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "ST01-004",
+          "printingId": "CM-698857",
+          "productId": 698857,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "ST03-014",
+          "printingId": "CM-698860",
+          "productId": 698860,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "ST03-014",
+          "printingId": "CM-698861",
+          "productId": 698861,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "ST03-014",
+          "printingId": "CM-698862",
+          "productId": 698862,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "ST04-008",
+          "printingId": "CM-698863",
+          "productId": 698863,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "ST04-008",
+          "printingId": "CM-698864",
+          "productId": 698864,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "ST04-008",
+          "printingId": "CM-698865",
+          "productId": 698865,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        },
+        {
+          "catalogId": "ST07-008",
+          "printingId": "CM-698866",
+          "productId": 698866,
+          "idExpansion": 5262,
+          "language": "en",
+          "languageLabel": "English",
+          "editionCode": "STP"
+        }
+      ],
+      "japaneseProducts": 218,
+      "englishProducts": 4193,
+      "nonEnglishUnspecifiedProducts": 0,
+      "unknownLanguageProducts": 2536
+    }
   },
   "supplementalCardmarket": {
     "standardCards": 55,
@@ -2360,8 +2877,8 @@
   },
   "sets": {
     "officialBandaiSetCount": 60,
-    "cardmarketExpansionCount": 57,
-    "total": 117
+    "cardmarketExpansionCount": 111,
+    "total": 171
   },
   "priceHistory": {
     "enabled": true,
@@ -2383,7 +2900,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Bartolomeo_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T17:30:24+00:00",
+        "checkedAt": "2026-09-14T17:44:50+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2395,7 +2912,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/DON_Card_Boa_Hancock_-_Extra_Booster_One_Piece_Heroines_Edition_EB-03_img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T17:30:25+00:00",
+        "checkedAt": "2026-09-14T17:44:50+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2407,7 +2924,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/General_Franky_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T17:30:25+00:00",
+        "checkedAt": "2026-09-14T17:44:51+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2419,7 +2936,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Issho_Welcome_Pack_Vol._1_img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T17:30:25+00:00",
+        "checkedAt": "2026-09-14T17:44:51+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2431,7 +2948,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Jinbe_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T17:30:25+00:00",
+        "checkedAt": "2026-09-14T17:44:51+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2443,7 +2960,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Monkey.D.Luffy_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T17:30:25+00:00",
+        "checkedAt": "2026-09-14T17:44:51+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2455,7 +2972,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Portgas.D.Ace_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T17:30:25+00:00",
+        "checkedAt": "2026-09-14T17:44:51+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2467,7 +2984,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Raizo_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T17:30:25+00:00",
+        "checkedAt": "2026-09-14T17:44:51+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2479,7 +2996,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Sanji_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T17:30:25+00:00",
+        "checkedAt": "2026-09-14T17:44:51+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2491,7 +3008,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Sanji_Demo_Deck_2023_img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T17:30:25+00:00",
+        "checkedAt": "2026-09-14T17:44:51+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2503,7 +3020,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Satori_Welcome_Pack_Vol._1_img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T17:30:25+00:00",
+        "checkedAt": "2026-09-14T17:44:51+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2515,7 +3032,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Sengoku_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T17:30:25+00:00",
+        "checkedAt": "2026-09-14T17:44:51+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2527,7 +3044,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Trafalgar_Law_Welcome_Pack_Vol._1_img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T17:30:26+00:00",
+        "checkedAt": "2026-09-14T17:44:51+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2539,7 +3056,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Tsuru_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T17:30:26+00:00",
+        "checkedAt": "2026-09-14T17:44:52+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2551,7 +3068,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Usopp_Demo_Deck_2023_img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T17:30:26+00:00",
+        "checkedAt": "2026-09-14T17:44:52+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2563,7 +3080,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Uta_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T17:30:26+00:00",
+        "checkedAt": "2026-09-14T17:44:52+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2578,16 +3095,16 @@
       "totalProductsWithExactImage": 0
     },
     "cardmarketDiscovery": {
-      "enabled": true,
+      "enabled": false,
       "targets": 671,
       "cachedFound": 0,
-      "attempted": 2,
+      "attempted": 0,
       "discovered": 0,
       "refreshedAfterImageFailure": 0,
       "notFound": 0,
-      "errors": 2,
-      "skippedRecentFailure": 2,
-      "stoppedReason": "http-403"
+      "errors": 0,
+      "skippedRecentFailure": 0,
+      "stoppedReason": null
     },
     "communityMatching": {
       "sourceRecords": 1127,
@@ -4153,10 +4670,10 @@
   },
   "output": {
     "cards": 3025,
-    "printings": 5514,
+    "printings": 12461,
     "printingsWithCardmarketMapping": 4327,
-    "printingsWithCardmarketPriceGuide": 4998,
-    "printingsWithCardmarketValuation": 4935,
+    "printingsWithCardmarketPriceGuide": 11945,
+    "printingsWithCardmarketValuation": 11653,
     "bandaiPrintingsWithoutValidatedImage": 0,
     "cardmarketMappingRelations": {
       "exact": 4327
@@ -4442,12 +4959,13 @@
     "donCards": 185,
     "donProducts": 555,
     "cardmarketDirectProducts": 671,
+    "cardmarketLinkedBandaiProducts": 6947,
     "entitiesWithPreviewImage": 2875
   },
   "fingerprints": {
-    "catalog": "d7b621617b22d12f94806fdf1857e3aab8c791a613723d89f5ff2cd40d66cc13",
+    "catalog": "19466bba384843deaaef321247ceb2c89f0283ae707606fc4cb25a3127b2b55a",
     "mapping": "3279e4026145d9ef3d99c1e39dbeb5482c493c6cf60d93366a83bd49d3a9d23e",
-    "sets": "c488da84342daa3e0fe46ea6701a77eb2951067baececfe92f92a420ba88179d",
-    "priceHistory": "e55c3d6be4c9471ba2e103fa927106ff91134f3e35182bbc19679f64b1fe3068"
+    "sets": "b54601cc442aaea78744e63ed36d21585bc63736218ecabcf043408b3d04eb14",
+    "priceHistory": "b73677c20279154181464ff43813c7107d507bdfa304841c0a7b853d2ca372fa"
   }
 }
