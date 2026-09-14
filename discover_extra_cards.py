@@ -1,20 +1,24 @@
 #!/usr/bin/env python3
 """
-One Piece TCG catalogue pipeline v3.10.1.
+One Piece TCG catalogue pipeline v3.10.2.
 
 Live sources:
   1) Bandai official card list -> card/game/printing/image metadata
   2) Cardmarket public product catalogue -> product identifiers
   3) Cardmarket public daily price guide -> EUR prices
-  4) OPTCGAPI.com (optional community fallback) -> missing DON!!/promo preview images only
+  4) Cardmarket public product pages (best-effort) -> exact image URL per idProduct
+  5) OPTCGAPI.com (optional community fallback) -> missing DON!!/promo preview images only
 
 Persistent local knowledge:
   data/cardmarket_mapping.json -> Bandai printing <-> Cardmarket idProduct
+  data/cardmarket_image_mapping.json -> Cardmarket idProduct <-> exact product image URL
   output/cardmarket_price_history_v3.json -> compact daily EUR valuation history
 
-V3.10.1 keeps the V3.9 identity contract intact. Community data is NEVER used
-to decide card identity, Cardmarket mapping or price; it can only provide a
-validated reference image when Bandai has no official image for that entity.
+V3.10.2 keeps the V3.9 identity contract intact. Cardmarket product-page HTML
+is used only to discover an image URL that contains the same idProduct; it never
+creates/merges identity or changes prices. Community data is NEVER used to decide
+card identity, Cardmarket mapping or price; it can only provide a validated
+reference image when no exact/official image is available.
 
 The old community Cardmarket snapshot is used only once, if available, to seed
 cardmarket_mapping.json. It is never used as a live price source.
@@ -100,6 +104,9 @@ OPTIONAL_RAW_KEYS = {"community_images"}
 
 MAPPING_FILENAME = "cardmarket_mapping.json"
 IMAGE_CACHE_FILENAME = "image_health_cache.json"
+CARDMARKET_IMAGE_MAPPING_FILENAME = "cardmarket_image_mapping.json"
+CARDMARKET_PRODUCT_IMAGE_HOST = "product-images.s3.cardmarket.com"
+CARDMARKET_IMAGE_FAILURE_RETRY_DAYS = 7
 CATALOG_FILENAME = "cards_multisource_v3.json"
 REPORT_FILENAME = "cards_multisource_v3_report.json"
 REVIEW_FILENAME = "cardmarket_mapping_review.json"
@@ -112,7 +119,7 @@ LEGACY_CARDS_FILENAME = "cardmarket_cards_raw.json"
 
 HEADERS = {
     "User-Agent": (
-        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.10.1; "
+        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.10.2; "
         "+https://github.com/)"
     ),
     "Accept-Language": "en-US,en;q=0.9",
@@ -252,6 +259,32 @@ def parse_args() -> argparse.Namespace:
         help=(
             "No consulta OPTCGAPI.com para intentar completar imágenes de "
             "DON!!/promos sin imagen oficial Bandai."
+        ),
+    )
+    parser.add_argument(
+        "--no-cardmarket-image-discovery",
+        action="store_true",
+        help=(
+            "No consulta páginas públicas de producto Cardmarket para descubrir "
+            "la imagen exacta de idProduct. El cache persistente existente sí se usa."
+        ),
+    )
+    parser.add_argument(
+        "--cardmarket-image-delay",
+        type=float,
+        default=0.75,
+        help=(
+            "Pausa entre páginas de producto Cardmarket al descubrir imágenes "
+            "nuevas (segundos; por defecto: 0.75)."
+        ),
+    )
+    parser.add_argument(
+        "--cardmarket-image-max-new",
+        type=int,
+        default=0,
+        help=(
+            "Máximo de páginas Cardmarket nuevas a consultar por run. 0 = sin "
+            "límite. Las imágenes ya cacheadas no consumen el límite."
         ),
     )
     parser.add_argument(
@@ -3591,7 +3624,7 @@ def auto_map_and_build_review(
 
 
 # ---------------------------------------------------------------------------
-# Optional community image enrichment (V3.10.1)
+# Optional community image enrichment (V3.10.2)
 # ---------------------------------------------------------------------------
 
 COMMUNITY_NAME_KEYS = (
@@ -3786,7 +3819,7 @@ def _normalize_don_match_text(value: str | None) -> str:
     """Normalize Cardmarket/OPTCGAPI DON labels to comparable semantics.
 
     V3.10 matched only the short character/design name. That produced false
-    positives such as ``PRB02 - Nico Robin`` -> an EB03 Robin image. V3.10.1
+    positives such as ``PRB02 - Nico Robin`` -> an EB03 Robin image. V3.10.2
     keeps release/event qualifiers and canonicalises common abbreviations so a
     design is only matched inside the same semantic release family.
     """
@@ -4109,6 +4142,7 @@ def update_image_health_cache(
     skip: bool,
     force_all: bool,
     extra_urls: list[str] | None = None,
+    cardmarket_urls: list[str] | None = None,
 ) -> tuple[dict, dict]:
     cache.setdefault("schemaVersion", 2)
     cache.setdefault("images", {})
@@ -4116,7 +4150,8 @@ def update_image_health_cache(
 
     official_urls = {str(card.get("imageUrl")) for card in bandai_cards if card.get("imageUrl")}
     community_urls = {str(url) for url in (extra_urls or []) if url}
-    urls = sorted(official_urls | community_urls)
+    cardmarket_exact_urls = {str(url) for url in (cardmarket_urls or []) if url}
+    urls = sorted(official_urls | community_urls | cardmarket_exact_urls)
     checked = 0
     failed = []
 
@@ -4125,6 +4160,7 @@ def update_image_health_cache(
             "totalUrls": len(urls),
             "officialUrls": len(official_urls),
             "communityUrls": len(community_urls),
+            "cardmarketExactUrls": len(cardmarket_exact_urls),
             "checkedThisRun": 0,
             "failed": [],
         }
@@ -4132,7 +4168,12 @@ def update_image_health_cache(
     for index, url in enumerate(urls, start=1):
         if not force_all and isinstance(images.get(url), dict) and images[url].get("ok") is True:
             continue
-        source_label = "community" if url in community_urls and url not in official_urls else "official"
+        if url in cardmarket_exact_urls and url not in official_urls:
+            source_label = "cardmarket-exact"
+        elif url in community_urls and url not in official_urls:
+            source_label = "community"
+        else:
+            source_label = "official"
         print(f"Imagen {index}/{len(urls)} [{source_label}]: {url}")
         result = validate_image_url(session, url)
         images[url] = result
@@ -4146,6 +4187,7 @@ def update_image_health_cache(
         "totalUrls": len(urls),
         "officialUrls": len(official_urls),
         "communityUrls": len(community_urls),
+        "cardmarketExactUrls": len(cardmarket_exact_urls),
         "checkedThisRun": checked,
         "failed": failed,
     }
@@ -4575,6 +4617,409 @@ def _is_cardmarket_don_product(product: dict) -> bool:
     return bool(DON_PRODUCT_RE.search(str((product or {}).get("name") or "")))
 
 
+def _parse_utc_iso(value: str | None) -> datetime | None:
+    text = nullable_text(value)
+    if not text:
+        return None
+    try:
+        parsed = datetime.fromisoformat(text.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed.astimezone(timezone.utc)
+
+
+def _cardmarket_image_candidate(raw_url: str | None, page_url: str) -> str | None:
+    text = html_lib.unescape(str(raw_url or "")).strip().strip("'\"")
+    if not text:
+        return None
+    text = text.replace("\\/", "/")
+    if text.startswith("//"):
+        text = "https:" + text
+    url = urljoin(page_url, text)
+    parsed = urlparse(url)
+    if parsed.hostname and parsed.hostname.casefold() != CARDMARKET_PRODUCT_IMAGE_HOST:
+        return None
+    if not parsed.hostname:
+        return None
+    # Normalize to HTTPS while preserving path/query exactly as published.
+    if parsed.scheme not in {"http", "https"}:
+        return None
+    if parsed.scheme == "http":
+        url = "https://" + parsed.netloc + parsed.path + (
+            ("?" + parsed.query) if parsed.query else ""
+        )
+    return url
+
+
+def _cardmarket_image_score(url: str, product_id: int) -> int | None:
+    parsed = urlparse(url)
+    if (parsed.hostname or "").casefold() != CARDMARKET_PRODUCT_IMAGE_HOST:
+        return None
+    pid = str(int(product_id))
+    path = parsed.path or ""
+    basename = path.rsplit("/", 1)[-1]
+    if not re.search(r"\.(?:png|jpe?g|webp|gif)$", basename, flags=re.I):
+        return None
+
+    exact_file = bool(re.fullmatch(re.escape(pid) + r"\.(?:png|jpe?g|webp|gif)", basename, flags=re.I))
+    path_segment = f"/{pid}/" in path
+    if not exact_file and not path_segment:
+        # The core safety invariant: only accept a Cardmarket image URL that
+        # carries the exact idProduct in its own path/filename.
+        return None
+
+    score = 100
+    if exact_file:
+        score += 40
+    if path_segment:
+        score += 30
+    if parsed.scheme == "https":
+        score += 5
+    if basename.casefold().endswith(".png"):
+        score += 2
+    return score
+
+
+def extract_cardmarket_product_image_url(
+    html: str,
+    page_url: str,
+    product_id: int,
+) -> str | None:
+    """Extract the exact Cardmarket product image from one public product page.
+
+    No URL path/category (OPPR, ST-10, ST-10-JP, ...) is guessed. Candidates are
+    read from the HTML and accepted only when hosted on Cardmarket's product-image
+    S3 host and when the URL itself contains the exact idProduct.
+    """
+    candidates: list[str] = []
+    soup = BeautifulSoup(html or "", "html.parser")
+    scalar_attrs = ("src", "data-src", "data-original", "data-lazy-src", "content", "href")
+    srcset_attrs = ("srcset", "data-srcset")
+
+    for tag in soup.find_all(True):
+        for attr in scalar_attrs:
+            value = tag.get(attr)
+            if isinstance(value, str):
+                candidates.append(value)
+        for attr in srcset_attrs:
+            value = tag.get(attr)
+            if not isinstance(value, str):
+                continue
+            for item in value.split(","):
+                candidate = item.strip().split(" ", 1)[0]
+                if candidate:
+                    candidates.append(candidate)
+
+    # Fallback for JSON/JS snippets where the image is not represented as a
+    # normal DOM attribute. Keep it deliberately host-specific.
+    raw_html = html_lib.unescape(html or "").replace("\\/", "/")
+    pattern = re.compile(
+        r"(?:https?:)?//product-images\.s3\.cardmarket\.com/[^\s\"'<>]+",
+        flags=re.I,
+    )
+    candidates.extend(pattern.findall(raw_html))
+
+    ranked: list[tuple[int, int, str]] = []
+    seen = set()
+    for index, candidate in enumerate(candidates):
+        url = _cardmarket_image_candidate(candidate, page_url)
+        if not url or url in seen:
+            continue
+        seen.add(url)
+        score = _cardmarket_image_score(url, product_id)
+        if score is None:
+            continue
+        ranked.append((score, -index, url))
+
+    if not ranked:
+        return None
+    ranked.sort(reverse=True)
+    return ranked[0][2]
+
+
+def make_cardmarket_product_page_session() -> requests.Session:
+    # Do not aggressively retry 403/429. If Cardmarket asks us to slow/stop,
+    # discovery halts gracefully and the normal catalogue generation continues.
+    retry = Retry(
+        total=2,
+        connect=2,
+        read=2,
+        backoff_factor=1.0,
+        status_forcelist=(500, 502, 503, 504),
+        allowed_methods=frozenset({"GET"}),
+        respect_retry_after_header=True,
+    )
+    session = requests.Session()
+    session.headers.update({
+        **HEADERS,
+        "Accept": "text/html,application/xhtml+xml;q=0.9,*/*;q=0.7",
+        "Referer": "https://www.cardmarket.com/en/OnePiece",
+    })
+    session.mount("https://", HTTPAdapter(max_retries=retry))
+    return session
+
+
+def fetch_cardmarket_product_image_record(
+    session: requests.Session,
+    product: dict,
+) -> dict:
+    product_id = int(product["idProduct"])
+    page_url = nullable_text(product.get("website")) or CARDMARKET_PRODUCT_REDIRECT.format(
+        product_id=product_id
+    )
+    attempted_at = utc_now_iso()
+    base = {
+        "productId": product_id,
+        "productPage": page_url,
+        "attemptedAt": attempted_at,
+        "source": "cardmarket-product-page",
+        "matchMethod": "idProduct-in-image-url",
+        "exactProductMatch": True,
+    }
+    try:
+        response = session.get(page_url, timeout=45, allow_redirects=True)
+    except requests.RequestException as error:
+        return {**base, "status": "error", "httpStatus": None, "error": str(error)[:1000]}
+
+    status = int(response.status_code)
+    final_page = str(response.url)
+    if status == 429:
+        retry_after = nullable_text(response.headers.get("Retry-After"))
+        response.close()
+        return {
+            **base,
+            "productPageFinal": final_page,
+            "status": "rate-limited",
+            "httpStatus": status,
+            "retryAfter": retry_after,
+            "error": "Cardmarket devolvió HTTP 429; discovery detenido para respetar el límite.",
+        }
+    if status in {401, 403}:
+        response.close()
+        return {
+            **base,
+            "productPageFinal": final_page,
+            "status": "blocked",
+            "httpStatus": status,
+            "error": f"Cardmarket devolvió HTTP {status}; discovery detenido de forma conservadora.",
+        }
+    if status >= 400:
+        response.close()
+        return {
+            **base,
+            "productPageFinal": final_page,
+            "status": "http-error",
+            "httpStatus": status,
+            "error": f"HTTP {status}",
+        }
+
+    content_type = str(response.headers.get("Content-Type") or "").split(";", 1)[0].strip().lower()
+    html = response.text
+    response.close()
+    image_url = extract_cardmarket_product_image_url(html, final_page, product_id)
+    if not image_url:
+        return {
+            **base,
+            "productPageFinal": final_page,
+            "status": "not-found",
+            "httpStatus": status,
+            "contentType": content_type or None,
+            "error": "No se encontró una URL de product-images con el mismo idProduct.",
+        }
+    return {
+        **base,
+        "productPageFinal": final_page,
+        "status": "found",
+        "httpStatus": status,
+        "contentType": content_type or None,
+        "imageUrl": image_url,
+        "discoveredAt": attempted_at,
+        "error": None,
+    }
+
+
+def cardmarket_supplement_product_ids(
+    bandai_cards: list[dict],
+    mapping: dict,
+    products_by_id: dict[int, dict],
+) -> list[int]:
+    """Return exactly the idProducts that can become Cardmarket-only printings."""
+    bandai_printing_ids = {
+        canonical_id(card.get("sourcePrintingId"))
+        for card in bandai_cards
+        if canonical_id(card.get("sourcePrintingId"))
+    }
+    bandai_codes = {base_code(printing_id) for printing_id in bandai_printing_ids}
+    # Exclude only products actually attached to a printing present in the
+    # current Bandai snapshot. Stale/historical mapping keys must not hide a
+    # Cardmarket-only product from image discovery.
+    mapped_product_ids = {
+        int(product_id)
+        for printing_id, entry in (mapping or {}).get("mappings", {}).items()
+        if canonical_id(printing_id) in bandai_printing_ids and isinstance(entry, dict)
+        for product_id in [get_number(entry.get("productId"))]
+        if product_id is not None
+    }
+    result = []
+    for product_id, product in products_by_id.items():
+        product_id = int(product_id)
+        if product_id in mapped_product_ids:
+            continue
+        if _is_cardmarket_don_product(product):
+            if get_number(product.get("idMetacard")) is not None:
+                result.append(product_id)
+            continue
+        code = _product_card_code(product)
+        if code and code not in bandai_codes:
+            result.append(product_id)
+    return sorted(set(result))
+
+
+def _cardmarket_image_failure_is_recent(record: dict, now: datetime) -> bool:
+    if not isinstance(record, dict) or record.get("status") == "found":
+        return False
+    attempted = _parse_utc_iso(record.get("attemptedAt"))
+    if attempted is None:
+        return False
+    return now - attempted < timedelta(days=CARDMARKET_IMAGE_FAILURE_RETRY_DAYS)
+
+
+def discover_cardmarket_product_images(
+    products_by_id: dict[int, dict],
+    target_product_ids: list[int],
+    cache: dict | None,
+    *,
+    image_health_cache: dict | None = None,
+    network_enabled: bool = True,
+    delay_seconds: float = 0.75,
+    max_new: int = 0,
+) -> tuple[dict, dict]:
+    """Populate a persistent idProduct -> exact Cardmarket image URL cache.
+
+    Existing successful entries are reused without touching Cardmarket. Failed
+    entries are retried only after a cooling period. HTTP 403/429 stops discovery
+    immediately but never aborts the official catalogue/price pipeline.
+    """
+    cache = cache if isinstance(cache, dict) else {}
+    cache["schemaVersion"] = 1
+    entries = cache.setdefault("products", {})
+    if not isinstance(entries, dict):
+        entries = {}
+        cache["products"] = entries
+    health = (image_health_cache or {}).get("images", {}) if isinstance(image_health_cache, dict) else {}
+    now = datetime.now(timezone.utc)
+    delay_seconds = max(0.0, float(delay_seconds))
+    max_new = max(0, int(max_new))
+
+    stats = {
+        "enabled": bool(network_enabled),
+        "targets": len(target_product_ids),
+        "cachedFound": 0,
+        "attempted": 0,
+        "discovered": 0,
+        "refreshedAfterImageFailure": 0,
+        "notFound": 0,
+        "errors": 0,
+        "skippedRecentFailure": 0,
+        "stoppedReason": None,
+    }
+
+    if not network_enabled:
+        stats["cachedFound"] = sum(
+            1
+            for product_id in target_product_ids
+            if isinstance(entries.get(str(product_id)), dict)
+            and entries[str(product_id)].get("status") == "found"
+            and entries[str(product_id)].get("imageUrl")
+        )
+        cache["updatedAt"] = utc_now_iso()
+        return cache, stats
+
+    session = make_cardmarket_product_page_session()
+    blocked_streak = 0
+    try:
+        for index, product_id in enumerate(target_product_ids, start=1):
+            key = str(int(product_id))
+            existing = entries.get(key) if isinstance(entries.get(key), dict) else None
+            cached_url = nullable_text((existing or {}).get("imageUrl"))
+            cached_health = health.get(cached_url) if cached_url else None
+            cached_image_failed = isinstance(cached_health, dict) and cached_health.get("ok") is False
+
+            if existing and existing.get("status") == "found" and cached_url and not cached_image_failed:
+                stats["cachedFound"] += 1
+                continue
+            if existing and not cached_image_failed and _cardmarket_image_failure_is_recent(existing, now):
+                stats["skippedRecentFailure"] += 1
+                continue
+            if max_new and stats["attempted"] >= max_new:
+                stats["stoppedReason"] = f"max-new={max_new}"
+                break
+
+            product = products_by_id.get(int(product_id))
+            if not isinstance(product, dict):
+                continue
+            print(
+                f"Cardmarket imagen exacta {index}/{len(target_product_ids)}: "
+                f"idProduct={product_id}"
+            )
+            record = fetch_cardmarket_product_image_record(session, product)
+            entries[key] = record
+            stats["attempted"] += 1
+            status = record.get("status")
+            if status == "found":
+                stats["discovered"] += 1
+                blocked_streak = 0
+                if cached_image_failed:
+                    stats["refreshedAfterImageFailure"] += 1
+            elif status == "not-found":
+                stats["notFound"] += 1
+                blocked_streak = 0
+            elif status == "rate-limited":
+                stats["errors"] += 1
+                stats["stoppedReason"] = "http-429"
+                break
+            elif status == "blocked":
+                stats["errors"] += 1
+                blocked_streak += 1
+                # One 403 can be an individual page issue; two consecutive blocks
+                # are treated as a site-level signal and we stop politely.
+                if blocked_streak >= 2:
+                    stats["stoppedReason"] = f"http-{record.get('httpStatus')}"
+                    break
+            else:
+                stats["errors"] += 1
+                blocked_streak = 0
+            if delay_seconds:
+                time.sleep(delay_seconds)
+    finally:
+        session.close()
+
+    cache["updatedAt"] = utc_now_iso()
+    return cache, stats
+
+
+def cardmarket_exact_image_records(cache: dict | None) -> dict[int, dict]:
+    result: dict[int, dict] = {}
+    if not isinstance(cache, dict):
+        return result
+    for key, record in (cache.get("products") or {}).items():
+        if not isinstance(record, dict) or record.get("status") != "found":
+            continue
+        image_url = nullable_text(record.get("imageUrl"))
+        product_id = get_number(record.get("productId"))
+        if product_id is None:
+            product_id = get_number(key)
+        if product_id is None or not image_url:
+            continue
+        product_id = int(product_id)
+        if _cardmarket_image_score(image_url, product_id) is None:
+            continue
+        result[product_id] = record
+    return result
+
+
 def _cardmarket_price_payload(
     product_id: int,
     prices_by_id: dict[int, dict],
@@ -4601,25 +5046,64 @@ def _direct_cardmarket_printing(
     collectible_type: str,
     reference_image: dict | None = None,
     assign_reference_to_printing: bool = False,
+    exact_image_record: dict | None = None,
     image_cache: dict | None = None,
 ) -> dict:
     product_id = int(product["idProduct"])
     direct_id = f"CM-{product_id}"
     safe_reference_url = None
-    image_health = None
+    reference_health = None
     if reference_image and reference_image.get("url"):
-        safe_reference_url, image_health = safe_image_from_cache(
+        safe_reference_url, reference_health = safe_image_from_cache(
             reference_image.get("url"), image_cache or {}
         )
-    printing_image_url = safe_reference_url if assign_reference_to_printing else None
+
+    exact_url = nullable_text((exact_image_record or {}).get("imageUrl"))
+    exact_health = (
+        ((image_cache or {}).get("images", {}) or {}).get(exact_url)
+        if exact_url
+        else None
+    )
+    safe_exact_url = None
+    if exact_url and isinstance(exact_health, dict) and exact_health.get("ok") is True:
+        safe_exact_url = exact_health.get("finalUrl") or exact_url
+
+    printing_image_url = safe_exact_url or (
+        safe_reference_url if assign_reference_to_printing else None
+    )
     printing_image = None
-    if printing_image_url:
+    image_health = None
+    image_source_url = None
+    if safe_exact_url:
+        image_health = exact_health
+        image_source_url = exact_url
         printing_image = {
-            **reference_image,
+            "url": safe_exact_url,
+            "sourceUrl": (exact_image_record or {}).get("productPageFinal")
+                or (exact_image_record or {}).get("productPage"),
+            "sourceImageUrl": exact_url,
+            "source": "cardmarket",
+            # Cardmarket is authoritative for the image shown on its own exact
+            # idProduct page. This flag is image-scope authority only; it does
+            # not alter Bandai game identity or the mapping contract.
+            "authoritative": True,
+            "scope": "printing",
+            "printingId": direct_id,
+            "productId": product_id,
+            "matchMethod": (exact_image_record or {}).get("matchMethod")
+                or "idProduct-in-image-url",
+            "exactProductMatch": True,
+            "validated": True,
+        }
+    elif printing_image_url:
+        image_health = reference_health
+        image_source_url = reference_image.get("url") if reference_image else None
+        printing_image = {
+            **(reference_image or {}),
             "url": printing_image_url,
             "scope": "single-cardmarket-product",
             "validated": (
-                bool(image_health.get("ok")) if isinstance(image_health, dict) else None
+                bool(reference_health.get("ok")) if isinstance(reference_health, dict) else None
             ),
         }
 
@@ -4634,12 +5118,12 @@ def _direct_cardmarket_printing(
         "isReprint": None,
         "physicalVariantUnknown": True,
         "rarity": None,
-        # V3.10.1 is conservative: a community image is assigned to a printing
-        # only when this Cardmarket entity has exactly one product. With multiple
-        # products it remains an entity-level reference image so we never pretend
-        # to know which V.1/V.2 artwork belongs to which idProduct.
+        # Cardmarket's own product page can prove an exact idProduct->image URL
+        # relation when that URL itself contains the same idProduct. Community
+        # images remain conservative references and are never promoted across
+        # multiple Cardmarket products.
         "imageUrl": printing_image_url,
-        "imageSourceUrl": reference_image.get("url") if printing_image else None,
+        "imageSourceUrl": image_source_url if printing_image else None,
         "imageHealth": image_health if printing_image else None,
         "image": printing_image,
         "referenceImage": (
@@ -4684,24 +5168,26 @@ def add_cardmarket_supplements(
     price_created_at: str | None,
     *,
     community_images: list[dict] | None = None,
+    cardmarket_exact_images: dict[int, dict] | None = None,
     image_cache: dict | None = None,
 ) -> dict:
     """Add Cardmarket-only standard cards and DON!! designs conservatively.
 
-    V3.10.1 identity contract (unchanged from V3.9):
+    V3.10.2 identity contract (unchanged from V3.9):
       * Bandai cards keep the official printed code as catalogId.
       * Standard Cardmarket-only entities use idMetacard as identity:
         CMCARD-<idMetacard>. Printed codes are search aliases, not identity.
       * DON!! uses DON-CM-<idMetacard>.
       * Every idProduct remains a distinct direct Cardmarket product/printing.
 
-    New in V3.10.1: a community source may add a *reference/preview* image after
-    a high-confidence match. It can never create/merge an entity or set a price.
-    DON!! community images always stay at entity level because there is no stable
-    printed code linking the artwork to a Cardmarket idProduct. Standard promos
-    can reach printing scope only with a unique code/metacard/product relation.
+    New in V3.10.2: Cardmarket's own public product page may provide an exact
+    printing image when the discovered product-images URL itself contains the same
+    idProduct and the image passes health validation. Community data remains only
+    a conservative reference fallback: it can never create/merge an entity or set
+    a price, and DON!! community images never claim exact idProduct scope.
     """
     community_images = community_images or []
+    cardmarket_exact_images = cardmarket_exact_images or {}
     image_cache = image_cache or {}
     bandai_codes = {
         canonical_id(card.get("code"))
@@ -4744,7 +5230,7 @@ def add_cardmarket_supplements(
 
     # A printed promo code can occur under more than one Cardmarket metacard.
     # Code+name alone cannot prove which physical variant an external image
-    # belongs to, so V3.10.1 suppresses community images for those identities.
+    # belongs to, so V3.10.2 suppresses community images for those identities.
     standard_code_identities = defaultdict(set)
     for identity, grouped_rows in standard_groups.items():
         for grouped_row in grouped_rows:
@@ -4759,6 +5245,8 @@ def add_cardmarket_supplements(
     standard_reference_images = 0
     don_reference_images = 0
     exact_printing_images = 0
+    cardmarket_exact_standard_products = 0
+    cardmarket_exact_don_products = 0
 
     standard_products = 0
     standard_price_guides = 0
@@ -4832,8 +5320,11 @@ def add_cardmarket_supplements(
         image_diag.append({"catalogId": catalog_id, "kind": "standard-card", **diagnostic})
 
         assign_exact = bool(reference_image) and len(rows) == 1
-        printings = [
-            _direct_cardmarket_printing(
+        printings = []
+        for row in rows:
+            product_id = int(row["idProduct"])
+            exact_record = cardmarket_exact_images.get(product_id)
+            printing = _direct_cardmarket_printing(
                 row,
                 prices_by_id,
                 price_created_at,
@@ -4841,11 +5332,18 @@ def add_cardmarket_supplements(
                 collectible_type="standard-card",
                 reference_image=reference_image,
                 assign_reference_to_printing=assign_exact,
+                exact_image_record=exact_record,
                 image_cache=image_cache,
             )
-            for row in rows
-        ]
-        if assign_exact:
+            printings.append(printing)
+            if isinstance(printing.get("image"), dict) and printing["image"].get("exactProductMatch") is True:
+                cardmarket_exact_standard_products += 1
+        if assign_exact and any(
+            isinstance(printing.get("image"), dict)
+            and printing["image"].get("exactProductMatch") is not True
+            and printing.get("imageUrl")
+            for printing in printings
+        ):
             exact_printing_images += 1
         standard_products += len(printings)
         for printing in printings:
@@ -4861,6 +5359,15 @@ def add_cardmarket_supplements(
             for release in printing.get("releases", [])
             if release.get("releaseId")
         })
+        exact_preview_printing = next(
+            (p for p in printings if isinstance(p.get("image"), dict) and p["image"].get("exactProductMatch") is True),
+            None,
+        )
+        entity_preview = (
+            {**exact_preview_printing["image"], "printingId": exact_preview_printing.get("printingId")}
+            if exact_preview_printing
+            else reference_image
+        )
         sources = ["cardmarket"] + (["optcgapi"] if reference_image else [])
         catalog[catalog_id] = {
             "catalogId": catalog_id,
@@ -4888,8 +5395,8 @@ def add_cardmarket_supplements(
             "identitySource": "cardmarket-idMetacard" if metacard is not None else "cardmarket-idProduct-fallback",
             "cardmarketMetacardId": int(metacard) if metacard is not None else None,
             "releaseIds": release_ids,
-            "previewImageUrl": reference_image.get("url") if reference_image else None,
-            "previewImage": reference_image,
+            "previewImageUrl": entity_preview.get("url") if entity_preview else None,
+            "previewImage": entity_preview,
             "printings": printings,
         }
 
@@ -4933,8 +5440,11 @@ def add_cardmarket_supplements(
         # Cardmarket idProduct. Keep community images at entity-reference level
         # even when the metacard currently has a single product.
         assign_exact = False
-        printings = [
-            _direct_cardmarket_printing(
+        printings = []
+        for row in rows:
+            product_id = int(row["idProduct"])
+            exact_record = cardmarket_exact_images.get(product_id)
+            printing = _direct_cardmarket_printing(
                 row,
                 prices_by_id,
                 price_created_at,
@@ -4942,12 +5452,12 @@ def add_cardmarket_supplements(
                 collectible_type="don",
                 reference_image=reference_image,
                 assign_reference_to_printing=assign_exact,
+                exact_image_record=exact_record,
                 image_cache=image_cache,
             )
-            for row in rows
-        ]
-        if assign_exact:
-            exact_printing_images += 1
+            printings.append(printing)
+            if isinstance(printing.get("image"), dict) and printing["image"].get("exactProductMatch") is True:
+                cardmarket_exact_don_products += 1
         don_products += len(printings)
         for printing in printings:
             price = (printing.get("cardmarket") or {}).get("price")
@@ -4961,6 +5471,15 @@ def add_cardmarket_supplements(
             for release in printing.get("releases", [])
             if release.get("releaseId")
         })
+        exact_preview_printing = next(
+            (p for p in printings if isinstance(p.get("image"), dict) and p["image"].get("exactProductMatch") is True),
+            None,
+        )
+        entity_preview = (
+            {**exact_preview_printing["image"], "printingId": exact_preview_printing.get("printingId")}
+            if exact_preview_printing
+            else reference_image
+        )
         sources = ["cardmarket"] + (["optcgapi"] if reference_image else [])
         catalog[key] = {
             "catalogId": key,
@@ -4988,8 +5507,8 @@ def add_cardmarket_supplements(
             "identitySource": "cardmarket-idMetacard",
             "cardmarketMetacardId": metacard,
             "releaseIds": release_ids,
-            "previewImageUrl": reference_image.get("url") if reference_image else None,
-            "previewImage": reference_image,
+            "previewImageUrl": entity_preview.get("url") if entity_preview else None,
+            "previewImage": entity_preview,
             "printings": printings,
         }
 
@@ -5006,6 +5525,11 @@ def add_cardmarket_supplements(
         "donProducts": don_products,
         "donProductsWithPriceGuide": don_price_guides,
         "donProductsWithValuation": don_valuations,
+        "cardmarketExactImages": {
+            "standardProductsWithExactImage": cardmarket_exact_standard_products,
+            "donProductsWithExactImage": cardmarket_exact_don_products,
+            "totalProductsWithExactImage": cardmarket_exact_standard_products + cardmarket_exact_don_products,
+        },
         "communityImages": {
             "sourceRecords": len(community_images),
             "matchedEntities": len(matched_diagnostics),
@@ -5013,7 +5537,8 @@ def add_cardmarket_supplements(
             "donEntitiesWithReferenceImage": don_reference_images,
             "exactSingleProductImages": exact_printing_images,
             "ambiguousStandardCodesSuppressed": sorted(ambiguous_standard_codes),
-            "donExactPrintingImagePolicy": "disabled-no-stable-printed-code",
+            "donExactPrintingImagePolicy": "community-disabled-no-stable-printed-code",
+            "cardmarketProductPageExactPolicy": "enabled-idProduct-in-image-url+health-validation",
             "unmatchedOrAmbiguous": len(ambiguous_diagnostics),
             "diagnosticSample": ambiguous_diagnostics[:100],
         },
@@ -5021,7 +5546,7 @@ def add_cardmarket_supplements(
 
 
 # ---------------------------------------------------------------------------
-# V3.10.1 release/set index, compact price history and manifest
+# V3.10.2 release/set index, compact price history and manifest
 # ---------------------------------------------------------------------------
 
 
@@ -5188,7 +5713,7 @@ def build_sets_index(
     result_sets.sort(key=_set_sort_key)
     return {
         "schemaVersion": 1,
-        "catalogVersion": "3.10.1",
+        "catalogVersion": "3.10.2",
         "generatedAt": utc_now_iso(),
         "definitions": {
             "baseTarget": "one owned catalog entity that appears in the release",
@@ -5222,7 +5747,7 @@ def update_price_history(
     if not isinstance(history, dict):
         history = {}
     history.setdefault("schemaVersion", 1)
-    history["catalogVersion"] = "3.10.1"
+    history["catalogVersion"] = "3.10.2"
     history["currency"] = "EUR"
     history["valuationPolicy"] = "trend ?? avg7 ?? avg30 ?? avg"
     history["retentionDays"] = retention_days
@@ -5296,7 +5821,7 @@ def build_catalog_manifest(
     printings = sum(len(card.get("printings", [])) for card in catalog.values() if isinstance(card, dict))
     manifest = {
         "schemaVersion": 2,
-        "catalogVersion": "3.10.1",
+        "catalogVersion": "3.10.2",
         "generatedAt": generated_at,
         "sha256Semantics": "raw-file-bytes",
         "backwardCompatibility": {
@@ -5653,6 +6178,89 @@ def run_self_test() -> None:
     assert supplement_catalog["DON-CM-9002"]["printings"][0]["cardmarket"]["price"]["valuationEur"] == 3.5
     assert supplement_stats["standardProductsWithPriceGuide"] == 1
     assert supplement_stats["standardProductsWithValuation"] == 1
+
+    # V3.10.2: extract exact Cardmarket product images from HTML without
+    # guessing expansion paths such as OPPR / ST-10 / ST-10-JP.
+    cm_image_fixture = """
+    <html><head>
+      <meta property="og:image"
+            content="https://product-images.s3.cardmarket.com/1621/OPPR/808800/808800.jpg">
+    </head><body>
+      <img src="https://product-images.s3.cardmarket.com/1621/OTHER/999999/999999.jpg">
+    </body></html>
+    """
+    extracted = extract_cardmarket_product_image_url(
+        cm_image_fixture,
+        "https://www.cardmarket.com/en/OnePiece/Products?idProduct=808800",
+        808800,
+    )
+    assert extracted == "https://product-images.s3.cardmarket.com/1621/OPPR/808800/808800.jpg"
+    assert extract_cardmarket_product_image_url(
+        cm_image_fixture,
+        "https://www.cardmarket.com/en/OnePiece/Products?idProduct=123456",
+        123456,
+    ) is None
+
+    exact_standard = normalize_cardmarket_product({
+        "idProduct": 130,
+        "name": "Exact Promo (P-996)",
+        "idCategory": 1621,
+        "categoryName": "One Piece Single",
+        "idExpansion": 782,
+        "idMetacard": 9301,
+    })
+    exact_don = normalize_cardmarket_product({
+        "idProduct": 131,
+        "name": "DON!! (Exact Test)",
+        "idCategory": 1621,
+        "categoryName": "One Piece Single",
+        "idExpansion": 783,
+        "idMetacard": 9302,
+    })
+    exact_standard_url = "https://product-images.s3.cardmarket.com/1621/OPPR/130/130.png"
+    exact_don_url = "https://product-images.s3.cardmarket.com/1621/OPPR/131/131.jpg"
+    exact_records = {
+        130: {
+            "productId": 130,
+            "status": "found",
+            "productPage": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=130",
+            "imageUrl": exact_standard_url,
+            "matchMethod": "idProduct-in-image-url",
+        },
+        131: {
+            "productId": 131,
+            "status": "found",
+            "productPage": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=131",
+            "imageUrl": exact_don_url,
+            "matchMethod": "idProduct-in-image-url",
+        },
+    }
+    exact_health = {
+        "images": {
+            exact_standard_url: {"ok": True, "finalUrl": exact_standard_url},
+            exact_don_url: {"ok": True, "finalUrl": exact_don_url},
+        }
+    }
+    exact_catalog = dict(catalog)
+    exact_stats = add_cardmarket_supplements(
+        exact_catalog,
+        {130: exact_standard, 131: exact_don},
+        {},
+        None,
+        cardmarket_exact_images=exact_records,
+        image_cache=exact_health,
+    )
+    standard_printing = exact_catalog["CMCARD-9301"]["printings"][0]
+    don_printing = exact_catalog["DON-CM-9302"]["printings"][0]
+    assert standard_printing["printingId"] == "CM-130"
+    assert standard_printing["imageUrl"] == exact_standard_url
+    assert standard_printing["image"]["exactProductMatch"] is True
+    assert don_printing["printingId"] == "CM-131"
+    assert don_printing["imageUrl"] == exact_don_url
+    assert don_printing["image"]["exactProductMatch"] is True
+    assert exact_catalog["DON-CM-9302"]["previewImage"]["printingId"] == "CM-131"
+    assert exact_stats["cardmarketExactImages"]["standardProductsWithExactImage"] == 1
+    assert exact_stats["cardmarketExactImages"]["donProductsWithExactImage"] == 1
 
     # Same printed code can refer to different Cardmarket metacards. They must
     # never collapse into one catalogue entity.
@@ -6264,7 +6872,7 @@ def run_self_test() -> None:
     assert fake.calls[0][1] == {"series": "569117"}
     assert diag[0]["attempt"] == "current"
 
-    # V3.10.1 regression: optional community data can enrich images but can
+    # V3.10.2 regression: optional community data can enrich images but can
     # never participate in identity. DON!! matching must respect full release
     # context, not merely a character-name coincidence.
     community_fixture = {
@@ -6410,7 +7018,7 @@ def run_self_test() -> None:
     assert duplicate_catalog["CMCARD-9002"]["previewImageUrl"] is None
     assert "P-999" in duplicate_stats["communityImages"]["ambiguousStandardCodesSuppressed"]
 
-    # V3.10.1 set index exposes base/master targets without changing card identity.
+    # V3.10.2 set index exposes base/master targets without changing card identity.
     sets_fixture = build_sets_index(catalog, {"packs": [{**vega_pack, "title_parts": {
         "prefix": "BOOSTER PACK", "title": "THE WORLD'S STRONGEST WARRIORS", "label": "OP-17"
     }}]}, mapping)
@@ -6455,6 +7063,10 @@ def main() -> None:
         return
     if args.price_history_days < 7:
         raise RuntimeError("--price-history-days debe ser >= 7")
+    if args.cardmarket_image_delay < 0:
+        raise RuntimeError("--cardmarket-image-delay debe ser >= 0")
+    if args.cardmarket_image_max_new < 0:
+        raise RuntimeError("--cardmarket-image-max-new debe ser >= 0")
 
     session = make_session()
     args.raw_dir.mkdir(parents=True, exist_ok=True)
@@ -6598,12 +7210,40 @@ def main() -> None:
 
     save_json(args.data_dir / MAPPING_FILENAME, mapping)
 
-    # Validate both official Bandai images and the small optional community image
-    # candidate set. Cached successful URLs are not re-downloaded every run.
+    # Persistent exact Cardmarket product-image discovery. Only products that can
+    # become Cardmarket-only/DON printings are queried, and successful idProduct
+    # mappings are reused forever unless their image health later fails.
     image_cache_path = args.data_dir / IMAGE_CACHE_FILENAME
     image_cache = load_json(image_cache_path, default={}) or {}
+    cardmarket_image_mapping_path = args.data_dir / CARDMARKET_IMAGE_MAPPING_FILENAME
+    cardmarket_image_mapping = load_json(cardmarket_image_mapping_path, default={}) or {}
+    cardmarket_image_targets = cardmarket_supplement_product_ids(
+        bandai_cards, mapping, products_by_id
+    )
+    discovery_network_enabled = (
+        not args.from_raw and not args.no_cardmarket_image_discovery
+    )
+    cardmarket_image_mapping, cardmarket_image_discovery_stats = discover_cardmarket_product_images(
+        products_by_id,
+        cardmarket_image_targets,
+        cardmarket_image_mapping,
+        image_health_cache=image_cache,
+        network_enabled=discovery_network_enabled,
+        delay_seconds=args.cardmarket_image_delay,
+        max_new=args.cardmarket_image_max_new,
+    )
+    save_json(cardmarket_image_mapping_path, cardmarket_image_mapping)
+    cardmarket_exact_images = cardmarket_exact_image_records(cardmarket_image_mapping)
+
+    # Validate official Bandai, community references and exact Cardmarket URLs.
+    # Cached successful image URLs are not re-downloaded every run.
     community_image_urls = sorted({
         item.get("imageUrl") for item in community_images if item.get("imageUrl")
+    })
+    cardmarket_exact_image_urls = sorted({
+        record.get("imageUrl")
+        for product_id, record in cardmarket_exact_images.items()
+        if product_id in cardmarket_image_targets and record.get("imageUrl")
     })
     image_cache, image_report = update_image_health_cache(
         session,
@@ -6612,6 +7252,7 @@ def main() -> None:
         skip=args.skip_image_check,
         force_all=args.image_check_all,
         extra_urls=community_image_urls,
+        cardmarket_urls=cardmarket_exact_image_urls,
     )
     save_json(image_cache_path, image_cache)
 
@@ -6631,6 +7272,7 @@ def main() -> None:
         prices_by_id,
         price_created_at,
         community_images=community_images,
+        cardmarket_exact_images=cardmarket_exact_images,
         image_cache=image_cache,
     )
     catalogue_stats.update({
@@ -6661,7 +7303,7 @@ def main() -> None:
         ),
     })
 
-    # New V3.10.1 outputs. The main cards JSON keeps its V3.9 root shape.
+    # New V3.10.2 outputs. The main cards JSON keeps its V3.9 root shape.
     sets_index = build_sets_index(catalog, bandai_root, mapping)
     history_path = args.output_dir / PRICE_HISTORY_FILENAME
     price_history = load_json(history_path, default=None)
@@ -6686,8 +7328,8 @@ def main() -> None:
     )
     report = {
         "generatedAt": generated_at,
-        "schemaVersion": 7,
-        "catalogVersion": "3.10.1",
+        "schemaVersion": 8,
+        "catalogVersion": "3.10.2",
         "sources": {
             "bandai": {
                 "url": bandai_root.get("sourceUrl") if isinstance(bandai_root, dict) else None,
@@ -6711,6 +7353,15 @@ def main() -> None:
                 "records": len(prices),
                 "createdAt": price_created_at,
                 "authority": "official-public-download",
+            },
+            "cardmarketProductImages": {
+                "enabled": discovery_network_enabled,
+                "purpose": "exact image URL discovery for Cardmarket-only idProduct printings",
+                "cacheFile": f"data/{CARDMARKET_IMAGE_MAPPING_FILENAME}",
+                "host": CARDMARKET_PRODUCT_IMAGE_HOST,
+                "identityPolicy": "accept only image URLs containing the same idProduct",
+                "rehosted": False,
+                "stats": cardmarket_image_discovery_stats,
             },
             "communityImages": {
                 "enabled": not args.no_community_images,
@@ -6758,9 +7409,12 @@ def main() -> None:
             "totalUrls": image_report.get("totalUrls"),
             "officialUrls": image_report.get("officialUrls"),
             "communityUrls": image_report.get("communityUrls"),
+            "cardmarketExactUrls": image_report.get("cardmarketExactUrls"),
             "checkedThisRun": image_report.get("checkedThisRun"),
             "failedThisRun": len(image_report.get("failed", [])),
             "failed": image_report.get("failed", [])[:100],
+            "cardmarketExact": supplemental_stats.get("cardmarketExactImages", {}),
+            "cardmarketDiscovery": cardmarket_image_discovery_stats,
             "communityMatching": supplemental_stats.get("communityImages", {}),
         },
         "output": catalogue_stats,
@@ -6795,7 +7449,7 @@ def main() -> None:
     )
     save_json(manifest_path, manifest)
 
-    print("\nGeneración completada (V3.10.1):")
+    print("\nGeneración completada (V3.10.2):")
     print(f"- Cartas totales catálogo: {catalogue_stats['cards']}")
     print(f"- Cartas Bandai: {catalogue_stats['bandaiCards']}")
     print(f"- Cartas solo Cardmarket: {catalogue_stats['cardmarketOnlyCards']}")
@@ -6814,6 +7468,23 @@ def main() -> None:
         f"{cm_image_stats.get('standardEntitiesWithReferenceImage', 0)} market-only / "
         f"{cm_image_stats.get('donEntitiesWithReferenceImage', 0)} DON!!"
     )
+    exact_stats = supplemental_stats.get("cardmarketExactImages", {})
+    print(
+        "- Imágenes exactas Cardmarket por idProduct: "
+        f"{exact_stats.get('standardProductsWithExactImage', 0)} market-only / "
+        f"{exact_stats.get('donProductsWithExactImage', 0)} DON!!"
+    )
+    print(
+        "- Discovery imágenes Cardmarket: "
+        f"{cardmarket_image_discovery_stats.get('discovered', 0)} nuevas / "
+        f"{cardmarket_image_discovery_stats.get('cachedFound', 0)} en cache / "
+        f"{cardmarket_image_discovery_stats.get('errors', 0)} errores"
+        + (
+            f" / detenido={cardmarket_image_discovery_stats.get('stoppedReason')}"
+            if cardmarket_image_discovery_stats.get('stoppedReason')
+            else ""
+        )
+    )
     print(f"- Sets/releases indexados: {len(sets_index.get('sets', []))}")
     if isinstance(price_history, dict):
         print(
@@ -6831,13 +7502,13 @@ def main() -> None:
         f"{len(mapping_validation.get('quarantined', []))} en cuarentena"
     )
     print(
-        "- QA identidad Bandai V3.10.1: "
+        "- QA identidad Bandai V3.10.2: "
         f"{len(all_identity_quarantined)} detectadas / "
         f"{len(identity_quarantined_final)} siguen en cuarentena / "
         f"{len(identity_resolved_during_run)} resueltas en el run"
     )
     print(
-        "- QA drift semántico V3.10.1: "
+        "- QA drift semántico V3.10.2: "
         f"{len(review.get('semanticDriftQuarantined', []))} en cuarentena"
     )
     print(
@@ -6854,6 +7525,7 @@ def main() -> None:
             args.raw_dir / RAW_FILENAMES["community_images"],
             args.data_dir / MAPPING_FILENAME,
             args.data_dir / IMAGE_CACHE_FILENAME,
+            args.data_dir / CARDMARKET_IMAGE_MAPPING_FILENAME,
             catalog_path,
             report_path,
             review_path,
