@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "products": {
+    "691712": {
+      "productId": 691712,
+      "productPage": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=691712",
+      "attemptedAt": "2026-09-14T15:36:59+00:00",
+      "source": "cardmarket-product-page",
+      "matchMethod": "idProduct-in-image-url",
+      "exactProductMatch": true,
+      "productPageFinal": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=691712",
+      "status": "blocked",
+      "httpStatus": 403,
+      "error": "Cardmarket devolvió HTTP 403; discovery detenido de forma conservadora."
+    },
+    "691713": {
+      "productId": 691713,
+      "productPage": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=691713",
+      "attemptedAt": "2026-09-14T15:37:00+00:00",
+      "source": "cardmarket-product-page",
+      "matchMethod": "idProduct-in-image-url",
+      "exactProductMatch": true,
+      "productPageFinal": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=691713",
+      "status": "blocked",
+      "httpStatus": 403,
+      "error": "Cardmarket devolvió HTTP 403; discovery detenido de forma conservadora."
+    }
+  },
+  "updatedAt": "2026-09-14T15:37:00+00:00"
+}

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "catalogVersion": "3.10.1",
-  "generatedAt": "2026-09-14T07:23:48+00:00",
+  "catalogVersion": "3.10.2",
+  "generatedAt": "2026-09-14T15:37:12+00:00",
   "sha256Semantics": "raw-file-bytes",
   "backwardCompatibility": {
     "catalogFilenameUnchanged": true,
@@ -18,14 +18,14 @@
     },
     "sets": {
       "path": "output/sets_multisource_v3.json",
-      "sha256": "f828e4e251aa5438700ae44b0f2758533b0d73d519b075b4c434d61f82c26e30",
-      "contentSha256": "301e2c7ce73ab040ebffa1ad78381e329272fd6eb461fae266faa647d4c2b16e",
+      "sha256": "19d5f03cfcad4f3913ffc28c198d9a28227f0dab78ca94a6a604e2a6aa1e378b",
+      "contentSha256": "2b5f4d813421bd992135adbc6c7b4e517ce2fd007ce9b46e4f5a95f7ece6fea9",
       "sets": 117
     },
     "priceHistory": {
       "path": "output/cardmarket_price_history_v3.json",
-      "sha256": "061bddb92bb0452250838c83b367b6ed5c5215bcc70698152eed1606b5f2c103",
-      "contentSha256": "faf76e609f5a2a80cd34709aa8cd86971c2fce7d2d92d84aae19ebf842e37939",
+      "sha256": "d58db6b1e3e17bac31958b39bc3f9c3bbfdf9436c535adc4f810a258665b82fb",
+      "contentSha256": "76875edd9c9ff6862b6f8173f7d7adc666ffbd2afb38c1166d7eef70ce56412a",
       "days": 2,
       "currency": "EUR"
     }
