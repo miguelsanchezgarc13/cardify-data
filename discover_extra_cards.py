@@ -1,24 +1,28 @@
 #!/usr/bin/env python3
 """
-One Piece TCG catalogue pipeline v3.10.2.
+One Piece TCG catalogue pipeline v3.11.3 (stable reset from v3.10.2).
 
 Live sources:
   1) Bandai official card list -> card/game/printing/image metadata
   2) Cardmarket public product catalogue -> product identifiers
   3) Cardmarket public daily price guide -> EUR prices
-  4) Cardmarket public product pages (best-effort) -> exact image URL per idProduct
-  5) OPTCGAPI.com (optional community fallback) -> missing DON!!/promo preview images only
+  4) Cardmarket public non-singles catalogue -> expansion/language evidence (no Cloudflare HTML)
+  5) Cardmarket public product pages (OPT-IN only) -> exact image URL per idProduct
+  6) OPTCGAPI.com (optional community fallback) -> missing DON!!/promo preview images only
 
 Persistent local knowledge:
   data/cardmarket_mapping.json -> Bandai printing <-> Cardmarket idProduct
   data/cardmarket_image_mapping.json -> Cardmarket idProduct <-> exact product image URL
   output/cardmarket_price_history_v3.json -> compact daily EUR valuation history
 
-V3.10.2 keeps the V3.9 identity contract intact. Cardmarket product-page HTML
-is used only to discover an image URL that contains the same idProduct; it never
-creates/merges identity or changes prices. Community data is NEVER used to decide
-card identity, Cardmarket mapping or price; it can only provide a validated
-reference image when no exact/official image is available.
+V3.11.3 deliberately returns to the stable V3.10.2 execution model. It adds
+Cardmarket physical variants under an existing Bandai catalogId only when a shared
+idMetacard is anchored by a current validated Bandai mapping and code/name also
+agree. This exposes Japanese/reprint products without scraping thousands of pages.
+Language is attached to the physical printing and is only filled when supported by
+explicit expansion evidence; unknown is preferred over guessing. Product-page HTML
+image discovery is disabled by default because GitHub Actions receives HTTP 403.
+Community data is NEVER used to decide identity, Cardmarket mapping or price.
 
 The old community Cardmarket snapshot is used only once, if available, to seed
 cardmarket_mapping.json. It is never used as a live price source.
@@ -74,6 +78,10 @@ CARDMARKET_PRICE_GUIDE_URL = (
     "https://downloads.s3.cardmarket.com/productCatalog/priceGuide/"
     "price_guide_18.json"
 )
+CARDMARKET_NONSINGLES_URL = (
+    "https://downloads.s3.cardmarket.com/productCatalog/productList/"
+    "products_nonsingles_18.json"
+)
 CARDMARKET_BASE_URL = "https://www.cardmarket.com"
 CARDMARKET_PRODUCT_REDIRECT = "https://www.cardmarket.com/en/OnePiece/Products?idProduct={product_id}"
 
@@ -98,9 +106,10 @@ RAW_FILENAMES = {
     "bandai": "bandai_cards_raw.json",
     "cardmarket_products": "cardmarket_products_raw.json",
     "cardmarket_prices": "cardmarket_price_guide_raw.json",
+    "cardmarket_nonsingles": "cardmarket_products_nonsingles_raw.json",
     "community_images": "optcgapi_images_raw.json",
 }
-OPTIONAL_RAW_KEYS = {"community_images"}
+OPTIONAL_RAW_KEYS = {"community_images", "cardmarket_nonsingles"}
 
 MAPPING_FILENAME = "cardmarket_mapping.json"
 IMAGE_CACHE_FILENAME = "image_health_cache.json"
@@ -119,7 +128,7 @@ LEGACY_CARDS_FILENAME = "cardmarket_cards_raw.json"
 
 HEADERS = {
     "User-Agent": (
-        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.10.2; "
+        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.11.3; "
         "+https://github.com/)"
     ),
     "Accept-Language": "en-US,en;q=0.9",
@@ -261,14 +270,23 @@ def parse_args() -> argparse.Namespace:
             "DON!!/promos sin imagen oficial Bandai."
         ),
     )
-    parser.add_argument(
-        "--no-cardmarket-image-discovery",
+    image_discovery_group = parser.add_mutually_exclusive_group()
+    image_discovery_group.add_argument(
+        "--cardmarket-image-discovery",
+        dest="cardmarket_image_discovery",
         action="store_true",
         help=(
-            "No consulta páginas públicas de producto Cardmarket para descubrir "
-            "la imagen exacta de idProduct. El cache persistente existente sí se usa."
+            "OPT-IN: consulta páginas públicas de producto Cardmarket para intentar "
+            "descubrir imágenes exactas. Desactivado por defecto en CI por los HTTP 403."
         ),
     )
+    image_discovery_group.add_argument(
+        "--no-cardmarket-image-discovery",
+        dest="cardmarket_image_discovery",
+        action="store_false",
+        help="Compatibilidad: fuerza desactivar el discovery HTML de Cardmarket.",
+    )
+    parser.set_defaults(cardmarket_image_discovery=False)
     parser.add_argument(
         "--cardmarket-image-delay",
         type=float,
@@ -4533,6 +4551,13 @@ def build_catalog(
                         "isParallel": bool(best.get("isParallel")) or bool(re.search(r"_P\d+", printing_id)),
                         "isReprint": bool(best.get("isReprint")) or bool(re.search(r"_R\d+", printing_id)),
                         "rarity": best.get("rarity"),
+                        "language": "en",
+                        "languageLabel": "English",
+                        "languageSource": "bandai-english-catalog",
+                        "editionCode": None,
+                        "editionName": None,
+                        "editionSlug": None,
+                        "languageGroup": "en",
                         "imageUrl": safe_image_url,
                         "imageSourceUrl": image_url or None,
                         "imageHealth": image_status,
@@ -4877,6 +4902,280 @@ def cardmarket_supplement_product_ids(
     return sorted(set(result))
 
 
+
+# ---------------------------------------------------------------------------
+# Cardmarket expansion/language evidence + Bandai-linked physical variants
+# ---------------------------------------------------------------------------
+
+# One deliberately small verified override. Cardmarket's public One Piece
+# expansion catalogue identifies P-JP as "Promos (Japanese)"; the current bulk
+# singles catalogue uses idExpansion=5511 for the verified P-028 Japanese
+# products 707718/764433. Keeping this explicit is safer than guessing every
+# non-English expansion from dates or product order.
+CARDMARKET_VERIFIED_EXPANSIONS = {
+    5511: {
+        "editionCode": "P-JP",
+        "editionName": "Promos (Japanese)",
+        "editionSlug": "Promos-Japanese",
+        "language": "ja",
+        "languageLabel": "Japanese",
+        "languageGroup": "ja",
+        "languageSource": "verified-cardmarket-expansion",
+    },
+}
+
+CARDMARKET_EDITION_CODE_BY_SLUG = {
+    "promos": "P",
+    "special-tournaments-promos": "STP",
+    "special-tournament-promos": "STP",
+    "winner-cards": "WC",
+    "judge-promos": "JDG",
+    "reprints": "R",
+    "unnumbered-promos": "UP",
+    "store-tournament-promos": "STR",
+}
+
+
+def _explicit_nonsingle_language(names: list[str]) -> dict:
+    """Return only language evidence explicitly present in Cardmarket product names."""
+    joined = " | ".join(str(name or "") for name in names)
+    if re.search(r"\bJapanese\b", joined, re.I):
+        return {
+            "language": "ja",
+            "languageLabel": "Japanese",
+            "languageGroup": "ja",
+            "languageSource": "cardmarket-nonsingles-explicit-japanese",
+        }
+    if re.search(r"\bEnglish(?:\s+Version)?\b", joined, re.I):
+        return {
+            "language": "en",
+            "languageLabel": "English",
+            "languageGroup": "en",
+            "languageSource": "cardmarket-nonsingles-explicit-english",
+        }
+    if re.search(r"\bNon[- ]English\b", joined, re.I):
+        # Cardmarket historically uses Non-English for several Asia/Japanese
+        # products. Do not collapse that label to Japanese without stronger proof.
+        return {
+            "language": None,
+            "languageLabel": "Non-English",
+            "languageGroup": "non-en",
+            "languageSource": "cardmarket-nonsingles-explicit-non-english",
+        }
+    return {}
+
+
+def build_cardmarket_expansion_metadata(
+    mapping: dict,
+    products_by_id: dict[int, dict],
+    nonsingle_products: list[dict] | None = None,
+) -> tuple[dict[int, dict], dict]:
+    """Build conservative idExpansion metadata without per-product web requests.
+
+    English evidence comes from stable pretty-URL families already attached to
+    validated Bandai mappings. Non-English/Japanese evidence can come from the
+    official Cardmarket non-singles S3 catalogue. Verified overrides win last.
+    """
+    metadata: dict[int, dict] = {}
+    profile = _build_mapping_profiles(mapping, products_by_id)
+    stable_slugs = profile.get("stableExpansionSlug", {})
+
+    for expansion, slug_profile in stable_slugs.items():
+        slug = nullable_text((slug_profile or {}).get("value"))
+        if not slug:
+            continue
+        slug_key = slugify(slug)
+        # These slugs are learned from current Bandai-English mappings. Generic
+        # buckets such as one-piece-products can contain mixed regional items, so
+        # only specific stable families are promoted to English evidence.
+        specific = bool(
+            slug_key in CARDMARKET_EDITION_CODE_BY_SLUG
+            or re.search(r"(?:^|-)(?:op|st|eb|prb)-?\d{1,2}(?:-|$)", slug_key, re.I)
+        )
+        if not specific:
+            continue
+        metadata[int(expansion)] = {
+            "idExpansion": int(expansion),
+            "editionSlug": slug,
+            "editionCode": CARDMARKET_EDITION_CODE_BY_SLUG.get(slug_key),
+            "editionName": " ".join(part.capitalize() for part in slug.split("-") if part),
+            "language": "en",
+            "languageLabel": "English",
+            "languageGroup": "en",
+            "languageSource": "validated-bandai-mapping-expansion-slug",
+            "evidence": {
+                "count": slug_profile.get("count"),
+                "total": slug_profile.get("total"),
+                "ratio": slug_profile.get("ratio"),
+            },
+        }
+
+    names_by_expansion = defaultdict(list)
+    for product in nonsingle_products or []:
+        if not isinstance(product, dict):
+            continue
+        expansion = get_number(product.get("idExpansion"))
+        name = nullable_text(product.get("name"))
+        if expansion is None or not name:
+            continue
+        names_by_expansion[int(expansion)].append(name)
+
+    for expansion, names in names_by_expansion.items():
+        evidence = _explicit_nonsingle_language(names)
+        if not evidence:
+            continue
+        current = dict(metadata.get(expansion) or {"idExpansion": expansion})
+        # Explicit Japanese/English names are stronger than inferred English slug.
+        # Generic Non-English only fills the group/label and never overwrites a
+        # specific ja/en language already supported by stronger evidence.
+        if evidence.get("language") is not None or not current.get("language"):
+            current.update(evidence)
+        else:
+            current.setdefault("languageGroup", evidence.get("languageGroup"))
+            current.setdefault("languageLabel", evidence.get("languageLabel"))
+        current["nonsingleEvidenceSample"] = names[:8]
+        metadata[expansion] = current
+
+    for expansion, verified in CARDMARKET_VERIFIED_EXPANSIONS.items():
+        metadata[int(expansion)] = {
+            **(metadata.get(int(expansion)) or {"idExpansion": int(expansion)}),
+            **verified,
+            "idExpansion": int(expansion),
+        }
+
+    counts = Counter()
+    for row in metadata.values():
+        counts[row.get("language") or row.get("languageGroup") or "unknown"] += 1
+    stats = {
+        "expansionsWithMetadata": len(metadata),
+        "languageEvidenceCounts": dict(sorted(counts.items())),
+        "verifiedExpansionIds": sorted(CARDMARKET_VERIFIED_EXPANSIONS),
+        "nonsingleExpansionsWithExplicitLanguage": sum(
+            1 for expansion in names_by_expansion
+            if _explicit_nonsingle_language(names_by_expansion[expansion])
+        ),
+    }
+    return metadata, stats
+
+
+def cardmarket_bandai_variant_candidates(
+    bandai_cards: list[dict],
+    mapping: dict,
+    products_by_id: dict[int, dict],
+) -> tuple[dict[int, str], dict]:
+    """Find extra Cardmarket physical products that safely belong to Bandai cards.
+
+    Safety contract: idMetacard must already be anchored by at least one current
+    validated Bandai printing mapping and resolve to exactly one Bandai catalogId.
+    The supplemental product must also carry the same printed code and normalized
+    name. No code-only, date-order or V.1/V.2 guessing is allowed.
+    """
+    current_printing_ids = {
+        canonical_id(card.get("sourcePrintingId"))
+        for card in bandai_cards
+        if canonical_id(card.get("sourcePrintingId"))
+    }
+    bandai_names = defaultdict(Counter)
+    for card in bandai_cards:
+        printing_id = canonical_id(card.get("sourcePrintingId"))
+        if not printing_id:
+            continue
+        name = slugify(card.get("name"))
+        if name:
+            bandai_names[base_code(printing_id)][name] += 1
+
+    anchors = defaultdict(set)
+    current_mapped_products = set()
+    for printing_id, entry in (mapping or {}).get("mappings", {}).items():
+        normalized_printing = canonical_id(printing_id)
+        if normalized_printing not in current_printing_ids or not isinstance(entry, dict):
+            continue
+        product_id = get_number(entry.get("productId"))
+        if product_id is None:
+            continue
+        product_id = int(product_id)
+        product = products_by_id.get(product_id)
+        if not isinstance(product, dict):
+            continue
+        metacard = get_number(product.get("idMetacard"))
+        if metacard is None:
+            continue
+        anchors[int(metacard)].add(base_code(normalized_printing))
+        current_mapped_products.add(product_id)
+
+    unique_anchors = {
+        metacard: next(iter(catalog_ids))
+        for metacard, catalog_ids in anchors.items()
+        if len(catalog_ids) == 1
+    }
+    ambiguous_anchors = {
+        metacard: sorted(catalog_ids)
+        for metacard, catalog_ids in anchors.items()
+        if len(catalog_ids) > 1
+    }
+
+    candidates: dict[int, str] = {}
+    rejected = []
+    for product_id, product in products_by_id.items():
+        product_id = int(product_id)
+        if product_id in current_mapped_products or _is_cardmarket_don_product(product):
+            continue
+        metacard = get_number(product.get("idMetacard"))
+        if metacard is None or int(metacard) not in unique_anchors:
+            continue
+        catalog_id = unique_anchors[int(metacard)]
+        product_code = _product_card_code(product)
+        expected_name_rows = bandai_names.get(catalog_id, Counter()).most_common(1)
+        expected_name = expected_name_rows[0][0] if expected_name_rows else ""
+        product_name = slugify(_product_display_name(product))
+        if product_code != catalog_id:
+            rejected.append({
+                "productId": product_id,
+                "idMetacard": int(metacard),
+                "catalogId": catalog_id,
+                "reason": "printed-code-mismatch",
+                "productCode": product_code,
+            })
+            continue
+        if expected_name and product_name and expected_name != product_name:
+            rejected.append({
+                "productId": product_id,
+                "idMetacard": int(metacard),
+                "catalogId": catalog_id,
+                "reason": "name-mismatch",
+                "expectedName": expected_name,
+                "productName": product_name,
+            })
+            continue
+        candidates[product_id] = catalog_id
+
+    return candidates, {
+        "uniqueMetacardAnchors": len(unique_anchors),
+        "ambiguousMetacardAnchors": len(ambiguous_anchors),
+        "ambiguousAnchorSample": [
+            {"idMetacard": metacard, "catalogIds": catalog_ids}
+            for metacard, catalog_ids in sorted(ambiguous_anchors.items())[:50]
+        ],
+        "candidateProducts": len(candidates),
+        "rejectedProducts": len(rejected),
+        "rejectedSample": rejected[:100],
+    }
+
+
+def _product_expansion_metadata(product: dict, expansion_metadata: dict[int, dict]) -> dict:
+    expansion = get_number((product or {}).get("idExpansion"))
+    if expansion is None:
+        return {}
+    row = expansion_metadata.get(int(expansion)) or {}
+    return {
+        key: row.get(key)
+        for key in (
+            "language", "languageLabel", "languageGroup", "languageSource",
+            "editionCode", "editionName", "editionSlug",
+        )
+    }
+
+
 def _cardmarket_image_failure_is_recent(record: dict, now: datetime) -> bool:
     if not isinstance(record, dict) or record.get("status") == "found":
         return False
@@ -5047,10 +5346,12 @@ def _direct_cardmarket_printing(
     reference_image: dict | None = None,
     assign_reference_to_printing: bool = False,
     exact_image_record: dict | None = None,
+    product_metadata: dict | None = None,
     image_cache: dict | None = None,
 ) -> dict:
     product_id = int(product["idProduct"])
     direct_id = f"CM-{product_id}"
+    product_metadata = product_metadata or {}
     safe_reference_url = None
     reference_health = None
     if reference_image and reference_image.get("url"):
@@ -5118,6 +5419,15 @@ def _direct_cardmarket_printing(
         "isReprint": None,
         "physicalVariantUnknown": True,
         "rarity": None,
+        "language": product_metadata.get("language"),
+        "languageLabel": product_metadata.get("languageLabel"),
+        "languageGroup": product_metadata.get("languageGroup"),
+        "languageSource": product_metadata.get("languageSource"),
+        "editionCode": product_metadata.get("editionCode"),
+        "editionName": product_metadata.get("editionName"),
+        "editionSlug": product_metadata.get("editionSlug"),
+        "marketVersion": None,
+        "marketVersionLabel": None,
         # Cardmarket's own product page can prove an exact idProduct->image URL
         # relation when that URL itself contains the same idProduct. Community
         # images remain conservative references and are never promoted across
@@ -5153,12 +5463,133 @@ def _direct_cardmarket_printing(
             "mappingConfirmed": True,
             "mappingSource": "cardmarket-direct-supplement",
             "product": product,
+            "productExpansionMetadata": product_metadata,
             "price": _cardmarket_price_payload(product_id, prices_by_id, price_created_at),
         },
         "source": "cardmarket",
         "catalogOrigin": "cardmarket-only",
         "collectibleType": collectible_type,
     }
+
+
+
+def add_cardmarket_bandai_variants(
+    catalog: dict,
+    candidates: dict[int, str],
+    products_by_id: dict[int, dict],
+    prices_by_id: dict[int, dict],
+    price_created_at: str | None,
+    *,
+    expansion_metadata: dict[int, dict] | None = None,
+    cardmarket_exact_images: dict[int, dict] | None = None,
+    image_cache: dict | None = None,
+) -> dict:
+    """Attach extra Cardmarket products under existing Bandai entity identity."""
+    expansion_metadata = expansion_metadata or {}
+    cardmarket_exact_images = cardmarket_exact_images or {}
+    image_cache = image_cache or {}
+    existing_product_ids = {
+        int(cm["productId"])
+        for card in catalog.values()
+        for printing in card.get("printings", [])
+        for cm in [printing.get("cardmarket")]
+        if isinstance(cm, dict) and get_number(cm.get("productId")) is not None
+    }
+    stats = {
+        "products": 0,
+        "productsWithPriceGuide": 0,
+        "productsWithValuation": 0,
+        "productsWithExactImage": 0,
+        "languageCounts": Counter(),
+        "examples": [],
+    }
+
+    for product_id, catalog_id in sorted(candidates.items()):
+        product_id = int(product_id)
+        if product_id in existing_product_ids:
+            continue
+        card = catalog.get(catalog_id)
+        product = products_by_id.get(product_id)
+        if not isinstance(card, dict) or not isinstance(product, dict):
+            continue
+        metadata = _product_expansion_metadata(product, expansion_metadata)
+        printing = _direct_cardmarket_printing(
+            product,
+            prices_by_id,
+            price_created_at,
+            catalog_id,
+            collectible_type="standard-card",
+            exact_image_record=cardmarket_exact_images.get(product_id),
+            product_metadata=metadata,
+            image_cache=image_cache,
+        )
+        printing["variantType"] = "cardmarket-linked-variant"
+        printing["physicalVariantUnknown"] = not bool(
+            printing.get("editionCode") or printing.get("editionName") or printing.get("imageUrl")
+        )
+        printing["rarity"] = card.get("rarity")
+        printing["mechanics"] = {
+            key: card.get(key)
+            for key in (
+                "life", "cost", "power", "counter", "colors", "attributes",
+                "block", "types", "effect", "trigger",
+            )
+        }
+        printing["mechanicsDifferFromBase"] = []
+        printing["catalogOrigin"] = "bandai-linked-cardmarket-variant"
+        printing["identityLink"] = {
+            "method": "shared-idMetacard-with-validated-bandai-mapping+code+name",
+            "catalogId": catalog_id,
+            "idMetacard": int(product["idMetacard"]) if get_number(product.get("idMetacard")) is not None else None,
+            "printedCode": _product_card_code(product),
+        }
+        cm = printing.get("cardmarket") or {}
+        cm["mappingRelation"] = "shared-metacard-bandai-variant"
+        cm["mappingSource"] = "cardmarket-idMetacard-linked-to-bandai"
+        cm["mappingConfirmed"] = True
+        printing["cardmarket"] = cm
+        card.setdefault("printings", []).append(printing)
+        card.setdefault("sources", [])
+        if "cardmarket" not in card["sources"]:
+            card["sources"].append("cardmarket")
+        for release in printing.get("releases", []):
+            release_id = release.get("releaseId")
+            if release_id and release_id not in card.setdefault("releaseIds", []):
+                card["releaseIds"].append(release_id)
+        card["releaseIds"] = sorted(card.get("releaseIds", []))
+        existing_product_ids.add(product_id)
+
+        stats["products"] += 1
+        price = cm.get("price")
+        if price is not None:
+            stats["productsWithPriceGuide"] += 1
+        if isinstance((price or {}).get("valuationEur"), (int, float)):
+            stats["productsWithValuation"] += 1
+        if isinstance(printing.get("image"), dict) and printing["image"].get("exactProductMatch") is True:
+            stats["productsWithExactImage"] += 1
+        language_key = printing.get("language") or printing.get("languageGroup") or "unknown"
+        stats["languageCounts"][language_key] += 1
+        if len(stats["examples"]) < 50 and language_key != "unknown":
+            stats["examples"].append({
+                "catalogId": catalog_id,
+                "printingId": printing.get("printingId"),
+                "productId": product_id,
+                "idExpansion": product.get("idExpansion"),
+                "language": printing.get("language"),
+                "languageLabel": printing.get("languageLabel"),
+                "editionCode": printing.get("editionCode"),
+            })
+
+    for card in catalog.values():
+        if isinstance(card, dict):
+            card["printings"] = sorted(card.get("printings", []), key=natural_printing_sort_key)
+
+    stats["languageCounts"] = dict(sorted(stats["languageCounts"].items()))
+    stats["japaneseProducts"] = int(stats["languageCounts"].get("ja", 0))
+    stats["englishProducts"] = int(stats["languageCounts"].get("en", 0))
+    stats["nonEnglishUnspecifiedProducts"] = int(stats["languageCounts"].get("non-en", 0))
+    stats["unknownLanguageProducts"] = int(stats["languageCounts"].get("unknown", 0))
+    return stats
 
 
 def add_cardmarket_supplements(
@@ -5169,18 +5600,19 @@ def add_cardmarket_supplements(
     *,
     community_images: list[dict] | None = None,
     cardmarket_exact_images: dict[int, dict] | None = None,
+    expansion_metadata: dict[int, dict] | None = None,
     image_cache: dict | None = None,
 ) -> dict:
     """Add Cardmarket-only standard cards and DON!! designs conservatively.
 
-    V3.10.2 identity contract (unchanged from V3.9):
+    V3.11.3 identity contract (unchanged from V3.9):
       * Bandai cards keep the official printed code as catalogId.
       * Standard Cardmarket-only entities use idMetacard as identity:
         CMCARD-<idMetacard>. Printed codes are search aliases, not identity.
       * DON!! uses DON-CM-<idMetacard>.
       * Every idProduct remains a distinct direct Cardmarket product/printing.
 
-    New in V3.10.2: Cardmarket's own public product page may provide an exact
+    Retained from V3.10.2: Cardmarket's own public product page may provide an exact
     printing image when the discovered product-images URL itself contains the same
     idProduct and the image passes health validation. Community data remains only
     a conservative reference fallback: it can never create/merge an entity or set
@@ -5188,6 +5620,7 @@ def add_cardmarket_supplements(
     """
     community_images = community_images or []
     cardmarket_exact_images = cardmarket_exact_images or {}
+    expansion_metadata = expansion_metadata or {}
     image_cache = image_cache or {}
     bandai_codes = {
         canonical_id(card.get("code"))
@@ -5333,6 +5766,7 @@ def add_cardmarket_supplements(
                 reference_image=reference_image,
                 assign_reference_to_printing=assign_exact,
                 exact_image_record=exact_record,
+                product_metadata=_product_expansion_metadata(row, expansion_metadata),
                 image_cache=image_cache,
             )
             printings.append(printing)
@@ -5453,6 +5887,7 @@ def add_cardmarket_supplements(
                 reference_image=reference_image,
                 assign_reference_to_printing=assign_exact,
                 exact_image_record=exact_record,
+                product_metadata=_product_expansion_metadata(row, expansion_metadata),
                 image_cache=image_cache,
             )
             printings.append(printing)
@@ -5546,7 +5981,7 @@ def add_cardmarket_supplements(
 
 
 # ---------------------------------------------------------------------------
-# V3.10.2 release/set index, compact price history and manifest
+# V3.11.3 release/set index, compact price history and manifest
 # ---------------------------------------------------------------------------
 
 
@@ -5713,7 +6148,7 @@ def build_sets_index(
     result_sets.sort(key=_set_sort_key)
     return {
         "schemaVersion": 1,
-        "catalogVersion": "3.10.2",
+        "catalogVersion": "3.11.3",
         "generatedAt": utc_now_iso(),
         "definitions": {
             "baseTarget": "one owned catalog entity that appears in the release",
@@ -5747,7 +6182,7 @@ def update_price_history(
     if not isinstance(history, dict):
         history = {}
     history.setdefault("schemaVersion", 1)
-    history["catalogVersion"] = "3.10.2"
+    history["catalogVersion"] = "3.11.3"
     history["currency"] = "EUR"
     history["valuationPolicy"] = "trend ?? avg7 ?? avg30 ?? avg"
     history["retentionDays"] = retention_days
@@ -5821,7 +6256,7 @@ def build_catalog_manifest(
     printings = sum(len(card.get("printings", [])) for card in catalog.values() if isinstance(card, dict))
     manifest = {
         "schemaVersion": 2,
-        "catalogVersion": "3.10.2",
+        "catalogVersion": "3.11.3",
         "generatedAt": generated_at,
         "sha256Semantics": "raw-file-bytes",
         "backwardCompatibility": {
@@ -5877,6 +6312,13 @@ def fetch_live_raw(
     print("Descargando Price Guide público oficial de Cardmarket...")
     cm_prices = fetch_json(session, CARDMARKET_PRICE_GUIDE_URL)
 
+    print("Descargando catálogo público no-singles de Cardmarket (metadata de expansiones)...")
+    try:
+        cm_nonsingles = fetch_json(session, CARDMARKET_NONSINGLES_URL)
+    except Exception as error:
+        print(f"AVISO: catálogo no-singles Cardmarket no disponible: {error}")
+        cm_nonsingles = {"disabled": True, "fetchedAt": utc_now_iso(), "products": []}
+
     if include_community_images:
         print("Descargando metadatos opcionales de imágenes OPTCGAPI.com...")
         community_images = fetch_community_image_raw(session)
@@ -5894,6 +6336,7 @@ def fetch_live_raw(
         "bandai": bandai,
         "cardmarket_products": cm_products,
         "cardmarket_prices": cm_prices,
+        "cardmarket_nonsingles": cm_nonsingles,
         "community_images": community_images,
     }
 
@@ -7026,6 +7469,54 @@ def run_self_test() -> None:
     assert bandai_sets and bandai_sets[0]["collectionTargets"]["master"] >= 1
     assert bandai_sets[0]["cards"][0]["catalogId"] == "OP17-001"
 
+
+    # V3.11.3 regression: extra Cardmarket products sharing one anchored metacard
+    # are attached to the same Bandai entity. P-JP expansion 5511 is explicitly
+    # Japanese; version/order is never inferred.
+    jp_anchor_product = normalize_cardmarket_product({
+        "idProduct": 692222, "name": "Portgas.D.Ace (P-028)",
+        "idCategory": 1621, "idExpansion": 5230, "idMetacard": 415755,
+    })
+    jp_product = normalize_cardmarket_product({
+        "idProduct": 707718, "name": "Portgas.D.Ace (P-028)",
+        "idCategory": 1621, "idExpansion": 5511, "idMetacard": 415755,
+    })
+    jp_mapping = {"mappings": {
+        "P-028": {
+            "productId": 692222,
+            "url": "https://www.cardmarket.com/en/OnePiece/Products/Singles/Promos/PortgasDAce-P-028-V1",
+        }
+    }}
+    jp_bandai = [{"sourcePrintingId": "P-028", "name": "Portgas.D.Ace"}]
+    jp_candidates, jp_candidate_stats = cardmarket_bandai_variant_candidates(
+        jp_bandai, jp_mapping, {692222: jp_anchor_product, 707718: jp_product}
+    )
+    assert jp_candidates == {707718: "P-028"}, jp_candidate_stats
+    jp_expansion_metadata, _ = build_cardmarket_expansion_metadata(
+        jp_mapping, {692222: jp_anchor_product, 707718: jp_product}, []
+    )
+    assert jp_expansion_metadata[5511]["language"] == "ja"
+    jp_catalog = {
+        "P-028": {
+            "catalogId": "P-028", "code": "P-028", "name": "Portgas.D.Ace",
+            "rarity": "Promo", "type": "Character", "life": None, "cost": 2,
+            "power": 3000, "counter": 1000, "colors": ["Red"], "attributes": [],
+            "block": None, "types": [], "effect": None, "trigger": None,
+            "sources": ["bandai"], "releaseIds": [], "printings": [],
+        }
+    }
+    jp_added = add_cardmarket_bandai_variants(
+        jp_catalog, jp_candidates,
+        {692222: jp_anchor_product, 707718: jp_product},
+        {707718: normalize_price_row({"idProduct": 707718, "trend": 19.32})},
+        "2026-09-14T02:46:38+0200",
+        expansion_metadata=jp_expansion_metadata,
+    )
+    assert jp_added["products"] == 1
+    assert jp_catalog["P-028"]["printings"][0]["printingId"] == "CM-707718"
+    assert jp_catalog["P-028"]["printings"][0]["language"] == "ja"
+    assert jp_catalog["P-028"]["printings"][0]["cardmarket"]["price"]["valuationEur"] == 19.32
+
     # Compact daily history overwrites the same source day instead of duplicating it.
     history_path = Path("/tmp/optcg_v3101_history_test.json")
     if history_path.exists():
@@ -7105,6 +7596,13 @@ def main() -> None:
     if not products:
         raise RuntimeError("El catálogo oficial de Cardmarket no contiene productos utilizables.")
     products_by_id = {item["idProduct"]: item for item in products}
+
+    nonsingle_rows_raw = extract_rows(
+        raw_data.get("cardmarket_nonsingles") or {},
+        ("products", "product", "data"),
+    )
+    nonsingle_products = [normalize_cardmarket_product(row) for row in nonsingle_rows_raw]
+    nonsingle_products = [item for item in nonsingle_products if item]
 
     price_rows_raw = extract_rows(
         raw_data["cardmarket_prices"],
@@ -7210,7 +7708,16 @@ def main() -> None:
 
     save_json(args.data_dir / MAPPING_FILENAME, mapping)
 
-    # Persistent exact Cardmarket product-image discovery. Only products that can
+    expansion_metadata, expansion_metadata_stats = build_cardmarket_expansion_metadata(
+        mapping, products_by_id, nonsingle_products
+    )
+    bandai_variant_candidates, bandai_variant_candidate_stats = cardmarket_bandai_variant_candidates(
+        bandai_cards, mapping, products_by_id
+    )
+
+    # Persistent exact Cardmarket product-image discovery. Only the old stable
+    # Cardmarket-only/DON target set is eligible. Bandai-linked variants are never
+    # brute-forced over S3/HTML in the normal pipeline.
     # become Cardmarket-only/DON printings are queried, and successful idProduct
     # mappings are reused forever unless their image health later fails.
     image_cache_path = args.data_dir / IMAGE_CACHE_FILENAME
@@ -7221,7 +7728,7 @@ def main() -> None:
         bandai_cards, mapping, products_by_id
     )
     discovery_network_enabled = (
-        not args.from_raw and not args.no_cardmarket_image_discovery
+        not args.from_raw and bool(args.cardmarket_image_discovery)
     )
     cardmarket_image_mapping, cardmarket_image_discovery_stats = discover_cardmarket_product_images(
         products_by_id,
@@ -7243,7 +7750,8 @@ def main() -> None:
     cardmarket_exact_image_urls = sorted({
         record.get("imageUrl")
         for product_id, record in cardmarket_exact_images.items()
-        if product_id in cardmarket_image_targets and record.get("imageUrl")
+        if (product_id in cardmarket_image_targets or product_id in bandai_variant_candidates)
+        and record.get("imageUrl")
     })
     image_cache, image_report = update_image_health_cache(
         session,
@@ -7266,6 +7774,16 @@ def main() -> None:
         series_expansion_profiles=series_expansion_profiles,
     )
     bandai_catalogue_stats = dict(catalogue_stats)
+    linked_variant_stats = add_cardmarket_bandai_variants(
+        catalog,
+        bandai_variant_candidates,
+        products_by_id,
+        prices_by_id,
+        price_created_at,
+        expansion_metadata=expansion_metadata,
+        cardmarket_exact_images=cardmarket_exact_images,
+        image_cache=image_cache,
+    )
     supplemental_stats = add_cardmarket_supplements(
         catalog,
         products_by_id,
@@ -7273,6 +7791,7 @@ def main() -> None:
         price_created_at,
         community_images=community_images,
         cardmarket_exact_images=cardmarket_exact_images,
+        expansion_metadata=expansion_metadata,
         image_cache=image_cache,
     )
     catalogue_stats.update({
@@ -7286,15 +7805,18 @@ def main() -> None:
         "donCards": supplemental_stats["donCards"],
         "donProducts": supplemental_stats["donProducts"],
         "cardmarketDirectProducts": supplemental_stats["standardProducts"] + supplemental_stats["donProducts"],
+        "cardmarketLinkedBandaiProducts": linked_variant_stats["products"],
         "cards": len(catalog),
         "printings": sum(len(card.get("printings", [])) for card in catalog.values()),
         "printingsWithCardmarketPriceGuide": (
             bandai_catalogue_stats["printingsWithCardmarketPriceGuide"]
+            + linked_variant_stats["productsWithPriceGuide"]
             + supplemental_stats["standardProductsWithPriceGuide"]
             + supplemental_stats["donProductsWithPriceGuide"]
         ),
         "printingsWithCardmarketValuation": (
             bandai_catalogue_stats["printingsWithCardmarketValuation"]
+            + linked_variant_stats["productsWithValuation"]
             + supplemental_stats["standardProductsWithValuation"]
             + supplemental_stats["donProductsWithValuation"]
         ),
@@ -7303,7 +7825,7 @@ def main() -> None:
         ),
     })
 
-    # New V3.10.2 outputs. The main cards JSON keeps its V3.9 root shape.
+    # V3.11.3 outputs. The main cards JSON keeps its V3.9 root shape.
     sets_index = build_sets_index(catalog, bandai_root, mapping)
     history_path = args.output_dir / PRICE_HISTORY_FILENAME
     price_history = load_json(history_path, default=None)
@@ -7328,8 +7850,8 @@ def main() -> None:
     )
     report = {
         "generatedAt": generated_at,
-        "schemaVersion": 8,
-        "catalogVersion": "3.10.2",
+        "schemaVersion": 9,
+        "catalogVersion": "3.11.3",
         "sources": {
             "bandai": {
                 "url": bandai_root.get("sourceUrl") if isinstance(bandai_root, dict) else None,
@@ -7354,9 +7876,16 @@ def main() -> None:
                 "createdAt": price_created_at,
                 "authority": "official-public-download",
             },
+            "cardmarketNonSingles": {
+                "url": CARDMARKET_NONSINGLES_URL,
+                "records": len(nonsingle_products),
+                "authority": "official-public-download",
+                "purpose": "expansion/language evidence without per-product HTML scraping",
+            },
             "cardmarketProductImages": {
                 "enabled": discovery_network_enabled,
-                "purpose": "exact image URL discovery for Cardmarket-only idProduct printings",
+                "defaultEnabled": False,
+                "purpose": "opt-in exact image URL discovery for Cardmarket-only/DON idProduct printings only",
                 "cacheFile": f"data/{CARDMARKET_IMAGE_MAPPING_FILENAME}",
                 "host": CARDMARKET_PRODUCT_IMAGE_HOST,
                 "identityPolicy": "accept only image URLs containing the same idProduct",
@@ -7397,6 +7926,14 @@ def main() -> None:
             "seriesExpansionProfiles": series_expansion_profiles,
             "inferredReleaseProfiles": review.get("inferredReleaseProfiles", {}),
             "needsReview": len(review.get("needsReview", [])),
+        },
+        "cardmarketExpansionMetadata": {
+            "stats": expansion_metadata_stats,
+            "verified": {str(key): value for key, value in sorted(CARDMARKET_VERIFIED_EXPANSIONS.items())},
+        },
+        "bandaiLinkedCardmarketVariants": {
+            "candidateDiscovery": bandai_variant_candidate_stats,
+            "added": linked_variant_stats,
         },
         "supplementalCardmarket": supplemental_stats,
         "sets": {
@@ -7449,7 +7986,7 @@ def main() -> None:
     )
     save_json(manifest_path, manifest)
 
-    print("\nGeneración completada (V3.10.2):")
+    print("\nGeneración completada (V3.11.3 estable):")
     print(f"- Cartas totales catálogo: {catalogue_stats['cards']}")
     print(f"- Cartas Bandai: {catalogue_stats['bandaiCards']}")
     print(f"- Cartas solo Cardmarket: {catalogue_stats['cardmarketOnlyCards']}")
@@ -7458,6 +7995,14 @@ def main() -> None:
     print(f"- Impresiones físicas Bandai: {catalogue_stats['bandaiPrintings']}")
     print(f"- Productos solo Cardmarket: {catalogue_stats['cardmarketOnlyProducts']}")
     print(f"- Productos DON!!: {catalogue_stats['donProducts']}")
+    print(f"- Variantes Cardmarket añadidas bajo identidad Bandai: {linked_variant_stats['products']}")
+    print(
+        "  · idioma variantes: "
+        f"JP={linked_variant_stats.get('japaneseProducts', 0)} / "
+        f"EN={linked_variant_stats.get('englishProducts', 0)} / "
+        f"no-inglés sin concretar={linked_variant_stats.get('nonEnglishUnspecifiedProducts', 0)} / "
+        f"desconocido={linked_variant_stats.get('unknownLanguageProducts', 0)}"
+    )
     print(f"- Bandai con mapping Cardmarket: {catalogue_stats['bandaiPrintingsWithCardmarketMapping']}")
     print(f"- Con Price Guide Cardmarket (total): {catalogue_stats['printingsWithCardmarketPriceGuide']}")
     print(f"- Con valoración EUR utilizable: {catalogue_stats['printingsWithCardmarketValuation']}")
@@ -7502,13 +8047,13 @@ def main() -> None:
         f"{len(mapping_validation.get('quarantined', []))} en cuarentena"
     )
     print(
-        "- QA identidad Bandai V3.10.2: "
+        "- QA identidad Bandai V3.11.3: "
         f"{len(all_identity_quarantined)} detectadas / "
         f"{len(identity_quarantined_final)} siguen en cuarentena / "
         f"{len(identity_resolved_during_run)} resueltas en el run"
     )
     print(
-        "- QA drift semántico V3.10.2: "
+        "- QA drift semántico V3.11.3: "
         f"{len(review.get('semanticDriftQuarantined', []))} en cuarentena"
     )
     print(
@@ -7522,6 +8067,7 @@ def main() -> None:
             args.raw_dir / RAW_FILENAMES["bandai"],
             args.raw_dir / RAW_FILENAMES["cardmarket_products"],
             args.raw_dir / RAW_FILENAMES["cardmarket_prices"],
+            args.raw_dir / RAW_FILENAMES["cardmarket_nonsingles"],
             args.raw_dir / RAW_FILENAMES["community_images"],
             args.data_dir / MAPPING_FILENAME,
             args.data_dir / IMAGE_CACHE_FILENAME,
