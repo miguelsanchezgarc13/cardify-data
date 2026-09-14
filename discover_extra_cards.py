@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-One Piece TCG catalogue pipeline v3.10.
+One Piece TCG catalogue pipeline v3.10.1.
 
 Live sources:
   1) Bandai official card list -> card/game/printing/image metadata
@@ -12,7 +12,7 @@ Persistent local knowledge:
   data/cardmarket_mapping.json -> Bandai printing <-> Cardmarket idProduct
   output/cardmarket_price_history_v3.json -> compact daily EUR valuation history
 
-V3.10 keeps the V3.9 identity contract intact. Community data is NEVER used
+V3.10.1 keeps the V3.9 identity contract intact. Community data is NEVER used
 to decide card identity, Cardmarket mapping or price; it can only provide a
 validated reference image when Bandai has no official image for that entity.
 
@@ -112,7 +112,7 @@ LEGACY_CARDS_FILENAME = "cardmarket_cards_raw.json"
 
 HEADERS = {
     "User-Agent": (
-        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.10; "
+        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.10.1; "
         "+https://github.com/)"
     ),
     "Accept-Language": "en-US,en;q=0.9",
@@ -3591,12 +3591,16 @@ def auto_map_and_build_review(
 
 
 # ---------------------------------------------------------------------------
-# Optional community image enrichment (V3.10)
+# Optional community image enrichment (V3.10.1)
 # ---------------------------------------------------------------------------
 
 COMMUNITY_NAME_KEYS = (
     "don_card_name", "promo_card_name", "card_name", "name", "display_name",
     "full_name", "product_name",
+)
+COMMUNITY_FULL_NAME_KEYS = (
+    "optcg_don_name", "don_card_name", "promo_card_name", "full_name",
+    "display_name", "product_name", "card_name", "name",
 )
 COMMUNITY_IMAGE_URL_KEYS = (
     "card_image", "image_url", "imageUrl", "image", "image_path", "imagePath",
@@ -3721,6 +3725,7 @@ def normalize_community_image_records(raw: dict | None) -> list[dict]:
         payload = bucket.get("payload")
         for row in _iter_community_rows(payload):
             raw_name = nullable_text(_dict_get_ci(row, COMMUNITY_NAME_KEYS))
+            full_name = nullable_text(_dict_get_ci(row, COMMUNITY_FULL_NAME_KEYS)) or raw_name
             image_url = nullable_text(_dict_get_ci(row, COMMUNITY_IMAGE_URL_KEYS))
             if not raw_name or not image_url:
                 continue
@@ -3733,13 +3738,14 @@ def normalize_community_image_records(raw: dict | None) -> list[dict]:
             record_id = nullable_text(
                 _dict_get_ci(row, ("id", "pk", "don_id", "promo_id", "card_pk"))
             )
-            key = (kind, raw_name, image_url, code)
+            key = (kind, full_name, image_url, code)
             if key in seen:
                 continue
             seen.add(key)
             normalized.append({
                 "kind": kind,
                 "name": raw_name,
+                "fullName": full_name,
                 "code": code,
                 "imageUrl": image_url,
                 "imageId": image_id,
@@ -3752,26 +3758,130 @@ def normalize_community_image_records(raw: dict | None) -> list[dict]:
 
 def _normalize_design_name(value: str | None, *, kind: str | None = None) -> str:
     text = nullable_text(value) or ""
-    # OPTCGAPI often appends the set after " - ". Keep the actual design name.
-    text = re.split(
-        r"\s+-\s+(?=(?:One Piece|Premium Booster|Booster|Extra Booster|Starter|Promotion|Promo))",
-        text,
-        maxsplit=1,
-        flags=re.I,
-    )[0]
+    # For standard promos, strip a trailing release title while keeping the
+    # actual card/design name. DON!! uses the dedicated release-aware normalizer
+    # below because its set/event qualifiers are essential for safe matching.
+    if kind != "don":
+        text = re.split(
+            r"\s+-\s+(?=(?:One Piece|Premium Booster|Booster|Extra Booster|Starter|Promotion|Promo))",
+            text,
+            maxsplit=1,
+            flags=re.I,
+        )[0]
     text = CARD_CODE_RE.sub(" ", text)
     text = VERSION_RE.sub(" ", text)
     text = re.sub(r"\b(?:version|ver\.?)[\s_-]*\d+\b", " ", text, flags=re.I)
     if kind == "don":
         text = re.sub(r"\bDON\s*!*\s*(?:CARD)?\b", " ", text, flags=re.I)
     text = normalize_text(text)
-    # Singularise only a few harmless English plural endings for event labels.
     tokens = []
     for token in re.findall(r"[a-z0-9]+", text):
         if len(token) > 4 and token.endswith("s") and token not in {"series"}:
             token = token[:-1]
         tokens.append(token)
     return " ".join(tokens)
+
+
+def _normalize_don_match_text(value: str | None) -> str:
+    """Normalize Cardmarket/OPTCGAPI DON labels to comparable semantics.
+
+    V3.10 matched only the short character/design name. That produced false
+    positives such as ``PRB02 - Nico Robin`` -> an EB03 Robin image. V3.10.1
+    keeps release/event qualifiers and canonicalises common abbreviations so a
+    design is only matched inside the same semantic release family.
+    """
+    text = normalize_text(value)
+    text = text.replace("&", " and ")
+
+    # Expand source-side product phrases to the abbreviations Cardmarket uses.
+    text = re.sub(
+        r"premium\s+booster\s*[- ]*the\s+best\s*[- ]*vol\.?\s*2",
+        " prb02 ", text, flags=re.I,
+    )
+    text = re.sub(
+        r"premium\s+booster\s*[- ]*the\s+best\s*[- ]*(?!vol)",
+        " prb01 ", text, flags=re.I,
+    )
+    text = re.sub(
+        r"double\s+pack\s+set\s+vol(?:ume)?\.?\s*(\d+)",
+        lambda m: f" doublepack dp{int(m.group(1)):02d} ", text, flags=re.I,
+    )
+    text = re.sub(
+        r"tin\s+pack\s+set\s+vol(?:ume)?\.?\s*(\d+)",
+        lambda m: f" tinpack ts{int(m.group(1)):02d} ", text, flags=re.I,
+    )
+    text = re.sub(
+        r"devil\s+fruits?\s+collection\s+vol\.?\s*(\d+)",
+        lambda m: f" devilfruits df{int(m.group(1)):02d} ", text, flags=re.I,
+    )
+    text = re.sub(
+        r"special\s+don\s*!*\s+set\s+vol\.?\s*(\d+)",
+        lambda m: f" specialdon specialdon{int(m.group(1)):02d} ", text, flags=re.I,
+    )
+    text = re.sub(r"special\s+don\s*!*\s+set", " specialdon ", text, flags=re.I)
+
+    # Canonical compact release codes: PRB-02 / PRB02 -> prb02, etc.
+    text = re.sub(
+        r"\b(prb|op|eb|st)\s*[- ]?\s*(\d{1,2})\b",
+        lambda m: f"{m.group(1).lower()}{int(m.group(2)):02d}", text, flags=re.I,
+    )
+    text = re.sub(
+        r"\b(dp|ts|df)\s*[- ]?\s*(\d{1,2})\b",
+        lambda m: f"{m.group(1).lower()}{int(m.group(2)):02d}", text, flags=re.I,
+    )
+    # Cardmarket historically labels PRB-01 DON!! simply as "PRB".
+    text = re.sub(r"\bprb\b", " prb01 ", text, flags=re.I)
+    text = re.sub(r"\bdfc\b", " devilfruits ", text, flags=re.I)
+
+    # Remove wrappers that carry no design identity.
+    text = re.sub(r"\bdon\s*!*\s*(?:card)?\b", " ", text, flags=re.I)
+    text = re.sub(r"\bone\s+piece\s+promotion\s+cards?\b", " ", text, flags=re.I)
+    text = re.sub(r"[^a-z0-9]+", " ", text)
+    text = " ".join(text.split())
+
+    # Conservative, well-established character aliases used by the two sources.
+    aliases = (
+        ("edward newgate", "whitebeard"),
+        ("marshall d teach", "teach"),
+        ("blackbeard", "teach"),
+        ("jewelry bonney", "bonney"),
+        ("trafalgar law", "law"),
+        ("eustass captain kid", "kid"),
+        ("donquixote rosinante", "rosinante"),
+        ("donquixote doflamingo", "doflamingo"),
+        ("rob lucci", "lucci"),
+        ("gecko moria", "moria"),
+        ("monkey d luffy", "luffy"),
+        ("gol d roger", "roger"),
+        ("portgas d ace", "ace"),
+        ("tony tony chopper", "chopper"),
+        ("dracule mihawk", "mihawk"),
+        ("charlotte katakuri", "katakuri"),
+        ("kouzuki oden", "oden"),
+        ("nico robin", "robin"),
+        ("promo", "promotion"),
+        ("finals", "final"),
+        ("worlds", "world"),
+    )
+    for source, target in aliases:
+        text = re.sub(
+            r"(?<![a-z0-9])" + re.escape(source) + r"(?![a-z0-9])",
+            target,
+            text,
+        )
+    return " ".join(text.split())
+
+
+def _don_release_markers(value: str | None) -> set[str]:
+    return {
+        token
+        for token in _normalize_don_match_text(value).split()
+        if re.fullmatch(r"(?:prb|op|eb|st|dp|ts|df)\d{2}|specialdon\d{2}", token)
+    }
+
+
+def _don_has_gold_marker(value: str | None) -> bool:
+    return "gold" in _normalize_don_match_text(value).split()
 
 
 def _name_similarity(left: str, right: str) -> float:
@@ -3791,9 +3901,6 @@ def _name_similarity(left: str, right: str) -> float:
     )
     sequence = SequenceMatcher(None, left, right).ratio()
     score = 0.68 * sequence + 0.32 * jaccard
-    # A source can contain an extra character/set qualifier while the shorter
-    # marketplace label remains exact. Reward strong token containment without
-    # treating a one-word coincidence as a match.
     if min(len(left_tokens), len(right_tokens)) >= 2 and containment >= 0.90:
         score = max(score, 0.92 + 0.05 * min(jaccard, 1.0))
     if min(len(left), len(right)) >= 10 and (left in right or right in left):
@@ -3808,14 +3915,37 @@ def match_community_reference_image(
     printed_codes: list[str] | None,
     community_images: list[dict],
 ) -> tuple[dict | None, dict]:
-    """Return one high-confidence reference image or an explicit non-match.
+    """Return one conservative reference image or an explicit non-match.
 
-    Standard cards require a matching printed card code. DON!! has no stable
-    printed code, so it uses a stricter unique-name match with a score margin.
+    Standard promos still require printed code + name. DON!! additionally uses
+    OPTCGAPI's full design/release label, release-family compatibility and a
+    Gold/non-Gold guard. Bare one-token DON character names are intentionally
+    left unmatched: a placeholder is better than a convincing wrong artwork.
     """
-    wanted_name = _normalize_design_name(display_name, kind=kind)
     wanted_codes = {canonical_id(code) for code in (printed_codes or []) if code}
+    if kind == "don":
+        wanted_name = _normalize_don_match_text(display_name)
+        wanted_markers = _don_release_markers(display_name)
+        wanted_gold = _don_has_gold_marker(display_name)
+        if not wanted_markers and len(wanted_name.split()) < 2:
+            return None, {
+                "wantedName": wanted_name,
+                "wantedMarkers": [],
+                "candidateCount": 0,
+                "topScore": 0.0,
+                "secondScore": 0.0,
+                "requiredScore": 0.90,
+                "requiredMargin": 0.05,
+                "status": "insufficient-design-qualifier",
+            }
+    else:
+        wanted_name = _normalize_design_name(display_name, kind=kind)
+        wanted_markers = set()
+        wanted_gold = False
+
     ranked = []
+    rejected_release = 0
+    rejected_gold = 0
     for item in community_images:
         if item.get("kind") != kind:
             continue
@@ -3823,12 +3953,21 @@ def match_community_reference_image(
             item_code = canonical_id(item.get("code")) if item.get("code") else None
             if not item_code or item_code not in wanted_codes:
                 continue
-        candidate_name = _normalize_design_name(item.get("name"), kind=kind)
+            candidate_name = _normalize_design_name(item.get("name"), kind=kind)
+        else:
+            full_name = item.get("fullName") or item.get("name")
+            item_markers = _don_release_markers(full_name)
+            if wanted_markers and not wanted_markers.issubset(item_markers):
+                rejected_release += 1
+                continue
+            if wanted_gold != _don_has_gold_marker(full_name):
+                rejected_gold += 1
+                continue
+            candidate_name = _normalize_don_match_text(full_name)
         score = _name_similarity(wanted_name, candidate_name)
         ranked.append((score, candidate_name, item))
 
     ranked.sort(key=lambda row: (row[0], row[1], str(row[2].get("imageUrl"))), reverse=True)
-    # Same source row can be exposed through nested wrappers. Collapse identical URLs.
     unique = []
     seen_urls = set()
     for score, candidate_name, item in ranked:
@@ -3838,18 +3977,24 @@ def match_community_reference_image(
         seen_urls.add(url)
         unique.append((score, candidate_name, item))
 
-    threshold = 0.88 if kind == "don" else 0.80
-    margin_required = 0.06 if kind == "don" else 0.04
+    threshold = 0.90 if kind == "don" else 0.80
+    margin_required = 0.05 if kind == "don" else 0.04
     top_score = unique[0][0] if unique else 0.0
     second_score = unique[1][0] if len(unique) > 1 else 0.0
     diagnostic = {
         "wantedName": wanted_name,
+        "wantedMarkers": sorted(wanted_markers),
         "candidateCount": len(unique),
+        "rejectedReleaseMismatch": rejected_release if kind == "don" else 0,
+        "rejectedGoldMismatch": rejected_gold if kind == "don" else 0,
         "topScore": round(top_score, 4),
         "secondScore": round(second_score, 4),
         "requiredScore": threshold,
         "requiredMargin": margin_required,
     }
+    if unique:
+        diagnostic["topSourceName"] = unique[0][2].get("name")
+        diagnostic["topSourceFullName"] = unique[0][2].get("fullName")
     if not unique or top_score < threshold or (len(unique) > 1 and top_score - second_score < margin_required):
         diagnostic["status"] = "unmatched-or-ambiguous"
         return None, diagnostic
@@ -3862,15 +4007,15 @@ def match_community_reference_image(
         "sourceRecordId": item.get("recordId"),
         "sourceImageId": item.get("imageId"),
         "sourceName": item.get("name"),
+        "sourceFullName": item.get("fullName"),
         "sourceCode": item.get("code"),
-        "matchMethod": "code+name" if kind != "don" else "unique-design-name",
+        "matchMethod": "code+name" if kind != "don" else "release-aware-design",
         "matchScore": round(top_score, 4),
         "authoritative": False,
         "scope": "entity-reference",
     }
     diagnostic["status"] = "matched"
     return match, diagnostic
-
 
 def safe_image_from_cache(image_url: str | None, image_cache: dict) -> tuple[str | None, dict | None]:
     if not image_url:
@@ -4489,7 +4634,7 @@ def _direct_cardmarket_printing(
         "isReprint": None,
         "physicalVariantUnknown": True,
         "rarity": None,
-        # V3.10 is conservative: a community image is assigned to a printing
+        # V3.10.1 is conservative: a community image is assigned to a printing
         # only when this Cardmarket entity has exactly one product. With multiple
         # products it remains an entity-level reference image so we never pretend
         # to know which V.1/V.2 artwork belongs to which idProduct.
@@ -4543,17 +4688,18 @@ def add_cardmarket_supplements(
 ) -> dict:
     """Add Cardmarket-only standard cards and DON!! designs conservatively.
 
-    V3.10 identity contract (unchanged from V3.9):
+    V3.10.1 identity contract (unchanged from V3.9):
       * Bandai cards keep the official printed code as catalogId.
       * Standard Cardmarket-only entities use idMetacard as identity:
         CMCARD-<idMetacard>. Printed codes are search aliases, not identity.
       * DON!! uses DON-CM-<idMetacard>.
       * Every idProduct remains a distinct direct Cardmarket product/printing.
 
-    New in V3.10: a community source may add a *reference/preview* image after
+    New in V3.10.1: a community source may add a *reference/preview* image after
     a high-confidence match. It can never create/merge an entity or set a price.
-    If an entity has multiple Cardmarket products, the image stays at entity
-    level and is deliberately not claimed to represent an exact printing.
+    DON!! community images always stay at entity level because there is no stable
+    printed code linking the artwork to a Cardmarket idProduct. Standard promos
+    can reach printing scope only with a unique code/metacard/product relation.
     """
     community_images = community_images or []
     image_cache = image_cache or {}
@@ -4596,6 +4742,19 @@ def add_cardmarket_supplements(
             identity = str(int(metacard))
         standard_groups[identity].append(product)
 
+    # A printed promo code can occur under more than one Cardmarket metacard.
+    # Code+name alone cannot prove which physical variant an external image
+    # belongs to, so V3.10.1 suppresses community images for those identities.
+    standard_code_identities = defaultdict(set)
+    for identity, grouped_rows in standard_groups.items():
+        for grouped_row in grouped_rows:
+            grouped_code = _product_card_code(grouped_row)
+            if grouped_code:
+                standard_code_identities[grouped_code].add(str(identity))
+    ambiguous_standard_codes = {
+        code for code, identities in standard_code_identities.items() if len(identities) > 1
+    }
+
     image_diag = []
     standard_reference_images = 0
     don_reference_images = 0
@@ -4629,12 +4788,27 @@ def add_cardmarket_supplements(
                 flags=re.I,
             ).strip() or code
 
-        reference_image, diagnostic = match_community_reference_image(
-            kind="promo",
-            display_name=display_name,
-            printed_codes=printed_codes,
-            community_images=community_images,
-        )
+        if any(item_code in ambiguous_standard_codes for item_code in printed_codes):
+            reference_image = None
+            diagnostic = {
+                "wantedName": _normalize_design_name(display_name, kind="promo"),
+                "candidateCount": 0,
+                "topScore": 0.0,
+                "secondScore": 0.0,
+                "requiredScore": 0.80,
+                "requiredMargin": 0.04,
+                "status": "ambiguous-cardmarket-code-across-metacards",
+                "ambiguousPrintedCodes": sorted(
+                    item_code for item_code in printed_codes if item_code in ambiguous_standard_codes
+                ),
+            }
+        else:
+            reference_image, diagnostic = match_community_reference_image(
+                kind="promo",
+                display_name=display_name,
+                printed_codes=printed_codes,
+                community_images=community_images,
+            )
         safe_reference_url = None
         reference_health = None
         if reference_image:
@@ -4755,7 +4929,10 @@ def add_cardmarket_supplements(
                 reference_image = None
         image_diag.append({"catalogId": key, "kind": "don", **diagnostic})
 
-        assign_exact = bool(reference_image) and len(rows) == 1
+        # DON!! has no stable printed code linking OPTCGAPI artwork to a
+        # Cardmarket idProduct. Keep community images at entity-reference level
+        # even when the metacard currently has a single product.
+        assign_exact = False
         printings = [
             _direct_cardmarket_printing(
                 row,
@@ -4835,6 +5012,8 @@ def add_cardmarket_supplements(
             "standardEntitiesWithReferenceImage": standard_reference_images,
             "donEntitiesWithReferenceImage": don_reference_images,
             "exactSingleProductImages": exact_printing_images,
+            "ambiguousStandardCodesSuppressed": sorted(ambiguous_standard_codes),
+            "donExactPrintingImagePolicy": "disabled-no-stable-printed-code",
             "unmatchedOrAmbiguous": len(ambiguous_diagnostics),
             "diagnosticSample": ambiguous_diagnostics[:100],
         },
@@ -4842,7 +5021,7 @@ def add_cardmarket_supplements(
 
 
 # ---------------------------------------------------------------------------
-# V3.10 release/set index, compact price history and manifest
+# V3.10.1 release/set index, compact price history and manifest
 # ---------------------------------------------------------------------------
 
 
@@ -5009,7 +5188,7 @@ def build_sets_index(
     result_sets.sort(key=_set_sort_key)
     return {
         "schemaVersion": 1,
-        "catalogVersion": "3.10",
+        "catalogVersion": "3.10.1",
         "generatedAt": utc_now_iso(),
         "definitions": {
             "baseTarget": "one owned catalog entity that appears in the release",
@@ -5043,7 +5222,7 @@ def update_price_history(
     if not isinstance(history, dict):
         history = {}
     history.setdefault("schemaVersion", 1)
-    history["catalogVersion"] = "3.10"
+    history["catalogVersion"] = "3.10.1"
     history["currency"] = "EUR"
     history["valuationPolicy"] = "trend ?? avg7 ?? avg30 ?? avg"
     history["retentionDays"] = retention_days
@@ -5087,18 +5266,39 @@ def update_price_history(
     return history, stats
 
 
+def file_sha256(path: Path) -> str | None:
+    if not path.exists():
+        return None
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
 def build_catalog_manifest(
     catalog: dict,
     sets_index: dict,
     price_history: dict | None,
     *,
     generated_at: str,
+    catalog_path: Path,
+    sets_path: Path,
+    price_history_path: Path | None,
 ) -> dict:
+    """Build an integrity manifest for the bytes actually written to disk.
+
+    V3.10 labelled a canonical JSON-object fingerprint as ``sha256``. It was a
+    valid content fingerprint, but not the SHA-256 of the saved file bytes. The
+    distinction matters if Cardify later verifies downloads. Schema v2 makes
+    ``sha256`` byte-accurate and keeps the canonical hash as ``contentSha256``.
+    """
     printings = sum(len(card.get("printings", [])) for card in catalog.values() if isinstance(card, dict))
     manifest = {
-        "schemaVersion": 1,
-        "catalogVersion": "3.10",
+        "schemaVersion": 2,
+        "catalogVersion": "3.10.1",
         "generatedAt": generated_at,
+        "sha256Semantics": "raw-file-bytes",
         "backwardCompatibility": {
             "catalogFilenameUnchanged": True,
             "v39IdentityContractPreserved": True,
@@ -5107,21 +5307,24 @@ def build_catalog_manifest(
         "files": {
             "catalog": {
                 "path": f"output/{CATALOG_FILENAME}",
-                "sha256": hash_payload(catalog),
+                "sha256": file_sha256(catalog_path),
+                "contentSha256": hash_payload(catalog),
                 "entities": len(catalog),
                 "printings": printings,
             },
             "sets": {
                 "path": f"output/{SETS_FILENAME}",
-                "sha256": hash_payload(sets_index),
+                "sha256": file_sha256(sets_path),
+                "contentSha256": hash_payload(sets_index),
                 "sets": len(sets_index.get("sets", [])),
             },
         },
     }
-    if isinstance(price_history, dict):
+    if isinstance(price_history, dict) and price_history_path is not None:
         manifest["files"]["priceHistory"] = {
             "path": f"output/{PRICE_HISTORY_FILENAME}",
-            "sha256": hash_payload(price_history),
+            "sha256": file_sha256(price_history_path),
+            "contentSha256": hash_payload(price_history),
             "days": len(price_history.get("snapshots", {})),
             "currency": price_history.get("currency"),
         }
@@ -6061,19 +6264,49 @@ def run_self_test() -> None:
     assert fake.calls[0][1] == {"series": "569117"}
     assert diag[0]["attempt"] == "current"
 
-    # V3.10 regression: optional community data can enrich images but can never
-    # participate in identity. Matching is code+name for standard promos and a
-    # conservative unique design-name match for DON!!.
+    # V3.10.1 regression: optional community data can enrich images but can
+    # never participate in identity. DON!! matching must respect full release
+    # context, not merely a character-name coincidence.
     community_fixture = {
         "don": {
             "endpoint": "https://optcgapi.com/api/allDonCards/",
             "payload": [
                 {
-                    "id": 36,
-                    "don_card_name": "DON!! Card (Perona) - Premium Booster -The Best- (PRB-01)",
+                    "card_name": "DON!! Card (Perona)",
+                    "optcg_don_name": "DON!! Card (Perona) - Premium Booster -The Best- (PRB-01)",
                     "card_image_id": "don_36",
                     "card_image": "/media/static/Card_Images/perona.jpg",
-                }
+                },
+                {
+                    "card_name": "DON!! Card (Nico Robin)",
+                    "optcg_don_name": "DON!! Card (Nico Robin) - Extra Booster: One Piece Heroines Edition (EB-03)",
+                    "card_image_id": "don_130",
+                    "card_image": "/media/static/Card_Images/robin_eb03.jpg",
+                },
+                {
+                    "card_name": "DON!! Card (Robin)",
+                    "optcg_don_name": "DON!! Card (Robin) - Premium Booster -The Best- Vol. 2 (PRB-02)",
+                    "card_image_id": "don_20",
+                    "card_image": "/media/static/Card_Images/robin_prb02.jpg",
+                },
+                {
+                    "card_name": "DON!! Card (Gol.D.Roger)",
+                    "optcg_don_name": "DON!! Card (Gol.D.Roger) - Carrying On His Will (OP13)",
+                    "card_image_id": "don_5",
+                    "card_image": "/media/static/Card_Images/roger_op13.jpg",
+                },
+                {
+                    "card_name": "DON!! Card (Tin Pack Set Vol. 1 -Gol.D.Roger-)",
+                    "optcg_don_name": "DON!! Card (Tin Pack Set Vol. 1 -Gol.D.Roger-) - One Piece Promotion Cards (OP-PR)",
+                    "card_image_id": "don_65",
+                    "card_image": "/media/static/Card_Images/roger_ts01.jpg",
+                },
+                {
+                    "card_name": "DON!! Card (Whitebeard)",
+                    "optcg_don_name": "DON!! Card (Whitebeard) - Premium Booster -The Best- (PRB-01)",
+                    "card_image_id": "don_80",
+                    "card_image": "/media/static/Card_Images/whitebeard_prb01.jpg",
+                },
             ],
         },
         "promos": {
@@ -6090,11 +6323,38 @@ def run_self_test() -> None:
         },
     }
     community_rows = normalize_community_image_records(community_fixture)
-    assert len(community_rows) == 2, community_rows
+    assert len(community_rows) == 7, community_rows
+    assert any(row.get("fullName", "").endswith("(PRB-02)") for row in community_rows)
+
     don_match, don_diag = match_community_reference_image(
-        kind="don", display_name="DON!! (Perona)", printed_codes=[], community_images=community_rows
+        kind="don", display_name="DON!! (PRB Perona)", printed_codes=[], community_images=community_rows
     )
     assert don_match and don_match["sourceImageId"] == "don_36", don_diag
+
+    robin_match, robin_diag = match_community_reference_image(
+        kind="don", display_name="DON!! (PRB02 - Nico Robin)", printed_codes=[], community_images=community_rows
+    )
+    assert robin_match and robin_match["sourceImageId"] == "don_20", robin_diag
+
+    # These were real V3.10 false positives and must stay rejected/corrected.
+    kumamoto_match, _ = match_community_reference_image(
+        kind="don", display_name="DON!! (Kumamoto 2026 Nico Robin)", printed_codes=[], community_images=community_rows
+    )
+    assert kumamoto_match is None
+    roger_match, roger_diag = match_community_reference_image(
+        kind="don", display_name="DON!! (Gol D. Roger TS01)", printed_codes=[], community_images=community_rows
+    )
+    assert roger_match and roger_match["sourceImageId"] == "don_65", roger_diag
+    whitebeard_match, _ = match_community_reference_image(
+        kind="don", display_name="DON!! (Whitebeard DP05)", printed_codes=[], community_images=community_rows
+    )
+    assert whitebeard_match is None
+    plain_name_match, plain_name_diag = match_community_reference_image(
+        kind="don", display_name="DON!! (Sanji)", printed_codes=[], community_images=community_rows
+    )
+    assert plain_name_match is None
+    assert plain_name_diag["status"] == "insufficient-design-qualifier"
+
     promo_match, promo_diag = match_community_reference_image(
         kind="promo", display_name="Future Promo", printed_codes=["P-999"], community_images=community_rows
     )
@@ -6127,7 +6387,30 @@ def run_self_test() -> None:
     assert image_catalog["CMCARD-9001"]["printings"][0]["imageUrl"] is not None
     assert image_stats["communityImages"]["standardEntitiesWithReferenceImage"] == 1
 
-    # V3.10 set index exposes base/master targets without changing card identity.
+    duplicate_product = {
+        **extra_product,
+        "idProduct": 125,
+        "idMetacard": 9002,
+        "name": "Future Promo (P-999)",
+        "website": "https://www.cardmarket.com/en/OnePiece/Products?idProduct=125",
+    }
+    duplicate_catalog = dict(catalog)
+    duplicate_stats = add_cardmarket_supplements(
+        duplicate_catalog,
+        {124: extra_product, 125: duplicate_product},
+        {
+            124: normalize_price_row({"idProduct": 124, "trend": 2.5}),
+            125: normalize_price_row({"idProduct": 125, "trend": 2.6}),
+        },
+        "2026-09-10T02:00:00+0200",
+        community_images=community_rows,
+        image_cache=community_cache,
+    )
+    assert duplicate_catalog["CMCARD-9001"]["previewImageUrl"] is None
+    assert duplicate_catalog["CMCARD-9002"]["previewImageUrl"] is None
+    assert "P-999" in duplicate_stats["communityImages"]["ambiguousStandardCodesSuppressed"]
+
+    # V3.10.1 set index exposes base/master targets without changing card identity.
     sets_fixture = build_sets_index(catalog, {"packs": [{**vega_pack, "title_parts": {
         "prefix": "BOOSTER PACK", "title": "THE WORLD'S STRONGEST WARRIORS", "label": "OP-17"
     }}]}, mapping)
@@ -6136,7 +6419,7 @@ def run_self_test() -> None:
     assert bandai_sets[0]["cards"][0]["catalogId"] == "OP17-001"
 
     # Compact daily history overwrites the same source day instead of duplicating it.
-    history_path = Path("/tmp/optcg_v310_history_test.json")
+    history_path = Path("/tmp/optcg_v3101_history_test.json")
     if history_path.exists():
         history_path.unlink()
     history, history_stats = update_price_history(
@@ -6378,7 +6661,7 @@ def main() -> None:
         ),
     })
 
-    # New V3.10 outputs. The main cards JSON keeps its V3.9 root shape.
+    # New V3.10.1 outputs. The main cards JSON keeps its V3.9 root shape.
     sets_index = build_sets_index(catalog, bandai_root, mapping)
     history_path = args.output_dir / PRICE_HISTORY_FILENAME
     price_history = load_json(history_path, default=None)
@@ -6403,8 +6686,8 @@ def main() -> None:
     )
     report = {
         "generatedAt": generated_at,
-        "schemaVersion": 6,
-        "catalogVersion": "3.10",
+        "schemaVersion": 7,
+        "catalogVersion": "3.10.1",
         "sources": {
             "bandai": {
                 "url": bandai_root.get("sourceUrl") if isinstance(bandai_root, dict) else None,
@@ -6432,7 +6715,7 @@ def main() -> None:
             "communityImages": {
                 "enabled": not args.no_community_images,
                 "provider": "OPTCGAPI.com",
-                "purpose": "missing preview images only",
+                "purpose": "missing supplemental reference images only",
                 "normalizedImageRecords": len(community_images),
                 "requests": community_requests,
                 "authoritativeForIdentity": False,
@@ -6489,13 +6772,6 @@ def main() -> None:
         },
     }
 
-    manifest = build_catalog_manifest(
-        catalog,
-        sets_index,
-        price_history if isinstance(price_history, dict) else None,
-        generated_at=generated_at,
-    )
-
     catalog_path = args.output_dir / CATALOG_FILENAME
     report_path = args.output_dir / REPORT_FILENAME
     review_path = args.output_dir / REVIEW_FILENAME
@@ -6507,9 +6783,19 @@ def main() -> None:
     save_json(sets_path, sets_index)
     if isinstance(price_history, dict):
         save_json(history_path, price_history)
+
+    manifest = build_catalog_manifest(
+        catalog,
+        sets_index,
+        price_history if isinstance(price_history, dict) else None,
+        generated_at=generated_at,
+        catalog_path=catalog_path,
+        sets_path=sets_path,
+        price_history_path=history_path if isinstance(price_history, dict) else None,
+    )
     save_json(manifest_path, manifest)
 
-    print("\nGeneración completada (V3.10):")
+    print("\nGeneración completada (V3.10.1):")
     print(f"- Cartas totales catálogo: {catalogue_stats['cards']}")
     print(f"- Cartas Bandai: {catalogue_stats['bandaiCards']}")
     print(f"- Cartas solo Cardmarket: {catalogue_stats['cardmarketOnlyCards']}")
@@ -6524,7 +6810,7 @@ def main() -> None:
     print(f"- Entidades con preview de imagen: {catalogue_stats['entitiesWithPreviewImage']}")
     cm_image_stats = supplemental_stats.get("communityImages", {})
     print(
-        "- Imágenes externas seguras: "
+        "- Imágenes externas conservadoras: "
         f"{cm_image_stats.get('standardEntitiesWithReferenceImage', 0)} market-only / "
         f"{cm_image_stats.get('donEntitiesWithReferenceImage', 0)} DON!!"
     )
@@ -6545,13 +6831,13 @@ def main() -> None:
         f"{len(mapping_validation.get('quarantined', []))} en cuarentena"
     )
     print(
-        "- QA identidad Bandai V3.10: "
+        "- QA identidad Bandai V3.10.1: "
         f"{len(all_identity_quarantined)} detectadas / "
         f"{len(identity_quarantined_final)} siguen en cuarentena / "
         f"{len(identity_resolved_during_run)} resueltas en el run"
     )
     print(
-        "- QA drift semántico V3.10: "
+        "- QA drift semántico V3.10.1: "
         f"{len(review.get('semanticDriftQuarantined', []))} en cuarentena"
     )
     print(
