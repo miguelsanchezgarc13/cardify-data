@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-One Piece TCG catalogue pipeline v3.11.3 (stable reset from v3.10.2).
+One Piece TCG catalogue pipeline v3.11.4 (language-only patch over v3.11.3).
 
 Live sources:
   1) Bandai official card list -> card/game/printing/image metadata
@@ -15,13 +15,12 @@ Persistent local knowledge:
   data/cardmarket_image_mapping.json -> Cardmarket idProduct <-> exact product image URL
   output/cardmarket_price_history_v3.json -> compact daily EUR valuation history
 
-V3.11.3 deliberately returns to the stable V3.10.2 execution model. It adds
-Cardmarket physical variants under an existing Bandai catalogId only when a shared
-idMetacard is anchored by a current validated Bandai mapping and code/name also
-agree. This exposes Japanese/reprint products without scraping thousands of pages.
+V3.11.4 is a minimal language-classification patch over V3.11.3. It preserves
+all V3.11.3 identity, mapping, pricing, image and Cardmarket-variant behavior.
 Language is attached to the physical printing and is only filled when supported by
-explicit expansion evidence; unknown is preferred over guessing. Product-page HTML
-image discovery is disabled by default because GitHub Actions receives HTTP 403.
+homogeneous explicit expansion evidence; unknown is preferred over guessing. The
+verified idExpansion=5511 Japanese override is preserved. Product-page HTML image
+discovery remains disabled by default because GitHub Actions receives HTTP 403.
 Community data is NEVER used to decide identity, Cardmarket mapping or price.
 
 The old community Cardmarket snapshot is used only once, if available, to seed
@@ -128,7 +127,7 @@ LEGACY_CARDS_FILENAME = "cardmarket_cards_raw.json"
 
 HEADERS = {
     "User-Agent": (
-        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.11.3; "
+        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.11.4; "
         "+https://github.com/)"
     ),
     "Accept-Language": "en-US,en;q=0.9",
@@ -4936,31 +4935,73 @@ CARDMARKET_EDITION_CODE_BY_SLUG = {
 }
 
 
+def _explicit_nonsingle_language_marker(name: str | None) -> str | None:
+    """Return a supported *explicit qualifier* from one Cardmarket product name.
+
+    Bare words such as ``Japanese Championship`` or ``English Collection`` are
+    intentionally ignored. ``Non-English`` is checked before ``English`` even
+    though the strict parenthesised patterns already prevent substring matches.
+    """
+    text = str(name or "")
+    if re.search(r"\(\s*Non[- ]English\s*\)", text, re.I):
+        return "non-en"
+    if re.search(r"\(\s*Japanese(?:\s+Version)?\s*\)", text, re.I):
+        return "ja"
+    if re.search(r"\(\s*English(?:\s+Version)?\s*\)", text, re.I):
+        return "en"
+    return None
+
+
 def _explicit_nonsingle_language(names: list[str]) -> dict:
-    """Return only language evidence explicitly present in Cardmarket product names."""
-    joined = " | ".join(str(name or "") for name in names)
-    if re.search(r"\bJapanese\b", joined, re.I):
+    """Return expansion language only when explicit non-single evidence is homogeneous.
+
+    Every non-single name in the expansion must carry the same supported explicit
+    qualifier. A mixture of qualifiers, or qualified + unqualified product names,
+    is deliberately left unknown rather than extrapolating one region/language to
+    the whole expansion.
+    """
+    rows = [str(name or "").strip() for name in names if str(name or "").strip()]
+    if not rows:
+        return {}
+
+    markers = [_explicit_nonsingle_language_marker(name) for name in rows]
+    explicit = [marker for marker in markers if marker is not None]
+    if not explicit:
+        return {}
+
+    counts = Counter(explicit)
+    unqualified = len(rows) - len(explicit)
+    if len(counts) != 1 or unqualified:
+        return {
+            "language": None,
+            "languageLabel": None,
+            "languageGroup": None,
+            "languageSource": "cardmarket-nonsingles-mixed-or-incomplete-language-evidence",
+        }
+
+    marker = explicit[0]
+    if marker == "non-en":
+        # Cardmarket uses Non-English for several regional products. It proves
+        # only that English is wrong; it does not prove Japanese specifically.
+        return {
+            "language": None,
+            "languageLabel": "Non-English",
+            "languageGroup": "non-en",
+            "languageSource": "cardmarket-nonsingles-explicit-non-english",
+        }
+    if marker == "ja":
         return {
             "language": "ja",
             "languageLabel": "Japanese",
             "languageGroup": "ja",
             "languageSource": "cardmarket-nonsingles-explicit-japanese",
         }
-    if re.search(r"\bEnglish(?:\s+Version)?\b", joined, re.I):
+    if marker == "en":
         return {
             "language": "en",
             "languageLabel": "English",
             "languageGroup": "en",
             "languageSource": "cardmarket-nonsingles-explicit-english",
-        }
-    if re.search(r"\bNon[- ]English\b", joined, re.I):
-        # Cardmarket historically uses Non-English for several Asia/Japanese
-        # products. Do not collapse that label to Japanese without stronger proof.
-        return {
-            "language": None,
-            "languageLabel": "Non-English",
-            "languageGroup": "non-en",
-            "languageSource": "cardmarket-nonsingles-explicit-non-english",
         }
     return {}
 
@@ -4972,9 +5013,9 @@ def build_cardmarket_expansion_metadata(
 ) -> tuple[dict[int, dict], dict]:
     """Build conservative idExpansion metadata without per-product web requests.
 
-    English evidence comes from stable pretty-URL families already attached to
-    validated Bandai mappings. Non-English/Japanese evidence can come from the
-    official Cardmarket non-singles S3 catalogue. Verified overrides win last.
+    Stable pretty-URL families are retained only as edition metadata. Language
+    comes from homogeneous explicit qualifiers in the official Cardmarket
+    non-singles S3 catalogue. Verified overrides win last.
     """
     metadata: dict[int, dict] = {}
     profile = _build_mapping_profiles(mapping, products_by_id)
@@ -4985,9 +5026,9 @@ def build_cardmarket_expansion_metadata(
         if not slug:
             continue
         slug_key = slugify(slug)
-        # These slugs are learned from current Bandai-English mappings. Generic
+        # These slugs are learned from current validated Bandai mappings. Generic
         # buckets such as one-piece-products can contain mixed regional items, so
-        # only specific stable families are promoted to English evidence.
+        # only specific stable families are retained as edition metadata.
         specific = bool(
             slug_key in CARDMARKET_EDITION_CODE_BY_SLUG
             or re.search(r"(?:^|-)(?:op|st|eb|prb)-?\d{1,2}(?:-|$)", slug_key, re.I)
@@ -4999,10 +5040,9 @@ def build_cardmarket_expansion_metadata(
             "editionSlug": slug,
             "editionCode": CARDMARKET_EDITION_CODE_BY_SLUG.get(slug_key),
             "editionName": " ".join(part.capitalize() for part in slug.split("-") if part),
-            "language": "en",
-            "languageLabel": "English",
-            "languageGroup": "en",
-            "languageSource": "validated-bandai-mapping-expansion-slug",
+            # V3.11.4: a Bandai-English mapping proves edition coherence, not that
+            # every Cardmarket product in the expansion is English. Language is
+            # filled only from homogeneous explicit non-single qualifiers below.
             "evidence": {
                 "count": slug_profile.get("count"),
                 "total": slug_profile.get("total"),
@@ -5025,14 +5065,10 @@ def build_cardmarket_expansion_metadata(
         if not evidence:
             continue
         current = dict(metadata.get(expansion) or {"idExpansion": expansion})
-        # Explicit Japanese/English names are stronger than inferred English slug.
-        # Generic Non-English only fills the group/label and never overwrites a
-        # specific ja/en language already supported by stronger evidence.
-        if evidence.get("language") is not None or not current.get("language"):
-            current.update(evidence)
-        else:
-            current.setdefault("languageGroup", evidence.get("languageGroup"))
-            current.setdefault("languageLabel", evidence.get("languageLabel"))
+        # Explicit non-single evidence is authoritative for language classification.
+        # This intentionally clears any language fields when the expansion is mixed
+        # or incomplete. Verified overrides are applied afterwards and still win.
+        current.update(evidence)
         current["nonsingleEvidenceSample"] = names[:8]
         metadata[expansion] = current
 
@@ -5605,7 +5641,7 @@ def add_cardmarket_supplements(
 ) -> dict:
     """Add Cardmarket-only standard cards and DON!! designs conservatively.
 
-    V3.11.3 identity contract (unchanged from V3.9):
+    V3.11.4 identity contract (unchanged from V3.9):
       * Bandai cards keep the official printed code as catalogId.
       * Standard Cardmarket-only entities use idMetacard as identity:
         CMCARD-<idMetacard>. Printed codes are search aliases, not identity.
@@ -5981,7 +6017,7 @@ def add_cardmarket_supplements(
 
 
 # ---------------------------------------------------------------------------
-# V3.11.3 release/set index, compact price history and manifest
+# V3.11.4 release/set index, compact price history and manifest
 # ---------------------------------------------------------------------------
 
 
@@ -6148,7 +6184,7 @@ def build_sets_index(
     result_sets.sort(key=_set_sort_key)
     return {
         "schemaVersion": 1,
-        "catalogVersion": "3.11.3",
+        "catalogVersion": "3.11.4",
         "generatedAt": utc_now_iso(),
         "definitions": {
             "baseTarget": "one owned catalog entity that appears in the release",
@@ -6182,7 +6218,7 @@ def update_price_history(
     if not isinstance(history, dict):
         history = {}
     history.setdefault("schemaVersion", 1)
-    history["catalogVersion"] = "3.11.3"
+    history["catalogVersion"] = "3.11.4"
     history["currency"] = "EUR"
     history["valuationPolicy"] = "trend ?? avg7 ?? avg30 ?? avg"
     history["retentionDays"] = retention_days
@@ -6256,7 +6292,7 @@ def build_catalog_manifest(
     printings = sum(len(card.get("printings", [])) for card in catalog.values() if isinstance(card, dict))
     manifest = {
         "schemaVersion": 2,
-        "catalogVersion": "3.11.3",
+        "catalogVersion": "3.11.4",
         "generatedAt": generated_at,
         "sha256Semantics": "raw-file-bytes",
         "backwardCompatibility": {
@@ -7469,8 +7505,91 @@ def run_self_test() -> None:
     assert bandai_sets and bandai_sets[0]["collectionTargets"]["master"] >= 1
     assert bandai_sets[0]["cards"][0]["catalogId"] == "OP17-001"
 
+    # V3.11.4 language regression: only explicit parenthesised qualifiers count,
+    # Non-English is never swallowed by English, and expansion evidence must be
+    # homogeneous before assigning one language to every physical product.
+    assert _explicit_nonsingle_language_marker(
+        "Memorial Collection Booster Box (Non-English)"
+    ) == "non-en"
+    assert _explicit_nonsingle_language_marker(
+        "Booster Box (Japanese)"
+    ) == "ja"
+    assert _explicit_nonsingle_language_marker(
+        "Booster Box (English Version)"
+    ) == "en"
+    assert _explicit_nonsingle_language_marker(
+        "Japanese Championship English Collection"
+    ) is None
 
-    # V3.11.3 regression: extra Cardmarket products sharing one anchored metacard
+    non_en_evidence = _explicit_nonsingle_language([
+        "Memorial Collection Booster Box (Non-English)",
+        "Memorial Collection Booster (Non-English)",
+    ])
+    assert non_en_evidence["language"] is None
+    assert non_en_evidence["languageGroup"] == "non-en"
+    assert non_en_evidence["languageSource"] != "cardmarket-nonsingles-explicit-english"
+
+    language_nonsingles = [
+        {"idExpansion": 5580, "name": "Memorial Collection Booster Box (Non-English)"},
+        {"idExpansion": 5580, "name": "Memorial Collection Booster (Non-English)"},
+        {"idExpansion": 6018, "name": "Regional Booster Box (Japanese)"},
+        {"idExpansion": 6018, "name": "Regional Booster (Japanese)"},
+        {"idExpansion": 7001, "name": "Example Booster Box (English Version)"},
+        {"idExpansion": 7001, "name": "Example Booster (English Version)"},
+        # Mixed/incomplete expansion: one explicitly non-English product plus an
+        # unqualified product cannot define the whole expansion language.
+        {"idExpansion": 5262, "name": "Promotion Pack"},
+        {"idExpansion": 5262, "name": "Promotion Pack (Non-English)"},
+        # Explicitly conflicting qualifiers are also unknown.
+        {"idExpansion": 7002, "name": "Example Booster Box (English Version)"},
+        {"idExpansion": 7002, "name": "Example Booster Box (Japanese)"},
+        # Even conflicting evidence cannot beat the verified 5511 override.
+        {"idExpansion": 5511, "name": "Promo Box (English Version)"},
+        {"idExpansion": 5511, "name": "Promo Box (Non-English)"},
+    ]
+    language_metadata, _ = build_cardmarket_expansion_metadata(
+        {"mappings": {}}, {}, language_nonsingles
+    )
+    assert language_metadata[5580]["language"] is None
+    assert language_metadata[5580]["languageLabel"] == "Non-English"
+    assert language_metadata[5580]["languageGroup"] == "non-en"
+    assert language_metadata[6018]["language"] == "ja"
+    assert language_metadata[7001]["language"] == "en"
+    assert language_metadata[5262]["language"] is None
+    assert language_metadata[5262]["languageLabel"] is None
+    assert language_metadata[7002]["language"] is None
+    assert language_metadata[7002]["languageLabel"] is None
+    assert language_metadata[5511]["language"] == "ja"
+    assert language_metadata[5511]["languageLabel"] == "Japanese"
+
+    # Stable URL/edition coherence is retained, but V3.11.4 no longer treats a
+    # Bandai-English slug as proof that the complete Cardmarket expansion is EN.
+    slug_products = {}
+    slug_mapping = {"mappings": {}}
+    for index in range(1, 5):
+        code = f"OP01-{index:03d}"
+        product_id = 800000 + index
+        slug_products[product_id] = normalize_cardmarket_product({
+            "idProduct": product_id,
+            "name": f"Example {index} ({code})",
+            "idExpansion": 7003,
+            "idMetacard": 900000 + index,
+        })
+        slug_mapping["mappings"][code] = {
+            "productId": product_id,
+            "url": (
+                "https://www.cardmarket.com/en/OnePiece/Products/Singles/"
+                f"OP01-Romance-Dawn/Example-{index}-{code}"
+            ),
+        }
+    slug_metadata, _ = build_cardmarket_expansion_metadata(
+        slug_mapping, slug_products, []
+    )
+    assert slug_metadata[7003]["editionSlug"] == "op01-romance-dawn"
+    assert slug_metadata[7003].get("language") is None
+
+
+    # V3.11.4 regression: extra Cardmarket products sharing one anchored metacard
     # are attached to the same Bandai entity. P-JP expansion 5511 is explicitly
     # Japanese; version/order is never inferred.
     jp_anchor_product = normalize_cardmarket_product({
@@ -7825,7 +7944,7 @@ def main() -> None:
         ),
     })
 
-    # V3.11.3 outputs. The main cards JSON keeps its V3.9 root shape.
+    # V3.11.4 outputs. The main cards JSON keeps its V3.9 root shape.
     sets_index = build_sets_index(catalog, bandai_root, mapping)
     history_path = args.output_dir / PRICE_HISTORY_FILENAME
     price_history = load_json(history_path, default=None)
@@ -7851,7 +7970,7 @@ def main() -> None:
     report = {
         "generatedAt": generated_at,
         "schemaVersion": 9,
-        "catalogVersion": "3.11.3",
+        "catalogVersion": "3.11.4",
         "sources": {
             "bandai": {
                 "url": bandai_root.get("sourceUrl") if isinstance(bandai_root, dict) else None,
@@ -7986,7 +8105,7 @@ def main() -> None:
     )
     save_json(manifest_path, manifest)
 
-    print("\nGeneración completada (V3.11.3 estable):")
+    print("\nGeneración completada (V3.11.4 candidata):")
     print(f"- Cartas totales catálogo: {catalogue_stats['cards']}")
     print(f"- Cartas Bandai: {catalogue_stats['bandaiCards']}")
     print(f"- Cartas solo Cardmarket: {catalogue_stats['cardmarketOnlyCards']}")
@@ -8047,13 +8166,13 @@ def main() -> None:
         f"{len(mapping_validation.get('quarantined', []))} en cuarentena"
     )
     print(
-        "- QA identidad Bandai V3.11.3: "
+        "- QA identidad Bandai V3.11.4: "
         f"{len(all_identity_quarantined)} detectadas / "
         f"{len(identity_quarantined_final)} siguen en cuarentena / "
         f"{len(identity_resolved_during_run)} resueltas en el run"
     )
     print(
-        "- QA drift semántico V3.11.3: "
+        "- QA drift semántico V3.11.4: "
         f"{len(review.get('semanticDriftQuarantined', []))} en cuarentena"
     )
     print(
