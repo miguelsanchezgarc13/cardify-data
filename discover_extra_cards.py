@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-One Piece TCG catalogue pipeline v3.12.1 (OPlay multilingual printing layer over the validated v3.11.x baseline).
+One Piece TCG catalogue pipeline v3.13.0 (OPlay multilingual printing layer over the validated v3.11.x baseline).
 
 Live sources:
   1) Bandai official card list -> official EN card/game/printing metadata
@@ -9,7 +9,7 @@ Live sources:
   4) Cardmarket public daily price guide -> EUR prices
   5) Cardmarket public non-singles catalogue -> expansion/language evidence
 
-OPTCGAPI is retired in V3.12.1. Cardmarket HTML image discovery is legacy/opt-in only.
+OPTCGAPI is retired in V3.13.0. Cardmarket HTML image discovery is legacy/opt-in only.
 
 Persistent local knowledge:
   data/cardmarket_mapping.json -> Bandai printing <-> Cardmarket idProduct
@@ -21,7 +21,7 @@ Persistent local knowledge:
 Default image policy is REMOTE: exact Bandai/OPlay URLs are written directly into the catalog.
 No new images are downloaded unless --image-storage-mode cache is explicitly selected.
 
-V3.12.1 preserves the validated V3.11.x Bandai/Cardmarket identity and pricing contract,
+V3.13.0 preserves the validated V3.11.x Bandai/Cardmarket identity and pricing contract,
 then overlays OPlay as the canonical multilingual physical-printing/image source whenever
 Bandai does not already provide the same English printing. OPlay artwork is printing-scoped;
 ambiguous Cardmarket market products are never assigned an OPlay image by guesswork.
@@ -5376,7 +5376,7 @@ def build_cardmarket_image_pending(
         })
     return {
         "schemaVersion": 1,
-        "catalogVersion": "3.12.1",
+        "catalogVersion": "3.13.0",
         "generatedAt": utc_now_iso(),
         "pendingCount": len(pending),
         "instructions": "Añade jpg/png/webp con el idProduct indicado bajo images/<manualFileStem> y el siguiente run lo adoptará sin scraping.",
@@ -6184,7 +6184,7 @@ def _direct_cardmarket_printing(
         if candidate_final and (urlparse(candidate_final).hostname or "").casefold() != CARDMARKET_PRODUCT_IMAGE_HOST:
             safe_exact_url = candidate_final
 
-    # V3.12.1 strict rule: a physical Cardmarket printing only displays its own
+    # V3.13.0 strict rule: a physical Cardmarket printing only displays its own
     # persisted idProduct image. Community/legacy references remain entity-only.
     printing_image_url = safe_exact_url
     printing_image = None
@@ -6788,7 +6788,7 @@ def add_cardmarket_supplements(
 
 
 # ---------------------------------------------------------------------------
-# V3.12.1 release/set index, compact price history and manifest
+# V3.13.0 release/set index, compact price history and manifest
 # ---------------------------------------------------------------------------
 
 
@@ -6804,7 +6804,7 @@ def _pack_release_date(pack: dict | None) -> str | None:
 
 
 # ---------------------------------------------------------------------------
-# OPlay <-> Cardmarket reconciliation and storage audit (V3.12.1)
+# OPlay <-> Cardmarket reconciliation and storage audit (V3.13.0)
 # ---------------------------------------------------------------------------
 
 
@@ -7326,7 +7326,7 @@ def reconcile_oplay_with_catalog(
         meta = cards_meta.get(code) if isinstance(cards_meta, dict) else None
         meta = meta if isinstance(meta, dict) else {}
 
-        # V3.12.1 migration: once OPlay knows a standard promo/card code, the old
+        # V3.13.0 migration: once OPlay knows a standard promo/card code, the old
         # CMCARD-* entity is no longer a separate user-facing card identity. Move
         # its market printings under the canonical printed code before adding the
         # OPlay printings. This removes the obsolete "Solo Cardmarket" duplicate
@@ -7568,7 +7568,7 @@ def build_storage_report(
     return {
         "generatedAt": utc_now_iso(),
         "schemaVersion": 1,
-        "catalogVersion": "3.12.1",
+        "catalogVersion": "3.13.0",
         "imageStorageMode": image_storage_mode,
         "folders": folders,
         "workingDataBytes": working,
@@ -7746,7 +7746,7 @@ def build_sets_index(
     result_sets.sort(key=_set_sort_key)
     return {
         "schemaVersion": 1,
-        "catalogVersion": "3.12.1",
+        "catalogVersion": "3.13.0",
         "generatedAt": utc_now_iso(),
         "definitions": {
             "baseTarget": "one owned catalog entity that appears in the release",
@@ -7781,7 +7781,7 @@ def update_price_history(
     if not isinstance(history, dict):
         history = {}
     history.setdefault("schemaVersion", 1)
-    history["catalogVersion"] = "3.12.1"
+    history["catalogVersion"] = "3.13.0"
     history["currency"] = "EUR"
     history["valuationPolicy"] = "trend ?? avg7 ?? avg30 ?? avg"
     history["retentionDays"] = retention_days
@@ -7855,13 +7855,14 @@ def build_catalog_manifest(
     printings = sum(len(card.get("printings", [])) for card in catalog.values() if isinstance(card, dict))
     manifest = {
         "schemaVersion": 2,
-        "catalogVersion": "3.12.1",
+        "catalogVersion": "3.13.0",
         "generatedAt": generated_at,
         "sha256Semantics": "raw-file-bytes",
         "backwardCompatibility": {
             "catalogFilenameUnchanged": True,
             "v39IdentityContractPreserved": True,
-            "catalogRootShape": "catalogId -> card object",
+            "catalogRootShape": "catalogId -> sparse card object",
+            "clientSparseSchema": 1,
         },
         "files": {
             "catalog": {
@@ -7896,7 +7897,7 @@ def build_catalog_manifest(
 
 
 # ---------------------------------------------------------------------------
-# OPlayTCG multilingual printing catalogue (V3.12.1)
+# OPlayTCG multilingual printing catalogue (V3.13.0)
 # ---------------------------------------------------------------------------
 
 
@@ -9687,7 +9688,7 @@ def run_self_test() -> None:
     assert jp_catalog["P-028"]["printings"][0]["language"] == "ja"
     assert jp_catalog["P-028"]["printings"][0]["cardmarket"]["price"]["valuationEur"] == 19.32
 
-    # V3.12.1 regression: a legacy image tied to the same idProduct is reused
+    # V3.13.0 regression: a legacy image tied to the same idProduct is reused
     # only as a validated reference, never promoted to exact artwork.
     legacy_url = "https://example.com/P-028_p2_EN.webp"
     legacy_refs, legacy_ref_stats = legacy_mapping_reference_images({"mappings": {
@@ -9832,6 +9833,212 @@ def run_self_test() -> None:
 # ---------------------------------------------------------------------------
 
 
+
+
+def _client_release(release: dict) -> dict:
+    """Keep only release metadata used by Cardify UI.
+
+    The full reconciliation/audit representation stays in memory and in the
+    dedicated mapping/report files. Repeating every release field on ~40k
+    printings was one of the largest contributors to the client payload.
+    """
+    if not isinstance(release, dict):
+        return {}
+    out = {}
+    for key in ("releaseId", "source", "code", "kind", "displayName", "cardmarketExpansionId"):
+        value = release.get(key)
+        if value is not None and value != "" and value != []:
+            out[key] = value
+    return out
+
+
+def _client_cardmarket(cardmarket: dict) -> dict:
+    """Compact Cardmarket data to the fields Cardify actually renders.
+
+    Product URLs/names and mapping evidence live in data/review artifacts. The
+    app opens a code-level Cardmarket search for every physical printing, so the
+    client catalog only needs productId plus the current price metrics.
+    """
+    if not isinstance(cardmarket, dict):
+        return {}
+    product = cardmarket.get("product") if isinstance(cardmarket.get("product"), dict) else {}
+    product_id = cardmarket.get("productId") or product.get("idProduct")
+    out = {}
+    if product_id is not None:
+        out["productId"] = product_id
+
+    price = cardmarket.get("price")
+    if isinstance(price, dict):
+        compact_price = {}
+        if product_id is not None:
+            compact_price["idProduct"] = product_id
+        for key in ("createdAt", "low", "trend", "avg7", "avg30", "valuationEur"):
+            value = price.get(key)
+            if value is not None:
+                compact_price[key] = value
+        if compact_price:
+            out["price"] = compact_price
+
+    evidence = cardmarket.get("mappingEvidence")
+    if isinstance(evidence, dict) and evidence.get("sourceCodeDiscrepancy") is True:
+        out["mappingEvidence"] = {"sourceCodeDiscrepancy": True}
+    return out
+
+
+def build_client_catalog(catalog: dict) -> tuple[dict, dict]:
+    """Build the wire-format catalog consumed by Cardify.
+
+    V3.13 keeps the rich canonical catalog in memory while generating sets,
+    mapping QA and reports, but publishes a backwards-compatible sparse object
+    with the same ``catalogId -> card`` root shape. Missing printing mechanics
+    already fall back to the entity mechanics in Cardify's parser.
+    """
+    client = {}
+    for catalog_id, card in catalog.items():
+        if not isinstance(card, dict):
+            continue
+        entry = {}
+        code = card.get("code") or catalog_id
+        for key in (
+            "code", "name", "rarity", "type", "life", "cost", "power", "counter",
+            "colors", "attributes", "block", "types", "effect", "trigger", "sources",
+            "catalogOrigin", "bandaiCanonical", "dataCompleteness", "collectibleType",
+            "cardmarketMetacardIds", "cardmarketMetacardId", "previewImageUrl",
+        ):
+            value = card.get(key)
+            if value is not None and value != "" and value != []:
+                entry[key] = value
+
+        printed_codes = card.get("printedCodes") or []
+        if printed_codes and printed_codes != [code]:
+            entry["printedCodes"] = printed_codes
+        legacy_ids = card.get("legacyCatalogIds") or []
+        if legacy_ids:
+            entry["legacyCatalogIds"] = legacy_ids
+
+        base_rarity = card.get("rarity")
+        printings = []
+        for printing in card.get("printings", []) or []:
+            if not isinstance(printing, dict):
+                continue
+            printing_id = printing.get("id") or printing.get("printingId") or printing.get("sourcePrintingId")
+            if not printing_id:
+                continue
+            row = {"id": printing_id}
+
+            source = printing.get("source")
+            if source:
+                row["source"] = source
+            source_printing_id = printing.get("sourcePrintingId")
+            if source_printing_id and source_printing_id != printing_id:
+                row["sourcePrintingId"] = source_printing_id
+
+            variant_type = printing.get("variantType")
+            if variant_type and variant_type != "unknown":
+                row["variantType"] = variant_type
+            if printing.get("isParallel") is True:
+                row["isParallel"] = True
+            if printing.get("isReprint") is True:
+                row["isReprint"] = True
+            if printing.get("physicalVariantUnknown") is True:
+                row["physicalVariantUnknown"] = True
+            if printing.get("displayInCollection") is False:
+                row["displayInCollection"] = False
+
+            rarity = printing.get("rarity")
+            if rarity:
+                row["rarity"] = rarity
+            for key in ("language", "editionCode", "editionName", "marketVersion"):
+                value = printing.get(key)
+                if value is not None and value != "":
+                    row[key] = value
+            if not printing.get("language") and printing.get("languageLabel"):
+                row["languageLabel"] = printing.get("languageLabel")
+            version_label = printing.get("marketVersionLabel")
+            if version_label and version_label != printing.get("marketVersion"):
+                row["marketVersionLabel"] = version_label
+
+            image_url = printing.get("imageUrl")
+            if image_url:
+                row["imageUrl"] = image_url
+
+            releases = [_client_release(item) for item in (printing.get("releases") or [])]
+            releases = [item for item in releases if item]
+            if releases:
+                row["releases"] = releases
+
+            different = printing.get("mechanicsDifferFromBase") or []
+            if different:
+                mechanics = printing.get("mechanics")
+                if isinstance(mechanics, dict):
+                    row["mechanics"] = mechanics
+                row["mechanicsDifferFromBase"] = different
+
+            compact_market = _client_cardmarket(printing.get("cardmarket"))
+            if compact_market:
+                row["cardmarket"] = compact_market
+
+            printings.append(row)
+        entry["printings"] = printings
+        client[catalog_id] = entry
+
+    # Regression contract: compaction can remove redundant metadata, never IDs,
+    # image URLs, visibility, languages or valuation values.
+    if set(client) != set(catalog):
+        raise RuntimeError("V3.13 client compaction changed catalog entity IDs")
+    full_printings = 0
+    client_printings = 0
+    for catalog_id, card in catalog.items():
+        original_rows = [p for p in (card.get("printings", []) or []) if isinstance(p, dict)]
+        compact_rows = client[catalog_id].get("printings", [])
+        full_printings += len(original_rows)
+        client_printings += len(compact_rows)
+        original_by_id = {
+            str(p.get("id") or p.get("printingId") or p.get("sourcePrintingId")): p
+            for p in original_rows
+            if p.get("id") or p.get("printingId") or p.get("sourcePrintingId")
+        }
+        compact_by_id = {str(p.get("id")): p for p in compact_rows}
+        if set(original_by_id) != set(compact_by_id):
+            raise RuntimeError(f"V3.13 client compaction changed printing IDs for {catalog_id}")
+        for printing_id, original in original_by_id.items():
+            compact = compact_by_id[printing_id]
+            checks = (
+                ("source", original.get("source") or "bandai", compact.get("source") or "bandai"),
+                ("variantType", original.get("variantType") or "unknown", compact.get("variantType") or "unknown"),
+                ("rarity", original.get("rarity"), compact.get("rarity")),
+                ("language", original.get("language"), compact.get("language")),
+                ("editionCode", original.get("editionCode"), compact.get("editionCode")),
+                ("editionName", original.get("editionName"), compact.get("editionName")),
+                ("marketVersion", original.get("marketVersion"), compact.get("marketVersion")),
+                ("imageUrl", original.get("imageUrl"), compact.get("imageUrl")),
+                ("displayInCollection", original.get("displayInCollection") is not False, compact.get("displayInCollection") is not False),
+            )
+            for field, before, after in checks:
+                if before != after:
+                    raise RuntimeError(f"V3.13 client compaction changed {field} for {catalog_id}/{printing_id}")
+            original_market = original.get("cardmarket") if isinstance(original.get("cardmarket"), dict) else {}
+            original_price = original_market.get("price") if isinstance(original_market.get("price"), dict) else {}
+            compact_market = compact.get("cardmarket") if isinstance(compact.get("cardmarket"), dict) else {}
+            compact_price = compact_market.get("price") if isinstance(compact_market.get("price"), dict) else {}
+            if original_price.get("valuationEur") != compact_price.get("valuationEur"):
+                raise RuntimeError(f"V3.13 client compaction changed valuation for {catalog_id}/{printing_id}")
+
+    compact_bytes = len(json.dumps(client, ensure_ascii=False, separators=(",", ":")).encode("utf-8"))
+    full_bytes = len(json.dumps(catalog, ensure_ascii=False, separators=(",", ":")).encode("utf-8"))
+    stats = {
+        "schemaVersion": 1,
+        "entities": len(client),
+        "printings": client_printings,
+        "internalPrintings": full_printings,
+        "internalCompactBytes": full_bytes,
+        "clientBytes": compact_bytes,
+        "savedBytes": max(0, full_bytes - compact_bytes),
+        "reductionPercent": round((1 - compact_bytes / full_bytes) * 100, 3) if full_bytes else 0.0,
+        "contract": "same IDs/languages/visibility/images/valuations; redundant audit metadata omitted",
+    }
+    return client, stats
+
 def main() -> None:
     args = parse_args()
     if args.self_test:
@@ -9871,7 +10078,7 @@ def main() -> None:
 
     oplay_raw = raw_data.get("oplay") if not args.no_oplay else {"disabled": True, "cards": {}, "printings": [], "stats": {}}
     oplay_printings = normalize_oplay_printings(oplay_raw)
-    # OPTCGAPI was retired in V3.12.1. The legacy matching code remains only for
+    # OPTCGAPI was retired in V3.13.0. The legacy matching code remains only for
     # rollback/self-test compatibility; no live community records enter the catalog.
     community_images: list[dict] = []
 
@@ -10178,12 +10385,14 @@ def main() -> None:
         )
         history_stats.update(update_stats)
 
+    client_catalog, client_compaction_stats = build_client_catalog(catalog)
+
     generated_at = utc_now_iso()
     oplay_raw_stats = (oplay_raw or {}).get("stats", {}) if isinstance(oplay_raw, dict) else {}
     report = {
         "generatedAt": generated_at,
-        "schemaVersion": 10,
-        "catalogVersion": "3.12.1",
+        "schemaVersion": 11,
+        "catalogVersion": "3.13.0",
         "sources": {
             "bandai": {
                 "url": bandai_root.get("sourceUrl") if isinstance(bandai_root, dict) else None,
@@ -10229,7 +10438,7 @@ def main() -> None:
             },
             "optcgapi": {
                 "enabled": False,
-                "status": "retired-v3.12.1",
+                "status": "retired-v3.13.0",
                 "replacement": "OPlayTCG multilingual physical-printing catalogue",
             },
         },
@@ -10292,8 +10501,9 @@ def main() -> None:
             "cardmarketDiscoveryStatus": "retired in favour of OPlay exact-printing mapping",
         },
         "output": catalogue_stats,
+        "clientCatalog": client_compaction_stats,
         "fingerprints": {
-            "catalog": hash_payload(catalog),
+            "catalog": hash_payload(client_catalog),
             "mapping": hash_payload(mapping),
             "oplayMapping": hash_payload(oplay_mapping),
             "sets": hash_payload(sets_index),
@@ -10307,14 +10517,14 @@ def main() -> None:
     sets_path = args.output_dir / SETS_FILENAME
     manifest_path = args.output_dir / MANIFEST_FILENAME
     storage_report_path = args.output_dir / STORAGE_REPORT_FILENAME
-    save_json_compact(catalog_path, catalog)
+    save_json_compact(catalog_path, client_catalog)
     save_json(review_path, review)
     save_json(sets_path, sets_index)
     if isinstance(price_history, dict):
         save_json(history_path, price_history)
 
     manifest = build_catalog_manifest(
-        catalog,
+        client_catalog,
         sets_index,
         price_history if isinstance(price_history, dict) else None,
         generated_at=generated_at,
@@ -10343,7 +10553,7 @@ def main() -> None:
     }
     save_json(report_path, report)
 
-    print("\nGeneración completada (V3.12.1):")
+    print("\nGeneración completada (V3.13.0):")
     print(f"- Cartas totales catálogo: {catalogue_stats['cards']}")
     print(f"- Impresiones físicas totales: {catalogue_stats['printings']} (visibles={catalogue_stats['visiblePrintings']} / market rows ocultas={catalogue_stats['hiddenMarketPrintings']})")
     print(f"- Bandai: {catalogue_stats['bandaiCards']} cartas / {catalogue_stats['bandaiPrintings']} printings")
@@ -10371,6 +10581,7 @@ def main() -> None:
     for folder_name, folder_stats in (storage_report.get('folders') or {}).items():
         print(f"  · {folder_name}/: {folder_stats.get('files', 0)} ficheros / {folder_stats.get('mib', 0):.3f} MiB")
     print(f"- Git .git/: {(storage_report.get('gitRepository') or {}).get('mib', 0):.3f} MiB")
+    print(f"- Catálogo cliente V3.13: {client_compaction_stats.get('clientBytes', 0) / (1024 * 1024):.3f} MiB (reducción={client_compaction_stats.get('reductionPercent', 0):.1f}% vs representación interna)")
     print(f"- Price Guide createdAt: {price_created_at}")
 
     if not args.no_push:
