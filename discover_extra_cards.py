@@ -1,32 +1,32 @@
 #!/usr/bin/env python3
 """
-One Piece TCG catalogue pipeline v3.11.6 (persistent exact-image asset layer over v3.11.5).
+One Piece TCG catalogue pipeline v3.12.0 (OPlay multilingual printing layer over the validated v3.11.x baseline).
 
 Live sources:
-  1) Bandai official card list -> card/game/printing/image metadata
-  2) Cardmarket public product catalogue -> product identifiers
-  3) Cardmarket public daily price guide -> EUR prices
-  4) Cardmarket public non-singles catalogue -> expansion/language evidence (no Cloudflare HTML)
-  5) Cardmarket public product pages (OPT-IN only) -> exact image URL per idProduct
-  6) OPTCGAPI.com (optional community fallback) -> missing DON!!/promo preview images only
+  1) Bandai official card list -> official EN card/game/printing metadata
+  2) OPlayTCG public library/sitemaps -> multilingual physical printings, sets and exact artwork URLs
+  3) Cardmarket public product catalogue -> idProduct / idMetacard market identifiers
+  4) Cardmarket public daily price guide -> EUR prices
+  5) Cardmarket public non-singles catalogue -> expansion/language evidence
+
+OPTCGAPI is retired in V3.12.0. Cardmarket HTML image discovery is legacy/opt-in only.
 
 Persistent local knowledge:
   data/cardmarket_mapping.json -> Bandai printing <-> Cardmarket idProduct
-  data/cardmarket_image_mapping.json -> Cardmarket idProduct <-> exact product image URL/version metadata
-  data/image_assets_v1.json -> persistent local image assets and checksums
-  images/bandai/ -> immutable cached official Bandai printing images
-  images/cardmarket/ -> immutable cached exact Cardmarket idProduct images
+  data/cardmarket_printing_metadata_v1.json -> explicit Cardmarket version/language overrides
+  data/oplay_cardmarket_mapping_v1.json -> exact OPlay printing <-> Cardmarket idProduct links
   output/cardmarket_price_history_v3.json -> compact daily EUR valuation history
+  output/storage_report_v1.json -> per-folder/file storage audit
 
-V3.11.6 preserves the validated V3.11.4/V3.11.5 identity, language, mapping and pricing contract.
-It adds a persistent exact-image asset layer: official Bandai printings and exact Cardmarket
-idProducts are downloaded once into images/, reused locally on future runs, and published
-through the Cardify data repository. Reference artwork is never promoted to a physical printing.
-Language is attached to the physical printing and is only filled when supported by
-homogeneous explicit expansion evidence; unknown is preferred over guessing. The
-verified idExpansion=5511 Japanese override is preserved. Product-page HTML image
-discovery remains disabled by default because GitHub Actions receives HTTP 403.
-Community data is NEVER used to decide identity, Cardmarket mapping or price.
+Default image policy is REMOTE: exact Bandai/OPlay URLs are written directly into the catalog.
+No new images are downloaded unless --image-storage-mode cache is explicitly selected.
+
+V3.12.0 preserves the validated V3.11.x Bandai/Cardmarket identity and pricing contract,
+then overlays OPlay as the canonical multilingual physical-printing/image source whenever
+Bandai does not already provide the same English printing. OPlay artwork is printing-scoped;
+ambiguous Cardmarket market products are never assigned an OPlay image by guesswork.
+Unknown market products remain auditable but can be hidden from collection/version UI when
+canonical OPlay printings exist for the same card.
 
 The old community Cardmarket snapshot is used only once, if available, to seed
 cardmarket_mapping.json. It is never used as a live price source.
@@ -51,6 +51,7 @@ from datetime import datetime, timedelta, timezone
 from difflib import SequenceMatcher
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
+import xml.etree.ElementTree as ET
 
 import requests
 from requests.adapters import HTTPAdapter
@@ -89,6 +90,25 @@ CARDMARKET_NONSINGLES_URL = (
 CARDMARKET_BASE_URL = "https://www.cardmarket.com"
 CARDMARKET_PRODUCT_REDIRECT = "https://www.cardmarket.com/en/OnePiece/Products?idProduct={product_id}"
 
+OPLAY_BASE_URL = "https://oplaytcg.com"
+OPLAY_LIBRARY_URL = f"{OPLAY_BASE_URL}/en/library"
+OPLAY_SITEMAP_URL = f"{OPLAY_BASE_URL}/sitemap.xml"
+OPLAY_IMAGE_HOST = "cards.oplaytcg.com"
+OPLAY_LANGUAGES = {
+    "en": {"language": "en", "label": "English"},
+    "jp": {"language": "ja", "label": "Japanese"},
+    "fr": {"language": "fr", "label": "French"},
+    "th": {"language": "th", "label": "Thai"},
+    "tc": {"language": "zh-Hant", "label": "Traditional Chinese"},
+    "cn": {"language": "zh-Hans", "label": "Simplified Chinese"},
+    "kr": {"language": "ko", "label": "Korean"},
+}
+OPLAY_RAW_FILENAME = "oplaytcg_catalog_raw.json"
+OPLAY_CARDMARKET_MAPPING_FILENAME = "oplay_cardmarket_mapping_v1.json"
+CARDMARKET_PRINTING_METADATA_FILENAME = "cardmarket_printing_metadata_v1.json"
+OPLAY_MAPPING_REVIEW_FILENAME = "oplay_mapping_review.json"
+STORAGE_REPORT_FILENAME = "storage_report_v1.json"
+
 # Optional community fallback used ONLY for missing preview images. OPTCGAPI.com
 # documents these GET endpoints as open/no-auth and explicitly lists app/database
 # consumption as a supported use. A failure here never aborts the official pipeline.
@@ -111,9 +131,9 @@ RAW_FILENAMES = {
     "cardmarket_products": "cardmarket_products_raw.json",
     "cardmarket_prices": "cardmarket_price_guide_raw.json",
     "cardmarket_nonsingles": "cardmarket_products_nonsingles_raw.json",
-    "community_images": "optcgapi_images_raw.json",
+    "oplay": OPLAY_RAW_FILENAME,
 }
-OPTIONAL_RAW_KEYS = {"community_images", "cardmarket_nonsingles"}
+OPTIONAL_RAW_KEYS = {"oplay", "cardmarket_nonsingles"}
 
 MAPPING_FILENAME = "cardmarket_mapping.json"
 IMAGE_CACHE_FILENAME = "image_health_cache.json"
@@ -140,7 +160,7 @@ LEGACY_CARDS_FILENAME = "cardmarket_cards_raw.json"
 
 HEADERS = {
     "User-Agent": (
-        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.11.6; "
+        "Mozilla/5.0 (compatible; OPTCG-Catalogue/3.12.0; "
         "+https://github.com/)"
     ),
     "Accept-Language": "en-US,en;q=0.9",
@@ -305,11 +325,36 @@ def parse_args() -> argparse.Namespace:
         ),
     )
     parser.add_argument(
-        "--no-community-images",
+        "--no-oplay",
+        action="store_true",
+        help="Desactiva OPlay y conserva únicamente la baseline Bandai/Cardmarket.",
+    )
+    parser.add_argument(
+        "--oplay-refresh-metadata",
+        action="store_true",
+        help="Vuelve a descargar metadata de páginas OPlay ya cacheadas. Normalmente no hace falta.",
+    )
+    parser.add_argument(
+        "--oplay-card-metadata-max-new",
+        type=int,
+        default=0,
+        help="Máximo de páginas de cartas OPlay nuevas a consultar por run; 0 = sin límite.",
+    )
+    parser.add_argument(
+        "--oplay-deep-crawl",
         action="store_true",
         help=(
-            "No consulta OPTCGAPI.com para intentar completar imágenes de "
-            "DON!!/promos sin imagen oficial Bandai."
+            "Fallback caro: si el sitemap no expone imágenes, recorre páginas por idioma. "
+            "No se activa por defecto."
+        ),
+    )
+    parser.add_argument(
+        "--image-storage-mode",
+        choices=("remote", "cache"),
+        default="remote",
+        help=(
+            "remote (por defecto): usa URLs exactas Bandai/OPlay sin descargar imágenes. "
+            "cache: conserva/descarga assets en images/."
         ),
     )
     image_discovery_group = parser.add_mutually_exclusive_group()
@@ -328,7 +373,7 @@ def parse_args() -> argparse.Namespace:
         action="store_false",
         help="Desactiva el discovery de imágenes nuevas de Cardmarket (los assets guardados se conservan).",
     )
-    parser.set_defaults(cardmarket_image_discovery=True)
+    parser.set_defaults(cardmarket_image_discovery=False)
     parser.add_argument(
         "--cardmarket-image-delay",
         type=float,
@@ -5331,7 +5376,7 @@ def build_cardmarket_image_pending(
         })
     return {
         "schemaVersion": 1,
-        "catalogVersion": "3.11.6",
+        "catalogVersion": "3.12.0",
         "generatedAt": utc_now_iso(),
         "pendingCount": len(pending),
         "instructions": "Añade jpg/png/webp con el idProduct indicado bajo images/<manualFileStem> y el siguiente run lo adoptará sin scraping.",
@@ -6139,7 +6184,7 @@ def _direct_cardmarket_printing(
         if candidate_final and (urlparse(candidate_final).hostname or "").casefold() != CARDMARKET_PRODUCT_IMAGE_HOST:
             safe_exact_url = candidate_final
 
-    # V3.11.6 strict rule: a physical Cardmarket printing only displays its own
+    # V3.12.0 strict rule: a physical Cardmarket printing only displays its own
     # persisted idProduct image. Community/legacy references remain entity-only.
     printing_image_url = safe_exact_url
     printing_image = None
@@ -6743,7 +6788,7 @@ def add_cardmarket_supplements(
 
 
 # ---------------------------------------------------------------------------
-# V3.11.6 release/set index, compact price history and manifest
+# V3.12.0 release/set index, compact price history and manifest
 # ---------------------------------------------------------------------------
 
 
@@ -6756,6 +6801,722 @@ def _pack_release_date(pack: dict | None) -> str | None:
             match = re.search(r"\d{4}-\d{2}-\d{2}", value)
             return match.group(0) if match else value
     return None
+
+
+# ---------------------------------------------------------------------------
+# OPlay <-> Cardmarket reconciliation and storage audit (V3.12.0)
+# ---------------------------------------------------------------------------
+
+
+def load_cardmarket_printing_metadata(data_dir: Path, mapping: dict) -> tuple[dict, dict]:
+    """Migrate explicit version/language metadata out of the legacy image mapping.
+
+    V3.12 no longer needs Cardmarket image discovery for normal operation, but the
+    explicit V1/V2/V3 evidence collected in earlier versions remains valuable.
+    """
+    path = data_dir / CARDMARKET_PRINTING_METADATA_FILENAME
+    data = load_json(path, default={}) or {}
+    if not isinstance(data, dict):
+        data = {}
+    data.setdefault("schemaVersion", 1)
+    products = data.setdefault("products", {})
+    if not isinstance(products, dict):
+        products = {}
+        data["products"] = products
+    migrated = 0
+    seeded_versions = 0
+    legacy_path = data_dir / CARDMARKET_IMAGE_MAPPING_FILENAME
+    legacy = load_json(legacy_path, default={}) or {}
+    for key, record in ((legacy.get("products") or {}) if isinstance(legacy, dict) else {}).items():
+        if not isinstance(record, dict):
+            continue
+        pid = get_number(record.get("productId")) or get_number(key)
+        if pid is None:
+            continue
+        pid_key = str(int(pid))
+        target = products.get(pid_key) if isinstance(products.get(pid_key), dict) else {"productId": int(pid)}
+        changed = False
+        for field in (
+            "marketVersion", "marketVersionLabel", "language", "languageLabel",
+            "languageGroup", "languageSource", "editionCode", "editionName", "editionSlug",
+        ):
+            value = record.get(field)
+            if value is not None and target.get(field) is None:
+                target[field] = value
+                changed = True
+        if changed:
+            migrated += 1
+        products[pid_key] = target
+
+    for entry in (mapping or {}).get("mappings", {}).values():
+        if not isinstance(entry, dict):
+            continue
+        pid = get_number(entry.get("productId"))
+        if pid is None:
+            continue
+        version, label = _cardmarket_market_version(None, nullable_text(entry.get("url")))
+        if not version:
+            continue
+        pid_key = str(int(pid))
+        target = products.get(pid_key) if isinstance(products.get(pid_key), dict) else {"productId": int(pid)}
+        if target.get("marketVersion") is None:
+            target["marketVersion"] = version
+            target["marketVersionLabel"] = label
+            target["versionSource"] = "persisted-cardmarket-product-url"
+            seeded_versions += 1
+        products[pid_key] = target
+
+    data["updatedAt"] = utc_now_iso()
+    return data, {"legacyRecordsMigrated": migrated, "versionsSeededFromMappingUrl": seeded_versions, "products": len(products)}
+
+
+def _normalized_release_code(value: str | None) -> str | None:
+    text = canonical_id(value).replace("_", "-").replace(" ", "")
+    if not text:
+        return None
+    text = re.sub(r"-JP$", "", text)
+    match = re.fullmatch(r"(OP|EB|ST|PRB)-?0*(\d{1,2})(?:P)?", text)
+    if match:
+        return f"{match.group(1)}{int(match.group(2)):02d}"
+    if text in {"P", "PROMO", "PROMOS", "STP", "UP", "OPPR", "DON", "LIMITED"}:
+        return None
+    return text if re.fullmatch(r"[A-Z][A-Z0-9-]{1,24}", text) else None
+
+
+
+def _oplay_release_match_code(value: str | None) -> str | None:
+    code = canonical_id(value).replace("_", "-").replace(" ", "")
+    if not code:
+        return None
+    if code in {"P", "PROMO", "PROMOS", "PROMOTION", "PROMOTIONCARD"}:
+        return "PROMO"
+    normalized = _normalized_release_code(code)
+    return normalized or code
+
+def _oplay_variant_type(variant: str | None) -> str:
+    value = str(variant or "base").lower()
+    if value == "base":
+        return "base"
+    if re.fullmatch(r"p\d+", value):
+        return "parallel"
+    if re.fullmatch(r"r\d+", value):
+        return "reprint"
+    if "manga" in value:
+        return "manga"
+    return "special"
+
+
+def _oplay_release_payload(record: dict, entity: dict | None = None, release_lookup: dict[str, dict] | None = None) -> dict:
+    code = canonical_id(record.get("releaseCode")) or "OPLAY"
+    # Reuse an existing Bandai release when OPlay is merely adding another
+    # language/printing of the same official set. This prevents duplicate OP01,
+    # PRB01, STxx... set cards in Cardify. OPlay creates its own release only
+    # when Bandai/Cardmarket genuinely do not expose that release yet.
+    if isinstance(entity, dict):
+        target_norm = _oplay_release_match_code(code)
+        for printing in entity.get("printings", []) or []:
+            for release in printing.get("releases", []) or []:
+                existing_code = canonical_id(release.get("code"))
+                existing_norm = _oplay_release_match_code(existing_code)
+                same = bool(existing_code and existing_code == code) or bool(
+                    target_norm and existing_norm and target_norm == existing_norm
+                )
+                if same:
+                    return dict(release)
+    if release_lookup:
+        target_norm = _oplay_release_match_code(code)
+        for key in (f"exact:{code}", f"norm:{target_norm}" if target_norm else None):
+            if key and key in release_lookup:
+                return dict(release_lookup[key])
+    kind = _release_kind(code)
+    if kind == "other" and code.startswith("ST"):
+        kind = "starter-deck"
+    return {
+        "releaseId": f"OPLAY-{code}",
+        "source": "oplay",
+        "seriesId": None,
+        "code": code,
+        "kind": kind,
+        "displayName": code,
+        "seriesLabel": code,
+        "cardSetsText": code,
+        "sourceUrl": record.get("pageUrl"),
+    }
+
+
+def _catalog_release_lookup(catalog: dict) -> dict[str, dict]:
+    """Return deterministic existing release payloads keyed by exact/normalized code.
+
+    Official Bandai releases win over Cardmarket when both happen to expose the same
+    code. The lookup is frozen before OPlay additions so it cannot create cycles.
+    """
+    buckets: dict[str, list[dict]] = defaultdict(list)
+    seen = set()
+    for card in catalog.values():
+        if not isinstance(card, dict):
+            continue
+        for printing in card.get("printings", []) or []:
+            for release in printing.get("releases", []) or []:
+                if not isinstance(release, dict):
+                    continue
+                release_id = nullable_text(release.get("releaseId"))
+                code = canonical_id(release.get("code"))
+                if not release_id or not code:
+                    continue
+                identity = (release_id, code)
+                if identity in seen:
+                    continue
+                seen.add(identity)
+                payload = dict(release)
+                buckets[f"exact:{code}"].append(payload)
+                norm = _oplay_release_match_code(code)
+                if norm:
+                    buckets[f"norm:{norm}"].append(payload)
+
+    def rank(release: dict) -> tuple[int, str]:
+        source = str(release.get("source") or "")
+        return ({"bandai": 0, "cardmarket": 1, "oplay": 2}.get(source, 9), str(release.get("releaseId") or ""))
+
+    result = {}
+    for key, rows in buckets.items():
+        unique = {str(row.get("releaseId")): row for row in rows}
+        if not unique:
+            continue
+        result[key] = sorted(unique.values(), key=rank)[0]
+    return result
+
+
+def _oplay_printing_id(record: dict) -> str:
+    lang = _safe_asset_component(str(record.get("language") or record.get("oplayLanguage") or "xx"))
+    release = _safe_asset_component(str(record.get("releaseCode") or "OPLAY"))
+    source_id = _safe_asset_component(str(record.get("sourcePrintingId") or record.get("code") or "UNKNOWN"))
+    return f"OPLAY-{source_id}-{lang}-{release}"
+
+
+def _oplay_printing_payload(record: dict, entity: dict, *, public_url: str | None = None, release_lookup: dict[str, dict] | None = None) -> dict:
+    printing_id = _oplay_printing_id(record)
+    image_url = nullable_text(public_url) or nullable_text(record.get("imageUrl"))
+    variant = str(record.get("variant") or "base").lower()
+    image = {
+        "url": image_url,
+        "sourceUrl": record.get("pageUrl") or OPLAY_LIBRARY_URL,
+        "sourceImageUrl": record.get("imageUrl"),
+        "source": "oplay",
+        "authoritative": False,
+        "scope": "printing",
+        "printingId": printing_id,
+        "oplayKey": record.get("oplayKey"),
+        "matchMethod": "oplay-printing-sitemap",
+        "exactPrintingMatch": True,
+        "validated": None,
+    } if image_url else None
+    mechanics = {
+        "life": entity.get("life"),
+        "cost": entity.get("cost"),
+        "power": entity.get("power"),
+        "counter": entity.get("counter"),
+        "colors": list(entity.get("colors") or []),
+        "attributes": list(entity.get("attributes") or []),
+        "block": entity.get("block"),
+        "types": list(entity.get("types") or []),
+        "effect": entity.get("effect"),
+        "trigger": entity.get("trigger"),
+    }
+    return {
+        "id": printing_id,
+        "printingId": printing_id,
+        "sourcePrintingId": record.get("sourcePrintingId") or printing_id,
+        "bandaiSourcePrintingIds": [],
+        "baseCode": record.get("code"),
+        "variantType": _oplay_variant_type(variant),
+        "isParallel": variant.startswith("p") if variant != "base" else False,
+        "isReprint": variant.startswith("r"),
+        "physicalVariantUnknown": False,
+        "displayInCollection": True,
+        "rarity": entity.get("rarity"),
+        "language": record.get("language"),
+        "languageLabel": record.get("languageLabel"),
+        "languageGroup": record.get("language"),
+        "languageSource": "oplay-printing",
+        "editionCode": record.get("releaseCode"),
+        "editionName": record.get("releaseCode"),
+        "editionSlug": slugify(record.get("releaseCode")),
+        "marketVersion": None,
+        "marketVersionLabel": None,
+        "imageUrl": image_url,
+        "imageSourceUrl": record.get("imageUrl"),
+        "imageHealth": None,
+        "image": image,
+        "referenceImage": None,
+        "releases": [_oplay_release_payload(record, entity, release_lookup)],
+        "mechanics": mechanics,
+        "mechanicsDifferFromBase": [],
+        "cardmarket": None,
+        "source": "oplay",
+        "sources": ["oplay"],
+        "catalogOrigin": "oplay-variant" if entity.get("bandaiCanonical") else "oplay-only",
+        "collectibleType": "don" if str(record.get("code") or "").startswith("DON-") else (entity.get("collectibleType") or "standard-card"),
+        "oplay": {
+            "oplayKey": record.get("oplayKey"),
+            "pageUrl": record.get("pageUrl"),
+            "imageUrl": record.get("imageUrl"),
+            "variant": variant,
+            "releaseCode": record.get("releaseCode"),
+            "language": record.get("language"),
+            "oplayLanguage": record.get("oplayLanguage"),
+        },
+    }
+
+
+def _strip_market_design_name(value: str | None) -> str:
+    text = normalize_text(value)
+    text = re.sub(r"\bdon!!?\b", " ", text)
+    text = re.sub(r"\b(?:prb|op|eb|st)\s*\d{1,2}\b", " ", text)
+    text = re.sub(r"\b(?:version|ver|v)\s*\d+\b", " ", text)
+    text = re.sub(r"\b(?:jp|japanese|english|non english)\b", " ", text)
+    text = re.sub(r"[^a-z0-9]+", " ", text)
+    return " ".join(text.split())
+
+
+def _catalog_cardmarket_printings(catalog: dict) -> list[tuple[dict, dict]]:
+    rows = []
+    for card in catalog.values():
+        if not isinstance(card, dict):
+            continue
+        for printing in card.get("printings", []) or []:
+            cm = printing.get("cardmarket")
+            if isinstance(cm, dict) and get_number(cm.get("productId")) is not None:
+                rows.append((card, printing))
+    return rows
+
+
+def reconcile_oplay_with_catalog(
+    catalog: dict,
+    oplay_raw: dict | None,
+    oplay_mapping: dict | None,
+    *,
+    oplay_public_urls: dict[str, str] | None = None,
+) -> tuple[dict, dict, dict]:
+    """Integrate OPlay physical printings while preventing duplicate collection entries."""
+    rows = normalize_oplay_printings(oplay_raw)
+    oplay_public_urls = oplay_public_urls or {}
+    cards_meta = (oplay_raw or {}).get("cards", {}) if isinstance(oplay_raw, dict) else {}
+    oplay_mapping = oplay_mapping if isinstance(oplay_mapping, dict) else {}
+    oplay_mapping.setdefault("schemaVersion", 1)
+    map_products = oplay_mapping.setdefault("products", {})
+    if not isinstance(map_products, dict):
+        map_products = {}
+        oplay_mapping["products"] = map_products
+
+    by_code = defaultdict(list)
+    by_key = {}
+    for row in rows:
+        by_code[row.get("code")].append(row)
+        by_key[row.get("oplayKey")] = row
+    release_lookup = _catalog_release_lookup(catalog)
+
+    stats = {
+        "sourcePrintings": len(rows),
+        "sourceCards": len(by_code),
+        "bandaiPrintingsMatched": 0,
+        "bandaiExactImagesPreserved": 0,
+        "cardmarketProductsMapped": 0,
+        "cardmarketProductsMappedManual": 0,
+        "cardmarketProductsMappedAuto": 0,
+        "cardmarketProductsHiddenAsAmbiguousMarketRows": 0,
+        "oplayPrintingsAdded": 0,
+        "oplayOnlyEntitiesAdded": 0,
+        "englishOPlaySuppressedAgainstBandai": 0,
+        "cardmarketUnknownLanguageNotAutoMapped": 0,
+        "entitiesWithOPlay": 0,
+        "languages": dict(sorted(Counter(row.get("language") or "unknown" for row in rows).items())),
+    }
+    consumed = set()
+    consumed_owner: dict[str, str] = {}
+    review = []
+
+    # 1) English OPlay printings that are already present as exact Bandai printing IDs.
+    for code, candidates in by_code.items():
+        card = catalog.get(code)
+        if not isinstance(card, dict):
+            continue
+        bandai_by_source = defaultdict(list)
+        for printing in card.get("printings", []) or []:
+            if printing.get("source") == "bandai" or printing.get("catalogOrigin") == "bandai":
+                bandai_by_source[canonical_id(printing.get("sourcePrintingId"))].append(printing)
+        for row in candidates:
+            if row.get("language") != "en":
+                continue
+            matches = bandai_by_source.get(canonical_id(row.get("sourcePrintingId")), [])
+            if len(matches) != 1:
+                continue
+            # If release evidence exists on both sides and contradicts, do not collapse.
+            release_code = canonical_id(row.get("releaseCode"))
+            bandai_release_codes = {canonical_id(rel.get("code")) for rel in matches[0].get("releases", []) or [] if rel.get("code")}
+            if bandai_release_codes and release_code and release_code not in bandai_release_codes and len([r for r in candidates if canonical_id(r.get("sourcePrintingId")) == canonical_id(row.get("sourcePrintingId"))]) > 1:
+                continue
+            printing = matches[0]
+            printing["oplay"] = {
+                "oplayKey": row.get("oplayKey"),
+                "pageUrl": row.get("pageUrl"),
+                "imageUrl": row.get("imageUrl"),
+                "variant": row.get("variant"),
+                "releaseCode": row.get("releaseCode"),
+                "language": row.get("language"),
+            }
+            printing.setdefault("sources", [printing.get("source") or "bandai"])
+            if "oplay" not in printing["sources"]:
+                printing["sources"].append("oplay")
+            consumed.add(row.get("oplayKey"))
+            consumed_owner[row.get("oplayKey")] = str(printing.get("printingId") or printing.get("id") or "")
+            stats["bandaiPrintingsMatched"] += 1
+
+    # 2) Cardmarket products: only attach OPlay when the candidate is unique.
+    for card, printing in _catalog_cardmarket_printings(catalog):
+        cm = printing.get("cardmarket") or {}
+        product_id = int(get_number(cm.get("productId")))
+        product = cm.get("product") or {}
+        manual = map_products.get(str(product_id)) if isinstance(map_products.get(str(product_id)), dict) else None
+        chosen = None
+        method = None
+        candidate_rows = []
+        if manual and manual.get("oplayKey") in by_key:
+            manual_candidate = by_key[manual["oplayKey"]]
+            owner = consumed_owner.get(manual_candidate.get("oplayKey"))
+            current_printing_id = str(printing.get("printingId") or printing.get("id") or "")
+            if owner in {None, current_printing_id}:
+                chosen = manual_candidate
+                method = "persisted-oplay-cardmarket-mapping"
+                stats["cardmarketProductsMappedManual"] += 1
+            else:
+                candidate_rows = [manual_candidate]
+        else:
+            code = canonical_id(printing.get("baseCode") or _product_card_code(product))
+            if code in by_code:
+                candidate_rows = list(by_code[code])
+            elif card.get("collectibleType") == "don" or str(card.get("catalogId") or "").startswith("DON-CM-"):
+                wanted_name = _strip_market_design_name(product.get("name") or card.get("name"))
+                if wanted_name:
+                    for row in rows:
+                        if not str(row.get("code") or "").startswith("DON-"):
+                            continue
+                        meta = cards_meta.get(row.get("code")) if isinstance(cards_meta, dict) else None
+                        candidate_name = _strip_market_design_name((meta or {}).get("name") if isinstance(meta, dict) else row.get("name"))
+                        if candidate_name and candidate_name == wanted_name:
+                            candidate_rows.append(row)
+            known_language = nullable_text(printing.get("language"))
+            concrete_language = known_language if known_language and known_language not in {"unknown", "non-en"} else None
+            if concrete_language:
+                candidate_rows = [row for row in candidate_rows if row.get("language") == concrete_language]
+            else:
+                # V3.12 never converts Cardmarket's unknown/non-en bucket into a
+                # concrete OPlay language merely because one artwork happens to exist.
+                stats["cardmarketUnknownLanguageNotAutoMapped"] += 1
+            release_code = _normalized_release_code(printing.get("editionCode"))
+            if release_code:
+                release_matches = [row for row in candidate_rows if _normalized_release_code(row.get("releaseCode")) == release_code]
+                if release_matches:
+                    candidate_rows = release_matches
+            current_printing_id = str(printing.get("printingId") or printing.get("id") or "")
+            available_rows = [
+                row for row in candidate_rows
+                if row.get("oplayKey") not in consumed
+                or consumed_owner.get(row.get("oplayKey")) == current_printing_id
+            ]
+            # Do not use product/date/price/order to break ties. Exact uniqueness only,
+            # and automatic mapping requires a concrete language.
+            unique = {row.get("oplayKey"): row for row in available_rows if row.get("oplayKey")}
+            if concrete_language and len(unique) == 1:
+                chosen = next(iter(unique.values()))
+                method = "unique-code-language-release"
+                map_products[str(product_id)] = {
+                    "productId": product_id,
+                    "oplayKey": chosen.get("oplayKey"),
+                    "method": method,
+                    "verified": True,
+                    "createdAt": utc_now_iso(),
+                }
+                stats["cardmarketProductsMappedAuto"] += 1
+
+        if chosen:
+            image_url = nullable_text(oplay_public_urls.get(chosen.get("oplayKey"))) or nullable_text(chosen.get("imageUrl"))
+            printing_id = printing.get("printingId") or printing.get("id")
+            existing_exact = nullable_text(printing.get("imageUrl"))
+            existing_descriptor = printing.get("image") if isinstance(printing.get("image"), dict) else None
+            is_bandai_printing = printing.get("source") == "bandai" or printing.get("catalogOrigin") == "bandai"
+            if is_bandai_printing and existing_exact:
+                # OPlay may corroborate the same physical printing, but official
+                # Bandai artwork remains the exact image authority when present.
+                stats["bandaiExactImagesPreserved"] += 1
+            else:
+                printing["imageUrl"] = image_url
+                printing["imageSourceUrl"] = chosen.get("imageUrl")
+                printing["imageHealth"] = None
+                printing["image"] = {
+                    "url": image_url,
+                    "sourceUrl": chosen.get("pageUrl") or OPLAY_LIBRARY_URL,
+                    "sourceImageUrl": chosen.get("imageUrl"),
+                    "source": "oplay",
+                    "authoritative": False,
+                    "scope": "printing",
+                    "printingId": printing_id,
+                    "productId": product_id,
+                    "oplayKey": chosen.get("oplayKey"),
+                    "matchMethod": method,
+                    "exactProductMatch": True,
+                    "exactPrintingMatch": True,
+                    "validated": None,
+                } if image_url else None
+            printing["referenceImage"] = None
+            printing["physicalVariantUnknown"] = False
+            printing["displayInCollection"] = True
+            if printing.get("language") in {None, "unknown"}:
+                printing["language"] = chosen.get("language")
+                printing["languageLabel"] = chosen.get("languageLabel")
+                printing["languageGroup"] = chosen.get("language")
+                printing["languageSource"] = "oplay-exact-product-mapping"
+            printing["oplay"] = {
+                "oplayKey": chosen.get("oplayKey"),
+                "pageUrl": chosen.get("pageUrl"),
+                "imageUrl": chosen.get("imageUrl"),
+                "variant": chosen.get("variant"),
+                "releaseCode": chosen.get("releaseCode"),
+                "language": chosen.get("language"),
+                "mappingMethod": method,
+            }
+            printing.setdefault("sources", [printing.get("source") or "cardmarket"])
+            if "oplay" not in printing["sources"]:
+                printing["sources"].append("oplay")
+            consumed.add(chosen.get("oplayKey"))
+            consumed_owner[chosen.get("oplayKey")] = str(printing.get("printingId") or printing.get("id") or "")
+            stats["cardmarketProductsMapped"] += 1
+        else:
+            relevant_oplay_exists = bool(candidate_rows)
+            if relevant_oplay_exists and printing.get("source") == "cardmarket":
+                printing["displayInCollection"] = False
+                stats["cardmarketProductsHiddenAsAmbiguousMarketRows"] += 1
+            if relevant_oplay_exists:
+                review.append({
+                    "productId": product_id,
+                    "catalogId": card.get("catalogId"),
+                    "name": product.get("name") or card.get("name"),
+                    "language": printing.get("language"),
+                    "editionCode": printing.get("editionCode"),
+                    "marketVersion": printing.get("marketVersion"),
+                    "reason": "multiple-or-incomplete-oplay-candidates; no guessing",
+                    "candidateOPlayKeys": sorted({row.get("oplayKey") for row in candidate_rows if row.get("oplayKey")})[:100],
+                })
+
+    # 3) Add all unconsumed OPlay physical printings under the existing code entity,
+    # or create an OPlay-only entity if Bandai/Cardmarket does not know the card yet.
+    for code, candidates in sorted(by_code.items()):
+        card = catalog.get(code)
+        if not isinstance(card, dict):
+            meta = cards_meta.get(code) if isinstance(cards_meta, dict) else None
+            meta = meta if isinstance(meta, dict) else {}
+            first = candidates[0]
+            name = nullable_text(meta.get("name")) or nullable_text(first.get("name")) or code
+            card = {
+                "catalogId": code,
+                "code": code,
+                "printedCodes": [code],
+                "game": "One Piece",
+                "name": name,
+                "rarity": meta.get("rarity"),
+                "type": "Don" if code.startswith("DON-") else meta.get("type"),
+                "life": meta.get("life"),
+                "cost": meta.get("cost"),
+                "power": meta.get("power"),
+                "counter": meta.get("counter"),
+                "colors": list(meta.get("colors") or []),
+                "attributes": list(meta.get("attributes") or []),
+                "block": meta.get("block"),
+                "types": list(meta.get("types") or []),
+                "effect": meta.get("effect"),
+                "trigger": meta.get("trigger"),
+                "sources": ["oplay"],
+                "catalogOrigin": "oplay-only",
+                "bandaiCanonical": False,
+                "dataCompleteness": "oplay-page-and-printing-metadata",
+                "releaseStatus": "unverified-by-bandai",
+                "collectibleType": "don" if code.startswith("DON-") else "standard-card",
+                "releaseIds": [],
+                "previewImageUrl": None,
+                "previewImage": None,
+                "printings": [],
+            }
+            catalog[code] = card
+            stats["oplayOnlyEntitiesAdded"] += 1
+        card.setdefault("sources", [])
+        if "oplay" not in card["sources"]:
+            card["sources"].append("oplay")
+        existing_ids = {p.get("printingId") or p.get("id") for p in card.get("printings", []) or []}
+        for row in candidates:
+            if row.get("oplayKey") in consumed:
+                continue
+            # Bandai is the canonical English physical catalogue. OPlay English
+            # variants that cannot be deterministically paired with a Bandai ID are
+            # suppressed rather than duplicated. OPlay remains canonical for the
+            # six non-English languages and for entities Bandai does not know yet.
+            if card.get("bandaiCanonical") is True and row.get("language") == "en":
+                stats["englishOPlaySuppressedAgainstBandai"] += 1
+                continue
+            payload = _oplay_printing_payload(
+                row, card, public_url=oplay_public_urls.get(row.get("oplayKey")), release_lookup=release_lookup
+            )
+            if payload["printingId"] in existing_ids:
+                continue
+            card.setdefault("printings", []).append(payload)
+            existing_ids.add(payload["printingId"])
+            consumed.add(row.get("oplayKey"))
+            stats["oplayPrintingsAdded"] += 1
+            for release in payload.get("releases", []):
+                release_id = release.get("releaseId")
+                if release_id and release_id not in card.setdefault("releaseIds", []):
+                    card["releaseIds"].append(release_id)
+        if not card.get("previewImageUrl"):
+            visible = [p for p in card.get("printings", []) if p.get("displayInCollection") is not False and p.get("imageUrl")]
+            preferred = next((p for p in visible if p.get("language") == "en"), visible[0] if visible else None)
+            if preferred:
+                card["previewImageUrl"] = preferred.get("imageUrl")
+                card["previewImage"] = {
+                    "url": preferred.get("imageUrl"),
+                    "source": "oplay",
+                    "authoritative": False,
+                    "scope": "printing",
+                    "printingId": preferred.get("printingId"),
+                    "exactPrintingMatch": True,
+                }
+        card["releaseIds"] = sorted(set(card.get("releaseIds", [])))
+        card["printings"] = sorted(card.get("printings", []), key=natural_printing_sort_key)
+
+    stats["entitiesWithOPlay"] = sum(1 for card in catalog.values() if isinstance(card, dict) and "oplay" in (card.get("sources") or []))
+    stats["visiblePrintings"] = sum(1 for card in catalog.values() if isinstance(card, dict) for p in card.get("printings", []) if p.get("displayInCollection") is not False)
+    stats["hiddenMarketPrintings"] = sum(1 for card in catalog.values() if isinstance(card, dict) for p in card.get("printings", []) if p.get("displayInCollection") is False)
+    stats["printingsWithOPlayImage"] = sum(1 for card in catalog.values() if isinstance(card, dict) for p in card.get("printings", []) if isinstance(p.get("image"), dict) and p["image"].get("source") == "oplay" and p.get("imageUrl"))
+    oplay_mapping["updatedAt"] = utc_now_iso()
+    return oplay_mapping, {"generatedAt": utc_now_iso(), "pendingCount": len(review), "pending": review}, stats
+
+
+def persist_oplay_image_assets(
+    session: requests.Session,
+    oplay_printings: list[dict],
+    image_dir: Path,
+    manifest: dict,
+    image_cache: dict,
+    public_base_url: str,
+    *,
+    allow_downloads: bool,
+    refresh: bool,
+    max_new: int = 0,
+) -> tuple[dict[str, str], dict]:
+    """Optional cache mode. Remote mode never calls this function."""
+    stats = {"targets": len(oplay_printings), "reused": 0, "adopted": 0, "downloaded": 0, "pending": 0, "errors": 0}
+    public_urls = {}
+    for row in oplay_printings:
+        key = nullable_text(row.get("oplayKey"))
+        source_url = nullable_text(row.get("imageUrl"))
+        if not key or not source_url:
+            continue
+        language = _safe_asset_component(str(row.get("language") or row.get("oplayLanguage") or "xx"))
+        release = _safe_asset_component(str(row.get("releaseCode") or "misc"))
+        stem = _safe_asset_component(str(row.get("sourcePrintingId") or row.get("code") or "unknown"))
+        relative = Path("oplay") / language / release / stem
+        can_download = allow_downloads and (not max_new or stats["downloaded"] < max_new)
+        asset, action = ensure_persistent_image_asset(
+            session,
+            manifest,
+            asset_key=f"oplay:{key}",
+            image_dir=image_dir,
+            relative_stem=relative,
+            public_base_url=public_base_url,
+            source_url=source_url,
+            source="oplay",
+            referer=row.get("pageUrl") or OPLAY_LIBRARY_URL,
+            refresh=refresh,
+            allow_download=can_download,
+            metadata={"oplayKey": key, "language": row.get("language"), "releaseCode": row.get("releaseCode")},
+        )
+        if action in stats:
+            stats[action] += 1
+        elif action == "error":
+            stats["errors"] += 1
+        if asset and asset.get("publicUrl"):
+            public_urls[key] = asset["publicUrl"]
+            image_cache.setdefault("images", {})[source_url] = _asset_health(asset)
+    return public_urls, stats
+
+
+def _directory_stats(path: Path) -> dict:
+    files = 0
+    total = 0
+    largest = []
+    if not path.exists():
+        return {"files": 0, "bytes": 0, "mib": 0.0, "largestFiles": []}
+    for item in path.rglob("*"):
+        try:
+            if not item.is_file():
+                continue
+            size = item.stat().st_size
+        except OSError:
+            continue
+        files += 1
+        total += size
+        largest.append((size, item.as_posix()))
+    largest.sort(reverse=True)
+    return {
+        "files": files,
+        "bytes": total,
+        "mib": round(total / (1024 * 1024), 3),
+        "largestFiles": [{"path": name, "bytes": size} for size, name in largest[:20]],
+    }
+
+
+def build_storage_report(
+    raw_dir: Path,
+    data_dir: Path,
+    output_dir: Path,
+    image_dir: Path,
+    *,
+    oplay_raw: dict | None = None,
+    image_storage_mode: str = "remote",
+) -> dict:
+    folders = {
+        "raw": _directory_stats(raw_dir),
+        "data": _directory_stats(data_dir),
+        "output": _directory_stats(output_dir),
+        "images": _directory_stats(image_dir),
+    }
+    working = sum(item["bytes"] for item in folders.values())
+    git_stats = _directory_stats(Path(".git")) if Path(".git").exists() else {"files": 0, "bytes": 0, "mib": 0.0, "largestFiles": []}
+    oplay_printings = normalize_oplay_printings(oplay_raw)
+    image_urls = {row.get("imageUrl") for row in oplay_printings if row.get("imageUrl")}
+    cached_oplay = _directory_stats(image_dir / "oplay")
+    return {
+        "generatedAt": utc_now_iso(),
+        "schemaVersion": 1,
+        "catalogVersion": "3.12.0",
+        "imageStorageMode": image_storage_mode,
+        "folders": folders,
+        "workingDataBytes": working,
+        "workingDataMiB": round(working / (1024 * 1024), 3),
+        "gitRepository": git_stats,
+        "oplay": {
+            "printings": len(oplay_printings),
+            "uniqueRemoteImageUrls": len(image_urls),
+            "cachedImageFiles": cached_oplay.get("files", 0),
+            "cachedImageBytes": cached_oplay.get("bytes", 0),
+            "downloadPolicy": "remote-urls-only" if image_storage_mode == "remote" else "explicit-cache-mode",
+        },
+        "obsoleteAfterV312Pass": {
+            "raw": ["optcgapi_images_raw.json"],
+            "data": ["cardmarket_image_mapping.json", "image_health_cache.json", "image_assets_v1.json"],
+            "output": ["cardmarket_image_pending.json"],
+            "images": ["images/cardmarket/", "images/bandai/ (optional after Cardify 1.3.4 remote-image PASS)"],
+            "reviewBeforeDelete": ["data/cardmarket_image_overrides.json (solo si existe y no contiene trabajo manual útil)"],
+        },
+    }
+
 
 
 def _cardmarket_expansion_labels_from_mapping(mapping: dict | None) -> dict[int, str]:
@@ -6814,6 +7575,8 @@ def build_sets_index(
         if not isinstance(card, dict):
             continue
         for printing in card.get("printings", []) or []:
+            if printing.get("displayInCollection") is False:
+                continue
             cm = printing.get("cardmarket") or {}
             cm_product = cm.get("product") or {}
             cm_expansion = get_number(cm_product.get("idExpansion"))
@@ -6851,7 +7614,7 @@ def build_sets_index(
                     "sourceUrl": (
                         f"{BANDAI_CARDLIST_URLS[0]}?series={series_id}"
                         if source == "bandai" and series_id
-                        else None
+                        else (release.get("sourceUrl") if source == "oplay" else None)
                     ),
                     "cardmarketExpansionIds": set(),
                     "cards": {},
@@ -6910,13 +7673,14 @@ def build_sets_index(
     result_sets.sort(key=_set_sort_key)
     return {
         "schemaVersion": 1,
-        "catalogVersion": "3.11.6",
+        "catalogVersion": "3.12.0",
         "generatedAt": utc_now_iso(),
         "definitions": {
             "baseTarget": "one owned catalog entity that appears in the release",
             "masterTarget": "every distinct printing that appears in the release",
         },
         "officialBandaiSetCount": sum(1 for item in result_sets if item.get("source") == "bandai"),
+        "oplaySetCount": sum(1 for item in result_sets if item.get("source") == "oplay"),
         "cardmarketExpansionCount": sum(1 for item in result_sets if item.get("source") == "cardmarket"),
         "sets": result_sets,
     }
@@ -6944,7 +7708,7 @@ def update_price_history(
     if not isinstance(history, dict):
         history = {}
     history.setdefault("schemaVersion", 1)
-    history["catalogVersion"] = "3.11.6"
+    history["catalogVersion"] = "3.12.0"
     history["currency"] = "EUR"
     history["valuationPolicy"] = "trend ?? avg7 ?? avg30 ?? avg"
     history["retentionDays"] = retention_days
@@ -7018,7 +7782,7 @@ def build_catalog_manifest(
     printings = sum(len(card.get("printings", [])) for card in catalog.values() if isinstance(card, dict))
     manifest = {
         "schemaVersion": 2,
-        "catalogVersion": "3.11.6",
+        "catalogVersion": "3.12.0",
         "generatedAt": generated_at,
         "sha256Semantics": "raw-file-bytes",
         "backwardCompatibility": {
@@ -7058,12 +7822,461 @@ def build_catalog_manifest(
 # ---------------------------------------------------------------------------
 
 
+# ---------------------------------------------------------------------------
+# OPlayTCG multilingual printing catalogue (V3.12.0)
+# ---------------------------------------------------------------------------
+
+
+def _oplay_language_info(value: str | None) -> dict:
+    code = str(value or "").strip().lower()
+    info = OPLAY_LANGUAGES.get(code) or {"language": code or None, "label": code.upper() if code else None}
+    return {"oplayLanguage": code or None, **info}
+
+
+def _oplay_code_from_page_url(url: str | None) -> str | None:
+    match = re.search(r"/cards/((?:OP|EB|ST|PRB)\d{2}-\d{3}|P-\d{3}|DON-\d{3})(?:/|$|[?#])", str(url or ""), re.I)
+    return canonical_id(match.group(1)) if match else None
+
+
+def _oplay_source_printing_id(code: str, variant: str | None) -> str:
+    variant = str(variant or "base").strip().lower()
+    if variant in {"", "base"}:
+        return canonical_id(code)
+    if re.fullmatch(r"[pr]\d+", variant):
+        return f"{canonical_id(code)}_{variant.upper()}"
+    return f"{canonical_id(code)}_{_safe_asset_component(variant).upper()}"
+
+
+def _oplay_image_quality(url: str | None) -> tuple[int, int]:
+    text = str(url or "").lower()
+    score = 0
+    if "/original/" in text or "/full/" in text or "/large/" in text:
+        score += 3
+    elif "/medium/" in text:
+        score += 2
+    elif "/small/" in text:
+        score += 1
+    ext_score = 1 if text.endswith((".webp", ".png", ".jpg", ".jpeg")) else 0
+    return score, ext_score
+
+
+def _oplay_guess_name(title: str | None, code: str | None) -> str | None:
+    text = html_lib.unescape(str(title or "")).strip()
+    if not text:
+        return None
+    text = re.sub(r"\s*[·|-]\s*One Piece Card Game.*$", "", text, flags=re.I).strip()
+    if code:
+        text = re.sub(r"\s*\(" + re.escape(code) + r"\)\s*$", "", text, flags=re.I).strip()
+        text = re.sub(r"\s+" + re.escape(code) + r"\s*$", "", text, flags=re.I).strip()
+    if text.casefold() in {"base", "p1", "p2", "p3", "p4", "p5", "r1", "r2"}:
+        return None
+    return text or None
+
+
+def _oplay_normalize_image_record(
+    page_url: str | None,
+    image_url: str | None,
+    *,
+    title: str | None = None,
+    caption: str | None = None,
+) -> dict | None:
+    image_url = html_lib.unescape(str(image_url or "")).strip()
+    if not image_url:
+        return None
+    parsed = urlparse(image_url)
+    if (parsed.hostname or "").casefold() != OPLAY_IMAGE_HOST:
+        return None
+    parts = [part for part in parsed.path.split("/") if part]
+    lang_index = next((idx for idx, part in enumerate(parts) if part.lower() in OPLAY_LANGUAGES), None)
+    if lang_index is None or lang_index == 0 or len(parts) < lang_index + 2:
+        return None
+    release_code = canonical_id(parts[lang_index - 1])
+    oplay_language = parts[lang_index].lower()
+    filename = parts[-1]
+    stem = Path(filename).stem
+    code = _oplay_code_from_page_url(page_url)
+    if not code:
+        code_match = re.match(r"((?:OP|EB|ST|PRB)\d{2}-\d{3}|P-\d{3}|DON-\d{3})(?:_|$)", stem, re.I)
+        code = canonical_id(code_match.group(1)) if code_match else None
+    if not code:
+        return None
+    suffix = stem[len(code):] if stem.upper().startswith(code.upper()) else ""
+    suffix = suffix.lstrip("_- ")
+    variant = suffix.casefold() if suffix else "base"
+    # Ignore localization suffixes if the CDN ever appends them to the filename.
+    if variant in {"en", "jp", "fr", "th", "tc", "cn", "kr"}:
+        variant = "base"
+    lang = _oplay_language_info(oplay_language)
+    oplay_key = "|".join([code, str(lang.get("language") or oplay_language), release_code, variant])
+    return {
+        "oplayKey": oplay_key,
+        "code": code,
+        "sourcePrintingId": _oplay_source_printing_id(code, variant),
+        "variant": variant,
+        "releaseCode": release_code,
+        "language": lang.get("language"),
+        "languageLabel": lang.get("label"),
+        "oplayLanguage": oplay_language,
+        "imageUrl": image_url,
+        "pageUrl": str(page_url or "") or None,
+        "title": nullable_text(title),
+        "caption": nullable_text(caption),
+        "name": _oplay_guess_name(title, code) or _oplay_guess_name(caption, code),
+        "source": "oplaytcg",
+    }
+
+
+def _parse_oplay_sitemap_xml(xml_text: str, source_url: str) -> tuple[list[str], list[dict], list[str]]:
+    child_sitemaps: list[str] = []
+    printings: list[dict] = []
+    page_urls: list[str] = []
+    try:
+        root = ET.fromstring(xml_text)
+    except ET.ParseError as error:
+        raise RuntimeError(f"Sitemap OPlay inválido {source_url}: {error}") from error
+
+    def local(tag: str) -> str:
+        return tag.rsplit("}", 1)[-1].lower()
+
+    if local(root.tag) == "sitemapindex":
+        for node in root.iter():
+            if local(node.tag) != "loc" or not (node.text or "").strip():
+                continue
+            value = (node.text or "").strip()
+            if "sitemap" in value.casefold() and (urlparse(value).hostname or "").casefold() == "oplaytcg.com":
+                child_sitemaps.append(value)
+        return child_sitemaps, printings, page_urls
+
+    for url_node in [node for node in root.iter() if local(node.tag) == "url"]:
+        direct_loc = None
+        for child in list(url_node):
+            if local(child.tag) == "loc" and (child.text or "").strip():
+                direct_loc = (child.text or "").strip()
+                break
+        if direct_loc:
+            page_urls.append(direct_loc)
+        for image_node in [node for node in url_node.iter() if local(node.tag) == "image"]:
+            image_loc = title = caption = None
+            for child in list(image_node):
+                name = local(child.tag)
+                value = (child.text or "").strip()
+                if name == "loc":
+                    image_loc = value
+                elif name == "title":
+                    title = value
+                elif name == "caption":
+                    caption = value
+            record = _oplay_normalize_image_record(direct_loc, image_loc, title=title, caption=caption)
+            if record:
+                printings.append(record)
+    return child_sitemaps, printings, page_urls
+
+
+def _oplay_card_metadata_from_html(html: str, page_url: str, code: str) -> dict:
+    """Extract conservative OPlay card metadata for entities Bandai does not know yet.
+
+    Printing identity comes from the image sitemap. Page metadata is enrichment only;
+    missing/changed markup leaves fields null rather than inventing mechanics.
+    """
+    soup = BeautifulSoup(html or "", "html.parser")
+    heading = soup.find("h1")
+    title = soup.title.get_text(" ", strip=True) if soup.title else None
+    name = heading.get_text(" ", strip=True) if heading else _oplay_guess_name(title, code)
+    if name and canonical_id(name) == canonical_id(code):
+        name = _oplay_guess_name(title, code)
+
+    image_urls = []
+    for tag in soup.find_all(["img", "source"]):
+        for attr in ("src", "srcset"):
+            raw = tag.get(attr)
+            if not raw:
+                continue
+            for candidate in str(raw).split(","):
+                url = candidate.strip().split(" ", 1)[0]
+                if OPLAY_IMAGE_HOST in url:
+                    image_urls.append(url)
+
+    lines = [line.strip() for line in soup.get_text("\n", strip=True).splitlines() if line.strip()]
+
+    def scalar_after(label: str) -> str | None:
+        wanted = label.casefold()
+        for idx, line in enumerate(lines[:-1]):
+            if line.casefold() == wanted:
+                value = lines[idx + 1].strip()
+                if value and value.casefold() not in {"set", "effect", "trigger", "printings", "archetype"}:
+                    return value
+        return None
+
+    def int_after(label: str) -> int | None:
+        value = scalar_after(label)
+        if not value:
+            return None
+        match = re.search(r"-?\d+", value.replace(",", ""))
+        return int(match.group(0)) if match else None
+
+    type_value = rarity = attribute = None
+    known_types = {"leader", "character", "event", "stage", "don!!", "don"}
+    known_rarities = {
+        "leader", "common", "uncommon", "rare", "super rare", "secret rare",
+        "promo", "special", "treasure rare", "don!!", "don",
+    }
+    for line in lines:
+        if "·" not in line:
+            continue
+        parts = [part.strip() for part in line.split("·") if part.strip()]
+        if not parts or parts[0].casefold() not in known_types:
+            continue
+        type_value = parts[0].title() if parts[0].casefold() not in {"don", "don!!"} else "Don"
+        if len(parts) > 1 and parts[1].casefold() in known_rarities:
+            rarity = parts[1]
+            if len(parts) > 2:
+                attribute = parts[2]
+        elif len(parts) > 1:
+            attribute = parts[1]
+        break
+
+    def section_text(label: str) -> str | None:
+        for header in soup.find_all(["h2", "h3", "h4"]):
+            if header.get_text(" ", strip=True).casefold() != label.casefold():
+                continue
+            chunks = []
+            for sibling in header.next_siblings:
+                sibling_name = getattr(sibling, "name", None)
+                if sibling_name in {"h2", "h3", "h4"}:
+                    break
+                if hasattr(sibling, "get_text"):
+                    text = sibling.get_text(" ", strip=True)
+                else:
+                    text = str(sibling).strip()
+                if text:
+                    chunks.append(text)
+            value = " ".join(chunks).strip()
+            return value or None
+        return None
+
+    set_code = None
+    set_value = scalar_after("Set")
+    if set_value:
+        match = re.search(r"\b((?:OP|EB|ST|PRB)\d{2}|P|DON)\b", set_value, re.I)
+        if match:
+            set_code = canonical_id(match.group(1))
+    if not set_code:
+        page_text = "\n".join(lines)
+        set_match = re.search(r"(?:^|\n)Set\s*\n?\s*((?:OP|EB|ST|PRB)\d{2}|P|DON)\b", page_text, re.I)
+        if set_match:
+            set_code = canonical_id(set_match.group(1))
+
+    archetype = section_text("Archetype")
+    types = []
+    if archetype:
+        types = [part.strip() for part in re.split(r"→|/|\|", archetype) if part.strip()]
+
+    counter = int_after("Counter")
+    return {
+        "code": canonical_id(code),
+        "name": nullable_text(name),
+        "pageUrl": page_url,
+        "title": nullable_text(title),
+        "setCode": set_code,
+        "type": nullable_text(type_value),
+        "rarity": nullable_text(rarity),
+        "life": int_after("Life"),
+        "cost": int_after("Cost"),
+        "power": int_after("Power"),
+        "counter": counter,
+        "block": int_after("Block"),
+        "attributes": [attribute] if attribute else [],
+        "types": types,
+        "effect": section_text("Effect"),
+        "trigger": section_text("Trigger"),
+        "imageUrls": sorted(set(image_urls)),
+        "fetchedAt": utc_now_iso(),
+        "source": "oplaytcg",
+    }
+
+
+def fetch_oplay_raw(
+    session: requests.Session,
+    *,
+    previous_raw: dict | None = None,
+    bandai_codes: set[str] | None = None,
+    refresh_metadata: bool = False,
+    metadata_max_new: int = 0,
+    deep_crawl: bool = False,
+) -> dict:
+    """Fetch the public OPlay printing catalogue without downloading card images.
+
+    Primary path: the site's XML sitemap/image sitemap. OPlay announced an image sitemap
+    in its public changelog; using it avoids tens of thousands of card-page requests.
+    Only OPlay-only card codes need one metadata page request, and those results are cached
+    in raw/oplaytcg_catalog_raw.json on later runs.
+    """
+    previous_raw = previous_raw if isinstance(previous_raw, dict) else {}
+    bandai_codes = {canonical_id(code) for code in (bandai_codes or set()) if code}
+    previous_cards = previous_raw.get("cards") if isinstance(previous_raw.get("cards"), dict) else {}
+    sitemap_queue = [OPLAY_SITEMAP_URL]
+    # Fallback names used by common sitemap generators; queried only if the root does not expose images.
+    sitemap_fallbacks = [
+        f"{OPLAY_BASE_URL}/sitemap-images.xml",
+        f"{OPLAY_BASE_URL}/image-sitemap.xml",
+        f"{OPLAY_BASE_URL}/sitemap_images.xml",
+    ]
+    seen_sitemaps = set()
+    sitemap_rows = []
+    printings_by_key: dict[str, dict] = {}
+    page_urls = set()
+    errors = []
+
+    def fetch_sitemap(url: str) -> bool:
+        if url in seen_sitemaps or len(seen_sitemaps) >= 96:
+            return False
+        seen_sitemaps.add(url)
+        try:
+            response = session.get(url, headers={"Accept": "application/xml,text/xml,*/*;q=0.8"}, timeout=45)
+            response.raise_for_status()
+            text = response.text
+            children, rows, pages = _parse_oplay_sitemap_xml(text, url)
+            sitemap_rows.append({"url": url, "httpStatus": response.status_code, "bytes": len(response.content), "children": len(children), "printings": len(rows)})
+            sitemap_queue.extend(child for child in children if child not in seen_sitemaps)
+            page_urls.update(pages)
+            for row in rows:
+                key = row["oplayKey"]
+                previous = printings_by_key.get(key)
+                if previous is None or _oplay_image_quality(row.get("imageUrl")) > _oplay_image_quality(previous.get("imageUrl")):
+                    printings_by_key[key] = row
+            return bool(rows or children)
+        except Exception as error:
+            errors.append({"url": url, "error": str(error)[:1000]})
+            return False
+
+    while sitemap_queue:
+        fetch_sitemap(sitemap_queue.pop(0))
+
+    if not printings_by_key:
+        # Discover non-standard sitemap filenames advertised by robots.txt.
+        try:
+            robots = session.get(f"{OPLAY_BASE_URL}/robots.txt", timeout=30)
+            if robots.ok:
+                for match in re.finditer(r"(?im)^\s*Sitemap:\s*(https?://\S+)\s*$", robots.text):
+                    advertised = match.group(1).strip()
+                    if (urlparse(advertised).hostname or "").casefold() == "oplaytcg.com":
+                        sitemap_queue.append(advertised)
+                while sitemap_queue:
+                    fetch_sitemap(sitemap_queue.pop(0))
+        except Exception as error:
+            errors.append({"url": f"{OPLAY_BASE_URL}/robots.txt", "error": str(error)[:1000]})
+
+    if not printings_by_key:
+        for fallback in sitemap_fallbacks:
+            fetch_sitemap(fallback)
+
+    # Optional expensive fallback. It exists for resilience but is intentionally opt-in.
+    if not printings_by_key and deep_crawl:
+        codes = set()
+        for lang in OPLAY_LANGUAGES:
+            index_url = f"{OPLAY_BASE_URL}/en/library/all/{lang}"
+            try:
+                response = session.get(index_url, timeout=45)
+                response.raise_for_status()
+                for match in re.finditer(r"/cards/((?:OP|EB|ST|PRB)\d{2}-\d{3}|P-\d{3}|DON-\d{3})", response.text, re.I):
+                    codes.add(canonical_id(match.group(1)))
+            except Exception as error:
+                errors.append({"url": index_url, "error": str(error)[:1000]})
+        for code_index, code in enumerate(sorted(codes), start=1):
+            for lang in OPLAY_LANGUAGES:
+                page_url = f"{OPLAY_BASE_URL}/en/cards/{code}/{lang}"
+                try:
+                    response = session.get(page_url, timeout=45)
+                    if response.status_code != 200:
+                        continue
+                    soup = BeautifulSoup(response.text, "html.parser")
+                    for tag in soup.find_all(["img", "source"]):
+                        raw = tag.get("src") or tag.get("srcset")
+                        if not raw:
+                            continue
+                        for candidate in str(raw).split(","):
+                            image_url = candidate.strip().split(" ", 1)[0]
+                            record = _oplay_normalize_image_record(page_url, image_url, title=tag.get("alt"))
+                            if record:
+                                key = record["oplayKey"]
+                                previous = printings_by_key.get(key)
+                                if previous is None or _oplay_image_quality(record.get("imageUrl")) > _oplay_image_quality(previous.get("imageUrl")):
+                                    printings_by_key[key] = record
+                except Exception as error:
+                    errors.append({"url": page_url, "error": str(error)[:1000]})
+            if code_index % 100 == 0:
+                print(f"OPlay deep crawl: {code_index}/{len(codes)} códigos")
+
+    printings = sorted(printings_by_key.values(), key=lambda row: (row.get("code") or "", row.get("language") or "", row.get("releaseCode") or "", row.get("variant") or ""))
+    codes = sorted({row["code"] for row in printings if row.get("code")})
+    cards = {str(key): value for key, value in previous_cards.items() if isinstance(value, dict)}
+    metadata_targets = [code for code in codes if code not in bandai_codes and (refresh_metadata or code not in cards)]
+    if metadata_max_new:
+        metadata_targets = metadata_targets[:metadata_max_new]
+    for index, code in enumerate(metadata_targets, start=1):
+        page_url = f"{OPLAY_BASE_URL}/en/cards/{code}"
+        try:
+            response = session.get(page_url, timeout=45)
+            response.raise_for_status()
+            cards[code] = _oplay_card_metadata_from_html(response.text, page_url, code)
+        except Exception as error:
+            errors.append({"url": page_url, "error": str(error)[:1000]})
+        if index % 50 == 0 or index == len(metadata_targets):
+            print(f"OPlay metadata: {index}/{len(metadata_targets)} nuevas")
+
+    language_counts = Counter(row.get("language") or "unknown" for row in printings)
+    release_counts = Counter(row.get("releaseCode") or "unknown" for row in printings)
+    return {
+        "schemaVersion": 1,
+        "source": "OPlayTCG public sitemap/library",
+        "sourceUrl": OPLAY_LIBRARY_URL,
+        "fetchedAt": utc_now_iso(),
+        "imagePolicy": "remote-url-only; image bytes are not downloaded into raw",
+        "languages": OPLAY_LANGUAGES,
+        "sitemaps": sitemap_rows,
+        "cards": cards,
+        "printings": printings,
+        "stats": {
+            "uniqueCards": len(codes),
+            "printings": len(printings),
+            "languages": dict(sorted(language_counts.items())),
+            "releases": len(release_counts),
+            "metadataCards": len(cards),
+            "metadataFetchedThisRun": len(metadata_targets),
+            "sitemapDocuments": len(sitemap_rows),
+        },
+        "errors": errors[:500],
+    }
+
+
+def normalize_oplay_printings(raw: dict | None) -> list[dict]:
+    rows = (raw or {}).get("printings", []) if isinstance(raw, dict) else []
+    result = []
+    seen = set()
+    for item in rows:
+        if not isinstance(item, dict):
+            continue
+        key = nullable_text(item.get("oplayKey"))
+        code = canonical_id(item.get("code"))
+        image_url = nullable_text(item.get("imageUrl"))
+        if not key or not code or not image_url or key in seen:
+            continue
+        seen.add(key)
+        result.append({**item, "code": code})
+    return result
+
+
+
 def fetch_live_raw(
     session: requests.Session,
     bandai_delay: float,
     vega_bin: str = "vega",
     *,
-    include_community_images: bool = True,
+    raw_dir: Path = DEFAULT_RAW_DIR,
+    include_oplay: bool = True,
+    oplay_refresh_metadata: bool = False,
+    oplay_metadata_max_new: int = 0,
+    oplay_deep_crawl: bool = False,
 ) -> dict:
     print("Descargando Bandai oficial...")
     bandai = fetch_bandai_raw(session, bandai_delay, vega_bin)
@@ -7081,17 +8294,47 @@ def fetch_live_raw(
         print(f"AVISO: catálogo no-singles Cardmarket no disponible: {error}")
         cm_nonsingles = {"disabled": True, "fetchedAt": utc_now_iso(), "products": []}
 
-    if include_community_images:
-        print("Descargando metadatos opcionales de imágenes OPTCGAPI.com...")
-        community_images = fetch_community_image_raw(session)
+    previous_oplay = load_json(raw_dir / OPLAY_RAW_FILENAME, default={}) or {}
+    if include_oplay:
+        print("Descargando catálogo multilingüe OPlay (sitemap/metadata; sin descargar imágenes)...")
+        bandai_codes = {base_code(card.get("sourcePrintingId")) for card in (bandai.get("cards", []) if isinstance(bandai, dict) else []) if card.get("sourcePrintingId")}
+        try:
+            oplay = fetch_oplay_raw(
+                session,
+                previous_raw=previous_oplay,
+                bandai_codes=bandai_codes,
+                refresh_metadata=oplay_refresh_metadata,
+                metadata_max_new=oplay_metadata_max_new,
+                deep_crawl=oplay_deep_crawl,
+            )
+            if not oplay.get("printings") and previous_oplay.get("printings"):
+                print("AVISO: OPlay no devolvió printings nuevas; se conserva el RAW OPlay anterior.")
+                oplay = previous_oplay
+        except Exception as error:
+            if previous_oplay.get("printings"):
+                print(f"AVISO: OPlay no disponible ({error}); se reutiliza el RAW OPlay anterior.")
+                oplay = previous_oplay
+            else:
+                print(f"AVISO: OPlay no disponible y no existe cache previo: {error}")
+                oplay = {
+                    "schemaVersion": 1,
+                    "source": "OPlayTCG public sitemap/library",
+                    "fetchedAt": utc_now_iso(),
+                    "disabled": True,
+                    "error": str(error)[:1000],
+                    "cards": {},
+                    "printings": [],
+                    "stats": {},
+                }
     else:
-        community_images = {
-            "source": "OPTCGAPI.com community image fallback",
+        oplay = previous_oplay if previous_oplay else {
+            "schemaVersion": 1,
+            "source": "OPlayTCG public sitemap/library",
             "fetchedAt": utc_now_iso(),
             "disabled": True,
-            "don": None,
-            "promos": None,
-            "requests": [],
+            "cards": {},
+            "printings": [],
+            "stats": {},
         }
 
     return {
@@ -7099,7 +8342,7 @@ def fetch_live_raw(
         "cardmarket_products": cm_products,
         "cardmarket_prices": cm_prices,
         "cardmarket_nonsingles": cm_nonsingles,
-        "community_images": community_images,
+        "oplay": oplay,
     }
 
 
@@ -7172,7 +8415,7 @@ def publish_to_git(paths: list[Path]) -> None:
         if changed.returncode != 1:
             raise RuntimeError("git diff --cached devolvió un estado inesperado")
 
-        git_run(["commit", "-m", "chore: update Bandai and Cardmarket catalogue"])
+        git_run(["commit", "-m", "chore: update Bandai, OPlay and Cardmarket catalogue"])
         git_run(["push", "origin", f"HEAD:{branch}"])
 
         local_sha = git_run(["rev-parse", "HEAD"], capture=True).stdout.strip()
@@ -8371,7 +9614,7 @@ def run_self_test() -> None:
     assert jp_catalog["P-028"]["printings"][0]["language"] == "ja"
     assert jp_catalog["P-028"]["printings"][0]["cardmarket"]["price"]["valuationEur"] == 19.32
 
-    # V3.11.6 regression: a legacy image tied to the same idProduct is reused
+    # V3.12.0 regression: a legacy image tied to the same idProduct is reused
     # only as a validated reference, never promoted to exact artwork.
     legacy_url = "https://example.com/P-028_p2_EN.webp"
     legacy_refs, legacy_ref_stats = legacy_mapping_reference_images({"mappings": {
@@ -8436,6 +9679,78 @@ def run_self_test() -> None:
     dirs = _cardmarket_image_dir_candidates({"idProduct": 838658, "name": "DON!! (PRB02 - Sanji)"}, {"editionCode": "PRB02", "languageGroup": "en"})
     assert "PRB02" in dirs and "PRB02-JP" in dirs
 
+    # V3.12 OPlay sitemap normalization: exact artwork is identified by
+    # code + normalized language + release + printing variant.
+    oplay_fixture = """<?xml version="1.0" encoding="UTF-8"?>
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+            xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+      <url><loc>https://oplaytcg.com/en/cards/ST02-004/tc</loc>
+        <image:image><image:loc>https://cards.oplaytcg.com/PRB01/tc/small/ST02-004_p3.webp</image:loc></image:image>
+      </url>
+      <url><loc>https://oplaytcg.com/en/cards/OP01-001/fr</loc>
+        <image:image><image:loc>https://cards.oplaytcg.com/OP01/fr/small/OP01-001.webp</image:loc></image:image>
+      </url>
+    </urlset>"""
+    _, oplay_fixture_rows, _ = _parse_oplay_sitemap_xml(oplay_fixture, OPLAY_SITEMAP_URL)
+    assert len(oplay_fixture_rows) == 2
+    tc = next(row for row in oplay_fixture_rows if row["code"] == "ST02-004")
+    assert tc["language"] == "zh-Hant" and tc["releaseCode"] == "PRB01" and tc["variant"] == "p3"
+    assert tc["oplayKey"] == "ST02-004|zh-Hant|PRB01|p3"
+
+    # Unique Cardmarket/OPlay evidence may merge and supply the exact remote image.
+    unique_catalog = {
+        "OP01-001": {
+            "catalogId": "OP01-001", "code": "OP01-001", "name": "Example",
+            "sources": ["cardmarket"], "releaseIds": [], "printings": [{
+                "id": "CM-999001", "printingId": "CM-999001", "baseCode": "OP01-001",
+                "source": "cardmarket", "sources": ["cardmarket"],
+                "language": "fr", "languageLabel": "French", "editionCode": "OP01",
+                "imageUrl": None, "image": None, "referenceImage": None,
+                "releases": [], "cardmarket": {"productId": 999001, "product": {
+                    "idProduct": 999001, "name": "Example (OP01-001)", "idExpansion": 1
+                }},
+            }],
+        }
+    }
+    unique_raw = {"cards": {}, "printings": [next(row for row in oplay_fixture_rows if row["code"] == "OP01-001")]}
+    unique_map, unique_review, unique_stats = reconcile_oplay_with_catalog(unique_catalog, unique_raw, {})
+    unique_printing = unique_catalog["OP01-001"]["printings"][0]
+    assert unique_stats["cardmarketProductsMapped"] == 1 and unique_review["pendingCount"] == 0
+    assert unique_printing["imageUrl"] == "https://cards.oplaytcg.com/OP01/fr/small/OP01-001.webp"
+    assert unique_printing["displayInCollection"] is True
+    assert unique_map["products"]["999001"]["oplayKey"] == "OP01-001|fr|OP01|base"
+
+    # Two physical OPlay candidates for the same insufficiently-described market row
+    # are never guessed. The Cardmarket market row stays auditable but hidden, and
+    # both real OPlay printings remain visible collection versions.
+    ambiguous_catalog = {
+        "OP01-001": {
+            "catalogId": "OP01-001", "code": "OP01-001", "name": "Example",
+            "sources": ["cardmarket"], "releaseIds": [], "printings": [{
+                "id": "CM-999002", "printingId": "CM-999002", "baseCode": "OP01-001",
+                "source": "cardmarket", "sources": ["cardmarket"],
+                "language": "fr", "languageLabel": "French", "editionCode": "OP01",
+                "imageUrl": None, "image": None, "referenceImage": None,
+                "releases": [], "cardmarket": {"productId": 999002, "product": {
+                    "idProduct": 999002, "name": "Example (OP01-001)", "idExpansion": 1
+                }},
+            }],
+        }
+    }
+    base_row = next(row for row in oplay_fixture_rows if row["code"] == "OP01-001")
+    alt_row = {**base_row, "variant": "p1", "sourcePrintingId": "OP01-001_p1",
+               "oplayKey": "OP01-001|fr|OP01|p1",
+               "imageUrl": "https://cards.oplaytcg.com/OP01/fr/small/OP01-001_p1.webp"}
+    _, ambiguous_review, ambiguous_stats = reconcile_oplay_with_catalog(
+        ambiguous_catalog, {"cards": {}, "printings": [base_row, alt_row]}, {}
+    )
+    assert ambiguous_stats["cardmarketProductsMapped"] == 0
+    assert ambiguous_stats["cardmarketProductsHiddenAsAmbiguousMarketRows"] == 1
+    assert ambiguous_review["pendingCount"] == 1
+    cm_hidden = next(p for p in ambiguous_catalog["OP01-001"]["printings"] if p["printingId"] == "CM-999002")
+    assert cm_hidden["displayInCollection"] is False
+    assert len([p for p in ambiguous_catalog["OP01-001"]["printings"] if p.get("source") == "oplay"]) == 2
+
     print("SELF-TEST OK")
 
 
@@ -8457,6 +9772,8 @@ def main() -> None:
         raise RuntimeError("--cardmarket-image-max-new debe ser >= 0")
     if args.image_asset_max_new < 0:
         raise RuntimeError("--image-asset-max-new debe ser >= 0")
+    if args.oplay_card_metadata_max_new < 0:
+        raise RuntimeError("--oplay-card-metadata-max-new debe ser >= 0")
 
     session = make_session()
     args.raw_dir.mkdir(parents=True, exist_ok=True)
@@ -8471,16 +9788,19 @@ def main() -> None:
             session,
             args.bandai_delay,
             args.vega_bin,
-            include_community_images=not args.no_community_images,
+            raw_dir=args.raw_dir,
+            include_oplay=not args.no_oplay,
+            oplay_refresh_metadata=args.oplay_refresh_metadata,
+            oplay_metadata_max_new=args.oplay_card_metadata_max_new,
+            oplay_deep_crawl=args.oplay_deep_crawl,
         )
         save_raw(args.raw_dir, raw_data)
 
-    community_raw = raw_data.get("community_images")
-    community_images = (
-        []
-        if args.no_community_images
-        else normalize_community_image_records(community_raw)
-    )
+    oplay_raw = raw_data.get("oplay") if not args.no_oplay else {"disabled": True, "cards": {}, "printings": [], "stats": {}}
+    oplay_printings = normalize_oplay_printings(oplay_raw)
+    # OPTCGAPI was retired in V3.12.0. The legacy matching code remains only for
+    # rollback/self-test compatibility; no live community records enter the catalog.
+    community_images: list[dict] = []
 
     bandai_root = raw_data["bandai"]
     bandai_cards = bandai_root.get("cards", []) if isinstance(bandai_root, dict) else []
@@ -8622,105 +9942,58 @@ def main() -> None:
     }
     linked_legacy_reference_stats["linkedVariantReferences"] = len(linked_legacy_reference_images)
 
-    # Persistent exact-image layer. Stored assets are immutable-by-default: if
-    # the expected local file already exists and has a valid image signature, no
-    # HTTP request is made for it. Only new/missing idProducts are discovered.
-    image_cache_path = args.data_dir / IMAGE_CACHE_FILENAME
-    image_cache = load_json(image_cache_path, default={}) or {}
-    image_asset_manifest_path = args.data_dir / IMAGE_ASSET_MANIFEST_FILENAME
-    image_asset_manifest = load_json(image_asset_manifest_path, default={}) or {}
-    cardmarket_image_mapping_path = args.data_dir / CARDMARKET_IMAGE_MAPPING_FILENAME
-    cardmarket_image_mapping = load_json(cardmarket_image_mapping_path, default={}) or {}
-    metadata_seed_stats = seed_cardmarket_image_metadata_from_mapping(cardmarket_image_mapping, mapping)
-    override_path = args.data_dir / CARDMARKET_IMAGE_OVERRIDES_FILENAME
-    image_overrides = load_json(override_path, default={}) or {}
-    override_stats = apply_cardmarket_image_overrides(cardmarket_image_mapping, image_overrides, products_by_id)
+    # V3.12 image policy: remote by default. Exact Bandai/OPlay URLs are catalog data,
+    # not Git assets. Cache mode is explicit and optional. Cardmarket HTML image
+    # discovery is retained only as a disabled legacy fallback.
+    cardmarket_printing_metadata, cardmarket_metadata_stats = load_cardmarket_printing_metadata(
+        args.data_dir, mapping
+    )
+    save_json(args.data_dir / CARDMARKET_PRINTING_METADATA_FILENAME, cardmarket_printing_metadata)
+    cardmarket_exact_images = {
+        int(pid): record
+        for pid, record in (cardmarket_printing_metadata.get("products") or {}).items()
+        if str(pid).isdigit() and isinstance(record, dict)
+    }
 
-    supplement_image_targets = cardmarket_supplement_product_ids(
-        bandai_cards, mapping, products_by_id
-    )
-    cardmarket_image_targets = sorted(set(supplement_image_targets) | set(bandai_variant_candidates))
-    cardmarket_image_contexts = build_cardmarket_image_target_contexts(
-        cardmarket_image_targets, products_by_id, expansion_metadata, bandai_variant_candidates
-    )
+    image_cache = {"images": {}}
+    image_asset_manifest = {"schemaVersion": 1, "assets": {}}
+    bandai_asset_stats = {"targets": len({canonical_id(c.get("sourcePrintingId")) for c in bandai_cards if c.get("sourcePrintingId")}), "reused": 0, "adopted": 0, "downloaded": 0, "pending": 0, "errors": 0}
+    cardmarket_asset_stats = {"targets": 0, "reused": 0, "adopted": 0, "downloaded": 0, "pending": 0, "errors": 0, "manual": 0}
+    oplay_asset_stats = {"targets": len(oplay_printings), "reused": 0, "adopted": 0, "downloaded": 0, "pending": 0, "errors": 0}
+    oplay_public_urls: dict[str, str] = {}
+    cardmarket_image_discovery_stats = {
+        "enabled": False,
+        "discovered": 0,
+        "cachedFound": 0,
+        "errors": 0,
+        "stoppedReason": "retired-by-oplay-v3.12",
+    }
+    discovery_network_enabled = False
+    image_report = {
+        "totalUrls": 0, "officialUrls": 0, "communityUrls": 0,
+        "cardmarketExactUrls": 0, "checkedThisRun": 0, "failed": [],
+    }
 
-    allow_asset_downloads = not args.no_persist_images
-    bandai_asset_stats = persist_bandai_image_assets(
-        session,
-        bandai_cards,
-        args.image_dir,
-        image_asset_manifest,
-        image_cache,
-        args.image_public_base_url,
-        allow_downloads=allow_asset_downloads,
-        refresh=args.refresh_image_assets,
-        max_new=args.image_asset_max_new,
-    )
-    remaining_asset_budget = 0
-    if args.image_asset_max_new:
-        remaining_asset_budget = max(0, args.image_asset_max_new - bandai_asset_stats.get("downloaded", 0))
-
-    discovery_network_enabled = (
-        not args.from_raw and bool(args.cardmarket_image_discovery)
-    )
-    cardmarket_image_mapping, cardmarket_image_discovery_stats = discover_cardmarket_product_images(
-        products_by_id,
-        cardmarket_image_targets,
-        cardmarket_image_mapping,
-        target_contexts=cardmarket_image_contexts,
-        image_health_cache=image_cache,
-        network_enabled=discovery_network_enabled,
-        delay_seconds=args.cardmarket_image_delay,
-        max_new=args.cardmarket_image_max_new,
-    )
-    cardmarket_asset_stats = persist_cardmarket_image_assets(
-        session,
-        cardmarket_image_mapping,
-        cardmarket_image_targets,
-        args.image_dir,
-        image_asset_manifest,
-        image_cache,
-        args.image_public_base_url,
-        allow_downloads=allow_asset_downloads,
-        refresh=args.refresh_image_assets,
-        max_new=remaining_asset_budget if args.image_asset_max_new else 0,
-    )
-    save_json(cardmarket_image_mapping_path, cardmarket_image_mapping)
-    save_json(image_asset_manifest_path, image_asset_manifest)
-    cardmarket_exact_images = cardmarket_exact_image_records(cardmarket_image_mapping)
-
-    pending_images = build_cardmarket_image_pending(
-        cardmarket_image_targets, products_by_id, cardmarket_image_contexts, cardmarket_image_mapping
-    )
-    pending_images_path = args.output_dir / CARDMARKET_IMAGE_PENDING_FILENAME
-    save_json(pending_images_path, pending_images)
-
-    # Community artwork remains an entity preview only. Official/Cardmarket source
-    # URLs backed by local assets are marked healthy from the local file and are
-    # therefore not fetched again by the URL health checker.
-    community_image_urls = sorted({
-        item.get("imageUrl") for item in community_images if item.get("imageUrl")
-    })
-    linked_legacy_reference_urls = sorted({
-        record.get("url")
-        for record in linked_legacy_reference_images.values()
-        if record.get("url")
-    })
-    cardmarket_exact_image_urls = sorted({
-        record.get("imageUrl")
-        for product_id, record in cardmarket_exact_images.items()
-        if product_id in cardmarket_image_targets and record.get("imageUrl")
-    })
-    image_cache, image_report = update_image_health_cache(
-        session,
-        bandai_cards,
-        image_cache,
-        skip=args.skip_image_check,
-        force_all=args.image_check_all,
-        extra_urls=sorted(set(community_image_urls + linked_legacy_reference_urls)),
-        cardmarket_urls=cardmarket_exact_image_urls,
-    )
-    save_json(image_cache_path, image_cache)
+    if args.image_storage_mode == "cache" and not args.no_persist_images:
+        image_cache_path = args.data_dir / IMAGE_CACHE_FILENAME
+        image_cache = load_json(image_cache_path, default={}) or {"images": {}}
+        image_asset_manifest_path = args.data_dir / IMAGE_ASSET_MANIFEST_FILENAME
+        image_asset_manifest = load_json(image_asset_manifest_path, default={}) or {"schemaVersion": 1, "assets": {}}
+        bandai_asset_stats = persist_bandai_image_assets(
+            session, bandai_cards, args.image_dir, image_asset_manifest, image_cache,
+            args.image_public_base_url, allow_downloads=True,
+            refresh=args.refresh_image_assets, max_new=args.image_asset_max_new,
+        )
+        remaining = 0
+        if args.image_asset_max_new:
+            remaining = max(0, args.image_asset_max_new - bandai_asset_stats.get("downloaded", 0))
+        oplay_public_urls, oplay_asset_stats = persist_oplay_image_assets(
+            session, oplay_printings, args.image_dir, image_asset_manifest, image_cache,
+            args.image_public_base_url, allow_downloads=True,
+            refresh=args.refresh_image_assets, max_new=remaining if args.image_asset_max_new else 0,
+        )
+        save_json(image_cache_path, image_cache)
+        save_json(image_asset_manifest_path, image_asset_manifest)
 
     catalog, catalogue_stats = build_catalog(
         bandai_cards,
@@ -8753,6 +10026,21 @@ def main() -> None:
         expansion_metadata=expansion_metadata,
         image_cache=image_cache,
     )
+    # Integrate OPlay as the canonical multilingual physical-printing layer.
+    # Exact Cardmarket links are persisted; ambiguous market rows remain auditable
+    # but are hidden from collection/version pickers to avoid duplicate physical cards.
+    oplay_mapping_path = args.data_dir / OPLAY_CARDMARKET_MAPPING_FILENAME
+    oplay_mapping = load_json(oplay_mapping_path, default={}) or {}
+    oplay_mapping, oplay_mapping_review, oplay_stats = reconcile_oplay_with_catalog(
+        catalog,
+        oplay_raw,
+        oplay_mapping,
+        oplay_public_urls=oplay_public_urls,
+    )
+    save_json(oplay_mapping_path, oplay_mapping)
+    oplay_review_path = args.output_dir / OPLAY_MAPPING_REVIEW_FILENAME
+    save_json(oplay_review_path, oplay_mapping_review)
+
     catalogue_stats.update({
         "bandaiCards": bandai_catalogue_stats["cards"],
         "bandaiPrintings": bandai_catalogue_stats["printings"],
@@ -8765,8 +10053,25 @@ def main() -> None:
         "donProducts": supplemental_stats["donProducts"],
         "cardmarketDirectProducts": supplemental_stats["standardProducts"] + supplemental_stats["donProducts"],
         "cardmarketLinkedBandaiProducts": linked_variant_stats["products"],
+        "oplaySourceCards": oplay_stats.get("sourceCards", 0),
+        "oplaySourcePrintings": oplay_stats.get("sourcePrintings", 0),
+        "oplayOnlyEntitiesAdded": oplay_stats.get("oplayOnlyEntitiesAdded", 0),
+        "oplayPrintingsAdded": oplay_stats.get("oplayPrintingsAdded", 0),
+        "oplayCardmarketProductsMapped": oplay_stats.get("cardmarketProductsMapped", 0),
         "cards": len(catalog),
         "printings": sum(len(card.get("printings", [])) for card in catalog.values()),
+        "visiblePrintings": sum(
+            1 for card in catalog.values() if isinstance(card, dict)
+            for printing in card.get("printings", []) or []
+            if printing.get("displayInCollection") is not False
+        ),
+        "hiddenMarketPrintings": sum(
+            1 for card in catalog.values() if isinstance(card, dict)
+            for printing in card.get("printings", []) or []
+            if printing.get("displayInCollection") is False
+        ),
+        # Market/valuation counts describe Cardmarket-linked rows only. OPlay-only
+        # printings intentionally do not inflate these metrics.
         "printingsWithCardmarketPriceGuide": (
             bandai_catalogue_stats["printingsWithCardmarketPriceGuide"]
             + linked_variant_stats["productsWithPriceGuide"]
@@ -8784,7 +10089,6 @@ def main() -> None:
         ),
     })
 
-    # V3.11.4 outputs. The main cards JSON keeps its V3.9 root shape.
     sets_index = build_sets_index(catalog, bandai_root, mapping)
     history_path = args.output_dir / PRICE_HISTORY_FILENAME
     price_history = load_json(history_path, default=None)
@@ -8802,15 +10106,11 @@ def main() -> None:
         history_stats.update(update_stats)
 
     generated_at = utc_now_iso()
-    community_requests = (
-        (community_raw or {}).get("requests", [])
-        if isinstance(community_raw, dict)
-        else []
-    )
+    oplay_raw_stats = (oplay_raw or {}).get("stats", {}) if isinstance(oplay_raw, dict) else {}
     report = {
         "generatedAt": generated_at,
-        "schemaVersion": 9,
-        "catalogVersion": "3.11.6",
+        "schemaVersion": 10,
+        "catalogVersion": "3.12.0",
         "sources": {
             "bandai": {
                 "url": bandai_root.get("sourceUrl") if isinstance(bandai_root, dict) else None,
@@ -8819,14 +10119,27 @@ def main() -> None:
                 "series": len(bandai_root.get("series", [])) if isinstance(bandai_root, dict) else None,
                 "authority": "official",
             },
+            "oplay": {
+                "enabled": not args.no_oplay,
+                "url": OPLAY_LIBRARY_URL,
+                "fetchedAt": (oplay_raw or {}).get("fetchedAt") if isinstance(oplay_raw, dict) else None,
+                "uniqueCards": oplay_raw_stats.get("uniqueCards", 0),
+                "printings": oplay_raw_stats.get("printings", 0),
+                "languages": oplay_raw_stats.get("languages", {}),
+                "releases": oplay_raw_stats.get("releases", 0),
+                "metadataCards": oplay_raw_stats.get("metadataCards", 0),
+                "metadataFetchedThisRun": oplay_raw_stats.get("metadataFetchedThisRun", 0),
+                "sitemapDocuments": oplay_raw_stats.get("sitemapDocuments", 0),
+                "errors": len((oplay_raw or {}).get("errors", [])) if isinstance(oplay_raw, dict) else 0,
+                "authority": "community-physical-printing-catalogue",
+                "authoritativeForOfficialIdentity": False,
+                "authoritativeForPrice": False,
+                "imageBytesDownloaded": args.image_storage_mode == "cache" and not args.no_persist_images,
+            },
             "cardmarketProducts": {
                 "url": CARDMARKET_PRODUCTS_URL,
                 "records": len(products),
-                "createdAt": (
-                    raw_data["cardmarket_products"].get("createdAt")
-                    if isinstance(raw_data["cardmarket_products"], dict)
-                    else None
-                ),
+                "createdAt": raw_data["cardmarket_products"].get("createdAt") if isinstance(raw_data["cardmarket_products"], dict) else None,
                 "authority": "official-public-download",
             },
             "cardmarketPriceGuide": {
@@ -8841,24 +10154,10 @@ def main() -> None:
                 "authority": "official-public-download",
                 "purpose": "expansion/language evidence without per-product HTML scraping",
             },
-            "cardmarketProductImages": {
-                "enabled": discovery_network_enabled,
-                "defaultEnabled": False,
-                "purpose": "opt-in exact image URL discovery for Cardmarket-only/DON idProduct printings only",
-                "cacheFile": f"data/{CARDMARKET_IMAGE_MAPPING_FILENAME}",
-                "host": CARDMARKET_PRODUCT_IMAGE_HOST,
-                "identityPolicy": "accept only image URLs containing the same idProduct",
-                "rehosted": False,
-                "stats": cardmarket_image_discovery_stats,
-            },
-            "communityImages": {
-                "enabled": not args.no_community_images,
-                "provider": "OPTCGAPI.com",
-                "purpose": "missing supplemental reference images only",
-                "normalizedImageRecords": len(community_images),
-                "requests": community_requests,
-                "authoritativeForIdentity": False,
-                "authoritativeForPrice": False,
+            "optcgapi": {
+                "enabled": False,
+                "status": "retired-v3.12.0",
+                "replacement": "OPlayTCG multilingual physical-printing catalogue",
             },
         },
         "mapping": {
@@ -8876,15 +10175,21 @@ def main() -> None:
                 "detected": len(all_identity_quarantined),
                 "quarantined": len(identity_quarantined_final),
                 "resolvedDuringRun": len(identity_resolved_during_run),
-                "reasonCounts": dict(sorted(Counter(
-                    item.get("reason") for item in all_identity_quarantined
-                ).items())),
+                "reasonCounts": dict(sorted(Counter(item.get("reason") for item in all_identity_quarantined).items())),
             },
             "semanticAliasesMoved": len(review.get("semanticAliasesMoved", [])),
             "semanticDriftQuarantined": review.get("semanticDriftQuarantined", []),
             "seriesExpansionProfiles": series_expansion_profiles,
             "inferredReleaseProfiles": review.get("inferredReleaseProfiles", {}),
             "needsReview": len(review.get("needsReview", [])),
+        },
+        "oplayIntegration": {
+            "stats": oplay_stats,
+            "mappingReviewPending": oplay_mapping_review.get("pendingCount", 0),
+            "mappingFile": f"data/{OPLAY_CARDMARKET_MAPPING_FILENAME}",
+            "reviewFile": f"output/{OPLAY_MAPPING_REVIEW_FILENAME}",
+            "cardmarketMetadataMigration": cardmarket_metadata_stats,
+            "identityPolicy": "merge only deterministic unique matches; never guess by price/date/product order",
         },
         "cardmarketExpansionMetadata": {
             "stats": expansion_metadata_stats,
@@ -8898,36 +10203,26 @@ def main() -> None:
         "supplementalCardmarket": supplemental_stats,
         "sets": {
             "officialBandaiSetCount": sets_index.get("officialBandaiSetCount"),
+            "oplaySetCount": sets_index.get("oplaySetCount", 0),
             "cardmarketExpansionCount": sets_index.get("cardmarketExpansionCount"),
             "total": len(sets_index.get("sets", [])),
         },
         "priceHistory": history_stats,
         "images": {
-            "totalUrls": image_report.get("totalUrls"),
-            "officialUrls": image_report.get("officialUrls"),
-            "communityUrls": image_report.get("communityUrls"),
-            "cardmarketExactUrls": image_report.get("cardmarketExactUrls"),
-            "checkedThisRun": image_report.get("checkedThisRun"),
-            "failedThisRun": len(image_report.get("failed", [])),
-            "failed": image_report.get("failed", [])[:100],
-            "cardmarketExact": supplemental_stats.get("cardmarketExactImages", {}),
+            "storageMode": args.image_storage_mode,
+            "policy": "exact printing image only; OPlay/Bandai remote by default; no sibling/entity fallback",
+            "remoteOPlayImages": len({row.get("imageUrl") for row in oplay_printings if row.get("imageUrl")}),
+            "oplayExactPrintingImagesInCatalog": oplay_stats.get("printingsWithOPlayImage", 0),
+            "bandaiPersistentAssets": bandai_asset_stats,
+            "oplayPersistentAssets": oplay_asset_stats,
             "cardmarketDiscovery": cardmarket_image_discovery_stats,
-            "persistentAssets": {
-                "bandai": bandai_asset_stats,
-                "cardmarket": cardmarket_asset_stats,
-                "pendingCardmarket": pending_images.get("pendingCount", 0),
-                "metadataSeed": metadata_seed_stats,
-                "overrides": override_stats,
-                "imageDir": str(args.image_dir),
-                "publicBaseUrl": args.image_public_base_url,
-            },
-            "linkedLegacyReferences": linked_legacy_reference_stats,
-            "communityMatching": supplemental_stats.get("communityImages", {}),
+            "cardmarketDiscoveryStatus": "retired in favour of OPlay exact-printing mapping",
         },
         "output": catalogue_stats,
         "fingerprints": {
             "catalog": hash_payload(catalog),
             "mapping": hash_payload(mapping),
+            "oplayMapping": hash_payload(oplay_mapping),
             "sets": hash_payload(sets_index),
             "priceHistory": hash_payload(price_history) if isinstance(price_history, dict) else None,
         },
@@ -8938,8 +10233,8 @@ def main() -> None:
     review_path = args.output_dir / REVIEW_FILENAME
     sets_path = args.output_dir / SETS_FILENAME
     manifest_path = args.output_dir / MANIFEST_FILENAME
+    storage_report_path = args.output_dir / STORAGE_REPORT_FILENAME
     save_json_compact(catalog_path, catalog)
-    save_json(report_path, report)
     save_json(review_path, review)
     save_json(sets_path, sets_index)
     if isinstance(price_history, dict):
@@ -8955,98 +10250,53 @@ def main() -> None:
         price_history_path=history_path if isinstance(price_history, dict) else None,
     )
     save_json(manifest_path, manifest)
+    # Write report once so its size is included in the storage audit, then append a
+    # compact storage summary and write it again.
+    save_json(report_path, report)
+    storage_report = build_storage_report(
+        args.raw_dir, args.data_dir, args.output_dir, args.image_dir,
+        oplay_raw=oplay_raw, image_storage_mode=args.image_storage_mode,
+    )
+    save_json(storage_report_path, storage_report)
+    report["storage"] = {
+        "reportFile": f"output/{STORAGE_REPORT_FILENAME}",
+        "workingDataBytes": storage_report.get("workingDataBytes", 0),
+        "workingDataMiB": storage_report.get("workingDataMiB", 0),
+        "gitRepositoryBytes": (storage_report.get("gitRepository") or {}).get("bytes", 0),
+        "folders": {
+            key: {"files": value.get("files", 0), "bytes": value.get("bytes", 0), "mib": value.get("mib", 0)}
+            for key, value in (storage_report.get("folders") or {}).items()
+        },
+    }
+    save_json(report_path, report)
 
-    print("\nGeneración completada (V3.11.6 candidata):")
+    print("\nGeneración completada (V3.12.0):")
     print(f"- Cartas totales catálogo: {catalogue_stats['cards']}")
-    print(f"- Cartas Bandai: {catalogue_stats['bandaiCards']}")
-    print(f"- Cartas solo Cardmarket: {catalogue_stats['cardmarketOnlyCards']}")
-    print(f"- Diseños DON!! Cardmarket: {catalogue_stats['donCards']}")
-    print(f"- Impresiones/productos totales: {catalogue_stats['printings']}")
-    print(f"- Impresiones físicas Bandai: {catalogue_stats['bandaiPrintings']}")
-    print(f"- Productos solo Cardmarket: {catalogue_stats['cardmarketOnlyProducts']}")
-    print(f"- Productos DON!!: {catalogue_stats['donProducts']}")
-    print(f"- Variantes Cardmarket añadidas bajo identidad Bandai: {linked_variant_stats['products']}")
-    print(
-        "  · con imagen de referencia legacy validada: "
-        f"{linked_variant_stats.get('productsWithReferenceImage', 0)}"
-    )
-    print(
-        "  · idioma variantes: "
-        f"JP={linked_variant_stats.get('japaneseProducts', 0)} / "
-        f"EN={linked_variant_stats.get('englishProducts', 0)} / "
-        f"no-inglés sin concretar={linked_variant_stats.get('nonEnglishUnspecifiedProducts', 0)} / "
-        f"desconocido={linked_variant_stats.get('unknownLanguageProducts', 0)}"
-    )
-    print(f"- Bandai con mapping Cardmarket: {catalogue_stats['bandaiPrintingsWithCardmarketMapping']}")
-    print(f"- Con Price Guide Cardmarket (total): {catalogue_stats['printingsWithCardmarketPriceGuide']}")
-    print(f"- Con valoración EUR utilizable: {catalogue_stats['printingsWithCardmarketValuation']}")
-    print(f"- Entidades con preview de imagen: {catalogue_stats['entitiesWithPreviewImage']}")
-    cm_image_stats = supplemental_stats.get("communityImages", {})
-    print(
-        "- Imágenes externas conservadoras: "
-        f"{cm_image_stats.get('standardEntitiesWithReferenceImage', 0)} market-only / "
-        f"{cm_image_stats.get('donEntitiesWithReferenceImage', 0)} DON!!"
-    )
-    exact_stats = supplemental_stats.get("cardmarketExactImages", {})
-    print(
-        "- Imágenes exactas Cardmarket por idProduct: "
-        f"{exact_stats.get('standardProductsWithExactImage', 0)} market-only / "
-        f"{exact_stats.get('donProductsWithExactImage', 0)} DON!!"
-    )
-    print(
-        "- Discovery imágenes Cardmarket: "
-        f"{cardmarket_image_discovery_stats.get('discovered', 0)} nuevas / "
-        f"{cardmarket_image_discovery_stats.get('cachedFound', 0)} en cache / "
-        f"{cardmarket_image_discovery_stats.get('errors', 0)} errores"
-        + (
-            f" / detenido={cardmarket_image_discovery_stats.get('stoppedReason')}"
-            if cardmarket_image_discovery_stats.get('stoppedReason')
-            else ""
-        )
-    )
-    print(
-        "- Assets persistentes Bandai: "
-        f"{bandai_asset_stats.get('reused', 0)} reutilizados / "
-        f"{bandai_asset_stats.get('downloaded', 0)} nuevos / "
-        f"{bandai_asset_stats.get('pending', 0)} pendientes"
-    )
-    print(
-        "- Assets persistentes Cardmarket: "
-        f"{cardmarket_asset_stats.get('reused', 0)} reutilizados / "
-        f"{cardmarket_asset_stats.get('downloaded', 0)} nuevos / "
-        f"{cardmarket_asset_stats.get('manual', 0)} manuales adoptados / "
-        f"{pending_images.get('pendingCount', 0)} pendientes"
-    )
-    print(f"- Sets/releases indexados: {len(sets_index.get('sets', []))}")
+    print(f"- Impresiones físicas totales: {catalogue_stats['printings']} (visibles={catalogue_stats['visiblePrintings']} / market rows ocultas={catalogue_stats['hiddenMarketPrintings']})")
+    print(f"- Bandai: {catalogue_stats['bandaiCards']} cartas / {catalogue_stats['bandaiPrintings']} printings")
+    print(f"- OPlay fuente: {oplay_stats.get('sourceCards', 0)} cartas / {oplay_stats.get('sourcePrintings', 0)} printings")
+    print(f"  · idiomas: {json.dumps(oplay_stats.get('languages', {}), ensure_ascii=False, sort_keys=True)}")
+    print(f"  · matches Bandai exactos: {oplay_stats.get('bandaiPrintingsMatched', 0)}")
+    print(f"  · matches Cardmarket exactos: {oplay_stats.get('cardmarketProductsMapped', 0)}")
+    print(f"  · printings OPlay nuevas: {oplay_stats.get('oplayPrintingsAdded', 0)}")
+    print(f"  · entidades OPlay-only nuevas: {oplay_stats.get('oplayOnlyEntitiesAdded', 0)}")
+    print(f"  · Cardmarket ambiguas ocultas, sin adivinar: {oplay_stats.get('cardmarketProductsHiddenAsAmbiguousMarketRows', 0)}")
+    print(f"  · mappings OPlay pendientes de revisión: {oplay_mapping_review.get('pendingCount', 0)}")
+    print(f"- Cardmarket: Price Guide en {catalogue_stats['printingsWithCardmarketPriceGuide']} rows / valoración EUR en {catalogue_stats['printingsWithCardmarketValuation']}")
+    print(f"- Imágenes: modo={args.image_storage_mode}; OPlay URLs exactas remotas={len({row.get('imageUrl') for row in oplay_printings if row.get('imageUrl')})}")
+    if args.image_storage_mode == "cache":
+        print(f"  · Bandai cache: {bandai_asset_stats.get('reused', 0)} reutilizadas / {bandai_asset_stats.get('downloaded', 0)} nuevas")
+        print(f"  · OPlay cache: {oplay_asset_stats.get('reused', 0)} reutilizadas / {oplay_asset_stats.get('downloaded', 0)} nuevas")
+    print(f"- OPTCGAPI: RETIRADO; no se consulta ni se publica raw/optcgapi_images_raw.json")
+    print(f"- Sets/releases indexados: {len(sets_index.get('sets', []))} (OPlay={sets_index.get('oplaySetCount', 0)})")
     if isinstance(price_history, dict):
-        print(
-            "- Histórico precios: "
-            f"{history_stats.get('daysStored', 0)} días; "
-            f"snapshot {history_stats.get('snapshotDate', 'sin cambio')}"
-        )
-    print(f"- Discrepancias código Bandai/Cardmarket: {len(catalogue_stats.get('cardmarketCodeDiscrepancies', []))}")
-    print(f"- Mappings pendientes de revisión: {len(review.get('needsReview', []))}")
-    print(f"- Auto mappings añadidos: {len(review.get('autoMappingsAdded', []))}")
-    print(f"- Alias semánticos migrados: {len(review.get('semanticAliasesMoved', []))}")
-    print(
-        "- Mapping QA: "
-        f"{len(mapping_validation.get('repaired', []))} reparados / "
-        f"{len(mapping_validation.get('quarantined', []))} en cuarentena"
-    )
-    print(
-        "- QA identidad Bandai V3.11.6: "
-        f"{len(all_identity_quarantined)} detectadas / "
-        f"{len(identity_quarantined_final)} siguen en cuarentena / "
-        f"{len(identity_resolved_during_run)} resueltas en el run"
-    )
-    print(
-        "- QA drift semántico V3.11.6: "
-        f"{len(review.get('semanticDriftQuarantined', []))} en cuarentena"
-    )
-    print(
-        "- Perfiles release inferidos: "
-        f"{len(review.get('inferredReleaseProfiles', {}))}"
-    )
+        print(f"- Histórico precios: {history_stats.get('daysStored', 0)} días; snapshot {history_stats.get('snapshotDate', 'sin cambio')}")
+    print(f"- Mappings Bandai/Cardmarket pendientes: {len(review.get('needsReview', []))}")
+    print(f"- QA identidad Bandai: {len(all_identity_quarantined)} detectadas / {len(identity_quarantined_final)} en cuarentena / {len(identity_resolved_during_run)} resueltas")
+    print(f"- Storage working tree (raw+data+output+images): {storage_report.get('workingDataMiB', 0):.3f} MiB")
+    for folder_name, folder_stats in (storage_report.get('folders') or {}).items():
+        print(f"  · {folder_name}/: {folder_stats.get('files', 0)} ficheros / {folder_stats.get('mib', 0):.3f} MiB")
+    print(f"- Git .git/: {(storage_report.get('gitRepository') or {}).get('mib', 0):.3f} MiB")
     print(f"- Price Guide createdAt: {price_created_at}")
 
     if not args.no_push:
@@ -9055,21 +10305,26 @@ def main() -> None:
             args.raw_dir / RAW_FILENAMES["cardmarket_products"],
             args.raw_dir / RAW_FILENAMES["cardmarket_prices"],
             args.raw_dir / RAW_FILENAMES["cardmarket_nonsingles"],
-            args.raw_dir / RAW_FILENAMES["community_images"],
+            args.raw_dir / RAW_FILENAMES["oplay"],
             args.data_dir / MAPPING_FILENAME,
-            args.data_dir / IMAGE_CACHE_FILENAME,
-            args.data_dir / CARDMARKET_IMAGE_MAPPING_FILENAME,
-            args.data_dir / IMAGE_ASSET_MANIFEST_FILENAME,
-            pending_images_path,
-            args.image_dir,
+            args.data_dir / CARDMARKET_PRINTING_METADATA_FILENAME,
+            oplay_mapping_path,
             catalog_path,
             report_path,
             review_path,
+            oplay_review_path,
+            storage_report_path,
             sets_path,
             manifest_path,
         ]
         if history_path.exists():
             publish_paths.append(history_path)
+        if args.image_storage_mode == "cache" and not args.no_persist_images:
+            publish_paths.extend([
+                args.data_dir / IMAGE_CACHE_FILENAME,
+                args.data_dir / IMAGE_ASSET_MANIFEST_FILENAME,
+                args.image_dir,
+            ])
         publish_to_git(publish_paths)
 
 
