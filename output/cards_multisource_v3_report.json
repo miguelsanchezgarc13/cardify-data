@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-14T20:22:05+00:00",
+  "generatedAt": "2026-09-15T09:02:36+00:00",
   "schemaVersion": 9,
-  "catalogVersion": "3.11.5",
+  "catalogVersion": "3.11.6",
   "sources": {
     "bandai": {
       "url": "https://en.onepiece-cardgame.com/cardlist/",
-      "fetchedAt": "2026-09-14T20:21:28+00:00",
+      "fetchedAt": "2026-09-15T08:50:23+00:00",
       "records": 4844,
       "series": 60,
       "authority": "official"
@@ -19,7 +19,7 @@
     "cardmarketPriceGuide": {
       "url": "https://downloads.s3.cardmarket.com/productCatalog/priceGuide/price_guide_18.json",
       "records": 13191,
-      "createdAt": "2026-09-14T02:46:38+0200",
+      "createdAt": "2026-09-15T02:48:19+0200",
       "authority": "official-public-download"
     },
     "cardmarketNonSingles": {
@@ -29,7 +29,7 @@
       "purpose": "expansion/language evidence without per-product HTML scraping"
     },
     "cardmarketProductImages": {
-      "enabled": false,
+      "enabled": true,
       "defaultEnabled": false,
       "purpose": "opt-in exact image URL discovery for Cardmarket-only/DON idProduct printings only",
       "cacheFile": "data/cardmarket_image_mapping.json",
@@ -37,16 +37,19 @@
       "identityPolicy": "accept only image URLs containing the same idProduct",
       "rehosted": false,
       "stats": {
-        "enabled": false,
-        "targets": 671,
+        "enabled": true,
+        "targets": 7618,
         "cachedFound": 0,
-        "attempted": 0,
+        "attempted": 2,
         "discovered": 0,
+        "cdnDiscovered": 0,
+        "pageDiscovered": 0,
+        "storedAssets": 0,
         "refreshedAfterImageFailure": 0,
         "notFound": 0,
-        "errors": 0,
+        "errors": 2,
         "skippedRecentFailure": 0,
-        "stoppedReason": null
+        "stoppedReason": "http-403"
       }
     },
     "communityImages": {
@@ -787,9 +790,9 @@
     "added": {
       "products": 6947,
       "productsWithPriceGuide": 6947,
-      "productsWithValuation": 6718,
+      "productsWithValuation": 6722,
       "productsWithExactImage": 0,
-      "productsWithReferenceImage": 213,
+      "productsWithReferenceImage": 0,
       "languageCounts": {
         "ja": 173,
         "non-en": 2194,
@@ -2891,25 +2894,25 @@
   },
   "priceHistory": {
     "enabled": true,
-    "daysStored": 2,
-    "snapshotDate": "2026-09-14",
-    "productsWithValuation": 12821,
+    "daysStored": 3,
+    "snapshotDate": "2026-09-15",
+    "productsWithValuation": 12826,
     "retentionDays": 90,
-    "overwroteExistingDay": true
+    "overwroteExistingDay": false
   },
   "images": {
     "totalUrls": 6183,
     "officialUrls": 4843,
     "communityUrls": 1340,
     "cardmarketExactUrls": 0,
-    "checkedThisRun": 229,
+    "checkedThisRun": 16,
     "failedThisRun": 16,
     "failed": [
       {
         "url": "https://optcgapi.com/media/static/Card_Images/Bartolomeo_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T20:21:57+00:00",
+        "checkedAt": "2026-09-15T09:02:27+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2921,7 +2924,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/DON_Card_Boa_Hancock_-_Extra_Booster_One_Piece_Heroines_Edition_EB-03_img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T20:21:57+00:00",
+        "checkedAt": "2026-09-15T09:02:27+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2933,7 +2936,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/General_Franky_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T20:21:57+00:00",
+        "checkedAt": "2026-09-15T09:02:27+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2945,7 +2948,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Issho_Welcome_Pack_Vol._1_img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T20:21:57+00:00",
+        "checkedAt": "2026-09-15T09:02:27+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2957,7 +2960,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Jinbe_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T20:21:58+00:00",
+        "checkedAt": "2026-09-15T09:02:27+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2969,7 +2972,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Monkey.D.Luffy_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T20:21:58+00:00",
+        "checkedAt": "2026-09-15T09:02:27+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2981,7 +2984,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Portgas.D.Ace_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T20:21:58+00:00",
+        "checkedAt": "2026-09-15T09:02:27+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -2993,7 +2996,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Raizo_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T20:21:58+00:00",
+        "checkedAt": "2026-09-15T09:02:27+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -3005,7 +3008,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Sanji_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T20:21:58+00:00",
+        "checkedAt": "2026-09-15T09:02:27+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -3017,7 +3020,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Sanji_Demo_Deck_2023_img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T20:21:58+00:00",
+        "checkedAt": "2026-09-15T09:02:27+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -3029,7 +3032,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Satori_Welcome_Pack_Vol._1_img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T20:21:58+00:00",
+        "checkedAt": "2026-09-15T09:02:28+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -3041,7 +3044,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Sengoku_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T20:21:58+00:00",
+        "checkedAt": "2026-09-15T09:02:28+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -3053,7 +3056,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Trafalgar_Law_Welcome_Pack_Vol._1_img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T20:21:58+00:00",
+        "checkedAt": "2026-09-15T09:02:28+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -3065,7 +3068,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Tsuru_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T20:21:58+00:00",
+        "checkedAt": "2026-09-15T09:02:28+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -3077,7 +3080,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Usopp_Demo_Deck_2023_img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T20:21:58+00:00",
+        "checkedAt": "2026-09-15T09:02:28+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -3089,7 +3092,7 @@
         "url": "https://optcgapi.com/media/static/Card_Images/Uta_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
         "sourceKind": "community",
         "ok": false,
-        "checkedAt": "2026-09-14T20:21:58+00:00",
+        "checkedAt": "2026-09-15T09:02:28+00:00",
         "httpStatus": 206,
         "contentType": "image/jpeg",
         "contentDisposition": null,
@@ -3104,16 +3107,49 @@
       "totalProductsWithExactImage": 0
     },
     "cardmarketDiscovery": {
-      "enabled": false,
-      "targets": 671,
+      "enabled": true,
+      "targets": 7618,
       "cachedFound": 0,
-      "attempted": 0,
+      "attempted": 2,
       "discovered": 0,
+      "cdnDiscovered": 0,
+      "pageDiscovered": 0,
+      "storedAssets": 0,
       "refreshedAfterImageFailure": 0,
       "notFound": 0,
-      "errors": 0,
+      "errors": 2,
       "skippedRecentFailure": 0,
-      "stoppedReason": null
+      "stoppedReason": "http-403"
+    },
+    "persistentAssets": {
+      "bandai": {
+        "targets": 4843,
+        "reused": 0,
+        "adopted": 0,
+        "downloaded": 4843,
+        "pending": 0,
+        "errors": 0
+      },
+      "cardmarket": {
+        "targets": 7618,
+        "reused": 0,
+        "adopted": 0,
+        "downloaded": 0,
+        "pending": 7618,
+        "errors": 0,
+        "manual": 0
+      },
+      "pendingCardmarket": 7618,
+      "metadataSeed": {
+        "seeded": 1959,
+        "conflicts": 0
+      },
+      "overrides": {
+        "applied": 0,
+        "ignored": 0
+      },
+      "imageDir": "images",
+      "publicBaseUrl": "https://raw.githubusercontent.com/miguelsanchezgarc13/cardify-data/refs/heads/main/images"
     },
     "linkedLegacyReferences": {
       "candidateProducts": 4400,
@@ -4689,7 +4725,7 @@
     "printings": 12461,
     "printingsWithCardmarketMapping": 4327,
     "printingsWithCardmarketPriceGuide": 11945,
-    "printingsWithCardmarketValuation": 11653,
+    "printingsWithCardmarketValuation": 11657,
     "bandaiPrintingsWithoutValidatedImage": 0,
     "cardmarketMappingRelations": {
       "exact": 4327
@@ -4979,9 +5015,9 @@
     "entitiesWithPreviewImage": 2875
   },
   "fingerprints": {
-    "catalog": "c0d9e40a598315a8df7f338dd668101da3fa7388c6e22e4b0a24c840dff9ba50",
+    "catalog": "a3deb8dbc7db4fb74d88d67176ab1fadcc02e08179b7015e58eb4d46ab4c6f32",
     "mapping": "3279e4026145d9ef3d99c1e39dbeb5482c493c6cf60d93366a83bd49d3a9d23e",
-    "sets": "b9d52eb8d3efa5f35aa6937e9e59f1902b7a3082e0d1e8c5e0161bccf067d306",
-    "priceHistory": "0fff0f798a8b1ea6208b8a645ed6833ad8ce2d76b20666769ac4395a4f3ff18f"
+    "sets": "046d29a159278fe1d062d98a777b3b0f0f4c192d3a3afee348e45842e729f378",
+    "priceHistory": "6decfe501750235148e888d2886d7540194356fc282c0a794a7ad9e00880333b"
   }
 }

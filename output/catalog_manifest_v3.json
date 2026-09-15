@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "catalogVersion": "3.11.5",
-  "generatedAt": "2026-09-14T20:22:05+00:00",
+  "catalogVersion": "3.11.6",
+  "generatedAt": "2026-09-15T09:02:36+00:00",
   "sha256Semantics": "raw-file-bytes",
   "backwardCompatibility": {
     "catalogFilenameUnchanged": true,
@@ -11,22 +11,22 @@
   "files": {
     "catalog": {
       "path": "output/cards_multisource_v3.json",
-      "sha256": "7431966990969ef67c023f0ade7d6cef6ae7f83837245e06a720ebe7c253adea",
-      "contentSha256": "c0d9e40a598315a8df7f338dd668101da3fa7388c6e22e4b0a24c840dff9ba50",
+      "sha256": "aa7bd0ee2e60e0ee62ab01a9f1e15a2d5318be98e829eacfd7a883f91e52c8c7",
+      "contentSha256": "a3deb8dbc7db4fb74d88d67176ab1fadcc02e08179b7015e58eb4d46ab4c6f32",
       "entities": 3025,
       "printings": 12461
     },
     "sets": {
       "path": "output/sets_multisource_v3.json",
-      "sha256": "f4a47342685d27cb4f0d444dcfb763c8444f7f1f76a5ba49b186292e17a7ea08",
-      "contentSha256": "b9d52eb8d3efa5f35aa6937e9e59f1902b7a3082e0d1e8c5e0161bccf067d306",
+      "sha256": "0f4743eb869597d795fe46e1a0cb833b347969ce8425f5751343fb922984ac19",
+      "contentSha256": "046d29a159278fe1d062d98a777b3b0f0f4c192d3a3afee348e45842e729f378",
       "sets": 171
     },
     "priceHistory": {
       "path": "output/cardmarket_price_history_v3.json",
-      "sha256": "c113fd6ed78eb4614c200065816c8f020570272d639888937d35c4673eb2aa45",
-      "contentSha256": "0fff0f798a8b1ea6208b8a645ed6833ad8ce2d76b20666769ac4395a4f3ff18f",
-      "days": 2,
+      "sha256": "7d09c877998a445c5851c98db48adc5cfdb03f02abda4d84703df27a5cec7444",
+      "contentSha256": "6decfe501750235148e888d2886d7540194356fc282c0a794a7ad9e00880333b",
+      "days": 3,
       "currency": "EUR"
     }
   }

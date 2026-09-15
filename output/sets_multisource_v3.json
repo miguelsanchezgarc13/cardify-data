@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "catalogVersion": "3.11.5",
-  "generatedAt": "2026-09-14T20:22:05+00:00",
+  "catalogVersion": "3.11.6",
+  "generatedAt": "2026-09-15T09:02:36+00:00",
   "definitions": {
     "baseTarget": "one owned catalog entity that appears in the release",
     "masterTarget": "every distinct printing that appears in the release"
@@ -67812,7 +67812,7 @@
       "entityCount": 211,
       "printingCount": 393,
       "basePrintingCount": 0,
-      "valuedPrintingCount": 301,
+      "valuedPrintingCount": 302,
       "printingImageCount": 0,
       "collectionTargets": {
         "base": 211,
@@ -69210,7 +69210,9 @@
             "CM-864294"
           ],
           "basePrintingIds": [],
-          "valuedPrintingIds": [],
+          "valuedPrintingIds": [
+            "CM-864293"
+          ],
           "imagePrintingIds": []
         },
         {
@@ -87830,7 +87832,7 @@
       "entityCount": 329,
       "printingCount": 457,
       "basePrintingCount": 0,
-      "valuedPrintingCount": 405,
+      "valuedPrintingCount": 407,
       "printingImageCount": 0,
       "collectionTargets": {
         "base": 329,
@@ -90274,7 +90276,9 @@
             "CM-896402"
           ],
           "basePrintingIds": [],
-          "valuedPrintingIds": [],
+          "valuedPrintingIds": [
+            "CM-896402"
+          ],
           "imagePrintingIds": []
         },
         {
@@ -90930,7 +90934,9 @@
             "CM-896428"
           ],
           "basePrintingIds": [],
-          "valuedPrintingIds": [],
+          "valuedPrintingIds": [
+            "CM-896428"
+          ],
           "imagePrintingIds": []
         },
         {
@@ -147064,7 +147070,7 @@
       "entityCount": 1,
       "printingCount": 1,
       "basePrintingCount": 0,
-      "valuedPrintingCount": 0,
+      "valuedPrintingCount": 1,
       "printingImageCount": 0,
       "collectionTargets": {
         "base": 1,
@@ -147079,7 +147085,9 @@
             "CM-907972"
           ],
           "basePrintingIds": [],
-          "valuedPrintingIds": [],
+          "valuedPrintingIds": [
+            "CM-907972"
+          ],
           "imagePrintingIds": []
         }
       ]
