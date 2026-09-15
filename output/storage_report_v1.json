@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-09-15T15:40:54+00:00",
+  "generatedAt": "2026-09-15T17:01:30+00:00",
   "schemaVersion": 1,
-  "catalogVersion": "3.12.1",
+  "catalogVersion": "3.13.0",
   "imageStorageMode": "remote",
   "folders": {
     "raw": {
@@ -52,12 +52,12 @@
     },
     "output": {
       "files": 8,
-      "bytes": 110831294,
-      "mib": 105.697,
+      "bytes": 34467001,
+      "mib": 32.87,
       "largestFiles": [
         {
           "path": "output/cards_multisource_v3.json",
-          "bytes": 95819985
+          "bytes": 19457570
         },
         {
           "path": "output/oplay_mapping_review.json",
@@ -77,15 +77,15 @@
         },
         {
           "path": "output/cards_multisource_v3_report.json",
-          "bytes": 97582
+          "bytes": 97937
         },
         {
           "path": "output/storage_report_v1.json",
-          "bytes": 7568
+          "bytes": 5299
         },
         {
           "path": "output/catalog_manifest_v3.json",
-          "bytes": 1185
+          "bytes": 1221
         }
       ]
     },
@@ -96,31 +96,31 @@
       "largestFiles": []
     }
   },
-  "workingDataBytes": 145014712,
-  "workingDataMiB": 138.297,
+  "workingDataBytes": 68650419,
+  "workingDataMiB": 65.47,
   "gitRepository": {
     "files": 53,
-    "bytes": 11619370,
-    "mib": 11.081,
+    "bytes": 11621778,
+    "mib": 11.083,
     "largestFiles": [
       {
-        "path": ".git/objects/46/89010e4f51140f2addd40230e42d3e617a8a28",
-        "bytes": 7981463
+        "path": ".git/objects/95/e433a9fe944bbaf0bb10a889a8ec0483135ea8",
+        "bytes": 7980870
       },
       {
-        "path": ".git/objects/1e/678f7919b26d6f3960894d562678db7dccd26d",
-        "bytes": 764647
+        "path": ".git/objects/dc/cf3e662b2811da9558055e84f58d9b297e00e3",
+        "bytes": 764648
       },
       {
-        "path": ".git/objects/ee/fa25c04b6750640e1249a5f2d60b6ba6792028",
-        "bytes": 436575
+        "path": ".git/objects/14/e258e72aed106c9052c13bd9b818fc1121abdb",
+        "bytes": 436602
       },
       {
-        "path": ".git/objects/7d/c71c84d63f813e4367acf2feb28bb1f28d9265",
-        "bytes": 413644
+        "path": ".git/objects/a5/831ec7126dc2255cfc6955ac902217e13d79cd",
+        "bytes": 413646
       },
       {
-        "path": ".git/objects/67/3a8858e254b277f5ea14d4117e3984857e08f7",
+        "path": ".git/objects/53/3eb707e054963601811fbfd79c13017c7eb2c5",
         "bytes": 398313
       },
       {
@@ -136,32 +136,32 @@
         "bytes": 300162
       },
       {
-        "path": ".git/objects/95/59455279e84b789fd803461f3808fd3ddc4d62",
-        "bytes": 219167
+        "path": ".git/objects/f7/027aea023436d69515904d7828810250596110",
+        "bytes": 219169
       },
       {
-        "path": ".git/objects/77/b6517d8b9cb0152afa9e75b11af211ec319855",
-        "bytes": 133887
+        "path": ".git/objects/30/93ae6b8a0f10213f6900d9db804c682aed16fd",
+        "bytes": 133888
       },
       {
-        "path": ".git/objects/47/2c752bd1242950d17b0e31839cf2e96dd882c2",
-        "bytes": 120097
+        "path": ".git/objects/12/f18f6b636b8915c05d4ae250c33ac870166866",
+        "bytes": 123143
       },
       {
-        "path": ".git/objects/c0/27478dfcd1c935770915cb95e4b9222d3ab971",
-        "bytes": 63104
+        "path": ".git/objects/7b/4164c97fa85d55305831f4c93e389237e34990",
+        "bytes": 63105
       },
       {
-        "path": ".git/objects/f3/be9b457b111dccf65629199e7e097c72649fb2",
-        "bytes": 28271
+        "path": ".git/objects/f6/beab2370e08459238652af3cb038143c2902bd",
+        "bytes": 28272
       },
       {
         "path": ".git/objects/87/d3308f15ea731608d6efd92582284ae384374e",
         "bytes": 21173
       },
       {
-        "path": ".git/objects/ff/1683975197eaf8a27cd0481fa156959e6e03dd",
-        "bytes": 11015
+        "path": ".git/objects/38/02b345c82f60832921677e265d23394769aa9c",
+        "bytes": 11000
       },
       {
         "path": ".git/hooks/pre-rebase.sample",

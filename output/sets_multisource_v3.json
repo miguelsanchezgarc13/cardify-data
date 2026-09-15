@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "catalogVersion": "3.12.1",
-  "generatedAt": "2026-09-15T15:40:48+00:00",
+  "catalogVersion": "3.13.0",
+  "generatedAt": "2026-09-15T17:01:26+00:00",
   "definitions": {
     "baseTarget": "one owned catalog entity that appears in the release",
     "masterTarget": "every distinct printing that appears in the release"

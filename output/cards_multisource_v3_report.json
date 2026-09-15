@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-15T15:40:48+00:00",
-  "schemaVersion": 10,
-  "catalogVersion": "3.12.1",
+  "generatedAt": "2026-09-15T17:01:28+00:00",
+  "schemaVersion": 11,
+  "catalogVersion": "3.13.0",
   "sources": {
     "bandai": {
       "url": "https://en.onepiece-cardgame.com/cardlist/",
-      "fetchedAt": "2026-09-15T15:40:29+00:00",
+      "fetchedAt": "2026-09-15T17:00:51+00:00",
       "records": 4844,
       "series": 60,
       "authority": "official"
@@ -13,7 +13,7 @@
     "oplay": {
       "enabled": true,
       "url": "https://oplaytcg.com/en/library",
-      "fetchedAt": "2026-09-15T15:40:32+00:00",
+      "fetchedAt": "2026-09-15T17:00:55+00:00",
       "uniqueCards": 3035,
       "printings": 32629,
       "languages": {
@@ -55,7 +55,7 @@
     },
     "optcgapi": {
       "enabled": false,
-      "status": "retired-v3.12.1",
+      "status": "retired-v3.13.0",
       "replacement": "OPlayTCG multilingual physical-printing catalogue"
     }
   },
@@ -3192,18 +3192,29 @@
     "hiddenMarketPrintings": 7200,
     "entitiesWithPreviewImage": 3035
   },
+  "clientCatalog": {
+    "schemaVersion": 1,
+    "entities": 3221,
+    "printings": 40243,
+    "internalPrintings": 40243,
+    "internalCompactBytes": 95819984,
+    "clientBytes": 19457569,
+    "savedBytes": 76362415,
+    "reductionPercent": 79.694,
+    "contract": "same IDs/languages/visibility/images/valuations; redundant audit metadata omitted"
+  },
   "fingerprints": {
-    "catalog": "207862f0044947d50334816bcfbaa90c31fddb67d92697ebc2785764e4353b28",
+    "catalog": "75e0771b2eee2d249b2b6e6ac46e7532cbf1ba3b94e39d9f8633105fe3a9e0a4",
     "mapping": "3279e4026145d9ef3d99c1e39dbeb5482c493c6cf60d93366a83bd49d3a9d23e",
-    "oplayMapping": "7dd979e949845a90ef8b437f9993d68c02fd48f3ef447847bc3d733d2c366b5c",
-    "sets": "bb270cfd03bfc364c53e455849f6226e804511839df756e31dbadab2865f7736",
-    "priceHistory": "af3507f013cf0359f3c7409a1fe682e8cff6378b3c2a52634dc82b6dd836326f"
+    "oplayMapping": "d590c2cdbe7f25db05d52acf74855911dfac33c5c15c3bd16025e31fc36dc0ba",
+    "sets": "ca91851d2a13d4419977229569359e80558b999089d1d5f646834817500e27f0",
+    "priceHistory": "c42bb5e532c3d2df0a34a8ec4c3048a9d7bad406741c8f01e4bbbdf280e5f05e"
   },
   "storage": {
     "reportFile": "output/storage_report_v1.json",
-    "workingDataBytes": 145014712,
-    "workingDataMiB": 138.297,
-    "gitRepositoryBytes": 11619370,
+    "workingDataBytes": 68650419,
+    "workingDataMiB": 65.47,
+    "gitRepositoryBytes": 11621778,
     "folders": {
       "raw": {
         "files": 5,
@@ -3217,8 +3228,8 @@
       },
       "output": {
         "files": 8,
-        "bytes": 110831294,
-        "mib": 105.697
+        "bytes": 34467001,
+        "mib": 32.87
       },
       "images": {
         "files": 0,
