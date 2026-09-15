@@ -1,0 +1,312 @@
+{
+  "generatedAt": "2026-09-15T13:31:10+00:00",
+  "schemaVersion": 1,
+  "catalogVersion": "3.12.0",
+  "imageStorageMode": "remote",
+  "folders": {
+    "raw": {
+      "files": 6,
+      "bytes": 30722595,
+      "mib": 29.299,
+      "largestFiles": [
+        {
+          "path": "raw/oplaytcg_catalog_raw.json",
+          "bytes": 16718891
+        },
+        {
+          "path": "raw/bandai_cards_raw.json",
+          "bytes": 5379393
+        },
+        {
+          "path": "raw/cardmarket_price_guide_raw.json",
+          "bytes": 4318933
+        },
+        {
+          "path": "raw/cardmarket_products_raw.json",
+          "bytes": 3031932
+        },
+        {
+          "path": "raw/optcgapi_images_raw.json",
+          "bytes": 1073820
+        },
+        {
+          "path": "raw/cardmarket_products_nonsingles_raw.json",
+          "bytes": 199626
+        }
+      ]
+    },
+    "data": {
+      "files": 6,
+      "bytes": 12178324,
+      "mib": 11.614,
+      "largestFiles": [
+        {
+          "path": "data/image_assets_v1.json",
+          "bytes": 3626549
+        },
+        {
+          "path": "data/cardmarket_mapping.json",
+          "bytes": 3490757
+        },
+        {
+          "path": "data/image_health_cache.json",
+          "bytes": 3348607
+        },
+        {
+          "path": "data/cardmarket_image_mapping.json",
+          "bytes": 949584
+        },
+        {
+          "path": "data/cardmarket_printing_metadata_v1.json",
+          "bytes": 598410
+        },
+        {
+          "path": "data/oplay_cardmarket_mapping_v1.json",
+          "bytes": 164417
+        }
+      ]
+    },
+    "output": {
+      "files": 8,
+      "bytes": 120817669,
+      "mib": 115.221,
+      "largestFiles": [
+        {
+          "path": "output/cards_multisource_v3.json",
+          "bytes": 102247150
+        },
+        {
+          "path": "output/oplay_mapping_review.json",
+          "bytes": 7431151
+        },
+        {
+          "path": "output/sets_multisource_v3.json",
+          "bytes": 5720251
+        },
+        {
+          "path": "output/cardmarket_image_pending.json",
+          "bytes": 2663382
+        },
+        {
+          "path": "output/cardmarket_mapping_review.json",
+          "bytes": 1802136
+        },
+        {
+          "path": "output/cardmarket_price_history_v3.json",
+          "bytes": 854926
+        },
+        {
+          "path": "output/cards_multisource_v3_report.json",
+          "bytes": 97488
+        },
+        {
+          "path": "output/catalog_manifest_v3.json",
+          "bytes": 1185
+        }
+      ]
+    },
+    "images": {
+      "files": 4843,
+      "bytes": 1726032884,
+      "mib": 1646.073,
+      "largestFiles": [
+        {
+          "path": "images/bandai/OP02/OP02-121.png",
+          "bytes": 2792550
+        },
+        {
+          "path": "images/bandai/OP02/OP02-009_P1.png",
+          "bytes": 2731937
+        },
+        {
+          "path": "images/bandai/OP02/OP02-096_P1.png",
+          "bytes": 2697357
+        },
+        {
+          "path": "images/bandai/OP02/OP02-073_P1.png",
+          "bytes": 2591271
+        },
+        {
+          "path": "images/bandai/OP02/OP02-062_P1.png",
+          "bytes": 2561213
+        },
+        {
+          "path": "images/bandai/OP02/OP02-062.png",
+          "bytes": 2548438
+        },
+        {
+          "path": "images/bandai/PRB02/PRB02-013_P1.png",
+          "bytes": 2531402
+        },
+        {
+          "path": "images/bandai/OP02/OP02-051.png",
+          "bytes": 2465447
+        },
+        {
+          "path": "images/bandai/OP02/OP02-114_P1.png",
+          "bytes": 2454221
+        },
+        {
+          "path": "images/bandai/OP02/OP02-077.png",
+          "bytes": 2435470
+        },
+        {
+          "path": "images/bandai/OP02/OP02-099.png",
+          "bytes": 2409538
+        },
+        {
+          "path": "images/bandai/OP02/OP02-031_P1.png",
+          "bytes": 2374811
+        },
+        {
+          "path": "images/bandai/OP08/OP08-118_R1.png",
+          "bytes": 2366087
+        },
+        {
+          "path": "images/bandai/OP02/OP02-042.png",
+          "bytes": 2359819
+        },
+        {
+          "path": "images/bandai/OP02/OP02-018.png",
+          "bytes": 2340676
+        },
+        {
+          "path": "images/bandai/OP02/OP02-030.png",
+          "bytes": 2336047
+        },
+        {
+          "path": "images/bandai/OP02/OP02-083.png",
+          "bytes": 2333017
+        },
+        {
+          "path": "images/bandai/OP02/OP02-009.png",
+          "bytes": 2323452
+        },
+        {
+          "path": "images/bandai/OP02/OP02-121_P1.png",
+          "bytes": 2316856
+        },
+        {
+          "path": "images/bandai/OP02/OP02-018_P1.png",
+          "bytes": 2305882
+        }
+      ]
+    }
+  },
+  "workingDataBytes": 1889751472,
+  "workingDataMiB": 1802.207,
+  "gitRepository": {
+    "files": 30,
+    "bytes": 1725004308,
+    "mib": 1645.092,
+    "largestFiles": [
+      {
+        "path": ".git/objects/pack/pack-4c4d1bed395e8dcb7dc84999e2346fccbfc9d443.pack",
+        "bytes": 1724332806
+      },
+      {
+        "path": ".git/index",
+        "bytes": 483566
+      },
+      {
+        "path": ".git/objects/pack/pack-4c4d1bed395e8dcb7dc84999e2346fccbfc9d443.idx",
+        "bytes": 139056
+      },
+      {
+        "path": ".git/objects/pack/pack-4c4d1bed395e8dcb7dc84999e2346fccbfc9d443.rev",
+        "bytes": 19764
+      },
+      {
+        "path": ".git/hooks/pre-rebase.sample",
+        "bytes": 4898
+      },
+      {
+        "path": ".git/hooks/fsmonitor-watchman.sample",
+        "bytes": 4611
+      },
+      {
+        "path": ".git/hooks/update.sample",
+        "bytes": 3650
+      },
+      {
+        "path": ".git/hooks/push-to-checkout.sample",
+        "bytes": 2783
+      },
+      {
+        "path": ".git/hooks/sendemail-validate.sample",
+        "bytes": 2308
+      },
+      {
+        "path": ".git/hooks/commit-msg.sample",
+        "bytes": 1972
+      },
+      {
+        "path": ".git/hooks/pre-commit.sample",
+        "bytes": 1649
+      },
+      {
+        "path": ".git/hooks/prepare-commit-msg.sample",
+        "bytes": 1492
+      },
+      {
+        "path": ".git/hooks/pre-push.sample",
+        "bytes": 1374
+      },
+      {
+        "path": ".git/config",
+        "bytes": 877
+      },
+      {
+        "path": ".git/hooks/pre-receive.sample",
+        "bytes": 544
+      },
+      {
+        "path": ".git/hooks/applypatch-msg.sample",
+        "bytes": 478
+      },
+      {
+        "path": ".git/hooks/pre-applypatch.sample",
+        "bytes": 424
+      },
+      {
+        "path": ".git/hooks/pre-merge-commit.sample",
+        "bytes": 416
+      },
+      {
+        "path": ".git/logs/refs/remotes/origin/main",
+        "bytes": 326
+      },
+      {
+        "path": ".git/info/exclude",
+        "bytes": 240
+      }
+    ]
+  },
+  "oplay": {
+    "printings": 32629,
+    "uniqueRemoteImageUrls": 32629,
+    "cachedImageFiles": 0,
+    "cachedImageBytes": 0,
+    "downloadPolicy": "remote-urls-only"
+  },
+  "obsoleteAfterV312Pass": {
+    "raw": [
+      "optcgapi_images_raw.json"
+    ],
+    "data": [
+      "cardmarket_image_mapping.json",
+      "image_health_cache.json",
+      "image_assets_v1.json"
+    ],
+    "output": [
+      "cardmarket_image_pending.json"
+    ],
+    "images": [
+      "images/cardmarket/",
+      "images/bandai/ (optional after Cardify 1.3.4 remote-image PASS)"
+    ],
+    "reviewBeforeDelete": [
+      "data/cardmarket_image_overrides.json (solo si existe y no contiene trabajo manual útil)"
+    ]
+  }
+}

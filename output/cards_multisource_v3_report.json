@@ -1,19 +1,44 @@
 {
-  "generatedAt": "2026-09-15T09:02:36+00:00",
-  "schemaVersion": 9,
-  "catalogVersion": "3.11.6",
+  "generatedAt": "2026-09-15T13:31:02+00:00",
+  "schemaVersion": 10,
+  "catalogVersion": "3.12.0",
   "sources": {
     "bandai": {
       "url": "https://en.onepiece-cardgame.com/cardlist/",
-      "fetchedAt": "2026-09-15T08:50:23+00:00",
+      "fetchedAt": "2026-09-15T13:30:14+00:00",
       "records": 4844,
       "series": 60,
       "authority": "official"
     },
+    "oplay": {
+      "enabled": true,
+      "url": "https://oplaytcg.com/en/library",
+      "fetchedAt": "2026-09-15T13:30:34+00:00",
+      "uniqueCards": 3035,
+      "printings": 32629,
+      "languages": {
+        "en": 6708,
+        "fr": 2906,
+        "ja": 5029,
+        "ko": 3164,
+        "th": 4954,
+        "zh-Hans": 4926,
+        "zh-Hant": 4942
+      },
+      "releases": 72,
+      "metadataCards": 250,
+      "metadataFetchedThisRun": 250,
+      "sitemapDocuments": 9,
+      "errors": 0,
+      "authority": "community-physical-printing-catalogue",
+      "authoritativeForOfficialIdentity": false,
+      "authoritativeForPrice": false,
+      "imageBytesDownloaded": false
+    },
     "cardmarketProducts": {
       "url": "https://downloads.s3.cardmarket.com/productCatalog/productList/products_singles_18.json",
       "records": 12425,
-      "createdAt": "2026-09-14T10:52:28+0200",
+      "createdAt": "2026-09-15T12:48:18+0200",
       "authority": "official-public-download"
     },
     "cardmarketPriceGuide": {
@@ -28,49 +53,10 @@
       "authority": "official-public-download",
       "purpose": "expansion/language evidence without per-product HTML scraping"
     },
-    "cardmarketProductImages": {
-      "enabled": true,
-      "defaultEnabled": false,
-      "purpose": "opt-in exact image URL discovery for Cardmarket-only/DON idProduct printings only",
-      "cacheFile": "data/cardmarket_image_mapping.json",
-      "host": "product-images.s3.cardmarket.com",
-      "identityPolicy": "accept only image URLs containing the same idProduct",
-      "rehosted": false,
-      "stats": {
-        "enabled": true,
-        "targets": 7618,
-        "cachedFound": 0,
-        "attempted": 2,
-        "discovered": 0,
-        "cdnDiscovered": 0,
-        "pageDiscovered": 0,
-        "storedAssets": 0,
-        "refreshedAfterImageFailure": 0,
-        "notFound": 0,
-        "errors": 2,
-        "skippedRecentFailure": 0,
-        "stoppedReason": "http-403"
-      }
-    },
-    "communityImages": {
-      "enabled": true,
-      "provider": "OPTCGAPI.com",
-      "purpose": "missing supplemental reference images only",
-      "normalizedImageRecords": 1127,
-      "requests": [
-        {
-          "url": "https://optcgapi.com/api/allDonCards/",
-          "ok": true,
-          "error": null
-        },
-        {
-          "url": "https://optcgapi.com/api/allPromos/",
-          "ok": true,
-          "error": null
-        }
-      ],
-      "authoritativeForIdentity": false,
-      "authoritativeForPrice": false
+    "optcgapi": {
+      "enabled": false,
+      "status": "retired-v3.12.0",
+      "replacement": "OPlayTCG multilingual physical-printing catalogue"
     }
   },
   "mapping": {
@@ -737,6 +723,44 @@
     "inferredReleaseProfiles": {},
     "needsReview": 516
   },
+  "oplayIntegration": {
+    "stats": {
+      "sourcePrintings": 32629,
+      "sourceCards": 3035,
+      "bandaiPrintingsMatched": 857,
+      "bandaiExactImagesPreserved": 714,
+      "cardmarketProductsMapped": 773,
+      "cardmarketProductsMappedManual": 0,
+      "cardmarketProductsMappedAuto": 773,
+      "cardmarketProductsHiddenAsAmbiguousMarketRows": 7200,
+      "oplayPrintingsAdded": 31187,
+      "oplayOnlyEntitiesAdded": 250,
+      "englishOPlaySuppressedAgainstBandai": 0,
+      "cardmarketUnknownLanguageNotAutoMapped": 7412,
+      "entitiesWithOPlay": 3035,
+      "languages": {
+        "en": 6708,
+        "fr": 2906,
+        "ja": 5029,
+        "ko": 3164,
+        "th": 4954,
+        "zh-Hans": 4926,
+        "zh-Hant": 4942
+      },
+      "visiblePrintings": 36448,
+      "hiddenMarketPrintings": 7200,
+      "printingsWithOPlayImage": 31246
+    },
+    "mappingReviewPending": 10813,
+    "mappingFile": "data/oplay_cardmarket_mapping_v1.json",
+    "reviewFile": "output/oplay_mapping_review.json",
+    "cardmarketMetadataMigration": {
+      "legacyRecordsMigrated": 1959,
+      "versionsSeededFromMappingUrl": 0,
+      "products": 9452
+    },
+    "identityPolicy": "merge only deterministic unique matches; never guess by price/date/product order"
+  },
   "cardmarketExpansionMetadata": {
     "stats": {
       "expansionsWithMetadata": 50,
@@ -1326,10 +1350,10 @@
       "totalProductsWithExactImage": 0
     },
     "communityImages": {
-      "sourceRecords": 1127,
-      "matchedEntities": 90,
-      "standardEntitiesWithReferenceImage": 5,
-      "donEntitiesWithReferenceImage": 85,
+      "sourceRecords": 0,
+      "matchedEntities": 0,
+      "standardEntitiesWithReferenceImage": 0,
+      "donEntitiesWithReferenceImage": 0,
       "exactSingleProductImages": 0,
       "ambiguousStandardCodesSuppressed": [
         "P-064",
@@ -1338,22 +1362,20 @@
       ],
       "donExactPrintingImagePolicy": "community-disabled-no-stable-printed-code",
       "cardmarketProductPageExactPolicy": "enabled-idProduct-in-image-url+health-validation",
-      "unmatchedOrAmbiguous": 150,
+      "unmatchedOrAmbiguous": 240,
       "diagnosticSample": [
         {
           "catalogId": "CMCARD-421984",
           "kind": "standard-card",
           "wantedName": "trafalgar law",
           "wantedMarkers": [],
-          "candidateCount": 2,
+          "candidateCount": 0,
           "rejectedReleaseMismatch": 0,
           "rejectedGoldMismatch": 0,
-          "topScore": 0.94,
-          "secondScore": 0.94,
+          "topScore": 0.0,
+          "secondScore": 0.0,
           "requiredScore": 0.8,
           "requiredMargin": 0.04,
-          "topSourceName": "Trafalgar Law (Event Pack Vol. 4)",
-          "topSourceFullName": "Trafalgar Law (Event Pack Vol. 4)",
           "status": "unmatched-or-ambiguous"
         },
         {
@@ -1383,6 +1405,34 @@
           "ambiguousPrintedCodes": [
             "P-064"
           ]
+        },
+        {
+          "catalogId": "CMCARD-432857",
+          "kind": "standard-card",
+          "wantedName": "eustas captain kid",
+          "wantedMarkers": [],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.8,
+          "requiredMargin": 0.04,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "CMCARD-433106",
+          "kind": "standard-card",
+          "wantedName": "boa hancock",
+          "wantedMarkers": [],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.8,
+          "requiredMargin": 0.04,
+          "status": "unmatched-or-ambiguous"
         },
         {
           "catalogId": "CMCARD-433623",
@@ -1879,15 +1929,13 @@
           "kind": "standard-card",
           "wantedName": "usopp",
           "wantedMarkers": [],
-          "candidateCount": 1,
+          "candidateCount": 0,
           "rejectedReleaseMismatch": 0,
           "rejectedGoldMismatch": 0,
-          "topScore": 0.1173,
+          "topScore": 0.0,
           "secondScore": 0.0,
           "requiredScore": 0.8,
           "requiredMargin": 0.04,
-          "topSourceName": "Usopp - P-136 (Premium Card Collection -Live Action Edition Vol.2 Straw Hat Crew-)",
-          "topSourceFullName": "Usopp - P-136 (Premium Card Collection -Live Action Edition Vol.2 Straw Hat Crew-)",
           "status": "unmatched-or-ambiguous"
         },
         {
@@ -1923,15 +1971,27 @@
           "kind": "standard-card",
           "wantedName": "nami",
           "wantedMarkers": [],
-          "candidateCount": 1,
+          "candidateCount": 0,
           "rejectedReleaseMismatch": 0,
           "rejectedGoldMismatch": 0,
-          "topScore": 0.1012,
+          "topScore": 0.0,
           "secondScore": 0.0,
           "requiredScore": 0.8,
           "requiredMargin": 0.04,
-          "topSourceName": "Nami - P-139 (Premium Card Collection -Live Action Edition Vol.2 Straw Hat Crew-)",
-          "topSourceFullName": "Nami - P-139 (Premium Card Collection -Live Action Edition Vol.2 Straw Hat Crew-)",
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "CMCARD-466806",
+          "kind": "standard-card",
+          "wantedName": "monkey d luffy",
+          "wantedMarkers": [],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.8,
+          "requiredMargin": 0.04,
           "status": "unmatched-or-ambiguous"
         },
         {
@@ -2019,6 +2079,34 @@
           "status": "unmatched-or-ambiguous"
         },
         {
+          "catalogId": "CMCARD-466815",
+          "kind": "standard-card",
+          "wantedName": "miss valentine mikita",
+          "wantedMarkers": [],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.8,
+          "requiredMargin": 0.04,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "CMCARD-466816",
+          "kind": "standard-card",
+          "wantedName": "mr 3 galdino",
+          "wantedMarkers": [],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.8,
+          "requiredMargin": 0.04,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
           "catalogId": "CMCARD-466817",
           "kind": "standard-card",
           "wantedName": "mr 5 gem",
@@ -2065,15 +2153,59 @@
           "wantedMarkers": [
             "op06"
           ],
-          "candidateCount": 2,
-          "rejectedReleaseMismatch": 181,
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
           "rejectedGoldMismatch": 0,
-          "topScore": 0.1212,
-          "secondScore": 0.1183,
+          "topScore": 0.0,
+          "secondScore": 0.0,
           "requiredScore": 0.9,
           "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Mihawk & Zoro) (Double Pack Set Vol. 3)",
-          "topSourceFullName": "DON!! Card (Mihawk & Zoro) (Double Pack Set Vol. 3) - Wings of the Captain (OP06)",
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-432638",
+          "kind": "don",
+          "wantedName": "gear 5",
+          "wantedMarkers": [],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-433089",
+          "kind": "don",
+          "wantedName": "sanji dp03",
+          "wantedMarkers": [
+            "dp03"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-433090",
+          "kind": "don",
+          "wantedName": "zoro dp03",
+          "wantedMarkers": [
+            "dp03"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
           "status": "unmatched-or-ambiguous"
         },
         {
@@ -2083,15 +2215,27 @@
           "wantedMarkers": [
             "op07"
           ],
-          "candidateCount": 2,
-          "rejectedReleaseMismatch": 181,
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
           "rejectedGoldMismatch": 0,
-          "topScore": 0.1227,
-          "secondScore": 0.0981,
+          "topScore": 0.0,
+          "secondScore": 0.0,
           "requiredScore": 0.9,
           "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Boa Hancock) (Double Pack Set Vol. 4)",
-          "topSourceFullName": "DON!! Card (Boa Hancock) (Double Pack Set Vol. 4) - 500 Years in the Future (OP07)",
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-434173",
+          "kind": "don",
+          "wantedName": "film red promotion",
+          "wantedMarkers": [],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
           "status": "unmatched-or-ambiguous"
         },
         {
@@ -2101,15 +2245,13 @@
           "wantedMarkers": [
             "op01"
           ],
-          "candidateCount": 2,
-          "rejectedReleaseMismatch": 181,
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
           "rejectedGoldMismatch": 0,
-          "topScore": 0.186,
-          "secondScore": 0.1488,
+          "topScore": 0.0,
+          "secondScore": 0.0,
           "requiredScore": 0.9,
           "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Manga) (Alternate Art)",
-          "topSourceFullName": "DON!! Card (Manga) (Alternate Art) - Romance Dawn (OP01)",
           "status": "unmatched-or-ambiguous"
         },
         {
@@ -2119,15 +2261,13 @@
           "wantedMarkers": [
             "op02"
           ],
-          "candidateCount": 1,
-          "rejectedReleaseMismatch": 182,
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
           "rejectedGoldMismatch": 0,
-          "topScore": 0.2743,
+          "topScore": 0.0,
           "secondScore": 0.0,
           "requiredScore": 0.9,
           "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Manga)",
-          "topSourceFullName": "DON!! Card (Manga) - Paramount War (OP02)",
           "status": "unmatched-or-ambiguous"
         },
         {
@@ -2137,15 +2277,27 @@
           "wantedMarkers": [
             "op08"
           ],
-          "candidateCount": 2,
-          "rejectedReleaseMismatch": 181,
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
           "rejectedGoldMismatch": 0,
-          "topScore": 0.1716,
-          "secondScore": 0.1691,
+          "topScore": 0.0,
+          "secondScore": 0.0,
           "requiredScore": 0.9,
           "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Shattered) (Double Pack Set Vol. 5)",
-          "topSourceFullName": "DON!! Card (Shattered) (Double Pack Set Vol. 5) - Two Legends (OP08)",
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-435792",
+          "kind": "don",
+          "wantedName": "world championship 2023",
+          "wantedMarkers": [],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
           "status": "unmatched-or-ambiguous"
         },
         {
@@ -2153,15 +2305,13 @@
           "kind": "don",
           "wantedName": "pop art",
           "wantedMarkers": [],
-          "candidateCount": 122,
+          "candidateCount": 0,
           "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.4,
-          "secondScore": 0.3579,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
           "requiredScore": 0.9,
           "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Pink)",
-          "topSourceFullName": "DON!! Card (Pink) - One Piece Promotion Cards (OP-PR)",
           "status": "unmatched-or-ambiguous"
         },
         {
@@ -2171,15 +2321,125 @@
           "wantedMarkers": [
             "dp04"
           ],
-          "candidateCount": 2,
-          "rejectedReleaseMismatch": 181,
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
           "rejectedGoldMismatch": 0,
-          "topScore": 0.1741,
-          "secondScore": 0.1717,
+          "topScore": 0.0,
+          "secondScore": 0.0,
           "requiredScore": 0.9,
           "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Trafalgar Law, Eustass Kid and Monkey.D.Luffy) (Double Pack Set Vol. 4)",
-          "topSourceFullName": "DON!! Card (Trafalgar Law, Eustass Kid and Monkey.D.Luffy) (Double Pack Set Vol. 4) - 500 Years in the Future (OP07)",
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-436613",
+          "kind": "don",
+          "wantedName": "boa hancock dp04",
+          "wantedMarkers": [
+            "dp04"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438169",
+          "kind": "don",
+          "wantedName": "prb01 kid",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438170",
+          "kind": "don",
+          "wantedName": "prb01 ace",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438171",
+          "kind": "don",
+          "wantedName": "prb01 crocodile",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438172",
+          "kind": "don",
+          "wantedName": "prb01 doflamingo",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438173",
+          "kind": "don",
+          "wantedName": "prb01 enel",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438174",
+          "kind": "don",
+          "wantedName": "prb01 hody",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
           "status": "unmatched-or-ambiguous"
         },
         {
@@ -2189,15 +2449,301 @@
           "wantedMarkers": [
             "prb01"
           ],
-          "candidateCount": 29,
-          "rejectedReleaseMismatch": 127,
-          "rejectedGoldMismatch": 27,
-          "topScore": 0.4467,
-          "secondScore": 0.4467,
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
           "requiredScore": 0.9,
           "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Trafalgar Law)",
-          "topSourceFullName": "DON!! Card (Trafalgar Law) - Premium Booster -The Best- (PRB-01)",
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438176",
+          "kind": "don",
+          "wantedName": "prb01 ivankov",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438177",
+          "kind": "don",
+          "wantedName": "prb01 kaido",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438178",
+          "kind": "don",
+          "wantedName": "prb01 katakuri",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438179",
+          "kind": "don",
+          "wantedName": "prb01 king",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438180",
+          "kind": "don",
+          "wantedName": "prb01 law",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438181",
+          "kind": "don",
+          "wantedName": "prb01 lucci",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438182",
+          "kind": "don",
+          "wantedName": "prb01 luffy",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438183",
+          "kind": "don",
+          "wantedName": "prb01 magellan",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438184",
+          "kind": "don",
+          "wantedName": "prb01 big mom",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438185",
+          "kind": "don",
+          "wantedName": "prb01 moria",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438186",
+          "kind": "don",
+          "wantedName": "prb01 perona",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438187",
+          "kind": "don",
+          "wantedName": "prb01 queen",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438188",
+          "kind": "don",
+          "wantedName": "prb01 rebecca",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438189",
+          "kind": "don",
+          "wantedName": "prb01 reiju",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438190",
+          "kind": "don",
+          "wantedName": "prb01 rosinante",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438191",
+          "kind": "don",
+          "wantedName": "prb01 sabo",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438192",
+          "kind": "don",
+          "wantedName": "prb01 sakazuki",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438193",
+          "kind": "don",
+          "wantedName": "prb01 oden",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
           "status": "unmatched-or-ambiguous"
         },
         {
@@ -2207,15 +2753,77 @@
           "wantedMarkers": [
             "prb01"
           ],
-          "candidateCount": 29,
-          "rejectedReleaseMismatch": 127,
-          "rejectedGoldMismatch": 27,
-          "topScore": 0.4467,
-          "secondScore": 0.4467,
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
           "requiredScore": 0.9,
           "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Trafalgar Law)",
-          "topSourceFullName": "DON!! Card (Trafalgar Law) - Premium Booster -The Best- (PRB-01)",
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438195",
+          "kind": "don",
+          "wantedName": "prb01 vivi",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438196",
+          "kind": "don",
+          "wantedName": "prb01 whitebeard",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438197",
+          "kind": "don",
+          "wantedName": "prb01 yamato",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
+          "status": "unmatched-or-ambiguous"
+        },
+        {
+          "catalogId": "DON-CM-438198",
+          "kind": "don",
+          "wantedName": "prb01 zoro",
+          "wantedMarkers": [
+            "prb01"
+          ],
+          "candidateCount": 0,
+          "rejectedReleaseMismatch": 0,
+          "rejectedGoldMismatch": 0,
+          "topScore": 0.0,
+          "secondScore": 0.0,
+          "requiredScore": 0.9,
+          "requiredMargin": 0.05,
           "status": "unmatched-or-ambiguous"
         },
         {
@@ -2225,663 +2833,13 @@
           "wantedMarkers": [
             "op09"
           ],
-          "candidateCount": 2,
-          "rejectedReleaseMismatch": 181,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.1327,
-          "secondScore": 0.1327,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Blackbeard) (Double Pack Set Vol. 6)",
-          "topSourceFullName": "DON!! Card (Blackbeard) (Double Pack Set Vol. 6) - Emperors in the New World (OP09)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-439997",
-          "kind": "don",
-          "wantedName": "rayleigh dp05",
-          "wantedMarkers": [
-            "dp05"
-          ],
-          "candidateCount": 2,
-          "rejectedReleaseMismatch": 181,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.2435,
-          "secondScore": 0.2157,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Shattered) (Double Pack Set Vol. 5)",
-          "topSourceFullName": "DON!! Card (Shattered) (Double Pack Set Vol. 5) - Two Legends (OP08)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-439998",
-          "kind": "don",
-          "wantedName": "whitebeard dp05",
-          "wantedMarkers": [
-            "dp05"
-          ],
-          "candidateCount": 2,
-          "rejectedReleaseMismatch": 181,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.3082,
-          "secondScore": 0.3036,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Shattered) (Double Pack Set Vol. 5)",
-          "topSourceFullName": "DON!! Card (Shattered) (Double Pack Set Vol. 5) - Two Legends (OP08)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-441084",
-          "kind": "don",
-          "wantedName": "one piece day 2024 gre4n boyz",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.5267,
-          "secondScore": 0.3867,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (One Piece Day Dallas 2025)",
-          "topSourceFullName": "DON!! Card (One Piece Day Dallas 2025) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-441085",
-          "kind": "don",
-          "wantedName": "one piece day 2024 ado uta",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.5732,
-          "secondScore": 0.404,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (One Piece Day Dallas 2025)",
-          "topSourceFullName": "DON!! Card (One Piece Day Dallas 2025) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-441087",
-          "kind": "don",
-          "wantedName": "one piece day 2024",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.5918,
-          "secondScore": 0.4483,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (One Piece Day Dallas 2025)",
-          "topSourceFullName": "DON!! Card (One Piece Day Dallas 2025) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-443578",
-          "kind": "don",
-          "wantedName": "op10",
-          "wantedMarkers": [
-            "op10"
-          ],
           "candidateCount": 0,
-          "rejectedReleaseMismatch": 183,
+          "rejectedReleaseMismatch": 0,
           "rejectedGoldMismatch": 0,
           "topScore": 0.0,
           "secondScore": 0.0,
           "requiredScore": 0.9,
           "requiredMargin": 0.05,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-444111",
-          "kind": "don",
-          "wantedName": "bronze grand asia open",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.4133,
-          "secondScore": 0.2957,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Bronze)",
-          "topSourceFullName": "DON!! Card (Bronze) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-444112",
-          "kind": "don",
-          "wantedName": "silver grand asia open",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.4133,
-          "secondScore": 0.3022,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Silver)",
-          "topSourceFullName": "DON!! Card (Silver) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-444113",
-          "kind": "don",
-          "wantedName": "gold grand asia open",
-          "wantedMarkers": [],
-          "candidateCount": 61,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 122,
-          "topScore": 0.3707,
-          "secondScore": 0.3477,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Gold)",
-          "topSourceFullName": "DON!! Card (Gold) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-444114",
-          "kind": "don",
-          "wantedName": "black red grand asia open",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.3138,
-          "secondScore": 0.3001,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Double Pack Set Vol. 11) (Luffy and Ace)",
-          "topSourceFullName": "DON!! Card (Double Pack Set Vol. 11) (Luffy and Ace) - The Time of Battle (OP16)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-445042",
-          "kind": "don",
-          "wantedName": "eb02",
-          "wantedMarkers": [
-            "eb02"
-          ],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 183,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-445286",
-          "kind": "don",
-          "wantedName": "2nd chinese anniversary",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.4776,
-          "secondScore": 0.3988,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (2nd Anniversary Tournament)",
-          "topSourceFullName": "DON!! Card (2nd Anniversary Tournament) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-447221",
-          "kind": "don",
-          "wantedName": "op11",
-          "wantedMarkers": [
-            "op11"
-          ],
-          "candidateCount": 2,
-          "rejectedReleaseMismatch": 181,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.1402,
-          "secondScore": 0.1327,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Koby) (Double Pack Set Vol. 7)",
-          "topSourceFullName": "DON!! Card (Koby) (Double Pack Set Vol. 7) - A Fist of Divine Speed (OP11)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-447306",
-          "kind": "don",
-          "wantedName": "ado uta",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.255,
-          "secondScore": 0.24,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Red)",
-          "topSourceFullName": "DON!! Card (Red) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-448370",
-          "kind": "don",
-          "wantedName": "op03",
-          "wantedMarkers": [
-            "op03"
-          ],
-          "candidateCount": 1,
-          "rejectedReleaseMismatch": 182,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.1829,
-          "secondScore": 0.0,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Alternate Art)",
-          "topSourceFullName": "DON!! Card (Alternate Art) - Pillars of Strength (OP03)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-450570",
-          "kind": "don",
-          "wantedName": "2nd english anniversary 4 emperors",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.5237,
-          "secondScore": 0.4715,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (English Version 2nd Anniversary Set)",
-          "topSourceFullName": "DON!! Card (English Version 2nd Anniversary Set) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-451853",
-          "kind": "don",
-          "wantedName": "op12",
-          "wantedMarkers": [
-            "op12"
-          ],
-          "candidateCount": 2,
-          "rejectedReleaseMismatch": 181,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.1533,
-          "secondScore": 0.1533,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (3D) (Double Pack Set Vol. 8)",
-          "topSourceFullName": "DON!! Card (3D) (Double Pack Set Vol. 8) - Legacy of the Master (OP12)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-451987",
-          "kind": "don",
-          "wantedName": "prb02 boa hancock",
-          "wantedMarkers": [
-            "prb02"
-          ],
-          "candidateCount": 26,
-          "rejectedReleaseMismatch": 129,
-          "rejectedGoldMismatch": 28,
-          "topScore": 0.3775,
-          "secondScore": 0.3685,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Lim)",
-          "topSourceFullName": "DON!! Card (Lim) - Premium Booster -The Best- Vol. 2 (PRB-02)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-452000",
-          "kind": "don",
-          "wantedName": "prb02 lucci",
-          "wantedMarkers": [
-            "prb02"
-          ],
-          "candidateCount": 26,
-          "rejectedReleaseMismatch": 129,
-          "rejectedGoldMismatch": 28,
-          "topScore": 0.4205,
-          "secondScore": 0.4089,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Lim)",
-          "topSourceFullName": "DON!! Card (Lim) - Premium Booster -The Best- Vol. 2 (PRB-02)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-452002",
-          "kind": "don",
-          "wantedName": "prb02 nami",
-          "wantedMarkers": [
-            "prb02"
-          ],
-          "candidateCount": 26,
-          "rejectedReleaseMismatch": 129,
-          "rejectedGoldMismatch": 28,
-          "topScore": 0.4331,
-          "secondScore": 0.4205,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Lim)",
-          "topSourceFullName": "DON!! Card (Lim) - Premium Booster -The Best- Vol. 2 (PRB-02)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-452004",
-          "kind": "don",
-          "wantedName": "prb02 nika",
-          "wantedMarkers": [
-            "prb02"
-          ],
-          "candidateCount": 26,
-          "rejectedReleaseMismatch": 129,
-          "rejectedGoldMismatch": 28,
-          "topScore": 0.4331,
-          "secondScore": 0.4205,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Lim)",
-          "topSourceFullName": "DON!! Card (Lim) - Premium Booster -The Best- Vol. 2 (PRB-02)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-452010",
-          "kind": "don",
-          "wantedName": "prb02 snakeman",
-          "wantedMarkers": [
-            "prb02"
-          ],
-          "candidateCount": 26,
-          "rejectedReleaseMismatch": 129,
-          "rejectedGoldMismatch": 28,
-          "topScore": 0.388,
-          "secondScore": 0.3787,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Lim)",
-          "topSourceFullName": "DON!! Card (Lim) - Premium Booster -The Best- Vol. 2 (PRB-02)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-452014",
-          "kind": "don",
-          "wantedName": "prb02 yamato",
-          "wantedMarkers": [
-            "prb02"
-          ],
-          "candidateCount": 26,
-          "rejectedReleaseMismatch": 129,
-          "rejectedGoldMismatch": 28,
-          "topScore": 0.4089,
-          "secondScore": 0.3981,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Lim)",
-          "topSourceFullName": "DON!! Card (Lim) - Premium Booster -The Best- Vol. 2 (PRB-02)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-453327",
-          "kind": "don",
-          "wantedName": "one piece day 25",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.583,
-          "secondScore": 0.4643,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (One Piece Day Dallas 2025)",
-          "topSourceFullName": "DON!! Card (One Piece Day Dallas 2025) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-453328",
-          "kind": "don",
-          "wantedName": "one piece day 25 elbaph",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.56,
-          "secondScore": 0.4304,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (One Piece Day Dallas 2025)",
-          "topSourceFullName": "DON!! Card (One Piece Day Dallas 2025) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-454097",
-          "kind": "don",
-          "wantedName": "luffy ssg",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.4205,
-          "secondScore": 0.335,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Luffy)",
-          "topSourceFullName": "DON!! Card (Luffy) - Premium Booster -The Best- (PRB-01)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-454684",
-          "kind": "don",
-          "wantedName": "general shogun chopper saikyo jump promotion 2023",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.32,
-          "secondScore": 0.2776,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Chopper)",
-          "topSourceFullName": "DON!! Card (Chopper) - Premium Booster -The Best- Vol. 2 (PRB-02)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-456400",
-          "kind": "don",
-          "wantedName": "elbaph",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "status": "insufficient-design-qualifier"
-        },
-        {
-          "catalogId": "DON-CM-456472",
-          "kind": "don",
-          "wantedName": "garp and luffy 2nd anniversary tournament",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.6044,
-          "secondScore": 0.4552,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (2nd Anniversary Tournament)",
-          "topSourceFullName": "DON!! Card (2nd Anniversary Tournament) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-457773",
-          "kind": "don",
-          "wantedName": "boa eb03",
-          "wantedMarkers": [
-            "eb03"
-          ],
-          "candidateCount": 4,
-          "rejectedReleaseMismatch": 178,
-          "rejectedGoldMismatch": 1,
-          "topScore": 0.9311,
-          "secondScore": 0.2026,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Boa Hancock)",
-          "topSourceFullName": "DON!! Card (Boa Hancock) - Extra Booster: One Piece Heroines Edition (EB-03)",
-          "status": "matched-image-invalid"
-        },
-        {
-          "catalogId": "DON-CM-457776",
-          "kind": "don",
-          "wantedName": "heroines eb03",
-          "wantedMarkers": [
-            "eb03"
-          ],
-          "candidateCount": 4,
-          "rejectedReleaseMismatch": 178,
-          "rejectedGoldMismatch": 1,
-          "topScore": 0.9325,
-          "secondScore": 0.9325,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Uta)",
-          "topSourceFullName": "DON!! Card (Uta) - Extra Booster: One Piece Heroines Edition (EB-03)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-458078",
-          "kind": "don",
-          "wantedName": "df03 corazon and law",
-          "wantedMarkers": [
-            "df03"
-          ],
-          "candidateCount": 2,
-          "rejectedReleaseMismatch": 181,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.2231,
-          "secondScore": 0.2163,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Donquixote Rosinante) (Devil Fruits Collection Vol. 3)",
-          "topSourceFullName": "DON!! Card (Donquixote Rosinante) (Devil Fruits Collection Vol. 3) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-458081",
-          "kind": "don",
-          "wantedName": "eb04 egghead",
-          "wantedMarkers": [
-            "eb04"
-          ],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 183,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-458082",
-          "kind": "don",
-          "wantedName": "judge jolly roger 2025",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.2765,
-          "secondScore": 0.272,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Tin Pack Set Vol. 1 -Gol.D.Roger-)",
-          "topSourceFullName": "DON!! Card (Tin Pack Set Vol. 1 -Gol.D.Roger-) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-458286",
-          "kind": "don",
-          "wantedName": "chinese 3rd anniversary kuma and bonney",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.3959,
-          "secondScore": 0.3667,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (2nd Anniversary Tournament)",
-          "topSourceFullName": "DON!! Card (2nd Anniversary Tournament) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-458529",
-          "kind": "don",
-          "wantedName": "chopper saiko jump 2025",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.4202,
-          "secondScore": 0.2604,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Chopper)",
-          "topSourceFullName": "DON!! Card (Chopper) - Premium Booster -The Best- Vol. 2 (PRB-02)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-458923",
-          "kind": "don",
-          "wantedName": "sabo saiko jump 2025",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.3662,
-          "secondScore": 0.3422,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Sabo)",
-          "topSourceFullName": "DON!! Card (Sabo) - Premium Booster -The Best- (PRB-01)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-460336",
-          "kind": "don",
-          "wantedName": "op15",
-          "wantedMarkers": [
-            "op15"
-          ],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 183,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-460924",
-          "kind": "don",
-          "wantedName": "tutorial app promotion",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.34,
-          "secondScore": 0.32,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Teal)",
-          "topSourceFullName": "DON!! Card (Teal) - One Piece Promotion Cards (OP-PR)",
           "status": "unmatched-or-ambiguous"
         }
       ]
@@ -2889,8 +2847,9 @@
   },
   "sets": {
     "officialBandaiSetCount": 60,
-    "cardmarketExpansionCount": 111,
-    "total": 171
+    "oplaySetCount": 12,
+    "cardmarketExpansionCount": 52,
+    "total": 124
   },
   "priceHistory": {
     "enabled": true,
@@ -2898,1831 +2857,41 @@
     "snapshotDate": "2026-09-15",
     "productsWithValuation": 12826,
     "retentionDays": 90,
-    "overwroteExistingDay": false
+    "overwroteExistingDay": true
   },
   "images": {
-    "totalUrls": 6183,
-    "officialUrls": 4843,
-    "communityUrls": 1340,
-    "cardmarketExactUrls": 0,
-    "checkedThisRun": 16,
-    "failedThisRun": 16,
-    "failed": [
-      {
-        "url": "https://optcgapi.com/media/static/Card_Images/Bartolomeo_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
-        "sourceKind": "community",
-        "ok": false,
-        "checkedAt": "2026-09-15T09:02:27+00:00",
-        "httpStatus": 206,
-        "contentType": "image/jpeg",
-        "contentDisposition": null,
-        "signature": null,
-        "finalUrl": "https://optcgapi.com/media/static/Card_Images/Bartolomeo_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
-        "error": "Respuesta no validada como imagen renderizable"
-      },
-      {
-        "url": "https://optcgapi.com/media/static/Card_Images/DON_Card_Boa_Hancock_-_Extra_Booster_One_Piece_Heroines_Edition_EB-03_img.jpg",
-        "sourceKind": "community",
-        "ok": false,
-        "checkedAt": "2026-09-15T09:02:27+00:00",
-        "httpStatus": 206,
-        "contentType": "image/jpeg",
-        "contentDisposition": null,
-        "signature": null,
-        "finalUrl": "https://optcgapi.com/media/static/Card_Images/DON_Card_Boa_Hancock_-_Extra_Booster_One_Piece_Heroines_Edition_EB-03_img.jpg",
-        "error": "Respuesta no validada como imagen renderizable"
-      },
-      {
-        "url": "https://optcgapi.com/media/static/Card_Images/General_Franky_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
-        "sourceKind": "community",
-        "ok": false,
-        "checkedAt": "2026-09-15T09:02:27+00:00",
-        "httpStatus": 206,
-        "contentType": "image/jpeg",
-        "contentDisposition": null,
-        "signature": null,
-        "finalUrl": "https://optcgapi.com/media/static/Card_Images/General_Franky_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
-        "error": "Respuesta no validada como imagen renderizable"
-      },
-      {
-        "url": "https://optcgapi.com/media/static/Card_Images/Issho_Welcome_Pack_Vol._1_img.jpg",
-        "sourceKind": "community",
-        "ok": false,
-        "checkedAt": "2026-09-15T09:02:27+00:00",
-        "httpStatus": 206,
-        "contentType": "image/jpeg",
-        "contentDisposition": null,
-        "signature": null,
-        "finalUrl": "https://optcgapi.com/media/static/Card_Images/Issho_Welcome_Pack_Vol._1_img.jpg",
-        "error": "Respuesta no validada como imagen renderizable"
-      },
-      {
-        "url": "https://optcgapi.com/media/static/Card_Images/Jinbe_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
-        "sourceKind": "community",
-        "ok": false,
-        "checkedAt": "2026-09-15T09:02:27+00:00",
-        "httpStatus": 206,
-        "contentType": "image/jpeg",
-        "contentDisposition": null,
-        "signature": null,
-        "finalUrl": "https://optcgapi.com/media/static/Card_Images/Jinbe_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
-        "error": "Respuesta no validada como imagen renderizable"
-      },
-      {
-        "url": "https://optcgapi.com/media/static/Card_Images/Monkey.D.Luffy_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
-        "sourceKind": "community",
-        "ok": false,
-        "checkedAt": "2026-09-15T09:02:27+00:00",
-        "httpStatus": 206,
-        "contentType": "image/jpeg",
-        "contentDisposition": null,
-        "signature": null,
-        "finalUrl": "https://optcgapi.com/media/static/Card_Images/Monkey.D.Luffy_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
-        "error": "Respuesta no validada como imagen renderizable"
-      },
-      {
-        "url": "https://optcgapi.com/media/static/Card_Images/Portgas.D.Ace_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
-        "sourceKind": "community",
-        "ok": false,
-        "checkedAt": "2026-09-15T09:02:27+00:00",
-        "httpStatus": 206,
-        "contentType": "image/jpeg",
-        "contentDisposition": null,
-        "signature": null,
-        "finalUrl": "https://optcgapi.com/media/static/Card_Images/Portgas.D.Ace_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
-        "error": "Respuesta no validada como imagen renderizable"
-      },
-      {
-        "url": "https://optcgapi.com/media/static/Card_Images/Raizo_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
-        "sourceKind": "community",
-        "ok": false,
-        "checkedAt": "2026-09-15T09:02:27+00:00",
-        "httpStatus": 206,
-        "contentType": "image/jpeg",
-        "contentDisposition": null,
-        "signature": null,
-        "finalUrl": "https://optcgapi.com/media/static/Card_Images/Raizo_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
-        "error": "Respuesta no validada como imagen renderizable"
-      },
-      {
-        "url": "https://optcgapi.com/media/static/Card_Images/Sanji_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
-        "sourceKind": "community",
-        "ok": false,
-        "checkedAt": "2026-09-15T09:02:27+00:00",
-        "httpStatus": 206,
-        "contentType": "image/jpeg",
-        "contentDisposition": null,
-        "signature": null,
-        "finalUrl": "https://optcgapi.com/media/static/Card_Images/Sanji_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
-        "error": "Respuesta no validada como imagen renderizable"
-      },
-      {
-        "url": "https://optcgapi.com/media/static/Card_Images/Sanji_Demo_Deck_2023_img.jpg",
-        "sourceKind": "community",
-        "ok": false,
-        "checkedAt": "2026-09-15T09:02:27+00:00",
-        "httpStatus": 206,
-        "contentType": "image/jpeg",
-        "contentDisposition": null,
-        "signature": null,
-        "finalUrl": "https://optcgapi.com/media/static/Card_Images/Sanji_Demo_Deck_2023_img.jpg",
-        "error": "Respuesta no validada como imagen renderizable"
-      },
-      {
-        "url": "https://optcgapi.com/media/static/Card_Images/Satori_Welcome_Pack_Vol._1_img.jpg",
-        "sourceKind": "community",
-        "ok": false,
-        "checkedAt": "2026-09-15T09:02:28+00:00",
-        "httpStatus": 206,
-        "contentType": "image/jpeg",
-        "contentDisposition": null,
-        "signature": null,
-        "finalUrl": "https://optcgapi.com/media/static/Card_Images/Satori_Welcome_Pack_Vol._1_img.jpg",
-        "error": "Respuesta no validada como imagen renderizable"
-      },
-      {
-        "url": "https://optcgapi.com/media/static/Card_Images/Sengoku_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
-        "sourceKind": "community",
-        "ok": false,
-        "checkedAt": "2026-09-15T09:02:28+00:00",
-        "httpStatus": 206,
-        "contentType": "image/jpeg",
-        "contentDisposition": null,
-        "signature": null,
-        "finalUrl": "https://optcgapi.com/media/static/Card_Images/Sengoku_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
-        "error": "Respuesta no validada como imagen renderizable"
-      },
-      {
-        "url": "https://optcgapi.com/media/static/Card_Images/Trafalgar_Law_Welcome_Pack_Vol._1_img.jpg",
-        "sourceKind": "community",
-        "ok": false,
-        "checkedAt": "2026-09-15T09:02:28+00:00",
-        "httpStatus": 206,
-        "contentType": "image/jpeg",
-        "contentDisposition": null,
-        "signature": null,
-        "finalUrl": "https://optcgapi.com/media/static/Card_Images/Trafalgar_Law_Welcome_Pack_Vol._1_img.jpg",
-        "error": "Respuesta no validada como imagen renderizable"
-      },
-      {
-        "url": "https://optcgapi.com/media/static/Card_Images/Tsuru_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
-        "sourceKind": "community",
-        "ok": false,
-        "checkedAt": "2026-09-15T09:02:28+00:00",
-        "httpStatus": 206,
-        "contentType": "image/jpeg",
-        "contentDisposition": null,
-        "signature": null,
-        "finalUrl": "https://optcgapi.com/media/static/Card_Images/Tsuru_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
-        "error": "Respuesta no validada como imagen renderizable"
-      },
-      {
-        "url": "https://optcgapi.com/media/static/Card_Images/Usopp_Demo_Deck_2023_img.jpg",
-        "sourceKind": "community",
-        "ok": false,
-        "checkedAt": "2026-09-15T09:02:28+00:00",
-        "httpStatus": 206,
-        "contentType": "image/jpeg",
-        "contentDisposition": null,
-        "signature": null,
-        "finalUrl": "https://optcgapi.com/media/static/Card_Images/Usopp_Demo_Deck_2023_img.jpg",
-        "error": "Respuesta no validada como imagen renderizable"
-      },
-      {
-        "url": "https://optcgapi.com/media/static/Card_Images/Uta_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
-        "sourceKind": "community",
-        "ok": false,
-        "checkedAt": "2026-09-15T09:02:28+00:00",
-        "httpStatus": 206,
-        "contentType": "image/jpeg",
-        "contentDisposition": null,
-        "signature": null,
-        "finalUrl": "https://optcgapi.com/media/static/Card_Images/Uta_CS_2023_Event_Pack_Finalist_Ver._img.jpg",
-        "error": "Respuesta no validada como imagen renderizable"
-      }
-    ],
-    "cardmarketExact": {
-      "standardProductsWithExactImage": 0,
-      "donProductsWithExactImage": 0,
-      "totalProductsWithExactImage": 0
+    "storageMode": "remote",
+    "policy": "exact printing image only; OPlay/Bandai remote by default; no sibling/entity fallback",
+    "remoteOPlayImages": 32629,
+    "oplayExactPrintingImagesInCatalog": 31246,
+    "bandaiPersistentAssets": {
+      "targets": 4843,
+      "reused": 0,
+      "adopted": 0,
+      "downloaded": 0,
+      "pending": 0,
+      "errors": 0
+    },
+    "oplayPersistentAssets": {
+      "targets": 32629,
+      "reused": 0,
+      "adopted": 0,
+      "downloaded": 0,
+      "pending": 0,
+      "errors": 0
     },
     "cardmarketDiscovery": {
-      "enabled": true,
-      "targets": 7618,
-      "cachedFound": 0,
-      "attempted": 2,
+      "enabled": false,
       "discovered": 0,
-      "cdnDiscovered": 0,
-      "pageDiscovered": 0,
-      "storedAssets": 0,
-      "refreshedAfterImageFailure": 0,
-      "notFound": 0,
-      "errors": 2,
-      "skippedRecentFailure": 0,
-      "stoppedReason": "http-403"
+      "cachedFound": 0,
+      "errors": 0,
+      "stoppedReason": "retired-by-oplay-v3.12"
     },
-    "persistentAssets": {
-      "bandai": {
-        "targets": 4843,
-        "reused": 0,
-        "adopted": 0,
-        "downloaded": 4843,
-        "pending": 0,
-        "errors": 0
-      },
-      "cardmarket": {
-        "targets": 7618,
-        "reused": 0,
-        "adopted": 0,
-        "downloaded": 0,
-        "pending": 7618,
-        "errors": 0,
-        "manual": 0
-      },
-      "pendingCardmarket": 7618,
-      "metadataSeed": {
-        "seeded": 1959,
-        "conflicts": 0
-      },
-      "overrides": {
-        "applied": 0,
-        "ignored": 0
-      },
-      "imageDir": "images",
-      "publicBaseUrl": "https://raw.githubusercontent.com/miguelsanchezgarc13/cardify-data/refs/heads/main/images"
-    },
-    "linkedLegacyReferences": {
-      "candidateProducts": 4400,
-      "uniqueProductReferences": 4400,
-      "ambiguousProducts": 0,
-      "ambiguousSample": [],
-      "linkedVariantReferences": 213
-    },
-    "communityMatching": {
-      "sourceRecords": 1127,
-      "matchedEntities": 90,
-      "standardEntitiesWithReferenceImage": 5,
-      "donEntitiesWithReferenceImage": 85,
-      "exactSingleProductImages": 0,
-      "ambiguousStandardCodesSuppressed": [
-        "P-064",
-        "P-086",
-        "P-138"
-      ],
-      "donExactPrintingImagePolicy": "community-disabled-no-stable-printed-code",
-      "cardmarketProductPageExactPolicy": "enabled-idProduct-in-image-url+health-validation",
-      "unmatchedOrAmbiguous": 150,
-      "diagnosticSample": [
-        {
-          "catalogId": "CMCARD-421984",
-          "kind": "standard-card",
-          "wantedName": "trafalgar law",
-          "wantedMarkers": [],
-          "candidateCount": 2,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.94,
-          "secondScore": 0.94,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "topSourceName": "Trafalgar Law (Event Pack Vol. 4)",
-          "topSourceFullName": "Trafalgar Law (Event Pack Vol. 4)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-421986",
-          "kind": "standard-card",
-          "wantedName": "kaido",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-429246",
-          "kind": "standard-card",
-          "wantedName": "momonosuke",
-          "candidateCount": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "ambiguous-cardmarket-code-across-metacards",
-          "ambiguousPrintedCodes": [
-            "P-064"
-          ]
-        },
-        {
-          "catalogId": "CMCARD-433623",
-          "kind": "standard-card",
-          "wantedName": "kouzuki momonosuke",
-          "candidateCount": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "ambiguous-cardmarket-code-across-metacards",
-          "ambiguousPrintedCodes": [
-            "P-064"
-          ]
-        },
-        {
-          "catalogId": "CMCARD-437719",
-          "kind": "standard-card",
-          "wantedName": "monkey d luffy",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-444115",
-          "kind": "standard-card",
-          "wantedName": "trafalgar law",
-          "candidateCount": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "ambiguous-cardmarket-code-across-metacards",
-          "ambiguousPrintedCodes": [
-            "P-086"
-          ]
-        },
-        {
-          "catalogId": "CMCARD-444116",
-          "kind": "standard-card",
-          "wantedName": "nico robin",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-447222",
-          "kind": "standard-card",
-          "wantedName": "trafalgar law",
-          "candidateCount": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "ambiguous-cardmarket-code-across-metacards",
-          "ambiguousPrintedCodes": [
-            "P-086"
-          ]
-        },
-        {
-          "catalogId": "CMCARD-452258",
-          "kind": "standard-card",
-          "wantedName": "roronoa zoro",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-453331",
-          "kind": "standard-card",
-          "wantedName": "sanji",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-455301",
-          "kind": "standard-card",
-          "wantedName": "monkey d luffy",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-455302",
-          "kind": "standard-card",
-          "wantedName": "portga d ace",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-458084",
-          "kind": "standard-card",
-          "wantedName": "roronoa zoro",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-458086",
-          "kind": "standard-card",
-          "wantedName": "nico robin",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-458087",
-          "kind": "standard-card",
-          "wantedName": "lilith",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-462139",
-          "kind": "standard-card",
-          "wantedName": "sanji",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-464721",
-          "kind": "standard-card",
-          "wantedName": "brook",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-465520",
-          "kind": "standard-card",
-          "wantedName": "kuzan",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-465523",
-          "kind": "standard-card",
-          "wantedName": "monkey d luffy",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-465524",
-          "kind": "standard-card",
-          "wantedName": "smoker",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466540",
-          "kind": "standard-card",
-          "wantedName": "edward newgate",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466541",
-          "kind": "standard-card",
-          "wantedName": "portga d ace",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466542",
-          "kind": "standard-card",
-          "wantedName": "monkey d luffy",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466543",
-          "kind": "standard-card",
-          "wantedName": "ace sabo luffy",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466544",
-          "kind": "standard-card",
-          "wantedName": "edward newgate",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466545",
-          "kind": "standard-card",
-          "wantedName": "curly dadan",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466546",
-          "kind": "standard-card",
-          "wantedName": "koby",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466547",
-          "kind": "standard-card",
-          "wantedName": "sabo",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466548",
-          "kind": "standard-card",
-          "wantedName": "shank",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466549",
-          "kind": "standard-card",
-          "wantedName": "portga d ace",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466550",
-          "kind": "standard-card",
-          "wantedName": "makino",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466551",
-          "kind": "standard-card",
-          "wantedName": "monkey d garp",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466552",
-          "kind": "standard-card",
-          "wantedName": "monkey d dragon",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466553",
-          "kind": "standard-card",
-          "wantedName": "monkey d luffy",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466554",
-          "kind": "standard-card",
-          "wantedName": "yamato",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466555",
-          "kind": "standard-card",
-          "wantedName": "serial dine and dasher",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466794",
-          "kind": "standard-card",
-          "wantedName": "monkey d luffy",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466795",
-          "kind": "standard-card",
-          "wantedName": "monkey d luffy",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466800",
-          "kind": "standard-card",
-          "wantedName": "usopp",
-          "wantedMarkers": [],
-          "candidateCount": 1,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.1173,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "topSourceName": "Usopp - P-136 (Premium Card Collection -Live Action Edition Vol.2 Straw Hat Crew-)",
-          "topSourceFullName": "Usopp - P-136 (Premium Card Collection -Live Action Edition Vol.2 Straw Hat Crew-)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466802",
-          "kind": "standard-card",
-          "wantedName": "sanji",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466803",
-          "kind": "standard-card",
-          "wantedName": "tony tony chopper",
-          "candidateCount": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "ambiguous-cardmarket-code-across-metacards",
-          "ambiguousPrintedCodes": [
-            "P-138"
-          ]
-        },
-        {
-          "catalogId": "CMCARD-466804",
-          "kind": "standard-card",
-          "wantedName": "nami",
-          "wantedMarkers": [],
-          "candidateCount": 1,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.1012,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "topSourceName": "Nami - P-139 (Premium Card Collection -Live Action Edition Vol.2 Straw Hat Crew-)",
-          "topSourceFullName": "Nami - P-139 (Premium Card Collection -Live Action Edition Vol.2 Straw Hat Crew-)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466807",
-          "kind": "standard-card",
-          "wantedName": "roronoa zoro",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466808",
-          "kind": "standard-card",
-          "wantedName": "merry go",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466809",
-          "kind": "standard-card",
-          "wantedName": "crocodile",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466810",
-          "kind": "standard-card",
-          "wantedName": "ms all sunday",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466812",
-          "kind": "standard-card",
-          "wantedName": "ms wednesday",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466813",
-          "kind": "standard-card",
-          "wantedName": "miss goldenweek marianne",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466817",
-          "kind": "standard-card",
-          "wantedName": "mr 5 gem",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "CMCARD-466820",
-          "kind": "standard-card",
-          "wantedName": "nami",
-          "candidateCount": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.8,
-          "requiredMargin": 0.04,
-          "status": "ambiguous-cardmarket-code-across-metacards",
-          "ambiguousPrintedCodes": [
-            "P-138"
-          ]
-        },
-        {
-          "catalogId": "DON-CM-415646",
-          "kind": "don",
-          "wantedName": "",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "status": "insufficient-design-qualifier"
-        },
-        {
-          "catalogId": "DON-CM-432159",
-          "kind": "don",
-          "wantedName": "op06",
-          "wantedMarkers": [
-            "op06"
-          ],
-          "candidateCount": 2,
-          "rejectedReleaseMismatch": 181,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.1212,
-          "secondScore": 0.1183,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Mihawk & Zoro) (Double Pack Set Vol. 3)",
-          "topSourceFullName": "DON!! Card (Mihawk & Zoro) (Double Pack Set Vol. 3) - Wings of the Captain (OP06)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-433318",
-          "kind": "don",
-          "wantedName": "op07",
-          "wantedMarkers": [
-            "op07"
-          ],
-          "candidateCount": 2,
-          "rejectedReleaseMismatch": 181,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.1227,
-          "secondScore": 0.0981,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Boa Hancock) (Double Pack Set Vol. 4)",
-          "topSourceFullName": "DON!! Card (Boa Hancock) (Double Pack Set Vol. 4) - 500 Years in the Future (OP07)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-434175",
-          "kind": "don",
-          "wantedName": "op01",
-          "wantedMarkers": [
-            "op01"
-          ],
-          "candidateCount": 2,
-          "rejectedReleaseMismatch": 181,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.186,
-          "secondScore": 0.1488,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Manga) (Alternate Art)",
-          "topSourceFullName": "DON!! Card (Manga) (Alternate Art) - Romance Dawn (OP01)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-434176",
-          "kind": "don",
-          "wantedName": "op02",
-          "wantedMarkers": [
-            "op02"
-          ],
-          "candidateCount": 1,
-          "rejectedReleaseMismatch": 182,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.2743,
-          "secondScore": 0.0,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Manga)",
-          "topSourceFullName": "DON!! Card (Manga) - Paramount War (OP02)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-435224",
-          "kind": "don",
-          "wantedName": "op08",
-          "wantedMarkers": [
-            "op08"
-          ],
-          "candidateCount": 2,
-          "rejectedReleaseMismatch": 181,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.1716,
-          "secondScore": 0.1691,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Shattered) (Double Pack Set Vol. 5)",
-          "topSourceFullName": "DON!! Card (Shattered) (Double Pack Set Vol. 5) - Two Legends (OP08)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-435808",
-          "kind": "don",
-          "wantedName": "pop art",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.4,
-          "secondScore": 0.3579,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Pink)",
-          "topSourceFullName": "DON!! Card (Pink) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-436612",
-          "kind": "don",
-          "wantedName": "three captains dp04",
-          "wantedMarkers": [
-            "dp04"
-          ],
-          "candidateCount": 2,
-          "rejectedReleaseMismatch": 181,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.1741,
-          "secondScore": 0.1717,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Trafalgar Law, Eustass Kid and Monkey.D.Luffy) (Double Pack Set Vol. 4)",
-          "topSourceFullName": "DON!! Card (Trafalgar Law, Eustass Kid and Monkey.D.Luffy) (Double Pack Set Vol. 4) - 500 Years in the Future (OP07)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-438175",
-          "kind": "don",
-          "wantedName": "prb01 iceburg",
-          "wantedMarkers": [
-            "prb01"
-          ],
-          "candidateCount": 29,
-          "rejectedReleaseMismatch": 127,
-          "rejectedGoldMismatch": 27,
-          "topScore": 0.4467,
-          "secondScore": 0.4467,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Trafalgar Law)",
-          "topSourceFullName": "DON!! Card (Trafalgar Law) - Premium Booster -The Best- (PRB-01)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-438194",
-          "kind": "don",
-          "wantedName": "prb01 uta",
-          "wantedMarkers": [
-            "prb01"
-          ],
-          "candidateCount": 29,
-          "rejectedReleaseMismatch": 127,
-          "rejectedGoldMismatch": 27,
-          "topScore": 0.4467,
-          "secondScore": 0.4467,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Trafalgar Law)",
-          "topSourceFullName": "DON!! Card (Trafalgar Law) - Premium Booster -The Best- (PRB-01)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-439689",
-          "kind": "don",
-          "wantedName": "op09",
-          "wantedMarkers": [
-            "op09"
-          ],
-          "candidateCount": 2,
-          "rejectedReleaseMismatch": 181,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.1327,
-          "secondScore": 0.1327,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Blackbeard) (Double Pack Set Vol. 6)",
-          "topSourceFullName": "DON!! Card (Blackbeard) (Double Pack Set Vol. 6) - Emperors in the New World (OP09)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-439997",
-          "kind": "don",
-          "wantedName": "rayleigh dp05",
-          "wantedMarkers": [
-            "dp05"
-          ],
-          "candidateCount": 2,
-          "rejectedReleaseMismatch": 181,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.2435,
-          "secondScore": 0.2157,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Shattered) (Double Pack Set Vol. 5)",
-          "topSourceFullName": "DON!! Card (Shattered) (Double Pack Set Vol. 5) - Two Legends (OP08)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-439998",
-          "kind": "don",
-          "wantedName": "whitebeard dp05",
-          "wantedMarkers": [
-            "dp05"
-          ],
-          "candidateCount": 2,
-          "rejectedReleaseMismatch": 181,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.3082,
-          "secondScore": 0.3036,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Shattered) (Double Pack Set Vol. 5)",
-          "topSourceFullName": "DON!! Card (Shattered) (Double Pack Set Vol. 5) - Two Legends (OP08)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-441084",
-          "kind": "don",
-          "wantedName": "one piece day 2024 gre4n boyz",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.5267,
-          "secondScore": 0.3867,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (One Piece Day Dallas 2025)",
-          "topSourceFullName": "DON!! Card (One Piece Day Dallas 2025) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-441085",
-          "kind": "don",
-          "wantedName": "one piece day 2024 ado uta",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.5732,
-          "secondScore": 0.404,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (One Piece Day Dallas 2025)",
-          "topSourceFullName": "DON!! Card (One Piece Day Dallas 2025) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-441087",
-          "kind": "don",
-          "wantedName": "one piece day 2024",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.5918,
-          "secondScore": 0.4483,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (One Piece Day Dallas 2025)",
-          "topSourceFullName": "DON!! Card (One Piece Day Dallas 2025) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-443578",
-          "kind": "don",
-          "wantedName": "op10",
-          "wantedMarkers": [
-            "op10"
-          ],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 183,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-444111",
-          "kind": "don",
-          "wantedName": "bronze grand asia open",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.4133,
-          "secondScore": 0.2957,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Bronze)",
-          "topSourceFullName": "DON!! Card (Bronze) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-444112",
-          "kind": "don",
-          "wantedName": "silver grand asia open",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.4133,
-          "secondScore": 0.3022,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Silver)",
-          "topSourceFullName": "DON!! Card (Silver) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-444113",
-          "kind": "don",
-          "wantedName": "gold grand asia open",
-          "wantedMarkers": [],
-          "candidateCount": 61,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 122,
-          "topScore": 0.3707,
-          "secondScore": 0.3477,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Gold)",
-          "topSourceFullName": "DON!! Card (Gold) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-444114",
-          "kind": "don",
-          "wantedName": "black red grand asia open",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.3138,
-          "secondScore": 0.3001,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Double Pack Set Vol. 11) (Luffy and Ace)",
-          "topSourceFullName": "DON!! Card (Double Pack Set Vol. 11) (Luffy and Ace) - The Time of Battle (OP16)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-445042",
-          "kind": "don",
-          "wantedName": "eb02",
-          "wantedMarkers": [
-            "eb02"
-          ],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 183,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-445286",
-          "kind": "don",
-          "wantedName": "2nd chinese anniversary",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.4776,
-          "secondScore": 0.3988,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (2nd Anniversary Tournament)",
-          "topSourceFullName": "DON!! Card (2nd Anniversary Tournament) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-447221",
-          "kind": "don",
-          "wantedName": "op11",
-          "wantedMarkers": [
-            "op11"
-          ],
-          "candidateCount": 2,
-          "rejectedReleaseMismatch": 181,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.1402,
-          "secondScore": 0.1327,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Koby) (Double Pack Set Vol. 7)",
-          "topSourceFullName": "DON!! Card (Koby) (Double Pack Set Vol. 7) - A Fist of Divine Speed (OP11)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-447306",
-          "kind": "don",
-          "wantedName": "ado uta",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.255,
-          "secondScore": 0.24,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Red)",
-          "topSourceFullName": "DON!! Card (Red) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-448370",
-          "kind": "don",
-          "wantedName": "op03",
-          "wantedMarkers": [
-            "op03"
-          ],
-          "candidateCount": 1,
-          "rejectedReleaseMismatch": 182,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.1829,
-          "secondScore": 0.0,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Alternate Art)",
-          "topSourceFullName": "DON!! Card (Alternate Art) - Pillars of Strength (OP03)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-450570",
-          "kind": "don",
-          "wantedName": "2nd english anniversary 4 emperors",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.5237,
-          "secondScore": 0.4715,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (English Version 2nd Anniversary Set)",
-          "topSourceFullName": "DON!! Card (English Version 2nd Anniversary Set) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-451853",
-          "kind": "don",
-          "wantedName": "op12",
-          "wantedMarkers": [
-            "op12"
-          ],
-          "candidateCount": 2,
-          "rejectedReleaseMismatch": 181,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.1533,
-          "secondScore": 0.1533,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (3D) (Double Pack Set Vol. 8)",
-          "topSourceFullName": "DON!! Card (3D) (Double Pack Set Vol. 8) - Legacy of the Master (OP12)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-451987",
-          "kind": "don",
-          "wantedName": "prb02 boa hancock",
-          "wantedMarkers": [
-            "prb02"
-          ],
-          "candidateCount": 26,
-          "rejectedReleaseMismatch": 129,
-          "rejectedGoldMismatch": 28,
-          "topScore": 0.3775,
-          "secondScore": 0.3685,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Lim)",
-          "topSourceFullName": "DON!! Card (Lim) - Premium Booster -The Best- Vol. 2 (PRB-02)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-452000",
-          "kind": "don",
-          "wantedName": "prb02 lucci",
-          "wantedMarkers": [
-            "prb02"
-          ],
-          "candidateCount": 26,
-          "rejectedReleaseMismatch": 129,
-          "rejectedGoldMismatch": 28,
-          "topScore": 0.4205,
-          "secondScore": 0.4089,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Lim)",
-          "topSourceFullName": "DON!! Card (Lim) - Premium Booster -The Best- Vol. 2 (PRB-02)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-452002",
-          "kind": "don",
-          "wantedName": "prb02 nami",
-          "wantedMarkers": [
-            "prb02"
-          ],
-          "candidateCount": 26,
-          "rejectedReleaseMismatch": 129,
-          "rejectedGoldMismatch": 28,
-          "topScore": 0.4331,
-          "secondScore": 0.4205,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Lim)",
-          "topSourceFullName": "DON!! Card (Lim) - Premium Booster -The Best- Vol. 2 (PRB-02)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-452004",
-          "kind": "don",
-          "wantedName": "prb02 nika",
-          "wantedMarkers": [
-            "prb02"
-          ],
-          "candidateCount": 26,
-          "rejectedReleaseMismatch": 129,
-          "rejectedGoldMismatch": 28,
-          "topScore": 0.4331,
-          "secondScore": 0.4205,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Lim)",
-          "topSourceFullName": "DON!! Card (Lim) - Premium Booster -The Best- Vol. 2 (PRB-02)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-452010",
-          "kind": "don",
-          "wantedName": "prb02 snakeman",
-          "wantedMarkers": [
-            "prb02"
-          ],
-          "candidateCount": 26,
-          "rejectedReleaseMismatch": 129,
-          "rejectedGoldMismatch": 28,
-          "topScore": 0.388,
-          "secondScore": 0.3787,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Lim)",
-          "topSourceFullName": "DON!! Card (Lim) - Premium Booster -The Best- Vol. 2 (PRB-02)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-452014",
-          "kind": "don",
-          "wantedName": "prb02 yamato",
-          "wantedMarkers": [
-            "prb02"
-          ],
-          "candidateCount": 26,
-          "rejectedReleaseMismatch": 129,
-          "rejectedGoldMismatch": 28,
-          "topScore": 0.4089,
-          "secondScore": 0.3981,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Lim)",
-          "topSourceFullName": "DON!! Card (Lim) - Premium Booster -The Best- Vol. 2 (PRB-02)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-453327",
-          "kind": "don",
-          "wantedName": "one piece day 25",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.583,
-          "secondScore": 0.4643,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (One Piece Day Dallas 2025)",
-          "topSourceFullName": "DON!! Card (One Piece Day Dallas 2025) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-453328",
-          "kind": "don",
-          "wantedName": "one piece day 25 elbaph",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.56,
-          "secondScore": 0.4304,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (One Piece Day Dallas 2025)",
-          "topSourceFullName": "DON!! Card (One Piece Day Dallas 2025) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-454097",
-          "kind": "don",
-          "wantedName": "luffy ssg",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.4205,
-          "secondScore": 0.335,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Luffy)",
-          "topSourceFullName": "DON!! Card (Luffy) - Premium Booster -The Best- (PRB-01)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-454684",
-          "kind": "don",
-          "wantedName": "general shogun chopper saikyo jump promotion 2023",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.32,
-          "secondScore": 0.2776,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Chopper)",
-          "topSourceFullName": "DON!! Card (Chopper) - Premium Booster -The Best- Vol. 2 (PRB-02)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-456400",
-          "kind": "don",
-          "wantedName": "elbaph",
-          "wantedMarkers": [],
-          "candidateCount": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "status": "insufficient-design-qualifier"
-        },
-        {
-          "catalogId": "DON-CM-456472",
-          "kind": "don",
-          "wantedName": "garp and luffy 2nd anniversary tournament",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.6044,
-          "secondScore": 0.4552,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (2nd Anniversary Tournament)",
-          "topSourceFullName": "DON!! Card (2nd Anniversary Tournament) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-457773",
-          "kind": "don",
-          "wantedName": "boa eb03",
-          "wantedMarkers": [
-            "eb03"
-          ],
-          "candidateCount": 4,
-          "rejectedReleaseMismatch": 178,
-          "rejectedGoldMismatch": 1,
-          "topScore": 0.9311,
-          "secondScore": 0.2026,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Boa Hancock)",
-          "topSourceFullName": "DON!! Card (Boa Hancock) - Extra Booster: One Piece Heroines Edition (EB-03)",
-          "status": "matched-image-invalid"
-        },
-        {
-          "catalogId": "DON-CM-457776",
-          "kind": "don",
-          "wantedName": "heroines eb03",
-          "wantedMarkers": [
-            "eb03"
-          ],
-          "candidateCount": 4,
-          "rejectedReleaseMismatch": 178,
-          "rejectedGoldMismatch": 1,
-          "topScore": 0.9325,
-          "secondScore": 0.9325,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Uta)",
-          "topSourceFullName": "DON!! Card (Uta) - Extra Booster: One Piece Heroines Edition (EB-03)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-458078",
-          "kind": "don",
-          "wantedName": "df03 corazon and law",
-          "wantedMarkers": [
-            "df03"
-          ],
-          "candidateCount": 2,
-          "rejectedReleaseMismatch": 181,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.2231,
-          "secondScore": 0.2163,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Donquixote Rosinante) (Devil Fruits Collection Vol. 3)",
-          "topSourceFullName": "DON!! Card (Donquixote Rosinante) (Devil Fruits Collection Vol. 3) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-458081",
-          "kind": "don",
-          "wantedName": "eb04 egghead",
-          "wantedMarkers": [
-            "eb04"
-          ],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 183,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-458082",
-          "kind": "don",
-          "wantedName": "judge jolly roger 2025",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.2765,
-          "secondScore": 0.272,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Tin Pack Set Vol. 1 -Gol.D.Roger-)",
-          "topSourceFullName": "DON!! Card (Tin Pack Set Vol. 1 -Gol.D.Roger-) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-458286",
-          "kind": "don",
-          "wantedName": "chinese 3rd anniversary kuma and bonney",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.3959,
-          "secondScore": 0.3667,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (2nd Anniversary Tournament)",
-          "topSourceFullName": "DON!! Card (2nd Anniversary Tournament) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-458529",
-          "kind": "don",
-          "wantedName": "chopper saiko jump 2025",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.4202,
-          "secondScore": 0.2604,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Chopper)",
-          "topSourceFullName": "DON!! Card (Chopper) - Premium Booster -The Best- Vol. 2 (PRB-02)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-458923",
-          "kind": "don",
-          "wantedName": "sabo saiko jump 2025",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.3662,
-          "secondScore": 0.3422,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Sabo)",
-          "topSourceFullName": "DON!! Card (Sabo) - Premium Booster -The Best- (PRB-01)",
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-460336",
-          "kind": "don",
-          "wantedName": "op15",
-          "wantedMarkers": [
-            "op15"
-          ],
-          "candidateCount": 0,
-          "rejectedReleaseMismatch": 183,
-          "rejectedGoldMismatch": 0,
-          "topScore": 0.0,
-          "secondScore": 0.0,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "status": "unmatched-or-ambiguous"
-        },
-        {
-          "catalogId": "DON-CM-460924",
-          "kind": "don",
-          "wantedName": "tutorial app promotion",
-          "wantedMarkers": [],
-          "candidateCount": 122,
-          "rejectedReleaseMismatch": 0,
-          "rejectedGoldMismatch": 61,
-          "topScore": 0.34,
-          "secondScore": 0.32,
-          "requiredScore": 0.9,
-          "requiredMargin": 0.05,
-          "topSourceName": "DON!! Card (Teal)",
-          "topSourceFullName": "DON!! Card (Teal) - One Piece Promotion Cards (OP-PR)",
-          "status": "unmatched-or-ambiguous"
-        }
-      ]
-    }
+    "cardmarketDiscoveryStatus": "retired in favour of OPlay exact-printing mapping"
   },
   "output": {
-    "cards": 3025,
-    "printings": 12461,
+    "cards": 3275,
+    "printings": 43648,
     "printingsWithCardmarketMapping": 4327,
     "printingsWithCardmarketPriceGuide": 11945,
     "printingsWithCardmarketValuation": 11657,
@@ -5012,12 +3181,48 @@
     "donProducts": 555,
     "cardmarketDirectProducts": 671,
     "cardmarketLinkedBandaiProducts": 6947,
-    "entitiesWithPreviewImage": 2875
+    "oplaySourceCards": 3035,
+    "oplaySourcePrintings": 32629,
+    "oplayOnlyEntitiesAdded": 250,
+    "oplayPrintingsAdded": 31187,
+    "oplayCardmarketProductsMapped": 773,
+    "visiblePrintings": 36448,
+    "hiddenMarketPrintings": 7200,
+    "entitiesWithPreviewImage": 3035
   },
   "fingerprints": {
-    "catalog": "a3deb8dbc7db4fb74d88d67176ab1fadcc02e08179b7015e58eb4d46ab4c6f32",
+    "catalog": "3d1b22903aa57f905de2a07f7f054b13dabb22428ad7d341c2f727a0b5cda1d9",
     "mapping": "3279e4026145d9ef3d99c1e39dbeb5482c493c6cf60d93366a83bd49d3a9d23e",
-    "sets": "046d29a159278fe1d062d98a777b3b0f0f4c192d3a3afee348e45842e729f378",
-    "priceHistory": "6decfe501750235148e888d2886d7540194356fc282c0a794a7ad9e00880333b"
+    "oplayMapping": "2a619ea1685b549d4ce5366f29a70c47ca60821b02f7c3d9c1a37d74a1a71ed4",
+    "sets": "e159e4d50bae409b68242855a1d9cfa5694019540419c079b11bf26c23d76124",
+    "priceHistory": "be0f0f9349e72c2382335d8f976ff5b64b3c5baee17fa91176803441a61a2edf"
+  },
+  "storage": {
+    "reportFile": "output/storage_report_v1.json",
+    "workingDataBytes": 1889751472,
+    "workingDataMiB": 1802.207,
+    "gitRepositoryBytes": 1725004308,
+    "folders": {
+      "raw": {
+        "files": 6,
+        "bytes": 30722595,
+        "mib": 29.299
+      },
+      "data": {
+        "files": 6,
+        "bytes": 12178324,
+        "mib": 11.614
+      },
+      "output": {
+        "files": 8,
+        "bytes": 120817669,
+        "mib": 115.221
+      },
+      "images": {
+        "files": 4843,
+        "bytes": 1726032884,
+        "mib": 1646.073
+      }
+    }
   }
 }
