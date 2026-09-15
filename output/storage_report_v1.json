@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-09-15T15:00:53+00:00",
+  "generatedAt": "2026-09-15T15:40:54+00:00",
   "schemaVersion": 1,
   "catalogVersion": "3.12.1",
   "imageStorageMode": "remote",
   "folders": {
     "raw": {
-      "files": 6,
-      "bytes": 30722593,
-      "mib": 29.299,
+      "files": 5,
+      "bytes": 29648773,
+      "mib": 28.275,
       "largestFiles": [
         {
           "path": "raw/oplaytcg_catalog_raw.json",
@@ -26,35 +26,19 @@
           "bytes": 3031932
         },
         {
-          "path": "raw/optcgapi_images_raw.json",
-          "bytes": 1073820
-        },
-        {
           "path": "raw/cardmarket_products_nonsingles_raw.json",
           "bytes": 199626
         }
       ]
     },
     "data": {
-      "files": 6,
-      "bytes": 12459385,
-      "mib": 11.882,
+      "files": 3,
+      "bytes": 4534645,
+      "mib": 4.325,
       "largestFiles": [
-        {
-          "path": "data/image_assets_v1.json",
-          "bytes": 3626549
-        },
         {
           "path": "data/cardmarket_mapping.json",
           "bytes": 3490757
-        },
-        {
-          "path": "data/image_health_cache.json",
-          "bytes": 3348607
-        },
-        {
-          "path": "data/cardmarket_image_mapping.json",
-          "bytes": 949584
         },
         {
           "path": "data/cardmarket_printing_metadata_v1.json",
@@ -67,13 +51,13 @@
       ]
     },
     "output": {
-      "files": 9,
-      "bytes": 113486597,
-      "mib": 108.229,
+      "files": 8,
+      "bytes": 110831294,
+      "mib": 105.697,
       "largestFiles": [
         {
           "path": "output/cards_multisource_v3.json",
-          "bytes": 95811999
+          "bytes": 95819985
         },
         {
           "path": "output/oplay_mapping_review.json",
@@ -82,10 +66,6 @@
         {
           "path": "output/sets_multisource_v3.json",
           "bytes": 5346620
-        },
-        {
-          "path": "output/cardmarket_image_pending.json",
-          "bytes": 2663382
         },
         {
           "path": "output/cardmarket_mapping_review.json",
@@ -97,11 +77,11 @@
         },
         {
           "path": "output/cards_multisource_v3_report.json",
-          "bytes": 97584
+          "bytes": 97582
         },
         {
           "path": "output/storage_report_v1.json",
-          "bytes": 7473
+          "bytes": 7568
         },
         {
           "path": "output/catalog_manifest_v3.json",
@@ -110,115 +90,78 @@
       ]
     },
     "images": {
-      "files": 4843,
-      "bytes": 1726032884,
-      "mib": 1646.073,
-      "largestFiles": [
-        {
-          "path": "images/bandai/OP02/OP02-121.png",
-          "bytes": 2792550
-        },
-        {
-          "path": "images/bandai/OP02/OP02-009_P1.png",
-          "bytes": 2731937
-        },
-        {
-          "path": "images/bandai/OP02/OP02-096_P1.png",
-          "bytes": 2697357
-        },
-        {
-          "path": "images/bandai/OP02/OP02-073_P1.png",
-          "bytes": 2591271
-        },
-        {
-          "path": "images/bandai/OP02/OP02-062_P1.png",
-          "bytes": 2561213
-        },
-        {
-          "path": "images/bandai/OP02/OP02-062.png",
-          "bytes": 2548438
-        },
-        {
-          "path": "images/bandai/PRB02/PRB02-013_P1.png",
-          "bytes": 2531402
-        },
-        {
-          "path": "images/bandai/OP02/OP02-051.png",
-          "bytes": 2465447
-        },
-        {
-          "path": "images/bandai/OP02/OP02-114_P1.png",
-          "bytes": 2454221
-        },
-        {
-          "path": "images/bandai/OP02/OP02-077.png",
-          "bytes": 2435470
-        },
-        {
-          "path": "images/bandai/OP02/OP02-099.png",
-          "bytes": 2409538
-        },
-        {
-          "path": "images/bandai/OP02/OP02-031_P1.png",
-          "bytes": 2374811
-        },
-        {
-          "path": "images/bandai/OP08/OP08-118_R1.png",
-          "bytes": 2366087
-        },
-        {
-          "path": "images/bandai/OP02/OP02-042.png",
-          "bytes": 2359819
-        },
-        {
-          "path": "images/bandai/OP02/OP02-018.png",
-          "bytes": 2340676
-        },
-        {
-          "path": "images/bandai/OP02/OP02-030.png",
-          "bytes": 2336047
-        },
-        {
-          "path": "images/bandai/OP02/OP02-083.png",
-          "bytes": 2333017
-        },
-        {
-          "path": "images/bandai/OP02/OP02-009.png",
-          "bytes": 2323452
-        },
-        {
-          "path": "images/bandai/OP02/OP02-121_P1.png",
-          "bytes": 2316856
-        },
-        {
-          "path": "images/bandai/OP02/OP02-018_P1.png",
-          "bytes": 2305882
-        }
-      ]
+      "files": 0,
+      "bytes": 0,
+      "mib": 0.0,
+      "largestFiles": []
     }
   },
-  "workingDataBytes": 1882701459,
-  "workingDataMiB": 1795.484,
+  "workingDataBytes": 145014712,
+  "workingDataMiB": 138.297,
   "gitRepository": {
-    "files": 30,
-    "bytes": 1728811129,
-    "mib": 1648.723,
+    "files": 53,
+    "bytes": 11619370,
+    "mib": 11.081,
     "largestFiles": [
       {
-        "path": ".git/objects/pack/pack-8e91cd8da0ff1be97014816d0b2e9beca38b5eee.pack",
-        "bytes": 1728138971
+        "path": ".git/objects/46/89010e4f51140f2addd40230e42d3e617a8a28",
+        "bytes": 7981463
       },
       {
-        "path": ".git/index",
-        "bytes": 484062
+        "path": ".git/objects/1e/678f7919b26d6f3960894d562678db7dccd26d",
+        "bytes": 764647
       },
       {
-        "path": ".git/objects/pack/pack-8e91cd8da0ff1be97014816d0b2e9beca38b5eee.idx",
-        "bytes": 139196
+        "path": ".git/objects/ee/fa25c04b6750640e1249a5f2d60b6ba6792028",
+        "bytes": 436575
       },
       {
-        "path": ".git/objects/pack/pack-8e91cd8da0ff1be97014816d0b2e9beca38b5eee.rev",
-        "bytes": 19784
+        "path": ".git/objects/7d/c71c84d63f813e4367acf2feb28bb1f28d9265",
+        "bytes": 413644
+      },
+      {
+        "path": ".git/objects/67/3a8858e254b277f5ea14d4117e3984857e08f7",
+        "bytes": 398313
+      },
+      {
+        "path": ".git/objects/9e/7edc587e7559ff285e6f57f180b5a67813fe90",
+        "bytes": 383910
+      },
+      {
+        "path": ".git/objects/bc/56bc59b7553269ecb9ef5e0f64f7b68c5f6286",
+        "bytes": 307873
+      },
+      {
+        "path": ".git/objects/32/f60d10a775fa1f570d7f1ef36bd23562652dac",
+        "bytes": 300162
+      },
+      {
+        "path": ".git/objects/95/59455279e84b789fd803461f3808fd3ddc4d62",
+        "bytes": 219167
+      },
+      {
+        "path": ".git/objects/77/b6517d8b9cb0152afa9e75b11af211ec319855",
+        "bytes": 133887
+      },
+      {
+        "path": ".git/objects/47/2c752bd1242950d17b0e31839cf2e96dd882c2",
+        "bytes": 120097
+      },
+      {
+        "path": ".git/objects/c0/27478dfcd1c935770915cb95e4b9222d3ab971",
+        "bytes": 63104
+      },
+      {
+        "path": ".git/objects/f3/be9b457b111dccf65629199e7e097c72649fb2",
+        "bytes": 28271
+      },
+      {
+        "path": ".git/objects/87/d3308f15ea731608d6efd92582284ae384374e",
+        "bytes": 21173
+      },
+      {
+        "path": ".git/objects/ff/1683975197eaf8a27cd0481fa156959e6e03dd",
+        "bytes": 11015
       },
       {
         "path": ".git/hooks/pre-rebase.sample",
@@ -239,50 +182,6 @@
       {
         "path": ".git/hooks/sendemail-validate.sample",
         "bytes": 2308
-      },
-      {
-        "path": ".git/hooks/commit-msg.sample",
-        "bytes": 1972
-      },
-      {
-        "path": ".git/hooks/pre-commit.sample",
-        "bytes": 1649
-      },
-      {
-        "path": ".git/hooks/prepare-commit-msg.sample",
-        "bytes": 1492
-      },
-      {
-        "path": ".git/hooks/pre-push.sample",
-        "bytes": 1374
-      },
-      {
-        "path": ".git/config",
-        "bytes": 877
-      },
-      {
-        "path": ".git/hooks/pre-receive.sample",
-        "bytes": 544
-      },
-      {
-        "path": ".git/hooks/applypatch-msg.sample",
-        "bytes": 478
-      },
-      {
-        "path": ".git/hooks/pre-applypatch.sample",
-        "bytes": 424
-      },
-      {
-        "path": ".git/hooks/pre-merge-commit.sample",
-        "bytes": 416
-      },
-      {
-        "path": ".git/logs/refs/remotes/origin/main",
-        "bytes": 326
-      },
-      {
-        "path": ".git/info/exclude",
-        "bytes": 240
       }
     ]
   },

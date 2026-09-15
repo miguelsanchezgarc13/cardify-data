@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-15T15:00:45+00:00",
+  "generatedAt": "2026-09-15T15:40:48+00:00",
   "schemaVersion": 10,
   "catalogVersion": "3.12.1",
   "sources": {
     "bandai": {
       "url": "https://en.onepiece-cardgame.com/cardlist/",
-      "fetchedAt": "2026-09-15T15:00:17+00:00",
+      "fetchedAt": "2026-09-15T15:40:29+00:00",
       "records": 4844,
       "series": 60,
       "authority": "official"
@@ -13,7 +13,7 @@
     "oplay": {
       "enabled": true,
       "url": "https://oplaytcg.com/en/library",
-      "fetchedAt": "2026-09-15T15:00:22+00:00",
+      "fetchedAt": "2026-09-15T15:40:32+00:00",
       "uniqueCards": 3035,
       "printings": 32629,
       "languages": {
@@ -730,8 +730,8 @@
       "bandaiPrintingsMatched": 4768,
       "bandaiExactImagesPreserved": 2045,
       "cardmarketProductsMapped": 2104,
-      "cardmarketProductsMappedManual": 773,
-      "cardmarketProductsMappedAuto": 1331,
+      "cardmarketProductsMappedManual": 2104,
+      "cardmarketProductsMappedAuto": 0,
       "cardmarketProductsHiddenAsAmbiguousMarketRows": 7200,
       "oplayPrintingsAdded": 27782,
       "oplayOnlyEntitiesAdded": 198,
@@ -3193,37 +3193,37 @@
     "entitiesWithPreviewImage": 3035
   },
   "fingerprints": {
-    "catalog": "d8c64b4ae8de51e23a820ef2c32bf66181dd1afba5556b8bbe3780d744c703a0",
+    "catalog": "207862f0044947d50334816bcfbaa90c31fddb67d92697ebc2785764e4353b28",
     "mapping": "3279e4026145d9ef3d99c1e39dbeb5482c493c6cf60d93366a83bd49d3a9d23e",
-    "oplayMapping": "a774e9507e474a84aadcd38ffab578593ffc93c85ddd97eb3040de52711650b8",
-    "sets": "7f744085d6dafb321d60a4c904bf1175e6ae4a991589b27a8dbb6235b712c160",
-    "priceHistory": "c3bd7cbe5bc840a454d772bb9f2e143c7d840316d6ab9a28b86acd93cec56f21"
+    "oplayMapping": "7dd979e949845a90ef8b437f9993d68c02fd48f3ef447847bc3d733d2c366b5c",
+    "sets": "bb270cfd03bfc364c53e455849f6226e804511839df756e31dbadab2865f7736",
+    "priceHistory": "af3507f013cf0359f3c7409a1fe682e8cff6378b3c2a52634dc82b6dd836326f"
   },
   "storage": {
     "reportFile": "output/storage_report_v1.json",
-    "workingDataBytes": 1882701459,
-    "workingDataMiB": 1795.484,
-    "gitRepositoryBytes": 1728811129,
+    "workingDataBytes": 145014712,
+    "workingDataMiB": 138.297,
+    "gitRepositoryBytes": 11619370,
     "folders": {
       "raw": {
-        "files": 6,
-        "bytes": 30722593,
-        "mib": 29.299
+        "files": 5,
+        "bytes": 29648773,
+        "mib": 28.275
       },
       "data": {
-        "files": 6,
-        "bytes": 12459385,
-        "mib": 11.882
+        "files": 3,
+        "bytes": 4534645,
+        "mib": 4.325
       },
       "output": {
-        "files": 9,
-        "bytes": 113486597,
-        "mib": 108.229
+        "files": 8,
+        "bytes": 110831294,
+        "mib": 105.697
       },
       "images": {
-        "files": 4843,
-        "bytes": 1726032884,
-        "mib": 1646.073
+        "files": 0,
+        "bytes": 0,
+        "mib": 0.0
       }
     }
   }
