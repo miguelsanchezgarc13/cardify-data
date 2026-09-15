@@ -29,4 +29,4 @@ jobs:
 
       # 4. Ejecuta el script que está en la raíz
       - name: Run discover_extra_cards.py
-        run: python discover_extra_cards.py
+        run: python -u discover_extra_cards.py
