@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-One Piece TCG catalogue pipeline v3.12.0 (OPlay multilingual printing layer over the validated v3.11.x baseline).
+One Piece TCG catalogue pipeline v3.12.1 (OPlay multilingual printing layer over the validated v3.11.x baseline).
 
 Live sources:
   1) Bandai official card list -> official EN card/game/printing metadata
@@ -9,7 +9,7 @@ Live sources:
   4) Cardmarket public daily price guide -> EUR prices
   5) Cardmarket public non-singles catalogue -> expansion/language evidence
 
-OPTCGAPI is retired in V3.12.0. Cardmarket HTML image discovery is legacy/opt-in only.
+OPTCGAPI is retired in V3.12.1. Cardmarket HTML image discovery is legacy/opt-in only.
 
 Persistent local knowledge:
   data/cardmarket_mapping.json -> Bandai printing <-> Cardmarket idProduct
@@ -21,7 +21,7 @@ Persistent local knowledge:
 Default image policy is REMOTE: exact Bandai/OPlay URLs are written directly into the catalog.
 No new images are downloaded unless --image-storage-mode cache is explicitly selected.
 
-V3.12.0 preserves the validated V3.11.x Bandai/Cardmarket identity and pricing contract,
+V3.12.1 preserves the validated V3.11.x Bandai/Cardmarket identity and pricing contract,
 then overlays OPlay as the canonical multilingual physical-printing/image source whenever
 Bandai does not already provide the same English printing. OPlay artwork is printing-scoped;
 ambiguous Cardmarket market products are never assigned an OPlay image by guesswork.
@@ -5376,7 +5376,7 @@ def build_cardmarket_image_pending(
         })
     return {
         "schemaVersion": 1,
-        "catalogVersion": "3.12.0",
+        "catalogVersion": "3.12.1",
         "generatedAt": utc_now_iso(),
         "pendingCount": len(pending),
         "instructions": "Añade jpg/png/webp con el idProduct indicado bajo images/<manualFileStem> y el siguiente run lo adoptará sin scraping.",
@@ -6184,7 +6184,7 @@ def _direct_cardmarket_printing(
         if candidate_final and (urlparse(candidate_final).hostname or "").casefold() != CARDMARKET_PRODUCT_IMAGE_HOST:
             safe_exact_url = candidate_final
 
-    # V3.12.0 strict rule: a physical Cardmarket printing only displays its own
+    # V3.12.1 strict rule: a physical Cardmarket printing only displays its own
     # persisted idProduct image. Community/legacy references remain entity-only.
     printing_image_url = safe_exact_url
     printing_image = None
@@ -6788,7 +6788,7 @@ def add_cardmarket_supplements(
 
 
 # ---------------------------------------------------------------------------
-# V3.12.0 release/set index, compact price history and manifest
+# V3.12.1 release/set index, compact price history and manifest
 # ---------------------------------------------------------------------------
 
 
@@ -6804,7 +6804,7 @@ def _pack_release_date(pack: dict | None) -> str | None:
 
 
 # ---------------------------------------------------------------------------
-# OPlay <-> Cardmarket reconciliation and storage audit (V3.12.0)
+# OPlay <-> Cardmarket reconciliation and storage audit (V3.12.1)
 # ---------------------------------------------------------------------------
 
 
@@ -6890,6 +6890,8 @@ def _oplay_release_match_code(value: str | None) -> str | None:
         return None
     if code in {"P", "PROMO", "PROMOS", "PROMOTION", "PROMOTIONCARD"}:
         return "PROMO"
+    if code in {"OTHER", "OTHERPRODUCT", "OTHER-PRODUCT"}:
+        return "OTHER_PRODUCT"
     normalized = _normalized_release_code(code)
     return normalized or code
 
@@ -7126,6 +7128,8 @@ def reconcile_oplay_with_catalog(
         "cardmarketProductsHiddenAsAmbiguousMarketRows": 0,
         "oplayPrintingsAdded": 0,
         "oplayOnlyEntitiesAdded": 0,
+        "legacyMarketEntitiesMergedIntoOPlay": 0,
+        "legacyMarketEntitiesLeftForReview": 0,
         "englishOPlaySuppressedAgainstBandai": 0,
         "cardmarketUnknownLanguageNotAutoMapped": 0,
         "entitiesWithOPlay": 0,
@@ -7151,11 +7155,19 @@ def reconcile_oplay_with_catalog(
             if len(matches) != 1:
                 continue
             # If release evidence exists on both sides and contradicts, do not collapse.
-            release_code = canonical_id(row.get("releaseCode"))
-            bandai_release_codes = {canonical_id(rel.get("code")) for rel in matches[0].get("releases", []) or [] if rel.get("code")}
+            release_code = _oplay_release_match_code(row.get("releaseCode"))
+            bandai_release_codes = {
+                _oplay_release_match_code(rel.get("code"))
+                for rel in matches[0].get("releases", []) or []
+                if _oplay_release_match_code(rel.get("code"))
+            }
             if bandai_release_codes and release_code and release_code not in bandai_release_codes and len([r for r in candidates if canonical_id(r.get("sourcePrintingId")) == canonical_id(row.get("sourcePrintingId"))]) > 1:
                 continue
             printing = matches[0]
+            if isinstance(printing.get("oplay"), dict):
+                # One canonical OPlay corroboration per Bandai printing. Do not
+                # overwrite an already proven exact physical match.
+                continue
             printing["oplay"] = {
                 "oplayKey": row.get("oplayKey"),
                 "pageUrl": row.get("pageUrl"),
@@ -7311,9 +7323,70 @@ def reconcile_oplay_with_catalog(
     # or create an OPlay-only entity if Bandai/Cardmarket does not know the card yet.
     for code, candidates in sorted(by_code.items()):
         card = catalog.get(code)
+        meta = cards_meta.get(code) if isinstance(cards_meta, dict) else None
+        meta = meta if isinstance(meta, dict) else {}
+
+        # V3.12.1 migration: once OPlay knows a standard promo/card code, the old
+        # CMCARD-* entity is no longer a separate user-facing card identity. Move
+        # its market printings under the canonical printed code before adding the
+        # OPlay printings. This removes the obsolete "Solo Cardmarket" duplicate
+        # layer while preserving idProduct, prices and legacy inventory aliases.
+        if not isinstance(card, dict) and not str(code).startswith("DON-"):
+            legacy = []
+            for legacy_id, legacy_card in list(catalog.items()):
+                if not isinstance(legacy_card, dict):
+                    continue
+                if legacy_card.get("catalogOrigin") != "cardmarket-only":
+                    continue
+                if legacy_card.get("collectibleType") == "don" or str(legacy_id).startswith("DON-CM-"):
+                    continue
+                if canonical_id(legacy_card.get("code")) != canonical_id(code):
+                    continue
+                legacy.append((legacy_id, legacy_card))
+
+            if legacy:
+                selected = legacy
+                oplay_name = normalize_text(meta.get("name")) if meta.get("name") else ""
+                if len(legacy) > 1 and oplay_name:
+                    selected = [
+                        item for item in legacy
+                        if _name_similarity(normalize_text(item[1].get("name")), oplay_name) >= 0.55
+                    ]
+                # If several legacy entities share a code and none resembles the
+                # OPlay identity, keep every legacy row for review instead of
+                # merging a wrong Cardmarket source discrepancy.
+
+                if selected:
+                    primary_id, card = selected[0]
+                    legacy_ids = []
+                    merged_printings = list(card.get("printings", []) or [])
+                    metacard_ids = set(card.get("cardmarketMetacardIds", []) or [])
+                    if card.get("cardmarketMetacardId") is not None:
+                        metacard_ids.add(card.get("cardmarketMetacardId"))
+                    for legacy_id, legacy_card in selected:
+                        legacy_ids.append(legacy_id)
+                        if legacy_id != primary_id:
+                            merged_printings.extend(legacy_card.get("printings", []) or [])
+                        metacard_ids.update(legacy_card.get("cardmarketMetacardIds", []) or [])
+                        if legacy_card.get("cardmarketMetacardId") is not None:
+                            metacard_ids.add(legacy_card.get("cardmarketMetacardId"))
+                    card["catalogId"] = code
+                    card["code"] = code
+                    card["printedCodes"] = sorted({code, *(card.get("printedCodes", []) or [])})
+                    card["name"] = nullable_text(meta.get("name")) or card.get("name") or code
+                    card["catalogOrigin"] = "oplay-canonical-with-cardmarket"
+                    card["sources"] = sorted({*(card.get("sources", []) or []), "cardmarket", "oplay"})
+                    card["legacyCatalogIds"] = sorted({*(card.get("legacyCatalogIds", []) or []), *legacy_ids})
+                    card["cardmarketMetacardIds"] = sorted(int(x) for x in metacard_ids if get_number(x) is not None)
+                    card["printings"] = merged_printings
+                    catalog[code] = card
+                    for legacy_id, _ in selected:
+                        if legacy_id != code:
+                            catalog.pop(legacy_id, None)
+                    stats["legacyMarketEntitiesMergedIntoOPlay"] += len(selected)
+                    stats["legacyMarketEntitiesLeftForReview"] += max(0, len(legacy) - len(selected))
+
         if not isinstance(card, dict):
-            meta = cards_meta.get(code) if isinstance(cards_meta, dict) else None
-            meta = meta if isinstance(meta, dict) else {}
             first = candidates[0]
             name = nullable_text(meta.get("name")) or nullable_text(first.get("name")) or code
             card = {
@@ -7495,7 +7568,7 @@ def build_storage_report(
     return {
         "generatedAt": utc_now_iso(),
         "schemaVersion": 1,
-        "catalogVersion": "3.12.0",
+        "catalogVersion": "3.12.1",
         "imageStorageMode": image_storage_mode,
         "folders": folders,
         "workingDataBytes": working,
@@ -7673,7 +7746,7 @@ def build_sets_index(
     result_sets.sort(key=_set_sort_key)
     return {
         "schemaVersion": 1,
-        "catalogVersion": "3.12.0",
+        "catalogVersion": "3.12.1",
         "generatedAt": utc_now_iso(),
         "definitions": {
             "baseTarget": "one owned catalog entity that appears in the release",
@@ -7708,7 +7781,7 @@ def update_price_history(
     if not isinstance(history, dict):
         history = {}
     history.setdefault("schemaVersion", 1)
-    history["catalogVersion"] = "3.12.0"
+    history["catalogVersion"] = "3.12.1"
     history["currency"] = "EUR"
     history["valuationPolicy"] = "trend ?? avg7 ?? avg30 ?? avg"
     history["retentionDays"] = retention_days
@@ -7782,7 +7855,7 @@ def build_catalog_manifest(
     printings = sum(len(card.get("printings", [])) for card in catalog.values() if isinstance(card, dict))
     manifest = {
         "schemaVersion": 2,
-        "catalogVersion": "3.12.0",
+        "catalogVersion": "3.12.1",
         "generatedAt": generated_at,
         "sha256Semantics": "raw-file-bytes",
         "backwardCompatibility": {
@@ -7823,7 +7896,7 @@ def build_catalog_manifest(
 
 
 # ---------------------------------------------------------------------------
-# OPlayTCG multilingual printing catalogue (V3.12.0)
+# OPlayTCG multilingual printing catalogue (V3.12.1)
 # ---------------------------------------------------------------------------
 
 
@@ -9614,7 +9687,7 @@ def run_self_test() -> None:
     assert jp_catalog["P-028"]["printings"][0]["language"] == "ja"
     assert jp_catalog["P-028"]["printings"][0]["cardmarket"]["price"]["valuationEur"] == 19.32
 
-    # V3.12.0 regression: a legacy image tied to the same idProduct is reused
+    # V3.12.1 regression: a legacy image tied to the same idProduct is reused
     # only as a validated reference, never promoted to exact artwork.
     legacy_url = "https://example.com/P-028_p2_EN.webp"
     legacy_refs, legacy_ref_stats = legacy_mapping_reference_images({"mappings": {
@@ -9798,7 +9871,7 @@ def main() -> None:
 
     oplay_raw = raw_data.get("oplay") if not args.no_oplay else {"disabled": True, "cards": {}, "printings": [], "stats": {}}
     oplay_printings = normalize_oplay_printings(oplay_raw)
-    # OPTCGAPI was retired in V3.12.0. The legacy matching code remains only for
+    # OPTCGAPI was retired in V3.12.1. The legacy matching code remains only for
     # rollback/self-test compatibility; no live community records enter the catalog.
     community_images: list[dict] = []
 
@@ -10110,7 +10183,7 @@ def main() -> None:
     report = {
         "generatedAt": generated_at,
         "schemaVersion": 10,
-        "catalogVersion": "3.12.0",
+        "catalogVersion": "3.12.1",
         "sources": {
             "bandai": {
                 "url": bandai_root.get("sourceUrl") if isinstance(bandai_root, dict) else None,
@@ -10156,7 +10229,7 @@ def main() -> None:
             },
             "optcgapi": {
                 "enabled": False,
-                "status": "retired-v3.12.0",
+                "status": "retired-v3.12.1",
                 "replacement": "OPlayTCG multilingual physical-printing catalogue",
             },
         },
@@ -10270,7 +10343,7 @@ def main() -> None:
     }
     save_json(report_path, report)
 
-    print("\nGeneración completada (V3.12.0):")
+    print("\nGeneración completada (V3.12.1):")
     print(f"- Cartas totales catálogo: {catalogue_stats['cards']}")
     print(f"- Impresiones físicas totales: {catalogue_stats['printings']} (visibles={catalogue_stats['visiblePrintings']} / market rows ocultas={catalogue_stats['hiddenMarketPrintings']})")
     print(f"- Bandai: {catalogue_stats['bandaiCards']} cartas / {catalogue_stats['bandaiPrintings']} printings")
@@ -10278,6 +10351,7 @@ def main() -> None:
     print(f"  · idiomas: {json.dumps(oplay_stats.get('languages', {}), ensure_ascii=False, sort_keys=True)}")
     print(f"  · matches Bandai exactos: {oplay_stats.get('bandaiPrintingsMatched', 0)}")
     print(f"  · matches Cardmarket exactos: {oplay_stats.get('cardmarketProductsMapped', 0)}")
+    print(f"  · entidades legacy Cardmarket fusionadas: {oplay_stats.get('legacyMarketEntitiesMergedIntoOPlay', 0)}")
     print(f"  · printings OPlay nuevas: {oplay_stats.get('oplayPrintingsAdded', 0)}")
     print(f"  · entidades OPlay-only nuevas: {oplay_stats.get('oplayOnlyEntitiesAdded', 0)}")
     print(f"  · Cardmarket ambiguas ocultas, sin adivinar: {oplay_stats.get('cardmarketProductsHiddenAsAmbiguousMarketRows', 0)}")
