@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-15T13:31:02+00:00",
+  "generatedAt": "2026-09-15T15:00:45+00:00",
   "schemaVersion": 10,
-  "catalogVersion": "3.12.0",
+  "catalogVersion": "3.12.1",
   "sources": {
     "bandai": {
       "url": "https://en.onepiece-cardgame.com/cardlist/",
-      "fetchedAt": "2026-09-15T13:30:14+00:00",
+      "fetchedAt": "2026-09-15T15:00:17+00:00",
       "records": 4844,
       "series": 60,
       "authority": "official"
@@ -13,7 +13,7 @@
     "oplay": {
       "enabled": true,
       "url": "https://oplaytcg.com/en/library",
-      "fetchedAt": "2026-09-15T13:30:34+00:00",
+      "fetchedAt": "2026-09-15T15:00:22+00:00",
       "uniqueCards": 3035,
       "printings": 32629,
       "languages": {
@@ -27,7 +27,7 @@
       },
       "releases": 72,
       "metadataCards": 250,
-      "metadataFetchedThisRun": 250,
+      "metadataFetchedThisRun": 0,
       "sitemapDocuments": 9,
       "errors": 0,
       "authority": "community-physical-printing-catalogue",
@@ -55,7 +55,7 @@
     },
     "optcgapi": {
       "enabled": false,
-      "status": "retired-v3.12.0",
+      "status": "retired-v3.12.1",
       "replacement": "OPlayTCG multilingual physical-printing catalogue"
     }
   },
@@ -727,14 +727,16 @@
     "stats": {
       "sourcePrintings": 32629,
       "sourceCards": 3035,
-      "bandaiPrintingsMatched": 857,
-      "bandaiExactImagesPreserved": 714,
-      "cardmarketProductsMapped": 773,
-      "cardmarketProductsMappedManual": 0,
-      "cardmarketProductsMappedAuto": 773,
+      "bandaiPrintingsMatched": 4768,
+      "bandaiExactImagesPreserved": 2045,
+      "cardmarketProductsMapped": 2104,
+      "cardmarketProductsMappedManual": 773,
+      "cardmarketProductsMappedAuto": 1331,
       "cardmarketProductsHiddenAsAmbiguousMarketRows": 7200,
-      "oplayPrintingsAdded": 31187,
-      "oplayOnlyEntitiesAdded": 250,
+      "oplayPrintingsAdded": 27782,
+      "oplayOnlyEntitiesAdded": 198,
+      "legacyMarketEntitiesMergedIntoOPlay": 54,
+      "legacyMarketEntitiesLeftForReview": 1,
       "englishOPlaySuppressedAgainstBandai": 0,
       "cardmarketUnknownLanguageNotAutoMapped": 7412,
       "entitiesWithOPlay": 3035,
@@ -747,15 +749,15 @@
         "zh-Hans": 4926,
         "zh-Hant": 4942
       },
-      "visiblePrintings": 36448,
+      "visiblePrintings": 33043,
       "hiddenMarketPrintings": 7200,
-      "printingsWithOPlayImage": 31246
+      "printingsWithOPlayImage": 27841
     },
-    "mappingReviewPending": 10813,
+    "mappingReviewPending": 9482,
     "mappingFile": "data/oplay_cardmarket_mapping_v1.json",
     "reviewFile": "output/oplay_mapping_review.json",
     "cardmarketMetadataMigration": {
-      "legacyRecordsMigrated": 1959,
+      "legacyRecordsMigrated": 0,
       "versionsSeededFromMappingUrl": 0,
       "products": 9452
     },
@@ -2847,9 +2849,9 @@
   },
   "sets": {
     "officialBandaiSetCount": 60,
-    "oplaySetCount": 12,
+    "oplaySetCount": 11,
     "cardmarketExpansionCount": 52,
-    "total": 124
+    "total": 123
   },
   "priceHistory": {
     "enabled": true,
@@ -2863,7 +2865,7 @@
     "storageMode": "remote",
     "policy": "exact printing image only; OPlay/Bandai remote by default; no sibling/entity fallback",
     "remoteOPlayImages": 32629,
-    "oplayExactPrintingImagesInCatalog": 31246,
+    "oplayExactPrintingImagesInCatalog": 27841,
     "bandaiPersistentAssets": {
       "targets": 4843,
       "reused": 0,
@@ -2890,8 +2892,8 @@
     "cardmarketDiscoveryStatus": "retired in favour of OPlay exact-printing mapping"
   },
   "output": {
-    "cards": 3275,
-    "printings": 43648,
+    "cards": 3221,
+    "printings": 40243,
     "printingsWithCardmarketMapping": 4327,
     "printingsWithCardmarketPriceGuide": 11945,
     "printingsWithCardmarketValuation": 11657,
@@ -3183,40 +3185,40 @@
     "cardmarketLinkedBandaiProducts": 6947,
     "oplaySourceCards": 3035,
     "oplaySourcePrintings": 32629,
-    "oplayOnlyEntitiesAdded": 250,
-    "oplayPrintingsAdded": 31187,
-    "oplayCardmarketProductsMapped": 773,
-    "visiblePrintings": 36448,
+    "oplayOnlyEntitiesAdded": 198,
+    "oplayPrintingsAdded": 27782,
+    "oplayCardmarketProductsMapped": 2104,
+    "visiblePrintings": 33043,
     "hiddenMarketPrintings": 7200,
     "entitiesWithPreviewImage": 3035
   },
   "fingerprints": {
-    "catalog": "3d1b22903aa57f905de2a07f7f054b13dabb22428ad7d341c2f727a0b5cda1d9",
+    "catalog": "d8c64b4ae8de51e23a820ef2c32bf66181dd1afba5556b8bbe3780d744c703a0",
     "mapping": "3279e4026145d9ef3d99c1e39dbeb5482c493c6cf60d93366a83bd49d3a9d23e",
-    "oplayMapping": "2a619ea1685b549d4ce5366f29a70c47ca60821b02f7c3d9c1a37d74a1a71ed4",
-    "sets": "e159e4d50bae409b68242855a1d9cfa5694019540419c079b11bf26c23d76124",
-    "priceHistory": "be0f0f9349e72c2382335d8f976ff5b64b3c5baee17fa91176803441a61a2edf"
+    "oplayMapping": "a774e9507e474a84aadcd38ffab578593ffc93c85ddd97eb3040de52711650b8",
+    "sets": "7f744085d6dafb321d60a4c904bf1175e6ae4a991589b27a8dbb6235b712c160",
+    "priceHistory": "c3bd7cbe5bc840a454d772bb9f2e143c7d840316d6ab9a28b86acd93cec56f21"
   },
   "storage": {
     "reportFile": "output/storage_report_v1.json",
-    "workingDataBytes": 1889751472,
-    "workingDataMiB": 1802.207,
-    "gitRepositoryBytes": 1725004308,
+    "workingDataBytes": 1882701459,
+    "workingDataMiB": 1795.484,
+    "gitRepositoryBytes": 1728811129,
     "folders": {
       "raw": {
         "files": 6,
-        "bytes": 30722595,
+        "bytes": 30722593,
         "mib": 29.299
       },
       "data": {
         "files": 6,
-        "bytes": 12178324,
-        "mib": 11.614
+        "bytes": 12459385,
+        "mib": 11.882
       },
       "output": {
-        "files": 8,
-        "bytes": 120817669,
-        "mib": 115.221
+        "files": 9,
+        "bytes": 113486597,
+        "mib": 108.229
       },
       "images": {
         "files": 4843,

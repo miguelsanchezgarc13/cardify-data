@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "source": "OPlayTCG public sitemap/library",
   "sourceUrl": "https://oplaytcg.com/en/library",
-  "fetchedAt": "2026-09-15T13:30:34+00:00",
+  "fetchedAt": "2026-09-15T15:00:22+00:00",
   "imagePolicy": "remote-url-only; image bytes are not downloaded into raw",
   "languages": {
     "en": {
@@ -529107,7 +529107,7 @@
     },
     "releases": 72,
     "metadataCards": 250,
-    "metadataFetchedThisRun": 250,
+    "metadataFetchedThisRun": 0,
     "sitemapDocuments": 9
   },
   "errors": []

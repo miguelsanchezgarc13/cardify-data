@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-09-15T13:31:10+00:00",
+  "generatedAt": "2026-09-15T15:00:53+00:00",
   "schemaVersion": 1,
-  "catalogVersion": "3.12.0",
+  "catalogVersion": "3.12.1",
   "imageStorageMode": "remote",
   "folders": {
     "raw": {
       "files": 6,
-      "bytes": 30722595,
+      "bytes": 30722593,
       "mib": 29.299,
       "largestFiles": [
         {
           "path": "raw/oplaytcg_catalog_raw.json",
-          "bytes": 16718891
+          "bytes": 16718889
         },
         {
           "path": "raw/bandai_cards_raw.json",
@@ -37,8 +37,8 @@
     },
     "data": {
       "files": 6,
-      "bytes": 12178324,
-      "mib": 11.614,
+      "bytes": 12459385,
+      "mib": 11.882,
       "largestFiles": [
         {
           "path": "data/image_assets_v1.json",
@@ -62,26 +62,26 @@
         },
         {
           "path": "data/oplay_cardmarket_mapping_v1.json",
-          "bytes": 164417
+          "bytes": 445478
         }
       ]
     },
     "output": {
-      "files": 8,
-      "bytes": 120817669,
-      "mib": 115.221,
+      "files": 9,
+      "bytes": 113486597,
+      "mib": 108.229,
       "largestFiles": [
         {
           "path": "output/cards_multisource_v3.json",
-          "bytes": 102247150
+          "bytes": 95811999
         },
         {
           "path": "output/oplay_mapping_review.json",
-          "bytes": 7431151
+          "bytes": 6901292
         },
         {
           "path": "output/sets_multisource_v3.json",
-          "bytes": 5720251
+          "bytes": 5346620
         },
         {
           "path": "output/cardmarket_image_pending.json",
@@ -97,7 +97,11 @@
         },
         {
           "path": "output/cards_multisource_v3_report.json",
-          "bytes": 97488
+          "bytes": 97584
+        },
+        {
+          "path": "output/storage_report_v1.json",
+          "bytes": 7473
         },
         {
           "path": "output/catalog_manifest_v3.json",
@@ -193,28 +197,28 @@
       ]
     }
   },
-  "workingDataBytes": 1889751472,
-  "workingDataMiB": 1802.207,
+  "workingDataBytes": 1882701459,
+  "workingDataMiB": 1795.484,
   "gitRepository": {
     "files": 30,
-    "bytes": 1725004308,
-    "mib": 1645.092,
+    "bytes": 1728811129,
+    "mib": 1648.723,
     "largestFiles": [
       {
-        "path": ".git/objects/pack/pack-4c4d1bed395e8dcb7dc84999e2346fccbfc9d443.pack",
-        "bytes": 1724332806
+        "path": ".git/objects/pack/pack-8e91cd8da0ff1be97014816d0b2e9beca38b5eee.pack",
+        "bytes": 1728138971
       },
       {
         "path": ".git/index",
-        "bytes": 483566
+        "bytes": 484062
       },
       {
-        "path": ".git/objects/pack/pack-4c4d1bed395e8dcb7dc84999e2346fccbfc9d443.idx",
-        "bytes": 139056
+        "path": ".git/objects/pack/pack-8e91cd8da0ff1be97014816d0b2e9beca38b5eee.idx",
+        "bytes": 139196
       },
       {
-        "path": ".git/objects/pack/pack-4c4d1bed395e8dcb7dc84999e2346fccbfc9d443.rev",
-        "bytes": 19764
+        "path": ".git/objects/pack/pack-8e91cd8da0ff1be97014816d0b2e9beca38b5eee.rev",
+        "bytes": 19784
       },
       {
         "path": ".git/hooks/pre-rebase.sample",

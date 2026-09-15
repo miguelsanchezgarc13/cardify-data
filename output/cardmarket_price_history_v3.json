@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "catalogVersion": "3.12.0",
+  "catalogVersion": "3.12.1",
   "currency": "EUR",
   "valuationPolicy": "trend ?? avg7 ?? avg30 ?? avg",
   "retentionDays": 90,
@@ -38469,5 +38469,5 @@
       "907972": 9.95
     }
   },
-  "updatedAt": "2026-09-15T13:31:02+00:00"
+  "updatedAt": "2026-09-15T15:00:45+00:00"
 }
